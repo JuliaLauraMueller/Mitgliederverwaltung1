@@ -1,0 +1,20 @@
+{
+  "name": "mitgliederverwaltung1",
+  "version": "1.0.0",
+  "description": "Project mitgliederverwaltung1",
+  "main": "index.js",
+  "scripts": {
+    "client": "npm start --prefix client",
+    "server": "npm start --prefix server",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.fhnw.ch/mitgliederverwaltung1/Mitgliederverwaltung1.git"
+  },
+  "author": "Project team Mitgliederverwaltung1 (FHNW)",
+  "license": "CC-BY-NC-ND-4.0",
+  "dependencies": {
+    "concurrently": "^4.1.0"
+  }
+}

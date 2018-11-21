@@ -1,0 +1,26 @@
+{
+  "name": "mitgliederverwaltung_server",
+  "version": "1.0.0",
+  "description": "Backend for the FHNW project Mitgliederverwaltung1",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "prod-start": "node server.js",
+    "server-install": "npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.fhnw.ch/mitgliederverwaltung1/Mitgliederverwaltung1.git"
+  },
+  "author": "Project team Mitgliederverwaltung1",
+  "license": "CC-BY-NC-ND-4.0",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.3.13"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.6"
+  }
+}
