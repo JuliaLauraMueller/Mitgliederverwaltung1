@@ -1,0 +1,51 @@
+.memberpage{
+    background-color: rgb(15, 25, 41, 10%)
+}
+
+.member-card{
+    border: 0px solid white;
+    width: 30%;
+    height: 50%;
+    min-width: 120px;
+    min-height: 80px;
+}
+
+.card-image{
+    border-radius: 50%;
+    width: 100px;
+}
+
+.card-name{
+    text-align: left;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.card-text{
+    margin-left: 25px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.row-text{
+    margin-bottom: 8px;
+}
+
+.row-title{
+    margin-bottom: 15px;
+}
+
+.cardbody{
+    border: none;
+}
+
+
+.profile-text{
+    text-align: top;
+    text-align: right;
+    margin-left: 240px;
+    color: rgb(219, 157, 12);
+    text-decoration: underline; 
+}

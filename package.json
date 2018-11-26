@@ -15,6 +15,7 @@
   "author": "Project team Mitgliederverwaltung1 (FHNW)",
   "license": "CC-BY-NC-ND-4.0",
   "dependencies": {
-    "concurrently": "^4.1.0"
+    "concurrently": "^4.1.0",
+    "react-body-backgroundcolor": "^1.2.1"
   }
 }
