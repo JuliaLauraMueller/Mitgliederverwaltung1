@@ -8,6 +8,7 @@ class HomePage extends Component{
             <div>
                 <h1>Hello World! This is the HomePage</h1>
                 <Link to="/login">Login</Link>
+                <Link to="/members">Members</Link>
             </div>  
         );
     }
