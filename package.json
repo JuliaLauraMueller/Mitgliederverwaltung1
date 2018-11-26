@@ -16,5 +16,8 @@
   "license": "CC-BY-NC-ND-4.0",
   "dependencies": {
     "concurrently": "^4.1.0"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
   }
 }
