@@ -6,7 +6,8 @@
   "scripts": {
     "client": "npm start --prefix client",
     "server": "npm start --prefix server",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test": "mocha --recursive"
   },
   "repository": {
     "type": "git",
