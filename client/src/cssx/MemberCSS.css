@@ -1,18 +1,36 @@
+
 .memberpage{
-    background-color: rgb(15, 25, 41, 10%)
+    background-color: rgb(15, 25, 41, 10%);
+    font-family: 'Helvetica', sans-serif
 }
 
 .member-card{
     border: 0px solid white;
-    width: 30%;
-    height: 50%;
-    min-width: 120px;
-    min-height: 80px;
+    min-width: 340px !important;
+    max-width: 340px !important;
+    min-height: 215px !important;
+    max-height: 215px !important;
+    border-radius: 0px !important;
+    margin: 10px;
 }
 
 .card-image{
     border-radius: 50%;
     width: 100px;
+}
+
+.phone-icon{
+    min-width: 20px !important;
+    max-width: 20px !important;
+    min-height: 20px !important;
+    max-height: 20px !important;
+}
+
+.mail-icon{
+    min-width: 24px !important;
+    max-width: 24px !important;
+    min-height: 16px !important;
+    max-height: 16px !important;
 }
 
 .card-name{
@@ -23,7 +41,7 @@
 }
 
 .card-text{
-    margin-left: 25px;
+    margin-left: 29px;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -45,7 +63,7 @@
 .profile-text{
     text-align: top;
     text-align: right;
-    margin-left: 240px;
+    margin-left: 220px;
     color: rgb(219, 157, 12);
     text-decoration: underline; 
 }
