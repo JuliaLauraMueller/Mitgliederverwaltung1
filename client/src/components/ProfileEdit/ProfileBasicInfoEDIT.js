@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { InputGroup, InputGroupAddon, Input, Label, Button } from 'reactstrap'
+import '../../css/ProfileCSS.css'
 
 
 

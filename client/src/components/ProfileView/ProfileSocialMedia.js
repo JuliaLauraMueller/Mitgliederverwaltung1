@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { InputGroup, Input, Label, Button } from 'reactstrap'
-
+import '../../css/ProfileCSS.css'
 
 
 class ProfileSocialMedia extends Component{

@@ -1,0 +1,25 @@
+#bodyProfile {
+}
+
+#basicInformation {
+    float: left;
+    margin: 30px;
+}
+
+#mainInformation {
+    float: left;
+    margin: 30px;
+}
+
+#profilePic {
+    float: left;
+    margin: 30px;
+    width: 25%;
+}
+
+#socialMedia {
+    float: left;
+    clear: left;
+    margin: 30px;
+    width: 25%;
+}

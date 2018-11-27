@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { InputGroup, InputGroupAddon, InputGroupText, Input, Button, TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap'
+import '../../css/ProfileCSS.css'
 
 class ProfileMainInformation extends Component {
     constructor(props) {
