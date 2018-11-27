@@ -16,6 +16,7 @@
   "license": "CC-BY-NC-ND-4.0",
   "dependencies": {
     "concurrently": "^4.1.0",
+    "lodash": "^4.17.11",
     "react-body-backgroundcolor": "^1.2.1",
     "react-helmet": "^5.2.0"
   }

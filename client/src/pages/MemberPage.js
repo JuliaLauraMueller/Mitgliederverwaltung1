@@ -13,8 +13,8 @@ class MemberPage extends Component {
                 {
                 prename: "Steven",
                 lastname: "Wüthrich",
-                mail: "sw@fatpanda.io",
-                phone: "07923456789",
+                mail: "steven.wuethrich@fatpanda.io",
+                phone: "079 234 56 89",
                 profilepic: require('../img/marc_zimmermann.jpg')
                 },
                 
@@ -22,7 +22,7 @@ class MemberPage extends Component {
                 prename: "Marc",
                 lastname: "Zimmermann",
                 mail: "mz@fatpanda.io",
-                phone: "07925456789",
+                phone: "079 254 56 89",
                 profilepic: require('../img/marc_zimmermann.jpg')
                 },
 
@@ -30,7 +30,7 @@ class MemberPage extends Component {
                 prename: "Renato",
                 lastname: "Gnocchi",
                 mail: "rg@fatpanda.io",
-                phone: "07923692789",
+                phone: "079 236 92 79",
                 profilepic: require('../img/marc_zimmermann.jpg')
                 },
 
@@ -38,7 +38,7 @@ class MemberPage extends Component {
                 prename: "Steven",
                 lastname: "Wüthrich",
                 mail: "sw@fatpanda.io",
-                phone: "07923456789",
+                phone: "079 234 56 89",
                 profilepic: require('../img/marc_zimmermann.jpg')
                 },
                 
@@ -46,7 +46,7 @@ class MemberPage extends Component {
                 prename: "Marc",
                 lastname: "Zimmermann",
                 mail: "mz@fatpanda.io",
-                phone: "07925456789",
+                phone: "079 254 56 89",
                 profilepic: require('../img/marc_zimmermann.jpg')
                 }
             ]

@@ -1,7 +1,9 @@
+.container {
+    min-width: 575px;
+}
 
 .memberpage{
     background-color: rgb(15, 25, 41, 10%);
-    font-family: 'Helvetica', sans-serif
 }
 
 .member-card{
@@ -38,6 +40,9 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    font-family: Helvetica;
+    font-size: 24px !important;
+
 }
 
 .card-text{
@@ -45,6 +50,8 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    font-family: Helvetica;
+    font-size: 18px !important;
 }
 
 .row-text{
@@ -63,7 +70,8 @@
 .profile-text{
     text-align: top;
     text-align: right;
-    margin-left: 220px;
+    margin-left: 210px;
     color: rgb(219, 157, 12);
     text-decoration: underline; 
+    font-family: Helvetica;
 }

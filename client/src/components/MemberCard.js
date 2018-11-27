@@ -1,5 +1,5 @@
-import React, { Component, View } from 'react';
-import { Card, CardImg, CardText, CardBody,
+import React, { Component, Text } from 'react';
+import { Card, CardImg, CardText, CardBody, 
     CardTitle, Container, Row, Col, CardColumns } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import '../cssx/MemberCSS.css';
@@ -17,15 +17,17 @@ class MemberCard extends Component {
                     <CardBody>
                         <Container>
                             <Row className="row-title">
-                                <Col sm="5"><img className="card-image" src={this.props.member.profilepic} alt="Card i cap"/></Col>
+                                <Col xs="auto"><img className="card-image" src={this.props.member.profilepic} alt="Card i cap"/></Col>
                                 <Col><CardTitle className="card-name">{this.props.member.prename} <br></br>{this.props.member.lastname}</CardTitle></Col>
                             </Row>
                             <Row className="row-text">
-                                <Col sm="2"><img className="mail-icon" src={require('../img/mail.png')} alt="Card i cap" /><CardText className="card-text">{this.props.member.mail}</CardText></Col>
+                                <Col><img className="mail-icon" src={require('../img/mail.png')} alt="Card i cap" />
+                                <CardTitle className="card-text">{this.props.member.mail}</CardTitle></Col>
 
                             </Row>
                             <Row>
-                                <Col sm="2"><img className="phone-icon" src={require('../img/phone.png')} alt="Card i cap" /><CardText className="card-text">{this.props.member.phone}</CardText></Col>
+                                <Col><img className="phone-icon" src={require('../img/phone.png')} alt="Card i cap" />
+                                <CardTitle className="card-text">{this.props.member.phone}</CardTitle></Col>
                             </Row>
                             <Row>
                                 <Col><CardText><Link className="profile-text" to="/login">Profil></Link></CardText></Col>
