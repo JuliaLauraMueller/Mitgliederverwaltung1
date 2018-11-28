@@ -1,23 +1,27 @@
-import React, { Component } from 'react'
-import ProfilePic from '../components/ProfileView/ProfilePic.js'
-import ProfileBasicInfo from '../components/ProfileView/ProfileBasicInfo.js'
-import ProfileSocialMedia from '../components/ProfileView/ProfileSocialMedia.js'
-import ProfileMainInformation from '../components/ProfileView/ProfileMainInformation.js'
-import ProfilePicEDIT from '../components/ProfileEdit/ProfilePicEDIT.js'
-import ProfileBasicInfoEDIT from '../components/ProfileEdit/ProfileBasicInfoEDIT.js'
-import ProfileSocialMediaEDIT from '../components/ProfileEdit/ProfileSocialMediaEDIT.js'
-import ProfileMainInformationEDIT from '../components/ProfileEdit/ProfileMainInformationEDIT.js'
-import '../css/ProfileCSS.css'
+import React, { Component } from 'react';
+import ProfilePic from '../components/ProfileView/ProfilePic.js';
+import ProfileBasicInfo from '../components/ProfileView/ProfileBasicInfo.js';
+import ProfileSocialMedia from '../components/ProfileView/ProfileSocialMedia.js';
+import ProfileMainInformation from '../components/ProfileView/ProfileMainInformation.js';
+import ProfilePicEDIT from '../components/ProfileEdit/ProfilePicEDIT.js';
+import ProfileBasicInfoEDIT from '../components/ProfileEdit/ProfileBasicInfoEDIT.js';
+import ProfileSocialMediaEDIT from '../components/ProfileEdit/ProfileSocialMediaEDIT.js';
+import ProfileMainInformationEDIT from '../components/ProfileEdit/ProfileMainInformationEDIT.js';
+import '../css/ProfileCSS.css';
 
 class ProfilePage extends Component {
-  constructor(props, context) {
-    super(props, context);
-    this.state = { isEditing: false };
+  constructor(props) {
+    super(props);
+    this.state = {
+      isEditing: false
+      //member: this.props.member
+    };
+
     this.toggleEdit = this.toggleEdit.bind(this);
   }
 
   toggleEdit() {
-    this.setState({isEditing: !this.state.isEditing})
+    this.setState({ isEditing: !this.state.isEditing });
   }
 
   render() {
@@ -30,10 +34,8 @@ class ProfilePage extends Component {
           <ProfileMainInformationEDIT />
           <button onClick={this.toggleEdit}>save</button>
         </div>
-      )
-    }
-
-    else {
+      );
+    } else {
       return (
         <div id="bodyProfile">
           <ProfilePic />

@@ -1,47 +1,56 @@
 import React, { Component } from 'react';
-import { InputGroup, InputGroupAddon, Input, Label, Button } from 'reactstrap'
-import '../../css/ProfileCSS.css'
-
-
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchProfile } from '../../actions/profileActions';
+import '../../css/ProfileCSS.css';
 
 class ProfileBasicInfo extends Component {
+  componentWillMount() {
+    this.props.fetchProfile();
+  }
 
-    render() {
-        return (
-            <div id="basicInformation">
-                <InputGroup>
-                    <InputGroupAddon addonType="prepend">Status</InputGroupAddon>
-                    <Input placeholder="Junior" />
-                </InputGroup>
-                <br />
-                <InputGroup>
-                    <InputGroupAddon addonType="prepend">Mitglieder Nr.</InputGroupAddon>
-                    <Input placeholder="056" />
-                </InputGroup>
-                <br />
-                <InputGroup>
-                    <InputGroupAddon addonType="prepend">Eintrittsdatum</InputGroupAddon>
-                    <Input placeholder="2015" />
-                </InputGroup>
-                <br />
-                <InputGroup>
-                    <InputGroupAddon addonType="prepend">City</InputGroupAddon>
-                    <Input placeholder="Bern" />
-                </InputGroup>
-                <br />
-                <InputGroup>
-                    <InputGroupAddon addonType="prepend">Götti</InputGroupAddon>
-                    <Input placeholder="Samuel Müller" />
-                </InputGroup>
-                <br />
-                <InputGroup>
-                    <InputGroupAddon addonType="prepend">Geburtsdatum</InputGroupAddon>
-                    <Input placeholder="30.12.1990" />
-                </InputGroup>
-                <br />
-            </div>
-        );
-    }
+  render() {
+    const profile = this.props.profile;
+    return (
+      <div id="basicInformation">
+        <div>
+          <label>Status</label>
+          <label>{profile.status}</label>
+        </div>
+        <div>
+          <label>Mitglieder Nr.</label>
+          <label>{profile.memberNumber}</label>
+        </div>
+        <div>
+          <label>Eintrittsdatum</label>
+          <label>{profile.entryDate}</label>
+        </div>
+        <div>
+          <label>City</label>
+          <label>{profile.city}</label>
+        </div>
+        <div>
+          <label>Götti</label>
+          <label>{profile.godfather}</label>
+        </div>
+        <div>
+          <label>Geburtsdatum</label>
+          <label>{profile.birthdate}</label>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default ProfileBasicInfo;
+ProfileBasicInfo.propTypes = {
+  fetchProfile: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  profile: state.profile.member
+});
+export default connect(
+  mapStateToProps,
+  { fetchProfile }
+)(ProfileBasicInfo);

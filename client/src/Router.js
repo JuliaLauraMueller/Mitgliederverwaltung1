@@ -6,7 +6,8 @@ import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import ProfilePage from './pages/ProfilePage';
 
-class Router extends Component{
+
+class Router extends Component {
     render() {
         // Add Routes to Switch
         return (
