@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import MemberCard from '../components/MemberCard';
+import SearchFieldMember from '../components/SearchFieldMember';
 import '../cssx/MemberCSS.css';
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
 import { Container, Row } from 'reactstrap';
 
 
@@ -61,14 +62,15 @@ class MemberPage extends Component {
         return (
         <div>
             <div>
-                <Helmet>
-                    <style>{'body { background-color: rgb(15, 25, 41, 10%); }'}</style>
+                <Helmet> 
+                    <style>{'body { background-color: rgb(15, 25, 41, 10%); }'}</style> 
                 </Helmet>
             </div>
 
             <div>             
                 <h1>Members</h1>
                 <Container fluid>
+                    <SearchFieldMember></SearchFieldMember>
                     <Row>
                         {memberCards}
                     </Row>

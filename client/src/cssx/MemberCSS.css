@@ -8,31 +8,41 @@
 
 .member-card{
     border: 0px solid white;
-    min-width: 340px !important;
-    max-width: 340px !important;
-    min-height: 215px !important;
-    max-height: 215px !important;
+    min-width: 237px !important;
+    max-width: 237px !important;
+    min-height: 161px !important;
+    max-height: 161px !important;
     border-radius: 0px !important;
-    margin: 10px;
+    margin: 9px;
 }
 
 .card-image{
     border-radius: 50%;
     width: 100px;
+    min-width: 70px !important;
+    max-width: 70px !important;
+    min-height: 70px !important;
+    max-height: 70px !important;
+    margin-left: -13px;
+    margin-top: -8px;
 }
 
 .phone-icon{
-    min-width: 20px !important;
-    max-width: 20px !important;
-    min-height: 20px !important;
-    max-height: 20px !important;
+    min-width: 18px !important;
+    max-width: 18px !important;
+    min-height: 18px !important;
+    max-height: 18px !important;
+    margin-top: -29px;
+    margin-left: -12px;
 }
 
 .mail-icon{
-    min-width: 24px !important;
-    max-width: 24px !important;
-    min-height: 16px !important;
-    max-height: 16px !important;
+    min-width: 21px !important;
+    max-width: 21px !important;
+    min-height: 14px !important;
+    max-height: 14px !important;
+    margin-top: -16px;
+    margin-left: -13px;
 }
 
 .card-name{
@@ -41,17 +51,32 @@
     top: 50%;
     transform: translateY(-50%);
     font-family: Helvetica;
-    font-size: 24px !important;
+    font-size: 16px !important;
+    margin-left: -22px;
+
 
 }
 
-.card-text{
+.card-text-mail{
     margin-left: 29px;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     font-family: Helvetica;
-    font-size: 18px !important;
+    font-size: 12px !important;
+    margin-top: -6px;
+    margin-left: 16px;
+}
+
+.card-text-phone{
+    margin-left: 29px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: Helvetica;
+    font-size: 12px !important;
+    margin-top: -13px;
+    margin-left: 16px;
 }
 
 .row-text{
@@ -66,12 +91,18 @@
     border: none;
 }
 
-
 .profile-text{
-    text-align: top;
-    text-align: right;
-    margin-left: 210px;
+    margin-left: 160px;
+    margin-top: -20px;
     color: rgb(219, 157, 12);
-    text-decoration: underline; 
-    font-family: Helvetica;
+    font-family: 'Roboto';
+    font-weight: lighter;
+    font-size: 13px !important;
+}
+
+.search-field{
+    margin: 0 auto;
+    margin: center;
+    justify-content: center;
+    display: flex;
 }
