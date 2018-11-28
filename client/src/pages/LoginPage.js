@@ -5,12 +5,7 @@ import '../css/Login.css';
 
 class LoginPage extends Component {
   render() {
-    return (
-      <div className="login-container">
-        <h1>Login</h1>
-        <Login />
-      </div>
-    );
+    return <Login />;
   }
 }
 
