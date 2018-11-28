@@ -1,9 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
 const userController = require('./controllers/userController');
 const jwt = require('./helpers/jwt');
 const cors = require('cors');
+const errorHandler = require('./helpers/errorHandler');
 
 const app = express();
 
@@ -14,6 +14,9 @@ app.use(jwt());
 
 // Routes
 app.use('/api/users', userController);
+
+// Error handler
+app.use(errorHandler);
 
 //Start server
 const port = 5000;
