@@ -4,6 +4,7 @@ import { InputGroup, Input } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchProfile } from '../../actions/profileActions';
+import { putProfile } from '../../actions/profileActions';
 
 class ProfilePicEDIT extends Component {
   componentWillMount() {
@@ -22,10 +23,23 @@ class ProfilePicEDIT extends Component {
     };
 
     this.onChange = this.onChange.bind(this);
+    this.onSave = this.onSave.bind(this);
   }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
+  }
+
+  onSave() {
+    const profilePicUpdate = {
+      salutation: this.state.salutation,
+      title: this.state.title,
+      firstname: this.state.firstname,
+      surename: this.state.surename,
+      alias: this.state.alias
+    };
+
+    this.props.putProfile(profilePicUpdate);
   }
 
   render() {
@@ -78,6 +92,7 @@ class ProfilePicEDIT extends Component {
 
 ProfilePicEDIT.propTypes = {
   fetchProfile: PropTypes.func.isRequired,
+  putProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
 
@@ -86,5 +101,7 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { fetchProfile }
+  { fetchProfile, putProfile },
+  null,
+  { withRef: true }
 )(ProfilePicEDIT);

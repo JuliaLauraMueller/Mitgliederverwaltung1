@@ -126,6 +126,12 @@ class ProfileMainInformation extends Component {
             </div>
           </TabPane>
         </TabContent>
+        <div>
+          <label>Rechnungsadresse: </label>
+          <label>
+            {profile.invoiceAddress === '1' ? 'privat' : 'geschäftlich'}
+          </label>
+        </div>
       </div>
     );
   }

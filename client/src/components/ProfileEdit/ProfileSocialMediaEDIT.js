@@ -4,6 +4,7 @@ import '../../css/ProfileCSS.css';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchProfile } from '../../actions/profileActions';
+import { putProfile } from '../../actions/profileActions';
 
 class ProfileSocialMediaEDIT extends Component {
   componentWillMount() {
@@ -22,10 +23,23 @@ class ProfileSocialMediaEDIT extends Component {
     };
 
     this.onChange = this.onChange.bind(this);
+    this.onSave = this.onSave.bind(this);
   }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
+  }
+
+  onSave() {
+    const socialMediaUpdate = {
+      xingLink: this.state.xingLink,
+      linkedinLink: this.state.linkedinLink,
+      facebookLink: this.state.facebookLink,
+      instagramLink: this.state.instagramLink,
+      offerings: this.state.offerings
+    };
+
+    this.props.putProfile(socialMediaUpdate);
   }
 
   render() {
@@ -88,6 +102,7 @@ class ProfileSocialMediaEDIT extends Component {
 
 ProfileSocialMediaEDIT.propTypes = {
   fetchProfile: PropTypes.func.isRequired,
+  putProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
 
@@ -96,5 +111,7 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { fetchProfile }
+  { fetchProfile, putProfile },
+  null,
+  { withRef: true }
 )(ProfileSocialMediaEDIT);

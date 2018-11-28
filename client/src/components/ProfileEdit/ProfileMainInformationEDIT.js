@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchProfile } from '../../actions/profileActions';
+import { putProfile } from '../../actions/profileActions';
 import {
   InputGroup,
   InputGroupAddon,
@@ -10,7 +11,9 @@ import {
   TabPane,
   Nav,
   NavItem,
-  NavLink
+  NavLink,
+  Label,
+  FormGroup
 } from 'reactstrap';
 import '../../css/ProfileCSS.css';
 
@@ -24,6 +27,8 @@ class ProfileMainInformationEDIT extends Component {
     const profile = this.props.profile;
     this.state = {
       activeTab: '1',
+
+      invoiceAddress: profile.invoiceAddress,
 
       sector: profile.sector,
       job: profile.job,
@@ -49,6 +54,7 @@ class ProfileMainInformationEDIT extends Component {
 
     this.toggle = this.toggle.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.onSave = this.onSave.bind(this);
   }
 
   toggle(tab) {
@@ -63,13 +69,39 @@ class ProfileMainInformationEDIT extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  onSave() {
+    const mainInfoUpdate = {
+      sector: this.state.sector,
+      job: this.state.job,
+      function: this.state.function,
+      company: this.state.company,
+      companyTel: this.state.companyTel,
+      companyMobile: this.state.companyMobile,
+      companyEmail: this.state.companyEmail,
+      companyStreet: this.state.companyStreet,
+      companyStreetNr: this.state.companyStreetNr,
+      companyZip: this.state.companyZip,
+      companyCity: this.state.companyCity,
+      companyURL: this.state.companyURL,
+      privateTel: this.state.privateTel,
+      privateMobile: this.state.privateMobile,
+      privateEmail: this.state.privateEmail,
+      privateStreet: this.state.privateStreet,
+      privateStreetNr: this.state.privateStreetNr,
+      privateZip: this.state.privateZip,
+      privateCity: this.state.privateCity,
+      invoiceAddress: this.state.invoiceAddress
+    };
+
+    this.props.putProfile(mainInfoUpdate);
+  }
+
   render() {
     return (
       <div id="mainInformation">
         <Nav tabs>
           <NavItem>
             <NavLink
-              //className={classnames({ active: this.state.activeTab === '1' })}
               onClick={() => {
                 this.toggle('1');
               }}
@@ -79,7 +111,6 @@ class ProfileMainInformationEDIT extends Component {
           </NavItem>
           <NavItem>
             <NavLink
-              // className={classnames({ active: this.state.activeTab === '2' })}
               onClick={() => {
                 this.toggle('2');
               }}
@@ -273,6 +304,32 @@ class ProfileMainInformationEDIT extends Component {
             <br />
           </TabPane>
         </TabContent>
+        <FormGroup tag="fieldset">
+          <FormGroup check>
+            <Label check>
+              <Input
+                type="radio"
+                name="invoiceAddress"
+                value="1"
+                checked={this.state.invoiceAddress === '1'}
+                onChange={this.onChange}
+              />{' '}
+              Rechnungsadresse privat
+            </Label>
+          </FormGroup>
+          <FormGroup check>
+            <Label check>
+              <Input
+                type="radio"
+                name="invoiceAddress"
+                value="2"
+                checked={this.state.invoiceAddress === '2'}
+                onChange={this.onChange}
+              />{' '}
+              Rechnungsadresse geschäftlich
+            </Label>
+          </FormGroup>
+        </FormGroup>
       </div>
     );
   }
@@ -280,13 +337,17 @@ class ProfileMainInformationEDIT extends Component {
 
 ProfileMainInformationEDIT.propTypes = {
   fetchProfile: PropTypes.func.isRequired,
+  putProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   profile: state.profile.member
 });
+
 export default connect(
   mapStateToProps,
-  { fetchProfile }
+  { fetchProfile, putProfile },
+  null,
+  { withRef: true }
 )(ProfileMainInformationEDIT);

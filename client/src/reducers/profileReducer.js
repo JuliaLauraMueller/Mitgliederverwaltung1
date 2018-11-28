@@ -29,6 +29,7 @@ const initialState = {
     privateStreetNr: 'asdf',
     privateZip: 'asdf',
     privateCity: 'asdf',
+    invoiceAddress: '1',
 
     salutation: 'Hr',
     title: 'Dr',
@@ -49,8 +50,9 @@ export default function(state = initialState, action) {
     case FETCH_PROFILE:
       return state;
     case PUT_PROFILE:
+      console.log(action.payload);
       return {
-        member: action.payload
+        member: { ...state.member, ...action.payload }
       };
     default:
       return state;

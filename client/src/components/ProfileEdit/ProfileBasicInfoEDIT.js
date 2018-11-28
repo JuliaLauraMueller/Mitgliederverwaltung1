@@ -14,6 +14,7 @@ class ProfileBasicInfoEDIT extends Component {
   constructor(props) {
     super(props);
     const profile = this.props.profile;
+    console.log(profile);
     this.state = {
       status: profile.status,
       memberNumber: profile.memberNumber,
@@ -31,7 +32,7 @@ class ProfileBasicInfoEDIT extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  onSave() {
+  onSave(e) {
     const basicInformationUpdate = {
       status: this.state.status,
       memberNumber: this.state.memberNumber,
@@ -40,7 +41,6 @@ class ProfileBasicInfoEDIT extends Component {
       godfather: this.state.godfather,
       birthdate: this.state.birthdate
     };
-
     this.props.putProfile(basicInformationUpdate);
   }
 
@@ -115,12 +115,10 @@ ProfileBasicInfoEDIT.propTypes = {
   fetchProfile: PropTypes.func.isRequired,
   putProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
-  //updatedProfile: PropTypes.object
 };
 
 const mapStateToProps = state => ({
   profile: state.profile.member
-  // updatedProfile: state.profile.member
 });
 
 export default connect(
