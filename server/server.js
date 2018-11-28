@@ -1,29 +1,19 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-
-mongoose.set('useNewUrlParser', true);
-
-
-// Routes
-// e.g. const items = require('./routes/api/items');
+const userController = require('./controllers/userController');
+const jwt = require('./helpers/jwt');
+const cors = require('cors');
 
 const app = express();
 
-// Bodyparser middleware
+// Middleware
 app.use(bodyParser.json());
+app.use(cors());
+app.use(jwt());
 
-// DB Config
-const db = require('./config/keys').mongoURI;
-
-// Connect to Mongo
-mongoose
-.connect(db)
-.then(() => console.log('MongoDB connected...'))
-.catch(err => console.log(err));
-
-// Use routes
-// app.use('/api/items', items);
+// Routes
+app.use('/api/users', userController);
 
 //Start server
 const port = 5000;
