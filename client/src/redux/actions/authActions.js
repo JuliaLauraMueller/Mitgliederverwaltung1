@@ -1,4 +1,5 @@
 import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from '../types/authTypes';
+import { ALERT_ERROR } from '../types/alertTypes';
 import authService from '../../services/authService';
 import history from '../../helpers/history';
 
@@ -10,6 +11,7 @@ export const login = (email, password) => dispatch => {
     },
     error => {
       dispatch({ type: LOGIN_FAILURE, error });
+      dispatch({ type: ALERT_ERROR, payload: 'Email oder Passwort falsch...' });
     }
   );
 };

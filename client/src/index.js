@@ -6,6 +6,9 @@ import axios from 'axios';
 import authService from './services/authService';
 import config from './config/keys';
 
+import { Provider } from 'react-redux';
+import store from './helpers/store';
+
 axios.defaults.baseURL = config.api;
 axios.interceptors.request.use(
   response => response,
@@ -18,7 +21,12 @@ axios.interceptors.request.use(
   }
 );
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
