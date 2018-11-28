@@ -18,10 +18,18 @@ class ProfilePage extends Component {
     };
 
     this.toggleEdit = this.toggleEdit.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   toggleEdit() {
     this.setState({ isEditing: !this.state.isEditing });
+  }
+
+  handleClick(e) {
+    e.preventDefault();
+    //this.profilePic.onSave();
+    this.basicInfo.getWrappedInstance().onSave();
+    this.toggleEdit();
   }
 
   render() {
@@ -29,10 +37,14 @@ class ProfilePage extends Component {
       return (
         <div id="bodyProfile">
           <ProfilePicEDIT />
-          <ProfileBasicInfoEDIT />
+          <ProfileBasicInfoEDIT
+            ref={basicInfo => {
+              this.basicInfo = basicInfo;
+            }}
+          />
           <ProfileSocialMediaEDIT />
           <ProfileMainInformationEDIT />
-          <button onClick={this.toggleEdit}>save</button>
+          <button onClick={this.handleClick}>save</button>
         </div>
       );
     } else {

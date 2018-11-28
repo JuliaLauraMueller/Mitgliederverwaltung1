@@ -3,18 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchProfile } from '../../actions/profileActions';
 import '../../css/ProfileCSS.css';
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
-  Input,
-  Button,
-  TabContent,
-  TabPane,
-  Nav,
-  NavItem,
-  NavLink
-} from 'reactstrap';
+import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
 
 class ProfileMainInformation extends Component {
   componentWillMount() {

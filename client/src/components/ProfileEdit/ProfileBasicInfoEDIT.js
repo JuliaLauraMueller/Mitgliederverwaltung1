@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { InputGroup, InputGroupAddon, Input, Label, Button } from 'reactstrap';
+import { InputGroup, InputGroupAddon, Input } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchProfile } from '../../actions/profileActions';
+import { putProfile } from '../../actions/profileActions';
 import '../../css/ProfileCSS.css';
 
 class ProfileBasicInfoEDIT extends Component {
@@ -14,24 +15,36 @@ class ProfileBasicInfoEDIT extends Component {
     super(props);
     const profile = this.props.profile;
     this.state = {
-      status: '',
+      status: profile.status,
       memberNumber: profile.memberNumber,
-      entryDate: '',
-      city: '',
-      godfather: '',
-      birthdate: ''
+      entryDate: profile.entryDate,
+      city: profile.city,
+      godfather: profile.godfather,
+      birthdate: profile.birthdate
     };
 
     this.onChange = this.onChange.bind(this);
+    this.onSave = this.onSave.bind(this);
   }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
-    this.props.fetchProfile();
+  }
+
+  onSave() {
+    const basicInformationUpdate = {
+      status: this.state.status,
+      memberNumber: this.state.memberNumber,
+      entryDate: this.state.entryDate,
+      city: this.state.city,
+      godfather: this.state.godfather,
+      birthdate: this.state.birthdate
+    };
+
+    this.props.putProfile(basicInformationUpdate);
   }
 
   render() {
-    const profile = this.props.profile;
     return (
       <div id="basicInformation">
         <InputGroup>
@@ -62,7 +75,6 @@ class ProfileBasicInfoEDIT extends Component {
             onChange={this.onChange}
             value={this.state.entryDate}
           />
-          {profile.entryDate}
         </InputGroup>
         <br />
         <InputGroup>
@@ -73,7 +85,6 @@ class ProfileBasicInfoEDIT extends Component {
             onChange={this.onChange}
             value={this.state.city}
           />
-          {profile.city}
         </InputGroup>
         <br />
         <InputGroup>
@@ -84,7 +95,6 @@ class ProfileBasicInfoEDIT extends Component {
             onChange={this.onChange}
             value={this.state.godfather}
           />
-          {profile.godfather}
         </InputGroup>
         <br />
         <InputGroup>
@@ -95,7 +105,6 @@ class ProfileBasicInfoEDIT extends Component {
             onChange={this.onChange}
             value={this.state.birthdate}
           />
-          {profile.birthdate}
         </InputGroup>
       </div>
     );
@@ -104,13 +113,19 @@ class ProfileBasicInfoEDIT extends Component {
 
 ProfileBasicInfoEDIT.propTypes = {
   fetchProfile: PropTypes.func.isRequired,
+  putProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
+  //updatedProfile: PropTypes.object
 };
 
 const mapStateToProps = state => ({
   profile: state.profile.member
+  // updatedProfile: state.profile.member
 });
+
 export default connect(
   mapStateToProps,
-  { fetchProfile }
+  { fetchProfile, putProfile },
+  null,
+  { withRef: true }
 )(ProfileBasicInfoEDIT);

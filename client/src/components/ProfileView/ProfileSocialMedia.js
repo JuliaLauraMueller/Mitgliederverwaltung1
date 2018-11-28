@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { InputGroup, Input, Label, Button } from 'reactstrap';
+import { Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchProfile } from '../../actions/profileActions';

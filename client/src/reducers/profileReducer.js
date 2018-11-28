@@ -1,4 +1,5 @@
 import { FETCH_PROFILE } from '../actions/types';
+import { PUT_PROFILE } from '../actions/types';
 
 const initialState = {
   member: {
@@ -46,7 +47,11 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case FETCH_PROFILE:
-      return initialState;
+      return state;
+    case PUT_PROFILE:
+      return {
+        member: action.payload
+      };
     default:
       return state;
   }
