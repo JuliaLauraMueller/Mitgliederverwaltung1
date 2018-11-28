@@ -7,24 +7,46 @@ import React, { Component } from 'react';
 import Routes from './routing/Routes';
 import AuthHeader from './helpers/AuthHeader';
 import { Container } from 'reactstrap';
-import { Provider } from 'react-redux';
+import AlertToast from './components/AlertToast';
+import { connect } from 'react-redux';
 
-import store from './helpers/store';
+import history from './helpers/history';
+
+import { alertClear } from './redux/actions/alertActions';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    const { dispatch } = this.props;
+
+    history.listen((location, action) => {
+      dispatch(alertClear);
+    });
+  }
+
   // Add global layout components before route
   render() {
+    const { alert } = this.props;
+
     return (
-      <Provider store={store}>
-        <div className="App">
-          <Container style={{ marginTop: '5rem' }}>
-            <AuthHeader />
-            <Routes />
-          </Container>
-        </div>
-      </Provider>
+      <div className="App">
+        <Container style={{ marginTop: '5rem' }}>
+          {alert.message && (
+            <AlertToast type={alert.type} message={alert.message} />
+          )}
+          <AuthHeader />
+          <Routes />
+        </Container>
+      </div>
     );
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  const { alert } = state;
+  return {
+    alert
+  };
+}
+
+export default connect(mapStateToProps)(App);
