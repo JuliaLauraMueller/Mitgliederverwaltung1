@@ -13,16 +13,24 @@ class SearchFieldMember extends Component {
 
  render() {
    return (
-     <div className="search-field">
-     <form>
-       <input 
-        placeholder="Search"
+    <div>
+      <div className="search-field">
+        <style>
+          @import url('https://fonts.googleapis.com/css?family=Roboto:100,300');
+        </style> 
+      <form>
+       <input className="search-input"
+        style={{background: 'none', border: 'none'}} 
+        placeholder="suchen..."
          ref={input => this.search = input} // Select input element and getting it's value (suggestions)
          onChange={this.handleInputChange}
        />
        <p>{this.state.query}</p>
      </form>
      </div>
+    <hr/>
+    
+    </div>
    );
  };
 }

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import MemberCard from '../components/MemberCard';
 import SearchFieldMember from '../components/SearchFieldMember';
-import '../cssx/MemberCSS.css';
 import { Helmet } from "react-helmet";
 import { Container, Row } from 'reactstrap';
+import '../cssx/MemberCSS.css';
 
 
 class MemberPage extends Component {
