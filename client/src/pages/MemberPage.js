@@ -68,9 +68,9 @@ class MemberPage extends Component {
             </div>
 
             <div>             
-                <h1>Members</h1>
+                <h1> <img className="member-logo"src={require('../img/logo.png')} alt="Card i cap" ></img> </h1>
                 <Container fluid>
-                    <SearchFieldMember className="search-field-member" ></SearchFieldMember>
+                    <SearchFieldMember ></SearchFieldMember>
                     <Row>
                         {memberCards}
                     </Row>
