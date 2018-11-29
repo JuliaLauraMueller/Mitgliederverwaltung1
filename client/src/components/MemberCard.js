@@ -38,7 +38,11 @@ class MemberCard extends Component {
                         </Container>
                         <Container className="profile-link">
                             <div className="profile-div">
-                                <Link className="profile-text" to="/login">Profil <img className="profile-arrow"src={require('../img/arrow.svg')} alt="Card i cap"></img></Link>
+                                <Link className="profile-text" to="/login">Profil 
+                                    
+                                    <img className="profile-arrow"src={require('../img/arrow.svg')} alt="Card i cap" ></img>
+                                    
+                                </Link>
                             </div> 
                         </Container>
                     </CardBody>

@@ -70,7 +70,7 @@ class MemberPage extends Component {
             <div>             
                 <h1>Members</h1>
                 <Container fluid>
-                    <SearchFieldMember></SearchFieldMember>
+                    <SearchFieldMember className="search-field-member" ></SearchFieldMember>
                     <Row>
                         {memberCards}
                     </Row>

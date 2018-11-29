@@ -19,5 +19,9 @@
     "lodash": "^4.17.11",
     "react-body-backgroundcolor": "^1.2.1",
     "react-helmet": "^5.2.0"
+  },
+  "devDependencies": {
+    "react-svg-loader": "^2.1.0",
+    "svg-react-loader": "^0.4.6"
   }
 }
