@@ -8,19 +8,18 @@ module.exports = {
   authenticate,
   create,
   getById,
-  getAll
+  getAll,
+  generateJwtToken
 };
 
 async function authenticate({ privateEmail, password }) {
-  const user = await User.findOne({ privateEmail });
-  console.log('user for email: ' + privateEmail + ': ' + user);
+  if (!privateEmail || !password) {
+    return {};
+  }
+  const user = await User.findOne({ privateEmail: privateEmail.toLowerCase() });
   if (user && bcrypt.compareSync(password, user.password)) {
-    const { password, ...userWithoutPassword } = user.toObject();
-    const token = jwt.sign({ sub: user._id }, config.jwtSecret);
-    return {
-      ...userWithoutPassword,
-      token
-    };
+    const token = generateJwtToken(user);
+    return token;
   }
 }
 
@@ -74,4 +73,11 @@ async function update(id, userParam) {
 
 async function _delete(id) {
   await User.findByIdAndRemove(id);
+}
+
+function generateJwtToken(user) {
+  const token = jwt.sign({ _id: user._id }, config.jwtSecret, {
+    expiresIn: 60 * 60 * 1 // 1h
+  });
+  return token;
 }

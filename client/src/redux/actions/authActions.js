@@ -1,12 +1,18 @@
-import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from '../types/authTypes';
+import jwtDecode from 'jwt-decode';
+import {
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  UPDATE_TOKEN,
+  LOGOUT
+} from '../types/authTypes';
 import { ALERT_ERROR } from '../types/alertTypes';
 import authService from '../../services/authService';
 import history from '../../helpers/history';
 
 export const login = (privateEmail, password) => dispatch => {
   authService.login(privateEmail, password).then(
-    user => {
-      dispatch({ type: LOGIN_SUCCESS, user });
+    userToken => {
+      dispatch({ type: LOGIN_SUCCESS, payload: jwtDecode(userToken) });
       history.push('/');
     },
     error => {
@@ -16,7 +22,11 @@ export const login = (privateEmail, password) => dispatch => {
   );
 };
 
+export const updateToken = newToken => dispatch => {
+  dispatch({ type: UPDATE_TOKEN, payload: jwtDecode(newToken) });
+};
+
 export const logout = () => dispatch => {
   authService.logout();
-  return { type: LOGOUT };
+  dispatch({ type: LOGOUT });
 };

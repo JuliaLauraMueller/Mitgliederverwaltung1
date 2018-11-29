@@ -2,7 +2,7 @@
   margin-bottom: 20px;
 }
 
-.custom-input-field {
+.form-control {
   background-color: transparent;
   border: 0;
   border-bottom: 1px solid #0f1929;
@@ -11,12 +11,12 @@
   transition: none;
 }
 
-.custom-input-field:active {
+.form-control:active {
   background-color: transparent;
   border-bottom: 1px solid rgb(219, 157, 12);
 }
 
-.custom-input-field:focus {
+.form-control:focus {
   background-color: transparent;
   border-bottom: 1px solid rgb(219, 157, 12);
 }

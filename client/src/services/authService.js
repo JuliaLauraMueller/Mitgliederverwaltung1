@@ -3,8 +3,8 @@ import axios from 'axios';
 function login(privateEmail, password) {
   return axios.post('/users/auth', { privateEmail, password }).then(resp => {
     const user = resp.data;
-    if (user.token) {
-      localStorage.setItem('user', JSON.stringify(user));
+    if (user) {
+      localStorage.setItem('user', user);
     }
     return user;
   });

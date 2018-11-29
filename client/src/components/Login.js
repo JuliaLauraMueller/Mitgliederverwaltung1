@@ -51,7 +51,7 @@ class Login extends Component {
                   name="privateEmail"
                   placeholder="E-Mail"
                   id="emailInp"
-                  className="custom-input-field icon-input"
+                  className="icon-input"
                   value={this.state.privateEmail}
                   onChange={this.handleChange}
                 />
@@ -67,7 +67,7 @@ class Login extends Component {
                   name="password"
                   id="passwordInp"
                   placeholder="Passwort"
-                  className="custom-input-field icon-input"
+                  className="icon-input"
                   value={this.state.password}
                   onChange={this.handleChange}
                 />

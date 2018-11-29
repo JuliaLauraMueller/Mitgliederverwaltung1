@@ -4,13 +4,16 @@ const userController = require('./controllers/userController');
 const jwt = require('./helpers/jwt');
 const cors = require('cors');
 const errorHandler = require('./helpers/errorHandler');
+const addUpdatedTokenToHeader = require('./helpers/jwtSlidingWindow');
 
 const app = express();
 
 // Middleware
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({ exposedHeaders: 'Set-Authorization' }));
 app.use(jwt());
+
+app.use(addUpdatedTokenToHeader);
 
 // Routes
 app.use('/api/users', userController);

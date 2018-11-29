@@ -5,7 +5,6 @@ import './css/App.css';
 // Components
 import React, { Component } from 'react';
 import Routes from './routing/Routes';
-import AuthHeader from './helpers/AuthHeader';
 import { Container } from 'reactstrap';
 import AlertToast from './components/AlertToast';
 import { connect } from 'react-redux';
@@ -38,7 +37,6 @@ class App extends Component {
           {alert.message && (
             <AlertToast type={alert.type} message={alert.message} />
           )}
-          <AuthHeader />
           <Routes />
         </Container>
       </div>
