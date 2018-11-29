@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Input, Button, InputGroup, InputGroupAddon } from 'reactstrap';
+import { Form, Input, Button } from 'reactstrap';
 import { login, logout } from '../redux/actions/authActions';
 import { connect } from 'react-redux';
 
@@ -11,7 +11,7 @@ class Login extends Component {
     this.props.dispatch(logout());
 
     this.state = {
-      email: '',
+      privateEmail: '',
       password: ''
     };
 
@@ -28,32 +28,40 @@ class Login extends Component {
     e.preventDefault();
 
     const { dispatch } = this.props;
-    if (this.state.email && this.state.password) {
-      dispatch(login(this.state.email, this.state.password));
+    if (this.state.privateEmail && this.state.password) {
+      dispatch(login(this.state.privateEmail, this.state.password));
     }
   }
 
   render() {
     return (
       <div className="login-container">
-        <div className="middle">
-          <div className="inner">
-            <h1>Login</h1>
+        <div className="login-middle">
+          <div className="login-inner">
+            <img
+              src="./img/logo_with_font_small.png"
+              alt="logo"
+              className="login-logo"
+            />
             <Form name="loginForm">
-              <div class="input-container">
-                <img src="./img/Mail.png" alt="mail" class="input-icon" />
+              <div className="input-container">
+                <img src="./img/Mail.png" alt="mail" className="input-icon" />
                 <Input
                   type="email"
-                  name="email"
+                  name="privateEmail"
                   placeholder="E-Mail"
                   id="emailInp"
                   className="custom-input-field icon-input"
-                  value={this.state.email}
+                  value={this.state.privateEmail}
                   onChange={this.handleChange}
                 />
               </div>
-              <div class="input-container">
-                <img src="./img/Lock.png" alt="password" class="input-icon" />
+              <div className="input-container">
+                <img
+                  src="./img/Lock.png"
+                  alt="password"
+                  className="input-icon"
+                />
                 <Input
                   type="password"
                   name="password"
