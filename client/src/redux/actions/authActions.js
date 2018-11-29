@@ -3,8 +3,8 @@ import { ALERT_ERROR } from '../types/alertTypes';
 import authService from '../../services/authService';
 import history from '../../helpers/history';
 
-export const login = (email, password) => dispatch => {
-  authService.login(email, password).then(
+export const login = (privateEmail, password) => dispatch => {
+  authService.login(privateEmail, password).then(
     user => {
       dispatch({ type: LOGIN_SUCCESS, user });
       history.push('/');

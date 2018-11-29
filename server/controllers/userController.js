@@ -17,7 +17,7 @@ function authenticate(req, res, next) {
   userService
     .authenticate(req.body)
     .then(user => {
-      return user ? res.json(user) : res.sendStatus(401, 'asdf');
+      return user ? res.json(user) : res.sendStatus(401, 'Unauthorized');
     })
     .catch(err => next(err));
 }

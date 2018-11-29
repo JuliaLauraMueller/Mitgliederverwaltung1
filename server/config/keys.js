@@ -1,4 +1,5 @@
 module.exports = {
-  mongoURI: 'mongodb://localhost:27017/mitgliederverwaltung',
+  mongoURI:
+    'mongodb://mitgliederadm:smallfishswimsfast@86.119.36.153:27017/mitgliederverwaltung',
   jwtSecret: 'sweetcatslikechocolate'
 };
