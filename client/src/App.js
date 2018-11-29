@@ -1,6 +1,9 @@
+// Styles
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './css/App.css';
+
 // Components
 import React, { Component } from 'react';
-import './App.css';
 import Routes from './routing/Routes';
 import AuthHeader from './helpers/AuthHeader';
 import { Container } from 'reactstrap';
@@ -10,10 +13,6 @@ import { connect } from 'react-redux';
 import history from './helpers/history';
 
 import { alertClear } from './redux/actions/alertActions';
-
-// Styles
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
 
 class App extends Component {
   constructor(props) {
