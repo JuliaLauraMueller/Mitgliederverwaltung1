@@ -24,25 +24,7 @@
     min-height: 70px;
     max-height: 70px;
     margin-left: -13px;
-    margin-top: -8px;
-}
-
-.phone-icon{
-    min-width: 18px;
-    max-width: 18px;
-    min-height: 18px;
-    max-height: 18px;
-    margin-top: -29px;
-    margin-left: -12px;
-}
-
-.mail-icon{
-    min-width: 21px;
-    max-width: 21px;
-    min-height: 14px;
-    max-height: 14px;
-    margin-top: -16px;
-    margin-left: -13px;
+    margin-top: -4px;
 }
 
 .card-name{
@@ -52,9 +34,17 @@
     transform: translateY(-50%);
     font-family: Helvetica;
     font-size: 16px;
-    margin-left: -22px;
+    margin-left: 70px;
+    margin-top: -30px;
+}
 
-
+.mail-icon{
+    min-width: 21px;
+    max-width: 21px;
+    min-height: 14px;
+    max-height: 14px;
+    margin-top: 11px;
+    margin-left: -13px;
 }
 
 .card-text-mail{
@@ -64,9 +54,19 @@
     transform: translateY(-50%);
     font-family: Helvetica;
     font-size: 12px;
-    margin-top: -6px;
+    margin-top: 25px;
     margin-left: 16px;
 }
+
+.phone-icon{
+    min-width: 18px;
+    max-width: 18px;
+    min-height: 18px;
+    max-height: 18px;
+    margin-top: 7px;
+    margin-left: -13px;
+}
+
 
 .card-text-phone{
     margin-left: 29px;
@@ -75,7 +75,7 @@
     transform: translateY(-50%);
     font-family: Helvetica;
     font-size: 12px;
-    margin-top: -13px;
+    margin-top: 50px;
     margin-left: 16px;
 }
 
@@ -92,12 +92,40 @@
 }
 
 .profile-text{
-    margin-left: 160px;
-    margin-top: -20px;
     color: rgb(219, 157, 12);
+    border-bottom: 1px solid rgb(219, 157, 12);
     font-family: 'Roboto';
     font-weight: lighter;
     font-size: 13px;
+    margin-left: 148px;
+    
+}
+
+.profile-text:hover {
+    color: rgb(15, 25, 41, 74%);
+    text-decoration: none;
+    border-bottom: 1px solid rgb(15, 25, 41, 74%);
+    font-family: 'Roboto';
+    font-weight: lighter;
+    font-size: 13px;
+    margin-left: 148px;
+        
+}
+
+.profile-text:hover .profile-arrow{
+    fill: rgb(15, 25, 41, 74%); 
+}
+
+.profile-link{
+    margin-left: 0px;
+    margin-top: -10px;
+}
+
+.profile-arrow{
+    color: rgb(15, 25, 41, 74%) !important;
+    height: 12px;
+    width: 7px;
+    fill: rgb(15, 25, 41, 74%);
 }
 
 .search-field{
