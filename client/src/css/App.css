@@ -1,29 +1,23 @@
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-  box-shadow: 0 0 0 30px white inset;
-  -webkit-box-shadow: 0 0 0 30px white inset;
-}
-
 .custom-input-group {
   margin-bottom: 20px;
 }
 
-.custom-input-field {
+.form-control {
   background-color: transparent;
   border: 0;
-  border-bottom: 1px solid rgba(15, 25, 41, 0.1);
+  border-bottom: 1px solid #0f1929;
   border-radius: 0px;
   margin-bottom: 20px;
   transition: none;
 }
 
-.custom-input-field:active {
+.form-control:active {
+  background-color: transparent;
   border-bottom: 1px solid rgb(219, 157, 12);
 }
 
-.custom-input-field:focus {
+.form-control:focus {
+  background-color: transparent;
   border-bottom: 1px solid rgb(219, 157, 12);
 }
 

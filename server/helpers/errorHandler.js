@@ -1,3 +1,5 @@
+const addUpdatedTokenToHeader = require('./jwtSlidingWindow');
+
 module.exports = errorHandler;
 
 function errorHandler(err, req, res, next) {
@@ -10,6 +12,9 @@ function errorHandler(err, req, res, next) {
   } else if (err.name === 'UnauthorizedError') {
     // jwt error
     return res.status(401).json({ error: 'Invalid token' });
+  } else if (err.name === 'RoleChangedError') {
+    addUpdatedTokenToHeader(req, res, next);
+    return res.status(403).json({ error: 'Roles changed' });
   }
 
   return res.status(500).json({ error: err.message });

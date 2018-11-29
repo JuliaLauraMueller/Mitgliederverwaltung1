@@ -5,10 +5,10 @@ import './css/App.css';
 // Components
 import React, { Component } from 'react';
 import Routes from './routing/Routes';
-import AuthHeader from './helpers/AuthHeader';
 import { Container } from 'reactstrap';
 import AlertToast from './components/AlertToast';
 import { connect } from 'react-redux';
+import { Helmet } from 'react-helmet';
 
 import history from './helpers/history';
 
@@ -30,11 +30,13 @@ class App extends Component {
 
     return (
       <div className="App">
+        <Helmet>
+          <style>{'body { background-color: rgb(15, 25, 41, 10%); }'}</style>
+        </Helmet>
         <Container style={{ marginTop: '5rem' }}>
           {alert.message && (
             <AlertToast type={alert.type} message={alert.message} />
           )}
-          <AuthHeader />
           <Routes />
         </Container>
       </div>

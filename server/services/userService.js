@@ -8,33 +8,33 @@ module.exports = {
   authenticate,
   create,
   getById,
-  getAll
+  getAll,
+  generateJwtToken
 };
 
-async function authenticate({ email, password }) {
-  const user = await User.findOne({ email });
-  if (user && bcrypt.compareSync(password, user.hash)) {
-    const { hash, ...userWithoutHash } = user.toObject();
-    const token = jwt.sign({ sub: user.id }, config.jwtSecret);
-    return {
-      ...userWithoutHash,
-      token
-    };
+async function authenticate({ privateEmail, password }) {
+  if (!privateEmail || !password) {
+    return {};
+  }
+  const user = await User.findOne({ privateEmail: privateEmail.toLowerCase() });
+  if (user && bcrypt.compareSync(password, user.password)) {
+    const token = generateJwtToken(user);
+    return token;
   }
 }
 
 async function getAll() {
-  return await User.find().select('-hash');
+  return await User.find().select('-password');
 }
 
 async function getById(id) {
-  return await User.findById(id).select('-hash');
+  return await User.findById(id).select('-password');
 }
 
 async function create(userParam) {
   // validate
-  if (await User.findOne({ email: userParam.email })) {
-    throw 'email "' + userParam.email + '" is already taken';
+  if (await User.findOne({ privateEmail: userParam.privateEmail })) {
+    throw 'email "' + userParam.privateEmail + '" is already taken';
   }
 
   const user = new User(userParam);
@@ -54,10 +54,10 @@ async function update(id, userParam) {
   // validate
   if (!user) throw 'User not found';
   if (
-    user.email !== userParam.email &&
-    (await User.findOne({ email: userParam.email }))
+    user.privateEmail !== userParam.privateEmail &&
+    (await User.findOne({ privateEmail: userParam.privateEmail }))
   ) {
-    throw 'email "' + userParam.email + '" is already taken';
+    throw 'email "' + userParam.privateEmail + '" is already taken';
   }
 
   // hash password if it was entered
@@ -73,4 +73,11 @@ async function update(id, userParam) {
 
 async function _delete(id) {
   await User.findByIdAndRemove(id);
+}
+
+function generateJwtToken(user) {
+  const token = jwt.sign({ _id: user._id }, config.jwtSecret, {
+    expiresIn: 60 * 60 * 1 // 1h
+  });
+  return token;
 }
