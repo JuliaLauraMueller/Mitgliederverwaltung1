@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import ProfilePic from '../components/ProfileView/ProfilePic.js';
-import ProfileBasicInfo from '../components/ProfileView/ProfileBasicInfo.js';
-import ProfileSocialMedia from '../components/ProfileView/ProfileSocialMedia.js';
-import ProfileMainInformation from '../components/ProfileView/ProfileMainInformation.js';
-import ProfilePicEDIT from '../components/ProfileEdit/ProfilePicEDIT.js';
-import ProfileBasicInfoEDIT from '../components/ProfileEdit/ProfileBasicInfoEDIT.js';
-import ProfileSocialMediaEDIT from '../components/ProfileEdit/ProfileSocialMediaEDIT.js';
-import ProfileMainInformationEDIT from '../components/ProfileEdit/ProfileMainInformationEDIT.js';
+
+import ProfilePic from '../components/ProfileView/ProfilePicView.js';
+import ProfileBasicInfo from '../components/ProfileView/ProfileBasicInfoView.js';
+import ProfileSocialMedia from '../components/ProfileView/ProfileSocialMediaView.js';
+import ProfileMainInformation from '../components/ProfileView/ProfileMainInformationView.js';
+
+import ProfilePicEDIT from '../components/ProfileEdit/ProfilePicEdit.js';
+import ProfileBasicInfoEDIT from '../components/ProfileEdit/ProfileBasicInfoEdit.js';
+import ProfileSocialMediaEDIT from '../components/ProfileEdit/ProfileSocialMediaEdit.js';
+import ProfileMainInformationEDIT from '../components/ProfileEdit/ProfileMainInformationEdit.js';
+
 import '../css/ProfilePage.css';
 
 class ProfilePage extends Component {
@@ -14,7 +17,6 @@ class ProfilePage extends Component {
     super(props);
     this.state = {
       isEditing: false
-      //member: this.props.member
     };
 
     this.toggleEdit = this.toggleEdit.bind(this);

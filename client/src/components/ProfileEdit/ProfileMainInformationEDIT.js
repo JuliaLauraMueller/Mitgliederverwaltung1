@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchProfile } from '../../actions/profileActions';
-import { putProfile } from '../../actions/profileActions';
+import { fetchProfile } from '../../redux/actions/profileActions';
+import { putProfile } from '../../redux/actions/profileActions';
 import {
   InputGroup,
   InputGroupAddon,
@@ -15,6 +15,7 @@ import {
   Label,
   FormGroup
 } from 'reactstrap';
+
 import '../../css/ProfilePage.css';
 
 class ProfileMainInformationEDIT extends Component {

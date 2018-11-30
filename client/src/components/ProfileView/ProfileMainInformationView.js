@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchProfile } from '../../actions/profileActions';
-import '../../css/ProfilePage.css';
+import { fetchProfile } from '../../redux/actions/profileActions';
 import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
+
+import '../../css/ProfilePage.css';
 
 class ProfileMainInformation extends Component {
   componentWillMount() {
@@ -29,10 +30,9 @@ class ProfileMainInformation extends Component {
     const profile = this.props.profile;
     return (
       <div id="mainInformation">
-         <Nav tabs className="toggle-nav-main">
+        <Nav tabs className="toggle-nav-main">
           <NavItem className="toggle-nav">
             <NavLink
-              //className={classnames({ active: this.state.activeTab === '1' })}
               onClick={() => {
                 this.toggle('1');
               }}
@@ -42,7 +42,6 @@ class ProfileMainInformation extends Component {
           </NavItem>
           <NavItem className="toggle-nav">
             <NavLink
-              // className={classnames({ active: this.state.activeTab === '2' })}
               onClick={() => {
                 this.toggle('2');
               }}

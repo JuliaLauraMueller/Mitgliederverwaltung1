@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchProfile } from '../../actions/profileActions';
+import { fetchProfile } from '../../redux/actions/profileActions';
+
 import '../../css/ProfilePage.css';
 
 class ProfileBasicInfo extends Component {
@@ -13,7 +14,7 @@ class ProfileBasicInfo extends Component {
     const profile = this.props.profile;
     return (
       <div id="basicInformation">
-      <label className="main-title">Hauptinformation</label>
+        <label className="main-title">Hauptinformation</label>
         <div>
           <div className="title-label">
             <label>Mitglieder Nr.:</label>
@@ -25,7 +26,7 @@ class ProfileBasicInfo extends Component {
 
         <div>
           <div className="title-label">
-            <label >Eintrittsdatum:</label>
+            <label>Eintrittsdatum:</label>
           </div>
           <div className="value-label">
             <label>{profile.entryDate}</label>
@@ -34,7 +35,7 @@ class ProfileBasicInfo extends Component {
 
         <div>
           <div className="title-label">
-            <label >Geburtsdatum:</label>
+            <label>Geburtsdatum:</label>
           </div>
           <div className="value-label">
             <label>{profile.birthdate}</label>
@@ -68,7 +69,6 @@ class ProfileBasicInfo extends Component {
           </div>
         </div>
       </div>
-    
     );
   }
 }

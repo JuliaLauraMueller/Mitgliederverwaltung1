@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { InputGroup, Input, InputGroupAddon } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchProfile } from '../../actions/profileActions';
-import { putProfile } from '../../actions/profileActions';
+import { fetchProfile } from '../../redux/actions/profileActions';
+import { putProfile } from '../../redux/actions/profileActions';
+
 import '../../css/ProfilePage.css';
 
 class ProfilePicEDIT extends Component {
@@ -53,19 +54,35 @@ class ProfilePicEDIT extends Component {
         />
 
         <InputGroup>
-        <InputGroup>
-        <InputGroupAddon id="salutation-group-addon" addonType="prepend">Anrede:</InputGroupAddon>
-          <fieldset>
-            <div class="some-class">
-              <input type="radio" className="radio" name="salutation" value="Frau" checked={this.state.salutation === 'Frau'} onChange={this.onChange} />
-              <label className="radio-label">Frau</label>
-              <input type="radio" className="radio" name="salutation" value="Herr" checked={this.state.salutation === 'Herr'} onChange={this.onChange} />
-              <label className="radio-label">Herr</label>
-            </div>
-          </fieldset>
-        </InputGroup>
           <InputGroup>
-          <InputGroupAddon addonType="prepend">Titel:</InputGroupAddon>
+            <InputGroupAddon id="salutation-group-addon" addonType="prepend">
+              Anrede:
+            </InputGroupAddon>
+            <fieldset>
+              <div class="some-class">
+                <input
+                  type="radio"
+                  className="radio"
+                  name="salutation"
+                  value="Frau"
+                  checked={this.state.salutation === 'Frau'}
+                  onChange={this.onChange}
+                />
+                <label className="radio-label">Frau</label>
+                <input
+                  type="radio"
+                  className="radio"
+                  name="salutation"
+                  value="Herr"
+                  checked={this.state.salutation === 'Herr'}
+                  onChange={this.onChange}
+                />
+                <label className="radio-label">Herr</label>
+              </div>
+            </fieldset>
+          </InputGroup>
+          <InputGroup>
+            <InputGroupAddon addonType="prepend">Titel:</InputGroupAddon>
             <Input
               type="text"
               name="title"
@@ -75,7 +92,7 @@ class ProfilePicEDIT extends Component {
           </InputGroup>
 
           <InputGroup>
-          <InputGroupAddon addonType="prepend">Vorname:</InputGroupAddon>
+            <InputGroupAddon addonType="prepend">Vorname:</InputGroupAddon>
             <Input
               type="text"
               name="firstname"
@@ -84,7 +101,7 @@ class ProfilePicEDIT extends Component {
             />
           </InputGroup>
           <InputGroup>
-          <InputGroupAddon addonType="prepend">Nachname:</InputGroupAddon>
+            <InputGroupAddon addonType="prepend">Nachname:</InputGroupAddon>
             <Input
               type="text"
               name="surename"
@@ -93,7 +110,7 @@ class ProfilePicEDIT extends Component {
             />
           </InputGroup>
           <InputGroup>
-          <InputGroupAddon addonType="prepend">Spitzname:</InputGroupAddon>
+            <InputGroupAddon addonType="prepend">Spitzname:</InputGroupAddon>
             <Input
               type="text"
               name="alias"

@@ -1,5 +1,5 @@
-import { FETCH_PROFILE } from './types';
-import { PUT_PROFILE } from './types';
+import { FETCH_PROFILE } from '../types/profileTypes';
+import { PUT_PROFILE } from '../types/profileTypes';
 
 export function fetchProfile() {
   return function(dispatch) {

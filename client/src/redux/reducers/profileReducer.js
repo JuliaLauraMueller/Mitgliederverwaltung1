@@ -1,5 +1,5 @@
-import { FETCH_PROFILE } from '../actions/types';
-import { PUT_PROFILE } from '../actions/types';
+import { FETCH_PROFILE } from '../types/profileTypes';
+import { PUT_PROFILE } from '../types/profileTypes';
 
 const initialState = {
   member: {
@@ -50,7 +50,6 @@ export default function(state = initialState, action) {
     case FETCH_PROFILE:
       return state;
     case PUT_PROFILE:
-      console.log(action.payload);
       return {
         member: { ...state.member, ...action.payload }
       };

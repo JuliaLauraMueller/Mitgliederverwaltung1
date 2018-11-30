@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchProfile } from '../../actions/profileActions';
+import { fetchProfile } from '../../redux/actions/profileActions';
+
 import '../../css/ProfilePage.css';
 
 class ProfileSocialMedia extends Component {
@@ -15,7 +16,13 @@ class ProfileSocialMedia extends Component {
       <div id="socialMedia">
         <Button href={profile.xingLink}>Xing</Button>
         <Button href={profile.linkedinLink}> LinkedIn</Button>
-        <Button className="icon-button" href={profile.facebookLink}> <img class="icons" src={require('../../img/facebook.png')}/></Button>
+        <Button className="icon-button" href={profile.facebookLink}>
+          <img
+            className="icons"
+            alt="fb-icon"
+            src={require('../../img/facebook.png')}
+          />
+        </Button>
         <Button href={profile.instagramLink}>Instagram</Button>
         <div>
           <label>Was biete ich an?</label>

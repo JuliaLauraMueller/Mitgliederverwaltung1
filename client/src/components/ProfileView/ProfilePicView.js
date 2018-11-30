@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchProfile } from '../../actions/profileActions';
+import { fetchProfile } from '../../redux/actions/profileActions';
+
 import '../../css/ProfilePage.css';
 
 class ProfilePic extends Component {
@@ -14,7 +15,7 @@ class ProfilePic extends Component {
     return (
       <div id="profilePic">
         <img
-          class="profile-image"
+          className="profile-image"
           style={{ width: '180px' }}
           src={require('../../img/marc_zimmermann.jpg')}
           alt="profile"
@@ -22,10 +23,10 @@ class ProfilePic extends Component {
         <div>
           <label className="salutation-label">{profile.salutation}</label>
           <label className="salutation-label">{profile.title}</label>
-          <br/>
+          <br />
           <label className="name-label">{profile.firstname}</label>
           <label className="name-label">{profile.surename}</label>
-          <br/>
+          <br />
           <label className="salutation-label">({profile.alias})</label>
         </div>
       </div>
