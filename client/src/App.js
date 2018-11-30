@@ -7,15 +7,38 @@ import { Container } from 'reactstrap';
 // Styles
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
+import AppNavbar from './components/AppNavbar/AppNavbar';
 
 class App extends Component {
   // Add global layout components before route
+  state = {
+    sideMenuExpanded: false,
+    AppClassName: 'App collapsed'
+  };
+  
+  expandSideMenu = () => {
+    this.setState((prevState) => {
+        return {sideMenuExpanded: !prevState.sideMenuExpanded};
+    });
+    if(this.state.sideMenuExpanded){
+        this.setState((prevState) => { return {AppClassName: 'App collapsed'};
+      });
+    }
+    else{
+        this.setState((prevState) => { return {AppClassName: 'App expanded'};
+      });
+    }
+  };
+
   render() {
     return (
-      <div className="App">
-        <Container style={{marginTop: '5rem'}}>
-          <Router />
-        </Container>
+      <div className={this.state.AppClassName} style={{height:"100%"}}>
+        <div className="navbar-ours">
+          <AppNavbar expandSideMenu={this.expandSideMenu}/>
+        </div>  
+        <div className="container-bla">  
+            <Router />
+        </div>
       </div>
     );
   }

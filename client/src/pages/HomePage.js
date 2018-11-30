@@ -27,18 +27,15 @@ class HomePage extends Component{
             backDrop = <Backdrop click={this.backdropClickHandler}/>;
         }
         return (
-            <div>
-                <div style={{height: '100%', width:'100%'}}>
-        {/*<Toolbar drawerClickHandler={this.drawerToggleClickHandler}/>
-                    <SideDrawer show={this.state.sideDrawerOpen}/>
-                    {backDrop}*/}
-                    <AppNavbar className="nav-bar"/>
-                    <h1>Hello World! This is the HomePage</h1>
-                    <Link to="/login">Login</Link>
-                    <main style={{marginTop: '64px'}}>
-                        <p>this is the page content</p>
-                    </main>
-                </div> 
+            <div style={{height: '100%', position: "relative"}}>
+    {/*<Toolbar drawerClickHandler={this.drawerToggleClickHandler}/>
+                <SideDrawer show={this.state.sideDrawerOpen}/>
+                {backDrop}*/}
+                <h1>Hello World! This is the HomePage</h1>
+                <Link to="/login">Login</Link>
+                <main style={{marginTop: '64px'}}>
+                    <p>this is the page content</p>
+                </main>
             </div> 
         );
     }

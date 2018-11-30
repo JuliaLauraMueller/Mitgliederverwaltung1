@@ -6,9 +6,6 @@
         padding-left: 1rem;
         align-items: center;
         padding-right: 1rem;
-        position: fixed;
-        left: 0;
-        top: 0;
     }
     
     .toolbar_navigation {

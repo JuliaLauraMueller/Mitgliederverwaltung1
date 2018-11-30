@@ -5,13 +5,18 @@
     width: 100%;
     background: #521755;
     height: 56px;
-}
-
-.toolbar_navigation {
     display: flex;
     height: 100%;
     align-items: center;
     padding: 0 1rem;
+}
+
+.toolbar open{
+    visibility: hidden;
+}
+
+.toolbar close{
+    visibility: visible;
 }
 
 .toolbar_logo{

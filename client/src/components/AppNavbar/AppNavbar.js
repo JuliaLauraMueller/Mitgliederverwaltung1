@@ -17,6 +17,7 @@ class AppNavbar extends Component {
         this.setState((prevState) => {
             return {sideDrawerOpen: !prevState.sideDrawerOpen};
         });
+        this.props.expandSideMenu();
     };
 
     backdropClickHandler = () => {
@@ -32,7 +33,7 @@ class AppNavbar extends Component {
             return (
                 <div className="app-nav-bar">
                     <div style={{height: '100%'}}>
-                        <Toolbar className="tool-bar" drawerClickHandler={this.drawerToggleClickHandler}/>
+                        <Toolbar className="tool-bar" drawerClickHandler={this.drawerToggleClickHandler} />
                         <SideDrawer className="side-drawer" drawerClickHandler={this.drawerToggleClickHandler} show={this.state.sideDrawerOpen}/>
                         {backDrop}
                     </div>
