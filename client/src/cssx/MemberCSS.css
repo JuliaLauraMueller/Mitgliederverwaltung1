@@ -1,3 +1,5 @@
+/*MemberPage*/
+
 .member-logo{
     min-height: 66px;
     min-width: 57px;
@@ -14,9 +16,49 @@ h1{
     min-width: 575px;
 }
 
-.memberpage{
-    background-color: rgb(15, 25, 41, 10%);
+
+/*SearchFieldMember*/
+
+.search-field-member{
+    display: flex;
+    justify-content: center;
+    width: 300px;
 }
+
+.search-form{
+    min-width: 300px;
+    max-width: 300px;
+}
+
+.search-icon{
+    width: 32px;
+    height: 32px;
+    margin-top: -10px;
+    margin-left: 15px;
+}
+
+.search-input{
+    background: 'none'; 
+    border: 'none';
+    font-family: 'Roboto';
+    font-weight: 0;
+    font-size: 22px;
+    color: #656C77;
+    margin-top: -50px;
+}
+
+hr {
+    width: 270px;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #656C77;
+    margin-top: -17px;
+    padding: 0;
+    margin-top: 0px;
+}
+
+
+/*MemberCard*/
 
 .member-card{
     border: 0px solid white;
@@ -26,6 +68,10 @@ h1{
     max-height: 161px;
     border-radius: 0px;
     margin: 9px;
+}
+
+.cardbody{
+    border: none;
 }
 
 .card-image{
@@ -79,7 +125,6 @@ h1{
     margin-left: -13px;
 }
 
-
 .card-text-phone{
     margin-left: 29px;
     position: absolute;
@@ -91,16 +136,9 @@ h1{
     margin-left: 16px;
 }
 
-.row-text{
-    margin-bottom: 8px;
-}
-
-.row-title{
-    margin-bottom: 15px;
-}
-
-.cardbody{
-    border: none;
+.profile-link{
+    margin-left: 0px;
+    margin-top: -10px;
 }
 
 .profile-text{
@@ -112,14 +150,6 @@ h1{
     margin-left: 148px;
 }
 
-.profile-text svg{
-    fill: rgb(219, 157, 12);
-}
-
-.profile-text:hover > svg{
-    fill: rgb(15, 25, 41, 74%);
-}
-
 .profile-text:hover{
     color: rgb(15, 25, 41, 74%);
     text-decoration: none;
@@ -127,14 +157,17 @@ h1{
     font-family: 'Roboto';
     font-weight: lighter;
     font-size: 13px;
-    margin-left: 148px;
-        
+    margin-left: 148px;       
 }
 
+.profile-text svg{
+    fill: rgb(219, 157, 12);
+    stroke: none; 
+}
 
-.profile-link{
-    margin-left: 0px;
-    margin-top: -10px;
+.profile-text:hover > svg{
+    fill: rgb(15, 25, 41, 74%);
+    stroke: none;
 }
 
 .profile-arrow{
@@ -142,48 +175,4 @@ h1{
     width: 7px;
     margin-top: -2px;
     margin-left: 3px;
-}
-
-
-.search-field-member{
-    display: flex;
-    justify-content: center;
-    width: 300px;
-}
-
-.search-form{
-    min-width: 300px;
-    max-width: 300px;
-}
-
-.search-input{
-    background: 'none'; 
-    border: 'none';
-    font-family: 'Roboto';
-    font-weight: 0;
-    font-size: 22px;
-    color: #656C77;
-    margin-top: -50px;
-}
-
-hr {
-    width: 270px;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #656C77;
-    margin-top: -17px;
-    padding: 0;
-    margin-top: 0px;
-}
-
-.search-icon{
-    width: 32px;
-    height: 32px;
-    margin-top: -10px;
-    margin-left: 15px;
-}
-
-.search-field{
-    margin-left: 300px;
-    margin-bottom: 3px;
 }
