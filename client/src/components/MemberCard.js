@@ -47,7 +47,7 @@ class MemberCard extends Component {
             </Container>
             <Container className="profile-link">
               <div>
-                <Link className="profile-text" to="/login">
+                <Link className="profile-text" to="/profile">
                   Profil
                   <svg
                     className="profile-arrow"

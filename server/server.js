@@ -1,29 +1,25 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-
-mongoose.set('useNewUrlParser', true);
-
-
-// Routes
-// e.g. const items = require('./routes/api/items');
+const userController = require('./controllers/userController');
+const jwt = require('./helpers/jwt');
+const cors = require('cors');
+const errorHandler = require('./helpers/errorHandler');
+const addUpdatedTokenToHeader = require('./helpers/jwtSlidingWindow');
 
 const app = express();
 
-// Bodyparser middleware
+// Middleware
 app.use(bodyParser.json());
+app.use(cors({ exposedHeaders: 'Set-Authorization' }));
+app.use(jwt());
 
-// DB Config
-const db = require('./config/keys').mongoURI;
+app.use(addUpdatedTokenToHeader);
 
-// Connect to Mongo
-mongoose
-.connect(db)
-.then(() => console.log('MongoDB connected...'))
-.catch(err => console.log(err));
+// Routes
+app.use('/api/users', userController);
 
-// Use routes
-// app.use('/api/items', items);
+// Error handler
+app.use(errorHandler);
 
 //Start server
 const port = 5000;
