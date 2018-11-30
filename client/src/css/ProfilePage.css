@@ -76,10 +76,13 @@ additional style EDIT profile page
     background-color: transparent;
     border: 0;
     border-bottom: 1px solid #0f1929;
-    border-radius: 0px;
-    margin-bottom: 20px;
+    padding: 0;
+    border-radius: 0;
     transition: none;
-    margin-right: 5%;
+    display: inline-block;
+    line-height: 0.2;
+    height: 25px;
+    margin-bottom: 10px;
    }
    
    .form-control:active {
@@ -95,8 +98,13 @@ additional style EDIT profile page
    .input-group-text {
     background-color: transparent;
     border: 0;
-    margin-bottom: 20px;
     transition: none;
+    margin-bottom: 10px;
+    height: 25px;
+   }
+
+   #salutation-group-addon {
+       padding-top: 20px;
    }
    
    .toggle-nav {
@@ -121,7 +129,9 @@ additional style EDIT profile page
     margin-right: 5%;
    }
    
-   .radio-button-salutation {
-    display: inline-block;
-    white-space: nowrap;
+   .radio{
+       margin: 10px 0 0 10px;
+   }
+   .radio-label {
+       padding-left: 3px;
    }
