@@ -6,7 +6,10 @@
   "scripts": {
     "client": "npm start --prefix client",
     "server": "npm start --prefix server",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test": "mocha \"test/**/*.js\"",
+    "test-jenkins": "mocha test --colors --recursive --reporter mocha-jenkins-reporter",
+    "mocha-test-jenkins": "mocha test --colors --recursive --reporter mocha-junit-reporter"
   },
   "repository": {
     "type": "git",
@@ -16,5 +19,10 @@
   "license": "CC-BY-NC-ND-4.0",
   "dependencies": {
     "concurrently": "^4.1.0"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "mocha-jenkins-reporter": "^0.4.1",
+    "mocha-junit-reporter": "^1.18.0"
   }
 }
