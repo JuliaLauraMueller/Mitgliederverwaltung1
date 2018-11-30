@@ -22,12 +22,11 @@ class SearchFieldMember extends Component {
         <Container className="search-field-member">
       <form className="search-form">
         <img className="search-icon"src={require('../img/search-grey.png')} alt="Card i cap" ></img>
-          <input 
-            className="search-input"
-            style={{background: 'none', border: 'none'}} 
-            placeholder="suchen..."
-            ref={input => this.search = input} // Select input element and getting it's value (suggestions)
-            onChange={this.handleInputChange} 
+        <input 
+          className="search-input"
+          style={{background: 'none', border: 'none'}} 
+          placeholder="suchen..."
+          ref={input => this.search = input} // Select input element and getting it's value (suggestions)            onChange={this.handleInputChange} 
          /> 
          <hr/>
      </form>

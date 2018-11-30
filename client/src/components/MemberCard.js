@@ -39,8 +39,10 @@ class MemberCard extends Component {
                         <Container className="profile-link">
                             <div className="profile-div">
                                 <Link className="profile-text" to="/login">Profil 
-                                    
-                                    <img className="profile-arrow"src={require('../img/arrow.svg')} alt="Card i cap" ></img>
+
+                                <svg className="profile-arrow" viewBox="0 0 7 12" xmlns="http://www.w3.org/2000/svg">
+                                    <path className="path-arrow" d="M0.177999 1.02741L4.45449 5.91771L4.52644 6L4.45449 6.08229L0.177999 10.9726L1.19532 11.8255L5.9171 6.42454L5.91709 6.42454L5.91775 6.4238L6.29423 6L5.91775 5.5762L5.91775 5.57621L5.9171 5.57546L1.19532 0.174456L0.177999 1.02741Z" stroke="none" stroke-width="0.25"/>
+                                </svg>
                                     
                                 </Link>
                             </div> 
