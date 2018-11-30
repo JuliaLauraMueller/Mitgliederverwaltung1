@@ -1,51 +1,94 @@
 import React, { Component } from 'react';
-import {
-Form,
-Input,
-FormGroup,
-Col,
-Label,
-Button
-} from 'reactstrap';
+import { Form, Input, Button } from 'reactstrap';
+import { login, logout } from '../redux/actions/authActions';
+import { connect } from 'react-redux';
 
+class Login extends Component {
+  constructor(props) {
+    super(props);
 
-class Login extends Component{
+    // reset login status
+    this.props.dispatch(logout());
 
-    submit = () => {
-        alert('You have logged in :)');
+    this.state = {
+      privateEmail: '',
+      password: ''
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(e) {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+    const { dispatch } = this.props;
+    if (this.state.privateEmail && this.state.password) {
+      dispatch(login(this.state.privateEmail, this.state.password));
     }
+  }
 
-    render() {
-        return (
-            <div>
-                <Form className="form">
-                    <Col>
-                        <FormGroup>
-                        <Label>Email</Label>
-                        <Input
-                            type="email"
-                            name="email"
-                            id="exampleEmail"
-                            placeholder="myemail@email.com"
-                        />
-                        </FormGroup>
-                    </Col>
-                    <Col>
-                        <FormGroup>
-                        <Label for="examplePassword">Password</Label>
-                        <Input
-                            type="password"
-                            name="password"
-                            id="examplePassword"
-                            placeholder="********"
-                        />
-                        </FormGroup>
-                    </Col>
-                    <Button color="primary" className="float-right" onClick={this.submit}>Submit</Button>
-                </Form>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div className="login-container">
+        <div className="login-middle">
+          <div className="login-inner">
+            <img
+              src="./img/logo_with_font_small.png"
+              alt="logo"
+              className="login-logo"
+            />
+            <Form name="loginForm">
+              <div className="input-container">
+                <img src="./img/Mail.png" alt="mail" className="input-icon" />
+                <Input
+                  type="email"
+                  name="privateEmail"
+                  placeholder="E-Mail"
+                  id="emailInp"
+                  className="icon-input"
+                  value={this.state.privateEmail}
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div className="input-container">
+                <img
+                  src="./img/Lock.png"
+                  alt="password"
+                  className="input-icon"
+                />
+                <Input
+                  type="password"
+                  name="password"
+                  id="passwordInp"
+                  placeholder="Passwort"
+                  className="icon-input"
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                />
+              </div>
+              <Button
+                className="login-button"
+                onClick={this.handleSubmit}
+                type="submit"
+              >
+                Login
+              </Button>
+            </Form>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default Login;
+function mapStateToProps(state) {
+  return {};
+}
+
+export default connect(mapStateToProps)(Login);
