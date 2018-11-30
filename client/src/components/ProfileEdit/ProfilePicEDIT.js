@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import '../../css/ProfileCSS.css';
-import { InputGroup, Input } from 'reactstrap';
+import { InputGroup, Input, FormGroup, Label } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchProfile } from '../../actions/profileActions';
 import { putProfile } from '../../actions/profileActions';
+import '../../css/ProfilePage.css';
 
 class ProfilePicEDIT extends Component {
   componentWillMount() {
@@ -46,44 +46,75 @@ class ProfilePicEDIT extends Component {
     return (
       <div id="profilePic">
         <img
+          class="profile-image"
           style={{ width: '180px' }}
           src={require('../../img/marc_zimmermann.jpg')}
           alt="profile"
         />
+        <br />
         <InputGroup>
-          <Input
-            type="text"
-            name="salutation"
-            onChange={this.onChange}
-            value={this.state.salutation}
-          />
-          <Input
-            type="text"
-            name="title"
-            onChange={this.onChange}
-            value={this.state.title}
-          />
-          <Input
-            type="text"
-            name="firstname"
-            onChange={this.onChange}
-            value={this.state.firstname}
-          />
-          <Input
-            type="text"
-            name="surename"
-            onChange={this.onChange}
-            value={this.state.surename}
-          />
-          <br />
-          <h2>
+        <InputGroup>
+          <FormGroup tag="fieldset">
+            <FormGroup check>
+              <Label check>
+                <Input
+                  type="radio"
+                  name="salutation"
+                  value="Frau"
+                  checked={this.state.salutation === 'Frau'}
+                  onChange={this.onChange}
+                />{' '}
+                Frau
+            </Label>
+            </FormGroup>
+            <FormGroup check>
+              <Label check>
+                <Input
+                  type="radio"
+                  name="salutation"
+                  value="Herr"
+                  checked={this.state.salutation === 'Herr'}
+                  onChange={this.onChange}
+                />{' '}
+                Herr
+            </Label>
+            </FormGroup>
+          </FormGroup>
+          </InputGroup>
+
+          <InputGroup>
+            <Input
+              type="text"
+              name="title"
+              onChange={this.onChange}
+              value={this.state.title}
+            />
+          </InputGroup>
+
+          <InputGroup>
+            <Input
+              type="text"
+              name="firstname"
+              onChange={this.onChange}
+              value={this.state.firstname}
+            />
+          </InputGroup>
+          <InputGroup>
+            <Input
+              type="text"
+              name="surename"
+              onChange={this.onChange}
+              value={this.state.surename}
+            />
+          </InputGroup>
+          <InputGroup>
             <Input
               type="text"
               name="alias"
               onChange={this.onChange}
               value={this.state.alias}
             />
-          </h2>
+          </InputGroup>
         </InputGroup>
       </div>
     );

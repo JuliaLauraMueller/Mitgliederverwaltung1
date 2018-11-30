@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchProfile } from '../../actions/profileActions';
-import '../../css/ProfileCSS.css';
+import '../../css/ProfilePage.css';
 
 class ProfileBasicInfo extends Component {
   componentWillMount() {
@@ -13,31 +13,62 @@ class ProfileBasicInfo extends Component {
     const profile = this.props.profile;
     return (
       <div id="basicInformation">
+      <label className="main-title">Hauptinformation</label>
         <div>
-          <label>Status</label>
-          <label>{profile.status}</label>
+          <div className="title-label">
+            <label>Mitglieder Nr.:</label>
+          </div>
+          <div className="value-label">
+            <label>{profile.memberNumber}</label>
+          </div>
         </div>
+
         <div>
-          <label>Mitglieder Nr.</label>
-          <label>{profile.memberNumber}</label>
+          <div className="title-label">
+            <label >Eintrittsdatum:</label>
+          </div>
+          <div className="value-label">
+            <label>{profile.entryDate}</label>
+          </div>
         </div>
+
         <div>
-          <label>Eintrittsdatum</label>
-          <label>{profile.entryDate}</label>
+          <div className="title-label">
+            <label >Geburtsdatum:</label>
+          </div>
+          <div className="value-label">
+            <label>{profile.birthdate}</label>
+          </div>
         </div>
+
         <div>
-          <label>City</label>
-          <label>{profile.city}</label>
+          <div className="title-label">
+            <label>Status:</label>
+          </div>
+          <div className="value-label">
+            <label>{profile.status}</label>
+          </div>
         </div>
+
         <div>
-          <label>Götti</label>
-          <label>{profile.godfather}</label>
+          <div className="title-label">
+            <label>City:</label>
+          </div>
+          <div className="value-label">
+            <label>{profile.city}</label>
+          </div>
         </div>
+
         <div>
-          <label>Geburtsdatum</label>
-          <label>{profile.birthdate}</label>
+          <div className="title-label">
+            <label>Götti:</label>
+          </div>
+          <div className="value-label">
+            <label>{profile.godfather}</label>
+          </div>
         </div>
       </div>
+    
     );
   }
 }

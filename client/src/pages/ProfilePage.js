@@ -7,7 +7,7 @@ import ProfilePicEDIT from '../components/ProfileEdit/ProfilePicEDIT.js';
 import ProfileBasicInfoEDIT from '../components/ProfileEdit/ProfileBasicInfoEDIT.js';
 import ProfileSocialMediaEDIT from '../components/ProfileEdit/ProfileSocialMediaEDIT.js';
 import ProfileMainInformationEDIT from '../components/ProfileEdit/ProfileMainInformationEDIT.js';
-import '../css/ProfileCSS.css';
+import '../css/ProfilePage.css';
 
 class ProfilePage extends Component {
   constructor(props) {

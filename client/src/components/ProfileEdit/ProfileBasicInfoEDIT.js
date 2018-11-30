@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchProfile } from '../../actions/profileActions';
 import { putProfile } from '../../actions/profileActions';
-import '../../css/ProfileCSS.css';
+import '../../css/ProfilePage.css';
 
 class ProfileBasicInfoEDIT extends Component {
   componentWillMount() {

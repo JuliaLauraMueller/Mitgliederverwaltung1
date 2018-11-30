@@ -31,8 +31,8 @@ const initialState = {
     privateCity: 'asdf',
     invoiceAddress: '1',
 
-    salutation: 'Hr',
-    title: 'Dr',
+    salutation: 'Hr.',
+    title: 'Dr.',
     firstname: 'Marc',
     surename: 'Zimmermann',
     alias: 'Zimmi',

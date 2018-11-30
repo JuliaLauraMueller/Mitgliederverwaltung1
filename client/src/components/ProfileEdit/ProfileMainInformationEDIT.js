@@ -15,7 +15,7 @@ import {
   Label,
   FormGroup
 } from 'reactstrap';
-import '../../css/ProfileCSS.css';
+import '../../css/ProfilePage.css';
 
 class ProfileMainInformationEDIT extends Component {
   componentWillMount() {
@@ -99,8 +99,8 @@ class ProfileMainInformationEDIT extends Component {
   render() {
     return (
       <div id="mainInformation">
-        <Nav tabs>
-          <NavItem>
+        <Nav tabs className="toggle-nav-main">
+          <NavItem className="toggle-nav">
             <NavLink
               onClick={() => {
                 this.toggle('1');
@@ -109,7 +109,7 @@ class ProfileMainInformationEDIT extends Component {
               Geschäftlich
             </NavLink>
           </NavItem>
-          <NavItem>
+          <NavItem className="toggle-nav">
             <NavLink
               onClick={() => {
                 this.toggle('2');

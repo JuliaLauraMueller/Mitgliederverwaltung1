@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { InputGroup, Input, Label, InputGroupAddon } from 'reactstrap';
-import '../../css/ProfileCSS.css';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchProfile } from '../../actions/profileActions';
 import { putProfile } from '../../actions/profileActions';
+import '../../css/ProfilePage.css';
 
 class ProfileSocialMediaEDIT extends Component {
   componentWillMount() {
