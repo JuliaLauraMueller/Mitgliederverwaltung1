@@ -9,6 +9,7 @@ import { PrivateRoute } from './PrivateRoute';
 import HomePage from '../pages/HomePage';
 import LoginPage from '../pages/LoginPage';
 import NotFoundPage from '../pages/NotFoundPage';
+import ProfilePage from '../pages/ProfilePage';
 
 class Routes extends Component {
   render() {
@@ -17,8 +18,9 @@ class Routes extends Component {
       <Router history={history}>
         <div>
           <Switch>
-            <PrivateRoute exact path="/" component={HomePage} />
             <Route exact path="/login" component={LoginPage} />
+            <PrivateRoute exact path="/" component={HomePage} />
+            <PrivateRoute exact path="/profile" component={ProfilePage} />
             <Route component={NotFoundPage} />
           </Switch>
         </div>

@@ -1,137 +1,135 @@
-
 /*--------------------------------------------*
 basic style profile page
 *--------------------------------------------*/
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
 
 #basicInformation {
-    float: left;
-    width: 30%;
-    margin: 3%;
-    height: 10%;
+  float: left;
+  width: 30%;
+  margin: 3%;
+  height: 10%;
 }
 
 #mainInformation {
-    float: left;
-    margin: 3%;
-    width: 50%
+  float: left;
+  margin: 3%;
+  width: 50%;
 }
 
 #profilePic {
-    float: left;
-    width: 25%;
-    margin: 3%;
+  float: left;
+  width: 25%;
+  margin: 3%;
 }
 
 #socialMedia {
-    float: left;
-    clear: left;
-    width: 25%;
-    margin: 3%;
+  float: left;
+  clear: left;
+  width: 25%;
+  margin: 3%;
 }
-.profile-image{
-    border-radius: 50%;
+.profile-image {
+  border-radius: 50%;
 }
 /*--------------------------------------------*
 additional style VIEW profile page
 *--------------------------------------------*/
-.salutation-label , .name-label {
-    margin-right: 5px;
-    margin-bottom: 0px;
+.salutation-label,
+.name-label {
+  margin-right: 5px;
+  margin-bottom: 0px;
 }
 .name-label {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 .salutation-label {
-    font-size: 0.8rem;
+  font-size: 0.8rem;
 }
 #profilePic {
-    text-align: center;
+  text-align: center;
 }
 
 .value-label {
-    float: right;
-    position: relative;
-    bottom: 31px;
-    width: 20%;
-    margin: 0;
-    padding: 0;
+  float: right;
+  position: relative;
+  bottom: 31px;
+  width: 20%;
+  margin: 0;
+  padding: 0;
 }
-.main-title{
-    font-size: 1.2rem;
+.main-title {
+  font-size: 1.2rem;
 }
-.icon-button{
-    background-color: white;
-    border: none;   
+.icon-button {
+  background-color: white;
+  border: none;
 }
-.icon-button:hover{
-    background-color: white;
+.icon-button:hover {
+  background-color: white;
 }
 /*--------------------------------------------*
 additional style EDIT profile page
 *--------------------------------------------*/
 .form-control {
-    background-color: transparent;
-    border: 0;
-    border-bottom: 1px solid #0f1929;
-    padding: 0;
-    border-radius: 0;
-    transition: none;
-    display: inline-block;
-    line-height: 0.2;
-    height: 25px;
-    margin-bottom: 10px;
-   }
-   
-   .form-control:active {
-    background-color: transparent;
-    border-bottom: 1px solid rgb(219, 157, 12);
-   }
-   
-   .form-control:focus {
-    background-color: transparent;
-    border-bottom: 1px solid rgb(219, 157, 12);
-   }
-   
-   .input-group-text {
-    background-color: transparent;
-    border: 0;
-    transition: none;
-    margin-bottom: 10px;
-    height: 25px;
-   }
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid #0f1929;
+  border-radius: 0;
+  transition: none;
+  display: inline-block;
+  height: 25px;
+  margin-bottom: 10px;
+}
 
-   #salutation-group-addon {
-       padding-top: 20px;
-   }
-   
-   .toggle-nav {
-    margin-bottom: 20%;
-   }
-   
-   .toggle-nav:focus,
-   .toggle-nav:hover,
-   .toggle-nav:active {
-    font-weight: 600;
-    border: none;
-    border-bottom: 2px solid rgb(219, 157, 12) !important;
-   }
-   
-   .toggle-nav-main {
-    background-color: transparent;
-    border: 0;
-    border-bottom: 1px solid #0f1929;
-    border-radius: 0px;
-    margin-bottom: 20px;
-    transition: none;
-    margin-right: 5%;
-   }
-   
-   .radio{
-       margin: 10px 0 0 10px;
-   }
-   .radio-label {
-       padding-left: 3px;
-   }
+.form-control:active {
+  background-color: transparent;
+  border-bottom: 1px solid rgb(219, 157, 12);
+}
+
+.form-control:focus {
+  background-color: transparent;
+  border-bottom: 1px solid rgb(219, 157, 12);
+}
+
+.input-group-text {
+  background-color: transparent;
+  border: 0;
+  transition: none;
+  margin-bottom: 10px;
+  height: 25px;
+}
+
+#salutation-group-addon {
+  padding-top: 20px;
+}
+
+.toggle-nav {
+  margin-bottom: 20%;
+}
+
+.toggle-nav:focus,
+.toggle-nav:hover,
+.toggle-nav:active {
+  font-weight: 600;
+  border: none;
+  border-bottom: 2px solid rgb(219, 157, 12) !important;
+}
+
+.toggle-nav-main {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid #0f1929;
+  border-radius: 0px;
+  margin-bottom: 20px;
+  transition: none;
+  margin-right: 5%;
+}
+
+.radio {
+  margin: 10px 0 0 10px;
+}
+.radio-label {
+  padding-left: 3px;
+}
