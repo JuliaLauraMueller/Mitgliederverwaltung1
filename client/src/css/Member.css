@@ -1,0 +1,176 @@
+/*MemberPage*/
+
+.member-logo {
+  min-height: 66px;
+  min-width: 57px;
+  max-height: 66px;
+  max-width: 57px;
+  margin-top: -100px;
+}
+
+h1 {
+  float: right;
+}
+
+.container {
+  min-width: 575px;
+}
+
+/*SearchFieldMember*/
+
+.search-field-member {
+  display: flex;
+  justify-content: center;
+  width: 300px;
+}
+
+.search-form {
+  min-width: 300px;
+  max-width: 300px;
+}
+
+.search-icon {
+  width: 32px;
+  height: 32px;
+  margin-top: -10px;
+  margin-left: 15px;
+}
+
+.search-input {
+  background: 'none';
+  border: 'none';
+  font-family: Helvetica, sans-serif;
+  font-weight: 0;
+  font-size: 22px;
+  color: #656c77;
+  margin-top: -50px;
+}
+
+hr {
+  width: 270px;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #656c77;
+  margin-top: -17px;
+  padding: 0;
+  margin-top: 0px;
+}
+
+/*MemberCard*/
+
+.member-card {
+  border: 0px solid white;
+  min-width: 237px;
+  max-width: 237px;
+  min-height: 161px;
+  max-height: 161px;
+  border-radius: 0px;
+  margin: 9px;
+}
+
+.cardbody {
+  border: none;
+}
+
+.card-image {
+  border-radius: 50%;
+  width: 100px;
+  min-width: 70px;
+  max-width: 70px;
+  min-height: 70px;
+  max-height: 70px;
+  margin-left: -13px;
+  margin-top: -4px;
+}
+
+.card-name {
+  text-align: left;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: Helvetica;
+  font-size: 16px;
+  margin-left: 70px;
+  margin-top: -30px;
+}
+
+.mail-icon {
+  min-width: 21px;
+  max-width: 21px;
+  min-height: 14px;
+  max-height: 14px;
+  margin-top: 11px;
+  margin-left: -13px;
+}
+
+.card-text-mail {
+  margin-left: 29px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: Helvetica;
+  font-size: 12px;
+  margin-top: 25px;
+  margin-left: 16px;
+}
+
+.phone-icon {
+  min-width: 18px;
+  max-width: 18px;
+  min-height: 18px;
+  max-height: 18px;
+  margin-top: 7px;
+  margin-left: -13px;
+}
+
+.card-text-phone {
+  margin-left: 29px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: Helvetica;
+  font-size: 12px;
+  margin-top: 50px;
+  margin-left: 16px;
+}
+
+.profile-link {
+  margin-left: 0px;
+  margin-top: -10px;
+}
+
+.profile-text {
+  color: rgb(219, 157, 12);
+  border-bottom: 1px solid rgb(219, 157, 12);
+  font-family: Helvetica, sans-serif;
+  font-weight: lighter;
+  font-size: 13px;
+  margin-left: 148px;
+}
+
+.profile-text:hover {
+  color: rgb(15, 25, 41, 74%);
+  text-decoration: none;
+  border-bottom: 1px solid rgb(15, 25, 41, 74%);
+  font-family: Helvetica, sans-serif;
+  font-weight: lighter;
+  font-size: 13px;
+  margin-left: 148px;
+}
+
+.profile-text svg {
+  fill: rgb(219, 157, 12);
+  stroke: none;
+}
+
+.profile-text:hover > svg {
+  fill: rgb(15, 25, 41, 74%);
+  stroke: none;
+}
+
+.profile-arrow {
+  height: 12px;
+  width: 7px;
+  margin-top: -2px;
+  margin-left: 3px;
+}

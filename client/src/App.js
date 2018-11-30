@@ -1,10 +1,9 @@
 // Styles
-import 'bootstrap/dist/css/bootstrap.min.css'
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './css/App.css';
 
 // Components
 import React, { Component } from 'react';
-import './App.css';
 import Router from './Router';
 import { Container } from 'reactstrap';
 
@@ -13,7 +12,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Container style={{marginTop: '5rem'}}>
+        <Container style={{ marginTop: '5rem' }}>
           <Router />
         </Container>
       </div>
