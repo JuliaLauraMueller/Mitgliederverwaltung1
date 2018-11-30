@@ -20,7 +20,7 @@ class ProfileSocialMedia extends Component {
           <img
             className="icons"
             alt="fb-icon"
-            src={require('../../img/facebook.png')}
+            src={'./img/facebook.png'}
           />
         </Button>
         <Button href={profile.instagramLink}>Instagram</Button>

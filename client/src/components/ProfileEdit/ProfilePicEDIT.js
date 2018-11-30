@@ -49,7 +49,7 @@ class ProfilePicEDIT extends Component {
         <img
           class="profile-image"
           style={{ width: '180px' }}
-          src={require('../../img/marc_zimmermann.jpg')}
+          src={'./img/marc_zimmermann.jpg'}
           alt="profile"
         />
 

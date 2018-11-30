@@ -17,7 +17,7 @@ class ProfilePic extends Component {
         <img
           className="profile-image"
           style={{ width: '180px' }}
-          src={require('../../img/marc_zimmermann.jpg')}
+          src={'./img/marc_zimmermann.jpg'}
           alt="profile"
         />
         <div>

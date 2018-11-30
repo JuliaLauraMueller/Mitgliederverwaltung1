@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-
 import { Link } from 'react-router-dom';
-
 import { logout } from '../redux/actions/authActions';
 
 class HomePage extends Component {
@@ -12,6 +10,10 @@ class HomePage extends Component {
         <Link to="/" onClick={logout()}>
           Login
         </Link>
+        <br />
+        <Link to="/profile">Profile</Link>
+        <br />
+        <Link to="/members">Members</Link>
       </div>
     );
   }
