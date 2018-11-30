@@ -32,13 +32,15 @@
 
 .input-icon {
   position: absolute;
-  top: 9px;
+  top: 3px;
   vertical-align: middle;
   left: 5px;
+  margin-top: 15px;
 }
 
 .icon-input {
   padding-left: 30px;
+  margin-top: 15px;
 }
 
 .login-button {
