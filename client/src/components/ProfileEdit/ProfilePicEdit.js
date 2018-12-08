@@ -83,40 +83,47 @@ class ProfilePicEDIT extends Component {
           </InputGroup>
           <InputGroup>
             <InputGroupAddon addonType="prepend">Titel:</InputGroupAddon>
-            <Input
-              type="text"
-              name="title"
-              onChange={this.onChange}
-              value={this.state.title}
-            />
+            <form className="input-field">
+              <Input
+                type="text"
+                name="title"
+                onChange={this.onChange}
+                value={this.state.title}
+              />
+            </form>
           </InputGroup>
-
           <InputGroup>
             <InputGroupAddon addonType="prepend">Vorname:</InputGroupAddon>
-            <Input
-              type="text"
-              name="firstname"
-              onChange={this.onChange}
-              value={this.state.firstname}
-            />
+            <form className="input-field">
+              <Input
+                type="text"
+                name="firstname"
+                onChange={this.onChange}
+                value={this.state.firstname}
+              />
+            </form>
           </InputGroup>
           <InputGroup>
             <InputGroupAddon addonType="prepend">Nachname:</InputGroupAddon>
-            <Input
-              type="text"
-              name="surename"
-              onChange={this.onChange}
-              value={this.state.surename}
-            />
+            <form className="input-field">
+              <Input
+                type="text"
+                name="surename"
+                onChange={this.onChange}
+                value={this.state.surename}
+              />
+            </form>
           </InputGroup>
           <InputGroup>
             <InputGroupAddon addonType="prepend">Spitzname:</InputGroupAddon>
-            <Input
-              type="text"
-              name="alias"
-              onChange={this.onChange}
-              value={this.state.alias}
-            />
+            <form className="input-field">
+              <Input
+                type="text"
+                name="alias"
+                onChange={this.onChange}
+                value={this.state.alias}
+              />
+            </form>
           </InputGroup>
         </InputGroup>
       </div>
