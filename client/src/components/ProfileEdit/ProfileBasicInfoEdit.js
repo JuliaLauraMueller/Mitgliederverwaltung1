@@ -49,62 +49,69 @@ class ProfileBasicInfoEDIT extends Component {
       <div id="basicInformation">
         <InputGroup>
           <InputGroupAddon addonType="prepend">Status</InputGroupAddon>
-          <Input
-            type="text"
-            name="status"
-            onChange={this.onChange}
-            value={this.state.status}
-          />
+          <form className="input-field">
+            <Input
+              type="text"
+              name="status"
+              onChange={this.onChange}
+              value={this.state.status}
+            />
+          </form>
         </InputGroup>
-        <br />
         <InputGroup>
           <InputGroupAddon addonType="prepend">Mitglieder Nr.</InputGroupAddon>
-          <Input
-            type="text"
-            name="memberNumber"
-            onChange={this.onChange}
-            value={this.state.memberNumber}
-          />
+          <form className="input-field">
+            <Input
+              type="text"
+              name="memberNumber"
+              onChange={this.onChange}
+              value={this.state.memberNumber}
+            />
+          </form>
         </InputGroup>
-        <br />
         <InputGroup>
           <InputGroupAddon addonType="prepend">Eintrittsdatum</InputGroupAddon>
-          <Input
-            type="text"
-            name="entryDate"
-            onChange={this.onChange}
-            value={this.state.entryDate}
-          />
+          <form className="input-field">
+            <Input
+              type="text"
+              name="entryDate"
+              onChange={this.onChange}
+              value={this.state.entryDate}
+            />
+          </form>
         </InputGroup>
-        <br />
         <InputGroup>
           <InputGroupAddon addonType="prepend">City</InputGroupAddon>
-          <Input
-            type="text"
-            name="city"
-            onChange={this.onChange}
-            value={this.state.city}
-          />
+          <form className="input-field">
+            <Input
+              type="text"
+              name="city"
+              onChange={this.onChange}
+              value={this.state.city}
+            />
+          </form>
         </InputGroup>
-        <br />
         <InputGroup>
           <InputGroupAddon addonType="prepend">Götti</InputGroupAddon>
-          <Input
-            type="text"
-            name="godfather"
-            onChange={this.onChange}
-            value={this.state.godfather}
-          />
+          <form className="input-field">
+            <Input
+              type="text"
+              name="godfather"
+              onChange={this.onChange}
+              value={this.state.godfather}
+            />
+          </form>
         </InputGroup>
-        <br />
         <InputGroup>
           <InputGroupAddon addonType="prepend">Geburtsdatum</InputGroupAddon>
-          <Input
-            type="text"
-            name="birthdate"
-            onChange={this.onChange}
-            value={this.state.birthdate}
-          />
+          <form className="input-field">
+            <Input
+              type="text"
+              name="birthdate"
+              onChange={this.onChange}
+              value={this.state.birthdate}
+            />
+          </form>
         </InputGroup>
       </div>
     );

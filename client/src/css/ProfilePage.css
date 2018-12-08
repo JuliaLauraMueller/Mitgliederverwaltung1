@@ -5,31 +5,33 @@ basic style profile page
   box-sizing: border-box;
 }
 
-#basicInformation {
-  float: left;
-  width: 30%;
-  margin: 3%;
-  height: 10%;
-}
-
-#mainInformation {
-  float: left;
-  margin: 3%;
-  width: 50%;
-}
-
 #profilePic {
   float: left;
   width: 28%;
   margin: 3%;
 }
 
-#socialMedia {
+#basicInformation {
   float: left;
-  clear: left;
-  width: 28%;
+  width: 30%;
   margin: 3%;
 }
+
+#socialMedia {
+  float: left;
+  width: 28%;
+  margin: 3%;
+  height: 0;
+  clear: left;
+}
+
+#mainInformation {
+  float: left;
+  margin: 3%;
+  width: 30%;
+  height: 0;
+}
+
 .profile-image {
   border-radius: 50%;
 }
@@ -83,9 +85,6 @@ additional style EDIT profile page
   margin-bottom: 10px;
 }
 
-.input-group {
-}
-
 .form-control:active {
   background-color: transparent;
   border-bottom: 1px solid rgb(219, 157, 12);
@@ -105,14 +104,18 @@ additional style EDIT profile page
   position: relative;
   bottom: 2%;
 }
-.input-group-prepend {
+.input-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0%;
 }
 
-#salutation-group-addon span {
-  position: relative;
-  top: 15%;
+.input-field {
+  max-width: 200px;
+  min-width: 200px;
 }
 
+/*toggle nav*/
 .toggle-nav {
   margin-bottom: 20%;
 }
@@ -135,17 +138,24 @@ additional style EDIT profile page
   margin-right: 5%;
 }
 
+/*profilePic*/
 .radio {
-  margin: 10px 0 0 10px;
+  margin: 6px 0 0 10px;
 }
 .radio-label {
   padding-left: 3px;
 }
-.input-field {
-  max-width: 200px;
-  min-width: 200px;
-}
-.input-group {
+.input-field-salutation {
+  max-width: 210px;
+  min-width: 210px;
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
+  margin-top: 10px;
+}
+.container-profilepic {
+  margin-top: 100px;
+}
+#salutation-group-addon span {
+  position: relative;
+  top: 20%;
 }
