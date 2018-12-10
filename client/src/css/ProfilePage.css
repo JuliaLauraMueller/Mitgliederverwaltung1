@@ -7,14 +7,16 @@ basic style profile page
 
 #basicInformation {
   float: left;
-  width: 30%;
-  margin: 3%;
+  width: 50%;
+  margin: 3% 3% 0 3%;
   height: 10%;
+  vertical-align: bottom;
+  padding-top: 45px;
 }
 
 #mainInformation {
   float: left;
-  margin: 3%;
+  margin: 12px 3% 3% 3%;
   width: 50%;
 }
 
@@ -28,7 +30,7 @@ basic style profile page
   float: left;
   clear: left;
   width: 28%;
-  margin: 3%;
+  margin: 0 3% 3% 3%;
 }
 .profile-image {
   border-radius: 50%;
@@ -36,39 +38,74 @@ basic style profile page
 /*--------------------------------------------*
 additional style VIEW profile page
 *--------------------------------------------*/
+
+/*general style*/
+.main-title{
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+.information, label {
+  font-size: 12pt;
+  opacity: 0.6;
+  color:  #0F1929
+}
+/*profile-pic style*/
 .salutation-label,
 .name-label {
   margin-right: 5px;
   margin-bottom: 0px;
+  opacity: 0.8;
 }
 .name-label {
   font-size: 1.5rem;
+  opacity: 0.8;
 }
 .salutation-label {
   font-size: 0.8rem;
+  opacity: 0.8;
 }
 #profilePic {
   text-align: center;
 }
 
-.value-label {
-  float: right;
-  position: relative;
-  bottom: 31px;
-  width: 20%;
-  margin: 0;
-  padding: 0;
-}
-.main-title {
-  font-size: 1.2rem;
+/*social-media style*/
+#socialMedia {
+  text-align: center;
 }
 .icon-button {
   background-color: white;
   border: none;
+  padding-right: 15px;
+  padding-left: 15px;
 }
 .icon-button:hover {
   background-color: white;
+  opacity: 0.5;
 }
+.offerings {
+  display: block;
+  margin-top: 15px;
+  text-align: left;
+  width: 200px;
+  margin-right: auto;
+  margin-left: auto;
+  border-top: 1px solid black;
+
+}
+#offerings-label {
+  padding-top: 15px;
+}
+
+
+/*main-info and basic-info style*/
+.value-label {
+  float: right;
+  width: 250px;
+  margin: 0;
+  padding: 0;
+}
+
 /*--------------------------------------------*
 additional style EDIT profile page
 *--------------------------------------------*/
@@ -83,19 +120,6 @@ additional style EDIT profile page
   margin-bottom: 10px;
 }
 
-.input-group {
-}
-
-.form-control:active {
-  background-color: transparent;
-  border-bottom: 1px solid rgb(219, 157, 12);
-}
-
-.form-control:focus {
-  background-color: transparent;
-  border-bottom: 1px solid rgb(219, 157, 12);
-}
-
 .input-group-text {
   background-color: transparent;
   border: 0;
@@ -104,8 +128,6 @@ additional style EDIT profile page
   height: 25px;
   position: relative;
   bottom: 2%;
-}
-.input-group-prepend {
 }
 
 #salutation-group-addon span {
@@ -117,12 +139,26 @@ additional style EDIT profile page
   margin-bottom: 20%;
 }
 
-.toggle-nav:focus,
-.toggle-nav:hover,
-.toggle-nav:active {
-  font-weight: 600;
+
+a.active.nav-link{
   border: none;
-  border-bottom: 2px solid rgb(219, 157, 12) !important;
+  border-bottom: 3px solid rgb(219, 157, 12) !important;
+  padding: 0 15px 15px 0;
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+a.nav-link {
+  padding: 0 15px 15px 0;
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+.toggle-nav:hover {
+  color: rgb(219, 157, 12)
+}
+
+.nav-tabs .nav-link {
+  border: none;
 }
 
 .toggle-nav-main {
@@ -130,7 +166,7 @@ additional style EDIT profile page
   border: 0;
   border-bottom: 1px solid #0f1929;
   border-radius: 0px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   transition: none;
   margin-right: 5%;
 }

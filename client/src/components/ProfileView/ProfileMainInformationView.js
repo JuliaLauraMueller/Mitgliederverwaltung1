@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchProfile } from '../../redux/actions/profileActions';
 import { TabContent, TabPane, Nav, NavItem, NavLink } from 'reactstrap';
+import classnames from 'classnames';
 
 import '../../css/ProfilePage.css';
 
@@ -31,8 +32,8 @@ class ProfileMainInformation extends Component {
     return (
       <div id="mainInformation">
         <Nav tabs className="toggle-nav-main">
-          <NavItem className="toggle-nav">
-            <NavLink
+          <NavItem className="toggle-nav" >
+            <NavLink className={classnames({ active: this.state.activeTab === '1' })}
               onClick={() => {
                 this.toggle('1');
               }}
@@ -41,7 +42,7 @@ class ProfileMainInformation extends Component {
             </NavLink>
           </NavItem>
           <NavItem className="toggle-nav">
-            <NavLink
+            <NavLink className={classnames({ active: this.state.activeTab === '2' })}
               onClick={() => {
                 this.toggle('2');
               }}
@@ -53,81 +54,89 @@ class ProfileMainInformation extends Component {
         <TabContent activeTab={this.state.activeTab}>
           <TabPane tabId="1">
             <div>
-              <label>Branche</label>
-              <label>{profile.sector}</label>
+              <label>Branche:</label>
+              <label className="value-label">{profile.sector}</label>
             </div>
             <div>
-              <label>Beruf</label>
-              <label>{profile.job}</label>
+              <label>Beruf:</label>
+              <label className="value-label">{profile.job}</label>
             </div>
             <div>
-              <label>Funktion</label>
-              <label>{profile.function}</label>
+              <label>Funktion:</label>
+              <label className="value-label">{profile.function}</label>
             </div>
             <div>
-              <label>Firma</label>
-              <label>{profile.company}</label>
+              <label>Firma:</label>
+              <label className="value-label">{profile.company}</label>
             </div>
             <div>
-              <label>Branche</label>
-              <label>{profile.sector}</label>
+              <label>Tel:</label>
+              <label className="value-label">{profile.companyTel}</label>
             </div>
             <div>
-              <label>Tel</label>
-              <label>{profile.companyTel}</label>
+              <label>Mobile:</label>
+              <label className="value-label">{profile.companyMobile}</label>
             </div>
             <div>
-              <label>Mobile</label>
-              <label>{profile.companyMobile}</label>
+              <label>E-Mail:</label>
+              <label className="value-label">{profile.companyEmail}</label>
             </div>
             <div>
-              <label>E-Mail</label>
-              <label>{profile.companyEmail}</label>
+              <label>Strasse:</label>
+              <label className="value-label">{profile.companyStreet}</label>
             </div>
             <div>
-              <label>Strasse / Nr</label>
-              <label>{profile.companyStreet}</label>
-              <label>{profile.companyStreetNr}</label>
+              <label>Nr:</label>
+              <label className="value-label">{profile.companyStreetNr}</label>
             </div>
             <div>
-              <label>PLZ / Ort</label>
-              <label>{profile.companyZip}</label>
-              <label>{profile.companyCity}</label>
+              <label>PLZ:</label>
+              <label className="value-label">{profile.companyZip}</label>
             </div>
             <div>
-              <label>URL Firma</label>
-              <label>{profile.companyURL}</label>
+              <label>Ort:</label>
+              <label className="value-label">{profile.companyCity}</label>
+            </div>
+            <div>
+              <label>URL Firma:</label>
+              <label className="value-label">{profile.companyURL}</label>
             </div>
           </TabPane>
 
           <TabPane tabId="2">
             <div>
-              <label>Tel</label>
-              <label>{profile.privateTel}</label>
+              <label>Tel:</label>
+              <label className="value-label">{profile.privateTel}</label>
             </div>
             <div>
-              <label>Mobile</label>
-              <label>{profile.privateMobile}</label>
+              <label>Mobile:</label>
+              <label className="value-label">{profile.privateMobile}</label>
             </div>
             <div>
-              <label>E-Mail</label>
-              <label>{profile.privateEmail}</label>
+              <label>E-Mail:</label>
+              <label className="value-label">{profile.privateEmail}</label>
             </div>
             <div>
-              <label>Strasse / Nr</label>
-              <label>{profile.privateStreet}</label>
-              <label>{profile.privateStreetNr}</label>
+              <label>Strasse:</label>
+              <label className="value-label">{profile.privateStreet}</label>
             </div>
             <div>
-              <label>PLZ / Ort</label>
-              <label>{profile.privateZip}</label>
-              <label>{profile.privateCity}</label>
+              <label>Nr:</label>
+              <label className="value-label">{profile.privateStreetNr}</label>
+            </div>
+            <div>
+              <label>PLZ:</label>
+              <label className="value-label">{profile.privateZip}</label>
+            </div>
+            <div>
+              <label>Ort:</label>
+              <label className="value-label">{profile.privateCity}</label>
             </div>
           </TabPane>
         </TabContent>
         <div>
           <label>Rechnungsadresse: </label>
-          <label>
+          <label className="value-label">
             {profile.invoiceAddress === '1' ? 'privat' : 'geschäftlich'}
           </label>
         </div>

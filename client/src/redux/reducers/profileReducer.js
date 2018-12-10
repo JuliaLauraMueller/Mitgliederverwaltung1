@@ -41,7 +41,7 @@ const initialState = {
     linkedinLink: 'asdf',
     facebookLink: 'asdf',
     instagramLink: 'asdf',
-    offerings: 'asdf'
+    offerings: 'Ich bin eine super gute Informatikerin mit 10000 Jahren Berufserfahrung'
   }
 };
 

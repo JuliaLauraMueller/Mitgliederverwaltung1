@@ -14,19 +14,38 @@ class ProfileSocialMedia extends Component {
     const profile = this.props.profile;
     return (
       <div id="socialMedia">
-        <Button href={profile.xingLink}>Xing</Button>
-        <Button href={profile.linkedinLink}> LinkedIn</Button>
+        <Button className="icon-button" href={profile.xingLink}>
+        <img
+            className="icons"
+            alt="xing-icon"
+            src={'./img/xing.svg'}
+          />
+        </Button>
+        <Button className="icon-button" href={profile.linkedinLink}>         
+        <img
+            className="icons"
+            alt="linkedin-icon"
+            src={'./img/linkedin.svg'}
+          />
+          </Button>
         <Button className="icon-button" href={profile.facebookLink}>
           <img
             className="icons"
             alt="fb-icon"
-            src={'./img/facebook.png'}
+            src={'./img/facebook.svg'}
           />
         </Button>
-        <Button href={profile.instagramLink}>Instagram</Button>
-        <div>
-          <label>Was biete ich an?</label>
-          <label>{profile.offerings}</label>
+        <Button className="icon-button" href={profile.instagramLink}>
+        <img
+            className="icons"
+            alt="fb-icon"
+            src={'./img/instagram.svg'}
+          />
+        </Button>
+        <div className="offerings">
+          <label className="main-title" id="offerings-label">Was biete ich an?</label>
+          <br></br>
+          <label className="information">{profile.offerings}</label>
         </div>
       </div>
     );
