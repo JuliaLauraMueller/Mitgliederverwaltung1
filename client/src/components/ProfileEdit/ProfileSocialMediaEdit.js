@@ -91,11 +91,12 @@ class ProfileSocialMediaEDIT extends Component {
           </form>
         </InputGroup>
         <InputGroup>
-          <Label>Was biete ich an?</Label>
-          <form className="input-field">
+          <InputGroupAddon addonType="prepend">Angebot</InputGroupAddon>
+          <form className="input-field" id="text-area-offers">
             <Input
               type="textarea"
               name="offerings"
+              rows="3"
               onChange={this.onChange}
               value={this.state.offerings}
             />

@@ -203,35 +203,45 @@ class ProfileMainInformationEDIT extends Component {
               <InputGroupAddon addonType="prepend">
                 Strasse / Nr
               </InputGroupAddon>
-              <Input
-                type="text"
-                name="companyStreet"
-                onChange={this.onChange}
-                value={this.state.companyStreet}
-              />
-              <Input
-                type="text"
-                name="companyStreetNr"
-                onChange={this.onChange}
-                value={this.state.companyStreetNr}
-              />
+              <form>
+                <form id="input-field-group-street">
+                  <Input
+                    type="text"
+                    name="companyStreet"
+                    onChange={this.onChange}
+                    value={this.state.companyStreet}
+                  />
+                </form>
+                <form id="input-field-group-streetnr">
+                  <Input
+                    type="text"
+                    name="companyStreetNr"
+                    onChange={this.onChange}
+                    value={this.state.companyStreetNr}
+                  />
+                </form>
+              </form>
             </InputGroup>
             <InputGroup>
-              <InputGroupAddon addonType="prepend">PLZ / Ort</InputGroupAddon>
-              <form className="input-field">
-                <Input
-                  type="text"
-                  name="companyZip"
-                  onChange={this.onChange}
-                  value={this.state.companyZip}
-                />
+              <InputGroupAddon addonType="prepend">PLZ / Ort </InputGroupAddon>
+              <form>
+                <form id="input-field-group-zip">
+                  <Input
+                    type="text"
+                    name="companyZip"
+                    onChange={this.onChange}
+                    value={this.state.companyZip}
+                  />
+                </form>
+                <form id="input-field-group-city">
+                  <Input
+                    type="text"
+                    name="companyCity"
+                    onChange={this.onChange}
+                    value={this.state.companyCity}
+                  />
+                </form>
               </form>
-              <Input
-                type="text"
-                name="companyCity"
-                onChange={this.onChange}
-                value={this.state.companyCity}
-              />
             </InputGroup>
             <InputGroup>
               <InputGroupAddon addonType="prepend">URL Firma</InputGroupAddon>
@@ -284,36 +294,44 @@ class ProfileMainInformationEDIT extends Component {
               <InputGroupAddon addonType="prepend">
                 Strasse / Nr
               </InputGroupAddon>
-              <form className="input-field">
-                <Input
-                  type="text"
-                  name="privateStreet"
-                  onChange={this.onChange}
-                  value={this.state.privateStreet}
-                />
-                <Input
-                  type="text"
-                  name="privateStreetNr"
-                  onChange={this.onChange}
-                  value={this.state.privateStreetNr}
-                />
+              <form>
+                <form id="input-field-group-street">
+                  <Input
+                    type="text"
+                    name="privateStreet"
+                    onChange={this.onChange}
+                    value={this.state.privateStreet}
+                  />
+                </form>
+                <form id="input-field-group-streetnr">
+                  <Input
+                    type="text"
+                    name="privateStreetNr"
+                    onChange={this.onChange}
+                    value={this.state.privateStreetNr}
+                  />
+                </form>
               </form>
             </InputGroup>
             <InputGroup>
               <InputGroupAddon addonType="prepend">PLZ / Ort</InputGroupAddon>
-              <form className="input-field">
-                <Input
-                  type="text"
-                  name="privateZip"
-                  onChange={this.onChange}
-                  value={this.state.privateZip}
-                />
-                <Input
-                  type="text"
-                  name="privateCity"
-                  onChange={this.onChange}
-                  value={this.state.privateCity}
-                />
+              <form>
+                <form id="input-field-group-zip">
+                  <Input
+                    type="text"
+                    name="privateZip"
+                    onChange={this.onChange}
+                    value={this.state.privateZip}
+                  />
+                </form>
+                <form id="input-field-group-city">
+                  <Input
+                    type="text"
+                    name="privateCity"
+                    onChange={this.onChange}
+                    value={this.state.privateCity}
+                  />
+                </form>
               </form>
             </InputGroup>
           </TabPane>
