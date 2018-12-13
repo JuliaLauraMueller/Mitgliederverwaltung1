@@ -15,6 +15,7 @@ import {
   Label,
   FormGroup
 } from 'reactstrap';
+import classnames from 'classnames';
 
 import '../../css/ProfilePage.css';
 
@@ -103,6 +104,7 @@ class ProfileMainInformationEDIT extends Component {
         <Nav tabs className="toggle-nav-main">
           <NavItem className="toggle-nav">
             <NavLink
+              className={classnames({ active: this.state.activeTab === '1' })}
               onClick={() => {
                 this.toggle('1');
               }}
@@ -112,6 +114,7 @@ class ProfileMainInformationEDIT extends Component {
           </NavItem>
           <NavItem className="toggle-nav">
             <NavLink
+              className={classnames({ active: this.state.activeTab === '2' })}
               onClick={() => {
                 this.toggle('2');
               }}
@@ -124,185 +127,216 @@ class ProfileMainInformationEDIT extends Component {
           <TabPane tabId="1">
             <InputGroup>
               <InputGroupAddon addonType="prepend">Branche</InputGroupAddon>
-              <Input
-                type="text"
-                name="sector"
-                onChange={this.onChange}
-                value={this.state.sector}
-              />
+              <form className="input-field">
+                <Input
+                  type="text"
+                  name="sector"
+                  onChange={this.onChange}
+                  value={this.state.sector}
+                />
+              </form>
             </InputGroup>
-            <br />
             <InputGroup>
               <InputGroupAddon addonType="prepend">Beruf</InputGroupAddon>
-              <Input
-                type="text"
-                name="job"
-                onChange={this.onChange}
-                value={this.state.job}
-              />
+              <form className="input-field">
+                <Input
+                  type="text"
+                  name="job"
+                  onChange={this.onChange}
+                  value={this.state.job}
+                />
+              </form>
             </InputGroup>
-            <br />
             <InputGroup>
               <InputGroupAddon addonType="prepend">Funktion</InputGroupAddon>
-              <Input
-                type="text"
-                name="function"
-                onChange={this.onChange}
-                value={this.state.function}
-              />
+              <form className="input-field">
+                <Input
+                  type="text"
+                  name="function"
+                  onChange={this.onChange}
+                  value={this.state.function}
+                />
+              </form>
             </InputGroup>
-            <br />
             <InputGroup>
               <InputGroupAddon addonType="prepend">Firma</InputGroupAddon>
-              <Input
-                type="text"
-                name="company"
-                onChange={this.onChange}
-                value={this.state.company}
-              />
+              <form className="input-field">
+                <Input
+                  type="text"
+                  name="company"
+                  onChange={this.onChange}
+                  value={this.state.company}
+                />
+              </form>
             </InputGroup>
-            <br />
             <InputGroup>
               <InputGroupAddon addonType="prepend">Tel</InputGroupAddon>
-              <Input
-                type="text"
-                name="companyTel"
-                onChange={this.onChange}
-                value={this.state.companyTel}
-              />
+              <form className="input-field">
+                <Input
+                  type="text"
+                  name="companyTel"
+                  onChange={this.onChange}
+                  value={this.state.companyTel}
+                />
+              </form>
             </InputGroup>
-            <br />
             <InputGroup>
               <InputGroupAddon addonType="prepend">Mobile</InputGroupAddon>
-              <Input
-                type="text"
-                name="companyMobile"
-                onChange={this.onChange}
-                value={this.state.companyMobile}
-              />
+              <form className="input-field">
+                <Input
+                  type="text"
+                  name="companyMobile"
+                  onChange={this.onChange}
+                  value={this.state.companyMobile}
+                />
+              </form>
             </InputGroup>
-            <br />
             <InputGroup>
               <InputGroupAddon addonType="prepend">E-Mail</InputGroupAddon>
-              <Input
-                type="text"
-                name="companyEmail"
-                onChange={this.onChange}
-                value={this.state.companyEmail}
-              />
+              <form className="input-field">
+                <Input
+                  type="text"
+                  name="companyEmail"
+                  onChange={this.onChange}
+                  value={this.state.companyEmail}
+                />
+              </form>
             </InputGroup>
-            <br />
             <InputGroup>
               <InputGroupAddon addonType="prepend">
                 Strasse / Nr
               </InputGroupAddon>
-              <Input
-                type="text"
-                name="companyStreet"
-                onChange={this.onChange}
-                value={this.state.companyStreet}
-              />
-              <Input
-                type="text"
-                name="companyStreetNr"
-                onChange={this.onChange}
-                value={this.state.companyStreetNr}
-              />
+              <form>
+                <form id="input-field-group-street">
+                  <Input
+                    type="text"
+                    name="companyStreet"
+                    onChange={this.onChange}
+                    value={this.state.companyStreet}
+                  />
+                </form>
+                <form id="input-field-group-streetnr">
+                  <Input
+                    type="text"
+                    name="companyStreetNr"
+                    onChange={this.onChange}
+                    value={this.state.companyStreetNr}
+                  />
+                </form>
+              </form>
             </InputGroup>
-            <br />
             <InputGroup>
-              <InputGroupAddon addonType="prepend">PLZ / Ort</InputGroupAddon>
-              <Input
-                type="text"
-                name="companyZip"
-                onChange={this.onChange}
-                value={this.state.companyZip}
-              />
-              <Input
-                type="text"
-                name="companyCity"
-                onChange={this.onChange}
-                value={this.state.companyCity}
-              />
+              <InputGroupAddon addonType="prepend">PLZ / Ort </InputGroupAddon>
+              <form>
+                <form id="input-field-group-zip">
+                  <Input
+                    type="text"
+                    name="companyZip"
+                    onChange={this.onChange}
+                    value={this.state.companyZip}
+                  />
+                </form>
+                <form id="input-field-group-city">
+                  <Input
+                    type="text"
+                    name="companyCity"
+                    onChange={this.onChange}
+                    value={this.state.companyCity}
+                  />
+                </form>
+              </form>
             </InputGroup>
-            <br />
             <InputGroup>
               <InputGroupAddon addonType="prepend">URL Firma</InputGroupAddon>
-              <Input
-                type="text"
-                name="companyURL"
-                onChange={this.onChange}
-                value={this.state.companyURL}
-              />
+              <form className="input-field">
+                <Input
+                  type="text"
+                  name="companyURL"
+                  onChange={this.onChange}
+                  value={this.state.companyURL}
+                />
+              </form>
             </InputGroup>
-            <br />
           </TabPane>
 
           <TabPane tabId="2">
             <InputGroup>
               <InputGroupAddon addonType="prepend">Tel</InputGroupAddon>
-              <Input
-                type="text"
-                name="privateTel"
-                onChange={this.onChange}
-                value={this.state.privateTel}
-              />
+              <form className="input-field">
+                <Input
+                  type="text"
+                  name="privateTel"
+                  onChange={this.onChange}
+                  value={this.state.privateTel}
+                />
+              </form>
             </InputGroup>
-            <br />
             <InputGroup>
               <InputGroupAddon addonType="prepend">Mobile</InputGroupAddon>
-              <Input
-                type="text"
-                name="privateMobile"
-                onChange={this.onChange}
-                value={this.state.privateMobile}
-              />
+              <form className="input-field">
+                <Input
+                  type="text"
+                  name="privateMobile"
+                  onChange={this.onChange}
+                  value={this.state.privateMobile}
+                />
+              </form>
             </InputGroup>
-            <br />
             <InputGroup>
               <InputGroupAddon addonType="prepend">E-Mail</InputGroupAddon>
-              <Input
-                type="text"
-                name="privateEmail"
-                onChange={this.onChange}
-                value={this.state.privateEmail}
-              />
+              <form className="input-field">
+                <Input
+                  type="text"
+                  name="privateEmail"
+                  onChange={this.onChange}
+                  value={this.state.privateEmail}
+                />
+              </form>
             </InputGroup>
-            <br />
             <InputGroup>
               <InputGroupAddon addonType="prepend">
                 Strasse / Nr
               </InputGroupAddon>
-              <Input
-                type="text"
-                name="privateStreet"
-                onChange={this.onChange}
-                value={this.state.privateStreet}
-              />
-              <Input
-                type="text"
-                name="privateStreetNr"
-                onChange={this.onChange}
-                value={this.state.privateStreetNr}
-              />
+              <form>
+                <form id="input-field-group-street">
+                  <Input
+                    type="text"
+                    name="privateStreet"
+                    onChange={this.onChange}
+                    value={this.state.privateStreet}
+                  />
+                </form>
+                <form id="input-field-group-streetnr">
+                  <Input
+                    type="text"
+                    name="privateStreetNr"
+                    onChange={this.onChange}
+                    value={this.state.privateStreetNr}
+                  />
+                </form>
+              </form>
             </InputGroup>
-            <br />
             <InputGroup>
               <InputGroupAddon addonType="prepend">PLZ / Ort</InputGroupAddon>
-              <Input
-                type="text"
-                name="privateZip"
-                onChange={this.onChange}
-                value={this.state.privateZip}
-              />
-              <Input
-                type="text"
-                name="privateCity"
-                onChange={this.onChange}
-                value={this.state.privateCity}
-              />
+              <form>
+                <form id="input-field-group-zip">
+                  <Input
+                    type="text"
+                    name="privateZip"
+                    onChange={this.onChange}
+                    value={this.state.privateZip}
+                  />
+                </form>
+                <form id="input-field-group-city">
+                  <Input
+                    type="text"
+                    name="privateCity"
+                    onChange={this.onChange}
+                    value={this.state.privateCity}
+                  />
+                </form>
+              </form>
             </InputGroup>
-            <br />
           </TabPane>
         </TabContent>
         <FormGroup tag="fieldset">

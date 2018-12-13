@@ -5,7 +5,7 @@ basic style profile page
   box-sizing: border-box;
 }
 
-#basicInformation {
+#profilePic {
   float: left;
   width: 50%;
   margin: 3% 3% 0 3%;
@@ -14,24 +14,27 @@ basic style profile page
   padding-top: 45px;
 }
 
-#mainInformation {
+#basicInformation {
   float: left;
   margin: 12px 3% 3% 3%;
   width: 50%;
 }
 
-#profilePic {
+#socialMedia {
   float: left;
   width: 28%;
   margin: 3%;
+  height: 0;
+  clear: left;
 }
 
-#socialMedia {
+#mainInformation {
   float: left;
   clear: left;
   width: 28%;
   margin: 0 3% 3% 3%;
 }
+
 .profile-image {
   border-radius: 50%;
 }
@@ -40,15 +43,16 @@ additional style VIEW profile page
 *--------------------------------------------*/
 
 /*general style*/
-.main-title{
+.main-title {
   font-size: 1.2rem;
   opacity: 0.8;
 }
 
-.information, label {
+.information,
+label {
   font-size: 12pt;
   opacity: 0.6;
-  color:  #0F1929
+  color: #0f1929;
 }
 /*profile-pic style*/
 .salutation-label,
@@ -74,13 +78,13 @@ additional style VIEW profile page
   text-align: center;
 }
 .icon-button {
-  background-color: white;
+  background-color: transparent;
   border: none;
   padding-right: 15px;
   padding-left: 15px;
 }
 .icon-button:hover {
-  background-color: white;
+  background-color: transparent;
   opacity: 0.5;
 }
 .offerings {
@@ -91,12 +95,10 @@ additional style VIEW profile page
   margin-right: auto;
   margin-left: auto;
   border-top: 1px solid black;
-
 }
 #offerings-label {
   padding-top: 15px;
 }
-
 
 /*main-info and basic-info style*/
 .value-label {
@@ -120,6 +122,16 @@ additional style EDIT profile page
   margin-bottom: 10px;
 }
 
+.form-control:active {
+  background-color: transparent;
+  border-bottom: 1px solid rgb(219, 157, 12);
+}
+
+.form-control:focus {
+  background-color: transparent;
+  border-bottom: 1px solid rgb(219, 157, 12);
+}
+
 .input-group-text {
   background-color: transparent;
   border: 0;
@@ -129,23 +141,28 @@ additional style EDIT profile page
   position: relative;
   bottom: 2%;
 }
-
-#salutation-group-addon span {
-  position: relative;
-  top: 15%;
+.input-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0%;
+}
+.input-field {
+  max-width: 200px;
+  min-width: 200px;
 }
 
+/*toggle nav*/
 .toggle-nav {
   margin-bottom: 20%;
 }
 
-
-a.active.nav-link{
+a.active.nav-link {
   border: none;
   border-bottom: 3px solid rgb(219, 157, 12) !important;
   padding: 0 15px 15px 0;
   font-size: 1.2rem;
   opacity: 0.8;
+  background-color: transparent !important;
 }
 
 a.nav-link {
@@ -154,7 +171,7 @@ a.nav-link {
   opacity: 0.8;
 }
 .toggle-nav:hover {
-  color: rgb(219, 157, 12)
+  color: rgb(219, 157, 12);
 }
 
 .nav-tabs .nav-link {
@@ -171,17 +188,76 @@ a.nav-link {
   margin-right: 5%;
 }
 
+/*profilePic*/
 .radio {
-  margin: 10px 0 0 10px;
+  margin: 6px 0 0 10px;
 }
 .radio-label {
   padding-left: 3px;
 }
-.input-field {
-  max-width: 200px;
-  min-width: 200px;
-}
-.input-group {
+.input-field-salutation {
+  max-width: 210px;
+  min-width: 210px;
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
+  margin-top: 10px;
+}
+.container-profilepic {
+  margin-top: 100px;
+}
+#salutation-group-addon span {
+  position: relative;
+  top: 20%;
+}
+
+/*SocialMedia*/
+#text-area-offers {
+  width: 100%;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+/*MainInfo*/
+#input-field-group-street {
+  max-width: 150px;
+  min-width: 150px;
+  display: inline-block;
+}
+#input-field-group-streetnr {
+  margin-left: 10px;
+  max-width: 40px;
+  min-width: 40px;
+  display: inline-block;
+}
+#input-field-group-zip {
+  max-width: 50px;
+  min-width: 50px;
+  display: inline-block;
+}
+#input-field-group-city {
+  margin-left: 10px;
+  max-width: 140px;
+  min-width: 140px;
+  display: inline-block;
+}
+
+/*Buttons*/
+.button-save-edit {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid #0f1929;
+  padding: 0;
+  border-radius: 0;
+  transition: none;
+  height: 32px;
+  margin-bottom: 10px;
+  font-size: 140%;
+}
+
+.button-save-edit:active,
+.button-save-edit:focus,
+.button-save-edit:hover {
+  background-color: transparent;
+  border-bottom: 1px solid rgb(219, 157, 12);
+  color: rgb(219, 157, 12);
 }

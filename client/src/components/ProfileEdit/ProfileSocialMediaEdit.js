@@ -48,54 +48,60 @@ class ProfileSocialMediaEDIT extends Component {
       <div id="socialMedia">
         <InputGroup>
           <InputGroupAddon addonType="prepend">Xing</InputGroupAddon>
-          <Input
-            type="text"
-            name="xingLink"
-            onChange={this.onChange}
-            value={this.state.xingLink}
-          />
+          <form className="input-field">
+            <Input
+              type="text"
+              name="xingLink"
+              onChange={this.onChange}
+              value={this.state.xingLink}
+            />
+          </form>
         </InputGroup>
-        <br />
         <InputGroup>
           <InputGroupAddon addonType="prepend">Linkedin</InputGroupAddon>
-          <Input
-            type="text"
-            name="linkedinLink"
-            onChange={this.onChange}
-            value={this.state.linkedinLink}
-          />
+          <form className="input-field">
+            <Input
+              type="text"
+              name="linkedinLink"
+              onChange={this.onChange}
+              value={this.state.linkedinLink}
+            />
+          </form>
         </InputGroup>
-        <br />
         <InputGroup>
           <InputGroupAddon addonType="prepend">Facebook</InputGroupAddon>
-          <Input
-            type="text"
-            name="facebookLink"
-            onChange={this.onChange}
-            value={this.state.facebookLink}
-          />
+          <form className="input-field">
+            <Input
+              type="text"
+              name="facebookLink"
+              onChange={this.onChange}
+              value={this.state.facebookLink}
+            />
+          </form>
         </InputGroup>
-        <br />
         <InputGroup>
           <InputGroupAddon addonType="prepend">Instagram</InputGroupAddon>
-          <Input
-            type="text"
-            name="instagramLink"
-            onChange={this.onChange}
-            value={this.state.instagramLink}
-          />
+          <form className="input-field">
+            <Input
+              type="text"
+              name="instagramLink"
+              onChange={this.onChange}
+              value={this.state.instagramLink}
+            />
+          </form>
         </InputGroup>
-        <br />
         <InputGroup>
-          <Label>Was biete ich an?</Label>
-          <Input
-            type="textarea"
-            name="offerings"
-            onChange={this.onChange}
-            value={this.state.offerings}
-          />
+          <InputGroupAddon addonType="prepend">Angebot</InputGroupAddon>
+          <form className="input-field" id="text-area-offers">
+            <Input
+              type="textarea"
+              name="offerings"
+              rows="3"
+              onChange={this.onChange}
+              value={this.state.offerings}
+            />
+          </form>
         </InputGroup>
-        <br />
       </div>
     );
   }

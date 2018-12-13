@@ -59,7 +59,7 @@ class ProfilePicEDIT extends Component {
               Anrede:
             </InputGroupAddon>
             <fieldset>
-              <div class="some-class">
+              <div class="input-field-salutation">
                 <input
                   type="radio"
                   className="radio"
