@@ -8,7 +8,7 @@ basic style profile page
 #profilePic {
   float: left;
   width: 35%;
-  margin: 3% 3% 0 3%;
+  margin: 3% 3% 3% 3%;
   height: 10%;
   padding-top: 45px;
 }
@@ -16,7 +16,7 @@ basic style profile page
 #basicInformation {
   float: left;
   margin: 11% 3% 3% 3%;
-  width: 35%;
+  width: 40%;
 }
 
 #basicInformationEdit {
@@ -45,22 +45,23 @@ basic style profile page
 
 .business-info {
   float: left;
-  width: 50%;
+  width: 40%;
 }
 
 .private-info {
   float: left;
-  width: 50%;
+  width: 40%;
+  margin-right: 3%;
+}
+
+.main-title {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  margin-right: 3%;
 }
 /*--------------------------------------------*
 additional style VIEW profile page
 *--------------------------------------------*/
-
-/*general style*/
-.main-title {
-  font-size: 1.2rem;
-  opacity: 0.8;
-}
 
 .information,
 label {
@@ -68,26 +69,8 @@ label {
   opacity: 0.6;
   color: #0f1929;
 }
-/*profile-pic style*/
-.salutation-label,
-.name-label {
-  margin-right: 5px;
-  margin-bottom: 0px;
-  opacity: 0.8;
-}
-.name-label {
-  font-size: 1.5rem;
-  opacity: 0.8;
-}
-.salutation-label {
-  font-size: 0.8rem;
-  opacity: 0.8;
-}
-#profilePic {
-  text-align: center;
-}
 
-/*social-media style*/
+/*profile-pic style*/
 #socialMedia {
   text-align: center;
 }
@@ -96,6 +79,7 @@ label {
   border: none;
   padding-right: 15px;
   padding-left: 15px;
+  margin-top: 15px;
 }
 .icon-button:hover {
   background-color: transparent;
@@ -114,12 +98,29 @@ label {
   padding-top: 15px;
 }
 
-/*main-info and basic-info style*/
+/*basic-info style*/
 .value-label {
   float: right;
   width: 220px;
   margin: 0;
   padding: 0;
+}
+.salutation-label,
+.name-label {
+  margin-right: 5px;
+  margin-bottom: 0px;
+  opacity: 0.8;
+}
+.name-label {
+  font-size: 1.5rem;
+  opacity: 0.8;
+}
+.salutation-label {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+#profilePic {
+  text-align: center;
 }
 
 /*--------------------------------------------*

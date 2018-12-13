@@ -102,6 +102,7 @@ class ProfileMainInformationEDIT extends Component {
     return (
       <div id="mainInformation">
         <div className="business-info">
+        <Label className="main-title">Geschäftlich</Label>
           <InputGroup>
             <InputGroupAddon addonType="prepend">Branche</InputGroupAddon>
             <form className="input-field">
@@ -253,6 +254,7 @@ class ProfileMainInformationEDIT extends Component {
         </div>
 
         <div className="private-info">
+        <Label className="main-title">Privat</Label>
           <InputGroup>
             <InputGroupAddon addonType="prepend">Tel</InputGroupAddon>
             <form className="input-field">
