@@ -46,7 +46,7 @@ class ProfileBasicInfoEDIT extends Component {
 
   render() {
     return (
-      <div id="basicInformation">
+      <div id="basicInformationEdit">
         <InputGroup>
           <InputGroupAddon addonType="prepend">Status</InputGroupAddon>
           <form className="input-field">

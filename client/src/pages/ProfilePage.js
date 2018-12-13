@@ -50,17 +50,19 @@ class ProfilePage extends Component {
               this.basicInfo = basicInfo;
             }}
           />
-          <ProfileMainInformationEDIT
-            ref={mainInfo => {
-              this.mainInfo = mainInfo;
-            }}
-          />
           <ProfileSocialMediaEDIT
             ref={socialMedia => {
               this.socialMedia = socialMedia;
             }}
           />
-          <button className="button-save-edit" onClick={this.handleClick}>save</button>
+          <ProfileMainInformationEDIT
+            ref={mainInfo => {
+              this.mainInfo = mainInfo;
+            }}
+          />
+          <button className="button-save-edit" onClick={this.handleClick}>
+            save
+          </button>
         </div>
       );
     } else {
@@ -70,7 +72,9 @@ class ProfilePage extends Component {
           <ProfileBasicInfo />
           <ProfileSocialMedia />
           <ProfileMainInformation />
-          <button className="button-save-edit" onClick={this.toggleEdit}>edit</button>
+          <button className="button-save-edit" onClick={this.toggleEdit}>
+            edit
+          </button>
         </div>
       );
     }

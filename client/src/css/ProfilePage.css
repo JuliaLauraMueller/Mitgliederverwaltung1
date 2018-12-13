@@ -7,30 +7,34 @@ basic style profile page
 
 #profilePic {
   float: left;
-  width: 28%;
+  width: 35%;
   margin: 3% 3% 0 3%;
   height: 10%;
-  vertical-align: bottom;
   padding-top: 45px;
 }
 
 #basicInformation {
   float: left;
-  margin: 12px 3% 3% 3%;
-  width: 40%;
+  margin: 11% 3% 3% 3%;
+  width: 35%;
+}
+
+#basicInformationEdit {
+  float: left;
+  margin: 14% 3% 3% 3%;
+  width: 35%;
 }
 
 #socialMedia {
   float: left;
-  width: 28%;
+  width: 35%;
   margin: 3%;
-  height: 0;
-  clear: left;
+  clear: right;
 }
 
 #mainInformation {
   float: left;
-  width: 40%;
+  width: 35%;
   margin: 0 3% 3% 3%;
 }
 
@@ -102,7 +106,7 @@ label {
 /*main-info and basic-info style*/
 .value-label {
   float: right;
-  width: 250px;
+  width: 220px;
   margin: 0;
   padding: 0;
 }
@@ -119,6 +123,10 @@ additional style EDIT profile page
   transition: none;
   height: 25px;
   margin-bottom: 10px;
+  float: right;
+  width: 220px;
+  margin: 0;
+  padding: 0;
 }
 
 .form-control:active {
@@ -139,6 +147,7 @@ additional style EDIT profile page
   height: 25px;
   position: relative;
   bottom: 2%;
+  padding: 0;
 }
 .input-group {
   display: flex;
@@ -184,10 +193,12 @@ a.nav-link {
   border-radius: 0px;
   margin-bottom: 15px;
   transition: none;
-  margin-right: 5%;
 }
 
 /*profilePic*/
+#profile-image-edit {
+  border-radius: 50%;
+}
 .radio {
   margin: 6px 0 0 10px;
 }
