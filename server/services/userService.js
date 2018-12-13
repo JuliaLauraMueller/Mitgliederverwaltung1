@@ -9,7 +9,8 @@ module.exports = {
   create,
   getById,
   getAll,
-  generateJwtToken
+  generateJwtToken,
+  removeAllCompanyRelations
 };
 
 async function authenticate({ privateEmail, password }) {
@@ -73,6 +74,15 @@ async function update(id, userParam) {
 
 async function _delete(id) {
   await User.findByIdAndRemove(id);
+  await removeAllGodfathers(id);
+}
+
+async function removeAllGodfathers(id) {
+  User.updateMany({ godfather: { $eq: id } }, { $set: { godfather: '' } });
+}
+
+async function removeAllCompanyRelations(id) {
+  User.updateMany({ company: { $eq: id } }, { $set: { company: '' } });
 }
 
 function generateJwtToken(user) {
