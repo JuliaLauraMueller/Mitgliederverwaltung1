@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import Toolbar from "../Toolbar/Toolbar";
-import SideDrawer from "../SideDrawer/SideDrawer";
-import Backdrop from "../Backdrop/Backdrop";
-import "../../css/AppNavbar.css";
+import Toolbar from '../Toolbar/Toolbar';
+import SideDrawer from '../SideDrawer/SideDrawer';
+import Backdrop from '../Backdrop/Backdrop';
+import '../../css/AppNavbar.css';
 
 class AppNavbar extends Component {
   state = {
@@ -30,7 +30,7 @@ class AppNavbar extends Component {
     }
     return (
       <div className='app-nav-bar'>
-        <div style={{ height: "100%" }}>
+        <div style={{ height: '100%' }}>
           <Toolbar
             className='tool-bar'
             drawerClickHandler={this.drawerToggleClickHandler}

@@ -1,17 +1,17 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import "../../css/SideDrawer.css";
+import '../../css/SideDrawer.css';
 
-import DrawerToggleButton from "./DrawerToggleButton";
+import DrawerToggleButton from './DrawerToggleButton';
 
 const sideDrawer = props => {
-  let drawerClasses = "side-drawer";
+  let drawerClasses = 'side-drawer';
   if (props.show) {
-    drawerClasses = "side-drawer open";
+    drawerClasses = 'side-drawer open';
   }
   if (!props.show) {
-    drawerClasses = "side-drawer close";
+    drawerClasses = 'side-drawer close';
   }
   return (
     <nav className={drawerClasses}>
@@ -19,15 +19,15 @@ const sideDrawer = props => {
         <div className='user-part'>
           <ul>
             <li>
-              <a href='/'>
+              <Link to='/profile'>
                 <img src='img/Marc.png' alt='Marc' />
-              </a>
+              </Link>
             </li>
             <li>
-              <a href='/'>Marc Zimmermann</a>
+              <Link to='/profile'>Marc Zimmermann</Link>
             </li>
             <li>
-              <a href='/'>Profil verwalten</a>
+              <Link to='/profile'>Profil verwalten</Link>
             </li>
           </ul>
         </div>

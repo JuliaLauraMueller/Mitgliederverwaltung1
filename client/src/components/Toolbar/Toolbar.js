@@ -1,7 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "../../css/ToolbarDesktop.css";
-import DrawerToggleButton from "../SideDrawer/DrawerToggleButton";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import '../../css/ToolbarDesktop.css';
+import DrawerToggleButton from '../SideDrawer/DrawerToggleButton';
 
 const toolbar = props => (
   <header className='toolbar'>
@@ -25,7 +25,7 @@ const toolbar = props => (
             </Link>
           </li>
           <li>
-            <Link to='/'>
+            <Link to='/members'>
               <img className='icon' src='img/Members.png' alt='Mitglieder' />
             </Link>
           </li>
