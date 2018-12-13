@@ -211,7 +211,7 @@ class ProfileMainInformationEDIT extends Component {
             </InputGroup>
             <InputGroup>
               <InputGroupAddon addonType="prepend">Strasse</InputGroupAddon>
-              <form id="input-field-group-street">
+              <form id="input-field">
                 <Input
                   className="value-label"
                   type="text"
@@ -226,7 +226,7 @@ class ProfileMainInformationEDIT extends Component {
               <InputGroupAddon addonType="prepend">
                 Strassen-Nr.
               </InputGroupAddon>
-              <form id="input-field-group-streetnr">
+              <form id="input-field">
                 <Input
                   className="value-label"
                   type="text"
@@ -239,7 +239,7 @@ class ProfileMainInformationEDIT extends Component {
 
             <InputGroup>
               <InputGroupAddon addonType="prepend">PLZ</InputGroupAddon>
-              <form id="input-field-group-zip">
+              <form id="input-field">
                 <Input
                   className="value-label"
                   type="text"
@@ -252,7 +252,7 @@ class ProfileMainInformationEDIT extends Component {
 
             <InputGroup>
               <InputGroupAddon addonType="prepend">Ort</InputGroupAddon>
-              <form id="input-field-group-city">
+              <form id="input-field">
                 <Input
                   className="value-label"
                   type="text"
@@ -342,7 +342,7 @@ class ProfileMainInformationEDIT extends Component {
             </InputGroup>
             <InputGroup>
               <InputGroupAddon addonType="prepend">PLZ</InputGroupAddon>
-              <form id="input-field-group-zip">
+              <form id="input-field">
                 <Input
                   className="value-label"
                   type="text"
@@ -354,7 +354,7 @@ class ProfileMainInformationEDIT extends Component {
             </InputGroup>
             <InputGroup>
               <InputGroupAddon addonType="prepend">Ort</InputGroupAddon>
-              <form id="input-field-group-city">
+              <form id="input-field">
                 <Input
                   className="value-label"
                   type="text"

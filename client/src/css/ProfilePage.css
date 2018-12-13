@@ -102,7 +102,7 @@ label {
 /*main-info and basic-info style*/
 .value-label {
   float: right;
-  width: 50%;
+  width: 250px;
   margin: 0;
   padding: 0;
 }
@@ -214,30 +214,6 @@ a.nav-link {
   width: 100%;
   box-sizing: border-box;
   resize: vertical;
-}
-
-/*MainInfo*/
-#input-field-group-street {
-  max-width: 150px;
-  min-width: 150px;
-  display: inline-block;
-}
-#input-field-group-streetnr {
-  margin-left: 10px;
-  max-width: 40px;
-  min-width: 40px;
-  display: inline-block;
-}
-#input-field-group-zip {
-  max-width: 50px;
-  min-width: 50px;
-  display: inline-block;
-}
-#input-field-group-city {
-  margin-left: 10px;
-  max-width: 140px;
-  min-width: 140px;
-  display: inline-block;
 }
 
 /*Buttons*/
