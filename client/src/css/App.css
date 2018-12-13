@@ -16,7 +16,8 @@ input:-webkit-autofill {
 }
 
 textarea:focus,
-input:focus {
+input:focus,
+button:focus {
   outline: none !important;
   box-shadow: none !important;
 }

@@ -60,7 +60,7 @@ class ProfilePage extends Component {
               this.socialMedia = socialMedia;
             }}
           />
-          <button onClick={this.handleClick}>save</button>
+          <button className="button-save-edit" onClick={this.handleClick}>save</button>
         </div>
       );
     } else {
@@ -70,7 +70,7 @@ class ProfilePage extends Component {
           <ProfileBasicInfo />
           <ProfileSocialMedia />
           <ProfileMainInformation />
-          <button onClick={this.toggleEdit}>edit</button>
+          <button className="button-save-edit" onClick={this.toggleEdit}>edit</button>
         </div>
       );
     }
