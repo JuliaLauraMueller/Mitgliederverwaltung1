@@ -47,7 +47,7 @@ class ProfilePicEDIT extends Component {
     return (
       <div id="profilePic">
         <img
-          class="profile-image"
+          className="profile-image"
           style={{ width: '180px' }}
           src={'./img/marc_zimmermann.jpg'}
           alt="profile"

@@ -102,7 +102,7 @@ label {
 /*main-info and basic-info style*/
 .value-label {
   float: right;
-  width: 250px;
+  width: 50%;
   margin: 0;
   padding: 0;
 }
