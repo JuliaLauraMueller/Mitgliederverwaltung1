@@ -128,7 +128,7 @@ class ProfileMainInformationEDIT extends Component {
             <InputGroup>
               <InputGroupAddon addonType="prepend">Branche</InputGroupAddon>
               <form className="input-field">
-                <Input
+              <Input className="value-label"
                   type="text"
                   name="sector"
                   onChange={this.onChange}
@@ -139,7 +139,7 @@ class ProfileMainInformationEDIT extends Component {
             <InputGroup>
               <InputGroupAddon addonType="prepend">Beruf</InputGroupAddon>
               <form className="input-field">
-                <Input
+              <Input className="value-label"
                   type="text"
                   name="job"
                   onChange={this.onChange}
@@ -150,7 +150,7 @@ class ProfileMainInformationEDIT extends Component {
             <InputGroup>
               <InputGroupAddon addonType="prepend">Funktion</InputGroupAddon>
               <form className="input-field">
-                <Input
+              <Input className="value-label"
                   type="text"
                   name="function"
                   onChange={this.onChange}
@@ -161,7 +161,7 @@ class ProfileMainInformationEDIT extends Component {
             <InputGroup>
               <InputGroupAddon addonType="prepend">Firma</InputGroupAddon>
               <form className="input-field">
-                <Input
+              <Input className="value-label"
                   type="text"
                   name="company"
                   onChange={this.onChange}
@@ -172,7 +172,7 @@ class ProfileMainInformationEDIT extends Component {
             <InputGroup>
               <InputGroupAddon addonType="prepend">Tel</InputGroupAddon>
               <form className="input-field">
-                <Input
+              <Input className="value-label"
                   type="text"
                   name="companyTel"
                   onChange={this.onChange}
@@ -194,7 +194,7 @@ class ProfileMainInformationEDIT extends Component {
             <InputGroup>
               <InputGroupAddon addonType="prepend">E-Mail</InputGroupAddon>
               <form className="input-field">
-                <Input
+              <Input className="value-label"
                   type="text"
                   name="companyEmail"
                   onChange={this.onChange}
@@ -208,7 +208,7 @@ class ProfileMainInformationEDIT extends Component {
               </InputGroupAddon>
               <form>
                 <form id="input-field-group-street">
-                  <Input
+                <Input className="value-label"
                     type="text"
                     name="companyStreet"
                     onChange={this.onChange}
@@ -216,7 +216,7 @@ class ProfileMainInformationEDIT extends Component {
                   />
                 </form>
                 <form id="input-field-group-streetnr">
-                  <Input
+                <Input className="value-label"
                     type="text"
                     name="companyStreetNr"
                     onChange={this.onChange}
@@ -229,7 +229,7 @@ class ProfileMainInformationEDIT extends Component {
               <InputGroupAddon addonType="prepend">PLZ / Ort </InputGroupAddon>
               <form>
                 <form id="input-field-group-zip">
-                  <Input
+                <Input className="value-label"
                     type="text"
                     name="companyZip"
                     onChange={this.onChange}
@@ -237,7 +237,7 @@ class ProfileMainInformationEDIT extends Component {
                   />
                 </form>
                 <form id="input-field-group-city">
-                  <Input
+                <Input className="value-label"
                     type="text"
                     name="companyCity"
                     onChange={this.onChange}
@@ -249,7 +249,7 @@ class ProfileMainInformationEDIT extends Component {
             <InputGroup>
               <InputGroupAddon addonType="prepend">URL Firma</InputGroupAddon>
               <form className="input-field">
-                <Input
+              <Input className="value-label"
                   type="text"
                   name="companyURL"
                   onChange={this.onChange}
@@ -263,7 +263,7 @@ class ProfileMainInformationEDIT extends Component {
             <InputGroup>
               <InputGroupAddon addonType="prepend">Tel</InputGroupAddon>
               <form className="input-field">
-                <Input
+              <Input className="value-label"
                   type="text"
                   name="privateTel"
                   onChange={this.onChange}
@@ -274,7 +274,7 @@ class ProfileMainInformationEDIT extends Component {
             <InputGroup>
               <InputGroupAddon addonType="prepend">Mobile</InputGroupAddon>
               <form className="input-field">
-                <Input
+              <Input className="value-label"
                   type="text"
                   name="privateMobile"
                   onChange={this.onChange}
@@ -285,7 +285,7 @@ class ProfileMainInformationEDIT extends Component {
             <InputGroup>
               <InputGroupAddon addonType="prepend">E-Mail</InputGroupAddon>
               <form className="input-field">
-                <Input
+              <Input className="value-label"
                   type="text"
                   name="privateEmail"
                   onChange={this.onChange}
@@ -299,7 +299,7 @@ class ProfileMainInformationEDIT extends Component {
               </InputGroupAddon>
               <form>
                 <form id="input-field-group-street">
-                  <Input
+                <Input className="value-label"
                     type="text"
                     name="privateStreet"
                     onChange={this.onChange}
@@ -307,7 +307,7 @@ class ProfileMainInformationEDIT extends Component {
                   />
                 </form>
                 <form id="input-field-group-streetnr">
-                  <Input
+                  <Input className="value-label"
                     type="text"
                     name="privateStreetNr"
                     onChange={this.onChange}
@@ -320,7 +320,7 @@ class ProfileMainInformationEDIT extends Component {
               <InputGroupAddon addonType="prepend">PLZ / Ort</InputGroupAddon>
               <form>
                 <form id="input-field-group-zip">
-                  <Input
+                <Input className="value-label"
                     type="text"
                     name="privateZip"
                     onChange={this.onChange}
@@ -328,7 +328,7 @@ class ProfileMainInformationEDIT extends Component {
                   />
                 </form>
                 <form id="input-field-group-city">
-                  <Input
+                <Input className="value-label"
                     type="text"
                     name="privateCity"
                     onChange={this.onChange}

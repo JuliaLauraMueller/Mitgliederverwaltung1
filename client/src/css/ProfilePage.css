@@ -7,7 +7,7 @@ basic style profile page
 
 #profilePic {
   float: left;
-  width: 50%;
+  width: 28%;
   margin: 3% 3% 0 3%;
   height: 10%;
   vertical-align: bottom;
@@ -17,7 +17,7 @@ basic style profile page
 #basicInformation {
   float: left;
   margin: 12px 3% 3% 3%;
-  width: 50%;
+  width: 40%;
 }
 
 #socialMedia {
@@ -30,8 +30,7 @@ basic style profile page
 
 #mainInformation {
   float: left;
-  clear: left;
-  width: 28%;
+  width: 40%;
   margin: 0 3% 3% 3%;
 }
 
