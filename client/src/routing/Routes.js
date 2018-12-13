@@ -11,6 +11,7 @@ import LoginPage from '../pages/LoginPage';
 import NotFoundPage from '../pages/NotFoundPage';
 import ProfilePage from '../pages/ProfilePage';
 import MemberPage from '../pages/MemberPage';
+import AppNavbar from '../components/AppNavbar/AppNavbar';
 
 class Routes extends Component {
   render() {
@@ -18,13 +19,18 @@ class Routes extends Component {
     return (
       <Router history={history}>
         <div>
-          <Switch>
-            <Route exact path="/login" component={LoginPage} />
-            <PrivateRoute exact path="/" component={HomePage} />
-            <PrivateRoute exact path="/profile" component={ProfilePage} />
-            <PrivateRoute exact path="/members" component={MemberPage} />
-            <Route component={NotFoundPage} />
-          </Switch>
+          <div className='navbar-app'>
+            <AppNavbar expandSideMenu={this.props.expandSideMenu} />
+          </div>
+          <div>
+            <Switch>
+              <Route exact path='/login' component={LoginPage} />
+              <PrivateRoute exact path='/' component={HomePage} />
+              <PrivateRoute exact path='/profile' component={ProfilePage} />
+              <PrivateRoute exact path='/members' component={MemberPage} />
+              <Route component={NotFoundPage} />
+            </Switch>
+          </div>
         </div>
       </Router>
     );

@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/App.css';
 
 // Components
+
 import React, { Component } from 'react';
 
 import Routes from './routing/Routes';
@@ -26,11 +27,31 @@ class App extends Component {
   }
 
   // Add global layout components before route
+  state = {
+    sideMenuExpanded: false,
+    AppClassNames: 'app collapsed'
+  };
+
+  expandSideMenu = () => {
+    this.setState(prevState => {
+      return { sideMenuExpanded: !prevState.sideMenuExpanded };
+    });
+    if (this.state.sideMenuExpanded) {
+      this.setState(prevState => {
+        return { AppClassNames: 'app collapsed' };
+      });
+    } else {
+      this.setState(prevState => {
+        return { AppClassNames: 'app expanded' };
+      });
+    }
+  };
+
   render() {
     const { alert } = this.props;
 
     return (
-      <div className="App">
+      <div className={this.state.AppClassNames} style={{ height: '100%' }}>
         <Helmet>
           <style>{'body { background-color: rgb(15, 25, 41, 10%); }'}</style>
         </Helmet>
@@ -38,7 +59,7 @@ class App extends Component {
           {alert.message && (
             <AlertToast type={alert.type} message={alert.message} />
           )}
-          <Routes />
+          <Routes expandSideMenu={this.expandSideMenu} />
         </Container>
       </div>
     );
