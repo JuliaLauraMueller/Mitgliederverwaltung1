@@ -14,7 +14,15 @@ class ProfileBasicInfo extends Component {
     const profile = this.props.profile;
     return (
       <div id="basicInformation">
-        <label className="main-title">Übersicht</label>
+        <div>
+          <label className="salutation-label">{profile.salutation}</label>
+          <label className="salutation-label">{profile.title}</label>
+          <br />
+          <label className="name-label">{profile.firstname}</label>
+          <label className="name-label">{profile.surename}</label>
+          <br />
+          <label className="salutation-label">({profile.alias})</label>
+        </div>
         <div>
           <label>Mitglieder Nr.:</label>
           <label className="value-label">{profile.memberNumber}</label>

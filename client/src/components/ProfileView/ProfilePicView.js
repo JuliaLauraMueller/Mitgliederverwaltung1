@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchProfile } from '../../redux/actions/profileActions';
+import { Button } from 'reactstrap';
 
 import '../../css/ProfilePage.css';
 
@@ -20,14 +21,29 @@ class ProfilePic extends Component {
           src={'./img/marc_zimmermann.jpg'}
           alt="profile"
         />
-        <div>
-          <label className="salutation-label">{profile.salutation}</label>
-          <label className="salutation-label">{profile.title}</label>
+        <br />
+        <Button className="icon-button" href={profile.xingLink}>
+          <img className="icons" alt="xing-icon" src={'./img/xing.svg'} />
+        </Button>
+        <Button className="icon-button" href={profile.linkedinLink}>
+          <img
+            className="icons"
+            alt="linkedin-icon"
+            src={'./img/linkedin.svg'}
+          />
+        </Button>
+        <Button className="icon-button" href={profile.facebookLink}>
+          <img className="icons" alt="fb-icon" src={'./img/facebook.svg'} />
+        </Button>
+        <Button className="icon-button" href={profile.instagramLink}>
+          <img className="icons" alt="fb-icon" src={'./img/instagram.svg'} />
+        </Button>
+        <div className="offerings">
+          <label className="main-title" id="offerings-label">
+            Was biete ich an?
+          </label>
           <br />
-          <label className="name-label">{profile.firstname}</label>
-          <label className="name-label">{profile.surename}</label>
-          <br />
-          <label className="salutation-label">({profile.alias})</label>
+          <label className="information">{profile.offerings}</label>
         </div>
       </div>
     );

@@ -16,6 +16,11 @@ class ProfileBasicInfoEDIT extends Component {
     super(props);
     const profile = this.props.profile;
     this.state = {
+      salutation: profile.salutation,
+      title: profile.title,
+      firstname: profile.firstname,
+      surename: profile.surename,
+      alias: profile.alias,
       status: profile.status,
       memberNumber: profile.memberNumber,
       entryDate: profile.entryDate,
@@ -34,6 +39,11 @@ class ProfileBasicInfoEDIT extends Component {
 
   onSave(e) {
     const basicInformationUpdate = {
+      salutation: this.state.salutation,
+      title: this.state.title,
+      firstname: this.state.firstname,
+      surename: this.state.surename,
+      alias: this.state.alias,
       status: this.state.status,
       memberNumber: this.state.memberNumber,
       entryDate: this.state.entryDate,
@@ -47,6 +57,77 @@ class ProfileBasicInfoEDIT extends Component {
   render() {
     return (
       <div id="basicInformationEdit">
+        <InputGroup>
+          <InputGroupAddon id="salutation-group-addon" addonType="prepend">
+            Anrede:
+          </InputGroupAddon>
+          <fieldset>
+            <div class="input-field-salutation">
+              <input
+                type="radio"
+                className="radio"
+                name="salutation"
+                value="Frau"
+                checked={this.state.salutation === 'Frau'}
+                onChange={this.onChange}
+              />
+              <label className="radio-label">Frau</label>
+              <input
+                type="radio"
+                className="radio"
+                name="salutation"
+                value="Herr"
+                checked={this.state.salutation === 'Herr'}
+                onChange={this.onChange}
+              />
+              <label className="radio-label">Herr</label>
+            </div>
+          </fieldset>
+        </InputGroup>
+        <InputGroup>
+          <InputGroupAddon addonType="prepend">Titel:</InputGroupAddon>
+          <form className="input-field">
+            <Input
+              type="text"
+              name="title"
+              onChange={this.onChange}
+              value={this.state.title}
+            />
+          </form>
+        </InputGroup>
+        <InputGroup>
+          <InputGroupAddon addonType="prepend">Vorname:</InputGroupAddon>
+          <form className="input-field">
+            <Input
+              type="text"
+              name="firstname"
+              onChange={this.onChange}
+              value={this.state.firstname}
+            />
+          </form>
+        </InputGroup>
+        <InputGroup>
+          <InputGroupAddon addonType="prepend">Nachname:</InputGroupAddon>
+          <form className="input-field">
+            <Input
+              type="text"
+              name="surename"
+              onChange={this.onChange}
+              value={this.state.surename}
+            />
+          </form>
+        </InputGroup>
+        <InputGroup>
+          <InputGroupAddon addonType="prepend">Spitzname:</InputGroupAddon>
+          <form className="input-field">
+            <Input
+              type="text"
+              name="alias"
+              onChange={this.onChange}
+              value={this.state.alias}
+            />
+          </form>
+        </InputGroup>
         <InputGroup>
           <InputGroupAddon addonType="prepend">Status</InputGroupAddon>
           <form className="input-field">
