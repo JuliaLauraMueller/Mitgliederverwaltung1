@@ -1,12 +1,10 @@
 // Components
 import React, { Component } from 'react';
-import './App.css';
+import './css/App.css';
 import Router from './Router';
-import { Container } from 'reactstrap';
 
 // Styles
 import 'bootstrap/dist/css/bootstrap.min.css'
-import './App.css';
 import AppNavbar from './components/AppNavbar/AppNavbar';
 
 class App extends Component {

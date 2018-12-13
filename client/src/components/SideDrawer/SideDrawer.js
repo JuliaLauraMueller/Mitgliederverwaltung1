@@ -1,14 +1,6 @@
 import React from 'react';
 
-import './SideDrawer.css';
-import vector from '../../resources/Vector.png';
-import admin from '../../resources/Admin.png';
-import sponsoren from '../../resources/Sponsoren.png';
-import group from '../../resources/Group.png';
-import logo from '../../resources/logo black small.png';
-import news from '../../resources/News.png';
-import members from '../../resources/Members.png';
-import marc from '../../resources/Marc.png';
+import '../../css/SideDrawer.css';
 
 import DrawerToggleButton from './DrawerToggleButton';
 
@@ -25,7 +17,7 @@ const sideDrawer = props => {
             <div className="navigation">
                 <div className="user-part">
                     <ul>
-                        <li><a href="/"><img src={marc}></img></a></li>
+                        <li><a href="/"><img src="img/Marc.png"></img></a></li>
                         <li><a href="/">Marc Zimmermann</a></li>
                         <li><a href="/">Profil verwalten</a></li>
                     </ul>
@@ -34,11 +26,11 @@ const sideDrawer = props => {
                 <div className="pages">
                     <div className="pages-icons">
                     <ul>
-                            <li><img src={news}></img><a href="/"></a></li>
-                            <li><img src={group}></img><a href="/"></a></li>
-                            <li><img src={members}></img><a href="/"></a></li>
-                            <li><img src={sponsoren}></img><a href="/"></a></li>
-                            <li><img src={admin}></img><a href="/"></a></li>
+                            <li><img src="img/News.png"></img><a href="/"></a></li>
+                            <li><img src="img/Group.png"></img><a href="/"></a></li>
+                            <li><img src="img/Members.png"></img><a href="/"></a></li>
+                            <li><img src="img/Sponsoren.png"></img><a href="/"></a></li>
+                            <li><img src="img/Admin.png"></img><a href="/"></a></li>
                         </ul>
                     </div>
                     <div className="pages-link">
@@ -52,7 +44,7 @@ const sideDrawer = props => {
                     </div>
                 </div>
                 <div className="bottom-part">
-                    <DrawerToggleButton image={vector} click={props.drawerClickHandler}/>
+                    <DrawerToggleButton image="img/Vector.png" click={props.drawerClickHandler}/>
                 </div>
             </div>
         </nav>
