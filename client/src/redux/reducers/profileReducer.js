@@ -15,20 +15,20 @@ const initialState = {
     company: 'Marc IT',
     companyTel: 'asdf',
     companyMobile: '0799994560',
-    companyEmail: 'asdf',
-    companyStreet: 'asdf',
-    companyStreetNr: 'asdf',
-    companyZip: 'asdf',
-    companyCity: 'asdf',
-    companyURL: 'asdf',
+    companyEmail: 'mz@youngleader.ch',
+    companyStreet: 'Blümliweg',
+    companyStreetNr: '09',
+    companyZip: '5000',
+    companyCity: 'Spreitenbach',
+    companyURL: 'www.youngleaders.ch/index',
 
-    privateTel: 'asdf',
-    privateMobile: 'asdf',
-    privateEmail: 'asdf',
-    privateStreet: 'asdf',
-    privateStreetNr: 'asdf',
-    privateZip: 'asdf',
-    privateCity: 'asdf',
+    privateTel: '0627945489',
+    privateMobile: '0799345642',
+    privateEmail: 'welcome@gmail.com',
+    privateStreet: 'Rigibachberghangweg',
+    privateStreetNr: '20a',
+    privateZip: '4500',
+    privateCity: 'Küngoldingen',
     invoiceAddress: '1',
 
     salutation: 'Hr.',
@@ -37,11 +37,12 @@ const initialState = {
     surename: 'Zimmermann',
     alias: 'Zimmi',
 
-    xingLink: 'www.xing.com',
-    linkedinLink: 'asdf',
-    facebookLink: 'asdf',
-    instagramLink: 'asdf',
-    offerings: 'Ich bin eine super gute Informatikerin mit 10000 Jahren Berufserfahrung'
+    xingLink: 'www.xing.com/sdmwpew',
+    linkedinLink: 'www.linkedin.com/asdmwpewasdfasdf',
+    facebookLink: 'www.facebook.com/sdasdfmwpewsdfasdfasdf',
+    instagramLink: 'www.instagram.com/sdasdfasdfmwpew',
+    offerings:
+      'Ich bin eine super gute Informatikerin mit 10000 Jahren Berufserfahrung'
   }
 };
 

@@ -21,7 +21,8 @@ class ProfileBasicInfo extends Component {
           <label className="name-label">{profile.firstname}</label>
           <label className="name-label">{profile.surename}</label>
           <br />
-          <label className="salutation-label">({profile.alias})</label>
+          <label className="alias-label">({profile.alias})</label>
+          <br />
         </div>
         <div>
           <label>Mitglieder Nr.:</label>

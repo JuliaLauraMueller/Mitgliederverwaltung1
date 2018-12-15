@@ -46,12 +46,18 @@ class ProfilePicEDIT extends Component {
   render() {
     return (
       <div id="profilePic">
-        <img
-          className="profile-image"
-          style={{ width: '180px' }}
-          src={'./img/marc_zimmermann.jpg'}
-          alt="profile"
-        />
+        <InputGroup>
+          <InputGroupAddon addonType="prepend" />
+          <form className="input-field">
+            <img
+              className="profile-image-edit"
+              style={{ width: '180px' }}
+              src={'./img/marc_zimmermann.jpg'}
+              alt="profile"
+            />
+          </form>
+        </InputGroup>
+
         <InputGroup>
           <InputGroupAddon addonType="prepend">Xing</InputGroupAddon>
           <form className="input-field">

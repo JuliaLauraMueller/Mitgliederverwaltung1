@@ -5,31 +5,26 @@ basic style profile page
   box-sizing: border-box;
 }
 
+/*component bodies*/
 #profilePic {
   float: left;
   width: 35%;
   margin: 3% 3% 0 3%;
   height: 10%;
-  padding-top: 45px;
+  padding-top: 2%;
+  margin-bottom: 7%;
 }
 
 #basicInformation {
   float: left;
-  margin: 11% 3% 3% 3%;
+  margin: 9% 3% 3% 3%;
   width: 35%;
 }
 
 #basicInformationEdit {
   float: left;
-  margin: 14% 3% 3% 3%;
+  margin: 7% 3% 3% 3%;
   width: 35%;
-}
-
-#socialMedia {
-  float: left;
-  width: 35%;
-  margin: 3%;
-  clear: right;
 }
 
 #mainInformation {
@@ -37,24 +32,38 @@ basic style profile page
   width: 100%;
   margin: 0 3% 3% 3%;
   overflow: hidden;
+  border-top: solid 1px rgba(15, 25, 41, 0.7);
 }
 
-.profile-image {
-  border-radius: 50%;
-}
-
+/*Global style maininfo*/
 .business-info {
   float: left;
-  width: 50%;
+  width: 35%;
+
+  display: block;
+  text-align: left;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .private-info {
   float: left;
-  width: 50%;
+  width: 35%;
+
+  display: block;
+  text-align: left;
+  margin-right: auto;
+  margin-left: auto;
 }
-/*--------------------------------------------*
-additional style VIEW profile page
-*--------------------------------------------*/
+
+.title-maininfo {
+  display: block;
+  text-align: left;
+  width: 50%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 20px;
+}
 
 /*general style*/
 .main-title {
@@ -68,7 +77,17 @@ label {
   opacity: 0.6;
   color: #0f1929;
 }
+
+/*--------------------------------------------*
+additional style VIEW profile page
+*--------------------------------------------*/
+
 /*profile-pic style*/
+.profile-image {
+  border-radius: 50%;
+  margin-bottom: 4%;
+}
+.alias-label,
 .salutation-label,
 .name-label {
   margin-right: 5px;
@@ -76,18 +95,19 @@ label {
   opacity: 0.8;
 }
 .name-label {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   opacity: 0.8;
 }
 .salutation-label {
-  font-size: 0.8rem;
+  font-size: 1rem;
   opacity: 0.8;
+}
+.alias-label {
+  padding-bottom: 16%;
 }
 #profilePic {
   text-align: center;
 }
-
-/*social-media style*/
 #socialMedia {
   text-align: center;
 }
@@ -105,10 +125,10 @@ label {
   display: block;
   margin-top: 15px;
   text-align: left;
-  width: 200px;
+  width: 240px;
   margin-right: auto;
   margin-left: auto;
-  border-top: 1px solid black;
+  border-top: 1px solid rgba(15, 25, 41, 0.7);
 }
 #offerings-label {
   padding-top: 15px;
@@ -129,27 +149,25 @@ additional style EDIT profile page
   background-color: transparent;
   border: 0;
   border-bottom: 1px solid #0f1929;
+  opacity: 0.8;
   padding: 0;
   border-radius: 0;
   transition: none;
   height: 25px;
   margin-bottom: 10px;
-  float: right;
+  position: relative;
   width: 220px;
   margin: 0;
   padding: 0;
 }
-
 .form-control:active {
   background-color: transparent;
   border-bottom: 1px solid rgb(219, 157, 12);
 }
-
 .form-control:focus {
   background-color: transparent;
   border-bottom: 1px solid rgb(219, 157, 12);
 }
-
 .input-group-text {
   background-color: transparent;
   border: 0;
@@ -170,58 +188,30 @@ additional style EDIT profile page
   min-width: 200px;
 }
 
-/*toggle nav*/
-.toggle-nav {
-  margin-bottom: 20%;
-}
-
-a.active.nav-link {
-  border: none;
-  border-bottom: 3px solid rgb(219, 157, 12) !important;
-  padding: 0 15px 15px 0;
-  font-size: 1.2rem;
-  opacity: 0.8;
-  background-color: transparent !important;
-}
-
-a.nav-link {
-  padding: 0 15px 15px 0;
-  font-size: 1.2rem;
-  opacity: 0.8;
-}
-.toggle-nav:hover {
-  color: rgb(219, 157, 12);
-}
-
-.nav-tabs .nav-link {
-  border: none;
-}
-
-.toggle-nav-main {
-  background-color: transparent;
-  border: 0;
-  border-bottom: 1px solid #0f1929;
-  border-radius: 0px;
-  margin-bottom: 15px;
-  transition: none;
-}
-
 /*profilePic*/
-#profile-image-edit {
+.profile-image-edit {
+  border-radius: 50%;
+  margin-bottom: 4%;
+  float: left;
   border-radius: 50%;
 }
 .radio {
-  margin: 6px 0 0 10px;
+  margin: 6px 0 0 13%;
 }
 .radio-label {
   padding-left: 3px;
 }
-.input-field-salutation {
-  max-width: 210px;
-  min-width: 210px;
+#radio-invoice {
+  margin-top: 0;
+  padding-left: 2%;
+}
+.input-field-radio {
   display: flex;
   justify-content: left;
   margin-top: 10px;
+  float: left;
+  max-width: 230px;
+  min-width: 230px;
 }
 .container-profilepic {
   margin-top: 100px;
@@ -230,8 +220,6 @@ a.nav-link {
   position: relative;
   top: 20%;
 }
-
-/*SocialMedia*/
 #text-area-offers {
   width: 100%;
   box-sizing: border-box;
@@ -242,7 +230,8 @@ a.nav-link {
 .button-save-edit {
   background-color: transparent;
   border: 0;
-  border-bottom: 1px solid #0f1929;
+  border-bottom: 1px solid rgb(219, 157, 12);
+  color: rgb(219, 157, 12);
   padding: 0;
   border-radius: 0;
   transition: none;
@@ -250,11 +239,9 @@ a.nav-link {
   margin-bottom: 10px;
   font-size: 140%;
 }
-
 .button-save-edit:active,
-.button-save-edit:focus,
 .button-save-edit:hover {
   background-color: transparent;
-  border-bottom: 1px solid rgb(219, 157, 12);
-  color: rgb(219, 157, 12);
+  border-bottom: 1px solid #0f1929;
+  color: #0f1929;
 }

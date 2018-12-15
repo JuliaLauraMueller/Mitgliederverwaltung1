@@ -62,7 +62,7 @@ class ProfileBasicInfoEDIT extends Component {
             Anrede:
           </InputGroupAddon>
           <fieldset>
-            <div class="input-field-salutation">
+            <div class="input-field-radio">
               <input
                 type="radio"
                 className="radio"
@@ -129,7 +129,7 @@ class ProfileBasicInfoEDIT extends Component {
           </form>
         </InputGroup>
         <InputGroup>
-          <InputGroupAddon addonType="prepend">Status</InputGroupAddon>
+          <InputGroupAddon addonType="prepend">Status:</InputGroupAddon>
           <form className="input-field">
             <Input
               type="text"
@@ -140,7 +140,7 @@ class ProfileBasicInfoEDIT extends Component {
           </form>
         </InputGroup>
         <InputGroup>
-          <InputGroupAddon addonType="prepend">Mitglieder Nr.</InputGroupAddon>
+          <InputGroupAddon addonType="prepend">Mitglieder Nr.:</InputGroupAddon>
           <form className="input-field">
             <Input
               type="text"
@@ -151,7 +151,7 @@ class ProfileBasicInfoEDIT extends Component {
           </form>
         </InputGroup>
         <InputGroup>
-          <InputGroupAddon addonType="prepend">Eintrittsdatum</InputGroupAddon>
+          <InputGroupAddon addonType="prepend">Eintrittsdatum:</InputGroupAddon>
           <form className="input-field">
             <Input
               type="text"
@@ -162,7 +162,7 @@ class ProfileBasicInfoEDIT extends Component {
           </form>
         </InputGroup>
         <InputGroup>
-          <InputGroupAddon addonType="prepend">City</InputGroupAddon>
+          <InputGroupAddon addonType="prepend">City:</InputGroupAddon>
           <form className="input-field">
             <Input
               type="text"
@@ -173,7 +173,7 @@ class ProfileBasicInfoEDIT extends Component {
           </form>
         </InputGroup>
         <InputGroup>
-          <InputGroupAddon addonType="prepend">Götti</InputGroupAddon>
+          <InputGroupAddon addonType="prepend">Götti:</InputGroupAddon>
           <form className="input-field">
             <Input
               type="text"
@@ -184,7 +184,7 @@ class ProfileBasicInfoEDIT extends Component {
           </form>
         </InputGroup>
         <InputGroup>
-          <InputGroupAddon addonType="prepend">Geburtsdatum</InputGroupAddon>
+          <InputGroupAddon addonType="prepend">Geburtsdatum:</InputGroupAddon>
           <form className="input-field">
             <Input
               type="text"
