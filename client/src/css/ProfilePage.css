@@ -9,7 +9,7 @@ basic style profile page
 #profilePic {
   float: left;
   width: 35%;
-  margin: 3% 3% 0 3%;
+  margin: 3% 3% 3% 3%;
   height: 10%;
   padding-top: 2%;
   margin-bottom: 7%;
@@ -39,7 +39,6 @@ basic style profile page
 .business-info {
   float: left;
   width: 35%;
-
   display: block;
   text-align: left;
   margin-right: auto;
@@ -49,7 +48,6 @@ basic style profile page
 .private-info {
   float: left;
   width: 35%;
-
   display: block;
   text-align: left;
   margin-right: auto;
@@ -65,11 +63,14 @@ basic style profile page
   padding-top: 20px;
 }
 
-/*general style*/
 .main-title {
   font-size: 1.2rem;
   opacity: 0.8;
+  margin-right: 3%;
 }
+/*--------------------------------------------*
+additional style VIEW profile page
+*--------------------------------------------*/
 
 .information,
 label {
@@ -116,6 +117,7 @@ additional style VIEW profile page
   border: none;
   padding-right: 15px;
   padding-left: 15px;
+  margin-top: 15px;
 }
 .icon-button:hover {
   background-color: transparent;
@@ -134,12 +136,29 @@ additional style VIEW profile page
   padding-top: 15px;
 }
 
-/*main-info and basic-info style*/
+/*basic-info style*/
 .value-label {
   float: right;
   width: 220px;
   margin: 0;
   padding: 0;
+}
+.salutation-label,
+.name-label {
+  margin-right: 5px;
+  margin-bottom: 0px;
+  opacity: 0.8;
+}
+.name-label {
+  font-size: 1.5rem;
+  opacity: 0.8;
+}
+.salutation-label {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+#profilePic {
+  text-align: center;
 }
 
 /*--------------------------------------------*

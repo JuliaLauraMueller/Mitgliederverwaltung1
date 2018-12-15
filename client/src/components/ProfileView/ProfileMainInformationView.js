@@ -32,7 +32,11 @@ class ProfileMainInformation extends Component {
     return (
       <div id="mainInformation">
         <div className="business-info">
+<<<<<<< HEAD
           <p className="main-title title-maininfo">Geschäftliche Infos</p>
+=======
+        <label className="main-title">Geschäftlich</label>
+>>>>>>> cd1b45a38ba26151603159ccb9e1e3c92d8486ea
           <div>
             <label>Branche:</label>
             <label className="value-label">{profile.sector}</label>
@@ -84,7 +88,11 @@ class ProfileMainInformation extends Component {
         </div>
 
         <div className="private-info">
+<<<<<<< HEAD
           <p className="main-title title-maininfo">Private Infos</p>
+=======
+        <label className="main-title">Privat</label>
+>>>>>>> cd1b45a38ba26151603159ccb9e1e3c92d8486ea
           <div>
             <label>Tel:</label>
             <label className="value-label">{profile.privateTel}</label>
