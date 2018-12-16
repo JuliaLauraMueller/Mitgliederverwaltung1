@@ -32,6 +32,7 @@ export default () => {
     error => {
       if (error.response.status === 401) {
         authService.logout();
+        history.push('/login');
       } else if (error.response.status === 403) {
         updateLocalStorage(error.response);
         history.push('/');
