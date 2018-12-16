@@ -1,4 +1,4 @@
-const config = require('../config/keys');
+const config = require('../config/settings');
 const mongoose = require('mongoose');
 
 mongoose.set('useNewUrlParser', true);

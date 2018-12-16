@@ -77,7 +77,7 @@ async function _delete(id) {
 
 function generateJwtToken(user) {
   const token = jwt.sign({ _id: user._id }, config.jwtSecret, {
-    expiresIn: 60 * 60 * 1 // 1h
+    expiresIn: 60 * 15 // 15min
   });
   return token;
 }
