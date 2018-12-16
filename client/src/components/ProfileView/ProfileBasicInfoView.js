@@ -45,7 +45,7 @@ class ProfileBasicInfo extends Component {
           <label className="value-label">{profile.city}</label>
         </div>
         <div>
-          <label>Götti:</label>
+          <label id="godfather-label">Götti:</label>
           <label className="value-label">{profile.godfather}</label>
         </div>
       </div>

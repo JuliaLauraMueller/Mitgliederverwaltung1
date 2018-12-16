@@ -47,7 +47,6 @@ class ProfilePicEDIT extends Component {
     return (
       <div id="profilePic">
         <InputGroup>
-          <InputGroupAddon addonType="prepend" />
           <form className="input-field">
             <img
               className="profile-image-edit"

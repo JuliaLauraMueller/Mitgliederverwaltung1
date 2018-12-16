@@ -129,17 +129,6 @@ class ProfileBasicInfoEDIT extends Component {
           </form>
         </InputGroup>
         <InputGroup>
-          <InputGroupAddon addonType="prepend">Status:</InputGroupAddon>
-          <form className="input-field">
-            <Input
-              type="text"
-              name="status"
-              onChange={this.onChange}
-              value={this.state.status}
-            />
-          </form>
-        </InputGroup>
-        <InputGroup>
           <InputGroupAddon addonType="prepend">Mitglieder Nr.:</InputGroupAddon>
           <form className="input-field">
             <Input
@@ -162,6 +151,28 @@ class ProfileBasicInfoEDIT extends Component {
           </form>
         </InputGroup>
         <InputGroup>
+          <InputGroupAddon addonType="prepend">Geburtsdatum:</InputGroupAddon>
+          <form className="input-field">
+            <Input
+              type="text"
+              name="birthdate"
+              onChange={this.onChange}
+              value={this.state.birthdate}
+            />
+          </form>
+        </InputGroup>
+        <InputGroup>
+          <InputGroupAddon addonType="prepend">Status:</InputGroupAddon>
+          <form className="input-field">
+            <Input
+              type="text"
+              name="status"
+              onChange={this.onChange}
+              value={this.state.status}
+            />
+          </form>
+        </InputGroup>
+        <InputGroup>
           <InputGroupAddon addonType="prepend">City:</InputGroupAddon>
           <form className="input-field">
             <Input
@@ -180,17 +191,6 @@ class ProfileBasicInfoEDIT extends Component {
               name="godfather"
               onChange={this.onChange}
               value={this.state.godfather}
-            />
-          </form>
-        </InputGroup>
-        <InputGroup>
-          <InputGroupAddon addonType="prepend">Geburtsdatum:</InputGroupAddon>
-          <form className="input-field">
-            <Input
-              type="text"
-              name="birthdate"
-              onChange={this.onChange}
-              value={this.state.birthdate}
             />
           </form>
         </InputGroup>

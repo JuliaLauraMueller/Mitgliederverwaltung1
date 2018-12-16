@@ -7,15 +7,9 @@ import {
   InputGroup,
   InputGroupAddon,
   Input,
-  TabContent,
-  TabPane,
-  Nav,
-  NavItem,
-  NavLink,
   Label,
   FormGroup
 } from 'reactstrap';
-import classnames from 'classnames';
 
 import '../../css/ProfilePage.css';
 
@@ -101,8 +95,8 @@ class ProfileMainInformationEDIT extends Component {
   render() {
     return (
       <div id="mainInformation">
-        <div className="business-info">
-          <p className="main-title title-maininfo">Geschäftliche Infos</p>
+        <div className="business-info-edit">
+          <p className="main-title title-maininfo">Geschäftliche Informationen</p>
           <InputGroup>
             <InputGroupAddon addonType="prepend">Branche:</InputGroupAddon>
             <form className="input-field">
@@ -176,18 +170,6 @@ class ProfileMainInformationEDIT extends Component {
             </form>
           </InputGroup>
           <InputGroup>
-            <InputGroupAddon addonType="prepend">E-Mail:</InputGroupAddon>
-            <form className="input-field">
-              <Input
-                className="value-label"
-                type="text"
-                name="companyEmail"
-                onChange={this.onChange}
-                value={this.state.companyEmail}
-              />
-            </form>
-          </InputGroup>
-          <InputGroup>
             <InputGroupAddon addonType="prepend">Strasse:</InputGroupAddon>
             <form id="input-field">
               <Input
@@ -238,7 +220,18 @@ class ProfileMainInformationEDIT extends Component {
               />
             </form>
           </InputGroup>
-
+          <InputGroup>
+            <InputGroupAddon addonType="prepend">E-Mail:</InputGroupAddon>
+            <form className="input-field">
+              <Input
+                className="value-label"
+                type="text"
+                name="companyEmail"
+                onChange={this.onChange}
+                value={this.state.companyEmail}
+              />
+            </form>
+          </InputGroup>
           <InputGroup>
             <InputGroupAddon addonType="prepend">URL Firma:</InputGroupAddon>
             <form className="input-field">
@@ -253,8 +246,8 @@ class ProfileMainInformationEDIT extends Component {
           </InputGroup>
         </div>
 
-        <div className="private-info">
-          <p className="main-title title-maininfo">Private Infos</p>
+        <div className="private-info-edit">
+          <p className="main-title title-maininfo">Private Informationen</p>
           <InputGroup>
             <InputGroupAddon addonType="prepend">Tel</InputGroupAddon>
             <form className="input-field">
@@ -279,18 +272,7 @@ class ProfileMainInformationEDIT extends Component {
               />
             </form>
           </InputGroup>
-          <InputGroup>
-            <InputGroupAddon addonType="prepend">E-Mail:</InputGroupAddon>
-            <form className="input-field">
-              <Input
-                className="value-label"
-                type="text"
-                name="privateEmail"
-                onChange={this.onChange}
-                value={this.state.privateEmail}
-              />
-            </form>
-          </InputGroup>
+
           <InputGroup>
             <InputGroupAddon addonType="prepend">Strasse:</InputGroupAddon>
             <form id="input-field">
@@ -352,6 +334,7 @@ class ProfileMainInformationEDIT extends Component {
                 <Label check>
                   <Input
                     type="radio"
+                    className="radio"
                     name="invoiceAddress"
                     value="1"
                     checked={this.state.invoiceAddress === '1'}
@@ -373,6 +356,18 @@ class ProfileMainInformationEDIT extends Component {
                 </Label>
               </FormGroup>
             </FormGroup>
+            <InputGroup>
+            <InputGroupAddon addonType="prepend">E-Mail:</InputGroupAddon>
+            <form className="input-field">
+              <Input
+                className="value-label"
+                type="text"
+                name="privateEmail"
+                onChange={this.onChange}
+                value={this.state.privateEmail}
+              />
+            </form>
+          </InputGroup>
           </InputGroup>
         </div>
       </div>

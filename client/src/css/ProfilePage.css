@@ -5,64 +5,61 @@ basic style profile page
   box-sizing: border-box;
 }
 
+#top-container {
+  float: left;
+  width: 100%;
+  text-align:center;
+}
+
 /*component bodies*/
 #profilePic {
-  float: left;
   width: 35%;
-  margin: 3% 3% 3% 3%;
-  height: 10%;
-  padding-top: 2%;
-  margin-bottom: 7%;
+  display: inline-block;
+  text-align: left;
+  margin-bottom: 3%;
+
 }
 
 #basicInformation {
-  float: left;
-  margin: 9% 3% 3% 3%;
+  margin-bottom: 3%;
   width: 35%;
+  display: inline-block;
+  text-align: left;
+  padding-bottom: 10px;
+  vertical-align: bottom;
 }
 
 #basicInformationEdit {
   float: left;
-  margin: 7% 3% 3% 3%;
+  margin: 9% 3% 3% 0;
   width: 35%;
 }
 
 #mainInformation {
   float: left;
   width: 100%;
-  margin: 0 3% 3% 3%;
   overflow: hidden;
-  border-top: solid 1px rgba(15, 25, 41, 0.7);
+  text-align:center;
+  
 }
 
 /*Global style maininfo*/
-.business-info {
-  float: left;
+.business-info, .private-info  {
   width: 35%;
-  display: block;
+  display: inline-block;
   text-align: left;
-  margin-right: auto;
-  margin-left: auto;
+  padding-top: 3%;
+  border-top: solid 1px rgba(15, 25, 41, 0.7);
+
 }
+/*.business-info {
+  margin-left: 6.5%;
+  width: 34.5%;
+}*/
 
 .private-info {
-  float: left;
-  width: 35%;
-  display: block;
-  text-align: left;
-  margin-right: auto;
-  margin-left: auto;
+  vertical-align: top;
 }
-
-.title-maininfo {
-  display: block;
-  text-align: left;
-  width: 50%;
-  margin-right: auto;
-  margin-left: auto;
-  padding-top: 20px;
-}
-
 .main-title {
   font-size: 1.2rem;
   opacity: 0.8;
@@ -71,6 +68,15 @@ basic style profile page
 /*--------------------------------------------*
 additional style VIEW profile page
 *--------------------------------------------*/
+label.information {
+  width: 240px;
+}
+
+.overflow, label.information{
+  height: auto;
+  overflow: auto;
+  overflow-wrap: break-word;
+}
 
 .information,
 label {
@@ -78,10 +84,6 @@ label {
   opacity: 0.6;
   color: #0f1929;
 }
-
-/*--------------------------------------------*
-additional style VIEW profile page
-*--------------------------------------------*/
 
 /*profile-pic style*/
 .profile-image {
@@ -104,13 +106,11 @@ additional style VIEW profile page
   opacity: 0.8;
 }
 .alias-label {
-  padding-bottom: 16%;
+  padding-bottom: 15%;
 }
-#profilePic {
-  text-align: center;
-}
-#socialMedia {
-  text-align: center;
+#profile-image {
+  border-radius: 50%;
+  margin-left: 30px;
 }
 .icon-button {
   background-color: transparent;
@@ -118,6 +118,9 @@ additional style VIEW profile page
   padding-right: 15px;
   padding-left: 15px;
   margin-top: 15px;
+}
+#xing-button {
+  padding-left: 28px;
 }
 .icon-button:hover {
   background-color: transparent;
@@ -128,21 +131,19 @@ additional style VIEW profile page
   margin-top: 15px;
   text-align: left;
   width: 240px;
-  margin-right: auto;
-  margin-left: auto;
   border-top: 1px solid rgba(15, 25, 41, 0.7);
 }
 #offerings-label {
   padding-top: 15px;
 }
 
-/*basic-info style*/
 .value-label {
   float: right;
   width: 220px;
   margin: 0;
   padding: 0;
 }
+
 .salutation-label,
 .name-label {
   margin-right: 5px;
@@ -157,13 +158,22 @@ additional style VIEW profile page
   font-size: 0.8rem;
   opacity: 0.8;
 }
-#profilePic {
-  text-align: center;
+#godfather-label {
+  margin: 0;
 }
 
 /*--------------------------------------------*
 additional style EDIT profile page
 *--------------------------------------------*/
+
+.business-info-edit, .private-info-edit{
+  float: left;
+  width: 35%;
+  display: block;
+  text-align: left;
+  margin-right: 6%;
+  padding-top: 3%;
+}
 .form-control {
   background-color: transparent;
   border: 0;
@@ -202,36 +212,36 @@ additional style EDIT profile page
   justify-content: space-between;
   margin-bottom: 0%;
 }
-.input-field {
-  max-width: 200px;
-  min-width: 200px;
-}
 
 /*profilePic*/
 .profile-image-edit {
   border-radius: 50%;
-  margin-bottom: 4%;
-  float: left;
-  border-radius: 50%;
+  margin-bottom: 15%;
+  text-align: left;
 }
+
 .radio {
-  margin: 6px 0 0 13%;
+  margin-top: 3px;
 }
+
 .radio-label {
-  padding-left: 3px;
+  padding-left: 5px;
+  padding-right: 10px;
 }
+
 #radio-invoice {
   margin-top: 0;
   padding-left: 2%;
 }
+
 .input-field-radio {
   display: flex;
   justify-content: left;
   margin-top: 10px;
   float: left;
-  max-width: 230px;
-  min-width: 230px;
+  width: 220px;
 }
+
 .container-profilepic {
   margin-top: 100px;
 }
@@ -240,7 +250,6 @@ additional style EDIT profile page
   top: 20%;
 }
 #text-area-offers {
-  width: 100%;
   box-sizing: border-box;
   resize: vertical;
 }
@@ -257,6 +266,12 @@ additional style EDIT profile page
   height: 32px;
   margin-bottom: 10px;
   font-size: 140%;
+  float: right;
+}
+
+button-container {
+  float: left;
+  display: block;
 }
 .button-save-edit:active,
 .button-save-edit:hover {
