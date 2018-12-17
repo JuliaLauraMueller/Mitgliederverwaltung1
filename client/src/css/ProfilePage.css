@@ -5,7 +5,8 @@ basic style profile page
   box-sizing: border-box;
 }
 
-#top-container {
+/*container*/
+#top-container, #mainInformation{
   float: left;
   width: 100%;
   text-align:center;
@@ -22,28 +23,42 @@ basic style profile page
 
 #basicInformation {
   margin-bottom: 3%;
-  width: 35%;
+  width: 38%;
   display: inline-block;
   text-align: left;
   padding-bottom: 10px;
   vertical-align: bottom;
+  padding-left: 3%;
 }
 
 #basicInformationEdit {
-  float: left;
-  margin: 9% 3% 3% 0;
+  margin: 0 0 3% 3%;
   width: 35%;
+  display: inline-block;
+  text-align: left;
+  vertical-align: bottom;
 }
 
-#mainInformation {
-  float: left;
-  width: 100%;
-  overflow: hidden;
-  text-align:center;
-  
+.main-title {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  margin-right: 3%;
+}
+.godfather-label, .godfather-label span {
+  margin: 0;
 }
 
-/*Global style maininfo*/
+.value-label {
+  float: right;
+  width: 220px;
+  margin: 0;
+  padding: 0;
+}
+/*--------------------------------------------*
+additional style VIEW profile page
+*--------------------------------------------*/
+
+/*main-info style*/
 .business-info, .private-info  {
   width: 35%;
   display: inline-block;
@@ -52,24 +67,10 @@ basic style profile page
   border-top: solid 1px rgba(15, 25, 41, 0.7);
 
 }
-/*.business-info {
-  margin-left: 6.5%;
-  width: 34.5%;
-}*/
-
-.private-info {
+.private-info{
   vertical-align: top;
-}
-.main-title {
-  font-size: 1.2rem;
-  opacity: 0.8;
-  margin-right: 3%;
-}
-/*--------------------------------------------*
-additional style VIEW profile page
-*--------------------------------------------*/
-label.information {
-  width: 240px;
+  width: 38%;
+  padding-left: 3%;
 }
 
 .overflow, label.information{
@@ -78,35 +79,19 @@ label.information {
   overflow-wrap: break-word;
 }
 
-.information,
-label {
-  font-size: 12pt;
-  opacity: 0.6;
-  color: #0f1929;
-}
-
 /*profile-pic style*/
 .profile-image {
   border-radius: 50%;
   margin-bottom: 4%;
 }
-.alias-label,
-.salutation-label,
-.name-label {
-  margin-right: 5px;
-  margin-bottom: 0px;
-  opacity: 0.8;
+label.information {
+  width: 240px;
 }
-.name-label {
-  font-size: 1.7rem;
-  opacity: 0.8;
-}
-.salutation-label {
-  font-size: 1rem;
-  opacity: 0.8;
-}
-.alias-label {
-  padding-bottom: 15%;
+.information,
+label {
+  font-size: 12pt;
+  opacity: 0.6;
+  color: #0f1929;
 }
 #profile-image {
   border-radius: 50%;
@@ -137,11 +122,24 @@ label {
   padding-top: 15px;
 }
 
-.value-label {
-  float: right;
-  width: 220px;
-  margin: 0;
-  padding: 0;
+/*basic-info style*/
+.alias-label,
+.salutation-label,
+.name-label {
+  margin-right: 5px;
+  margin-bottom: 0px;
+  opacity: 0.8;
+}
+.name-label {
+  font-size: 1.7rem;
+  opacity: 0.8;
+}
+.salutation-label {
+  font-size: 1rem;
+  opacity: 0.8;
+}
+.alias-label {
+  padding-bottom: 15%;
 }
 
 .salutation-label,
@@ -158,22 +156,25 @@ label {
   font-size: 0.8rem;
   opacity: 0.8;
 }
-#godfather-label {
-  margin: 0;
-}
 
 /*--------------------------------------------*
 additional style EDIT profile page
 *--------------------------------------------*/
 
-.business-info-edit, .private-info-edit{
-  float: left;
+/*main-info style*/
+.business-info-edit, .private-info-edit {
   width: 35%;
-  display: block;
+  display: inline-block;
   text-align: left;
-  margin-right: 6%;
   padding-top: 3%;
 }
+
+.private-info-edit {
+  margin-left: 3%;
+  vertical-align: top;
+}
+
+/*text-field style*/
 .form-control {
   background-color: transparent;
   border: 0;
@@ -212,14 +213,33 @@ additional style EDIT profile page
   justify-content: space-between;
   margin-bottom: 0%;
 }
+.input-field-radio {
+  display: flex;
+  justify-content: left;
+  margin-top: 10px;
+  float: left;
+  width: 220px;
+}
+
+#salutation-group-addon span {
+  position: relative;
+  top: 20%;
+}
+#text-area-offers {
+  box-sizing: border-box;
+  resize: vertical;
+}
 
 /*profilePic*/
 .profile-image-edit {
   border-radius: 50%;
   margin-bottom: 15%;
-  text-align: left;
+}
+.container-profilepic {
+  margin-top: 100px;
 }
 
+/*radio-button style*/
 .radio {
   margin-top: 3px;
 }
@@ -232,26 +252,6 @@ additional style EDIT profile page
 #radio-invoice {
   margin-top: 0;
   padding-left: 2%;
-}
-
-.input-field-radio {
-  display: flex;
-  justify-content: left;
-  margin-top: 10px;
-  float: left;
-  width: 220px;
-}
-
-.container-profilepic {
-  margin-top: 100px;
-}
-#salutation-group-addon span {
-  position: relative;
-  top: 20%;
-}
-#text-area-offers {
-  box-sizing: border-box;
-  resize: vertical;
 }
 
 /*Buttons*/

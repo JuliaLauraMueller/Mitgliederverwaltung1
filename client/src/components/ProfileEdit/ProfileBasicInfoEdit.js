@@ -184,7 +184,7 @@ class ProfileBasicInfoEDIT extends Component {
           </form>
         </InputGroup>
         <InputGroup>
-          <InputGroupAddon addonType="prepend">Götti:</InputGroupAddon>
+          <InputGroupAddon className ="godfather-label"addonType="prepend">Götti:</InputGroupAddon>
           <form className="input-field">
             <Input
               type="text"

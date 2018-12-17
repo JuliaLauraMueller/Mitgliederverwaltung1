@@ -50,7 +50,7 @@ class ProfilePicEDIT extends Component {
           <form className="input-field">
             <img
               className="profile-image-edit"
-              style={{ width: '180px' }}
+              style={{ width: '147px' }}
               src={'./img/marc_zimmermann.jpg'}
               alt="profile"
             />
