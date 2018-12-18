@@ -2,8 +2,6 @@ const db = require('../helpers/db');
 const Company = db.Company;
 const companyLocationService = require('../services/companyLocationService');
 
-//const CompanyLocation = require('../controllers/companyLocationController');
-
 module.exports = {
   getById,
   update,
@@ -25,6 +23,5 @@ async function update(id, companyParam) {
 
 async function _delete(id) {
   await Company.findByIdAndRemove(id);
-  // TODO remove all documents in companyLocation that have this company
-  await companyLocationService.removeAllWithId(id);
+  await companyLocationService.removeAllCompanyLocRelations(id);
 }

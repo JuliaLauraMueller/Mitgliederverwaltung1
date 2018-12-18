@@ -6,7 +6,7 @@ module.exports = {
   getById,
   update,
   _delete,
-  removeAllWithId
+  removeAllCompanyLocRelations
 };
 
 async function getById(id) {
@@ -27,7 +27,9 @@ async function _delete(id) {
   await usersService.removeAllCompanyRelations(id);
 }
 
-async function removeAllWithId(id) {
-  //TODO remove all who have company == id
-  //TODO remove allCompanyRelations with _id
+async function removeAllCompanyLocRelations(id) {
+  CompanyLocation.updateMany(
+    { company: { $eq: id } },
+    { $set: { company: '' } }
+  );
 }
