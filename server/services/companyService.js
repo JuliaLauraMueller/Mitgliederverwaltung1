@@ -3,10 +3,15 @@ const Company = db.Company;
 const companyLocationService = require('../services/companyLocationService');
 
 module.exports = {
+  getAll,
   getById,
   update,
   _delete
 };
+
+async function getAll() {
+  return await Company.find().select();
+}
 
 async function getById(id) {
   return await Company.findById(id).select();

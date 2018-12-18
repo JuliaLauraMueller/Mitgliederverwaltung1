@@ -3,11 +3,19 @@ const router = express.Router();
 const companyService = require('../services/companyService');
 
 // routes
+router.get('/', getAll);
 router.get('/:id', getById);
 router.put('/:id', update);
 router.delete('/:id', _delete);
 
 module.exports = router;
+
+function getAll(req, res, next) {
+  companyService
+    .getAll()
+    .then(companies => res.json(companies))
+    .catch(err => next(err));
+}
 
 function getById(req, res, next) {
   companyService
