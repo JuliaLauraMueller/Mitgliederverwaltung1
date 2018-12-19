@@ -10,11 +10,15 @@ import ProfileBasicInfoEDIT from '../components/ProfileEdit/ProfileBasicInfoEdit
 import ProfileSocialMediaEDIT from '../components/ProfileEdit/ProfileSocialMediaEdit.js';
 import ProfileMainInformationEDIT from '../components/ProfileEdit/ProfileMainInformationEdit.js';
 
+import { connect } from 'react-redux';
+import { setNavVisible } from '../redux/actions/navigationActions';
+
 import '../css/ProfilePage.css';
 
 class ProfilePage extends Component {
   constructor(props) {
     super(props);
+    this.props.dispatch(setNavVisible());
     this.state = {
       isEditing: false
     };
@@ -39,7 +43,7 @@ class ProfilePage extends Component {
   render() {
     if (this.state.isEditing) {
       return (
-        <div id="bodyProfile">
+        <div id='bodyProfile'>
           <ProfilePicEDIT
             ref={profilePic => {
               this.profilePic = profilePic;
@@ -65,7 +69,7 @@ class ProfilePage extends Component {
       );
     } else {
       return (
-        <div id="bodyProfile">
+        <div id='bodyProfile'>
           <ProfilePic />
           <ProfileBasicInfo />
           <ProfileSocialMedia />
@@ -77,4 +81,8 @@ class ProfilePage extends Component {
   }
 }
 
-export default ProfilePage;
+function mapStateToProps(state) {
+  return {};
+}
+
+export default connect(mapStateToProps)(ProfilePage);
