@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 
+import { connect } from 'react-redux';
+
+import { setNavVisible } from '../redux/actions/navigationActions';
+
 class HomePage extends Component {
+  constructor(props) {
+    super(props);
+
+    this.props.dispatch(setNavVisible());
+  }
+
   render() {
     return (
       <div>
@@ -10,4 +20,8 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage;
+function mapStateToProps(state) {
+  return {};
+}
+
+export default connect(mapStateToProps)(HomePage);
