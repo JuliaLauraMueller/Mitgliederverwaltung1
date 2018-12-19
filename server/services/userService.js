@@ -24,8 +24,8 @@ async function authenticate({ privateEmail, password }) {
   }
 }
 
-async function getAll() {
-  return await User.find().select('-password');
+function getAll() {
+  return User.find().select('-password');
 }
 
 async function getById(id) {

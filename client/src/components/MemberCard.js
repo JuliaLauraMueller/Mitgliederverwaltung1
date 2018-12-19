@@ -17,12 +17,12 @@ class MemberCard extends Component {
             <Container>
               <img
                 className="card-image"
-                src={this.props.member.profilepic}
+                src={'./img/marc_zimmermann.jpg'}
                 alt="Card i cap"
               />
               <CardTitle className="card-name">
-                {this.props.member.prename} <br />
-                {this.props.member.lastname}
+                {this.props.member.firstname} <br />
+                {this.props.member.surname}
               </CardTitle>
             </Container>
             <Container>
@@ -32,7 +32,7 @@ class MemberCard extends Component {
                 alt="Card i cap"
               />
               <CardText className="card-text-mail">
-                {this.props.member.mail}
+                {this.props.member.privateEmail}
               </CardText>
             </Container>
             <Container>
@@ -42,7 +42,7 @@ class MemberCard extends Component {
                 alt="Card i cap"
               />
               <CardTitle className="card-text-phone">
-                {this.props.member.phone}
+                {this.props.member.privateTel}
               </CardTitle>
             </Container>
             <Container className="profile-link">

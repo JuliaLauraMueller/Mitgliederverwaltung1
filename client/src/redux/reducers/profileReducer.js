@@ -48,6 +48,7 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case FETCH_PROFILE:
+      //console.log(state);
       return state;
     case PUT_PROFILE:
       return {
