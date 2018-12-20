@@ -62,7 +62,7 @@ class ProfileBasicInfoEDIT extends Component {
             Anrede:
           </InputGroupAddon>
           <fieldset>
-            <div class="input-field-radio">
+            <div className="input-field-radio">
               <input
                 type="radio"
                 className="radio"

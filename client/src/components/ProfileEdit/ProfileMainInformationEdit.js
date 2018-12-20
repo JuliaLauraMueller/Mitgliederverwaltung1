@@ -7,15 +7,9 @@ import {
   InputGroup,
   InputGroupAddon,
   Input,
-  TabContent,
-  TabPane,
-  Nav,
-  NavItem,
-  NavLink,
   Label,
   FormGroup
 } from 'reactstrap';
-import classnames from 'classnames';
 
 import '../../css/ProfilePage.css';
 
