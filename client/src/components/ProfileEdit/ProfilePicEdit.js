@@ -16,11 +16,11 @@ class ProfilePicEDIT extends Component {
     super(props);
     const profile = this.props.profile;
     this.state = {
-      salutation: profile.salutation,
-      title: profile.title,
-      firstname: profile.firstname,
-      surename: profile.surename,
-      alias: profile.alias
+      xingLink: profile.xingLink,
+      linkedinLink: profile.linkedinLink,
+      facebookLink: profile.facebookLink,
+      instagramLink: profile.instagramLink,
+      offerings: profile.offerings
     };
 
     this.onChange = this.onChange.bind(this);
@@ -33,11 +33,11 @@ class ProfilePicEDIT extends Component {
 
   onSave() {
     const profilePicUpdate = {
-      salutation: this.state.salutation,
-      title: this.state.title,
-      firstname: this.state.firstname,
-      surename: this.state.surename,
-      alias: this.state.alias
+      xingLink: this.state.xingLink,
+      linkedinLink: this.state.linkedinLink,
+      facebookLink: this.state.facebookLink,
+      instagramLink: this.state.instagramLink,
+      offerings: this.state.offerings
     };
 
     this.props.putProfile(profilePicUpdate);
@@ -46,78 +46,72 @@ class ProfilePicEDIT extends Component {
   render() {
     return (
       <div id="profilePic">
-        <img
-          class="profile-image"
-          style={{ width: '180px' }}
-          src={'./img/marc_zimmermann.jpg'}
-          alt="profile"
-        />
+        <InputGroup>
+          <form className="input-field">
+            <img
+              className="profile-image-edit"
+              style={{ width: '147px' }}
+              src={'./img/marc_zimmermann.jpg'}
+              alt="profile"
+            />
+          </form>
+        </InputGroup>
 
         <InputGroup>
-          <InputGroup>
-            <InputGroupAddon id="salutation-group-addon" addonType="prepend">
-              Anrede:
-            </InputGroupAddon>
-            <fieldset>
-              <div class="some-class">
-                <input
-                  type="radio"
-                  className="radio"
-                  name="salutation"
-                  value="Frau"
-                  checked={this.state.salutation === 'Frau'}
-                  onChange={this.onChange}
-                />
-                <label className="radio-label">Frau</label>
-                <input
-                  type="radio"
-                  className="radio"
-                  name="salutation"
-                  value="Herr"
-                  checked={this.state.salutation === 'Herr'}
-                  onChange={this.onChange}
-                />
-                <label className="radio-label">Herr</label>
-              </div>
-            </fieldset>
-          </InputGroup>
-          <InputGroup>
-            <InputGroupAddon addonType="prepend">Titel:</InputGroupAddon>
+          <InputGroupAddon addonType="prepend">Xing</InputGroupAddon>
+          <form className="input-field">
             <Input
               type="text"
-              name="title"
+              name="xingLink"
               onChange={this.onChange}
-              value={this.state.title}
+              value={this.state.xingLink}
             />
-          </InputGroup>
-
-          <InputGroup>
-            <InputGroupAddon addonType="prepend">Vorname:</InputGroupAddon>
+          </form>
+        </InputGroup>
+        <InputGroup>
+          <InputGroupAddon addonType="prepend">Linkedin</InputGroupAddon>
+          <form className="input-field">
             <Input
               type="text"
-              name="firstname"
+              name="linkedinLink"
               onChange={this.onChange}
-              value={this.state.firstname}
+              value={this.state.linkedinLink}
             />
-          </InputGroup>
-          <InputGroup>
-            <InputGroupAddon addonType="prepend">Nachname:</InputGroupAddon>
+          </form>
+        </InputGroup>
+        <InputGroup>
+          <InputGroupAddon addonType="prepend">Facebook</InputGroupAddon>
+          <form className="input-field">
             <Input
               type="text"
-              name="surename"
+              name="facebookLink"
               onChange={this.onChange}
-              value={this.state.surename}
+              value={this.state.facebookLink}
             />
-          </InputGroup>
-          <InputGroup>
-            <InputGroupAddon addonType="prepend">Spitzname:</InputGroupAddon>
+          </form>
+        </InputGroup>
+        <InputGroup>
+          <InputGroupAddon addonType="prepend">Instagram</InputGroupAddon>
+          <form className="input-field">
             <Input
               type="text"
-              name="alias"
+              name="instagramLink"
               onChange={this.onChange}
-              value={this.state.alias}
+              value={this.state.instagramLink}
             />
-          </InputGroup>
+          </form>
+        </InputGroup>
+        <InputGroup>
+          <InputGroupAddon addonType="prepend">Angebot</InputGroupAddon>
+          <form className="input-field" id="text-area-offers">
+            <Input
+              type="textarea"
+              name="offerings"
+              rows="3"
+              onChange={this.onChange}
+              value={this.state.offerings}
+            />
+          </form>
         </InputGroup>
       </div>
     );

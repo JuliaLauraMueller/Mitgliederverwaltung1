@@ -5,131 +5,277 @@ basic style profile page
   box-sizing: border-box;
 }
 
+/*container*/
+#top-container, #mainInformation{
+  float: left;
+  width: 100%;
+  text-align:center;
+}
+
+/*component bodies*/
+#profilePic {
+  width: 35%;
+  display: inline-block;
+  text-align: left;
+  margin-bottom: 3%;
+
+}
+
 #basicInformation {
-  float: left;
-  width: 30%;
-  margin: 3%;
-  height: 10%;
+  margin-bottom: 3%;
+  width: 38%;
+  display: inline-block;
+  text-align: left;
+  padding-bottom: 10px;
+  vertical-align: bottom;
+  padding-left: 3%;
 }
 
-#mainInformation {
-  float: left;
-  margin: 3%;
-  width: 50%;
+#basicInformationEdit {
+  margin: 0 0 3% 3%;
+  width: 35%;
+  display: inline-block;
+  text-align: left;
+  vertical-align: bottom;
 }
 
-#profilePic {
-  float: left;
-  width: 25%;
-  margin: 3%;
+.main-title {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  margin-right: 3%;
 }
-
-#socialMedia {
-  float: left;
-  clear: left;
-  width: 25%;
-  margin: 3%;
-}
-.profile-image {
-  border-radius: 50%;
-}
-/*--------------------------------------------*
-additional style VIEW profile page
-*--------------------------------------------*/
-.salutation-label,
-.name-label {
-  margin-right: 5px;
-  margin-bottom: 0px;
-}
-.name-label {
-  font-size: 1.5rem;
-}
-.salutation-label {
-  font-size: 0.8rem;
-}
-#profilePic {
-  text-align: center;
+.godfather-label, .godfather-label span {
+  margin: 0;
 }
 
 .value-label {
   float: right;
-  position: relative;
-  bottom: 31px;
-  width: 20%;
+  width: 220px;
   margin: 0;
   padding: 0;
 }
-.main-title {
-  font-size: 1.2rem;
+/*--------------------------------------------*
+additional style VIEW profile page
+*--------------------------------------------*/
+
+/*main-info style*/
+.business-info, .private-info  {
+  width: 35%;
+  display: inline-block;
+  text-align: left;
+  padding-top: 3%;
+  border-top: solid 1px rgba(15, 25, 41, 0.7);
+
+}
+.private-info{
+  vertical-align: top;
+  width: 38%;
+  padding-left: 3%;
+}
+
+.overflow, label.information{
+  height: auto;
+  overflow: auto;
+  overflow-wrap: break-word;
+}
+
+/*profile-pic style*/
+.profile-image {
+  border-radius: 50%;
+  margin-bottom: 4%;
+}
+label.information {
+  width: 240px;
+}
+.information,
+label {
+  font-size: 12pt;
+  opacity: 0.6;
+  color: #0f1929;
+}
+#profile-image {
+  border-radius: 50%;
+  margin-left: 30px;
 }
 .icon-button {
-  background-color: white;
+  background-color: transparent;
   border: none;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-top: 15px;
+}
+#xing-button {
+  padding-left: 28px;
 }
 .icon-button:hover {
-  background-color: white;
+  background-color: transparent;
+  opacity: 0.5;
 }
+.offerings {
+  display: block;
+  margin-top: 15px;
+  text-align: left;
+  width: 240px;
+  border-top: 1px solid rgba(15, 25, 41, 0.7);
+}
+#offerings-label {
+  padding-top: 15px;
+}
+
+/*basic-info style*/
+.alias-label,
+.salutation-label,
+.name-label {
+  margin-right: 5px;
+  margin-bottom: 0px;
+  opacity: 0.8;
+}
+.name-label {
+  font-size: 1.7rem;
+  opacity: 0.8;
+}
+.salutation-label {
+  font-size: 1rem;
+  opacity: 0.8;
+}
+.alias-label {
+  padding-bottom: 15%;
+}
+
+.salutation-label,
+.name-label {
+  margin-right: 5px;
+  margin-bottom: 0px;
+  opacity: 0.8;
+}
+.name-label {
+  font-size: 1.5rem;
+  opacity: 0.8;
+}
+.salutation-label {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
 /*--------------------------------------------*
 additional style EDIT profile page
 *--------------------------------------------*/
+
+/*main-info style*/
+.business-info-edit, .private-info-edit {
+  width: 35%;
+  display: inline-block;
+  text-align: left;
+  padding-top: 3%;
+}
+
+.private-info-edit {
+  margin-left: 3%;
+  vertical-align: top;
+}
+
+/*text-field style*/
 .form-control {
   background-color: transparent;
   border: 0;
   border-bottom: 1px solid #0f1929;
+  opacity: 0.8;
+  padding: 0;
   border-radius: 0;
   transition: none;
-  display: inline-block;
   height: 25px;
   margin-bottom: 10px;
+  position: relative;
+  width: 220px;
+  margin: 0;
+  padding: 0;
 }
-
 .form-control:active {
   background-color: transparent;
   border-bottom: 1px solid rgb(219, 157, 12);
 }
-
 .form-control:focus {
   background-color: transparent;
   border-bottom: 1px solid rgb(219, 157, 12);
 }
-
 .input-group-text {
   background-color: transparent;
   border: 0;
   transition: none;
   margin-bottom: 10px;
   height: 25px;
+  position: relative;
+  bottom: 2%;
+  padding: 0;
+}
+.input-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0%;
+}
+.input-field-radio {
+  display: flex;
+  justify-content: left;
+  margin-top: 10px;
+  float: left;
+  width: 220px;
 }
 
-#salutation-group-addon {
-  padding-top: 20px;
+#salutation-group-addon span {
+  position: relative;
+  top: 20%;
+}
+#text-area-offers {
+  box-sizing: border-box;
+  resize: vertical;
 }
 
-.toggle-nav {
-  margin-bottom: 20%;
+/*profilePic*/
+.profile-image-edit {
+  border-radius: 50%;
+  margin-bottom: 15%;
+}
+.container-profilepic {
+  margin-top: 100px;
 }
 
-.toggle-nav:focus,
-.toggle-nav:hover,
-.toggle-nav:active {
-  font-weight: 600;
-  border: none;
-  border-bottom: 2px solid rgb(219, 157, 12) !important;
+/*radio-button style*/
+.radio {
+  margin-top: 3px;
 }
 
-.toggle-nav-main {
+.radio-label {
+  padding-left: 5px;
+  padding-right: 10px;
+}
+
+#radio-invoice {
+  margin-top: 0;
+  padding-left: 2%;
+}
+
+/*Buttons*/
+.button-save-edit {
   background-color: transparent;
   border: 0;
-  border-bottom: 1px solid #0f1929;
-  border-radius: 0px;
-  margin-bottom: 20px;
+  border-bottom: 1px solid rgb(219, 157, 12);
+  color: rgb(219, 157, 12);
+  padding: 0;
+  border-radius: 0;
   transition: none;
-  margin-right: 5%;
+  height: 32px;
+  margin-bottom: 10px;
+  font-size: 140%;
+  float: right;
 }
 
-.radio {
-  margin: 10px 0 0 10px;
+button-container {
+  float: left;
+  display: block;
 }
-.radio-label {
-  padding-left: 3px;
+.button-save-edit:active,
+.button-save-edit:hover {
+  background-color: transparent;
+  border-bottom: 1px solid #0f1929;
+  color: #0f1929;
 }

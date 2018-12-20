@@ -8,5 +8,8 @@ mongoose
   .catch(err => console.log(err));
 
 module.exports = {
-  User: require('../models/UserModel')
+  User: require('../models/UserModel'),
+  Company: require('../models/CompanyModel'),
+  CompanyLocation: require('../models/CompanyLocationModel'),
+  Circle: require('../models/CircleModel')
 };
