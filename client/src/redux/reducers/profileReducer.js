@@ -1,6 +1,14 @@
-import { FETCH_PROFILE } from '../types/profileTypes';
-import { PUT_PROFILE } from '../types/profileTypes';
+import {
+  PROFILE_USER_FETCHED,
+  PROFILE_COMPLOC_FETCHED,
+  PROFILE_COMP_FETCHED,
+  PUT_PROFILE,
+  FETCH_PROFILE
+} from '../types/profileTypes';
 
+const initialState = { member: {} };
+
+/*
 const initialState = {
   member: {
     status: 'Junior',
@@ -44,6 +52,7 @@ const initialState = {
     offerings: 'asdf'
   }
 };
+*/
 
 export default function(state = initialState, action) {
   switch (action.type) {
@@ -51,6 +60,18 @@ export default function(state = initialState, action) {
       //console.log(state);
       return state;
     case PUT_PROFILE:
+      return {
+        member: { ...state.member, ...action.payload }
+      };
+    case PROFILE_USER_FETCHED:
+      return {
+        member: { ...state.member, ...action.payload }
+      };
+    case PROFILE_COMPLOC_FETCHED:
+      return {
+        member: { ...state.member, ...action.payload }
+      };
+    case PROFILE_COMP_FETCHED:
       return {
         member: { ...state.member, ...action.payload }
       };

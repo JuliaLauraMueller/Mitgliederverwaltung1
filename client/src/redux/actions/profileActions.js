@@ -1,19 +1,33 @@
-import { FETCH_PROFILE } from '../types/profileTypes';
-import { PUT_PROFILE } from '../types/profileTypes';
+import {
+  PROFILE_USER_FETCHED,
+  PROFILE_COMPLOC_FETCHED,
+  PROFILE_COMP_FETCHED,
+  PUT_PROFILE
+} from '../types/profileTypes';
 import profileService from '../../services/profileService';
 
 export const fetchProfile = id => dispatch => {
-  var userData = profileService.getUserData().then(res => {
-    //console.log(res);
-  });
-  //console.log(userData);
-  //UserData is a promise
-  var companyLocationData = profileService.getCompanyLocationData(
-    userData.company
-  );
-  var companyData = profileService.getCompanyData(companyLocationData.company);
-
-  dispatch({ type: FETCH_PROFILE });
+  profileService
+    .getUserData(id)
+    .then(res => {
+      if (res) {
+        //getUserData(res.member);
+        dispatch({ type: PROFILE_USER_FETCHED, payload: res.member });
+        return profileService.getCompanyLocationData(res.member.company);
+      }
+    })
+    .then(res => {
+      if (res) {
+        dispatch({ type: PROFILE_COMPLOC_FETCHED, payload: res.member });
+        return profileService.getCompanyData(res.member.companyID);
+      }
+    })
+    .then(res => {
+      if (res) {
+        // do something
+        dispatch({ type: PROFILE_COMP_FETCHED, payload: res.member });
+      }
+    });
 };
 
 export function putProfile(profileData) {

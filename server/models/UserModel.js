@@ -5,7 +5,7 @@ const schema = new Schema({
   privateEmail: { type: String, unique: true, required: true },
   password: { type: String, required: true },
 
-  membernumber: { type: Number, unique: true, required: true },
+  memberNumber: { type: Number },
   entryDate: { type: Date, required: true },
   birthdate: { type: Date, required: true },
   status: { type: String },

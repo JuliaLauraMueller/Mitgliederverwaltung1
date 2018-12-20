@@ -7,7 +7,7 @@ import '../../css/ProfilePage.css';
 
 class ProfileBasicInfo extends Component {
   componentWillMount() {
-    this.props.fetchProfile();
+    this.props.fetchProfile('5bfe83680108860398a433a1');
   }
 
   render() {
