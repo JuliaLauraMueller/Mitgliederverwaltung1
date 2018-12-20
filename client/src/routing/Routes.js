@@ -5,6 +5,8 @@ import history from '../helpers/history';
 
 import { PrivateRoute } from './PrivateRoute';
 
+import { connect } from 'react-redux';
+
 // Import pages
 import HomePage from '../pages/HomePage';
 import LoginPage from '../pages/LoginPage';
@@ -15,12 +17,11 @@ import AppNavbar from '../components/AppNavbar/AppNavbar';
 
 class Routes extends Component {
   render() {
-    // Add Routes to Switch
     return (
       <Router history={history}>
         <div>
           <div className='navbar-app'>
-            <AppNavbar expandSideMenu={this.props.expandSideMenu} />
+            <AppNavbar toggleSideMenu={this.props.toggleSideMenu} />
           </div>
           <div>
             <Switch>
@@ -37,4 +38,8 @@ class Routes extends Component {
   }
 }
 
-export default Routes;
+function mapStateToProps(state) {
+  return {};
+}
+
+export default connect(mapStateToProps)(Routes);

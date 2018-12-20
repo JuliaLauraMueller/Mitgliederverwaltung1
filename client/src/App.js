@@ -12,7 +12,14 @@ import AlertToast from './components/AlertToast';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 
+import store from './helpers/store';
+
 import history from './helpers/history';
+
+import {
+  setNavExpanded,
+  setNavCollapsed
+} from './redux/actions/navigationActions';
 
 import { alertClear } from './redux/actions/alertActions';
 
@@ -21,22 +28,58 @@ class App extends Component {
     super(props);
     const { dispatch } = this.props;
 
+    store.subscribe(() => {
+      const visibleStatus = store.getState().navigation.visible;
+      const expandedStatus = store.getState().navigation.expanded;
+
+      if (
+        visibleStatus !== this.state.previouslyVisible ||
+        expandedStatus !== this.state.previouslyExpanded
+      ) {
+        if (!this.state.previouslyVisible && visibleStatus) {
+          // Changed from invisible to visible
+          this.state.AppClassNames = 'app collapsed';
+        } else if (this.state.previouslyVisible && visibleStatus) {
+          // Remained visible
+          if (expandedStatus) {
+            this.state.AppClassNames = 'app expanded';
+          } else {
+            this.state.AppClassNames = 'app collapsed';
+          }
+        } else {
+          this.state.AppClassNames = 'app';
+        }
+
+        if (this.state.previouslyVisible !== visibleStatus) {
+          this.forceUpdate();
+        }
+        this.state.previouslyVisible = visibleStatus;
+        this.state.previouslyExpanded = expandedStatus;
+      }
+    });
+
     history.listen((location, action) => {
       dispatch(alertClear);
     });
+
+    this.toggleSideMenu = this.toggleSideMenu.bind(this);
   }
 
   // Add global layout components before route
   state = {
-    sideMenuExpanded: false,
-    AppClassNames: 'app collapsed'
+    previouslyVisible: false,
+    previouslyExpanded: false,
+    AppClassNames: 'app'
   };
 
-  expandSideMenu = () => {
-    this.setState(prevState => {
-      return { sideMenuExpanded: !prevState.sideMenuExpanded };
-    });
-    if (this.state.sideMenuExpanded) {
+  toggleSideMenu() {
+    if (this.state.previouslyExpanded) {
+      this.props.dispatch(setNavCollapsed());
+    } else {
+      this.props.dispatch(setNavExpanded());
+    }
+
+    if (this.props.sideMenuExpanded) {
       this.setState(prevState => {
         return { AppClassNames: 'app collapsed' };
       });
@@ -45,11 +88,10 @@ class App extends Component {
         return { AppClassNames: 'app expanded' };
       });
     }
-  };
+  }
 
   render() {
     const { alert } = this.props;
-
     return (
       <div className={this.state.AppClassNames} style={{ height: '100%' }}>
         <Helmet>
@@ -59,7 +101,7 @@ class App extends Component {
           {alert.message && (
             <AlertToast type={alert.type} message={alert.message} />
           )}
-          <Routes expandSideMenu={this.expandSideMenu} />
+          <Routes toggleSideMenu={this.toggleSideMenu} />
         </Container>
       </div>
     );
@@ -67,9 +109,9 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  const { alert } = state;
   return {
-    alert
+    alert: state.alert,
+    sideMenuExpanded: state.navigation.expanded
   };
 }
 

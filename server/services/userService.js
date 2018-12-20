@@ -1,4 +1,4 @@
-const config = require('../config/keys');
+const config = require('../config/settings');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = require('../helpers/db');
@@ -87,7 +87,7 @@ async function removeAllCompanyRelations(id) {
 
 function generateJwtToken(user) {
   const token = jwt.sign({ _id: user._id }, config.jwtSecret, {
-    expiresIn: 60 * 60 * 1 // 1h
+    expiresIn: config.jwtExpirationSeconds
   });
   return token;
 }

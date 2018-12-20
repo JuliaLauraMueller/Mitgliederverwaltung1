@@ -5,6 +5,10 @@ import { Helmet } from 'react-helmet';
 import { Container, Row } from 'reactstrap';
 import memberService from '../services/memberService';
 
+import { connect } from 'react-redux';
+
+import { setNavVisible } from '../redux/actions/navigationActions';
+
 import '../css/Member.css';
 
 class MemberPage extends Component {
@@ -28,9 +32,9 @@ class MemberPage extends Component {
         <div>
           <h1>
             <img
-              className="member-logo"
+              className='member-logo'
               src={'./img/logo.png'}
-              alt="Card i cap"
+              alt='Card i cap'
             />
           </h1>
           <Container fluid>
@@ -50,4 +54,8 @@ class MemberPage extends Component {
   }
 }
 
-export default MemberPage;
+function mapStateToProps(state) {
+  return {};
+}
+
+export default connect(mapStateToProps)(MemberPage);

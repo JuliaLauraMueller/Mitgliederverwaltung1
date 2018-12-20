@@ -8,11 +8,15 @@ import ProfilePicEDIT from '../components/ProfileEdit/ProfilePicEdit.js';
 import ProfileBasicInfoEDIT from '../components/ProfileEdit/ProfileBasicInfoEdit.js';
 import ProfileMainInformationEDIT from '../components/ProfileEdit/ProfileMainInformationEdit.js';
 
+import { connect } from 'react-redux';
+import { setNavVisible } from '../redux/actions/navigationActions';
+
 import '../css/ProfilePage.css';
 
 class ProfilePage extends Component {
   constructor(props) {
     super(props);
+    this.props.dispatch(setNavVisible());
     this.state = {
       isEditing: false
     };
@@ -77,4 +81,8 @@ class ProfilePage extends Component {
   }
 }
 
-export default ProfilePage;
+function mapStateToProps(state) {
+  return {};
+}
+
+export default connect(mapStateToProps)(ProfilePage);
