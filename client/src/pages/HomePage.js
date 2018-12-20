@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
@@ -15,6 +16,7 @@ class HomePage extends Component {
     return (
       <div>
         <h1>Hello World! This is the HomePage</h1>
+        <Link to="/login">Logout</Link>
       </div>
     );
   }

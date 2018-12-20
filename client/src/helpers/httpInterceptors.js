@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import store from './store';
-import config from '../config/keys';
+import config from '../config/settings';
 import history from './history';
 import { alertError } from '../redux/actions/alertActions';
 import { updateToken } from '../redux/actions/authActions';
@@ -32,6 +32,7 @@ export default () => {
     error => {
       if (error.response.status === 401) {
         authService.logout();
+        history.push('/login');
       } else if (error.response.status === 403) {
         updateLocalStorage(error.response);
         history.push('/');
