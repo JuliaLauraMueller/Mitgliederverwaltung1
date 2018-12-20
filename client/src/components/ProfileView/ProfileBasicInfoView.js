@@ -14,59 +14,39 @@ class ProfileBasicInfo extends Component {
     const profile = this.props.profile;
     return (
       <div id="basicInformation">
-        <label className="main-title">Hauptinformation</label>
         <div>
-          <div className="title-label">
-            <label>Mitglieder Nr.:</label>
-          </div>
-          <div className="value-label">
-            <label>{profile.memberNumber}</label>
-          </div>
+          <label className="salutation-label">{profile.salutation}</label>
+          <label className="salutation-label">{profile.title}</label>
+          <br />
+          <label className="name-label">{profile.firstname}</label>
+          <label className="name-label">{profile.surename}</label>
+          <br />
+          <label className="alias-label">({profile.alias})</label>
+          <br />
         </div>
-
         <div>
-          <div className="title-label">
-            <label>Eintrittsdatum:</label>
-          </div>
-          <div className="value-label">
-            <label>{profile.entryDate}</label>
-          </div>
+          <label>Mitglieder Nr.:</label>
+          <label className="value-label">{profile.memberNumber}</label>
         </div>
-
         <div>
-          <div className="title-label">
-            <label>Geburtsdatum:</label>
-          </div>
-          <div className="value-label">
-            <label>{profile.birthdate}</label>
-          </div>
+          <label>Eintrittsdatum:</label>
+          <label className="value-label">{profile.entryDate}</label>
         </div>
-
         <div>
-          <div className="title-label">
-            <label>Status:</label>
-          </div>
-          <div className="value-label">
-            <label>{profile.status}</label>
-          </div>
+          <label>Geburtsdatum:</label>
+          <label className="value-label">{profile.birthdate}</label>
         </div>
-
         <div>
-          <div className="title-label">
-            <label>City:</label>
-          </div>
-          <div className="value-label">
-            <label>{profile.city}</label>
-          </div>
+          <label>Status:</label>
+          <label className="value-label">{profile.status}</label>
         </div>
-
         <div>
-          <div className="title-label">
-            <label>Götti:</label>
-          </div>
-          <div className="value-label">
-            <label>{profile.godfather}</label>
-          </div>
+          <label>City:</label>
+          <label className="value-label">{profile.city}</label>
+        </div>
+        <div>
+          <label className="godfather-label">Götti:</label>
+          <label className="value-label">{profile.godfather}</label>
         </div>
       </div>
     );
