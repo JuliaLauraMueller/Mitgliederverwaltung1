@@ -7,7 +7,6 @@ router.get('/', getAll);
 router.get('/:id', getById);
 router.put('/:id', update);
 router.delete('/:id', _delete);
-//router.post('/', _create);
 
 module.exports = router;
 
@@ -40,12 +39,3 @@ function _delete(req, res, next) {
     .then(() => res.json({}))
     .catch(err => next(err));
 }
-
-/*
-function _create(req, res, next) {
-  companyLocationService
-    .create(req.body)
-    .then(() => res.json({}))
-    .catch(err => next(err));
-}
-*/

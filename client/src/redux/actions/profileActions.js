@@ -11,7 +11,6 @@ export const fetchProfile = id => dispatch => {
     .getUserData(id)
     .then(res => {
       if (res) {
-        //getUserData(res.member);
         dispatch({ type: PROFILE_USER_FETCHED, payload: res.member });
         return profileService.getCompanyLocationData(res.member.company);
       }
@@ -24,7 +23,6 @@ export const fetchProfile = id => dispatch => {
     })
     .then(res => {
       if (res) {
-        // do something
         dispatch({ type: PROFILE_COMP_FETCHED, payload: res.member });
       }
     });
@@ -32,7 +30,6 @@ export const fetchProfile = id => dispatch => {
 
 export function putProfile(profileData) {
   return function(dispatch) {
-    // add axios request
     dispatch({ type: PUT_PROFILE, payload: profileData });
   };
 }

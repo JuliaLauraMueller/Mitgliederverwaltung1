@@ -7,7 +7,6 @@ module.exports = {
   getById,
   update,
   _delete,
-  //_create,
   removeAllCompanyLocRelations
 };
 
@@ -32,11 +31,7 @@ async function _delete(id) {
   await CompanyLocation.findByIdAndRemove(id);
   await usersService.removeAllCompanyRelations(id);
 }
-/*
-async function _create(body) {
-  CompanyLocation.create(body);
-}
-*/
+
 async function removeAllCompanyLocRelations(id) {
   CompanyLocation.updateMany(
     { company: { $eq: id } },

@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 async function getUserData(id) {
-  //console.log(id);
   var userData = await axios.get('/users/' + id).then(resp => {
     return {
       member: {
@@ -55,35 +54,28 @@ async function getUserData(id) {
 }
 
 function getCompanyLocationData(id) {
-  //console.log(id);
-  return axios
-    .get('/companyLocations/' + id)
-    .then(resp => {
-      return {
-        member: {
-          companyID: resp.data.company,
-          companyStreet: resp.data.companyStreet,
-          companyStreetNr: resp.data.companyStreetNr,
-          companyZip: resp.data.companyZip,
-          companyCity: resp.data.companyCity
-        }
-      };
-    })
-    .catch(err => {});
+  return axios.get('/companyLocations/' + id).then(resp => {
+    return {
+      member: {
+        companyID: resp.data.company,
+        companyStreet: resp.data.companyStreet,
+        companyStreetNr: resp.data.companyStreetNr,
+        companyZip: resp.data.companyZip,
+        companyCity: resp.data.companyCity
+      }
+    };
+  });
 }
 
 function getCompanyData(id) {
-  return axios
-    .get('/companies/' + id)
-    .then(resp => {
-      return {
-        member: {
-          company: resp.data.companyName,
-          companyURL: resp.data.companyURL
-        }
-      };
-    })
-    .catch(err => {});
+  return axios.get('/companies/' + id).then(resp => {
+    return {
+      member: {
+        company: resp.data.companyName,
+        companyURL: resp.data.companyURL
+      }
+    };
+  });
 }
 
 const profileService = { getUserData, getCompanyData, getCompanyLocationData };
