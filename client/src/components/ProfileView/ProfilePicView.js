@@ -16,13 +16,13 @@ class ProfilePic extends Component {
     return (
       <div id="profilePic">
         <img
-          className="profile-image"
+          id="profile-image"
           style={{ width: '180px' }}
           src={'./img/marc_zimmermann.jpg'}
           alt="profile"
         />
         <br />
-        <Button className="icon-button" href={profile.xingLink}>
+        <Button className="icon-button" id="xing-button" href={profile.xingLink}>
           <img className="icons" alt="xing-icon" src={'./img/xing.svg'} />
         </Button>
         <Button className="icon-button" href={profile.linkedinLink}>

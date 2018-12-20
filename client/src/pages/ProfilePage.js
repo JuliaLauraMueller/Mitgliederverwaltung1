@@ -36,7 +36,11 @@ class ProfilePage extends Component {
   render() {
     if (this.state.isEditing) {
       return (
-        <div id="bodyProfile">
+        <div className="bodyProfile">
+                  <button className="button-save-edit" onClick={this.handleClick}>
+            save
+          </button>
+          <div id="top-container">
           <ProfilePicEDIT
             ref={profilePic => {
               this.profilePic = profilePic;
@@ -47,26 +51,27 @@ class ProfilePage extends Component {
               this.basicInfo = basicInfo;
             }}
           />
+          </div >
           <ProfileMainInformationEDIT
             ref={mainInfo => {
               this.mainInfo = mainInfo;
             }}
           />
-          <button className="button-save-edit" onClick={this.handleClick}>
-            save
-          </button>
         </div>
       );
     } else {
       return (
         <div id="bodyProfile">
+        <button className="button-save-edit" onClick={this.toggleEdit}>
+                  edit
+                </button>
+          <div id="top-container">
           <ProfilePic />
           <ProfileBasicInfo />
+          </div>
           <ProfileMainInformation />
-          <button className="button-save-edit" onClick={this.toggleEdit}>
-            edit
-          </button>
         </div>
+        
       );
     }
   }
