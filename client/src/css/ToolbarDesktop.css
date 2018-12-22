@@ -7,7 +7,7 @@
 
 .toolbar {
   height: 100%;
-  background: #0f1929;
+  background: #474f5a;
   width: 90px;
   padding-left: 1rem;
   align-items: center;
@@ -68,4 +68,12 @@
 
 .spacer {
   flex: 1;
+}
+
+.toolbar_navigation-items a:hover > svg,
+.toolbar_navigation-items a:active > svg,
+.toolbar_navigation-items a:hover > svg > path,
+.toolbar_navigation-items a:active > svg > path {
+  stroke: none;
+  fill: #db9d0c;
 }

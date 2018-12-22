@@ -7,7 +7,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  background: #521755;
+  background: rgba(15, 25, 41, 0.74);
   height: 56px;
   display: flex;
   height: 100%;
@@ -49,11 +49,6 @@
   padding: 0.5rem;
 }
 
-.toolbar_navigation-items a:hover,
-.toolbar_navigation-items a:active {
-  color: orange;
-}
-
 .spacer {
   flex: 1;
 }
@@ -68,7 +63,7 @@
     top: 0;
     left: 0;
     height: 100%;
-    background: #0f1929;
+    background: rgba(15, 25, 41, 0.74);
     width: 100px;
   }
 
