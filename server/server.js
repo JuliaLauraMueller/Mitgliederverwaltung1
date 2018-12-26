@@ -30,12 +30,15 @@ app.use(errorHandler);
 
 // Serve static client resources here if running in production
 //if (process.env.NODE_ENV === 'production') {
-app.use(express.static('../client/build'));
+app.use(express.static('../client/dist'));
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
+  res.sendFile(path.resolve(__dirname, '../client', 'dist', 'index.html'));
 });
 //}
 
 //Start server
 const port = process.env.PORT || 5000;
-app.listen(port, () => console.log(`Server started on port ${port}...`));
+// 0.0.0.0 also allows remote requests
+app.listen(port, '0.0.0.0', () =>
+  console.log(`Server started on port ${port}...`)
+);
