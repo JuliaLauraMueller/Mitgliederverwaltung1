@@ -35,7 +35,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html'
+      template: './src/index.html',
+      favicon: './public/favicon.ico'
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
@@ -44,6 +45,6 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     }),
-    new CopyWebpackPlugin([{ from: 'build/img', to: 'img' }])
+    new CopyWebpackPlugin([{ from: 'public/img', to: 'img' }]) // copy images from public/img to dist/img
   ]
 };
