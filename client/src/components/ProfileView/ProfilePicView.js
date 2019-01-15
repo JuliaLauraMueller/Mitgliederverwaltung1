@@ -36,8 +36,12 @@ class ProfilePic extends Component {
           <img className="icons" alt="fb-icon" src={'./img/facebook.svg'} />
         </Button>
         <Button className="icon-button" href={profile.instagramLink}>
-          <img className="icons" alt="fb-icon" src={'./img/instagram.svg'} />
+          <img className="icons" alt="instagramm-icon" src={'./img/instagram.svg'} />
         </Button>
+        <Button className="icon-button">
+          <img className="icons" alt="mail-icon" src={'./img/mail-profile.svg'} />
+        </Button>
+
         <div className="offerings">
           <label className="main-title" id="offerings-label">
             Was biete ich an?
