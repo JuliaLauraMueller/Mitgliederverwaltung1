@@ -16,12 +16,6 @@ const sideDrawer = props => {
   return (
     <nav className={drawerClasses}>
       <div className="navigation">
-        <div className="navigation-header">
-          <div className="navigation-header-logo">
-            <img src="img/logo_black_small.png" alt="Logo" />
-          </div>
-        </div>
-
         <div className="navigation-user">
           <div className="navigation-user-picture">
             <Link to="/profile">
@@ -31,8 +25,10 @@ const sideDrawer = props => {
           <div className="navigation-user-name">
             <Link to="/profile">Marc Zimmermann</Link>
           </div>
-          <div className="navigation-user-editlink">
-            <Link to="/profile">Profil verwalten</Link>
+          <div>
+            <Link to="/profile" className="navigation-user-editlink">
+              Profil verwalten
+            </Link>
           </div>
         </div>
         <div className="navigation-links">
@@ -213,6 +209,11 @@ const sideDrawer = props => {
                 </Link>
               </li>
             </ul>
+          </div>
+          <div className="navigation-logo-container">
+            <div className="navigation-logo">
+              <img src="img/logo_black_small.png" alt="Logo" />
+            </div>
           </div>
           <div className="navigation-links-button">
             <DrawerToggleButton

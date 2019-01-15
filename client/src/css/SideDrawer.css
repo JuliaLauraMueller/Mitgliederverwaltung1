@@ -47,18 +47,24 @@
 .side-drawer a {
   color: #ffffff;
   font-family: 'Roboto', sans-serif;
-  text-decoration: none;
   font-size: 1rem;
+}
+
+.side-drawer a:hover {
+  text-decoration: none;
+}
+
+.navigation-user-editlink {
+  text-decoration: underline;
+}
+
+.navigation-user-editlink:hover {
+  text-decoration: underline;
 }
 
 .side-drawer a:hover,
 .side-drawer a:active {
   color: #db9d0c;
-}
-
-.navigation-header-logo {
-  margin-top: 1rem;
-  margin-left: 1rem;
 }
 
 .navigation-user {
@@ -127,6 +133,15 @@
 
 .navigation-links-button {
   padding-left: 2rem;
+}
+
+.navigation-logo-container {
+  height: 98px;
+  text-align: center;
+}
+
+.navigation-logo {
+  padding-top: 1rem;
 }
 
 @media (min-width: 684px) {
