@@ -58,7 +58,7 @@ class ProfilePicEDIT extends Component {
         </InputGroup>
 
         <InputGroup>
-          <InputGroupAddon addonType="prepend">Xing</InputGroupAddon>
+          <InputGroupAddon addonType="prepend">Xing:</InputGroupAddon>
           <form className="input-field">
             <Input
               type="text"
@@ -69,7 +69,7 @@ class ProfilePicEDIT extends Component {
           </form>
         </InputGroup>
         <InputGroup>
-          <InputGroupAddon addonType="prepend">Linkedin</InputGroupAddon>
+          <InputGroupAddon addonType="prepend">Linkedin:</InputGroupAddon>
           <form className="input-field">
             <Input
               type="text"
@@ -80,7 +80,7 @@ class ProfilePicEDIT extends Component {
           </form>
         </InputGroup>
         <InputGroup>
-          <InputGroupAddon addonType="prepend">Facebook</InputGroupAddon>
+          <InputGroupAddon addonType="prepend">Facebook:</InputGroupAddon>
           <form className="input-field">
             <Input
               type="text"
@@ -91,7 +91,7 @@ class ProfilePicEDIT extends Component {
           </form>
         </InputGroup>
         <InputGroup>
-          <InputGroupAddon addonType="prepend">Instagram</InputGroupAddon>
+          <InputGroupAddon addonType="prepend">Instagram:</InputGroupAddon>
           <form className="input-field">
             <Input
               type="text"
@@ -102,7 +102,15 @@ class ProfilePicEDIT extends Component {
           </form>
         </InputGroup>
         <InputGroup>
-          <InputGroupAddon addonType="prepend">Angebot</InputGroupAddon>
+          <InputGroupAddon addonType="prepend">E-Mail:</InputGroupAddon>
+          <form className="input-field">
+            <Input
+              type="text"
+            />
+          </form>
+        </InputGroup>
+        <InputGroup>
+          <InputGroupAddon addonType="prepend">Angebot:</InputGroupAddon>
           <form className="input-field" id="text-area-offers">
             <Input
               type="textarea"
