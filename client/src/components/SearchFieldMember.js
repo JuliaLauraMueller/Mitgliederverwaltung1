@@ -67,7 +67,7 @@ class SearchFieldMember extends Component {
               </DropdownToggle>
 
               <DropdownMenu>
-                <DropdownItem header>Filter Cities</DropdownItem>
+                <DropdownItem header>Standorte filtern</DropdownItem>
 
                 <div className="drop-down-filter">
                   <input type="checkbox" />
