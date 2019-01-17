@@ -38,13 +38,6 @@ class MemberPage extends Component {
       </div>
     );
   }
-  componentWillMount() {
-    var self = this;
-    memberService.getUserBody().then(resp => {
-      self.state.members = resp.members;
-      self.setState({ members: resp.members });
-    });
-  }
 }
 
 function mapStateToProps(state) {
