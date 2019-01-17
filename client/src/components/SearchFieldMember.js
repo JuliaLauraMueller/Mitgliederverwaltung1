@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import { Container } from 'reactstrap';
+import { connect } from 'react-redux';
+import { searchMembers } from '../redux/actions/memberActions';
 
 class SearchFieldMember extends Component {
-  state = {
-    query: ''
-  };
+  constructor(props) {
+    super(props);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.props.dispatch(searchMembers(''));
+  }
 
   handleInputChange = () => {
-    this.setState({
-      query: this.search.value
-    });
+    this.props.dispatch(searchMembers(this.search.value));
   };
 
   render() {
@@ -27,6 +29,7 @@ class SearchFieldMember extends Component {
               style={{ background: 'none', border: 'none' }}
               placeholder="suchen..."
               ref={input => (this.search = input)}
+              onChange={this.handleInputChange}
             />
             <hr />
           </form>
@@ -36,4 +39,8 @@ class SearchFieldMember extends Component {
   }
 }
 
-export default SearchFieldMember;
+function mapStateToProps(state) {
+  return {};
+}
+
+export default connect(mapStateToProps)(SearchFieldMember);

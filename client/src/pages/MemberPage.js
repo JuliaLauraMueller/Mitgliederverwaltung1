@@ -15,11 +15,10 @@ class MemberPage extends Component {
   constructor(props) {
     super(props);
     this.props.dispatch(setNavVisible());
-    this.state = { members: [] };
   }
 
   render() {
-    let memberCards = this.state.members.map(member => {
+    let memberCards = this.props.members.map(member => {
       return <MemberCard member={member} />;
     });
     return (
@@ -56,7 +55,9 @@ class MemberPage extends Component {
 }
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    members: state.member.filteredMembers
+  };
 }
 
 export default connect(mapStateToProps)(MemberPage);
