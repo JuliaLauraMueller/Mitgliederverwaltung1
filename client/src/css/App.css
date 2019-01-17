@@ -8,6 +8,11 @@ remove browser autofill
   }
 }
 
+@font-face {
+  font-family: helveticaNeueLtThinCn;
+  src: url(/fonts/helveticaneueltthincn.ttf);
+}
+
 input:-webkit-autofill {
   -webkit-animation-name: autofill;
   animation-name: autofill;
