@@ -87,7 +87,7 @@ const toolbar = props => (
               </Link>
             </li>
             <li>
-              <Link to="/">
+              <Link to="/members">
                 <svg
                   width="22"
                   height="26"
