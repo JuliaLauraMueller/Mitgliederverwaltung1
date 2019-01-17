@@ -30,13 +30,6 @@ class MemberPage extends Component {
         </div>
 
         <div>
-          <h1>
-            <img
-              className="member-logo"
-              src={'./img/logo.png'}
-              alt="Card i cap"
-            />
-          </h1>
           <Container fluid>
             <SearchFieldMember />
             <Row>{memberCards}</Row>
