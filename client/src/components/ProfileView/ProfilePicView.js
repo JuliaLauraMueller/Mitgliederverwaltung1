@@ -7,10 +7,6 @@ import { Button } from 'reactstrap';
 import '../../css/ProfilePage.css';
 
 class ProfilePic extends Component {
-  componentWillMount() {
-    this.props.fetchProfile();
-  }
-
   render() {
     const profile = this.props.profile;
     return (
@@ -22,7 +18,11 @@ class ProfilePic extends Component {
           alt="profile"
         />
         <br />
-        <Button className="icon-button" id="xing-button" href={profile.xingLink}>
+        <Button
+          className="icon-button"
+          id="xing-button"
+          href={profile.xingLink}
+        >
           <img className="icons" alt="xing-icon" src={'./img/xing.svg'} />
         </Button>
         <Button className="icon-button" href={profile.linkedinLink}>
@@ -36,10 +36,18 @@ class ProfilePic extends Component {
           <img className="icons" alt="fb-icon" src={'./img/facebook.svg'} />
         </Button>
         <Button className="icon-button" href={profile.instagramLink}>
-          <img className="icons" alt="instagramm-icon" src={'./img/instagram.svg'} />
+          <img
+            className="icons"
+            alt="instagramm-icon"
+            src={'./img/instagram.svg'}
+          />
         </Button>
         <Button className="icon-button">
-          <img className="icons" alt="mail-icon" src={'./img/mail-profile.svg'} />
+          <img
+            className="icons"
+            alt="mail-icon"
+            src={'./img/mail-profile.svg'}
+          />
         </Button>
 
         <div className="offerings">
@@ -55,7 +63,6 @@ class ProfilePic extends Component {
 }
 
 ProfilePic.propTypes = {
-  fetchProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
 

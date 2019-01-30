@@ -47,7 +47,10 @@ class MemberCard extends Component {
             </Container>
             <Container className="profile-link">
               <div>
-                <Link className="profile-text" to="/profile">
+                <Link
+                  className="profile-text"
+                  to={`/member/${this.props.member._id}`}
+                >
                   Profil
                   <svg
                     className="profile-arrow"

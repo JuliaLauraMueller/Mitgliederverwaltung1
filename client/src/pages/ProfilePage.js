@@ -10,6 +10,7 @@ import ProfileMainInformationEDIT from '../components/ProfileEdit/ProfileMainInf
 
 import { connect } from 'react-redux';
 import { setNavVisible } from '../redux/actions/navigationActions';
+import { fetchProfile } from '../redux/actions/profileActions';
 
 import '../css/ProfilePage.css';
 
@@ -23,6 +24,10 @@ class ProfilePage extends Component {
 
     this.toggleEdit = this.toggleEdit.bind(this);
     this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.dispatch(fetchProfile(this.props.match.params.id));
   }
 
   toggleEdit() {

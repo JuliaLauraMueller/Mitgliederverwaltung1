@@ -6,9 +6,6 @@ import { fetchProfile } from '../../redux/actions/profileActions';
 import '../../css/ProfilePage.css';
 
 class ProfileMainInformation extends Component {
-  componentWillMount() {
-    this.props.fetchProfile();
-  }
   constructor(props) {
     super(props);
     this.toggle = this.toggle.bind(this);
@@ -30,7 +27,9 @@ class ProfileMainInformation extends Component {
     return (
       <div id="mainInformation">
         <div className="business-info">
-          <p className="main-title title-maininfo">Geschäftliche Informationen</p>
+          <p className="main-title title-maininfo">
+            Geschäftliche Informationen
+          </p>
           <div className="overflow">
             <label>Branche:</label>
             <label className="value-label">{profile.sector}</label>
@@ -103,7 +102,7 @@ class ProfileMainInformation extends Component {
             <label>PLZ:</label>
             <label className="value-label">{profile.privateZip}</label>
           </div>
-          <div> 
+          <div>
             <label>Ort:</label>
             <label className="value-label">{profile.privateCity}</label>
           </div>
@@ -124,7 +123,6 @@ class ProfileMainInformation extends Component {
 }
 
 ProfileMainInformation.propTypes = {
-  fetchProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
 

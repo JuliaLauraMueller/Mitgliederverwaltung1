@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import userInfo from '../../helpers/jwtAccessor';
 
 import '../../css/SideDrawer.css';
 
@@ -18,15 +19,18 @@ const sideDrawer = props => {
       <div className="navigation">
         <div className="navigation-user">
           <div className="navigation-user-picture">
-            <Link to="/profile">
+            <Link to={`/member/${userInfo._id}`}>
               <img src="img/Marc.png" alt="Marc" />
             </Link>
           </div>
           <div className="navigation-user-name">
-            <Link to="/profile">Marc Zimmermann</Link>
+            <Link to={`/member/${userInfo._id}`}>Marc Zimmermann</Link>
           </div>
           <div>
-            <Link to="/profile" className="navigation-user-editlink">
+            <Link
+              to={`/member/${userInfo._id}`}
+              className="navigation-user-editlink"
+            >
               Profil verwalten
             </Link>
           </div>
