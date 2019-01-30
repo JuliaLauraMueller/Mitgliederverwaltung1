@@ -4,7 +4,10 @@ import '../../css/DrawerToggleButton.css';
 
 const drawerToggleButton = props => (
   <button className='toggle-button' onClick={props.click}>
-    <img src={props.image} alt='button_image' />
+    <img
+      src={require(`../../../public/img/${props.image}`)}
+      alt='button_image'
+    />
   </button>
 );
 

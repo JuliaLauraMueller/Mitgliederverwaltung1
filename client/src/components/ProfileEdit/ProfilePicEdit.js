@@ -46,7 +46,7 @@ class ProfilePicEDIT extends Component {
             <img
               className="profile-image-edit"
               style={{ width: '147px' }}
-              src={'./img/marc_zimmermann.jpg'}
+              src={require('../../../public/img/marc_zimmermann.jpg')}
               alt="profile"
             />
           </form>

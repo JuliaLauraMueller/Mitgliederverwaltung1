@@ -14,7 +14,7 @@ class ProfilePic extends Component {
         <img
           id="profile-image"
           style={{ width: '180px' }}
-          src={'./img/marc_zimmermann.jpg'}
+          src={require('../../../public/img/marc_zimmermann.jpg')}
           alt="profile"
         />
         <br />
@@ -23,30 +23,38 @@ class ProfilePic extends Component {
           id="xing-button"
           href={profile.xingLink}
         >
-          <img className="icons" alt="xing-icon" src={'./img/xing.svg'} />
+          <img
+            className="icons"
+            alt="xing-icon"
+            src={require('../../../public/img/xing.svg')}
+          />
         </Button>
         <Button className="icon-button" href={profile.linkedinLink}>
           <img
             className="icons"
             alt="linkedin-icon"
-            src={'./img/linkedin.svg'}
+            src={require('../../../public/img/linkedin.svg')}
           />
         </Button>
         <Button className="icon-button" href={profile.facebookLink}>
-          <img className="icons" alt="fb-icon" src={'./img/facebook.svg'} />
+          <img
+            className="icons"
+            alt="fb-icon"
+            src={require('../../../public/img/facebook.svg')}
+          />
         </Button>
         <Button className="icon-button" href={profile.instagramLink}>
           <img
             className="icons"
             alt="instagramm-icon"
-            src={'./img/instagram.svg'}
+            src={require('../../../public/img/instagram.svg')}
           />
         </Button>
         <Button className="icon-button">
           <img
             className="icons"
             alt="mail-icon"
-            src={'./img/mail-profile.svg'}
+            src={require('../../../public/img/mail-profile.svg')}
           />
         </Button>
 

@@ -21,7 +21,7 @@ const sideDrawer = props => {
         <div className="navigation-user">
           <div className="navigation-user-picture">
             <Link to={`/member/${userId}`}>
-              <img src="img/Marc.png" alt="Marc" />
+              <img src={require('../../../public/img/Marc.png')} alt="Marc" />
             </Link>
           </div>
           <div className="navigation-user-name">
@@ -214,12 +214,15 @@ const sideDrawer = props => {
           </div>
           <div className="navigation-logo-container">
             <div className="navigation-logo">
-              <img src="img/logo_black_small.png" alt="Logo" />
+              <img
+                src={require('../../../public/img/logo_black_small.png')}
+                alt="Logo"
+              />
             </div>
           </div>
           <div className="navigation-links-button">
             <DrawerToggleButton
-              image="img/Vector.png"
+              image="vector_left.png"
               click={props.drawerClickHandler}
             />
           </div>

@@ -184,14 +184,14 @@ const toolbar = props => (
           <a href="/">
             <img
               className="toolbar-icon"
-              src="img/logo_black_small.png"
+              src={require('../../../public/img/logo_black_small.png')}
               alt="logo"
             />
           </a>
         </div>
         <div className="toolbar-navigation-links-button">
           <DrawerToggleButton
-            image="img/Vector.png"
+            image="vector_right.png"
             click={props.drawerClickHandler}
           />
         </div>
