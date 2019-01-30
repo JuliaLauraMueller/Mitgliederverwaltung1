@@ -14,23 +14,21 @@ const sideDrawer = props => {
   if (!props.show) {
     drawerClasses = 'side-drawer close';
   }
+  let userId = userInfo ? userInfo._id : '';
   return (
     <nav className={drawerClasses}>
       <div className="navigation">
         <div className="navigation-user">
           <div className="navigation-user-picture">
-            <Link to={`/member/${userInfo._id}`}>
+            <Link to={`/member/${userId}`}>
               <img src="img/Marc.png" alt="Marc" />
             </Link>
           </div>
           <div className="navigation-user-name">
-            <Link to={`/member/${userInfo._id}`}>Marc Zimmermann</Link>
+            <Link to={`/member/${userId}`}>Marc Zimmermann</Link>
           </div>
           <div>
-            <Link
-              to={`/member/${userInfo._id}`}
-              className="navigation-user-editlink"
-            >
+            <Link to={`/member/${userId}`} className="navigation-user-editlink">
               Profil verwalten
             </Link>
           </div>
