@@ -27,7 +27,11 @@ class Routes extends Component {
             <Switch>
               <Route exact path='/login' component={LoginPage} />
               <PrivateRoute exact path='/' component={HomePage} />
-              <PrivateRoute exact path='/profile' component={ProfilePage} />
+              <PrivateRoute
+                exact
+                path={'/member/:id'}
+                component={ProfilePage}
+              />
               <PrivateRoute exact path='/members' component={MemberPage} />
               <Route component={NotFoundPage} />
             </Switch>

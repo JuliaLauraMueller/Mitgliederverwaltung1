@@ -2,16 +2,11 @@ import React, { Component } from 'react';
 import { InputGroup, Input, InputGroupAddon } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchProfile } from '../../redux/actions/profileActions';
 import { putProfile } from '../../redux/actions/profileActions';
 
 import '../../css/ProfilePage.css';
 
 class ProfilePicEDIT extends Component {
-  componentWillMount() {
-    this.props.fetchProfile();
-  }
-
   constructor(props) {
     super(props);
     const profile = this.props.profile;
@@ -40,7 +35,7 @@ class ProfilePicEDIT extends Component {
       offerings: this.state.offerings
     };
 
-    this.props.putProfile(profilePicUpdate);
+    this.props.dispatch(putProfile(profilePicUpdate));
   }
 
   render() {
@@ -51,7 +46,7 @@ class ProfilePicEDIT extends Component {
             <img
               className="profile-image-edit"
               style={{ width: '147px' }}
-              src={'./img/marc_zimmermann.jpg'}
+              src={require('../../../public/img/marc_zimmermann.jpg')}
               alt="profile"
             />
           </form>
@@ -104,9 +99,7 @@ class ProfilePicEDIT extends Component {
         <InputGroup>
           <InputGroupAddon addonType="prepend">E-Mail:</InputGroupAddon>
           <form className="input-field">
-            <Input
-              type="text"
-            />
+            <Input type="text" />
           </form>
         </InputGroup>
         <InputGroup>
@@ -127,8 +120,6 @@ class ProfilePicEDIT extends Component {
 }
 
 ProfilePicEDIT.propTypes = {
-  fetchProfile: PropTypes.func.isRequired,
-  putProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
 
@@ -137,7 +128,7 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { fetchProfile, putProfile },
+  null,
   null,
   { withRef: true }
 )(ProfilePicEDIT);

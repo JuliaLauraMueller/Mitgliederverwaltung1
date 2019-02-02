@@ -39,13 +39,17 @@ class Login extends Component {
         <div className="login-middle">
           <div className="login-inner">
             <img
-              src="./img/logo_with_font_small.png"
+              src={require('../../public/img/logo_with_font_small.png')}
               alt="logo"
               className="login-logo"
             />
             <Form name="loginForm">
               <div className="input-container">
-                <img src="./img/mail.png" alt="mail" className="input-icon" />
+                <img
+                  src={require('../../public/img/mail.png')}
+                  alt="mail"
+                  className="input-icon"
+                />
                 <Input
                   type="email"
                   name="privateEmail"
@@ -58,7 +62,7 @@ class Login extends Component {
               </div>
               <div className="input-container">
                 <img
-                  src="./img/Lock.png"
+                  src={require('../../public/img/Lock.png')}
                   alt="password"
                   className="input-icon"
                 />

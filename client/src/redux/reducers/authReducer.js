@@ -4,12 +4,9 @@ import {
   UPDATE_TOKEN,
   LOGOUT
 } from '../types/authTypes';
-import jwtDecode from 'jwt-decode';
+import userInfo from '../../helpers/jwtAccessor';
 
-const userToken = localStorage.getItem('user');
-const user = userToken ? jwtDecode(userToken) : undefined;
-
-const initialState = user ? { loggedIn: true, user } : {};
+const initialState = { loggedIn: true, user: userInfo };
 
 export default function(state = initialState, action) {
   switch (action.type) {

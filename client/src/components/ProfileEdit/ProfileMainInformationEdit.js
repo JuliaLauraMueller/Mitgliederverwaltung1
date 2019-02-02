@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchProfile } from '../../redux/actions/profileActions';
 import { putProfile } from '../../redux/actions/profileActions';
 import {
   InputGroup,
@@ -14,10 +13,6 @@ import {
 import '../../css/ProfilePage.css';
 
 class ProfileMainInformationEDIT extends Component {
-  componentWillMount() {
-    this.props.fetchProfile();
-  }
-
   constructor(props) {
     super(props);
     const profile = this.props.profile;
@@ -89,14 +84,16 @@ class ProfileMainInformationEDIT extends Component {
       invoiceAddress: this.state.invoiceAddress
     };
 
-    this.props.putProfile(mainInfoUpdate);
+    this.props.dispatch(putProfile(mainInfoUpdate));
   }
 
   render() {
     return (
       <div id="mainInformation">
         <div className="business-info-edit">
-          <p className="main-title title-maininfo">Geschäftliche Informationen</p>
+          <p className="main-title title-maininfo">
+            Geschäftliche Informationen
+          </p>
           <InputGroup>
             <InputGroupAddon addonType="prepend">Branche:</InputGroupAddon>
             <form className="input-field">
@@ -357,17 +354,17 @@ class ProfileMainInformationEDIT extends Component {
               </FormGroup>
             </FormGroup>
             <InputGroup>
-            <InputGroupAddon addonType="prepend">E-Mail:</InputGroupAddon>
-            <form className="input-field">
-              <Input
-                className="value-label"
-                type="text"
-                name="privateEmail"
-                onChange={this.onChange}
-                value={this.state.privateEmail}
-              />
-            </form>
-          </InputGroup>
+              <InputGroupAddon addonType="prepend">E-Mail:</InputGroupAddon>
+              <form className="input-field">
+                <Input
+                  className="value-label"
+                  type="text"
+                  name="privateEmail"
+                  onChange={this.onChange}
+                  value={this.state.privateEmail}
+                />
+              </form>
+            </InputGroup>
           </InputGroup>
         </div>
       </div>
@@ -376,8 +373,6 @@ class ProfileMainInformationEDIT extends Component {
 }
 
 ProfileMainInformationEDIT.propTypes = {
-  fetchProfile: PropTypes.func.isRequired,
-  putProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
 
@@ -387,7 +382,7 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchProfile, putProfile },
+  null,
   null,
   { withRef: true }
 )(ProfileMainInformationEDIT);
