@@ -1,7 +1,10 @@
 import { SEARCH_MEMBERS } from '../actions/memberActions';
+import { MEMBERS_FETCHED } from '../types/memberTypes';
 
 const initialState = {
   searchText: '',
+  members: [],
+  /*
   members: [
     {
       _id: '5bfe7e0c7d3e650398e3e6d8',
@@ -43,11 +46,20 @@ const initialState = {
       privateTel: '079 254 56 89'
     }
   ],
+  */
   filteredMembers: []
 };
 
 export default function(state = initialState, action) {
+  console.log(action.type);
   switch (action.type) {
+    case MEMBERS_FETCHED:
+      console.log('FETCHED');
+      state.members = action.payload;
+      return state;
+    //return {
+    //  members: { ...action.payload }
+    //};
     case SEARCH_MEMBERS:
       return {
         members: state.members,

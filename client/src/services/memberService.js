@@ -9,6 +9,7 @@ function getUserBody() {
     let mem = {
       members: users.map(element => {
         return {
+          _id: element.id,
           firstname: element.firstname,
           surname: element.surname,
           privateEmail: element.privateEmail,
@@ -17,6 +18,7 @@ function getUserBody() {
         };
       })
     };
+    console.log(mem);
     return mem;
   });
 }
