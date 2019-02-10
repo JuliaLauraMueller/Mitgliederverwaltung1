@@ -2,24 +2,20 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchProfile } from '../../redux/actions/profileActions';
-import { Button, Row, Col } from 'reactstrap';
+import { Button, Row, Container } from 'reactstrap';
 
 import '../../css/ProfilePage.css';
 
 class ProfilePic extends Component {
-  componentWillMount() {
-    this.props.fetchProfile();
-  }
-
   render() {
     const profile = this.props.profile;
     return (
-      <div id="profilePic">
+      <Container id="profilePic">
         <Row className="profile-pic__image">
           <img
             id="profile-image"
             style={{ width: '180px' }}
-            src={'./img/marc_zimmermann.jpg'}
+            src={require('../../../public/img/marc_zimmermann.jpg')}
             alt="profile"
           />
         </Row>
@@ -30,36 +26,55 @@ class ProfilePic extends Component {
             id="xing-button"
             href={profile.xingLink}
           >
-            <img className="icons" alt="xing-icon" src={'./img/xing.svg'} />
+            <img
+              className="icons"
+              alt="xing-icon"
+              src={require('../../../public/img/xing.svg')}
+            />
           </Button>
           <Button className="icon-button" href={profile.linkedinLink}>
             <img
               className="icons"
               alt="linkedin-icon"
-              src={'./img/linkedin.svg'}
+              src={require('../../../public/img/linkedin.svg')}
             />
           </Button>
           <Button className="icon-button" href={profile.facebookLink}>
-            <img className="icons" alt="fb-icon" src={'./img/facebook.svg'} />
+            <img
+              className="icons"
+              alt="fb-icon"
+              src={require('../../../public/img/facebook.svg')}
+            />
           </Button>
           <Button className="icon-button" href={profile.instagramLink}>
-            <img className="icons" alt="fb-icon" src={'./img/instagram.svg'} />
+            <img
+              className="icons"
+              alt="instagramm-icon"
+              src={require('../../../public/img/instagram.svg')}
+            />
           </Button>
+          <Button className="icon-button">
+            <img
+              className="icons"
+              alt="mail-icon"
+              src={require('../../../public/img/mail-profile.svg')}
+            />
+          </Button>
+
+          <div className="offerings">
+            <label className="main-title" id="offerings-label">
+              Was biete ich an?
+            </label>
+            <br />
+            <label className="information">{profile.offerings}</label>
+          </div>
         </Row>
-        <Row className="offerings">
-          <label className="main-title" id="offerings-label">
-            Was biete ich an?
-          </label>
-          <br />
-          <label className="information">{profile.offerings}</label>
-        </Row>
-      </div>
+      </Container>
     );
   }
 }
 
 ProfilePic.propTypes = {
-  fetchProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
 

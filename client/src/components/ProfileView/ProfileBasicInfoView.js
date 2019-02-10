@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchProfile } from '../../redux/actions/profileActions';
 
 import '../../css/ProfilePage.css';
 import { Row, Col } from 'reactstrap';
 
 class ProfileBasicInfo extends Component {
-  componentWillMount() {
-    this.props.fetchProfile('5bfe83680108860398a433a1');
-  }
-  np;
-
   render() {
     const profile = this.props.profile;
     return (
@@ -58,14 +52,11 @@ class ProfileBasicInfo extends Component {
 }
 
 ProfileBasicInfo.propTypes = {
-  fetchProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   profile: state.profile.member
 });
-export default connect(
-  mapStateToProps,
-  { fetchProfile }
-)(ProfileBasicInfo);
+
+export default connect(mapStateToProps)(ProfileBasicInfo);

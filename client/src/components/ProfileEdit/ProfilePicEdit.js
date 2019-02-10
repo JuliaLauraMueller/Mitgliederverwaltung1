@@ -2,16 +2,11 @@ import React, { Component } from 'react';
 import { InputGroup, Input, InputGroupAddon } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchProfile } from '../../redux/actions/profileActions';
 import { putProfile } from '../../redux/actions/profileActions';
 
 import '../../css/ProfilePage.css';
 
 class ProfilePicEDIT extends Component {
-  componentWillMount() {
-    this.props.fetchProfile();
-  }
-
   constructor(props) {
     super(props);
     const profile = this.props.profile;
@@ -40,7 +35,7 @@ class ProfilePicEDIT extends Component {
       offerings: this.state.offerings
     };
 
-    this.props.putProfile(profilePicUpdate);
+    this.props.dispatch(putProfile(profilePicUpdate));
   }
 
   render() {
@@ -51,14 +46,14 @@ class ProfilePicEDIT extends Component {
             <img
               className="profile-image-edit"
               style={{ width: '147px' }}
-              src={'./img/marc_zimmermann.jpg'}
+              src={require('../../../public/img/marc_zimmermann.jpg')}
               alt="profile"
             />
           </form>
         </InputGroup>
 
         <InputGroup>
-          <InputGroupAddon addonType="prepend">Xing</InputGroupAddon>
+          <InputGroupAddon addonType="prepend">Xing:</InputGroupAddon>
           <form className="input-field">
             <Input
               type="text"
@@ -69,7 +64,7 @@ class ProfilePicEDIT extends Component {
           </form>
         </InputGroup>
         <InputGroup>
-          <InputGroupAddon addonType="prepend">Linkedin</InputGroupAddon>
+          <InputGroupAddon addonType="prepend">Linkedin:</InputGroupAddon>
           <form className="input-field">
             <Input
               type="text"
@@ -80,7 +75,7 @@ class ProfilePicEDIT extends Component {
           </form>
         </InputGroup>
         <InputGroup>
-          <InputGroupAddon addonType="prepend">Facebook</InputGroupAddon>
+          <InputGroupAddon addonType="prepend">Facebook:</InputGroupAddon>
           <form className="input-field">
             <Input
               type="text"
@@ -91,7 +86,7 @@ class ProfilePicEDIT extends Component {
           </form>
         </InputGroup>
         <InputGroup>
-          <InputGroupAddon addonType="prepend">Instagram</InputGroupAddon>
+          <InputGroupAddon addonType="prepend">Instagram:</InputGroupAddon>
           <form className="input-field">
             <Input
               type="text"
@@ -102,7 +97,13 @@ class ProfilePicEDIT extends Component {
           </form>
         </InputGroup>
         <InputGroup>
-          <InputGroupAddon addonType="prepend">Angebot</InputGroupAddon>
+          <InputGroupAddon addonType="prepend">E-Mail:</InputGroupAddon>
+          <form className="input-field">
+            <Input type="text" />
+          </form>
+        </InputGroup>
+        <InputGroup>
+          <InputGroupAddon addonType="prepend">Angebot:</InputGroupAddon>
           <form className="input-field" id="text-area-offers">
             <Input
               type="textarea"
@@ -119,8 +120,6 @@ class ProfilePicEDIT extends Component {
 }
 
 ProfilePicEDIT.propTypes = {
-  fetchProfile: PropTypes.func.isRequired,
-  putProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
 
@@ -129,7 +128,7 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { fetchProfile, putProfile },
+  null,
   null,
   { withRef: true }
 )(ProfilePicEDIT);

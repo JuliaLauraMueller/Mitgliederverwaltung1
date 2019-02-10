@@ -13,7 +13,7 @@ function getUserBody() {
           surname: element.surname,
           privateEmail: element.privateEmail,
           privateTel: element.privateTel,
-          profilepic: './img/marc_zimmermann.jpg'
+          profilepic: './img/marc_zimmermann.jpg' // TODO: implement loading of images
         };
       })
     };

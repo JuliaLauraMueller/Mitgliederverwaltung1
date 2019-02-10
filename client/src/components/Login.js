@@ -35,47 +35,51 @@ class Login extends Component {
 
   render() {
     return (
-      <div className='login-container'>
-        <div className='login-middle'>
-          <div className='login-inner'>
+      <div className="login-container">
+        <div className="login-middle">
+          <div className="login-inner">
             <img
-              src='./img/logo_with_font_small.png'
-              alt='logo'
-              className='login-logo'
+              src={require('../../public/img/logo_with_font_small.png')}
+              alt="logo"
+              className="login-logo"
             />
-            <Form name='loginForm'>
-              <div className='input-container'>
-                <img src='./img/Mail.png' alt='mail' className='input-icon' />
+            <Form name="loginForm">
+              <div className="input-container">
+                <img
+                  src={require('../../public/img/mail.png')}
+                  alt="mail"
+                  className="input-icon"
+                />
                 <Input
-                  type='email'
-                  name='privateEmail'
-                  placeholder='E-Mail'
-                  id='emailInp'
-                  className='icon-input'
+                  type="email"
+                  name="privateEmail"
+                  placeholder="E-Mail"
+                  id="emailInp"
+                  className="icon-input"
                   value={this.state.privateEmail}
                   onChange={this.handleChange}
                 />
               </div>
-              <div className='input-container'>
+              <div className="input-container">
                 <img
-                  src='./img/Lock.png'
-                  alt='password'
-                  className='input-icon'
+                  src={require('../../public/img/Lock.png')}
+                  alt="password"
+                  className="input-icon"
                 />
                 <Input
-                  type='password'
-                  name='password'
-                  id='passwordInp'
-                  placeholder='Passwort'
-                  className='icon-input'
+                  type="password"
+                  name="password"
+                  id="passwordInp"
+                  placeholder="Passwort"
+                  className="icon-input"
                   value={this.state.password}
                   onChange={this.handleChange}
                 />
               </div>
               <Button
-                className='login-button'
+                className="login-button"
                 onClick={this.handleSubmit}
-                type='submit'
+                type="submit"
               >
                 Login
               </Button>

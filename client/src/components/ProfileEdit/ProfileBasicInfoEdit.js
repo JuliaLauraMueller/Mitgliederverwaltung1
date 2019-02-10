@@ -2,16 +2,11 @@ import React, { Component } from 'react';
 import { InputGroup, InputGroupAddon, Input } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchProfile } from '../../redux/actions/profileActions';
 import { putProfile } from '../../redux/actions/profileActions';
 
 import '../../css/ProfilePage.css';
 
 class ProfileBasicInfoEDIT extends Component {
-  componentWillMount() {
-    this.props.fetchProfile();
-  }
-
   constructor(props) {
     super(props);
     const profile = this.props.profile;
@@ -51,7 +46,7 @@ class ProfileBasicInfoEDIT extends Component {
       godfather: this.state.godfather,
       birthdate: this.state.birthdate
     };
-    this.props.putProfile(basicInformationUpdate);
+    this.props.dispatch(putProfile(basicInformationUpdate));
   }
 
   render() {
@@ -184,7 +179,9 @@ class ProfileBasicInfoEDIT extends Component {
           </form>
         </InputGroup>
         <InputGroup>
-          <InputGroupAddon className ="godfather-label"addonType="prepend">Götti:</InputGroupAddon>
+          <InputGroupAddon className="godfather-label" addonType="prepend">
+            Götti:
+          </InputGroupAddon>
           <form className="input-field">
             <Input
               type="text"
@@ -200,8 +197,6 @@ class ProfileBasicInfoEDIT extends Component {
 }
 
 ProfileBasicInfoEDIT.propTypes = {
-  fetchProfile: PropTypes.func.isRequired,
-  putProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
 
@@ -211,7 +206,7 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchProfile, putProfile },
+  null,
   null,
   { withRef: true }
 )(ProfileBasicInfoEDIT);

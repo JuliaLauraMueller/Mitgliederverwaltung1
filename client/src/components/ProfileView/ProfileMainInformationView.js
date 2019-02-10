@@ -8,9 +8,6 @@ import { Col, Row, Container } from 'reactstrap';
 import '../../css/ProfilePage.css';
 
 class ProfileMainInformation extends Component {
-  componentWillMount() {
-    this.props.fetchProfile();
-  }
   constructor(props) {
     super(props);
     this.toggle = this.toggle.bind(this);
@@ -128,7 +125,6 @@ class ProfileMainInformation extends Component {
 }
 
 ProfileMainInformation.propTypes = {
-  fetchProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
 };
 
