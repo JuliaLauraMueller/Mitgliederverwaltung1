@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchProfile } from '../../redux/actions/profileActions';
 
+import { Col, Row, Container } from 'reactstrap';
+
 import '../../css/ProfilePage.css';
 
 class ProfileMainInformation extends Component {
@@ -28,9 +30,11 @@ class ProfileMainInformation extends Component {
   render() {
     const profile = this.props.profile;
     return (
-      <div id="mainInformation">
-        <div className="business-info">
-          <p className="main-title title-maininfo">Geschäftliche Informationen</p>
+      <Row id="mainInformation">
+        <Col md={6} className="business-info">
+          <p className="main-title title-maininfo">
+            Geschäftliche Informationen
+          </p>
           <div className="overflow">
             <label>Branche:</label>
             <label className="value-label">{profile.sector}</label>
@@ -79,9 +83,9 @@ class ProfileMainInformation extends Component {
             <label>URL Firma:</label>
             <label className="value-label">{profile.companyURL}</label>
           </div>
-        </div>
+        </Col>
 
-        <div className="private-info">
+        <Col md={6} className="private-info">
           <p className="main-title title-maininfo">Private Informationen</p>
           <div>
             <label>Tel:</label>
@@ -103,7 +107,7 @@ class ProfileMainInformation extends Component {
             <label>PLZ:</label>
             <label className="value-label">{profile.privateZip}</label>
           </div>
-          <div> 
+          <div>
             <label>Ort:</label>
             <label className="value-label">{profile.privateCity}</label>
           </div>
@@ -117,8 +121,8 @@ class ProfileMainInformation extends Component {
             <label>E-Mail:</label>
             <label className="value-label">{profile.privateEmail}</label>
           </div>
-        </div>
-      </div>
+        </Col>
+      </Row>
     );
   }
 }

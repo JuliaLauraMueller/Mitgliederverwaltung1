@@ -13,6 +13,8 @@ import { setNavVisible } from '../redux/actions/navigationActions';
 
 import '../css/ProfilePage.css';
 
+import { Container, Row, Col } from 'reactstrap';
+
 class ProfilePage extends Component {
   constructor(props) {
     super(props);
@@ -41,21 +43,21 @@ class ProfilePage extends Component {
     if (this.state.isEditing) {
       return (
         <div className="bodyProfile">
-                  <button className="button-save-edit" onClick={this.handleClick}>
+          <button className="button-save-edit" onClick={this.handleClick}>
             save
           </button>
           <div id="top-container">
-          <ProfilePicEDIT
-            ref={profilePic => {
-              this.profilePic = profilePic;
-            }}
-          />
-          <ProfileBasicInfoEDIT
-            ref={basicInfo => {
-              this.basicInfo = basicInfo;
-            }}
-          />
-          </div >
+            <ProfilePicEDIT
+              ref={profilePic => {
+                this.profilePic = profilePic;
+              }}
+            />
+            <ProfileBasicInfoEDIT
+              ref={basicInfo => {
+                this.basicInfo = basicInfo;
+              }}
+            />
+          </div>
           <ProfileMainInformationEDIT
             ref={mainInfo => {
               this.mainInfo = mainInfo;
@@ -65,21 +67,42 @@ class ProfilePage extends Component {
       );
     } else {
       return (
+        <Container className="profile-page__container">
+          <Row>
+            <Col>
+              <button className="button-save-edit" onClick={this.toggleEdit}>
+                edit
+              </button>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={{ size: 10, offset: 1 }} md={{ size: 4, offset: 0 }}>
+              <ProfilePic />
+            </Col>
+            <Col xs={{ size: 10, offset: 1 }} md={{ size: 6, offset: 2 }}>
+              <ProfileBasicInfo />
+            </Col>
+            <Col xs={12} md={12}>
+              <ProfileMainInformation />
+            </Col>
+          </Row>
+        </Container>
+      );
+    }
+  }
+}
+
+/**
         <div id="bodyProfile">
         <button className="button-save-edit" onClick={this.toggleEdit}>
                   edit
                 </button>
           <div id="top-container">
-          <ProfilePic />
+          <ProfilePic  />
           <ProfileBasicInfo />
           </div>
           <ProfileMainInformation />
-        </div>
-        
-      );
-    }
-  }
-}
+        </div>*/
 
 function mapStateToProps(state) {
   return {};
