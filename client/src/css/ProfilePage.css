@@ -5,6 +5,11 @@ basic style profile page
   box-sizing: border-box;
 }
 
+div[class^='col-'] {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
 /*container*/
 #top-container,
 #mainInformation {
@@ -20,7 +25,7 @@ basic style profile page
   text-align: left;
   margin-bottom: 3%;
 }
-
+/*
 #basicInformation {
   margin-bottom: 3%;
   display: inline-block;
@@ -28,6 +33,7 @@ basic style profile page
   padding-bottom: 10px;
   vertical-align: bottom;
 }
+*/
 
 #basicInformationEdit {
   margin: 0 0 3% 3%;
@@ -37,13 +43,14 @@ basic style profile page
 }
 
 .main-title {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   opacity: 0.8;
   margin-right: 3%;
 }
 .godfather-label,
 .godfather-label span {
   margin: 0;
+  padding-bottom: 2.3rem;
 }
 
 .profile-page__container {
@@ -52,9 +59,9 @@ basic style profile page
 
 .value-label {
   float: right;
-  width: 220px;
+  width: 200px;
   margin: 0;
-  padding: 0;
+  padding-left: 0.5rem;
 }
 /*--------------------------------------------*
 additional style VIEW profile page
@@ -79,12 +86,15 @@ label.information {
 }
 
 /*profile-pic style*/
-.profile-image {
+.profile-image,
+#profile-image {
   border-radius: 50%;
-  margin-bottom: 4%;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
 }
 label.information {
-  width: 240px;
+  padding-bottom: 3%;
 }
 .information,
 label {
@@ -92,53 +102,45 @@ label {
   opacity: 0.6;
   color: #0f1929;
 }
-#profile-image {
-  border-radius: 50%;
-  margin-left: 30px;
-}
+
 .icon-button {
   background-color: transparent;
   border: none;
-  padding-right: 14px;
-  padding-left: 14px;
+  padding-right: 16px;
+  padding-left: 16px;
   margin-top: 14px;
 }
 #xing-button {
   padding-left: 0px;
+}
+
+#mail-button {
+  padding-right: 0px;
 }
 .icon-button:hover {
   background-color: transparent;
   opacity: 0.5;
 }
 .offerings {
-  display: block;
-  margin-top: 15px;
+  /*display: block;*/
+
   text-align: left;
-  border-top: 1px solid rgba(15, 25, 41, 0.7);
 }
 #offerings-label {
-  padding-top: 15px;
+  padding-top: 1rem;
 }
 
 /*basic-info style*/
-.alias-label,
 .salutation-label,
 .name-label {
   margin-right: 5px;
   margin-bottom: 0px;
-  opacity: 0.8;
-}
-.name-label {
-  font-size: 1.7rem;
   opacity: 0.8;
 }
 .salutation-label {
   font-size: 1rem;
   opacity: 0.8;
 }
-.alias-label {
-  padding-bottom: 15%;
-}
 
 .salutation-label,
 .name-label {
@@ -147,16 +149,21 @@ label {
   opacity: 0.8;
 }
 .name-label {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   opacity: 0.8;
 }
 .salutation-label {
   font-size: 0.8rem;
   opacity: 0.8;
 }
-.profile-pic__image {
+.profile-pic__image,
+.profile-pic__icons {
   display: flex;
   justify-content: center;
+}
+
+.profile-pic__icons {
+  padding-bottom: 1rem;
 }
 
 .profile-pic__image img {
@@ -171,7 +178,7 @@ additional style EDIT profile page
 /*main-info style*/
 .business-info-edit,
 .private-info-edit {
-  width: 35%;
+  width: 100px;
   display: inline-block;
   text-align: left;
   padding-top: 3%;
