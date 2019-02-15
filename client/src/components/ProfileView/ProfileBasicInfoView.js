@@ -12,36 +12,34 @@ class ProfileBasicInfo extends Component {
       <Container>
         <Row id="basicInformation">
           <Col xs="12">
-            <Col xs="9">
-              <div>
-                <p className="main-title title-maininfo">Kurzprofil</p>
-                <div>
-                  <label>Mitglieder Nr.:</label>
-                  <label className="value-label">{profile.memberNumber}</label>
-                </div>
-                <div>
-                  <label>Eintrittsdatum:</label>
-                  <label className="value-label">{profile.entryDate}</label>
-                </div>
-                <div>
-                  <label>Geburtsdatum:</label>
-                  <label className="value-label">{profile.birthdate}</label>
-                </div>
-                <div>
-                  <label>Status:</label>
-                  <label className="value-label">{profile.status}</label>
-                </div>
-                <div>
-                  <label>City:</label>
-                  <label className="value-label">{profile.city}</label>
-                </div>
-                <div>
-                  <label className="godfather-label">Götti:</label>
-                  <label className="value-label">{profile.godfather}</label>
-                </div>
-              </div>
+            <Col xs="7" md="9">
+              <p className="main-title title-maininfo">Kurzprofil</p>
+              <Col className="overflow">
+                <label>Mitglieder Nr.:</label>
+                <label className="value-label">{profile.memberNumber}</label>
+              </Col>
+              <Col className="overflow">
+                <label>Eintrittsdatum:</label>
+                <label className="value-label">{profile.entryDate}</label>
+              </Col>
+              <Col className="overflow">
+                <label>Geburtsdatum:</label>
+                <label className="value-label">{profile.birthdate}</label>
+              </Col>
+              <Col className="overflow">
+                <label>Status:</label>
+                <label className="value-label">{profile.status}</label>
+              </Col>
+              <Col className="overflow">
+                <label>City:</label>
+                <label className="value-label">{profile.city}</label>
+              </Col>
+              <Col className="overflow">
+                <label className="godfather-label">Götti:</label>
+                <label className="value-label">{profile.godfather}</label>
+              </Col>
             </Col>
-            <Col xs={{ size: 9, offset: 0 }}>
+            <Col xs="7" md="9">
               <div className="offerings">
                 <label className="main-title" id="offerings-label">
                   Was biete ich an?

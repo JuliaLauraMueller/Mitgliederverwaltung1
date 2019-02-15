@@ -74,17 +74,17 @@ class ProfilePage extends Component {
       return (
         <Container className="profile-page__container">
           <Row>
-            <Col>
+            <Col xs="7" sm="9" md="12">
               <button className="button-save-edit" onClick={this.toggleEdit}>
                 Editieren
               </button>
             </Col>
           </Row>
           <Row>
-            <Col xs={{ size: 8, offset: 1 }} md={{ size: 6, offset: 0 }}>
+            <Col xs={{ size: 7, offset: 0 }} md={{ size: 6, offset: 0 }}>
               <ProfilePic />
             </Col>
-            <Col xs={{ size: 8, offset: 1 }} md={{ size: 6, offset: 0 }}>
+            <Col xs={{ size: 7, offset: 0 }} md={{ size: 6, offset: 0 }}>
               <ProfileBasicInfo />
             </Col>
             <Col xs={12} md={12}>

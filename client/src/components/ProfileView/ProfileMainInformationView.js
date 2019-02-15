@@ -29,95 +29,103 @@ class ProfileMainInformation extends Component {
     return (
       <Container>
         <Row id="mainInformation">
-        <Col xs={{ size: 10, offset: 1 }} md={{ size: 6, offset: 0 }} className="business-info">
+          <Col
+            xs={{ size: 7, offset: 0 }}
+            md={{ size: 6, offset: 0 }}
+            className="business-info"
+          >
             <p className="main-title title-maininfo">
               Geschäftliche Informationen
             </p>
-            <div className="overflow">
+            <Col className="overflow">
               <label>Branche:</label>
               <label className="value-label">{profile.sector}</label>
-            </div>
-            <div className="overflow">
+            </Col>
+            <Col className="overflow">
               <label>Beruf:</label>
               <label className="value-label">{profile.job}</label>
-            </div>
-            <div className="overflow">
+            </Col>
+            <Col className="overflow">
               <label>Funktion:</label>
               <label className="value-label">{profile.function}</label>
-            </div>
-            <div>
+            </Col>
+            <Col className="overflow">
               <label>Firma:</label>
               <label className="value-label">{profile.company}</label>
-            </div>
-            <div>
+            </Col>
+            <Col className="overflow">
               <label>Tel:</label>
               <label className="value-label">{profile.companyTel}</label>
-            </div>
-            <div>
+            </Col>
+            <Col className="overflow">
               <label>Mobile:</label>
               <label className="value-label">{profile.companyMobile}</label>
-            </div>
-            <div className="overflow">
+            </Col>
+            <Col className="overflow">
               <label>Strasse:</label>
               <label className="value-label">{profile.companyStreet}</label>
-            </div>
-            <div>
+            </Col>
+            <Col className="overflow">
               <label>Nr:</label>
               <label className="value-label">{profile.companyStreetNr}</label>
-            </div>
-            <div>
+            </Col>
+            <Col className="overflow">
               <label>PLZ:</label>
               <label className="value-label">{profile.companyZip}</label>
-            </div>
-            <div>
+            </Col>
+            <Col className="overflow">
               <label>Ort:</label>
               <label className="value-label">{profile.companyCity}</label>
-            </div>
-            <div className="overflow">
+            </Col>
+            <Col className="overflow">
               <label>E-Mail:</label>
               <label className="value-label">{profile.companyEmail}</label>
-            </div>
-            <div className="overflow">
+            </Col>
+            <Col className="overflow">
               <label>URL Firma:</label>
               <label className="value-label">{profile.companyURL}</label>
-            </div>
+            </Col>
           </Col>
-          <Col xs={{ size: 10, offset: 1 }} md={{ size: 6, offset: 0 }} className="private-info">
+          <Col
+            xs={{ size: 7, offset: 0 }}
+            md={{ size: 6, offset: 0 }}
+            className="private-info"
+          >
             <p className="main-title title-maininfo">Private Informationen</p>
-            <div>
+            <Col className="overflow">
               <label>Tel:</label>
               <label className="value-label">{profile.privateTel}</label>
-            </div>
-            <div>
+            </Col>
+            <Col className="overflow">
               <label>Mobile:</label>
               <label className="value-label">{profile.privateMobile}</label>
-            </div>
-            <div>
+            </Col>
+            <Col className="overflow">
               <label>Strasse:</label>
               <label className="value-label">{profile.privateStreet}</label>
-            </div>
-            <div>
+            </Col>
+            <Col className="overflow">
               <label>Nr:</label>
               <label className="value-label">{profile.privateStreetNr}</label>
-            </div>
-            <div>
+            </Col>
+            <Col className="overflow">
               <label>PLZ:</label>
               <label className="value-label">{profile.privateZip}</label>
-            </div>
-            <div>
+            </Col>
+            <Col className="overflow">
               <label>Ort:</label>
               <label className="value-label">{profile.privateCity}</label>
-            </div>
-            <div>
+            </Col>
+            <Col className="overflow">
               <label>Rechnungsadresse: </label>
               <label className="value-label">
                 {profile.invoiceAddress === '1' ? 'privat' : 'geschäftlich'}
               </label>
-            </div>
-            <div className="overflow">
+            </Col>
+            <Col className="overflow">
               <label>E-Mail:</label>
               <label className="value-label">{profile.privateEmail}</label>
-            </div>
+            </Col>
           </Col>
         </Row>
       </Container>

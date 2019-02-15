@@ -5,7 +5,12 @@ basic style profile page
   box-sizing: border-box;
 }
 
-div[class^='col-'] {
+div[class^='col'] {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+[class^='col'] {
   padding-left: 0px;
   padding-right: 0px;
 }
@@ -59,9 +64,10 @@ div[class^='col-'] {
 
 .value-label {
   float: right;
-  width: 200px;
+  max-width: 300px;
+  min-width: 200px;
   margin: 0;
-  padding-left: 0.5rem;
+  padding-left: 0;
 }
 /*--------------------------------------------*
 additional style VIEW profile page
@@ -83,6 +89,7 @@ label.information {
   height: auto;
   overflow: auto;
   overflow-wrap: break-word;
+  padding: 0px;
 }
 
 /*profile-pic style*/
