@@ -5,6 +5,7 @@ basic style profile page
   box-sizing: border-box;
 }
 
+
 div[class^='col'] {
   padding-left: 0px;
   padding-right: 0px;

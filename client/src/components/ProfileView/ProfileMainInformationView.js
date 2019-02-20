@@ -29,11 +29,7 @@ class ProfileMainInformation extends Component {
     return (
       <Container>
         <Row id="mainInformation">
-          <Col
-            xs={{ size: 7, offset: 0 }}
-            md={{ size: 6, offset: 0 }}
-            className="business-info"
-          >
+          <Col xs="7" md="6" className="business-info">
             <p className="main-title title-maininfo">
               Geschäftliche Informationen
             </p>
@@ -86,11 +82,7 @@ class ProfileMainInformation extends Component {
               <label className="value-label">{profile.companyURL}</label>
             </Col>
           </Col>
-          <Col
-            xs={{ size: 7, offset: 0 }}
-            md={{ size: 6, offset: 0 }}
-            className="private-info"
-          >
+          <Col xs="7" md="6" className="private-info">
             <p className="main-title title-maininfo">Private Informationen</p>
             <Col className="overflow">
               <label>Tel:</label>

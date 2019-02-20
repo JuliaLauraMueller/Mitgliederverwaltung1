@@ -81,13 +81,13 @@ class ProfilePage extends Component {
             </Col>
           </Row>
           <Row>
-            <Col xs={{ size: 7, offset: 0 }} md={{ size: 6, offset: 0 }}>
+            <Col xs="7" md="6">
               <ProfilePic />
             </Col>
-            <Col xs={{ size: 7, offset: 0 }} md={{ size: 6, offset: 0 }}>
+            <Col xs="7" md="6">
               <ProfileBasicInfo />
             </Col>
-            <Col xs={12} md={12}>
+            <Col xs="12" md="12">
               <ProfileMainInformation />
             </Col>
           </Row>

@@ -10,7 +10,7 @@ class ProfileBasicInfo extends Component {
     const profile = this.props.profile;
     return (
       <Container>
-        <Row id="basicInformation">
+        <Row>
           <Col xs="12">
             <Col xs="7" md="9">
               <p className="main-title title-maininfo">Kurzprofil</p>
