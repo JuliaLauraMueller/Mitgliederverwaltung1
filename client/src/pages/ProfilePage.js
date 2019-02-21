@@ -81,10 +81,7 @@ class ProfilePage extends Component {
             </Col>
           </Row>
           <Row>
-            <Col xs="7" md="6">
-              <ProfilePic />
-            </Col>
-            <Col xs="7" md="6">
+            <Col xs="12" md="12">
               <ProfileBasicInfo />
             </Col>
             <Col xs="12" md="12">

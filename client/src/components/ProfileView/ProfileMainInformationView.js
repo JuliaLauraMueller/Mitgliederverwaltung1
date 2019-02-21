@@ -27,100 +27,148 @@ class ProfileMainInformation extends Component {
   render() {
     const profile = this.props.profile;
     return (
-      <Container>
-        <Row id="mainInformation">
-          <Col xs="7" md="6" className="business-info">
-            <p className="main-title title-maininfo">
-              Geschäftliche Informationen
-            </p>
-            <Col className="overflow">
+      <Row id="mainInformation">
+        <Col xs="7" md="6">
+          <Row className="business-info">
+            <Col>
+              <p className="main-title title-maininfo">
+                Geschäftliche Informationen
+              </p>
+            </Col>
+          </Row>
+
+          <Row className="overflow">
+            <Col>
               <label>Branche:</label>
               <label className="value-label">{profile.sector}</label>
             </Col>
-            <Col className="overflow">
+          </Row>
+          <Row className="overflow">
+            <Col>
               <label>Beruf:</label>
               <label className="value-label">{profile.job}</label>
             </Col>
-            <Col className="overflow">
+          </Row>
+          <Row className="overflow">
+            <Col>
               <label>Funktion:</label>
               <label className="value-label">{profile.function}</label>
             </Col>
-            <Col className="overflow">
+          </Row>
+          <Row className="overflow">
+            <Col>
               <label>Firma:</label>
               <label className="value-label">{profile.company}</label>
             </Col>
-            <Col className="overflow">
+          </Row>
+          <Row className="overflow">
+            <Col>
               <label>Tel:</label>
               <label className="value-label">{profile.companyTel}</label>
             </Col>
-            <Col className="overflow">
+          </Row>
+          <Row className="overflow">
+            <Col>
               <label>Mobile:</label>
               <label className="value-label">{profile.companyMobile}</label>
             </Col>
-            <Col className="overflow">
+          </Row>
+          <Row className="overflow">
+            <Col>
               <label>Strasse:</label>
               <label className="value-label">{profile.companyStreet}</label>
             </Col>
-            <Col className="overflow">
+          </Row>
+          <Row className="overflow">
+            <Col>
               <label>Nr:</label>
               <label className="value-label">{profile.companyStreetNr}</label>
             </Col>
-            <Col className="overflow">
+          </Row>
+          <Row className="overflow">
+            <Col>
               <label>PLZ:</label>
               <label className="value-label">{profile.companyZip}</label>
             </Col>
-            <Col className="overflow">
+          </Row>
+          <Row className="overflow">
+            <Col>
               <label>Ort:</label>
               <label className="value-label">{profile.companyCity}</label>
             </Col>
-            <Col className="overflow">
+          </Row>
+          <Row className="overflow">
+            <Col>
               <label>E-Mail:</label>
               <label className="value-label">{profile.companyEmail}</label>
             </Col>
-            <Col className="overflow">
+          </Row>
+          <Row className="overflow">
+            <Col>
               <label>URL Firma:</label>
               <label className="value-label">{profile.companyURL}</label>
             </Col>
-          </Col>
-          <Col xs="7" md="6" className="private-info">
-            <p className="main-title title-maininfo">Private Informationen</p>
-            <Col className="overflow">
+          </Row>
+        </Col>
+
+        <Col xs="7" md="6">
+          <Row className="private-info">
+            <Col>
+              <p className="main-title title-maininfo">Private Informationen</p>
+            </Col>
+          </Row>
+          <Row className="overflow">
+            <Col>
               <label>Tel:</label>
               <label className="value-label">{profile.privateTel}</label>
             </Col>
-            <Col className="overflow">
+          </Row>
+          <Row className="overflow">
+            <Col>
               <label>Mobile:</label>
               <label className="value-label">{profile.privateMobile}</label>
             </Col>
-            <Col className="overflow">
+          </Row>
+          <Row className="overflow">
+            <Col>
               <label>Strasse:</label>
               <label className="value-label">{profile.privateStreet}</label>
             </Col>
-            <Col className="overflow">
+          </Row>
+          <Row className="overflow">
+            <Col>
               <label>Nr:</label>
               <label className="value-label">{profile.privateStreetNr}</label>
             </Col>
-            <Col className="overflow">
+          </Row>
+          <Row className="overflow">
+            <Col>
               <label>PLZ:</label>
               <label className="value-label">{profile.privateZip}</label>
             </Col>
-            <Col className="overflow">
+          </Row>
+          <Row className="overflow">
+            <Col>
               <label>Ort:</label>
               <label className="value-label">{profile.privateCity}</label>
             </Col>
-            <Col className="overflow">
-              <label>Rechnungsadresse: </label>
+          </Row>
+          <Row className="overflow">
+            <Col>
+              <label>Rechnung: </label>
               <label className="value-label">
                 {profile.invoiceAddress === '1' ? 'privat' : 'geschäftlich'}
               </label>
             </Col>
-            <Col className="overflow">
+          </Row>
+          <Row className="overflow">
+            <Col>
               <label>E-Mail:</label>
               <label className="value-label">{profile.privateEmail}</label>
             </Col>
-          </Col>
-        </Row>
-      </Container>
+          </Row>
+        </Col>
+      </Row>
     );
   }
 }

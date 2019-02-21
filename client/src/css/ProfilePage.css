@@ -5,41 +5,11 @@ basic style profile page
   box-sizing: border-box;
 }
 
-
-div[class^='col'] {
-  padding-left: 0px;
-  padding-right: 0px;
-}
-
-[class^='col'] {
-  padding-left: 0px;
-  padding-right: 0px;
-}
-
-/*container*/
-#top-container,
-#mainInformation {
-  /*
-  float: left;
-  width: 100%;
-  text-align: center;
-  */
-}
-
 /*component bodies*/
 #profilePic {
   text-align: left;
   margin-bottom: 3%;
 }
-/*
-#basicInformation {
-  margin-bottom: 3%;
-  display: inline-block;
-  text-align: left;
-  padding-bottom: 10px;
-  vertical-align: bottom;
-}
-*/
 
 #basicInformationEdit {
   margin: 0 0 3% 3%;
@@ -60,7 +30,7 @@ div[class^='col'] {
 }
 
 .profile-page__container {
-  max-width: 900px;
+  max-width: 1000px;
 }
 
 .value-label {
