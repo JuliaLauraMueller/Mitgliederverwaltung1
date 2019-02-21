@@ -1,0 +1,1 @@
+export const SEARCH_MEMBERS = 'SEARCH_MEMBERS';

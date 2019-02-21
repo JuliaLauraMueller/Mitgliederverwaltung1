@@ -7,15 +7,9 @@ module.exports = addUpdatedTokenToHeader;
 function addUpdatedTokenToHeader(req, res, next) {
   if (!(req.originalUrl == '/api/users/auth')) {
     const decodedToken = jwtDecode(req.get('Authorization'));
-    const currTime = new Date().getTime() / 1000;
-    // only send updated token if at least half the expiration duration of the current token has already passed
-    if (
-      decodedToken &&
-      decodedToken.exp - currTime < config.jwtExpirationSeconds / 2
-    ) {
-      const newToken = userService.generateJwtToken(decodedToken);
-      res.append('Set-Authorization', newToken);
-    }
+
+    const newToken = userService.generateJwtToken(decodedToken);
+    res.append('Set-Authorization', newToken);
   }
   next();
 }

@@ -17,7 +17,7 @@ class MemberCard extends Component {
             <Container>
               <img
                 className="card-image"
-                src={'./img/marc_zimmermann.jpg'}
+                src={require('../../public/img/marc_zimmermann.jpg')}
                 alt="Card i cap"
               />
               <CardTitle className="card-name">
@@ -28,7 +28,7 @@ class MemberCard extends Component {
             <Container>
               <img
                 className="mail-icon"
-                src={'./img/mail.png'}
+                src={require('../../public/img/mail.png')}
                 alt="Card i cap"
               />
               <CardText className="card-text-mail">
@@ -38,7 +38,7 @@ class MemberCard extends Component {
             <Container>
               <img
                 className="phone-icon"
-                src={'./img/phone.png'}
+                src={require('../../public/img/phone.png')}
                 alt="Card i cap"
               />
               <CardTitle className="card-text-phone">
@@ -47,7 +47,10 @@ class MemberCard extends Component {
             </Container>
             <Container className="profile-link">
               <div>
-                <Link className="profile-text" to="/profile">
+                <Link
+                  className="profile-text"
+                  to={`/member/${this.props.member._id}`}
+                >
                   Profil
                   <svg
                     className="profile-arrow"

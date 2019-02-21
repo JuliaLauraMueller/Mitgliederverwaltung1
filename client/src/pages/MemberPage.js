@@ -15,11 +15,10 @@ class MemberPage extends Component {
   constructor(props) {
     super(props);
     this.props.dispatch(setNavVisible());
-    this.state = { members: [] };
   }
 
   render() {
-    let memberCards = this.state.members.map(member => {
+    let memberCards = this.props.members.map(member => {
       return <MemberCard member={member} />;
     });
     return (
@@ -31,13 +30,6 @@ class MemberPage extends Component {
         </div>
 
         <div>
-          <h1>
-            <img
-              className="member-logo"
-              src={'./img/logo.png'}
-              alt="Card i cap"
-            />
-          </h1>
           <Container fluid>
             <SearchFieldMember />
             <Row>{memberCards}</Row>
@@ -46,17 +38,12 @@ class MemberPage extends Component {
       </div>
     );
   }
-  componentWillMount() {
-    var self = this;
-    memberService.getUserBody().then(resp => {
-      self.state.members = resp.members;
-      self.setState({ members: resp.members });
-    });
-  }
 }
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    members: state.member.filteredMembers
+  };
 }
 
 export default connect(mapStateToProps)(MemberPage);

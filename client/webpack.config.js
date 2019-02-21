@@ -26,6 +26,13 @@ module.exports = {
       {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader']
+      },
+      {
+        test: /\.(jpe?g|gif|png|svg)$/,
+        loader: 'file-loader',
+        options: {
+          name: './public/img/[name].[ext]'
+        }
       }
     ]
   },
@@ -45,7 +52,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     }),
-    new CopyWebpackPlugin([{ from: 'public/img', to: 'img' }]), // copy images from public/img to dist/img
+    // new CopyWebpackPlugin([{ from: 'public/img', to: 'img' }]), // copy images from public/img to dist/img
     new CopyWebpackPlugin([{ from: 'public/fonts', to: 'fonts' }]) // copy fonts from public/fonts to dist/fonts
   ]
 };
