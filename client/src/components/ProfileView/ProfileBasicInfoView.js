@@ -91,13 +91,13 @@ class ProfileBasicInfo extends Component {
           </Row>
           <Row className="overflow">
             <Col>
-              <label>Eintrittsdatum:</label>
+              <label>Beitritt:</label>
               <label className="value-label">{profile.entryDate}</label>
             </Col>
           </Row>
           <Row className="overflow">
             <Col>
-              <label>Geburtsdatum:</label>
+              <label>Geburtstag:</label>
               <label className="value-label">{profile.birthdate}</label>
             </Col>
           </Row>

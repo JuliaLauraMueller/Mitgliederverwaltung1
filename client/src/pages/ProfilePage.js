@@ -74,7 +74,7 @@ class ProfilePage extends Component {
       return (
         <Container className="profile-page__container">
           <Row>
-            <Col xs="7" sm="9" md="12">
+            <Col xs="7" md="12">
               <button className="button-save-edit" onClick={this.toggleEdit}>
                 Editieren
               </button>
@@ -93,18 +93,6 @@ class ProfilePage extends Component {
     }
   }
 }
-
-/**
-        <div id="bodyProfile">
-          <button className="button-save-edit" onClick={this.toggleEdit}>
-            Bearbeiten
-          </button>
-          <div id="top-container">
-          <ProfilePic  />
-          <ProfileBasicInfo />
-          </div>
-          <ProfileMainInformation />
-        </div>*/
 
 function mapStateToProps(state) {
   return {};
