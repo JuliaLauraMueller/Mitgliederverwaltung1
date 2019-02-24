@@ -6,17 +6,6 @@ basic style profile page
 }
 
 /*component bodies*/
-#profilePic {
-  text-align: left;
-  margin-bottom: 3%;
-}
-
-#basicInformationEdit {
-  margin: 0 0 3% 3%;
-  display: inline-block;
-  text-align: left;
-  vertical-align: bottom;
-}
 
 .main-title {
   font-size: 1.3rem;
@@ -152,6 +141,10 @@ label {
 /*--------------------------------------------*
 additional style EDIT profile page
 *--------------------------------------------*/
+
+.basic-info {
+  margin-top: 170px;
+}
 
 /*text-field style*/
 .form-control {

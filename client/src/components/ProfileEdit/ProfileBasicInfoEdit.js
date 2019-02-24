@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { InputGroup, InputGroupAddon, Input } from 'reactstrap';
+import { InputGroup, InputGroupAddon, Input, Row, Col } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { putProfile } from '../../redux/actions/profileActions';
@@ -11,6 +11,11 @@ class ProfileBasicInfoEDIT extends Component {
     super(props);
     const profile = this.props.profile;
     this.state = {
+      xingLink: profile.xingLink,
+      linkedinLink: profile.linkedinLink,
+      facebookLink: profile.facebookLink,
+      instagramLink: profile.instagramLink,
+      offerings: profile.offerings,
       salutation: profile.salutation,
       title: profile.title,
       firstname: profile.firstname,
@@ -34,6 +39,11 @@ class ProfileBasicInfoEDIT extends Component {
 
   onSave(e) {
     const basicInformationUpdate = {
+      xingLink: this.state.xingLink,
+      linkedinLink: this.state.linkedinLink,
+      facebookLink: this.state.facebookLink,
+      instagramLink: this.state.instagramLink,
+      offerings: this.state.offerings,
       salutation: this.state.salutation,
       title: this.state.title,
       firstname: this.state.firstname,
@@ -51,7 +61,24 @@ class ProfileBasicInfoEDIT extends Component {
 
   render() {
     return (
-      <div id="basicInformationEdit">
+      <Row>
+      <Col md={{ offset: 0, size: 6 }} sm={{ offset: 1 }}>
+      <Row>
+        <Col>
+        <InputGroup>
+          <form className="input-field">
+            <img
+              className="profile-image-edit"
+              style={{ width: '147px' }}
+              src={require('../../../public/img/marc_zimmermann.jpg')}
+              alt="profile"
+            />
+          </form>
+        </InputGroup>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
         <InputGroup>
           <InputGroupAddon id="salutation-group-addon" addonType="prepend">
             Anrede:
@@ -123,6 +150,104 @@ class ProfileBasicInfoEDIT extends Component {
             />
           </form>
         </InputGroup>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col>
+        <InputGroup>
+          <InputGroupAddon addonType="prepend">Xing:</InputGroupAddon>
+          <form className="input-field">
+            <Input
+              type="text"
+              name="xingLink"
+              onChange={this.onChange}
+              value={this.state.xingLink}
+            />
+          </form>
+        </InputGroup>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col>
+        <InputGroup>
+          <InputGroupAddon addonType="prepend">Linkedin:</InputGroupAddon>
+          <form className="input-field">
+            <Input
+              type="text"
+              name="linkedinLink"
+              onChange={this.onChange}
+              value={this.state.linkedinLink}
+            />
+          </form>
+        </InputGroup>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col>
+        <InputGroup>
+          <InputGroupAddon addonType="prepend">Facebook:</InputGroupAddon>
+          <form className="input-field">
+            <Input
+              type="text"
+              name="facebookLink"
+              onChange={this.onChange}
+              value={this.state.facebookLink}
+            />
+          </form>
+        </InputGroup>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+        <InputGroup>
+          <InputGroupAddon addonType="prepend">Instagram:</InputGroupAddon>
+          <form className="input-field">
+            <Input
+              type="text"
+              name="instagramLink"
+              onChange={this.onChange}
+              value={this.state.instagramLink}
+            />
+          </form>
+        </InputGroup>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col>
+        <InputGroup>
+          <InputGroupAddon addonType="prepend">E-Mail:</InputGroupAddon>
+          <form className="input-field">
+            <Input type="text" />
+          </form>
+        </InputGroup>
+        </Col>
+      </Row>
+      </Col>
+
+      <Col md={{ offset: 0, size: 6 }} sm={{ offset: 1 }} className="basic-info">
+      <Row>
+        <Col>
+        <InputGroup>
+          <InputGroupAddon addonType="prepend">Angebot:</InputGroupAddon>
+          <form className="input-field" id="text-area-offers">
+            <Input
+              type="textarea"
+              name="offerings"
+              rows="3"
+              onChange={this.onChange}
+              value={this.state.offerings}
+            />
+          </form>
+        </InputGroup>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col>
         <InputGroup>
           <InputGroupAddon addonType="prepend">Mitglieder Nr.:</InputGroupAddon>
           <form className="input-field">
@@ -134,6 +259,11 @@ class ProfileBasicInfoEDIT extends Component {
             />
           </form>
         </InputGroup>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col>
         <InputGroup>
           <InputGroupAddon addonType="prepend">Eintrittsdatum:</InputGroupAddon>
           <form className="input-field">
@@ -145,6 +275,11 @@ class ProfileBasicInfoEDIT extends Component {
             />
           </form>
         </InputGroup>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col>
         <InputGroup>
           <InputGroupAddon addonType="prepend">Geburtsdatum:</InputGroupAddon>
           <form className="input-field">
@@ -156,6 +291,11 @@ class ProfileBasicInfoEDIT extends Component {
             />
           </form>
         </InputGroup>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col>
         <InputGroup>
           <InputGroupAddon addonType="prepend">Status:</InputGroupAddon>
           <form className="input-field">
@@ -167,6 +307,11 @@ class ProfileBasicInfoEDIT extends Component {
             />
           </form>
         </InputGroup>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col>
         <InputGroup>
           <InputGroupAddon addonType="prepend">City:</InputGroupAddon>
           <form className="input-field">
@@ -178,6 +323,11 @@ class ProfileBasicInfoEDIT extends Component {
             />
           </form>
         </InputGroup>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col>
         <InputGroup>
           <InputGroupAddon className="godfather-label" addonType="prepend">
             Götti:
@@ -191,7 +341,10 @@ class ProfileBasicInfoEDIT extends Component {
             />
           </form>
         </InputGroup>
-      </div>
+        </Col>
+      </Row>
+        </Col>
+      </Row>
     );
   }
 }
