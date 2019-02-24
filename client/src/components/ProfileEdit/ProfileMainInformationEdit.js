@@ -7,7 +7,9 @@ import {
   InputGroupAddon,
   Input,
   Label,
-  FormGroup
+  FormGroup,
+  Row,
+  Col
 } from 'reactstrap';
 
 import '../../css/ProfilePage.css';
@@ -89,11 +91,18 @@ class ProfileMainInformationEDIT extends Component {
 
   render() {
     return (
-      <div id="mainInformation">
-        <div className="business-info-edit">
-          <p className="main-title title-maininfo">
-            Geschäftliche Informationen
-          </p>
+      <Row id="mainInformation">
+       <Col md={{ offset: 0, size: 6 }} sm={{ offset: 1 }}>
+        <Row>
+          <Col>
+            <p className="main-title title-maininfo">
+              Geschäftliche Informationen
+            </p>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col>
           <InputGroup>
             <InputGroupAddon addonType="prepend">Branche:</InputGroupAddon>
             <form className="input-field">
@@ -106,6 +115,10 @@ class ProfileMainInformationEDIT extends Component {
               />
             </form>
           </InputGroup>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
           <InputGroup>
             <InputGroupAddon addonType="prepend">Beruf:</InputGroupAddon>
             <form className="input-field">
@@ -118,6 +131,11 @@ class ProfileMainInformationEDIT extends Component {
               />
             </form>
           </InputGroup>
+          </Col>
+        </Row>
+
+          <Row>
+            <Col>
           <InputGroup>
             <InputGroupAddon addonType="prepend">Funktion:</InputGroupAddon>
             <form className="input-field">
@@ -130,6 +148,11 @@ class ProfileMainInformationEDIT extends Component {
               />
             </form>
           </InputGroup>
+          </Col>
+        </Row>
+
+      <Row>
+        <Col>
           <InputGroup>
             <InputGroupAddon addonType="prepend">Firma:</InputGroupAddon>
             <form className="input-field">
@@ -142,6 +165,11 @@ class ProfileMainInformationEDIT extends Component {
               />
             </form>
           </InputGroup>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col>
           <InputGroup>
             <InputGroupAddon addonType="prepend">Tel:</InputGroupAddon>
             <form className="input-field">
@@ -154,6 +182,11 @@ class ProfileMainInformationEDIT extends Component {
               />
             </form>
           </InputGroup>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col>
           <InputGroup>
             <InputGroupAddon addonType="prepend">Mobile:</InputGroupAddon>
             <form className="input-field">
@@ -166,6 +199,11 @@ class ProfileMainInformationEDIT extends Component {
               />
             </form>
           </InputGroup>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col>
           <InputGroup>
             <InputGroupAddon addonType="prepend">Strasse:</InputGroupAddon>
             <form id="input-field">
@@ -178,7 +216,11 @@ class ProfileMainInformationEDIT extends Component {
               />
             </form>
           </InputGroup>
+          </Col>
+        </Row>
 
+        <Row>
+          <Col>
           <InputGroup>
             <InputGroupAddon addonType="prepend">Strassen-Nr.:</InputGroupAddon>
             <form id="input-field">
@@ -191,7 +233,11 @@ class ProfileMainInformationEDIT extends Component {
               />
             </form>
           </InputGroup>
+          </Col>
+        </Row>
 
+        <Row>
+          <Col>
           <InputGroup>
             <InputGroupAddon addonType="prepend">PLZ:</InputGroupAddon>
             <form id="input-field">
@@ -204,7 +250,11 @@ class ProfileMainInformationEDIT extends Component {
               />
             </form>
           </InputGroup>
+          </Col>
+        </Row>
 
+        <Row>
+          <Col>
           <InputGroup>
             <InputGroupAddon addonType="prepend">Ort:</InputGroupAddon>
             <form id="input-field">
@@ -217,6 +267,11 @@ class ProfileMainInformationEDIT extends Component {
               />
             </form>
           </InputGroup>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col>
           <InputGroup>
             <InputGroupAddon addonType="prepend">E-Mail:</InputGroupAddon>
             <form className="input-field">
@@ -229,6 +284,11 @@ class ProfileMainInformationEDIT extends Component {
               />
             </form>
           </InputGroup>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col>
           <InputGroup>
             <InputGroupAddon addonType="prepend">URL Firma:</InputGroupAddon>
             <form className="input-field">
@@ -241,22 +301,36 @@ class ProfileMainInformationEDIT extends Component {
               />
             </form>
           </InputGroup>
-        </div>
+          </Col>
+        </Row>
+        </Col>
+        
+      <Col md={{ offset: 0, size: 6 }} sm={{ offset: 1 }}>
+        <Row >
+          <Col>
+            <p className="main-title title-maininfo">Private Informationen</p>
+          </Col>
+        </Row>
 
-        <div className="private-info-edit">
-          <p className="main-title title-maininfo">Private Informationen</p>
-          <InputGroup>
-            <InputGroupAddon addonType="prepend">Tel</InputGroupAddon>
-            <form className="input-field">
-              <Input
-                className="value-label"
-                type="text"
-                name="privateTel"
-                onChange={this.onChange}
-                value={this.state.privateTel}
+        <Row>
+          <Col>
+            <InputGroup>
+              <InputGroupAddon addonType="prepend">Tel</InputGroupAddon>
+                <form className="input-field">
+                  <Input
+                  className="value-label"
+                  type="text"
+                  name="privateTel"
+                  onChange={this.onChange}
+                  value={this.state.privateTel}
               />
             </form>
           </InputGroup>
+        </Col>
+      </Row>
+
+      <Row>
+          <Col>
           <InputGroup>
             <InputGroupAddon addonType="prepend">Mobile:</InputGroupAddon>
             <form className="input-field">
@@ -269,7 +343,11 @@ class ProfileMainInformationEDIT extends Component {
               />
             </form>
           </InputGroup>
+          </Col>
+      </Row>
 
+      <Row>
+          <Col>
           <InputGroup>
             <InputGroupAddon addonType="prepend">Strasse:</InputGroupAddon>
             <form id="input-field">
@@ -282,6 +360,11 @@ class ProfileMainInformationEDIT extends Component {
               />
             </form>
           </InputGroup>
+          </Col>
+      </Row>
+
+      <Row>
+          <Col>
           <InputGroup>
             <InputGroupAddon addonType="prepend">Strassen-Nr.:</InputGroupAddon>
             <form id="input-field">
@@ -294,6 +377,11 @@ class ProfileMainInformationEDIT extends Component {
               />
             </form>
           </InputGroup>
+          </Col>
+      </Row>
+
+      <Row>
+          <Col>
           <InputGroup>
             <InputGroupAddon addonType="prepend">PLZ:</InputGroupAddon>
             <form id="input-field">
@@ -306,6 +394,11 @@ class ProfileMainInformationEDIT extends Component {
               />
             </form>
           </InputGroup>
+          </Col>
+      </Row>
+
+      <Row>
+          <Col>
           <InputGroup>
             <InputGroupAddon addonType="prepend">Ort:</InputGroupAddon>
             <form id="input-field">
@@ -318,6 +411,11 @@ class ProfileMainInformationEDIT extends Component {
               />
             </form>
           </InputGroup>
+          </Col>
+      </Row>
+
+      <Row>
+          <Col>
           <InputGroup>
             <InputGroupAddon addonType="prepend">
               Rechnungsadresse:
@@ -353,6 +451,11 @@ class ProfileMainInformationEDIT extends Component {
                 </Label>
               </FormGroup>
             </FormGroup>
+            </InputGroup>
+            </Col>
+      </Row>
+      <Row>
+          <Col>
             <InputGroup>
               <InputGroupAddon addonType="prepend">E-Mail:</InputGroupAddon>
               <form className="input-field">
@@ -365,9 +468,10 @@ class ProfileMainInformationEDIT extends Component {
                 />
               </form>
             </InputGroup>
-          </InputGroup>
-        </div>
-      </div>
+            </Col>
+          </Row>
+        </Col>
+    </Row>
     );
   }
 }

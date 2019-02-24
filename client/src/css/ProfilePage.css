@@ -153,20 +153,6 @@ label {
 additional style EDIT profile page
 *--------------------------------------------*/
 
-/*main-info style*/
-.business-info-edit,
-.private-info-edit {
-  width: 100px;
-  display: inline-block;
-  text-align: left;
-  padding-top: 3%;
-}
-
-.private-info-edit {
-  margin-left: 3%;
-  vertical-align: top;
-}
-
 /*text-field style*/
 .form-control {
   background-color: transparent;
