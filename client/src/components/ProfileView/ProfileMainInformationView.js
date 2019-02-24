@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchProfile } from '../../redux/actions/profileActions';
-
 import { Col, Row, Container } from 'reactstrap';
-
 import '../../css/ProfilePage.css';
 
 class ProfileMainInformation extends Component {
@@ -28,7 +26,7 @@ class ProfileMainInformation extends Component {
     const profile = this.props.profile;
     return (
       <Row id="mainInformation">
-        <Col xs="7" md="6">
+        <Col md={{ offset: 0, size: 6 }} sm={{ offset: 1 }}>
           <Row className="business-info">
             <Col>
               <p className="main-title title-maininfo">
@@ -111,7 +109,7 @@ class ProfileMainInformation extends Component {
           </Row>
         </Col>
 
-        <Col xs="7" md="6">
+        <Col md={{ offset: 0, size: 6 }} sm={{ offset: 1 }}>
           <Row className="private-info">
             <Col>
               <p className="main-title title-maininfo">Private Informationen</p>

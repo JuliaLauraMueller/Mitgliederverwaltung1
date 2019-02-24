@@ -9,7 +9,7 @@ class ProfileBasicInfo extends Component {
     const profile = this.props.profile;
     return (
       <Row>
-        <Col xs="7" md="6" align="center">
+        <Col md="6" align="center">
           <Row>
             <Col>
               <img
@@ -20,19 +20,19 @@ class ProfileBasicInfo extends Component {
               />
             </Col>
           </Row>
-          <Row xs="6" className="profile-pic__image">
+          <Row className="profile-pic__image">
             <Col>
               <label className="salutation-label">{profile.title}</label>
               <label className="name-label">{profile.firstname}</label>
               <label className="name-label">{profile.surename}</label>
             </Col>
           </Row>
-          <Row xs="6" className="profile-pic__image">
+          <Row className="profile-pic__image">
             <Col>
               <label className="alias-label">({profile.alias})</label>
             </Col>
           </Row>
-          <Row xs="6" className="profile-pic__icons">
+          <Row className="profile-pic__icons">
             <Col>
               <Button
                 className="icon-button"
@@ -77,7 +77,7 @@ class ProfileBasicInfo extends Component {
           </Row>
         </Col>
 
-        <Col xs="7" md="6">
+        <Col md={{ offset: 0, size: 6 }} sm={{ offset: 1 }}>
           <Row>
             <Col>
               <p className="main-title title-maininfo">Kurzprofil</p>

@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-
-import ProfilePic from '../components/ProfileView/ProfilePicView.js';
 import ProfileBasicInfo from '../components/ProfileView/ProfileBasicInfoView.js';
 import ProfileMainInformation from '../components/ProfileView/ProfileMainInformationView.js';
 
@@ -74,7 +72,7 @@ class ProfilePage extends Component {
       return (
         <Container className="profile-page__container">
           <Row>
-            <Col xs="7" md="12">
+            <Col md="12">
               <button className="button-save-edit" onClick={this.toggleEdit}>
                 Editieren
               </button>
