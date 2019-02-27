@@ -103,8 +103,8 @@ class ProfileMainInformation extends Component {
           </Row>
           <Row className="overflow">
             <Col>
-              <label>URL Firma:</label>
-              <label className="value-label">{profile.companyURL}</label>
+              <label className="space">URL Firma:</label>
+              <label className="value-label space">{profile.companyURL}</label>
             </Col>
           </Row>
         </Col>
@@ -161,8 +161,10 @@ class ProfileMainInformation extends Component {
           </Row>
           <Row className="overflow">
             <Col>
-              <label>E-Mail:</label>
-              <label className="value-label">{profile.privateEmail}</label>
+              <label className="space">E-Mail:</label>
+              <label className="value-label space">
+                {profile.privateEmail}
+              </label>
             </Col>
           </Row>
         </Col>
