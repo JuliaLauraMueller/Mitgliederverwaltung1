@@ -8,8 +8,11 @@
   margin-top: -100px;
 }
 
+.bodyMember {
+  width: 100%;
+}
+
 .container {
-  min-width: 575px;
 }
 
 /*SearchFieldMember*/
@@ -175,7 +178,7 @@ hr {
 }
 
 .profile-link {
-  margin-left: 0px;
+  margin-left: 20px;
   margin-top: -10px;
 }
 
@@ -185,7 +188,7 @@ hr {
   font-family: Helvetica, sans-serif;
   font-weight: lighter;
   font-size: 13px;
-  margin-left: 148px;
+  margin-left: 125px;
 }
 
 .profile-text:hover {
@@ -195,7 +198,7 @@ hr {
   font-family: Helvetica, sans-serif;
   font-weight: lighter;
   font-size: 13px;
-  margin-left: 148px;
+  margin-left: 125px;
 }
 
 .profile-text svg {

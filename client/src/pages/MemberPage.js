@@ -19,7 +19,7 @@ class MemberPage extends Component {
 
   render() {
     let memberCards = this.props.members.map(member => {
-      return <MemberCard member={member} />;
+      return <MemberCard key={member._id} member={member} />;
     });
     return (
       <div>
@@ -29,10 +29,10 @@ class MemberPage extends Component {
           </Helmet>
         </div>
 
-        <div>
+        <div className="bodyMember">
           <Container fluid>
             <SearchFieldMember />
-            <Row>{memberCards}</Row>
+            <Row key={memberCards}>{memberCards}</Row>
           </Container>
         </div>
       </div>
