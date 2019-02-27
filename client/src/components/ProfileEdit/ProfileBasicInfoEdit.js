@@ -62,7 +62,7 @@ class ProfileBasicInfoEDIT extends Component {
   render() {
     return (
       <Row>
-      <Col md={{ offset: 0, size: 6 }} xs={{ offset: 1 }}>
+      <Col md={{ offset: 0, size: 6 }} sm={{ offset: 1 }}>
       <Row>
         <Col>
         <InputGroup>
@@ -237,9 +237,9 @@ class ProfileBasicInfoEDIT extends Component {
       </Row>
       </Col>
 
-      <Col md={{ offset: 0, size: 6 }} sm={{ offset: 1 }} className="basic-info">
+      <Col md={{ offset: 0, size: 6 }} sm={{ offset: 1 }}>
   
-      <Row>
+      <Row className="basic-info">
           <Col>
             <p className="main-title title-maininfo">
               Kurzprofil

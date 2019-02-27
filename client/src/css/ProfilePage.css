@@ -246,3 +246,9 @@ button-container {
   border-bottom: 1px solid #0f1929;
   color: #0f1929;
 }
+
+@media only screen and (max-width: 767px) {
+  .basic-info {
+    margin-top: 0;
+  }
+}
