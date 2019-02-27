@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-function getUserBody() {
+async function getUserBody() {
   var users;
 
-  return axios.get('/users/').then(resp => {
+  return await axios.get('/users/').then(resp => {
     users = resp.data;
 
     let mem = {
@@ -18,7 +18,6 @@ function getUserBody() {
         };
       })
     };
-    console.log(mem);
     return mem;
   });
 }

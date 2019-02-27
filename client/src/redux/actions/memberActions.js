@@ -9,10 +9,7 @@ export const searchMembers = searchText => dispatch => {
 
 export const fetchMembers = () => dispatch => {
   memberService.getUserBody().then(res => {
-    console.log('RES: ');
     if (res) {
-      console.log(res.members);
-      //return res.members;
       dispatch({ type: MEMBERS_FETCHED, payload: res.members });
     }
   });
