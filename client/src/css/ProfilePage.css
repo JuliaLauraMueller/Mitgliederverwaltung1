@@ -12,11 +12,6 @@ basic style profile page
   opacity: 0.8;
   margin-right: 3%;
 }
-.godfather-label,
-.godfather-label span {
-  margin: 0;
-  padding-bottom: 2.3rem;
-}
 
 .profile-page__container {
   max-width: 900px;

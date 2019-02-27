@@ -85,7 +85,7 @@ class ProfileBasicInfo extends Component {
           </Row>
           <Row className="overflow">
             <Col>
-              <label>Mitglieder Nr.:</label>
+              <label>Mitglied:</label>
               <label className="value-label">{profile.memberNumber}</label>
             </Col>
           </Row>
@@ -119,7 +119,7 @@ class ProfileBasicInfo extends Component {
               <label className="value-label">{profile.godfather}</label>
             </Col>
           </Row>
-          <Row>
+          <Row className="overflow">
             <Col>
               <div className="offerings">
                 <label className="main-title" id="offerings-label">

@@ -418,7 +418,7 @@ class ProfileMainInformationEDIT extends Component {
           <Col>
           <InputGroup>
             <InputGroupAddon addonType="prepend">
-              Rechnungsadresse:
+              Rechnung:
             </InputGroupAddon>
             <FormGroup
               tag="fieldset"

@@ -62,7 +62,7 @@ class ProfileBasicInfoEDIT extends Component {
   render() {
     return (
       <Row>
-      <Col md={{ offset: 0, size: 6 }} sm={{ offset: 1 }}>
+      <Col md={{ offset: 0, size: 6 }} xs={{ offset: 1 }}>
       <Row>
         <Col>
         <InputGroup>
@@ -77,7 +77,16 @@ class ProfileBasicInfoEDIT extends Component {
         </InputGroup>
         </Col>
       </Row>
+
       <Row>
+          <Col>
+            <p className="main-title title-maininfo">
+              Anrede und Social Media
+            </p>
+          </Col>
+        </Row>
+      <Row>
+        
         <Col>
         <InputGroup>
           <InputGroupAddon id="salutation-group-addon" addonType="prepend">
@@ -229,27 +238,19 @@ class ProfileBasicInfoEDIT extends Component {
       </Col>
 
       <Col md={{ offset: 0, size: 6 }} sm={{ offset: 1 }} className="basic-info">
+  
+      <Row>
+          <Col>
+            <p className="main-title title-maininfo">
+              Kurzprofil
+            </p>
+          </Col>
+        </Row>
+        
       <Row>
         <Col>
         <InputGroup>
-          <InputGroupAddon addonType="prepend">Angebot:</InputGroupAddon>
-          <form className="input-field" id="text-area-offers">
-            <Input
-              type="textarea"
-              name="offerings"
-              rows="3"
-              onChange={this.onChange}
-              value={this.state.offerings}
-            />
-          </form>
-        </InputGroup>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col>
-        <InputGroup>
-          <InputGroupAddon addonType="prepend">Mitglieder Nr.:</InputGroupAddon>
+          <InputGroupAddon addonType="prepend">Mitglied:</InputGroupAddon>
           <form className="input-field">
             <Input
               type="text"
@@ -265,7 +266,7 @@ class ProfileBasicInfoEDIT extends Component {
       <Row>
         <Col>
         <InputGroup>
-          <InputGroupAddon addonType="prepend">Eintrittsdatum:</InputGroupAddon>
+          <InputGroupAddon addonType="prepend">Beitritt:</InputGroupAddon>
           <form className="input-field">
             <Input
               type="text"
@@ -281,7 +282,7 @@ class ProfileBasicInfoEDIT extends Component {
       <Row>
         <Col>
         <InputGroup>
-          <InputGroupAddon addonType="prepend">Geburtsdatum:</InputGroupAddon>
+          <InputGroupAddon addonType="prepend">Geburtstag:</InputGroupAddon>
           <form className="input-field">
             <Input
               type="text"
@@ -329,7 +330,7 @@ class ProfileBasicInfoEDIT extends Component {
       <Row>
         <Col>
         <InputGroup>
-          <InputGroupAddon className="godfather-label" addonType="prepend">
+          <InputGroupAddon addonType="prepend">
             Götti:
           </InputGroupAddon>
           <form className="input-field">
@@ -338,6 +339,23 @@ class ProfileBasicInfoEDIT extends Component {
               name="godfather"
               onChange={this.onChange}
               value={this.state.godfather}
+            />
+          </form>
+        </InputGroup>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col>
+        <InputGroup>
+          <InputGroupAddon addonType="prepend">Angebot:</InputGroupAddon>
+          <form className="input-field" id="text-area-offers">
+            <Input
+              type="textarea"
+              name="offerings"
+              rows="3"
+              onChange={this.onChange}
+              value={this.state.offerings}
             />
           </form>
         </InputGroup>
