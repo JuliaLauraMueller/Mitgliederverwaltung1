@@ -20,7 +20,7 @@ class MemberCard extends Component {
   render() {
     return (
       <Row>
-        <Col md="6" align="left">
+        <Col sm="6" align="left">
           <Card className="member-card" style={{ border: "1px solid white" }}>
             <CardBody>
               <Container>

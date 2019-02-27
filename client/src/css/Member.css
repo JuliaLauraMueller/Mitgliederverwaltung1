@@ -79,8 +79,8 @@
 }
 
 .search-input {
-  background: 'none';
-  border: 'none';
+  background: "none";
+  border: "none";
   font-family: Helvetica, sans-serif;
   font-weight: 0;
   font-size: 22px;
@@ -153,7 +153,7 @@ hr {
   transform: translateY(-50%);
   font-family: Helvetica;
   font-size: 12px;
-  margin-top: 25px;
+  margin-top: 5px;
   margin-left: 16px;
 }
 
@@ -173,7 +173,7 @@ hr {
   transform: translateY(-50%);
   font-family: Helvetica;
   font-size: 12px;
-  margin-top: 50px;
+  margin-top: 5px;
   margin-left: 16px;
 }
 
