@@ -145,6 +145,10 @@ label {
 additional style EDIT profile page
 *--------------------------------------------*/
 
+.form-check-input {
+  margin-top: 0.5rem;
+}
+
 .basic-info {
   margin-top: 147px;
 }

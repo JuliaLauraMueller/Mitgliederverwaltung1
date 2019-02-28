@@ -435,7 +435,6 @@ class ProfileMainInformationEDIT extends Component {
                     <Label check>
                       <Input
                         type="radio"
-                        className="radio"
                         name="invoiceAddress"
                         value="1"
                         checked={this.state.invoiceAddress === '1'}
