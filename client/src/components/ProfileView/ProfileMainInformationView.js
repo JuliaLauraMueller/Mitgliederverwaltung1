@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchProfile } from '../../redux/actions/profileActions';
-
+import { Col, Row, Container } from 'reactstrap';
 import '../../css/ProfilePage.css';
 
 class ProfileMainInformation extends Component {
@@ -25,99 +25,150 @@ class ProfileMainInformation extends Component {
   render() {
     const profile = this.props.profile;
     return (
-      <div id="mainInformation">
-        <div className="business-info">
-          <p className="main-title title-maininfo">
-            Geschäftliche Informationen
-          </p>
-          <div className="overflow">
-            <label>Branche:</label>
-            <label className="value-label">{profile.sector}</label>
-          </div>
-          <div className="overflow">
-            <label>Beruf:</label>
-            <label className="value-label">{profile.job}</label>
-          </div>
-          <div>
-            <label>Funktion:</label>
-            <label className="value-label">{profile.function}</label>
-          </div>
-          <div>
-            <label>Firma:</label>
-            <label className="value-label">{profile.company}</label>
-          </div>
-          <div>
-            <label>Tel:</label>
-            <label className="value-label">{profile.companyTel}</label>
-          </div>
-          <div>
-            <label>Mobile:</label>
-            <label className="value-label">{profile.companyMobile}</label>
-          </div>
-          <div>
-            <label>Strasse:</label>
-            <label className="value-label">{profile.companyStreet}</label>
-          </div>
-          <div>
-            <label>Nr:</label>
-            <label className="value-label">{profile.companyStreetNr}</label>
-          </div>
-          <div>
-            <label>PLZ:</label>
-            <label className="value-label">{profile.companyZip}</label>
-          </div>
-          <div>
-            <label>Ort:</label>
-            <label className="value-label">{profile.companyCity}</label>
-          </div>
-          <div className="overflow">
-            <label>E-Mail:</label>
-            <label className="value-label">{profile.companyEmail}</label>
-          </div>
-          <div className="overflow">
-            <label>URL Firma:</label>
-            <label className="value-label">{profile.companyURL}</label>
-          </div>
-        </div>
+      <Row id="mainInformation">
+        <Col md={{ offset: 0, size: 6 }} sm={{ offset: 1 }}>
+          <Row className="business-info">
+            <Col>
+              <p className="main-title title-maininfo">
+                Geschäftliche Informationen
+              </p>
+            </Col>
+          </Row>
 
-        <div className="private-info">
-          <p className="main-title title-maininfo">Private Informationen</p>
-          <div>
-            <label>Tel:</label>
-            <label className="value-label">{profile.privateTel}</label>
-          </div>
-          <div>
-            <label>Mobile:</label>
-            <label className="value-label">{profile.privateMobile}</label>
-          </div>
-          <div>
-            <label>Strasse:</label>
-            <label className="value-label">{profile.privateStreet}</label>
-          </div>
-          <div>
-            <label>Nr:</label>
-            <label className="value-label">{profile.privateStreetNr}</label>
-          </div>
-          <div>
-            <label>PLZ:</label>
-            <label className="value-label">{profile.privateZip}</label>
-          </div>
-          <div>
-            <label>Ort:</label>
-            <label className="value-label">{profile.privateCity}</label>
-          </div>
-          <div>
-            <label>Rechnungsadresse: </label>
-            <label className="value-label">
-              {profile.invoiceAddress === '1' ? 'privat' : 'geschäftlich'}
-            </label>
-          </div>
-          <div className="overflow">
-            <label>E-Mail:</label>
-            <label className="value-label">{profile.privateEmail}</label>
-          </div>
-        </div>
-      </div>
+          <Row className="overflow">
+            <Col>
+              <label>Branche:</label>
+              <label className="value-label">{profile.sector}</label>
+            </Col>
+          </Row>
+          <Row className="overflow">
+            <Col>
+              <label>Beruf:</label>
+              <label className="value-label">{profile.job}</label>
+            </Col>
+          </Row>
+          <Row className="overflow">
+            <Col>
+              <label>Funktion:</label>
+              <label className="value-label">{profile.function}</label>
+            </Col>
+          </Row>
+          <Row className="overflow">
+            <Col>
+              <label>Firma:</label>
+              <label className="value-label">{profile.company}</label>
+            </Col>
+          </Row>
+          <Row className="overflow">
+            <Col>
+              <label>Tel:</label>
+              <label className="value-label">{profile.companyTel}</label>
+            </Col>
+          </Row>
+          <Row className="overflow">
+            <Col>
+              <label>Mobile:</label>
+              <label className="value-label">{profile.companyMobile}</label>
+            </Col>
+          </Row>
+          <Row className="overflow">
+            <Col>
+              <label>Strasse:</label>
+              <label className="value-label">{profile.companyStreet}</label>
+            </Col>
+          </Row>
+          <Row className="overflow">
+            <Col>
+              <label>Nr:</label>
+              <label className="value-label">{profile.companyStreetNr}</label>
+            </Col>
+          </Row>
+          <Row className="overflow">
+            <Col>
+              <label>PLZ:</label>
+              <label className="value-label">{profile.companyZip}</label>
+            </Col>
+          </Row>
+          <Row className="overflow">
+            <Col>
+              <label>Ort:</label>
+              <label className="value-label">{profile.companyCity}</label>
+            </Col>
+          </Row>
+          <Row className="overflow">
+            <Col>
+              <label>E-Mail:</label>
+              <label className="value-label">{profile.companyEmail}</label>
+            </Col>
+          </Row>
+          <Row className="overflow">
+            <Col>
+              <label className="space">URL Firma:</label>
+              <label className="value-label space">{profile.companyURL}</label>
+            </Col>
+          </Row>
+        </Col>
+
+        <Col md={{ offset: 0, size: 6 }} sm={{ offset: 1 }}>
+          <Row className="private-info">
+            <Col>
+              <p className="main-title title-maininfo">Private Informationen</p>
+            </Col>
+          </Row>
+          <Row className="overflow">
+            <Col>
+              <label>Tel:</label>
+              <label className="value-label">{profile.privateTel}</label>
+            </Col>
+          </Row>
+          <Row className="overflow">
+            <Col>
+              <label>Mobile:</label>
+              <label className="value-label">{profile.privateMobile}</label>
+            </Col>
+          </Row>
+          <Row className="overflow">
+            <Col>
+              <label>Strasse:</label>
+              <label className="value-label">{profile.privateStreet}</label>
+            </Col>
+          </Row>
+          <Row className="overflow">
+            <Col>
+              <label>Nr:</label>
+              <label className="value-label">{profile.privateStreetNr}</label>
+            </Col>
+          </Row>
+          <Row className="overflow">
+            <Col>
+              <label>PLZ:</label>
+              <label className="value-label">{profile.privateZip}</label>
+            </Col>
+          </Row>
+          <Row className="overflow">
+            <Col>
+              <label>Ort:</label>
+              <label className="value-label">{profile.privateCity}</label>
+            </Col>
+          </Row>
+          <Row className="overflow">
+            <Col>
+              <label>Rechnung: </label>
+              <label className="value-label">
+                {profile.invoiceAddress === '1' ? 'privat' : 'geschäftlich'}
+              </label>
+            </Col>
+          </Row>
+          <Row className="overflow">
+            <Col>
+              <label className="space">E-Mail:</label>
+              <label className="value-label space">
+                {profile.privateEmail}
+              </label>
+            </Col>
+          </Row>
+        </Col>
+      </Row>
     );
   }
 }

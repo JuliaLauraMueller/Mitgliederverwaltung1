@@ -1,14 +1,15 @@
 import axios from 'axios';
 
-function getUserBody() {
+async function getUserBody() {
   var users;
 
-  return axios.get('/users/').then(resp => {
+  return await axios.get('/users/').then(resp => {
     users = resp.data;
 
     let mem = {
       members: users.map(element => {
         return {
+          _id: element.id,
           firstname: element.firstname,
           surname: element.surname,
           privateEmail: element.privateEmail,

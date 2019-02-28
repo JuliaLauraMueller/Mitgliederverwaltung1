@@ -19,13 +19,6 @@
   max-width: 220px;
 }
 
-@media only screen and (max-width: 420px) {
-  .login-container {
-    padding-left: 1em;
-    padding-right: 1em;
-  }
-}
-
 .input-container {
   position: relative;
   margin-bottom: 8%;
