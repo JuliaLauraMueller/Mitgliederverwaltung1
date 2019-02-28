@@ -141,12 +141,22 @@ label {
   height: 180px;
 }
 
+.button:disabled {
+  background-color: transparent;
+}
+
+.btn-secondary.disabled,
+.btn-secondary:disabled {
+  background-color: transparent;
+  opacity: 0.3;
+}
+
 /*--------------------------------------------*
 additional style EDIT profile page
 *--------------------------------------------*/
 
 .form-check-input {
-  margin-top: 0.5rem;
+  margin-top: 0.4rem;
 }
 
 .basic-info {
@@ -223,9 +233,6 @@ additional style EDIT profile page
 }
 
 /*radio-button style*/
-.radio {
-  margin-top: 3px;
-}
 
 .radio-label {
   padding-left: 5px;

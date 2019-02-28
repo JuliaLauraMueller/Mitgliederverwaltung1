@@ -38,6 +38,7 @@ class ProfileBasicInfo extends Component {
                 className="icon-button"
                 id="xing-button"
                 href={profile.xingLink}
+                disabled={!profile.xingLink}
               >
                 <img
                   className="icons"
@@ -45,21 +46,33 @@ class ProfileBasicInfo extends Component {
                   src={require('../../../public/img/xing.svg')}
                 />
               </Button>
-              <Button className="icon-button" href={profile.linkedinLink}>
+              <Button
+                className="icon-button"
+                href={profile.linkedinLink}
+                disabled={!profile.linkedinLink}
+              >
                 <img
                   className="icons"
                   alt="linkedin-icon"
                   src={require('../../../public/img/linkedin.svg')}
                 />
               </Button>
-              <Button className="icon-button" href={profile.facebookLink}>
+              <Button
+                className="icon-button"
+                href={profile.facebookLink}
+                disabled={!profile.facebookLink}
+              >
                 <img
                   className="icons"
                   alt="fb-icon"
                   src={require('../../../public/img/facebook.svg')}
                 />
               </Button>
-              <Button className="icon-button" href={profile.instagramLink}>
+              <Button
+                className="icon-button"
+                href={profile.instagramLink}
+                disabled={!profile.instagramLink}
+              >
                 <img
                   className="icons"
                   alt="instagramm-icon"
