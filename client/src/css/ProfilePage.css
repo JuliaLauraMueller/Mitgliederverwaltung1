@@ -203,19 +203,10 @@ additional style EDIT profile page
   margin-bottom: 0%;
 }
 .input-field-radio {
-  /*display: flex;*/
   justify-content: left;
-  /*margin-top: 10px;*/
   float: left;
   width: 220px;
 }
-
-/*
-#salutation-group-addon span {
-  position: relative;
-  top: 20%;
-}
-*/
 
 #text-area-offers {
   box-sizing: border-box;
