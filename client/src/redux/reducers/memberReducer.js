@@ -1,4 +1,5 @@
 import { SEARCH_MEMBERS } from '../actions/memberActions';
+import levenshtein from 'js-levenshtein';
 
 const initialState = {
   searchText: '',
@@ -46,17 +47,32 @@ const initialState = {
   filteredMembers: []
 };
 
+function levenshteinInRange(searchText, matchingText) {
+  if (levenshtein(searchText, matchingText) < 3) {
+    return true;
+  }
+}
+
+function filterMembers(members, searchText) {
+  if (!searchText || searchText.length == 0) {
+    return members;
+  }
+
+  return members.filter(m => {
+    let firstname = m.firstname
+      .substring(0, searchText.length + 2)
+      .toLowerCase();
+
+    return levenshteinInRange(searchText.toLowerCase(), firstname);
+  });
+}
+
 export default function(state = initialState, action) {
   switch (action.type) {
     case SEARCH_MEMBERS:
       return {
         members: state.members,
-        filteredMembers: state.members.filter(m =>
-          m.firstname
-            .concat(' ', m.surname)
-            .toLowerCase()
-            .includes(action.payload.toLowerCase())
-        )
+        filteredMembers: filterMembers(state.members, action.payload)
       };
     default:
       return state;
