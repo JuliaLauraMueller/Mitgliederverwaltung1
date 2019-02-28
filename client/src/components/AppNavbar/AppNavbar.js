@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button } from 'reactstrap';
 import store from '../../helpers/store';
 
 import Toolbar from '../Toolbar/Toolbar';
@@ -7,6 +8,7 @@ import Backdrop from '../Backdrop/Backdrop';
 import '../../css/AppNavbar.css';
 
 import { connect } from 'react-redux';
+import BurgerNav from '../BurgerNav/BurgerNav';
 
 class AppNavbar extends Component {
   constructor(props) {
@@ -26,11 +28,38 @@ class AppNavbar extends Component {
   }
 
   state = {
+    windowWith: window.innerWidth,
     sideDrawerOpen: false,
     isMobile: false,
     navigationClasses: 'app-nav-bar invisible',
     previouslyVisible: false
   };
+
+  //window with
+  handleResize() {
+    this.setState({ windowWidth: window.innerWidth });
+  }
+  componentDidMount() {
+    window.addEventListener('resize', this.handleResize.bind(this));
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize.bind(this));
+  }
+
+  //Render Mobile
+  renderMobileNav() {
+    if (this.state.isMobile) {
+      return this.navigationLinks();
+    }
+  }
+
+  handleNavClick() {
+    if (!this.state.isMobile) {
+      this.setState({ isMobile: true });
+    } else {
+      this.setState({ isMobile: false });
+    }
+  }
 
   drawerToggleClickHandler = () => {
     this.setState(prevState => {
@@ -44,27 +73,46 @@ class AppNavbar extends Component {
   };
 
   render() {
-    let backDrop;
+    if (this.state.windowWidth <= 768) {
+      return [
+        <div className="mobile_nav">
+          <p onClick={this.handleNavClick.bind(this)}>
+            <Button
+              className="icon-button"
+              onClick={this.drawerToggleClickHandler}
+            >
+              <img
+                className=""
+                alt="Burger Menu"
+                src={require('../../../public/img/burger.svg')}
+              />
+            </Button>
 
-    if (this.state.sideDrawerOpen && this.state.isMobile) {
-      backDrop = <Backdrop click={this.backdropClickHandler} />;
-    }
-    return (
-      <div className={this.state.navigationClasses}>
-        <div style={{ height: '100%' }}>
-          <Toolbar
-            className='tool-bar'
-            drawerClickHandler={this.drawerToggleClickHandler}
-          />
-          <SideDrawer
-            className='side-drawer'
-            drawerClickHandler={this.drawerToggleClickHandler}
-            show={this.state.sideDrawerOpen}
-          />
-          {backDrop}
+            <SideDrawer
+              className="side-drawer"
+              drawerClickHandler={this.drawerToggleClickHandler}
+              show={this.state.sideDrawerOpen}
+            />
+          </p>
         </div>
-      </div>
-    );
+      ];
+    } else {
+      return [
+        <div className={this.state.navigationClasses}>
+          <div style={{ height: '100%' }}>
+            <Toolbar
+              className="tool-bar"
+              drawerClickHandler={this.drawerToggleClickHandler}
+            />
+            <SideDrawer
+              className="side-drawer"
+              drawerClickHandler={this.drawerToggleClickHandler}
+              show={this.state.sideDrawerOpen}
+            />
+          </div>
+        </div>
+      ];
+    }
   }
 }
 
