@@ -24,7 +24,7 @@ class MemberPage extends Component {
     return (
       <Container class="member-page-container">
         <Row>
-          <Col sx="12" md="12">
+          <Col xs="12">
             <div>
               <div>
                 <Helmet>

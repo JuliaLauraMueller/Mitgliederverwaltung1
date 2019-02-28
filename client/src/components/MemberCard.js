@@ -19,8 +19,8 @@ TODO:
 class MemberCard extends Component {
   render() {
     return (
-      <Row className="search-field-member">
-        <Col md="9" md={{ offset: 0, size: 6 }} sm={{ offset: 0 }}>
+      <Row className="member-card">
+        <Col md="6" xs="12">
           <Card className="member-card" style={{ border: "1px solid white" }}>
             <CardBody>
               <div>

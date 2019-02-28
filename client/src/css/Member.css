@@ -14,6 +14,8 @@
 
 .member-page-container {
   max-width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 /*SearchFieldMember*/
@@ -105,10 +107,9 @@ hr {
   box-sizing: border-box;
 }
 
-.member-card-container {
-  /*display: block;*/
+.member-card {
+  display: flex;
   justify-content: center;
-  width: auto;
 }
 
 .overflow {
@@ -169,7 +170,7 @@ hr {
   transform: translateY(-50%);
   font-family: Helvetica;
   font-size: 12px;
-  margin-top: 29px;
+  margin-top: 21px;
   margin-left: 25px;
 }
 
@@ -188,7 +189,7 @@ hr {
   transform: translateY(-50%);
   font-family: Helvetica;
   font-size: 12px;
-  margin-top: 55px;
+  margin-top: 48px;
   margin-left: 25px;
 }
 
