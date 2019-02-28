@@ -64,30 +64,29 @@
 }
 
 .search-form {
-  min-width: 350px;
-  max-width: 300px;
+  display: flex;
+  justify-content: center;
 }
 
 .search-icon {
   width: 20px;
   height: 20px;
   margin-top: -6px;
-  margin-left: 25px;
 }
 
 .search-input {
-  background: "none";
-  border: "none";
+  background: 'none';
+  border: 'none';
   font-family: Helvetica, sans-serif;
   font-weight: 0;
   font-size: 22px;
   color: #656c77;
   margin-top: -50px;
   margin-left: 5px;
+  width: 80%;
 }
 
 hr {
-  width: 300px;
   height: 1px;
   border: 0;
   border-top: 1px solid #656c77;
@@ -235,4 +234,8 @@ hr {
 
 .filter-cities {
   margin-left: 5px;
+}
+
+.testerSearch {
+  justify-content: center;
 }
