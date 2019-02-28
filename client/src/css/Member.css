@@ -8,19 +8,11 @@
   margin-top: -100px;
 }
 
-<<<<<<< HEAD
-.bodyMember {
-  width: 100%;
-}
-
 .member-page-container {
-  max-width: 100%;
   display: flex;
   justify-content: center;
 }
 
-=======
->>>>>>> 4cffcc22d41c8e0b269b3b8d9bcc8ae9a1800f46
 /*SearchFieldMember*/
 
 .filter-icon {
@@ -84,8 +76,8 @@
 }
 
 .search-input {
-  background: 'none';
-  border: 'none';
+  background: "none";
+  border: "none";
   font-family: Helvetica, sans-serif;
   font-weight: 0;
   font-size: 22px;

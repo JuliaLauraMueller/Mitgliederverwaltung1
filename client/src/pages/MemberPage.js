@@ -1,24 +1,11 @@
-<<<<<<< HEAD
 import React, { Component } from "react";
 import MemberCard from "../components/MemberCard";
 import SearchFieldMember from "../components/SearchFieldMember";
 import { Helmet } from "react-helmet";
 import { Container, Row, Col } from "reactstrap";
-import memberService from "../services/memberService";
-
 import { connect } from "react-redux";
-
 import { setNavVisible } from "../redux/actions/navigationActions";
-=======
-import React, { Component } from 'react';
-import MemberCard from '../components/MemberCard';
-import SearchFieldMember from '../components/SearchFieldMember';
-import { Helmet } from 'react-helmet';
-import { Container, Row } from 'reactstrap';
-import { connect } from 'react-redux';
-import { setNavVisible } from '../redux/actions/navigationActions';
-import { fetchMembers } from '../redux/actions/memberActions';
->>>>>>> 4cffcc22d41c8e0b269b3b8d9bcc8ae9a1800f46
+import { fetchMembers } from "../redux/actions/memberActions";
 
 import "../css/Member.css";
 
