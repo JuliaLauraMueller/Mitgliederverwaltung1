@@ -32,9 +32,9 @@ class SearchFieldMember extends Component {
 
   render() {
     return (
-      <Container className="search-field-member">
-        <Row>
-          <Col>
+      <Row className="search-field-member">
+        <Col>
+          <div className="search-field-member">
             <form className="search-form">
               <img
                 className="search-icon"
@@ -91,9 +91,9 @@ class SearchFieldMember extends Component {
               </ButtonDropdown>
               <hr />
             </form>
-          </Col>
-        </Row>
-      </Container>
+          </div>
+        </Col>
+      </Row>
     );
   }
 }
