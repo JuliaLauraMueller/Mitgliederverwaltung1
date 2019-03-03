@@ -66,11 +66,12 @@ async function getUserData(id) {
   return userData;
 }
 
-function getCompanyLocationData(id) {
-  return axios.get('/companyLocations/' + id).then(resp => {
+function getCompanyData(id) {
+  return axios.get('/companies/' + id).then(resp => {
     return {
       member: {
-        companyID: resp.data.company,
+        company: resp.data.companyName,
+        companyURL: resp.data.companyURL,
         companyStreet: resp.data.companyStreet,
         companyStreetNr: resp.data.companyStreetNr,
         companyZip: resp.data.companyZip,
@@ -80,16 +81,5 @@ function getCompanyLocationData(id) {
   });
 }
 
-function getCompanyData(id) {
-  return axios.get('/companies/' + id).then(resp => {
-    return {
-      member: {
-        company: resp.data.companyName,
-        companyURL: resp.data.companyURL
-      }
-    };
-  });
-}
-
-const profileService = { getUserData, getCompanyData, getCompanyLocationData };
+const profileService = { getUserData, getCompanyData };
 export default profileService;

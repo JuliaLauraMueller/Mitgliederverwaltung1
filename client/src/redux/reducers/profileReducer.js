@@ -1,6 +1,5 @@
 import {
   PROFILE_USER_FETCHED,
-  PROFILE_COMPLOC_FETCHED,
   PROFILE_COMP_FETCHED,
   PUT_PROFILE,
   FETCH_PROFILE
@@ -17,10 +16,6 @@ export default function(state = initialState, action) {
         member: { ...state.member, ...action.payload }
       };
     case PROFILE_USER_FETCHED:
-      return {
-        member: { ...state.member, ...action.payload }
-      };
-    case PROFILE_COMPLOC_FETCHED:
       return {
         member: { ...state.member, ...action.payload }
       };
