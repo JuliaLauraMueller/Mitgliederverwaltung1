@@ -49,7 +49,6 @@ function filterMembers(members, searchText) {
       0,
       searchText.length + 2
     );
-    console.log(m);
 
     return (
       levenshteinInRange(searchText, surname) ||

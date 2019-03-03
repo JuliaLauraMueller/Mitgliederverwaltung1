@@ -1,4 +1,7 @@
 import axios from 'axios';
+import store from '../helpers/store';
+import history from '../helpers/history';
+import { alertError } from '..//redux/actions/alertActions';
 
 async function getUserBody() {
   return await axios
@@ -24,7 +27,11 @@ async function getUserBody() {
       };
       return mem;
     })
-    .catch(err => console.log(err)); // TODO (Beni): error handling
+    .catch(err => {
+      // couldn't load members
+      history.push('/');
+      store.dispatch(alertError('Mitglieder konnten nicht geladen werden.'));
+    });
 }
 
 const memberService = { getUserBody };
