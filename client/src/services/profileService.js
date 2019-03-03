@@ -3,7 +3,6 @@ import formatDate from '../helpers/formatter';
 
 async function getUserData(id) {
   var userData = await axios.get('/users/' + id).then(resp => {
-    console.log(resp.data.birthdate);
     return {
       member: {
         status: 'Junior',
