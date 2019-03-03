@@ -1,5 +1,6 @@
 // Styles
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-bootstrap-table/dist/react-bootstrap-table.min.css';
 import './css/App.css';
 
 // Components
