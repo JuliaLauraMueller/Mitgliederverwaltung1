@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import MemberCard from "../components/MemberCard";
-import SearchFieldMember from "../components/SearchFieldMember";
-import { Helmet } from "react-helmet";
-import { Container, Row, Col } from "reactstrap";
-import { connect } from "react-redux";
-import { setNavVisible } from "../redux/actions/navigationActions";
-import { fetchMembers } from "../redux/actions/memberActions";
+import React, { Component } from 'react';
+import MemberCard from '../components/MemberCard';
+import SearchFieldMember from '../components/SearchFieldMember';
+import { Helmet } from 'react-helmet';
+import { Container, Row, Col } from 'reactstrap';
+import { connect } from 'react-redux';
+import { setNavVisible } from '../redux/actions/navigationActions';
+import { fetchMembers } from '../redux/actions/memberActions';
 
-import "../css/Member.css";
+import '../css/Member.css';
 
 class MemberPage extends Component {
   constructor(props) {
@@ -21,14 +21,14 @@ class MemberPage extends Component {
       return <MemberCard key={member._id} member={member} />;
     });
     return (
-      <Container class="member-page-container">
+      <Container className="member-page-container">
         <Row>
           <Col xs="12">
             <div>
               <div>
                 <Helmet>
                   <style>
-                    {"body { background-color: rgb(15, 25, 41, 10%); }"}
+                    {'body { background-color: rgb(15, 25, 41, 10%); }'}
                   </style>
                 </Helmet>
               </div>

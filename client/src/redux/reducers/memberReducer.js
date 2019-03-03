@@ -40,11 +40,24 @@ function filterMembers(members, searchText) {
       searchText.length + 2
     );
 
+    let funktion = replaceUmlauts(m.function.toLowerCase()).substring(
+      0,
+      searchText.length + 2
+    );
+
+    let sector = replaceUmlauts(m.sector.toLowerCase()).substring(
+      0,
+      searchText.length + 2
+    );
+    console.log(m);
+
     return (
       levenshteinInRange(searchText, surname) ||
       levenshteinInRange(searchText, fullname) ||
       levenshteinInRange(searchText, company) ||
-      levenshteinInRange(searchText, job)
+      levenshteinInRange(searchText, job) ||
+      levenshteinInRange(searchText, funktion) ||
+      levenshteinInRange(searchText, sector)
     );
   });
 }

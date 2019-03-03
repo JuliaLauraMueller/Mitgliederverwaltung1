@@ -29,7 +29,6 @@ async function getAll() {
   let users = [];
   let usersCopy = await User.find({}, '-password', function(err, loadedUsers) {
     loadedUsers.forEach(u => {
-      console.log(u);
       users.push({
         id: u._id,
         firstname: u.firstname,
