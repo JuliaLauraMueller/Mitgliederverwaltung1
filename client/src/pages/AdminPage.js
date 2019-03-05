@@ -21,10 +21,18 @@ class AdminPage extends Component {
     this.props.dispatch(setNavVisible());
 
     this.getMemberRows = this.getMemberRows.bind(this);
+
+    this.state = {
+      searchText: ''
+    };
   }
 
   componentDidMount() {
     this.props.dispatch(fetchMembers());
+  }
+
+  handleChange(event) {
+    this.setState({ searchText: event.target.value });
   }
 
   render() {
@@ -42,6 +50,14 @@ class AdminPage extends Component {
         >
           Neuer Benutzer
         </Link>
+        <input
+          type="text"
+          name="search"
+          placeholder="Mitglied suchen"
+          className="form-control"
+          value={this.state.searchText}
+          onChange={this.handleChange.bind(this)}
+        />
         <Table hover className="adminTable">
           <thead>
             <tr>
@@ -73,7 +89,7 @@ class AdminPage extends Component {
           <TableHeaderColumn dataField="_id" isKey={true} hidden />
           <TableHeaderColumn
             dataField="memberNumber"
-            className="d-none d-md-table-cell hidden-xs"
+            className="d-none d-md-table-cell hidden-xs" // TODO: try only with hidden-xs or remove it
             columnClassName="d-none d-md-table-cell hidden-xs"
           >
             Nr.
@@ -100,39 +116,44 @@ class AdminPage extends Component {
   }
 
   getMemberRows(members) {
-    return members.map(member => {
-      return (
-        <tr key={member._id}>
-          <td className="d-none d-md-table-cell">{member.memberNumber}</td>
-          <td>{member.firstname}</td>
-          <td>{member.surname}</td>
-          <td className="d-none d-md-table-cell">{member.privateEmail}</td>
-          <td className="d-none d-sm-table-cell">{member.circle}</td>
-          <td>
-            <Link
-              className="admin-link admin-link-small"
-              to={'/member/' + member._id}
-            >
-              Bearbeiten
-            </Link>
-            <br />
-            <Link
-              className="admin-link admin-link-small"
-              to={'/members/changeRole/' + member._id}
-            >
-              Rolle ändern
-            </Link>
-            <br />
-            <Link
-              className="admin-link admin-link-small"
-              to={'/members/delete/' + member._id}
-            >
-              Löschen
-            </Link>
-          </td>
-        </tr>
-      );
-    });
+    return (
+      members
+        // TODO: maybe reuse logic from member page search here (extract to helper function)
+        .filter(member => member.firstname.startsWith(this.state.searchText))
+        .map(member => {
+          return (
+            <tr key={member._id}>
+              <td className="d-none d-md-table-cell">{member.memberNumber}</td>
+              <td>{member.firstname}</td>
+              <td>{member.surname}</td>
+              <td className="d-none d-md-table-cell">{member.privateEmail}</td>
+              <td className="d-none d-sm-table-cell">{member.circle}</td>
+              <td>
+                <Link
+                  className="admin-link admin-link-small"
+                  to={'/member/' + member._id}
+                >
+                  Bearbeiten
+                </Link>
+                <br />
+                <Link
+                  className="admin-link admin-link-small"
+                  to={'/members/changeRole/' + member._id}
+                >
+                  Rolle ändern
+                </Link>
+                <br />
+                <Link
+                  className="admin-link admin-link-small"
+                  to={'/members/delete/' + member._id}
+                >
+                  Löschen
+                </Link>
+              </td>
+            </tr>
+          );
+        })
+    );
   }
 }
 
