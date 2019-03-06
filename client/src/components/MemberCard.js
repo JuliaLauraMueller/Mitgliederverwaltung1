@@ -19,8 +19,8 @@ TODO:
 class MemberCard extends Component {
   render() {
     return (
-      <Row className="member-card">
-        <Col md="6" xs="12">
+      <Row xs="12" className="member-card-row">
+        <Col md="6" sm="12">
           <Card className="member-card" style={{ border: "1px solid white" }}>
             <CardBody>
               <div>

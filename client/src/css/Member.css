@@ -11,6 +11,7 @@
 .member-page-container {
   display: flex;
   justify-content: center;
+  align-content: center;
 }
 
 /*SearchFieldMember*/
@@ -19,22 +20,17 @@
   width: 24px;
   height: 24px;
   margin-top: -12px;
-  margin-left: -11px;
+  margin-left: -14px;
+  justify-content: center;
 }
 
 .filter-button {
   border: 1px solid rgb(15, 25, 41, 0%);
-
   background-color: rgb(15, 25, 41, 0%);
-
   width: 28px;
-
   height: 28px;
-
   margin-top: -8px;
-
   margin-left: 0px;
-
   transition-duration: 0.4s;
 }
 
@@ -75,15 +71,19 @@
 }
 
 .search-input {
-  background: 'none';
-  border: 'none';
+  background: "none";
+  border: "none";
   font-family: Helvetica, sans-serif;
   font-weight: 0;
   font-size: 22px;
   color: #656c77;
   margin-top: -50px;
   margin-left: 5px;
-  width: 80%;
+  width: 76%;
+}
+
+.testerSearch {
+  justify-content: center;
 }
 
 hr {
@@ -99,6 +99,9 @@ hr {
 
 * {
   box-sizing: border-box;
+}
+.member-card-row {
+  justify-content: center;
 }
 
 .member-card {
@@ -234,8 +237,4 @@ hr {
 
 .filter-cities {
   margin-left: 5px;
-}
-
-.testerSearch {
-  justify-content: center;
 }
