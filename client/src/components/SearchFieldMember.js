@@ -1,37 +1,43 @@
-import React, { Component } from "react";
-import { Container, Row, Col } from "reactstrap";
-import { connect } from "react-redux";
-import { searchMembers } from "../redux/actions/memberActions";
+import React, { Component } from 'react';
+import { Row, Col } from 'reactstrap';
+import { connect } from 'react-redux';
+import { searchMembers } from '../redux/actions/memberActions';
+import { filterCircles } from '../redux/actions/memberActions';
 import {
   ButtonDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem
-} from "reactstrap";
+} from 'reactstrap';
 
 class SearchFieldMember extends Component {
   constructor(props) {
     super(props);
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.props.dispatch(searchMembers(""));
+    this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
+    this.props.dispatch(searchMembers(''));
     this.toggle = this.toggle.bind(this);
     this.state = {
+      checkedCircles: [],
       dropdownOpen: false
     };
   }
 
-  handleInputChange = () => {
+  handleInputChange() {
     this.props.dispatch(searchMembers(this.search.value));
-  };
+  }
 
-  handleCheckboxChange = () => {
-    //TODO: separate search filter with higher priority
-    if (document.getElementById('checkbox-bern').checked) {
-      this.props.dispatch(searchMembers('Bern'));
+  handleCheckboxChange(event) {
+    if (event.target.checked) {
+      this.state.checkedCircles.push(event.target.id);
     } else {
-      this.props.dispatch(searchMembers(this.search.value));
+      this.state.checkedCircles.splice(
+        this.state.checkedCircles.indexOf(event.target.id),
+        1
+      );
     }
-  };
+    this.props.dispatch(filterCircles(this.state.checkedCircles));
+  }
 
   toggle() {
     this.setState({
@@ -40,6 +46,38 @@ class SearchFieldMember extends Component {
   }
 
   render() {
+    let circles = [
+      {
+        _id: '5bfe74a07d3e650398e3e6c7',
+        name: 'Bern'
+      },
+      {
+        _id: '5bfe74b70108860398a4339b',
+        name: 'Zürich'
+      },
+      {
+        _id: '5bfe74b87d3e650398e3e6c8',
+        name: 'St. Gallen'
+      }
+    ];
+
+    let circleLabels = circles.map(circle => {
+      return (
+        <div className="drop-down-filter" key={circle._id}>
+          <input
+            type="checkbox"
+            id={circle._id}
+            onClick={this.handleCheckboxChange.bind(this)}
+            defaultChecked={this.state.checkedCircles.includes(circle._id)}
+          />
+
+          <label htmlFor={circle._id} className="filter-cities">
+            {circle.name}
+          </label>
+        </div>
+      );
+    });
+
     return (
       <Row className="search-field-member">
         <Col md="12">
@@ -47,12 +85,12 @@ class SearchFieldMember extends Component {
             <div className="testerSearch">
               <img
                 className="search-icon"
-                src={require("../../public/img/search-grey.png")}
+                src={require('../../public/img/search-grey.png')}
                 alt="Card i cap"
               />
               <input
                 className="search-input"
-                style={{ background: "none", border: "none" }}
+                style={{ background: 'none', border: 'none' }}
                 placeholder="suchen..."
                 ref={input => (this.search = input)}
                 onChange={this.handleInputChange}
@@ -64,7 +102,7 @@ class SearchFieldMember extends Component {
                 <DropdownToggle
                   caret
                   className="filter-button"
-                  color={"rgb(15, 25, 41, 40%)"}
+                  color={'rgb(15, 25, 41, 40%)'}
                 >
                   <svg
                     className="filter-icon"
@@ -78,28 +116,7 @@ class SearchFieldMember extends Component {
 
                 <DropdownMenu>
                   <DropdownItem header>Standorte filtern</DropdownItem>
-
-                  <div className="drop-down-filter">
-                    <input
-                      id="checkbox-bern"
-                      type="checkbox"
-                      onClick={this.handleCheckboxChange}
-                    />
-
-                    <label className="filter-cities"> Bern</label>
-                  </div>
-
-                  <div className="drop-down-filter">
-                    <input type="checkbox" />
-
-                    <label className="filter-cities">Zürich</label>
-                  </div>
-
-                  <div className="drop-down-filter">
-                    <input type="checkbox" />
-
-                    <label className="filter-cities">St.Gallen</label>
-                  </div>
+                  {circleLabels}
                 </DropdownMenu>
               </ButtonDropdown>
               <hr />

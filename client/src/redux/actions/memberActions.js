@@ -1,10 +1,16 @@
-import { MEMBERS_FETCHED } from '../types/memberTypes';
+import {
+  SEARCH_MEMBERS,
+  MEMBERS_FETCHED,
+  FILTER_CIRCLES
+} from '../types/memberTypes';
 import memberService from '../../services/memberService';
-
-export const SEARCH_MEMBERS = 'members: searchMembers';
 
 export const searchMembers = searchText => dispatch => {
   dispatch({ type: SEARCH_MEMBERS, payload: searchText });
+};
+
+export const filterCircles = filteredCircles => dispatch => {
+  dispatch({ type: FILTER_CIRCLES, payload: filteredCircles });
 };
 
 export const fetchMembers = () => dispatch => {

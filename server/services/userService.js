@@ -38,7 +38,8 @@ async function getAll() {
         job: u.job,
         function: u.function,
         sector: u.sector,
-        company: u.company
+        company: u.company,
+        circle: u.circle
       });
     });
     return loadedUsers;

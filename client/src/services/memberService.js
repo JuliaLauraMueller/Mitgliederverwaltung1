@@ -21,6 +21,7 @@ async function getUserBody() {
             function: element.function,
             sector: element.sector,
             company: element.company,
+            circle: element.circle,
             profilepic: './img/marc_zimmermann.jpg' // TODO: implement loading of images
           };
         })

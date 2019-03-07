@@ -1,15 +1,18 @@
-import { SEARCH_MEMBERS } from '../actions/memberActions';
+import { SEARCH_MEMBERS, FILTER_CIRCLES } from '../types/memberTypes';
 import { MEMBERS_FETCHED } from '../types/memberTypes';
 import levenshtein from 'js-levenshtein';
 
+const MAX_LEVENSHTEIN_DISTANCE = 1;
+
 const initialState = {
   searchText: '',
+  filteredCities: [],
   members: [],
   filteredMembers: []
 };
 
 function levenshteinInRange(searchText, matchingText) {
-  if (levenshtein(searchText, matchingText) < 3) {
+  if (levenshtein(searchText, matchingText) <= MAX_LEVENSHTEIN_DISTANCE) {
     return true;
   }
 }
@@ -61,6 +64,16 @@ function filterMembers(members, searchText) {
   });
 }
 
+function filterCircles(members, filteredCircles) {
+  if (!filteredCircles || filteredCircles.length == 0) {
+    return members;
+  } else {
+    return members.filter(m => {
+      return filteredCircles.includes(m.circle);
+    });
+  }
+}
+
 function replaceUmlauts(text) {
   return text
     .replace('ä', 'ae')
@@ -78,7 +91,22 @@ export default function(state = initialState, action) {
     case SEARCH_MEMBERS:
       return {
         members: state.members,
-        filteredMembers: filterMembers(state.members, action.payload)
+        searchText: action.payload,
+        filteredCities: state.filteredCities,
+        filteredMembers: filterMembers(
+          filterCircles(state.members, state.filteredCities),
+          action.payload
+        )
+      };
+    case FILTER_CIRCLES:
+      return {
+        members: state.members,
+        searchText: state.searchText,
+        filteredCities: action.payload,
+        filteredMembers: filterMembers(
+          filterCircles(state.members, action.payload),
+          state.searchText
+        )
       };
     default:
       return state;
