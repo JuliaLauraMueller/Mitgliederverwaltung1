@@ -1,6 +1,5 @@
 import {
   PROFILE_USER_FETCHED,
-  PROFILE_COMPLOC_FETCHED,
   PROFILE_COMP_FETCHED,
   PUT_PROFILE
 } from '../types/profileTypes';
@@ -15,13 +14,7 @@ export const fetchProfile = id => dispatch => {
     .then(res => {
       if (res) {
         dispatch({ type: PROFILE_USER_FETCHED, payload: res.member });
-        return profileService.getCompanyLocationData(res.member.company);
-      }
-    })
-    .then(res => {
-      if (res) {
-        dispatch({ type: PROFILE_COMPLOC_FETCHED, payload: res.member });
-        return profileService.getCompanyData(res.member.companyID);
+        return profileService.getCompanyData(res.member.company);
       }
     })
     .then(res => {
