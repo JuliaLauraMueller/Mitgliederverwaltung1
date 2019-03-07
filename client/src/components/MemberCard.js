@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   Card,
   CardText,
@@ -7,8 +7,8 @@ import {
   Container,
   Row,
   Col
-} from "reactstrap";
-import { Link } from "react-router-dom";
+} from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 /*
 TODO: 
@@ -19,14 +19,14 @@ TODO:
 class MemberCard extends Component {
   render() {
     return (
-      <Row xs="12" className="member-card-row">
-        <Col md="6" sm="12">
-          <Card className="member-card" style={{ border: "1px solid white" }}>
+      <Row>
+        <Col className="member-card-row">
+          <Card className="member-card" style={{ border: '1px solid white' }}>
             <CardBody>
               <div>
                 <img
                   className="card-image"
-                  src={require("../../public/img/marc_zimmermann.jpg")}
+                  src={require('../../public/img/marc_zimmermann.jpg')}
                   alt="Card i cap"
                 />
 
@@ -38,7 +38,7 @@ class MemberCard extends Component {
               <div>
                 <img
                   className="mail-icon"
-                  src={require("../../public/img/mail.png")}
+                  src={require('../../public/img/mail.png')}
                   alt="Card i cap"
                 />
               </div>
@@ -50,7 +50,7 @@ class MemberCard extends Component {
               <div>
                 <img
                   className="phone-icon"
-                  src={require("../../public/img/phone.png")}
+                  src={require('../../public/img/phone.png')}
                   alt="Card i cap"
                 />
               </div>
