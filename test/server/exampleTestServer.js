@@ -1,3 +1,5 @@
+// These are old tests for the mocha run through. These will be replaced when jenkins is set to jest tests.
+
 var assert = require('assert');
 var userService = require('../../server/services/userService');
 
