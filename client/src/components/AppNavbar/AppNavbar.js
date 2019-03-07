@@ -46,21 +46,6 @@ class AppNavbar extends Component {
     window.removeEventListener('resize', this.handleResize.bind(this));
   }
 
-  //Render Mobile
-  renderMobileNav() {
-    if (this.state.isMobile) {
-      return this.navigationLinks();
-    }
-  }
-
-  handleNavClick() {
-    if (!this.state.isMobile) {
-      this.setState({ isMobile: true });
-    } else {
-      this.setState({ isMobile: false });
-    }
-  }
-
   drawerToggleClickHandler = () => {
     this.setState(prevState => {
       return { sideDrawerOpen: !prevState.sideDrawerOpen };
@@ -68,36 +53,15 @@ class AppNavbar extends Component {
     this.props.toggleSideMenu();
   };
 
-  backdropClickHandler = () => {
-    this.setState({ sideDrawerOpen: false });
-  };
-
   render() {
-    if (this.state.windowWidth <= 768) {
-      return [
-        <div className="mobile_nav">
-          <p onClick={this.handleNavClick.bind(this)}>
-            <Button
-              className="icon-button"
-              onClick={this.drawerToggleClickHandler}
-            >
-              <img
-                className=""
-                alt="Burger Menu"
-                src={require('../../../public/img/burger.svg')}
-              />
-            </Button>
-
-            <SideDrawer
-              className="side-drawer"
-              drawerClickHandler={this.drawerToggleClickHandler}
-              show={this.state.sideDrawerOpen}
-            />
-          </p>
+    if (window.innerWidth <= 768) {
+      return (
+        <div className={this.state.navigationClasses}>
+          <BurgerNav />
         </div>
-      ];
+      );
     } else {
-      return [
+      return (
         <div className={this.state.navigationClasses}>
           <div style={{ height: '100%' }}>
             <Toolbar
@@ -111,7 +75,7 @@ class AppNavbar extends Component {
             />
           </div>
         </div>
-      ];
+      );
     }
   }
 }

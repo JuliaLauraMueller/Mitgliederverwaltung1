@@ -23,10 +23,21 @@ import {
 
 import { alertClear } from './redux/actions/alertActions';
 
+import {
+  setNavVisible,
+  setNavInvisible
+} from './redux/actions/navigationActions';
+
 class App extends Component {
   constructor(props) {
     super(props);
     const { dispatch } = this.props;
+
+    if (this.state.windowWidth <= 768) {
+      store.dispatch(setNavInvisible());
+    } else {
+      store.dispatch(setNavVisible());
+    }
 
     store.subscribe(() => {
       const visibleStatus = store.getState().navigation.visible;
@@ -65,8 +76,21 @@ class App extends Component {
     this.toggleSideMenu = this.toggleSideMenu.bind(this);
   }
 
+  //window with
+  handleResize() {
+    this.setState({ windowWidth: window.innerWidth });
+  }
+  componentDidMount() {
+    window.addEventListener('resize', this.handleResize.bind(this));
+    this.handleResize();
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize.bind(this));
+  }
+
   // Add global layout components before route
   state = {
+    windowWidth: window.innerWidth,
     previouslyVisible: false,
     previouslyExpanded: false,
     AppClassNames: 'app'
