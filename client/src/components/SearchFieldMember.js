@@ -3,6 +3,7 @@ import { Row, Col } from 'reactstrap';
 import { connect } from 'react-redux';
 import { searchMembers } from '../redux/actions/memberActions';
 import { filterCircles } from '../redux/actions/memberActions';
+import { fetchCircles } from '../redux/actions/circleActions';
 import {
   ButtonDropdown,
   DropdownToggle,
@@ -16,6 +17,7 @@ class SearchFieldMember extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
     this.props.dispatch(searchMembers(''));
+    this.props.dispatch(fetchCircles());
     this.toggle = this.toggle.bind(this);
     this.state = {
       checkedCircles: [],
@@ -46,22 +48,7 @@ class SearchFieldMember extends Component {
   }
 
   render() {
-    let circles = [
-      {
-        _id: '5bfe74a07d3e650398e3e6c7',
-        name: 'Bern'
-      },
-      {
-        _id: '5bfe74b70108860398a4339b',
-        name: 'Zürich'
-      },
-      {
-        _id: '5bfe74b87d3e650398e3e6c8',
-        name: 'St. Gallen'
-      }
-    ];
-
-    let circleLabels = circles.map(circle => {
+    let circleLabels = this.props.circles.map(circle => {
       return (
         <div className="drop-down-filter" key={circle._id}>
           <input
@@ -129,7 +116,9 @@ class SearchFieldMember extends Component {
 }
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    circles: state.circle.circles
+  };
 }
 
 export default connect(mapStateToProps)(SearchFieldMember);
