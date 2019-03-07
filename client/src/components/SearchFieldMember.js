@@ -24,6 +24,15 @@ class SearchFieldMember extends Component {
     this.props.dispatch(searchMembers(this.search.value));
   };
 
+  handleCheckboxChange = () => {
+    //TODO: separate search filter with higher priority
+    if (document.getElementById('checkbox-bern').checked) {
+      this.props.dispatch(searchMembers('Bern'));
+    } else {
+      this.props.dispatch(searchMembers(this.search.value));
+    }
+  };
+
   toggle() {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen
@@ -71,7 +80,11 @@ class SearchFieldMember extends Component {
                   <DropdownItem header>Standorte filtern</DropdownItem>
 
                   <div className="drop-down-filter">
-                    <input type="checkbox" />
+                    <input
+                      id="checkbox-bern"
+                      type="checkbox"
+                      onClick={this.handleCheckboxChange}
+                    />
 
                     <label className="filter-cities"> Bern</label>
                   </div>
