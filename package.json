@@ -18,7 +18,8 @@
   "author": "Project team Mitgliederverwaltung1 (FHNW)",
   "license": "CC-BY-NC-ND-4.0",
   "dependencies": {
-    "concurrently": "^4.1.0"
+    "concurrently": "^4.1.0",
+    "react-burger-menu": "^2.6.5"
   },
   "devDependencies": {
     "mocha": "^5.2.0",
