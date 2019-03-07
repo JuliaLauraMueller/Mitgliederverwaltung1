@@ -64,18 +64,20 @@ class ProfileMainInformationEDIT extends Component {
 
   onSave() {
     const mainInfoUpdate = {
+      _id: this.props.profile._id,
       sector: this.state.sector,
       job: this.state.job,
       function: this.state.function,
-      company: this.state.company,
+      //company_id: this.props.profile.company_id,
+      //company: this.state.company,
       companyTel: this.state.companyTel,
       companyMobile: this.state.companyMobile,
       companyEmail: this.state.companyEmail,
-      companyStreet: this.state.companyStreet,
-      companyStreetNr: this.state.companyStreetNr,
-      companyZip: this.state.companyZip,
-      companyCity: this.state.companyCity,
-      companyURL: this.state.companyURL,
+      //companyStreet: this.state.companyStreet,
+      //companyStreetNr: this.state.companyStreetNr,
+      //companyZip: this.state.companyZip,
+      //companyCity: this.state.companyCity,
+      //companyURL: this.state.companyURL,
       privateTel: this.state.privateTel,
       privateMobile: this.state.privateMobile,
       privateEmail: this.state.privateEmail,
@@ -85,7 +87,7 @@ class ProfileMainInformationEDIT extends Component {
       privateCity: this.state.privateCity,
       invoiceAddress: this.state.invoiceAddress
     };
-
+    //console.log(this.props.profile);
     this.props.dispatch(putProfile(mainInfoUpdate));
   }
 

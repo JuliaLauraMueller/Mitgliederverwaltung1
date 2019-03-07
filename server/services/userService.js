@@ -10,7 +10,8 @@ module.exports = {
   getById,
   getAll,
   generateJwtToken,
-  removeAllCompanyRelations
+  removeAllCompanyRelations,
+  update
 };
 
 async function authenticate({ privateEmail, password }) {

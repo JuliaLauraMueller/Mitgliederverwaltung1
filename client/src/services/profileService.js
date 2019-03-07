@@ -5,16 +5,17 @@ async function getUserData(id) {
   var userData = await axios.get('/users/' + id).then(resp => {
     return {
       member: {
+        _id: id,
         status: 'Junior',
         memberNumber: resp.data.memberNumber,
         entryDate: resp.data.entryDate,
-        city: resp.data.circle,
-        godfather: resp.data.godfather,
+        city_id: resp.data.circle,
+        godfather_id: resp.data.godfather,
         birthdate: resp.data.birthdate,
         sector: resp.data.sector,
         job: resp.data.job,
         function: resp.data.function,
-        company: resp.data.company,
+        company_id: resp.data.company,
         companyTel: resp.data.companyTel,
         companyMobile: resp.data.companyMobile,
         companyEmail: resp.data.companyEmail,
@@ -43,8 +44,8 @@ async function getUserData(id) {
     };
   });
 
-  if (userData.member.godfather) {
-    await axios.get('/users/' + userData.member.godfather).then(resp => {
+  if (userData.member.godfather_id) {
+    await axios.get('/users/' + userData.member.godfather_id).then(resp => {
       if (resp) {
         userData.member.godfather =
           resp.data.firstname + ' ' + resp.data.surname;
@@ -52,8 +53,8 @@ async function getUserData(id) {
     });
   }
 
-  if (userData.member.city) {
-    await axios.get('/circles/' + userData.member.city).then(resp => {
+  if (userData.member.city_id) {
+    await axios.get('/circles/' + userData.member.city_id).then(resp => {
       userData.member.city = resp.data.name;
     });
   }
@@ -81,5 +82,18 @@ function getCompanyData(id) {
   });
 }
 
-const profileService = { getUserData, getCompanyData };
+async function setUserData(data) {
+  var id = data._id;
+  var body = {
+    params: data._id,
+    body: data
+  };
+  console.log(data);
+
+  var res = axios.put('/users/' + data._id, data); //body);
+
+  return data;
+}
+
+const profileService = { getUserData, getCompanyData, setUserData };
 export default profileService;

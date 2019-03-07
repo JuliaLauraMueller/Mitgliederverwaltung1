@@ -14,7 +14,7 @@ export const fetchProfile = id => dispatch => {
     .then(res => {
       if (res) {
         dispatch({ type: PROFILE_USER_FETCHED, payload: res.member });
-        return profileService.getCompanyData(res.member.company);
+        return profileService.getCompanyData(res.member.company_id);
       }
     })
     .then(res => {
@@ -30,6 +30,9 @@ export const fetchProfile = id => dispatch => {
 };
 
 export function putProfile(profileData) {
+  console.log('PUT PROFILE');
+  profileService.setUserData(profileData).then(res => {});
+
   return function(dispatch) {
     dispatch({ type: PUT_PROFILE, payload: profileData });
   };
