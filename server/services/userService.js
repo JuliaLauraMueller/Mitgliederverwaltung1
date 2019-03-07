@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = require('../helpers/db');
 const User = db.User;
-const CompanyLocation = db.CompanyLocation;
+const Company = db.Company;
 
 module.exports = {
   authenticate,
@@ -45,10 +45,7 @@ async function getAll() {
     return loadedUsers;
   });
   let companyIDs = users.map(user => user.company);
-  await CompanyLocation.find({ _id: { $in: companyIDs } }, function(
-    err,
-    companies
-  ) {
+  await Company.find({ _id: { $in: companyIDs } }, function(err, companies) {
     if (err) {
       console.log(err);
       return;
