@@ -3,7 +3,11 @@ const Schema = mongoose.Schema;
 
 const schema = new Schema({
   companyName: { type: String },
-  companyURL: { type: String }
+  companyURL: { type: String },
+  companyStreet: { type: String },
+  companyStreetNr: { type: Number },
+  companyZip: { type: Number },
+  companyCity: { type: String }
 });
 
 schema.set('toJSON', { virtuals: true });

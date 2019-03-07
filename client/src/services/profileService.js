@@ -1,4 +1,5 @@
 import axios from 'axios';
+import formatDate from '../helpers/formatter';
 
 async function getUserData(id) {
   var userData = await axios.get('/users/' + id).then(resp => {
@@ -42,22 +43,35 @@ async function getUserData(id) {
     };
   });
 
-  await axios.get('/users/' + userData.member.godfather).then(resp => {
-    userData.member.godfather = resp.data.firstname + ' ' + resp.data.surname;
-  });
+  if (userData.member.godfather) {
+    await axios.get('/users/' + userData.member.godfather).then(resp => {
+      if (resp) {
+        userData.member.godfather =
+          resp.data.firstname + ' ' + resp.data.surname;
+      }
+    });
+  }
 
-  await axios.get('/circles/' + userData.member.city).then(resp => {
-    userData.member.city = resp.data.name;
-  });
+  if (userData.member.city) {
+    await axios.get('/circles/' + userData.member.city).then(resp => {
+      userData.member.city = resp.data.name;
+    });
+  }
+
+  if (userData.member.entryDate)
+    userData.member.entryDate = formatDate(new Date(userData.member.entryDate));
+  if (userData.member.birthdate)
+    userData.member.birthdate = formatDate(new Date(userData.member.birthdate));
 
   return userData;
 }
 
-function getCompanyLocationData(id) {
-  return axios.get('/companyLocations/' + id).then(resp => {
+function getCompanyData(id) {
+  return axios.get('/companies/' + id).then(resp => {
     return {
       member: {
-        companyID: resp.data.company,
+        company: resp.data.companyName,
+        companyURL: resp.data.companyURL,
         companyStreet: resp.data.companyStreet,
         companyStreetNr: resp.data.companyStreetNr,
         companyZip: resp.data.companyZip,
@@ -67,16 +81,5 @@ function getCompanyLocationData(id) {
   });
 }
 
-function getCompanyData(id) {
-  return axios.get('/companies/' + id).then(resp => {
-    return {
-      member: {
-        company: resp.data.companyName,
-        companyURL: resp.data.companyURL
-      }
-    };
-  });
-}
-
-const profileService = { getUserData, getCompanyData, getCompanyLocationData };
+const profileService = { getUserData, getCompanyData };
 export default profileService;
