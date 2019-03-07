@@ -1,0 +1,1 @@
+export const CIRCLES_FETCHED = 'CIRCLES_FETCHED';

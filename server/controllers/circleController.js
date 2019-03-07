@@ -3,9 +3,17 @@ const router = express.Router();
 const circleService = require('../services/circleService');
 
 // routes
+router.get('/', getAll);
 router.get('/:id', getById);
 
 module.exports = router;
+
+function getAll(req, res, next) {
+  circleService
+    .getAll()
+    .then(circles => res.json(circles))
+    .catch(err => next(err));
+}
 
 function getById(req, res, next) {
   circleService
