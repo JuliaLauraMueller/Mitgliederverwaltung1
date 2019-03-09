@@ -85,6 +85,7 @@ class AdminPage extends Component {
             )
           }}
           search
+          pagination
         >
           <TableHeaderColumn dataField="_id" isKey={true} hidden />
           <TableHeaderColumn
