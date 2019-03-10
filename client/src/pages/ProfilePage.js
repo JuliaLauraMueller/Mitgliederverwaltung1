@@ -23,10 +23,21 @@ class ProfilePage extends Component {
 
     this.toggleEdit = this.toggleEdit.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.loadMember = this.loadMember.bind(this);
   }
 
   componentDidMount() {
-    this.props.dispatch(fetchProfile(this.props.match.params.id));
+    // first time profile page is loaded
+    this.loadMember(this.props.match.params.id);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // switch between two profiles (when already on profile page)
+    this.loadMember(nextProps.match.params.id);
+  }
+
+  loadMember(memberId) {
+    this.props.dispatch(fetchProfile(memberId));
   }
 
   toggleEdit() {
@@ -44,28 +55,28 @@ class ProfilePage extends Component {
     if (this.state.isEditing) {
       return (
         <Container className="profile-page__container">
-         <Row>
+          <Row>
             <Col md="12">
-            <button className="button-save-edit" onClick={this.handleClick}>
-            Speichern
-          </button>
+              <button className="button-save-edit" onClick={this.handleClick}>
+                Speichern
+              </button>
             </Col>
           </Row>
           <Row>
-          <Col xs="12" md="12">
-          <ProfileBasicInfoEDIT
-              ref={basicInfo => {
-                this.basicInfo = basicInfo;
-              }}
-            />
-          </Col>
-          <Col xs="12" md="12">
-          <ProfileMainInformationEDIT
-            ref={mainInfo => {
-              this.mainInfo = mainInfo;
-            }}
-          />
-          </Col>    
+            <Col xs="12" md="12">
+              <ProfileBasicInfoEDIT
+                ref={basicInfo => {
+                  this.basicInfo = basicInfo;
+                }}
+              />
+            </Col>
+            <Col xs="12" md="12">
+              <ProfileMainInformationEDIT
+                ref={mainInfo => {
+                  this.mainInfo = mainInfo;
+                }}
+              />
+            </Col>
           </Row>
         </Container>
       );
