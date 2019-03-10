@@ -30,8 +30,7 @@ export const fetchProfile = id => dispatch => {
 };
 
 export function putProfile(profileData) {
-  console.log('PUT PROFILE');
-  profileService.setUserData(profileData).then(res => {});
+  var test = profileService.setUserData(profileData).then(res => {});
 
   return function(dispatch) {
     dispatch({ type: PUT_PROFILE, payload: profileData });

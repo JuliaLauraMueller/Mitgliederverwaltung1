@@ -11,7 +11,8 @@ module.exports = {
   getAll,
   generateJwtToken,
   removeAllCompanyRelations,
-  update
+  update,
+  updateUser
 };
 
 async function authenticate({ privateEmail, password }) {
@@ -48,6 +49,26 @@ async function create(userParam) {
 
   // save user
   await user.save();
+}
+
+async function updateUser(id, userParam) {
+  const user = await User.findById(id);
+  console.log('UPDATE');
+  console.log(id);
+  console.log(user);
+
+  if (!user) throw 'User not found';
+
+  // TODO check for correct input
+
+  Object.assign(user, userParam);
+  console.log(user);
+
+  var query = { _id: id };
+  await User.updateOne(query, user, function(err, res) {
+    if (err) throw err;
+  });
+  //await user.save();
 }
 
 async function update(id, userParam) {

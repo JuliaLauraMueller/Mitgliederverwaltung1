@@ -83,12 +83,7 @@ function getCompanyData(id) {
 }
 
 async function setUserData(data) {
-  var id = data._id;
-  var body = {
-    params: data._id,
-    body: data
-  };
-  console.log(data);
+  // TODO: Convert date
 
   var res = axios.put('/users/' + data._id, data); //body);
 
