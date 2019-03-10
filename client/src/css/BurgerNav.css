@@ -1,3 +1,8 @@
+/* Remove outline for non-keyboard :focus */
+*:focus:not(.focus-visible) {
+  outline: none;
+}
+
 /* Position and sizing of burger button */
 .bm-burger-button {
   position: fixed;
@@ -10,7 +15,6 @@
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
   background: #474f5a;
-  z-index: 100;
 }
 
 /* Color/shape of burger icon bars on hover*/
@@ -43,6 +47,7 @@
   background: #474f5a;
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
+  z-index: 700 !important;
 }
 
 /* Morph shape necessary with bubble or elastic */
@@ -59,6 +64,12 @@
 /* Individual item */
 .bm-item {
   display: inline-block;
+  margin-bottom: 1.4rem;
+}
+
+.bm-item:hover {
+  text-decoration: transparent;
+  color: #db9d0c;
 }
 
 /* Styling of overlay */
@@ -66,163 +77,77 @@
   background: rgba(0, 0, 0, 0.3);
 }
 
-.menu-item {
+.burger-menu-item {
   font-family: helveticaNeueLtThinCn;
   font-size: 18pt;
-}
-
-.menu-item a {
+  text-decoration: none;
   color: white;
 }
 
-/*-------------------------------------------*
-    basic style sidedrawer
-*-------------------------------------------*/
-
-.side-drawer {
-  height: 100%;
-  background: #474f5a;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 350px;
-  z-index: 200;
-  transform: translateX(-100%);
-  /*transition: transform 0.3s ease-out;*/
-}
-
-.navigation {
-  display: flex;
+.burger-navigation-logo-container {
+  height: 80px;
+  text-align: center;
   width: 100%;
-  height: 100%;
-  flex-direction: column;
-  padding-bottom: 1rem;
 }
 
-.side-drawer.open {
-  transform: translateX(0);
+.burger-navigation-logo {
+  padding-top: 0rem !important;
 }
 
-.side-drawer.close {
-  transform: translateX(-100);
-  /*transition: opacity 0.3s ease-in;*/
+.burger-navigation-logo img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+  height: auto;
 }
 
-.side-drawer ul {
-  height: 100%;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.side-drawer li {
-  margin: 0.5rem 0;
-  padding-bottom: 1rem;
-}
-
-.side-drawer a {
-  color: #ffffff;
-  font-family: 'Roboto', sans-serif;
-  font-size: 1rem;
-}
-
-.side-drawer a:hover {
+.burger-navigation-edit-profile:hover {
+  color: #db9d0c;
   text-decoration: none;
 }
 
-.navigation-user-editlink {
-  text-decoration: underline;
+.title-name {
+  margin-bottom: -5%;
+  font-size: 1.8rem;
 }
 
-.navigation-user-editlink:hover {
-  text-decoration: underline;
-}
-
-.side-drawer a:hover,
-.side-drawer a:active {
-  color: #db9d0c;
-}
-
-.navigation-user {
-  margin-top: 3rem;
+.burger-navigation-profile {
+  margin-top: -1rem;
+  margin-bottom: 3rem;
   text-align: center;
 }
 
-.navigation-user-picture {
-  padding-left: auto;
-  padding-right: auto;
-}
-
-.navigation-user-name {
+.burger-navigation-edit-profile {
   margin-top: 0.5rem;
+  text-decoration: underline;
 }
 
-.navbar-desktop-extended-logo {
+.burger-navigation-edit-profile:hover {
+  text-decoration: none;
+}
+
+.navbar-mobile-extended-logo {
   height: 26px;
   width: 24px;
   object-fit: none;
   text-align: center;
 }
 
-.navbar-desktop-extended-logo path {
+.navbar-mobile-extended-logo path {
   stroke: none;
 }
 
-.side-drawer a {
-  font-family: helveticaNeueLtThinCn;
-  font-size: 18pt;
-}
-
-.side-drawer a:hover > svg,
-.side-drawer a:active > svg,
-.side-drawer a:hover > svg > path,
-.side-drawer a:active > svg > path {
+/*TODO*/
+.burger-nav a:hover > svg,
+.burger-nav a:active > svg,
+.burger-nav a:hover > svg > path,
+.burger-nav a:active > svg > path {
   stroke: none;
   fill: #db9d0c;
 }
 
-.navigation-links {
-  position: absolute;
-  bottom: 0;
-  padding-bottom: 1rem;
-  width: 100%;
-  float: left;
-}
-
-.navigation-links-nav > ul > li {
-  margin: 0.5rem 0;
-  padding-bottom: 1rem;
-}
-
-.navigation-links-nav > ul {
-  padding-inline-start: 0px;
-  padding-left: 2rem;
-  margin: 0;
-  padding-bottom: 0;
-}
-
-.navigation-links-logo {
-  margin-bottom: 1rem;
-  padding-left: auto;
-  padding-right: auto;
-}
-
-.navigation-links-button {
-  padding-left: 2rem;
-}
-
-.navigation-logo-container {
-  height: 98px;
-  text-align: center;
-}
-
-.navigation-logo {
-  padding-top: 1rem;
-}
-
-@media (min-width: 684px) {
-  .side-drawer {
-    background: #474f5a;
-  }
+.burger-nav a:hover,
+.burger-nav a:active {
+  color: #db9d0c;
 }
