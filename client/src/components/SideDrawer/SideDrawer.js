@@ -38,6 +38,7 @@ class SideDrawer extends Component {
               </Link>
             </div>
           </div>
+          <div className="navigation-container">
           <div className="navigation-links">
             <div className="navigation-links-nav">
               <ul>
@@ -231,6 +232,7 @@ class SideDrawer extends Component {
                 click={this.props.drawerClickHandler}
               />
             </div>
+          </div>
           </div>
         </div>
       </nav>
