@@ -1,6 +1,6 @@
 jest.mock('../../server/services/userService');
 
-const { update } = require('../../server/services/userService');
+const { update, authenticate } = require('../../server/services/userService');
 
 test('update user should return updated user', () => {
   var user = update(1, {
@@ -60,4 +60,22 @@ test('update user should return error if mail is already taken', () => {
   }
 
   expect(boolVal).toBe(true);
+});
+
+test('authentication should return token when correct log in', () => {
+  const user = authenticate({
+    privateEmail: 'email@address.com',
+    password: 'correct_password'
+  });
+
+  expect(user).not.toBeFalsy();
+});
+
+test('authentication should return null when incorrect log in', () => {
+  expect(
+    authenticate({
+      privateEmail: 'email@address.com',
+      password: 'wrong_password'
+    })
+  ).toBeFalsy();
 });

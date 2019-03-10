@@ -1,8 +1,7 @@
-jest.mock('../../server/services/userService');
+jest.mock('../../server/models/UserModel');
 
-const { getAll } = require('../../server/services/userService');
+const { findById } = require('../../server/models/UserModel');
 
-test('should get users from database', () => {
-  getAll();
-  expect(true);
+test('should call mocking class from user model', () => {
+  findById(10);
 });

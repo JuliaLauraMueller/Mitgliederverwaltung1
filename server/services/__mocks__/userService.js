@@ -3,7 +3,8 @@ const bcrypt = require('bcryptjs');
 
 module.exports = {
   getAll,
-  update
+  update,
+  authenticate
 };
 
 function getAll() {
@@ -42,11 +43,7 @@ const findOne = str => {
 };
 
 function update(id, userParam) {
-  console.log(id);
-  console.log(userParam.privateEmail);
   const user = findById(id);
-  console.log(user);
-  console.log('mock entry update method.');
 
   // validate
   if (!user) throw 'User not found';
@@ -66,4 +63,16 @@ function update(id, userParam) {
   Object.assign(user, userParam);
 
   return user;
+}
+
+function authenticate({ privateEmail, password }) {
+  if (!privateEmail || !password) {
+    return {};
+  }
+
+  const user = { password: bcrypt.hashSync('correct_password', 10) };
+  if (user && bcrypt.compareSync(password, user.password)) {
+    const token = { token: 'token' };
+    return token;
+  }
 }
