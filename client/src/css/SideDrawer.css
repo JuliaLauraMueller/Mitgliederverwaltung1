@@ -107,9 +107,15 @@
 
 .navigation-links {
   bottom: 0;
-  padding-bottom: 1rem;
   width: 100%;
   float: left;
+  position: static !important;
+  margin-top: 6%;
+}
+
+.navigation-container {
+  display: flex;
+  margin-top: auto;
 }
 
 .navigation-links-nav > ul > li {
@@ -122,6 +128,7 @@
   padding-left: 2rem;
   margin: 0;
   padding-bottom: 0;
+  width: 350px;
 }
 
 .navigation-links-logo {
@@ -136,7 +143,7 @@
 
 .navigation-logo-container {
   height: 98px;
-  text-align: center;
+  text-align: center; 
 }
 
 .navigation-logo {
