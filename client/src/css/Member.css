@@ -10,8 +10,10 @@
 
 .member-page-container {
   display: flex;
+  position: relative;
   justify-content: center;
   align-content: center;
+  z-index: -100;
 }
 
 /*SearchFieldMember*/
