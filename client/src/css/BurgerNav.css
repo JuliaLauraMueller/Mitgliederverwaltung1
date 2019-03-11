@@ -6,9 +6,9 @@
 /* Position and sizing of burger button */
 .bm-burger-button {
   position: fixed;
-  width: 36px;
-  height: 30px;
-  left: 36px;
+  width: 30px;
+  height: 24px;
+  left: 30px;
   top: 36px;
 }
 
@@ -67,7 +67,7 @@
 }
 
 .bm-item:hover {
-  text-decoration: transparent;
+  text-decoration: none;
   color: #db9d0c;
 }
 

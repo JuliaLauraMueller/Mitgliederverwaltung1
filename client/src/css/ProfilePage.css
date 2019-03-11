@@ -263,8 +263,12 @@ button-container {
   color: #0f1929;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
   .basic-info {
     margin-top: 0;
+  }
+  .button-save-edit {
+  position: relative;
+  bottom: 51px;
   }
 }
