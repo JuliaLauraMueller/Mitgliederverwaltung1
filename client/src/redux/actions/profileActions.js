@@ -37,16 +37,9 @@ export function putProfile(profileData) {
   };
 }
 
-export function putProfileBasic(profileData) {
-  var test = profileService.setUserDataBasic(profileData).then(res => {});
+export function putCompany(companyData) {
+  var test = profileService.setCompanyData(companyData).then(res => {});
   return function(dispatch) {
-    dispatch({ type: PUT_PROFILE, payload: profileData });
-  };
-}
-
-export function putProfileMain(profileData) {
-  var test = profileService.setUserDataMain(profileData).then(res => {});
-  return function(dispatch) {
-    dispatch({ type: PUT_PROFILE, payload: profileData });
+    dispatch({ type: PUT_PROFILE, payload: companyData });
   };
 }

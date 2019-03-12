@@ -2,6 +2,7 @@ const config = require('../config/settings');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = require('../helpers/db');
+const validateUrl = require('../helpers/urlValidator');
 const User = db.User;
 
 module.exports = {
@@ -53,23 +54,15 @@ async function create(userParam) {
 
 async function updateUser(id, userParam) {
   const user = await User.findById(id);
-  //console.log('UPDATE');
-  //console.log(id);
-  //console.log(user);
-
   if (!user) throw 'User not found';
 
   // TODO check for correct input
-
-  //Object.assign(user, userParam);
-  //console.log(user);
+  userParam = validateInputs(userParam);
 
   var query = { _id: id };
   await User.updateOne(query, userParam, function(err, res) {
     if (err) throw err;
-    //console.log(user);
   });
-  //await user.save();
 }
 
 async function update(id, userParam) {
@@ -113,4 +106,24 @@ function generateJwtToken(user) {
     expiresIn: config.jwtExpirationSeconds
   });
   return token;
+}
+
+function validateInputs(userParam) {
+  //URL'S
+  if (userParam.xingLink) {
+    console.log(userParam.xingLink);
+    userParam.xingLink = validateUrl(userParam.xingLink);
+  }
+  if (userParam.linkedinLink) {
+    userParam.linkedinLink = validateUrl(userParam.linkedinLink);
+  }
+  if (userParam.facebookLink) {
+    userParam.facebookLink = validateUrl(userParam.facebookLink);
+  }
+  if (userParam.instagramLink) {
+    userParam.instagramLink = validateUrl(userParam.instagramLink);
+  }
+
+  // TODO: reload of site after input validation
+  return userParam;
 }
