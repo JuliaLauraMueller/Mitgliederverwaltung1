@@ -119,7 +119,7 @@
 
 .burger-navigation-edit-profile {
   margin-top: 0.5rem;
-  text-decoration: underline;
+  font-size: 16pt;
 }
 
 .burger-navigation-edit-profile:hover {
@@ -149,4 +149,10 @@
 .burger-nav a:hover,
 .burger-nav a:active {
   color: #db9d0c;
+}
+
+.profile-edit{
+  position: relative;
+  bottom: 2px;
+  padding-right: 3px;
 }

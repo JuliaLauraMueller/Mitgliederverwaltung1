@@ -44,7 +44,7 @@
   padding-bottom: 1rem;
 }
 
-.side-drawer a {
+.side-drawer a{
   color: #ffffff;
   font-family: 'Roboto', sans-serif;
   font-size: 1rem;
@@ -54,8 +54,14 @@
   text-decoration: none;
 }
 
-.navigation-user-editlink {
-  text-decoration: underline;
+.profile-edit{
+  position: relative;
+  bottom: 2px;
+  padding-right: 3px;
+}
+
+#profile-edit-text a{
+  font-size: 16pt;
 }
 
 .navigation-user-editlink:hover {
@@ -92,7 +98,8 @@
   stroke: none;
 }
 
-.side-drawer a {
+.side-drawer a, .navigation-user-name {
+  color: #ffffff;
   font-family: helveticaNeueLtThinCn;
   font-size: 18pt;
 }

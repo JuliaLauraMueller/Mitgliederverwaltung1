@@ -15,8 +15,6 @@ basic style profile page
 
 .profile-page__container {
   max-width: 900px;
-  position: relative;
-  z-index: -100;
 }
 
 .value-label {
@@ -259,8 +257,7 @@ button-container {
 .button-save-edit:active,
 .button-save-edit:hover {
   background-color: transparent;
-  border-bottom: 1px solid #0f1929;
-  color: #0f1929;
+  opacity: 0.5;
 }
 
 @media only screen and (max-width: 768px) {
