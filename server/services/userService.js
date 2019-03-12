@@ -53,20 +53,21 @@ async function create(userParam) {
 
 async function updateUser(id, userParam) {
   const user = await User.findById(id);
-  console.log('UPDATE');
-  console.log(id);
-  console.log(user);
+  //console.log('UPDATE');
+  //console.log(id);
+  //console.log(user);
 
   if (!user) throw 'User not found';
 
   // TODO check for correct input
 
-  Object.assign(user, userParam);
-  console.log(user);
+  //Object.assign(user, userParam);
+  //console.log(user);
 
   var query = { _id: id };
-  await User.updateOne(query, user, function(err, res) {
+  await User.updateOne(query, userParam, function(err, res) {
     if (err) throw err;
+    //console.log(user);
   });
   //await user.save();
 }

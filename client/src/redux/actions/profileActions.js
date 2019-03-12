@@ -36,3 +36,17 @@ export function putProfile(profileData) {
     dispatch({ type: PUT_PROFILE, payload: profileData });
   };
 }
+
+export function putProfileBasic(profileData) {
+  var test = profileService.setUserDataBasic(profileData).then(res => {});
+  return function(dispatch) {
+    dispatch({ type: PUT_PROFILE, payload: profileData });
+  };
+}
+
+export function putProfileMain(profileData) {
+  var test = profileService.setUserDataMain(profileData).then(res => {});
+  return function(dispatch) {
+    dispatch({ type: PUT_PROFILE, payload: profileData });
+  };
+}
