@@ -6,7 +6,7 @@ async function getUserData(id) {
     return {
       member: {
         _id: id,
-        status: 'Junior',
+        status: resp.data.status,
         memberNumber: resp.data.memberNumber,
         entryDate: resp.data.entryDate,
         city_id: resp.data.circle,
