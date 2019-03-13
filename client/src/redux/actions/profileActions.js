@@ -30,7 +30,9 @@ export const fetchProfile = id => dispatch => {
 };
 
 export function putProfile(profileData) {
-  var test = profileService.setUserData(profileData).then(res => {});
+  var result = profileService.setUserData(profileData).then(res => {
+    console.log(res);
+  });
 
   return function(dispatch) {
     dispatch({ type: PUT_PROFILE, payload: profileData });
@@ -38,7 +40,10 @@ export function putProfile(profileData) {
 }
 
 export function putCompany(companyData) {
-  var test = profileService.setCompanyData(companyData).then(res => {});
+  var result = profileService.setCompanyData(companyData).then(res => {});
+  if (result) {
+    companyData.company = companyData.companyName;
+  }
   return function(dispatch) {
     dispatch({ type: PUT_PROFILE, payload: companyData });
   };

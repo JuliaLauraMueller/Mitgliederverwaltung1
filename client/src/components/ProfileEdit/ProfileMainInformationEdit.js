@@ -89,7 +89,7 @@ class ProfileMainInformationEDIT extends Component {
       companyCity: this.state.companyCity,
       companyURL: this.state.companyURL
     };
-    // TODO: Fix bug that field companygets reloaded on site
+
     this.props.dispatch(putProfile(mainInfoUpdate));
     this.props.dispatch(putCompany(companyUpdate));
   }

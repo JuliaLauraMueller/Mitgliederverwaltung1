@@ -111,7 +111,6 @@ function generateJwtToken(user) {
 function validateInputs(userParam) {
   //URL'S
   if (userParam.xingLink) {
-    console.log(userParam.xingLink);
     userParam.xingLink = validateUrl(userParam.xingLink);
   }
   if (userParam.linkedinLink) {
