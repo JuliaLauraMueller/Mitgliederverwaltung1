@@ -117,7 +117,11 @@ class App extends Component {
   render() {
     const { alert } = this.props;
     return (
-      <div className={this.state.AppClassNames} style={{ height: '100%' }}>
+      <div
+        id="App"
+        className={this.state.AppClassNames}
+        style={{ height: '100%' }}
+      >
         <Helmet>
           <style>{'body { background-color: rgb(15, 25, 41, 10%); }'}</style>
         </Helmet>
