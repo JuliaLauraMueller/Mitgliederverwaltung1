@@ -2,6 +2,7 @@ const config = require('../config/settings');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = require('../helpers/db');
+const validateUrl = require('../helpers/urlValidator');
 const User = db.User;
 const Company = db.Company;
 
@@ -11,7 +12,9 @@ module.exports = {
   getById,
   getAll,
   generateJwtToken,
-  removeAllCompanyRelations
+  removeAllCompanyRelations,
+  update,
+  updateUser
 };
 
 async function authenticate({ privateEmail, password }) {
@@ -82,6 +85,19 @@ async function create(userParam) {
   await user.save();
 }
 
+async function updateUser(id, userParam) {
+  const user = await User.findById(id);
+  if (!user) throw 'User not found';
+
+  // TODO check for correct input
+  userParam = validateInputs(userParam);
+
+  var query = { _id: id };
+  await User.updateOne(query, userParam, function(err, res) {
+    if (err) throw err;
+  });
+}
+
 async function update(id, userParam) {
   const user = await User.findById(id);
 
@@ -123,4 +139,23 @@ function generateJwtToken(user) {
     expiresIn: config.jwtExpirationSeconds
   });
   return token;
+}
+
+function validateInputs(userParam) {
+  //URL'S
+  if (userParam.xingLink) {
+    userParam.xingLink = validateUrl(userParam.xingLink);
+  }
+  if (userParam.linkedinLink) {
+    userParam.linkedinLink = validateUrl(userParam.linkedinLink);
+  }
+  if (userParam.facebookLink) {
+    userParam.facebookLink = validateUrl(userParam.facebookLink);
+  }
+  if (userParam.instagramLink) {
+    userParam.instagramLink = validateUrl(userParam.instagramLink);
+  }
+
+  // TODO: reload of site after input validation
+  return userParam;
 }
