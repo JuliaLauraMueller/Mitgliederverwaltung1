@@ -4,7 +4,7 @@
   "description": "Backend for the FHNW project Mitgliederverwaltung1",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "nodemon server.js",
     "prod-start": "NODE_ENV=production PORT=5000&& node server.js",
     "server-install": "npm install"
@@ -26,6 +26,7 @@
     "mongoose": "^5.3.13"
   },
   "devDependencies": {
+    "jest": "^24.5.0",
     "nodemon": "^1.18.6"
   }
 }
