@@ -38,7 +38,8 @@ class AppNavbar extends Component {
   //window with
   handleResize() {
     this.setState({ windowWidth: window.innerWidth });
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 768 && this.state.sideDrawerOpen) {
+      // close nav when changing to mobile view
       this.props.dispatch(setNavCollapsed());
       this.state.sideDrawerOpen = false;
     }
