@@ -90,6 +90,7 @@ class ProfileMainInformationEDIT extends Component {
       companyURL: this.state.companyURL
     };
 
+    //TODO: Find a way to update all info or none at all (Together with BasicInfo)
     this.props.dispatch(putProfile(mainInfoUpdate));
     this.props.dispatch(putCompany(companyUpdate));
   }

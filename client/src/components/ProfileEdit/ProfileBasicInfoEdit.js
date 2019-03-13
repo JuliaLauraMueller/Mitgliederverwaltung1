@@ -58,6 +58,7 @@ class ProfileBasicInfoEDIT extends Component {
       birthdate: this.state.birthdate
     };
 
+    //TODO: Find a way to update all info or none at all (Together with BasicInfo)
     this.props.dispatch(putProfile(basicInformationUpdate));
   }
 
