@@ -24,6 +24,7 @@
     "js-levenshtein": "^1.1.6"
   },
   "devDependencies": {
+    "babel-jest": "^24.4.0",
     "jest": "^24.1.0",
     "mocha": "^5.2.0",
     "mocha-jenkins-reporter": "^0.4.1",

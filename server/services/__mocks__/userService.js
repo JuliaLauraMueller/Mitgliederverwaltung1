@@ -6,4 +6,5 @@ module.exports = {
 
 function getAll() {
   console.log('This is now hitting the mock.');
+  // here has to be the hardcoded array
 }
