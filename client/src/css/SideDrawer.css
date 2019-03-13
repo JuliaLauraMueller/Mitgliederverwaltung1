@@ -83,10 +83,6 @@
   padding-right: auto;
 }
 
-.navigation-user-name {
-  margin-top: 0.5rem;
-}
-
 .navbar-desktop-extended-logo {
   height: 26px;
   width: 24px;
@@ -155,6 +151,11 @@
 
 .navigation-logo {
   padding-top: 1rem;
+}
+
+.navigation-user-name {
+  margin-top: 0.5rem;
+  font-size: 20pt;
 }
 
 @media (min-width: 684px) {
