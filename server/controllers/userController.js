@@ -51,7 +51,7 @@ function getById(req, res, next) {
 }
 
 function update(req, res, next) {
-  return userService
+  userService
     .updateUser(req.params.id, req.body)
     .then(() => res.json({}))
     .catch(err => next(err));

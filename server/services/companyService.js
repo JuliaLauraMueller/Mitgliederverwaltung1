@@ -25,14 +25,6 @@ async function update(id, companyParam) {
   await Company.updateOne(query, companyParam, function(err, res) {
     if (err) throw err;
   });
-  /*
-  const company = await Company.findById(id);
-  if (!company) throw 'Company not found';
-
-  // Copy companyParam properties to company
-  Object.assign(company, companyParam);
-  await company.save();
-  */
 }
 
 async function _delete(id) {

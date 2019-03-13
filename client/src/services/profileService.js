@@ -89,7 +89,7 @@ async function setUserData(data) {
 
 async function setCompanyData(data) {
   var res = axios.put('/companies/' + data._id, data);
-  return data;
+  return res;
 }
 
 const profileService = {
