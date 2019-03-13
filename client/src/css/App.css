@@ -43,13 +43,6 @@ global style for all pages
   padding-left: 350px;
 }
 
-.navbar-app {
-  padding-left: 0px;
-  padding-top: 0px;
-  float: left;
-  height: 100%;
-}
-
 .custom-input-group {
   margin-bottom: 20px;
 }
@@ -90,7 +83,7 @@ global style for all pages
   margin-bottom: auto;
 }
 @media only screen and (max-width: 768px) {
-  .collapsed{
+  .collapsed {
     padding-left: 0px;
   }
 }

@@ -10,8 +10,6 @@ import '../../css/AppNavbar.css';
 import { connect } from 'react-redux';
 import BurgerNav from '../BurgerNav/BurgerNav';
 
-
-
 class AppNavbar extends Component {
   constructor(props) {
     super(props);
@@ -19,9 +17,9 @@ class AppNavbar extends Component {
       const visibleStatus = store.getState().navigation.visible;
       if (visibleStatus !== this.state.previouslyVisible) {
         if (visibleStatus) {
-          this.state.navigationClasses = 'app-nav-bar visible';
+          this.state.visibleClass = 'visible';
         } else {
-          this.state.navigationClasses = 'app-nav-bar invisible';
+          this.state.visibleClass = 'invisible';
         }
         this.state.previouslyVisible = visibleStatus;
         this.forceUpdate();
@@ -33,7 +31,7 @@ class AppNavbar extends Component {
     windowWith: window.innerWidth,
     sideDrawerOpen: false,
     isMobile: false,
-    navigationClasses: 'app-nav-bar invisible',
+    visibleClass: 'invisible',
     previouslyVisible: false
   };
 
@@ -57,14 +55,10 @@ class AppNavbar extends Component {
 
   render() {
     if (window.innerWidth <= 768) {
-      return (
-        <div className={this.state.navigationClasses}>
-          <BurgerNav />
-        </div>
-      );
+      return <BurgerNav visibleClass={this.state.visibleClass} />;
     } else {
       return (
-        <div className={this.state.navigationClasses}>
+        <div className={'app-nav-bar ' + this.state.visibleClass}>
           <div style={{ height: '100%' }}>
             <Toolbar
               className="tool-bar"

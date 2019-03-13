@@ -74,6 +74,7 @@
 /* Styling of overlay */
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
+  top: 0px; /* don't use application margin */
 }
 
 .burger-menu-item {
@@ -138,6 +139,13 @@
 }
 
 /*TODO*/
+.burger-nav {
+  padding-left: 0px;
+  padding-top: 0px;
+  float: left;
+  height: 100%;
+}
+
 .burger-nav a:hover > svg,
 .burger-nav a:active > svg,
 .burger-nav a:hover > svg > path,
@@ -151,7 +159,7 @@
   color: #db9d0c;
 }
 
-.profile-edit{
+.profile-edit {
   position: relative;
   bottom: 2px;
   padding-right: 3px;

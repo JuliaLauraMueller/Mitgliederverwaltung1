@@ -20,9 +20,7 @@ class Routes extends Component {
     return (
       <Router history={history}>
         <div>
-          <div className="navbar-app">
-            <AppNavbar toggleSideMenu={this.props.toggleSideMenu} />
-          </div>
+          <AppNavbar toggleSideMenu={this.props.toggleSideMenu} />
           <div id="page-wrap">
             <Switch>
               <Route exact path="/login" component={LoginPage} />
