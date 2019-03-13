@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
 import store from '../../helpers/store';
 
 import Toolbar from '../Toolbar/Toolbar';
 import SideDrawer from '../SideDrawer/SideDrawer';
-import Backdrop from '../Backdrop/Backdrop';
 import '../../css/AppNavbar.css';
 
 import { connect } from 'react-redux';
 import BurgerNav from '../BurgerNav/BurgerNav';
+
+import { setNavCollapsed } from '../../redux/actions/navigationActions';
 
 class AppNavbar extends Component {
   constructor(props) {
@@ -38,6 +38,10 @@ class AppNavbar extends Component {
   //window with
   handleResize() {
     this.setState({ windowWidth: window.innerWidth });
+    if (window.innerWidth <= 768) {
+      this.props.dispatch(setNavCollapsed());
+      this.state.sideDrawerOpen = false;
+    }
   }
   componentDidMount() {
     window.addEventListener('resize', this.handleResize.bind(this));
