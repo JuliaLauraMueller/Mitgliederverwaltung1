@@ -26,7 +26,7 @@ function filterMembers(members, searchText) {
   return members.filter(m => {
     let surname = replaceUmlauts(m.surname.toLowerCase()).substring(
       0,
-      searchText.length + 2
+      searchText.length + MAX_LEVENSHTEIN_DISTANCE
     );
 
     let fullname = replaceUmlauts(
@@ -35,22 +35,22 @@ function filterMembers(members, searchText) {
 
     let company = replaceUmlauts(m.company.toLowerCase()).substring(
       0,
-      searchText.length + 2
+      searchText.length + MAX_LEVENSHTEIN_DISTANCE
     );
 
     let job = replaceUmlauts(m.job.toLowerCase()).substring(
       0,
-      searchText.length + 2
+      searchText.length + MAX_LEVENSHTEIN_DISTANCE
     );
 
     let funktion = replaceUmlauts(m.function.toLowerCase()).substring(
       0,
-      searchText.length + 2
+      searchText.length + MAX_LEVENSHTEIN_DISTANCE
     );
 
     let sector = replaceUmlauts(m.sector.toLowerCase()).substring(
       0,
-      searchText.length + 2
+      searchText.length + MAX_LEVENSHTEIN_DISTANCE
     );
 
     return (
