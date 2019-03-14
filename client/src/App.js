@@ -33,7 +33,7 @@ class App extends Component {
     super(props);
     const { dispatch } = this.props;
 
-    if (this.state.windowWidth <= 768) {
+    if (this.state.windowWidth <= 1200) {
       store.dispatch(setNavInvisible());
     } else {
       store.dispatch(setNavVisible());

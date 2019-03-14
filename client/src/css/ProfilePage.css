@@ -260,12 +260,12 @@ button-container {
   opacity: 0.5;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1200px) {
   .basic-info {
     margin-top: 0;
   }
   .button-save-edit {
-  position: relative;
-  bottom: 51px;
+    position: relative;
+    bottom: 51px;
   }
 }

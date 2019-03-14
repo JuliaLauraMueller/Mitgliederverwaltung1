@@ -29,6 +29,7 @@ class AppNavbar extends Component {
 
   state = {
     windowWith: window.innerWidth,
+    windowHeight: window.innerHeight,
     sideDrawerOpen: false,
     isMobile: false,
     visibleClass: 'invisible',
@@ -37,8 +38,14 @@ class AppNavbar extends Component {
 
   //window with
   handleResize() {
-    this.setState({ windowWidth: window.innerWidth });
-    if (window.innerWidth <= 768 && this.state.sideDrawerOpen) {
+    this.setState({
+      windowWidth: window.innerWidth,
+      windowHeight: window.innerHeight
+    });
+    if (
+      (window.innerWidth <= 1200 || window.innerHeight <= 740) &&
+      this.state.sideDrawerOpen
+    ) {
       // close nav when changing to mobile view
       this.props.dispatch(setNavCollapsed());
       this.state.sideDrawerOpen = false;
@@ -59,7 +66,7 @@ class AppNavbar extends Component {
   };
 
   render() {
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 1200 || window.innerHeight <= 740) {
       return <BurgerNav visibleClass={this.state.visibleClass} />;
     } else {
       return (

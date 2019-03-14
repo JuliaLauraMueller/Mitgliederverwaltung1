@@ -82,7 +82,7 @@ global style for all pages
   margin-top: auto;
   margin-bottom: auto;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1200px) {
   .collapsed {
     padding-left: 0px;
   }
