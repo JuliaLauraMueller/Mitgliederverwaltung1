@@ -1,37 +1,43 @@
-jest.mock('../../server/services/userService');
+jest.mock('../models/UserModel');
 
-const { update, authenticate } = require('../../server/services/userService');
+const { update, authenticate } = require('./userService');
+const { findById } = require('../models/UserModel');
 
-test('update user should return updated user', () => {
-  var user = update(1, {
+test('update user should return updated user', async () => {
+  await update(0, {
     privateEmail: 'updatedEmail@mail.com',
     entryDate: '1.1.23',
     birthdate: '1.1.43',
     status: 'inactive',
     circle: 'CiRcLe'
-  });
+  })
+    .then(response => {
+      var users = response;
+      return findById(0);
+    })
+    .then(resp => {
+      var user = resp;
 
-  expect(user).toEqual({
-    privateEmail: 'updatedEmail@mail.com',
-    entryDate: '1.1.23',
-    birthdate: '1.1.43',
-    status: 'inactive',
-    circle: 'CiRcLe',
-    godfather: 'godfather',
-    salutation: 'salutation',
-    title: 'mr',
-    firstname: 'max',
-    surname: 'muster',
-    alias: 'mm',
-    sector: 'sector',
-    job: 'job'
-  });
+      expect(user.privateEmail).toEqual('updatedemail@mail.com');
+      expect(user.entryDate).toEqual('1.1.23');
+      expect(user.birthdate).toEqual('1.1.43');
+      expect(user.status).toEqual('inactive');
+      expect(user.circle).toEqual('CiRcLe');
+      expect(user.godfather).toEqual('godfather');
+      expect(user.salutation).toEqual('salutation');
+      expect(user.title).toEqual('mr');
+      expect(user.firstname).toEqual('max');
+      expect(user.surname).toEqual('muster');
+      expect(user.alias).toEqual('mm');
+      expect(user.sector).toEqual('sector');
+      expect(user.job).toEqual('job');
+    });
 });
 
-test('update user should throw user not found', () => {
+test('update user should throw user not found', async () => {
   var boolVal = false;
   try {
-    update(0, {
+    await update(2, {
       privateEmail: 'updatedEmail@mail.com',
       entryDate: '1.1.23',
       birthdate: '1.1.43',
@@ -44,16 +50,11 @@ test('update user should throw user not found', () => {
   expect(boolVal).toBe(true);
 });
 
-test('update user should return error if mail is already taken', () => {
+test('update user should return error if mail is already taken', async () => {
   var boolVal = false;
-
   try {
-    var user = update(1, {
-      privateEmail: 'alreadyThere',
-      entryDate: '1.1.23',
-      birthdate: '1.1.43',
-      status: 'inactive',
-      circle: 'CiRcLe'
+    await update(0, {
+      privateEmail: 'alreadyTaken@gmail.com'
     });
   } catch (e) {
     boolVal = true;
@@ -62,20 +63,19 @@ test('update user should return error if mail is already taken', () => {
   expect(boolVal).toBe(true);
 });
 
-test('authentication should return token when correct log in', () => {
-  const user = authenticate({
-    privateEmail: 'email@address.com',
-    password: 'correct_password'
+test('authentication should return token when correct log in', async () => {
+  const result = await authenticate({
+    privateEmail: 'alreadyTaken@gmail.com',
+    password: '1234'
   });
 
-  expect(user).not.toBeFalsy();
+  expect(result).not.toBeFalsy();
 });
 
-test('authentication should return null when incorrect log in', () => {
-  expect(
-    authenticate({
-      privateEmail: 'email@address.com',
-      password: 'wrong_password'
-    })
-  ).toBeFalsy();
+test('authentication should return null when incorrect log in', async () => {
+  const result = await authenticate({
+    privateEmail: 'alreadyTaken@gmail.com',
+    password: 'wrong_password'
+  });
+  expect(result).toBeFalsy();
 });

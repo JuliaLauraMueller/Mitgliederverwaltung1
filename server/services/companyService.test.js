@@ -1,23 +1,28 @@
-jest.mock('../../server/services/companyService');
+jest.mock('../models/CompanyModel');
 
-const { update } = require('../../server/services/companyService');
+const { update } = require('./companyService');
 
-test('update company should return updated user', () => {
-  var company = update(1, {
-    companyName: 'updated',
-    companyURL: 'updated'
-  });
+const { findById } = require('../models/CompanyModel');
 
-  expect(company).toEqual({
-    companyName: 'updated',
-    companyURL: 'updated'
-  });
+test('update company should return updated user', async () => {
+  await update(0, {
+    companyName: 'updatedN',
+    companyURL: 'updatedURL'
+  })
+    .then(response => {
+      return findById(0);
+    })
+    .then(resp => {
+      var company = resp;
+      expect(company.companyName).toEqual('updatedN');
+      expect(company.companyURL).toEqual('updatedURL');
+    });
 });
 
-test('update company should throw user not found', () => {
+test('update company should throw user not found', async () => {
   var boolVal = false;
   try {
-    update(0, {
+    await update(2, {
       companyName: 'updated',
       companyURL: 'updated'
     });

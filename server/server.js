@@ -9,8 +9,16 @@ const cors = require('cors');
 const errorHandler = require('./helpers/errorHandler');
 const addUpdatedTokenToHeader = require('./helpers/jwtSlidingWindow');
 const path = require('path');
+const config = require('./config/settings');
+const mongoose = require('mongoose');
 
 const app = express();
+
+mongoose.set('useNewUrlParser', true);
+mongoose
+  .connect(config.mongoURI)
+  .then(() => console.log('MongoDB connected...'))
+  .catch(err => console.log(err));
 
 // Middleware
 app.use(bodyParser.json());

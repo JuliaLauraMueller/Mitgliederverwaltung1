@@ -5,6 +5,7 @@ const db = require('../helpers/db');
 const User = db.User;
 
 module.exports = {
+  update,
   authenticate,
   create,
   getById,
@@ -17,6 +18,7 @@ async function authenticate({ privateEmail, password }) {
   if (!privateEmail || !password) {
     return {};
   }
+
   const user = await User.findOne({ privateEmail: privateEmail.toLowerCase() });
   if (user && bcrypt.compareSync(password, user.password)) {
     const token = generateJwtToken(user);
@@ -34,6 +36,7 @@ async function getById(id) {
 
 async function create(userParam) {
   // validate
+  userParam.privateEmail = userParam.privateEmail.toLowerCase();
   if (await User.findOne({ privateEmail: userParam.privateEmail })) {
     throw 'email "' + userParam.privateEmail + '" is already taken';
   }
@@ -53,7 +56,11 @@ async function update(id, userParam) {
   const user = await User.findById(id);
 
   // validate
-  if (!user) throw 'User not found';
+  if (!user) {
+    throw 'User not found';
+  }
+
+  userParam.privateEmail = userParam.privateEmail.toLowerCase();
   if (
     user.privateEmail !== userParam.privateEmail &&
     (await User.findOne({ privateEmail: userParam.privateEmail }))
