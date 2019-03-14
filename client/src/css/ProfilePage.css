@@ -261,6 +261,12 @@ button-container {
 }
 
 @media only screen and (max-width: 1200px) {
+  .button-save-edit {
+    position: relative;
+    bottom: 51px;
+  }
+}
+@media only screen and (max-width: 768) {
   .basic-info {
     margin-top: 0;
   }
