@@ -90,7 +90,7 @@ class ProfileBasicInfo extends Component {
           </Row>
         </Col>
 
-        <Col md={{ offset: 0, size: 6 }} sm={{ offset: 1 }}>
+        <Col md={{ offset: 0, size: 6 }} xs={{ offset: 1 }}>
           <Row>
             <Col>
               <p className="main-title title-maininfo">Kurzprofil</p>

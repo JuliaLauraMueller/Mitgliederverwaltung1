@@ -3,10 +3,12 @@ import store from '../../helpers/store';
 
 import Toolbar from '../Toolbar/Toolbar';
 import SideDrawer from '../SideDrawer/SideDrawer';
-import Backdrop from '../Backdrop/Backdrop';
 import '../../css/AppNavbar.css';
 
 import { connect } from 'react-redux';
+import BurgerNav from '../BurgerNav/BurgerNav';
+
+import { setNavCollapsed } from '../../redux/actions/navigationActions';
 
 class AppNavbar extends Component {
   constructor(props) {
@@ -15,9 +17,9 @@ class AppNavbar extends Component {
       const visibleStatus = store.getState().navigation.visible;
       if (visibleStatus !== this.state.previouslyVisible) {
         if (visibleStatus) {
-          this.state.navigationClasses = 'app-nav-bar visible';
+          this.state.visibleClass = 'visible';
         } else {
-          this.state.navigationClasses = 'app-nav-bar invisible';
+          this.state.visibleClass = 'invisible';
         }
         this.state.previouslyVisible = visibleStatus;
         this.forceUpdate();
@@ -26,11 +28,35 @@ class AppNavbar extends Component {
   }
 
   state = {
+    windowWith: window.innerWidth,
+    windowHeight: window.innerHeight,
     sideDrawerOpen: false,
     isMobile: false,
-    navigationClasses: 'app-nav-bar invisible',
+    visibleClass: 'invisible',
     previouslyVisible: false
   };
+
+  //window with
+  handleResize() {
+    this.setState({
+      windowWidth: window.innerWidth,
+      windowHeight: window.innerHeight
+    });
+    if (
+      (window.innerWidth <= 1200 || window.innerHeight <= 740) &&
+      this.state.sideDrawerOpen
+    ) {
+      // close nav when changing to mobile view
+      this.props.dispatch(setNavCollapsed());
+      this.state.sideDrawerOpen = false;
+    }
+  }
+  componentDidMount() {
+    window.addEventListener('resize', this.handleResize.bind(this));
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize.bind(this));
+  }
 
   drawerToggleClickHandler = () => {
     this.setState(prevState => {
@@ -39,32 +65,26 @@ class AppNavbar extends Component {
     this.props.toggleSideMenu();
   };
 
-  backdropClickHandler = () => {
-    this.setState({ sideDrawerOpen: false });
-  };
-
   render() {
-    let backDrop;
-
-    if (this.state.sideDrawerOpen && this.state.isMobile) {
-      backDrop = <Backdrop click={this.backdropClickHandler} />;
-    }
-    return (
-      <div className={this.state.navigationClasses}>
-        <div style={{ height: '100%' }}>
-          <Toolbar
-            className='tool-bar'
-            drawerClickHandler={this.drawerToggleClickHandler}
-          />
-          <SideDrawer
-            className='side-drawer'
-            drawerClickHandler={this.drawerToggleClickHandler}
-            show={this.state.sideDrawerOpen}
-          />
-          {backDrop}
+    if (window.innerWidth <= 1200 || window.innerHeight <= 740) {
+      return <BurgerNav visibleClass={this.state.visibleClass} />;
+    } else {
+      return (
+        <div className={'app-nav-bar ' + this.state.visibleClass}>
+          <div style={{ height: '100%' }}>
+            <Toolbar
+              className="tool-bar"
+              drawerClickHandler={this.drawerToggleClickHandler}
+            />
+            <SideDrawer
+              className="side-drawer"
+              drawerClickHandler={this.drawerToggleClickHandler}
+              show={this.state.sideDrawerOpen}
+            />
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 

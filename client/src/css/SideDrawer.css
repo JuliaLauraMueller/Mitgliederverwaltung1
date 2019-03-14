@@ -44,7 +44,7 @@
   padding-bottom: 1rem;
 }
 
-.side-drawer a {
+.side-drawer a{
   color: #ffffff;
   font-family: 'Roboto', sans-serif;
   font-size: 1rem;
@@ -54,8 +54,14 @@
   text-decoration: none;
 }
 
-.navigation-user-editlink {
-  text-decoration: underline;
+.profile-edit{
+  position: relative;
+  bottom: 2px;
+  padding-right: 3px;
+}
+
+#profile-edit-text a{
+  font-size: 16pt;
 }
 
 .navigation-user-editlink:hover {
@@ -77,10 +83,6 @@
   padding-right: auto;
 }
 
-.navigation-user-name {
-  margin-top: 0.5rem;
-}
-
 .navbar-desktop-extended-logo {
   height: 26px;
   width: 24px;
@@ -92,7 +94,8 @@
   stroke: none;
 }
 
-.side-drawer a {
+.side-drawer a, .navigation-user-name {
+  color: #ffffff;
   font-family: helveticaNeueLtThinCn;
   font-size: 18pt;
 }
@@ -106,11 +109,16 @@
 }
 
 .navigation-links {
-  position: absolute;
   bottom: 0;
-  padding-bottom: 1rem;
   width: 100%;
   float: left;
+  position: static !important;
+  margin-top: 6%;
+}
+
+.navigation-container {
+  display: flex;
+  margin-top: auto;
 }
 
 .navigation-links-nav > ul > li {
@@ -123,6 +131,7 @@
   padding-left: 2rem;
   margin: 0;
   padding-bottom: 0;
+  width: 350px;
 }
 
 .navigation-links-logo {
@@ -137,11 +146,16 @@
 
 .navigation-logo-container {
   height: 98px;
-  text-align: center;
+  text-align: center; 
 }
 
 .navigation-logo {
   padding-top: 1rem;
+}
+
+.navigation-user-name {
+  margin-top: 0.5rem;
+  font-size: 20pt;
 }
 
 @media (min-width: 684px) {

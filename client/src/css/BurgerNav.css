@@ -1,0 +1,166 @@
+/* Remove outline for non-keyboard :focus */
+*:focus:not(.focus-visible) {
+  outline: none;
+}
+
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: fixed;
+  width: 30px;
+  height: 25px;
+  left: 28px;
+  top: 28px;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: #474f5a;
+}
+
+/* Color/shape of burger icon bars on hover*/
+.bm-burger-bars-hover {
+  background: #db9d0c;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 10px;
+  width: 20px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #bdc3c7;
+}
+
+/*
+  Sidebar wrapper styles
+  Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+  */
+.bm-menu-wrap {
+  position: fixed;
+  height: 100%;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: #474f5a;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #b8b7ad;
+  padding: 0.8em;
+}
+
+/* Individual item */
+.bm-item {
+  display: inline-block;
+  margin-bottom: 1.4rem;
+}
+
+.bm-item:hover {
+  text-decoration: none;
+  color: #db9d0c;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+  top: 0px; /* don't use application margin */
+}
+
+.burger-menu-item {
+  font-family: helveticaNeueLtThinCn;
+  font-size: 18pt;
+  text-decoration: none;
+  color: white;
+}
+
+.burger-navigation-logo-container {
+  height: 80px;
+  text-align: center;
+  width: 100%;
+}
+
+.burger-navigation-logo {
+  padding-top: 0rem !important;
+}
+
+.burger-navigation-logo img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+  height: auto;
+}
+
+.burger-navigation-edit-profile:hover {
+  color: #db9d0c;
+  text-decoration: none;
+}
+
+.title-name {
+  margin-bottom: -5%;
+  font-size: 20pt;
+}
+
+.burger-navigation-profile {
+  margin-top: -1rem;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.burger-navigation-edit-profile {
+  margin-top: 0.5rem;
+  font-size: 16pt;
+}
+
+.burger-navigation-edit-profile:hover {
+  text-decoration: none;
+}
+
+.navbar-mobile-extended-logo {
+  height: 26px;
+  width: 24px;
+  object-fit: none;
+  text-align: center;
+}
+
+.navbar-mobile-extended-logo path {
+  stroke: none;
+}
+
+/*TODO*/
+.burger-nav {
+  padding-left: 0px;
+  padding-top: 0px;
+  float: left;
+  height: 100%;
+}
+
+.burger-nav a:hover > svg,
+.burger-nav a:active > svg,
+.burger-nav a:hover > svg > path,
+.burger-nav a:active > svg > path {
+  stroke: none;
+  fill: #db9d0c;
+}
+
+.burger-nav a:hover,
+.burger-nav a:active {
+  color: #db9d0c;
+}
+
+.profile-edit {
+  position: relative;
+  bottom: 2px;
+  padding-right: 3px;
+}

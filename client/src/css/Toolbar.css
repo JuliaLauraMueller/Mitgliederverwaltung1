@@ -49,14 +49,7 @@
   padding: 0.5rem;
 }
 
-.spacer {
-}
-
-@media (max-width: 768px) {
-  /* .toolbar_navigation-items{
-        display: none;
-    } */
-
+@media (max-width: 1200px) {
   .toolbar {
     position: fixed;
     top: 0;
