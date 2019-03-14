@@ -26,7 +26,7 @@ class ProfileMainInformation extends Component {
     const profile = this.props.profile;
     return (
       <Row id="mainInformation">
-        <Col md={{ offset: 0, size: 6 }} sm={{ offset: 1 }}>
+        <Col md={{ offset: 0, size: 6 }} xs={{ offset: 1 }}>
           <Row className="business-info">
             <Col>
               <p className="main-title title-maininfo">
@@ -109,7 +109,7 @@ class ProfileMainInformation extends Component {
           </Row>
         </Col>
 
-        <Col md={{ offset: 0, size: 6 }} sm={{ offset: 1 }}>
+        <Col md={{ offset: 0, size: 6 }} xs={{ offset: 1 }}>
           <Row className="private-info">
             <Col>
               <p className="main-title title-maininfo">Private Informationen</p>

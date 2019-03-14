@@ -23,10 +23,21 @@ import {
 
 import { alertClear } from './redux/actions/alertActions';
 
+import {
+  setNavVisible,
+  setNavInvisible
+} from './redux/actions/navigationActions';
+
 class App extends Component {
   constructor(props) {
     super(props);
     const { dispatch } = this.props;
+
+    if (this.state.windowWidth <= 1200) {
+      store.dispatch(setNavInvisible());
+    } else {
+      store.dispatch(setNavVisible());
+    }
 
     store.subscribe(() => {
       const visibleStatus = store.getState().navigation.visible;
@@ -65,8 +76,21 @@ class App extends Component {
     this.toggleSideMenu = this.toggleSideMenu.bind(this);
   }
 
+  //window with
+  handleResize() {
+    this.setState({ windowWidth: window.innerWidth });
+  }
+  componentDidMount() {
+    window.addEventListener('resize', this.handleResize.bind(this));
+    this.handleResize();
+  }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize.bind(this));
+  }
+
   // Add global layout components before route
   state = {
+    windowWidth: window.innerWidth,
     previouslyVisible: false,
     previouslyExpanded: false,
     AppClassNames: 'app'
@@ -93,7 +117,11 @@ class App extends Component {
   render() {
     const { alert } = this.props;
     return (
-      <div className={this.state.AppClassNames} style={{ height: '100%' }}>
+      <div
+        id="App"
+        className={this.state.AppClassNames}
+        style={{ height: '100%' }}
+      >
         <Helmet>
           <style>{'body { background-color: rgb(15, 25, 41, 10%); }'}</style>
         </Helmet>

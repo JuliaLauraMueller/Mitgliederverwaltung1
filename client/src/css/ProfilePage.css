@@ -20,7 +20,7 @@ basic style profile page
 .value-label {
   float: right;
   max-width: 300px;
-  min-width: 200px;
+  min-width: 180px;
   margin: 0;
   padding-left: 0;
 }
@@ -257,12 +257,15 @@ button-container {
 .button-save-edit:active,
 .button-save-edit:hover {
   background-color: transparent;
-  border-bottom: 1px solid #0f1929;
-  color: #0f1929;
+  opacity: 0.5;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 1200px) {
   .basic-info {
     margin-top: 0;
+  }
+  .button-save-edit {
+    position: relative;
+    bottom: 51px;
   }
 }
