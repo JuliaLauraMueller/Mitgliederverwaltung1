@@ -20,7 +20,8 @@
   "author": "Project team Mitgliederverwaltung1 (FHNW)",
   "license": "CC-BY-NC-ND-4.0",
   "dependencies": {
-    "concurrently": "^4.1.0"
+    "concurrently": "^4.1.0",
+    "js-levenshtein": "^1.1.6"
   },
   "devDependencies": {
     "jest": "^24.1.0",

@@ -39,6 +39,7 @@ class ProfileBasicInfoEDIT extends Component {
 
   onSave(e) {
     const basicInformationUpdate = {
+      _id: this.props.profile._id,
       xingLink: this.state.xingLink,
       linkedinLink: this.state.linkedinLink,
       facebookLink: this.state.facebookLink,
@@ -52,10 +53,12 @@ class ProfileBasicInfoEDIT extends Component {
       status: this.state.status,
       memberNumber: this.state.memberNumber,
       entryDate: this.state.entryDate,
-      city: this.state.city,
-      godfather: this.state.godfather,
+      //city: this.state.city,
+      //godfather: this.state.godfather,
       birthdate: this.state.birthdate
     };
+
+    //TODO: Find a way to update all info or none at all (Together with BasicInfo)
     this.props.dispatch(putProfile(basicInformationUpdate));
   }
 

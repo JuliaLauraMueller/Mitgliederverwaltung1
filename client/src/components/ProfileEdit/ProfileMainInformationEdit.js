@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { putProfile } from '../../redux/actions/profileActions';
+import { putProfile, putCompany } from '../../redux/actions/profileActions';
 import {
   InputGroup,
   InputGroupAddon,
@@ -64,18 +64,13 @@ class ProfileMainInformationEDIT extends Component {
 
   onSave() {
     const mainInfoUpdate = {
+      _id: this.props.profile._id,
       sector: this.state.sector,
       job: this.state.job,
       function: this.state.function,
-      company: this.state.company,
       companyTel: this.state.companyTel,
       companyMobile: this.state.companyMobile,
       companyEmail: this.state.companyEmail,
-      companyStreet: this.state.companyStreet,
-      companyStreetNr: this.state.companyStreetNr,
-      companyZip: this.state.companyZip,
-      companyCity: this.state.companyCity,
-      companyURL: this.state.companyURL,
       privateTel: this.state.privateTel,
       privateMobile: this.state.privateMobile,
       privateEmail: this.state.privateEmail,
@@ -85,8 +80,19 @@ class ProfileMainInformationEDIT extends Component {
       privateCity: this.state.privateCity,
       invoiceAddress: this.state.invoiceAddress
     };
+    const companyUpdate = {
+      _id: this.props.profile.company_id,
+      companyName: this.state.company,
+      companyStreet: this.state.companyStreet,
+      companyStreetNr: this.state.companyStreetNr,
+      companyZip: this.state.companyZip,
+      companyCity: this.state.companyCity,
+      companyURL: this.state.companyURL
+    };
 
+    //TODO: Find a way to update all info or none at all (Together with BasicInfo)
     this.props.dispatch(putProfile(mainInfoUpdate));
+    this.props.dispatch(putCompany(companyUpdate));
   }
 
   render() {
