@@ -175,7 +175,7 @@ additional style EDIT profile page
   height: 25px;
   margin-bottom: 10px;
   position: relative;
-  width: 220px;
+  width: 210px;
   margin: 0;
   padding: 0;
 }
@@ -260,7 +260,7 @@ button-container {
   opacity: 0.5;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 1200px) {
+@media only screen and (min-width: 769px) and (max-width: 1200px) {
   .basic-info {
     margin-top: 147px;
   }
@@ -269,7 +269,7 @@ button-container {
     bottom: 51px;
   }
 }
-@media only screen and (min-width: 0px) and (max-width: 767px) {
+@media only screen and (min-width: 0px) and (max-width: 768px) {
   .basic-info {
     margin-top: 0px;
   }
