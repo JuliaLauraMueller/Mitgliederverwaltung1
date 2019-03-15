@@ -7,6 +7,10 @@ let companies = [
     id: '0',
     companyName: 'companyName',
     companyURL: 'companyURL',
+    companyStreet: 'companyStreet',
+    companyStreetNr: 'companyStreetNr',
+    companyZip: 'companyZip',
+    companyCity: 'companyCity',
     save() {}
   }
 ];

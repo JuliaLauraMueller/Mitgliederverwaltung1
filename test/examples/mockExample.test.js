@@ -1,7 +1,7 @@
-jest.mock('../../server/models/UserModel');
+jest.mock('./functions');
 
-const { findById } = require('../../server/models/UserModel');
+const functions = require('./functions');
 
 test('should call mocking class from user model', () => {
-  findById(10);
+  expect(functions.mockMethod()).toBe(true);
 });
