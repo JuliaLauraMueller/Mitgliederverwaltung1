@@ -1,6 +1,6 @@
 const db = require('../helpers/db');
 const Company = db.Company;
-const companyLocationService = require('../services/companyLocationService');
+const usersService = require('../services/userService');
 
 module.exports = {
   getAll,
@@ -28,5 +28,5 @@ async function update(id, companyParam) {
 
 async function _delete(id) {
   await Company.findByIdAndRemove(id);
-  await companyLocationService.removeAllCompanyLocRelations(id);
+  await usersService.removeAllCompanyLocRelations(id);
 }

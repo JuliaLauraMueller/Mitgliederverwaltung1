@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
-import { Card, CardText, CardBody, CardTitle, Container } from 'reactstrap';
+import {
+  Card,
+  CardText,
+  CardBody,
+  CardTitle,
+  Container,
+  Row,
+  Col
+} from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 /*
@@ -11,42 +19,47 @@ TODO:
 class MemberCard extends Component {
   render() {
     return (
-      <div>
-        <Card className="member-card" style={{ border: '1px solid white' }}>
-          <CardBody>
-            <Container>
-              <img
-                className="card-image"
-                src={require('../../public/img/marc_zimmermann.jpg')}
-                alt="Card i cap"
-              />
-              <CardTitle className="card-name">
-                {this.props.member.firstname} <br />
-                {this.props.member.surname}
-              </CardTitle>
-            </Container>
-            <Container>
-              <img
-                className="mail-icon"
-                src={require('../../public/img/mail.png')}
-                alt="Card i cap"
-              />
-              <CardText className="card-text-mail">
-                {this.props.member.privateEmail}
-              </CardText>
-            </Container>
-            <Container>
-              <img
-                className="phone-icon"
-                src={require('../../public/img/phone.png')}
-                alt="Card i cap"
-              />
-              <CardTitle className="card-text-phone">
-                {this.props.member.privateTel}
-              </CardTitle>
-            </Container>
-            <Container className="profile-link">
+      <Row>
+        <Col className="member-card-row">
+          <Card className="member-card" style={{ border: '1px solid white' }}>
+            <CardBody>
               <div>
+                <img
+                  className="card-image"
+                  src={require('../../public/img/marc_zimmermann.jpg')}
+                  alt="Card i cap"
+                />
+
+                <CardTitle className="card-name">
+                  {this.props.member.firstname} <br />
+                  {this.props.member.surname}
+                </CardTitle>
+              </div>
+              <div>
+                <img
+                  className="mail-icon"
+                  src={require('../../public/img/mail.png')}
+                  alt="Card i cap"
+                />
+              </div>
+              <div>
+                <CardText className="card-text-mail">
+                  {this.props.member.privateEmail}
+                </CardText>
+              </div>
+              <div>
+                <img
+                  className="phone-icon"
+                  src={require('../../public/img/phone.png')}
+                  alt="Card i cap"
+                />
+              </div>
+              <div>
+                <CardTitle className="card-text-phone">
+                  {this.props.member.privateTel}
+                </CardTitle>
+              </div>
+              <div className="profile-link">
                 <Link
                   className="profile-text"
                   to={`/member/${this.props.member._id}`}
@@ -61,10 +74,10 @@ class MemberCard extends Component {
                   </svg>
                 </Link>
               </div>
-            </Container>
-          </CardBody>
-        </Card>
-      </div>
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
     );
   }
 }

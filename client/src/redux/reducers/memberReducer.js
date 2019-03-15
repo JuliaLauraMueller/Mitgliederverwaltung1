@@ -1,61 +1,111 @@
-import { SEARCH_MEMBERS } from '../actions/memberActions';
+import { SEARCH_MEMBERS, FILTER_CIRCLES } from '../types/memberTypes';
+import { MEMBERS_FETCHED } from '../types/memberTypes';
+import levenshtein from 'js-levenshtein';
+
+const MAX_LEVENSHTEIN_DISTANCE = 1;
 
 const initialState = {
   searchText: '',
-  members: [
-    {
-      _id: '5bfe7e0c7d3e650398e3e6d8',
-      firstname: 'Peter',
-      surname: 'Götti',
-      privateEmail: 'steven.wuethrich@fatpanda.io',
-      privateTel: '079 234 56 89'
-    },
-    {
-      _id: '5bfe83680108860398a433a1',
-      firstname: 'Marc',
-      surname: 'Zimmermann',
-      privateEmail: 'mz@fatpanda.io',
-      privateTel: '079 254 56 89'
-    },
-    {
-      _id: '5bfe844f0108860398a433a2',
-      firstname: 'User3',
-      surname: 'User3Surname',
-      privateEmail: 'rg@fatpanda.io',
-      privateTel: '079 236 92 79'
-    },
-    {
-      firstname: 'Renato',
-      surname: 'Gnocchi',
-      privateEmail: 'rg@fatpanda.io',
-      privateTel: '079 236 92 79'
-    },
-    {
-      firstname: 'Steven',
-      surname: 'Wüthrich',
-      privateEmail: 'sw@fatpanda.io',
-      privateTel: '079 234 56 89'
-    },
-    {
-      firstname: 'Marc',
-      surname: 'Zimmermann',
-      privateEmail: 'mz@fatpanda.io',
-      privateTel: '079 254 56 89'
-    }
-  ],
+  filteredCities: [],
+  members: [],
   filteredMembers: []
 };
 
+function levenshteinInRange(searchText, matchingText) {
+  if (levenshtein(searchText, matchingText) <= MAX_LEVENSHTEIN_DISTANCE) {
+    return true;
+  }
+}
+
+function filterMembers(members, searchText) {
+  if (!searchText || searchText.length == 0) {
+    return members;
+  }
+  searchText = replaceUmlauts(searchText.toLowerCase());
+
+  return members.filter(m => {
+    let surname = replaceUmlauts(m.surname.toLowerCase()).substring(
+      0,
+      searchText.length + 2
+    );
+
+    let fullname = replaceUmlauts(
+      m.firstname.concat(' ', m.surname).toLowerCase()
+    ).substring(0, searchText.length);
+
+    let company = replaceUmlauts(m.company.toLowerCase()).substring(
+      0,
+      searchText.length + 2
+    );
+
+    let job = replaceUmlauts(m.job.toLowerCase()).substring(
+      0,
+      searchText.length + 2
+    );
+
+    let funktion = replaceUmlauts(m.function.toLowerCase()).substring(
+      0,
+      searchText.length + 2
+    );
+
+    let sector = replaceUmlauts(m.sector.toLowerCase()).substring(
+      0,
+      searchText.length + 2
+    );
+
+    return (
+      levenshteinInRange(searchText, surname) ||
+      levenshteinInRange(searchText, fullname) ||
+      levenshteinInRange(searchText, company) ||
+      levenshteinInRange(searchText, job) ||
+      levenshteinInRange(searchText, funktion) ||
+      levenshteinInRange(searchText, sector)
+    );
+  });
+}
+
+function filterCircles(members, filteredCircles) {
+  if (!filteredCircles || filteredCircles.length == 0) {
+    return members;
+  } else {
+    return members.filter(m => {
+      return filteredCircles.includes(m.circle);
+    });
+  }
+}
+
+function replaceUmlauts(text) {
+  return text
+    .replace('ä', 'ae')
+    .replace('ö', 'oe')
+    .replace('ü', 'ue');
+}
+
 export default function(state = initialState, action) {
   switch (action.type) {
+    case MEMBERS_FETCHED:
+      return {
+        members: [...action.payload],
+        filteredMembers: [...action.payload]
+      };
     case SEARCH_MEMBERS:
       return {
         members: state.members,
-        filteredMembers: state.members.filter(m =>
-          m.firstname
-            .concat(' ', m.surname)
-            .toLowerCase()
-            .includes(action.payload.toLowerCase())
+        searchText: action.payload,
+        filteredCities: state.filteredCities,
+        filteredMembers: filterMembers(
+          filterCircles(state.members, state.filteredCities),
+          action.payload
+        )
+      };
+    case FILTER_CIRCLES:
+      return {
+        members: state.members,
+        searchText: state.searchText,
+        filteredCities: action.payload,
+        filteredMembers: filterMembers(
+          filterCircles(state.members, action.payload),
+          state.searchText
         )
       };
     default:
