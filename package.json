@@ -13,7 +13,7 @@
     "test-server": "jest ./server",
     "testwatch-jest": "jest --watchAll",
     "test": "\"npm run test-server\"",
-    "test-exmaple": "jest",
+    "test-example": "jest",
     "test-jenkins": "mocha test --colors --recursive --reporter mocha-jenkins-reporter",
     "mocha-test-jenkins": "mocha test --colors --recursive --reporter mocha-junit-reporter"
   },
