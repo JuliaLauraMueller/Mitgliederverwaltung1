@@ -1,5 +1,8 @@
 {
   "name": "mitgliederverwaltung1",
+  "jest": {
+    "testEnvironment": "node"
+  },
   "version": "1.0.0",
   "description": "Project mitgliederverwaltung1",
   "main": "index.js",
