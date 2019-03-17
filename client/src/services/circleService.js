@@ -16,5 +16,11 @@ async function getCircles() {
   });
 }
 
-const memberService = { getCircles };
+async function setCircleData(data) {
+  return await axios.put('/circles/' + data._id, data).then(res => {
+    return res;
+  });
+}
+
+const memberService = { getCircles, setCircleData };
 export default memberService;

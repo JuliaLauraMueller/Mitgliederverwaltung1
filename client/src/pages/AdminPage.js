@@ -17,14 +17,18 @@ import {
   CardBody,
   Modal,
   ModalHeader,
-  ModalFooter
+  ModalFooter,
+  ModalBody,
+  InputGroup,
+  InputGroupAddon,
+  Input
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import AdminCreateUser from '../components/Admin/AdminCreateUser';
 import AdminCreateCircle from '../components/Admin/AdminCreateCircle';
 import { setNavVisible } from '../redux/actions/navigationActions';
 import { fetchMembers, deleteMember } from '../redux/actions/memberActions';
-import { fetchCircles } from '../redux/actions/circleActions';
+import { fetchCircles, putCircle } from '../redux/actions/circleActions';
 
 import '../css/AdminPage.css';
 
@@ -32,7 +36,6 @@ class AdminPage extends Component {
   constructor(props) {
     super(props);
     this.props.dispatch(setNavVisible());
-
     this.getMemberRows = this.getMemberRows.bind(this);
     this.getCityRows = this.getCityRows.bind(this);
 
@@ -41,14 +44,34 @@ class AdminPage extends Component {
       activeTab: '1',
       collapseMember: false,
       collapseCircle: false,
-      memberToDelete: {}
+      memberToDelete: {},
+      editModal: false,
+      circleToEdit: { name: '' }
     };
     this.toggle = this.toggle.bind(this);
     this.toggleDeleteModal = this.toggleDeleteModal.bind(this);
+    this.toggleCircleEditModal = this.toggleCircleEditModal.bind(this);
     this.collapseCircle = this.collapseCircle.bind(this);
     this.collapseMember = this.collapseMember.bind(this);
     this.deleteMember = this.deleteMember.bind(this);
     this.createMemberDeleteModal = this.createMemberDeleteModal.bind(this);
+    this.createCircleEditModal = this.createCircleEditModal.bind(this);
+    this.onCircleSave = this.onCircleSave.bind(this);
+    this.handleCircleNameChange = this.handleCircleNameChange.bind(this);
+  }
+
+  onCircleSave() {
+    this.props.dispatch(putCircle(this.state.circleToEdit));
+  }
+
+  handleCircleNameChange(e) {
+    e.persist();
+    this.setState(prevState => ({
+      circleToEdit: {
+        _id: prevState.circleToEdit._id,
+        name: e.target.value
+      }
+    }));
   }
 
   toggle(tab) {
@@ -60,10 +83,16 @@ class AdminPage extends Component {
   }
 
   toggleDeleteModal(member) {
-    console.log('Member: ', member);
     this.setState(prevState => ({
       deleteModal: !prevState.deleteModal,
       memberToDelete: member
+    }));
+  }
+
+  toggleCircleEditModal(circle) {
+    this.setState(prevState => ({
+      editModal: !prevState.editModal,
+      circleToEdit: circle
     }));
   }
 
@@ -164,6 +193,7 @@ class AdminPage extends Component {
               </Col>
             </Row>
           </TabPane>
+          {this.createCircleEditModal()}
           <TabPane tabId="2">
             <div className="top-area">
               <Button
@@ -207,12 +237,13 @@ class AdminPage extends Component {
             <tr key={circle._id}>
               <td className="d-none d-sm-table-cell">{circle.name}</td>
               <td>
-                <Link
+                <span
                   className="admin-link admin-link-small"
-                  to={'/circle/' + circle._id}
+                  to=""
+                  onClick={() => this.toggleCircleEditModal(circle)}
                 >
                   Bearbeiten
-                </Link>
+                </span>
                 <br />
                 <Link
                   className="admin-link admin-link-small"
@@ -266,6 +297,55 @@ class AdminPage extends Component {
             </tr>
           );
         })
+    );
+  }
+
+  createCircleEditModal() {
+    return (
+      <Modal
+        isOpen={this.state.editModal}
+        toggle={() => this.toggleCircleEditModal({ name: '' })}
+      >
+        <ModalHeader toggle={() => this.toggleCircleEditModal({ name: '' })}>
+          City editieren
+        </ModalHeader>
+        <ModalBody>
+          <Row>
+            <Col>
+              <InputGroup>
+                <InputGroupAddon addonType="prepend">
+                  City-Name:
+                </InputGroupAddon>
+                <form className="input-field">
+                  <Input
+                    onChange={this.handleCircleNameChange}
+                    value={this.state.circleToEdit.name}
+                  />
+                </form>
+              </InputGroup>
+            </Col>
+          </Row>
+        </ModalBody>
+        <ModalFooter>
+          <Button
+            color="primary"
+            onClick={() => {
+              this.onCircleSave();
+              this.toggleCircleEditModal({ name: '' });
+            }}
+          >
+            Speichern
+          </Button>
+          <Button
+            color="secondary"
+            onClick={() => {
+              this.toggleCircleEditModal({ name: '' });
+            }}
+          >
+            Abbrechen
+          </Button>
+        </ModalFooter>
+      </Modal>
     );
   }
 

@@ -5,6 +5,7 @@ const circleService = require('../services/circleService');
 // routes
 router.get('/', getAll);
 router.get('/:id', getById);
+router.put('/:id', update);
 
 module.exports = router;
 
@@ -19,5 +20,12 @@ function getById(req, res, next) {
   circleService
     .getById(req.params.id)
     .then(circle => (circle ? res.json(circle) : res.sendStatus(404)))
+    .catch(err => next(err));
+}
+
+function update(req, res, next) {
+  circleService
+    .updateCircle(req.params.id, req.body)
+    .then(() => res.json({}))
     .catch(err => next(err));
 }

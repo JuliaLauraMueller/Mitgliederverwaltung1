@@ -1,1 +1,2 @@
 export const CIRCLES_FETCHED = 'CIRCLES_FETCHED';
+export const PUT_CIRCLE = 'PUT_CIRCLE';
