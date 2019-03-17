@@ -177,7 +177,7 @@ class AdminPage extends Component {
               <Collapse isOpen={this.state.collapseCircle}>
                 <Card>
                   <CardBody>
-                    <AdminCreateCircle close={this.collapseMember} />
+                    <AdminCreateCircle close={this.collapseCircle} />
                   </CardBody>
                 </Card>
               </Collapse>
