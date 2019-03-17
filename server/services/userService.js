@@ -3,7 +3,9 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = require('../helpers/db');
 const validateUrl = require('../helpers/urlValidator');
+const mongoose = require('mongoose');
 const User = db.User;
+const Company = db.Company;
 
 module.exports = {
   update,
@@ -116,16 +118,26 @@ async function update(id, userParam) {
 }
 
 async function deleteUser(id) {
-  await User.findByIdAndRemove(id);
-  await removeAllGodfathers(id);
+  let user = await getById(id);
+  if (user) {
+    await User.findByIdAndRemove(id);
+    await Company.findByIdAndRemove(user.company);
+    await removeAllGodfathers(id);
+  }
 }
 
 async function removeAllGodfathers(id) {
-  User.updateMany({ godfather: { $eq: id } }, { $set: { godfather: '' } });
+  User.updateMany(
+    { godfather: { $eq: mongoose.Types.ObjectId(id) } },
+    { $set: { godfather: undefined } }
+  );
 }
 
 async function removeAllCompanyRelations(id) {
-  User.updateMany({ company: { $eq: id } }, { $set: { company: '' } });
+  User.updateMany(
+    { company: { $eq: mongoose.Types.ObjectId(id) } },
+    { $set: { company: undefined } }
+  );
 }
 
 function generateJwtToken(user) {
