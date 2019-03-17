@@ -20,7 +20,8 @@ class AdminCreateCircle extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  cancel() {
+  cancel(event) {
+    event.preventDefault();
     this.props.close();
     this.setState(this.initialState);
   }
@@ -56,7 +57,7 @@ class AdminCreateCircle extends Component {
           <button className="admin-button" onClick={this.cancel}>
             Abbrechen
           </button>
-          <button className="admin-button" onClick={this.createUser}>
+          <button className="admin-button" onClick={this.createCircle}>
             Speichern
           </button>
         </Form>
