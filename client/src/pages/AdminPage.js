@@ -25,6 +25,7 @@ import AdminCreateCircle from '../components/Admin/AdminCreateCircle';
 import { setNavVisible } from '../redux/actions/navigationActions';
 import { fetchMembers, deleteMember } from '../redux/actions/memberActions';
 import { fetchCircles, deleteCircle } from '../redux/actions/circleActions';
+import filterMembers from '../helpers/memberSearch';
 
 import '../css/AdminPage.css';
 
@@ -138,7 +139,7 @@ class AdminPage extends Component {
                     <input
                       type="text"
                       name="search"
-                      placeholder="Mitglied suchen"
+                      placeholder="Nach Name, City, Firma oder Funktion suchen..."
                       className="form-control"
                       value={this.state.searchText}
                       onChange={this.handleChange.bind(this)}
@@ -212,77 +213,67 @@ class AdminPage extends Component {
   }
 
   getCircleRows(circles) {
-    return (
-      circles
-        // TODO: maybe reuse logic from member page search here (extract to helper function)
-        .filter(circle => circle.name.startsWith(this.state.searchText))
-        .map(circle => {
-          return (
-            <tr key={circle._id}>
-              <td className="d-none d-sm-table-cell">{circle.name}</td>
-              <td>
-                <Link
-                  className="admin-link admin-link-small"
-                  to={'/circle/' + circle._id}
-                >
-                  Bearbeiten
-                </Link>
-                <br />
-                <span
-                  className="admin-link admin-link-small"
-                  onClick={() => this.toggleCircleDeleteModal(circle)}
-                >
-                  Löschen
-                </span>
-              </td>
-            </tr>
-          );
-        })
-    );
+    return circles.map(circle => {
+      return (
+        <tr key={circle._id}>
+          <td className="d-none d-sm-table-cell">{circle.name}</td>
+          <td>
+            <Link
+              className="admin-link admin-link-small"
+              to={'/circle/' + circle._id}
+            >
+              Bearbeiten
+            </Link>
+            <br />
+            <span
+              className="admin-link admin-link-small"
+              onClick={() => this.toggleCircleDeleteModal(circle)}
+            >
+              Löschen
+            </span>
+          </td>
+        </tr>
+      );
+    });
   }
 
   getMemberRows(members) {
-    return (
-      members
-        // TODO: maybe reuse logic from member page search here (extract to helper function)
-        .filter(member => member.firstname.startsWith(this.state.searchText))
-        .map(member => {
-          return (
-            <tr key={member._id}>
-              <td className="d-none d-md-table-cell">{member.membernumber}</td>
-              <td>{member.firstname}</td>
-              <td>{member.surname}</td>
-              <td className="d-none d-md-table-cell">{member.privateEmail}</td>
-              <td className="d-none d-sm-table-cell">
-                {member.circle ? member.circle.name : ''}
-              </td>
-              <td>
-                <Link
-                  className="admin-link admin-link-small"
-                  to={'/member/' + member._id}
-                >
-                  Bearbeiten
-                </Link>
-                <br />
-                <Link
-                  className="admin-link admin-link-small"
-                  to={'/members/changeRole/' + member._id}
-                >
-                  Rolle ändern
-                </Link>
-                <br />
-                <span
-                  className="admin-link admin-link-small"
-                  to=""
-                  onClick={() => this.toggleMemberDeleteModal(member)}
-                >
-                  Löschen
-                </span>
-              </td>
-            </tr>
-          );
-        })
-    );
+    return filterMembers(members, this.state.searchText, true).map(member => {
+      return (
+        <tr key={member._id}>
+          <td className="d-none d-md-table-cell">{member.membernumber}</td>
+          <td>{member.firstname}</td>
+          <td>{member.surname}</td>
+          <td className="d-none d-md-table-cell">{member.privateEmail}</td>
+          <td className="d-none d-sm-table-cell">
+            {member.circle ? member.circle.name : ''}
+          </td>
+          <td>
+            <Link
+              className="admin-link admin-link-small"
+              to={'/member/' + member._id}
+            >
+              Bearbeiten
+            </Link>
+            <br />
+            <Link
+              className="admin-link admin-link-small"
+              to={'/members/changeRole/' + member._id}
+            >
+              Rolle ändern
+            </Link>
+            <br />
+            <span
+              className="admin-link admin-link-small"
+              to=""
+              onClick={() => this.toggleMemberDeleteModal(member)}
+            >
+              Löschen
+            </span>
+          </td>
+        </tr>
+      );
+    });
   }
 
   createMemberDeleteModal() {

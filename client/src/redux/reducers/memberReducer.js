@@ -4,9 +4,7 @@ import {
   MEMBER_DELETED
 } from '../types/memberTypes';
 import { MEMBERS_FETCHED } from '../types/memberTypes';
-import levenshtein from 'js-levenshtein';
-
-const MAX_LEVENSHTEIN_DISTANCE = 1;
+import filterMembers from '../../helpers/memberSearch';
 
 const initialState = {
   searchText: '',
@@ -14,61 +12,6 @@ const initialState = {
   members: [],
   filteredMembers: []
 };
-
-function levenshteinInRange(searchText, matchingText) {
-  if (levenshtein(searchText, matchingText) <= MAX_LEVENSHTEIN_DISTANCE) {
-    return true;
-  }
-}
-
-function filterMembers(members, searchText) {
-  if (!searchText || searchText.length == 0) {
-    return members;
-  }
-  searchText = replaceUmlauts(searchText.toLowerCase());
-
-  return members.filter(m => {
-    let surname = replaceUmlauts(m.surname.toLowerCase()).substring(
-      0,
-      searchText.length + MAX_LEVENSHTEIN_DISTANCE
-    );
-
-    let fullname = replaceUmlauts(
-      m.firstname.concat(' ', m.surname).toLowerCase()
-    ).substring(0, searchText.length);
-
-    let company = m.company
-      ? replaceUmlauts(m.company.companyName.toLowerCase()).substring(
-          0,
-          searchText.length + MAX_LEVENSHTEIN_DISTANCE
-        )
-      : '';
-
-    let job = replaceUmlauts(m.job.toLowerCase()).substring(
-      0,
-      searchText.length + MAX_LEVENSHTEIN_DISTANCE
-    );
-
-    let funktion = replaceUmlauts(m.function.toLowerCase()).substring(
-      0,
-      searchText.length + MAX_LEVENSHTEIN_DISTANCE
-    );
-
-    let sector = replaceUmlauts(m.sector.toLowerCase()).substring(
-      0,
-      searchText.length + MAX_LEVENSHTEIN_DISTANCE
-    );
-
-    return (
-      levenshteinInRange(searchText, surname) ||
-      levenshteinInRange(searchText, fullname) ||
-      levenshteinInRange(searchText, company) ||
-      levenshteinInRange(searchText, job) ||
-      levenshteinInRange(searchText, funktion) ||
-      levenshteinInRange(searchText, sector)
-    );
-  });
-}
 
 function filterCircles(members, filteredCircles) {
   if (!filteredCircles || filteredCircles.length == 0) {
@@ -78,13 +21,6 @@ function filterCircles(members, filteredCircles) {
       return filteredCircles.includes(m.circle ? m.circle._id : '');
     });
   }
-}
-
-function replaceUmlauts(text) {
-  return text
-    .replace('ä', 'ae')
-    .replace('ö', 'oe')
-    .replace('ü', 'ue');
 }
 
 function deleteMember(members, id) {
@@ -107,7 +43,8 @@ export default function(state = initialState, action) {
         filteredCircles: state.filteredCircles,
         filteredMembers: filterMembers(
           filterCircles(state.members, state.filteredCircles),
-          action.payload
+          action.payload,
+          false
         )
       };
     case FILTER_CIRCLES:
@@ -117,7 +54,8 @@ export default function(state = initialState, action) {
         filteredCircles: action.payload,
         filteredMembers: filterMembers(
           filterCircles(state.members, action.payload),
-          state.searchText
+          state.searchText,
+          false
         )
       };
     case MEMBER_DELETED:
@@ -127,7 +65,8 @@ export default function(state = initialState, action) {
         filteredCircles: state.filteredCircles,
         filteredMembers: filterMembers(
           filterCircles(state.members, state.filteredCircles),
-          state.searchText
+          state.searchText,
+          false
         )
       };
     default:
