@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-
+import classnames from 'classnames';
 import { Link } from 'react-router-dom';
-
-import { Table } from 'reactstrap';
+import { Table,TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
 import { connect } from 'react-redux';
 import { setNavVisible } from '../redux/actions/navigationActions';
 import { fetchMembers } from '../redux/actions/memberActions';
@@ -19,6 +18,18 @@ class AdminPage extends Component {
     this.state = {
       searchText: ''
     };
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      activeTab: '1'
+    };
+  }
+
+  toggle(tab) {
+    if (this.state.activeTab !== tab) {
+      this.setState({
+        activeTab: tab
+      });
+    }
   }
 
   handleChange(event) {
@@ -32,17 +43,30 @@ class AdminPage extends Component {
   render() {
     return (
       <div>
-        <h1>Administration</h1>
-        <Link className="admin-link admin-link-large" to="/cities">
-          Cities
-        </Link>
-        <Link
-          className="admin-link admin-link-large admin-link-right"
-          to="/members/create"
-        >
-          Neuer Benutzer
-        </Link>
-        <input
+         <h1>Administration</h1>
+        <Nav tabs>
+          <NavItem>
+            <NavLink
+              className={classnames({ active: this.state.activeTab === '1' })}
+              onClick={() => { this.toggle('1'); }}
+            >
+              Mitglieder
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink
+              className={classnames({ active: this.state.activeTab === '2' })}
+              onClick={() => { this.toggle('2'); }}
+            >
+              Cities
+            </NavLink>
+          </NavItem>
+        </Nav>
+        <TabContent activeTab={this.state.activeTab}>
+          <TabPane tabId="1">
+            <Row>
+              <Col sm="12">
+              <input
           type="text"
           name="search"
           placeholder="Mitglied suchen"
@@ -50,7 +74,7 @@ class AdminPage extends Component {
           value={this.state.searchText}
           onChange={this.handleChange.bind(this)}
         />
-        <Table hover className="adminTable">
+         <Table hover className="adminTable">
           <thead>
             <tr>
               <th className="d-none d-md-table-cell">Nr.</th>
@@ -63,6 +87,13 @@ class AdminPage extends Component {
           </thead>
           <tbody>{this.getMemberRows(this.props.members)}</tbody>
         </Table>
+              </Col>
+            </Row>
+          </TabPane>
+          <TabPane tabId="2">
+    
+          </TabPane>
+        </TabContent>
       </div>
     );
   }
