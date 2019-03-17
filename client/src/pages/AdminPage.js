@@ -1,7 +1,21 @@
 import React, { Component } from 'react';
-import classnames from 'classnames';
+
 import { Link } from 'react-router-dom';
-import { Table,TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
+import classnames from 'classnames';
+import {
+  Table,
+  TabContent,
+  TabPane,
+  Nav,
+  NavItem,
+  NavLink,
+  Card,
+  Button,
+  CardTitle,
+  CardText,
+  Row,
+  Col
+} from 'reactstrap';
 import { connect } from 'react-redux';
 import { setNavVisible } from '../redux/actions/navigationActions';
 import { fetchMembers } from '../redux/actions/memberActions';
@@ -16,12 +30,10 @@ class AdminPage extends Component {
     this.getMemberRows = this.getMemberRows.bind(this);
 
     this.state = {
-      searchText: ''
-    };
-    this.toggle = this.toggle.bind(this);
-    this.state = {
+      searchText: '',
       activeTab: '1'
     };
+    this.toggle = this.toggle.bind(this);
   }
 
   toggle(tab) {
@@ -43,12 +55,14 @@ class AdminPage extends Component {
   render() {
     return (
       <div>
-         <h1>Administration</h1>
+        <h1>Administration</h1>
         <Nav tabs>
           <NavItem>
             <NavLink
               className={classnames({ active: this.state.activeTab === '1' })}
-              onClick={() => { this.toggle('1'); }}
+              onClick={() => {
+                this.toggle('1');
+              }}
             >
               Mitglieder
             </NavLink>
@@ -56,7 +70,9 @@ class AdminPage extends Component {
           <NavItem>
             <NavLink
               className={classnames({ active: this.state.activeTab === '2' })}
-              onClick={() => { this.toggle('2'); }}
+              onClick={() => {
+                this.toggle('2');
+              }}
             >
               Cities
             </NavLink>
@@ -66,33 +82,31 @@ class AdminPage extends Component {
           <TabPane tabId="1">
             <Row>
               <Col sm="12">
-              <input
-          type="text"
-          name="search"
-          placeholder="Mitglied suchen"
-          className="form-control"
-          value={this.state.searchText}
-          onChange={this.handleChange.bind(this)}
-        />
-         <Table hover className="adminTable">
-          <thead>
-            <tr>
-              <th className="d-none d-md-table-cell">Nr.</th>
-              <th>Vorname</th>
-              <th>Nachname</th>
-              <th className="d-none d-md-table-cell">E-Mail</th>
-              <th className="d-none d-sm-table-cell">City</th>
-              <th>Aktionen</th>
-            </tr>
-          </thead>
-          <tbody>{this.getMemberRows(this.props.members)}</tbody>
-        </Table>
+                <input
+                  type="text"
+                  name="search"
+                  placeholder="Mitglied suchen"
+                  className="form-control"
+                  value={this.state.searchText}
+                  onChange={this.handleChange.bind(this)}
+                />
+                <Table hover className="adminTable">
+                  <thead>
+                    <tr>
+                      <th className="d-none d-md-table-cell">Nr.</th>
+                      <th>Vorname</th>
+                      <th>Nachname</th>
+                      <th className="d-none d-md-table-cell">E-Mail</th>
+                      <th className="d-none d-sm-table-cell">City</th>
+                      <th>Aktionen</th>
+                    </tr>
+                  </thead>
+                  <tbody>{this.getMemberRows(this.props.members)}</tbody>
+                </Table>
               </Col>
             </Row>
           </TabPane>
-          <TabPane tabId="2">
-    
-          </TabPane>
+          <TabPane tabId="2" />
         </TabContent>
       </div>
     );
