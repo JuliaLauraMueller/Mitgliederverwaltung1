@@ -14,13 +14,16 @@ import {
   Collapse,
   Button,
   Card,
-  CardBody
+  CardBody,
+  Modal,
+  ModalHeader,
+  ModalFooter
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import AdminCreateUser from '../components/Admin/AdminCreateUser';
 import AdminCreateCircle from '../components/Admin/AdminCreateCircle';
 import { setNavVisible } from '../redux/actions/navigationActions';
-import { fetchMembers } from '../redux/actions/memberActions';
+import { fetchMembers, deleteMember } from '../redux/actions/memberActions';
 import { fetchCircles } from '../redux/actions/circleActions';
 
 import '../css/AdminPage.css';
@@ -37,11 +40,15 @@ class AdminPage extends Component {
       searchText: '',
       activeTab: '1',
       collapseMember: false,
-      collapseCircle: false
+      collapseCircle: false,
+      memberToDelete: {}
     };
     this.toggle = this.toggle.bind(this);
+    this.toggleDeleteModal = this.toggleDeleteModal.bind(this);
     this.collapseCircle = this.collapseCircle.bind(this);
     this.collapseMember = this.collapseMember.bind(this);
+    this.deleteMember = this.deleteMember.bind(this);
+    this.createMemberDeleteModal = this.createMemberDeleteModal.bind(this);
   }
 
   toggle(tab) {
@@ -50,6 +57,14 @@ class AdminPage extends Component {
         activeTab: tab
       });
     }
+  }
+
+  toggleDeleteModal(member) {
+    console.log('Member: ', member);
+    this.setState(prevState => ({
+      deleteModal: !prevState.deleteModal,
+      memberToDelete: member
+    }));
   }
 
   collapseMember() {
@@ -69,9 +84,14 @@ class AdminPage extends Component {
     this.props.dispatch(fetchCircles());
   }
 
+  deleteMember(id) {
+    this.props.dispatch(deleteMember(id));
+  }
+
   render() {
     return (
       <div>
+        {this.createMemberDeleteModal()}
         <h1>Administration</h1>
         <Nav tabs>
           <NavItem>
@@ -235,16 +255,47 @@ class AdminPage extends Component {
                   Rolle ändern
                 </Link>
                 <br />
-                <Link
+                <span
                   className="admin-link admin-link-small"
-                  to={'/members/delete/' + member._id}
+                  to=""
+                  onClick={() => this.toggleDeleteModal(member)}
                 >
                   Löschen
-                </Link>
+                </span>
               </td>
             </tr>
           );
         })
+    );
+  }
+
+  createMemberDeleteModal() {
+    return (
+      <Modal isOpen={this.state.deleteModal} toggle={this.toggleDeleteModal}>
+        <ModalHeader toggle={this.toggleDeleteModal}>
+          Mitglied '{this.state.memberToDelete.firstname}{' '}
+          {this.state.memberToDelete.surname}' wirklich löschen?
+        </ModalHeader>
+        <ModalFooter>
+          <Button
+            color="primary"
+            onClick={() => {
+              this.deleteMember(this.state.memberToDelete._id);
+              this.toggleDeleteModal({});
+            }}
+          >
+            Löschen
+          </Button>{' '}
+          <Button
+            color="secondary"
+            onClick={() => {
+              this.toggleDeleteModal({});
+            }}
+          >
+            Abbrechen
+          </Button>
+        </ModalFooter>
+      </Modal>
     );
   }
 }

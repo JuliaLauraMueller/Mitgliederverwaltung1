@@ -1,4 +1,8 @@
-import { SEARCH_MEMBERS, FILTER_CIRCLES } from '../types/memberTypes';
+import {
+  SEARCH_MEMBERS,
+  FILTER_CIRCLES,
+  MEMBER_DELETED
+} from '../types/memberTypes';
 import { MEMBERS_FETCHED } from '../types/memberTypes';
 import levenshtein from 'js-levenshtein';
 
@@ -6,7 +10,7 @@ const MAX_LEVENSHTEIN_DISTANCE = 1;
 
 const initialState = {
   searchText: '',
-  filteredCities: [],
+  filteredCircles: [],
   members: [],
   filteredMembers: []
 };
@@ -81,6 +85,12 @@ function replaceUmlauts(text) {
     .replace('ü', 'ue');
 }
 
+function deleteMember(members, id) {
+  return members.filter(member => {
+    return member._id != id;
+  });
+}
+
 export default function(state = initialState, action) {
   switch (action.type) {
     case MEMBERS_FETCHED:
@@ -92,9 +102,9 @@ export default function(state = initialState, action) {
       return {
         members: state.members,
         searchText: action.payload,
-        filteredCities: state.filteredCities,
+        filteredCircles: state.filteredCircles,
         filteredMembers: filterMembers(
-          filterCircles(state.members, state.filteredCities),
+          filterCircles(state.members, state.filteredCircles),
           action.payload
         )
       };
@@ -102,9 +112,19 @@ export default function(state = initialState, action) {
       return {
         members: state.members,
         searchText: state.searchText,
-        filteredCities: action.payload,
+        filteredCircles: action.payload,
         filteredMembers: filterMembers(
           filterCircles(state.members, action.payload),
+          state.searchText
+        )
+      };
+    case MEMBER_DELETED:
+      return {
+        members: deleteMember(state.members, action.payload),
+        searchText: state.searchText,
+        filteredCircles: state.filteredCircles,
+        filteredMembers: filterMembers(
+          filterCircles(state.members, state.filteredCircles),
           state.searchText
         )
       };

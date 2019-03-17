@@ -42,5 +42,18 @@ async function getUserBody() {
     });
 }
 
-const memberService = { getUserBody };
+async function deleteMember(id) {
+  return await axios
+    .delete('/users/' + id)
+    .then(resp => {
+      console.log(id);
+      return id;
+    })
+    .catch(err => {
+      history.push('/admin');
+      store.dispatch(alertError('Mitglied konnte nicht gelöscht werden.'));
+    });
+}
+
+const memberService = { getUserBody, deleteMember };
 export default memberService;

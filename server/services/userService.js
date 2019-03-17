@@ -14,7 +14,8 @@ module.exports = {
   generateJwtToken,
   removeAllCompanyRelations,
   update,
-  updateUser
+  updateUser,
+  deleteUser
 };
 
 async function authenticate({ privateEmail, password }) {
@@ -114,7 +115,7 @@ async function update(id, userParam) {
   await user.save();
 }
 
-async function _delete(id) {
+async function deleteUser(id) {
   await User.findByIdAndRemove(id);
   await removeAllGodfathers(id);
 }
