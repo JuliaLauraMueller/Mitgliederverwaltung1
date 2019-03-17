@@ -19,6 +19,12 @@ async function getCircles() {
   });
 }
 
+async function setCircleData(data) {
+  return await axios.put('/circles/' + data._id, data).then(res => {
+    return res;
+  });
+}
+
 async function deleteCircle(id) {
   return await axios
     .delete('/circles/' + id)
@@ -35,5 +41,5 @@ async function deleteCircle(id) {
     });
 }
 
-const memberService = { getCircles, deleteCircle };
+const memberService = { getCircles, setCircleData, deleteCircle };
 export default memberService;
