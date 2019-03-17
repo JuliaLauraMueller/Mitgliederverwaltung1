@@ -4,16 +4,19 @@ import { Form, FormGroup, Label, Input, Col } from 'reactstrap';
 
 import { connect } from 'react-redux';
 
+const initialState = {
+  name: ''
+};
+
 class AdminCreateCircle extends Component {
   constructor(props) {
     super(props);
-    this.initialState = {
-      name: ''
-    };
-    this.state = this.initialState;
+
+    this.state = initialState;
 
     this.handleChange = this.handleChange.bind(this);
     this.createCircle = this.createCircle.bind(this);
+    this.cancel = this.cancel.bind(this);
   }
 
   handleChange(event) {
@@ -22,13 +25,13 @@ class AdminCreateCircle extends Component {
 
   cancel(event) {
     event.preventDefault();
+    this.setState(initialState);
     this.props.close();
-    this.setState(this.initialState);
   }
 
   createCircle(event) {
     event.preventDefault();
-    this.setState(this.initialState);
+    this.setState(initialState);
     console.log('city create');
     // TODO: add logic
     this.props.close();

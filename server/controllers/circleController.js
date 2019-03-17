@@ -6,6 +6,7 @@ const circleService = require('../services/circleService');
 router.get('/', getAll);
 router.get('/:id', getById);
 router.put('/:id', update);
+router.delete('/:id', deleteCircle);
 
 module.exports = router;
 
@@ -28,4 +29,11 @@ function update(req, res, next) {
     .updateCircle(req.params.id, req.body)
     .then(() => res.json({}))
     .catch(err => next(err));
+}
+
+function deleteCircle(req, res, next) {
+  circleService
+    .deleteCircle(req.params.id)
+    .then(() => res.json({}))
+    .catch(err => res.status(500).send(err));
 }

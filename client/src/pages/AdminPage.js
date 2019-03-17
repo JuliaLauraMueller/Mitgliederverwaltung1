@@ -28,7 +28,11 @@ import AdminCreateUser from '../components/Admin/AdminCreateUser';
 import AdminCreateCircle from '../components/Admin/AdminCreateCircle';
 import { setNavVisible } from '../redux/actions/navigationActions';
 import { fetchMembers, deleteMember } from '../redux/actions/memberActions';
-import { fetchCircles, putCircle } from '../redux/actions/circleActions';
+import {
+  fetchCircles,
+  deleteCircle,
+  putCircle
+} from '../redux/actions/circleActions';
 
 import '../css/AdminPage.css';
 
@@ -37,7 +41,7 @@ class AdminPage extends Component {
     super(props);
     this.props.dispatch(setNavVisible());
     this.getMemberRows = this.getMemberRows.bind(this);
-    this.getCityRows = this.getCityRows.bind(this);
+    this.getCircleRows = this.getCircleRows.bind(this);
 
     this.state = {
       searchText: '',
@@ -46,15 +50,19 @@ class AdminPage extends Component {
       collapseCircle: false,
       memberToDelete: {},
       editModal: false,
-      circleToEdit: { name: '' }
+      circleToEdit: { name: '' },
+      circleToDelete: {}
     };
+
     this.toggle = this.toggle.bind(this);
-    this.toggleDeleteModal = this.toggleDeleteModal.bind(this);
+    this.toggleMemberDeleteModal = this.toggleMemberDeleteModal.bind(this);
+    this.toggleCircleDeleteModal = this.toggleCircleDeleteModal.bind(this);
     this.toggleCircleEditModal = this.toggleCircleEditModal.bind(this);
     this.collapseCircle = this.collapseCircle.bind(this);
     this.collapseMember = this.collapseMember.bind(this);
     this.deleteMember = this.deleteMember.bind(this);
     this.createMemberDeleteModal = this.createMemberDeleteModal.bind(this);
+    this.createCircleDeleteModal = this.createCircleDeleteModal.bind(this);
     this.createCircleEditModal = this.createCircleEditModal.bind(this);
     this.onCircleSave = this.onCircleSave.bind(this);
     this.handleCircleNameChange = this.handleCircleNameChange.bind(this);
@@ -82,9 +90,9 @@ class AdminPage extends Component {
     }
   }
 
-  toggleDeleteModal(member) {
+  toggleMemberDeleteModal(member) {
     this.setState(prevState => ({
-      deleteModal: !prevState.deleteModal,
+      memberDeleteModal: !prevState.memberDeleteModal,
       memberToDelete: member
     }));
   }
@@ -93,6 +101,13 @@ class AdminPage extends Component {
     this.setState(prevState => ({
       editModal: !prevState.editModal,
       circleToEdit: circle
+    }));
+  }
+
+  toggleCircleDeleteModal(circle) {
+    this.setState(prevState => ({
+      circleDeleteModal: !prevState.circleDeleteModal,
+      circleToDelete: circle
     }));
   }
 
@@ -117,10 +132,15 @@ class AdminPage extends Component {
     this.props.dispatch(deleteMember(id));
   }
 
+  deleteCircle(id) {
+    this.props.dispatch(deleteCircle(id));
+  }
+
   render() {
     return (
       <div>
         {this.createMemberDeleteModal()}
+        {this.createCircleDeleteModal()}
         <h1>Administration</h1>
         <Nav tabs>
           <NavItem>
@@ -207,7 +227,7 @@ class AdminPage extends Component {
               <Collapse isOpen={this.state.collapseCircle}>
                 <Card>
                   <CardBody>
-                    <AdminCreateCircle close={this.collapseMember} />
+                    <AdminCreateCircle close={this.collapseCircle} />
                   </CardBody>
                 </Card>
               </Collapse>
@@ -219,7 +239,7 @@ class AdminPage extends Component {
                   <th>Aktionen</th>
                 </tr>
               </thead>
-              <tbody>{this.getCityRows(this.props.circles)}</tbody>
+              <tbody>{this.getCircleRows(this.props.circles)}</tbody>
             </Table>
           </TabPane>
         </TabContent>
@@ -227,7 +247,7 @@ class AdminPage extends Component {
     );
   }
 
-  getCityRows(circles) {
+  getCircleRows(circles) {
     return (
       circles
         // TODO: maybe reuse logic from member page search here (extract to helper function)
@@ -245,12 +265,12 @@ class AdminPage extends Component {
                   Bearbeiten
                 </span>
                 <br />
-                <Link
+                <span
                   className="admin-link admin-link-small"
-                  to={'/circles/delete/' + circle._id}
+                  onClick={() => this.toggleCircleDeleteModal(circle)}
                 >
                   Löschen
-                </Link>
+                </span>
               </td>
             </tr>
           );
@@ -270,7 +290,9 @@ class AdminPage extends Component {
               <td>{member.firstname}</td>
               <td>{member.surname}</td>
               <td className="d-none d-md-table-cell">{member.privateEmail}</td>
-              <td className="d-none d-sm-table-cell">{member.circle}</td>
+              <td className="d-none d-sm-table-cell">
+                {member.circle ? member.circle.name : ''}
+              </td>
               <td>
                 <Link
                   className="admin-link admin-link-small"
@@ -289,7 +311,7 @@ class AdminPage extends Component {
                 <span
                   className="admin-link admin-link-small"
                   to=""
-                  onClick={() => this.toggleDeleteModal(member)}
+                  onClick={() => this.toggleMemberDeleteModal(member)}
                 >
                   Löschen
                 </span>
@@ -351,8 +373,11 @@ class AdminPage extends Component {
 
   createMemberDeleteModal() {
     return (
-      <Modal isOpen={this.state.deleteModal} toggle={this.toggleDeleteModal}>
-        <ModalHeader toggle={this.toggleDeleteModal}>
+      <Modal
+        isOpen={this.state.memberDeleteModal}
+        toggle={() => this.toggleMemberDeleteModal({})}
+      >
+        <ModalHeader toggle={() => this.toggleMemberDeleteModal({})}>
           Mitglied '{this.state.memberToDelete.firstname}{' '}
           {this.state.memberToDelete.surname}' wirklich löschen?
         </ModalHeader>
@@ -361,7 +386,39 @@ class AdminPage extends Component {
             color="primary"
             onClick={() => {
               this.deleteMember(this.state.memberToDelete._id);
-              this.toggleDeleteModal({});
+              this.toggleMemberDeleteModal({});
+            }}
+          >
+            Löschen
+          </Button>
+          <Button
+            color="secondary"
+            onClick={() => {
+              this.toggleMemberDeleteModal({});
+            }}
+          >
+            Abbrechen
+          </Button>
+        </ModalFooter>
+      </Modal>
+    );
+  }
+
+  createCircleDeleteModal() {
+    return (
+      <Modal
+        isOpen={this.state.circleDeleteModal}
+        toggle={() => this.toggleCircleDeleteModal({})}
+      >
+        <ModalHeader toggle={() => this.toggleCircleDeleteModal({})}>
+          City '{this.state.circleToDelete.name}' wirklich löschen?
+        </ModalHeader>
+        <ModalFooter>
+          <Button
+            color="primary"
+            onClick={() => {
+              this.deleteCircle(this.state.circleToDelete._id);
+              this.toggleCircleDeleteModal({});
             }}
           >
             Löschen
@@ -369,7 +426,7 @@ class AdminPage extends Component {
           <Button
             color="secondary"
             onClick={() => {
-              this.toggleDeleteModal({});
+              this.toggleCircleDeleteModal({});
             }}
           >
             Abbrechen

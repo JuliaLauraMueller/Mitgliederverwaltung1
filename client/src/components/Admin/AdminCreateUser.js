@@ -6,20 +6,22 @@ import { fetchCircles } from '../../redux/actions/circleActions';
 
 import { connect } from 'react-redux';
 
+const initialState = {
+  firstname: '',
+  surname: '',
+  email: '',
+  password: ''
+};
+
 class AdminCreateUser extends Component {
   constructor(props) {
     super(props);
-    this.initialState = {
-      firstname: '',
-      surname: '',
-      email: '',
-      password: ''
-    };
 
-    this.state = this.initialState;
+    this.state = initialState;
 
     this.handleChange = this.handleChange.bind(this);
     this.createUser = this.createUser.bind(this);
+    this.cancel = this.cancel.bind(this);
     this.getCircleSelectOptions = this.getCircleSelectOptions.bind(this);
     this.props.dispatch(fetchCircles());
   }
@@ -30,13 +32,13 @@ class AdminCreateUser extends Component {
 
   cancel(event) {
     event.preventDefault();
+    this.setState(initialState);
     this.props.close();
-    this.setState(this.initialState);
   }
 
   createUser(event) {
     event.preventDefault();
-    this.setState(this.initialState);
+    this.setState(initialState);
     console.log('user create');
     // TODO: add logic
     this.props.close();
@@ -115,7 +117,7 @@ class AdminCreateUser extends Component {
               {this.getCircleSelectOptions()}
             </Input>
           </FormGroup>
-          <button className="admin-button" onClick={this.props.close}>
+          <button className="admin-button" onClick={this.cancel}>
             Abbrechen
           </button>
           <button className="admin-button" onClick={this.createUser}>

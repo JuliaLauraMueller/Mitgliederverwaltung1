@@ -1,4 +1,8 @@
-import { CIRCLES_FETCHED, PUT_CIRCLE } from '../types/circleTypes';
+import {
+  CIRCLES_FETCHED,
+  PUT_CIRCLE,
+  CIRCLE_DELETED
+} from '../types/circleTypes';
 
 const initialState = {
   circles: []
@@ -10,6 +14,12 @@ function getUpdatedCircles(circles, updatedCircle) {
   return circles;
 }
 
+function deleteCircle(circles, id) {
+  return circles.filter(circle => {
+    return circle._id != id;
+  });
+}
+
 export default function(state = initialState, action) {
   switch (action.type) {
     case CIRCLES_FETCHED:
@@ -18,7 +28,11 @@ export default function(state = initialState, action) {
       };
     case PUT_CIRCLE:
       return {
-        circles: [...getUpdatedCircles(state.circles, action.payload)]www
+        circles: [...getUpdatedCircles(state.circles, action.payload)]
+      };
+    case CIRCLE_DELETED:
+      return {
+        circles: deleteCircle(state.circles, action.payload)
       };
     default:
       return state;
