@@ -37,10 +37,12 @@ function filterMembers(members, searchText) {
       m.firstname.concat(' ', m.surname).toLowerCase()
     ).substring(0, searchText.length);
 
-    let company = replaceUmlauts(m.company.toLowerCase()).substring(
-      0,
-      searchText.length + MAX_LEVENSHTEIN_DISTANCE
-    );
+    let company = m.company
+      ? replaceUmlauts(m.company.companyName.toLowerCase()).substring(
+          0,
+          searchText.length + MAX_LEVENSHTEIN_DISTANCE
+        )
+      : '';
 
     let job = replaceUmlauts(m.job.toLowerCase()).substring(
       0,
@@ -73,7 +75,7 @@ function filterCircles(members, filteredCircles) {
     return members;
   } else {
     return members.filter(m => {
-      return filteredCircles.includes(m.circle);
+      return filteredCircles.includes(m.circle ? m.circle._id : '');
     });
   }
 }

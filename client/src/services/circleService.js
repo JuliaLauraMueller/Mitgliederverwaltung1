@@ -1,4 +1,7 @@
 import axios from 'axios';
+import store from '../helpers/store';
+import history from '../helpers/history';
+import { alertError } from '..//redux/actions/alertActions';
 
 async function getCircles() {
   return await axios.get('/circles/').then(resp => {
@@ -16,5 +19,21 @@ async function getCircles() {
   });
 }
 
-const memberService = { getCircles };
+async function deleteCircle(id) {
+  return await axios
+    .delete('/circles/' + id)
+    .then(resp => {
+      return id;
+    })
+    .catch(err => {
+      history.push('/admin');
+      store.dispatch(
+        alertError(
+          'City konnte nicht gelöscht werden. Cities mit Mitgliedern können nicht gelöscht werden.'
+        )
+      );
+    });
+}
+
+const memberService = { getCircles, deleteCircle };
 export default memberService;

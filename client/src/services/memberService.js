@@ -23,12 +23,12 @@ async function getUserBody() {
             sector: element.sector,
             company:
               element.companyValues.length > 0
-                ? element.companyValues[0].companyName
-                : '',
+                ? element.companyValues[0]
+                : undefined,
             circle:
               element.circleValues.length > 0
-                ? element.circleValues[0].name
-                : '',
+                ? element.circleValues[0]
+                : undefined,
             profilepic: './img/marc_zimmermann.jpg' // TODO: implement loading of images
           };
         })
@@ -46,7 +46,6 @@ async function deleteMember(id) {
   return await axios
     .delete('/users/' + id)
     .then(resp => {
-      console.log(id);
       return id;
     })
     .catch(err => {
