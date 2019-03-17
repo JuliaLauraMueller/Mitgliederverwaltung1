@@ -38,9 +38,9 @@ class AdminCreateUser extends Component {
 
   createUser(event) {
     event.preventDefault();
-    this.setState(initialState);
     console.log('user create');
     // TODO: add logic
+    this.setState(initialState);
     this.props.close();
   }
 
@@ -48,7 +48,7 @@ class AdminCreateUser extends Component {
     return (
       <div>
         <h4>Neues Mitglied</h4>
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.createUser}>
           <FormGroup row>
             <Label for="firstname" sm={2}>
               Vorname
@@ -117,12 +117,18 @@ class AdminCreateUser extends Component {
               {this.getCircleSelectOptions()}
             </Input>
           </FormGroup>
-          <button className="admin-button" onClick={this.cancel}>
-            Abbrechen
-          </button>
-          <button className="admin-button" onClick={this.createUser}>
-            Speichern
-          </button>
+          <input
+            type="button"
+            className="admin-button"
+            onClick={this.cancel}
+            value="Abbrechen"
+          />
+          <input
+            type="submit"
+            className="admin-button"
+            onClick={this.createUser}
+            value="Speichern"
+          />
         </Form>
       </div>
     );

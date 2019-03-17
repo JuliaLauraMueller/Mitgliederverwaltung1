@@ -32,7 +32,7 @@ class AdminCreateCircle extends Component {
   createCircle(event) {
     event.preventDefault();
     this.setState(initialState);
-    console.log('city create');
+    console.log('circle create');
     // TODO: add logic
     this.props.close();
   }
@@ -41,7 +41,7 @@ class AdminCreateCircle extends Component {
     return (
       <div>
         <h4>Neue City</h4>
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.createCircle}>
           <FormGroup row>
             <Label for="name" sm={2}>
               Name
@@ -57,12 +57,18 @@ class AdminCreateCircle extends Component {
               />
             </Col>
           </FormGroup>
-          <button className="admin-button" onClick={this.cancel}>
-            Abbrechen
-          </button>
-          <button className="admin-button" onClick={this.createCircle}>
-            Speichern
-          </button>
+          <input
+            type="button"
+            className="admin-button"
+            onClick={this.cancel}
+            value="Abbrechen"
+          />
+          <input
+            type="submit"
+            className="admin-button"
+            onClick={this.createCircle}
+            value="Speichern"
+          />
         </Form>
       </div>
     );
