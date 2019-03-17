@@ -17,6 +17,8 @@ import {
   CardBody
 } from 'reactstrap';
 import { connect } from 'react-redux';
+import AdminCreateUser from '../components/Admin/AdminCreateUser';
+import AdminCreateCircle from '../components/Admin/AdminCreateCircle';
 import { setNavVisible } from '../redux/actions/navigationActions';
 import { fetchMembers } from '../redux/actions/memberActions';
 import { fetchCircles } from '../redux/actions/circleActions';
@@ -119,10 +121,7 @@ class AdminPage extends Component {
                       <Collapse isOpen={this.state.collapseMember}>
                         <Card>
                           <CardBody>
-                            Anim pariatur cliche reprehenderit, enim eiusmod
-                            high life accusamus terry richardson ad squid. Nihil
-                            anim keffiyeh helvetica, craft beer labore wes
-                            anderson cred nesciunt sapiente ea proident.
+                            <AdminCreateUser close={this.collapseMember} />
                           </CardBody>
                         </Card>
                       </Collapse>
@@ -145,36 +144,34 @@ class AdminPage extends Component {
               </Col>
             </Row>
           </TabPane>
-          <div className="top-area">
-            <Button
-              color="primary"
-              onClick={this.collapseCircle}
-              style={{ marginBottom: '1rem' }}
-              className="create-button"
-            >
-              City hinzufügen
-            </Button>
-            <Collapse isOpen={this.state.collapseCircle}>
-              <Card>
-                <CardBody>
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life
-                  accusamus terry richardson ad squid. Nihil anim keffiyeh
-                  helvetica, craft beer labore wes anderson cred nesciunt
-                  sapiente ea proident.
-                </CardBody>
-              </Card>
-            </Collapse>
-          </div>
-          <Table hover className="adminTable">
-            <thead>
-              <tr>
-                <th>City</th>
-                <th>Aktionen</th>
-              </tr>
-            </thead>
-            <tbody>{this.getCityRows(this.props.circles)}</tbody>
-          </Table>
-          <TabPane tabId="2" />
+          <TabPane tabId="2">
+            <div className="top-area">
+              <Button
+                color="primary"
+                onClick={this.collapseCircle}
+                style={{ marginBottom: '1rem' }}
+                className="create-button"
+              >
+                City hinzufügen
+              </Button>
+              <Collapse isOpen={this.state.collapseCircle}>
+                <Card>
+                  <CardBody>
+                    <AdminCreateCircle close={this.collapseMember} />
+                  </CardBody>
+                </Card>
+              </Collapse>
+            </div>
+            <Table hover className="adminTable">
+              <thead>
+                <tr>
+                  <th>City</th>
+                  <th>Aktionen</th>
+                </tr>
+              </thead>
+              <tbody>{this.getCityRows(this.props.circles)}</tbody>
+            </Table>
+          </TabPane>
         </TabContent>
       </div>
     );

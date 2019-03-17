@@ -128,7 +128,6 @@ class ProfileMainInformationEDIT extends Component {
                 <InputGroupAddon addonType="prepend">Beruf:</InputGroupAddon>
                 <form className="input-field">
                   <Input
-                    
                     type="text"
                     name="job"
                     onChange={this.onChange}
@@ -222,9 +221,7 @@ class ProfileMainInformationEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">
-                  Nr.:
-                </InputGroupAddon>
+                <InputGroupAddon addonType="prepend">Nr.:</InputGroupAddon>
                 <form id="input-field">
                   <Input
                     type="text"
@@ -364,9 +361,7 @@ class ProfileMainInformationEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">
-                  Nr.:
-                </InputGroupAddon>
+                <InputGroupAddon addonType="prepend">Nr.:</InputGroupAddon>
                 <form id="input-field">
                   <Input
                     type="text"
