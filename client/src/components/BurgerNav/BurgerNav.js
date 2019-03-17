@@ -223,7 +223,7 @@ class BurgerNav extends React.Component {
         </Link>
 
         <Link
-          to="/"
+          to="/admin"
           id="contact"
           className="burger-menu-item"
           href="/contact"

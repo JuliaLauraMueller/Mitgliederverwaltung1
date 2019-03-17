@@ -12,6 +12,20 @@ basic style admin page
   font-weight: lighter;
 }
 
+.admin-button {
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  margin-left: 10px;
+  border-radius: 0;
+  transition: none;
+  color: rgb(219, 157, 12);
+  border-bottom: 1px solid rgb(219, 157, 12);
+  font-family: Helvetica, sans-serif;
+  font-weight: lighter;
+  float: right;
+}
+
 .admin-link:hover {
   color: rgb(15, 25, 41, 74%);
   text-decoration: none;
@@ -31,4 +45,8 @@ basic style admin page
 
 .admin-link-right {
   float: right;
+}
+
+.admin-form-control {
+  width: 100%;
 }
