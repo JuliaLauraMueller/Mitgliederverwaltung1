@@ -9,16 +9,17 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Card,
-  Button,
-  CardTitle,
-  CardText,
   Row,
-  Col
+  Col,
+  Collapse,
+  Button,
+  Card,
+  CardBody
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { setNavVisible } from '../redux/actions/navigationActions';
 import { fetchMembers } from '../redux/actions/memberActions';
+import { fetchCircles } from '../redux/actions/circleActions';
 
 import '../css/AdminPage.css';
 
@@ -28,12 +29,17 @@ class AdminPage extends Component {
     this.props.dispatch(setNavVisible());
 
     this.getMemberRows = this.getMemberRows.bind(this);
+    this.getCityRows = this.getCityRows.bind(this);
 
     this.state = {
       searchText: '',
-      activeTab: '1'
+      activeTab: '1',
+      collapseMember: false,
+      collapseCircle: false
     };
     this.toggle = this.toggle.bind(this);
+    this.collapseCircle = this.collapseCircle.bind(this);
+    this.collapseMember = this.collapseMember.bind(this);
   }
 
   toggle(tab) {
@@ -44,12 +50,21 @@ class AdminPage extends Component {
     }
   }
 
+  collapseMember() {
+    this.setState(state => ({ collapseMember: !state.collapseMember }));
+  }
+
+  collapseCircle() {
+    this.setState(state => ({ collapseCircle: !state.collapseCircle }));
+  }
+
   handleChange(event) {
     this.setState({ searchText: event.target.value });
   }
 
   componentDidMount() {
     this.props.dispatch(fetchMembers());
+    this.props.dispatch(fetchCircles());
   }
 
   render() {
@@ -82,14 +97,38 @@ class AdminPage extends Component {
           <TabPane tabId="1">
             <Row>
               <Col sm="12">
-                <input
-                  type="text"
-                  name="search"
-                  placeholder="Mitglied suchen"
-                  className="form-control"
-                  value={this.state.searchText}
-                  onChange={this.handleChange.bind(this)}
-                />
+                <Row className="top-area">
+                  <Col sm="12">
+                    <input
+                      type="text"
+                      name="search"
+                      placeholder="Mitglied suchen"
+                      className="form-control"
+                      value={this.state.searchText}
+                      onChange={this.handleChange.bind(this)}
+                    />
+                    <div>
+                      <Button
+                        color="primary"
+                        onClick={this.collapseMember}
+                        style={{ marginBottom: '1rem' }}
+                        className="create-button"
+                      >
+                        Mitglied hinzufügen
+                      </Button>
+                      <Collapse isOpen={this.state.collapseMember}>
+                        <Card>
+                          <CardBody>
+                            Anim pariatur cliche reprehenderit, enim eiusmod
+                            high life accusamus terry richardson ad squid. Nihil
+                            anim keffiyeh helvetica, craft beer labore wes
+                            anderson cred nesciunt sapiente ea proident.
+                          </CardBody>
+                        </Card>
+                      </Collapse>
+                    </div>
+                  </Col>
+                </Row>
                 <Table hover className="adminTable">
                   <thead>
                     <tr>
@@ -106,9 +145,68 @@ class AdminPage extends Component {
               </Col>
             </Row>
           </TabPane>
+          <div className="top-area">
+            <Button
+              color="primary"
+              onClick={this.collapseCircle}
+              style={{ marginBottom: '1rem' }}
+              className="create-button"
+            >
+              City hinzufügen
+            </Button>
+            <Collapse isOpen={this.state.collapseCircle}>
+              <Card>
+                <CardBody>
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life
+                  accusamus terry richardson ad squid. Nihil anim keffiyeh
+                  helvetica, craft beer labore wes anderson cred nesciunt
+                  sapiente ea proident.
+                </CardBody>
+              </Card>
+            </Collapse>
+          </div>
+          <Table hover className="adminTable">
+            <thead>
+              <tr>
+                <th>City</th>
+                <th>Aktionen</th>
+              </tr>
+            </thead>
+            <tbody>{this.getCityRows(this.props.circles)}</tbody>
+          </Table>
           <TabPane tabId="2" />
         </TabContent>
       </div>
+    );
+  }
+
+  getCityRows(circles) {
+    return (
+      circles
+        // TODO: maybe reuse logic from member page search here (extract to helper function)
+        .filter(circle => circle.name.startsWith(this.state.searchText))
+        .map(circle => {
+          return (
+            <tr key={circle._id}>
+              <td className="d-none d-sm-table-cell">{circle.name}</td>
+              <td>
+                <Link
+                  className="admin-link admin-link-small"
+                  to={'/circle/' + circle._id}
+                >
+                  Bearbeiten
+                </Link>
+                <br />
+                <Link
+                  className="admin-link admin-link-small"
+                  to={'/circles/delete/' + circle._id}
+                >
+                  Löschen
+                </Link>
+              </td>
+            </tr>
+          );
+        })
     );
   }
 
@@ -155,7 +253,8 @@ class AdminPage extends Component {
 }
 function mapStateToProps(state) {
   return {
-    members: state.member.members
+    members: state.member.members,
+    circles: state.circle.circles
   };
 }
 

@@ -5,7 +5,8 @@ basic style admin page
   border-bottom: 1px solid black;
 }
 
-.admin-link {
+.admin-link,
+.create-button {
   color: rgb(219, 157, 12);
   border-bottom: 1px solid rgb(219, 157, 12);
   font-family: Helvetica, sans-serif;
@@ -31,4 +32,16 @@ basic style admin page
 
 .admin-link-right {
   float: right;
+}
+
+.form-control {
+  float: right;
+}
+
+.top-area {
+  margin-top: 1rem;
+}
+
+div .create-button {
+  background-color: transparent;
 }
