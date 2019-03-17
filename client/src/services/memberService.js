@@ -12,7 +12,8 @@ async function getUserBody() {
       let mem = {
         members: users.map(element => {
           return {
-            _id: element.id,
+            _id: element._id,
+            membernumber: element.membernumber,
             firstname: element.firstname,
             surname: element.surname,
             privateEmail: element.privateEmail,
@@ -20,8 +21,14 @@ async function getUserBody() {
             job: element.job,
             function: element.function,
             sector: element.sector,
-            company: element.company,
-            circle: element.circle,
+            company:
+              element.companyValues.length > 0
+                ? element.companyValues[0].companyName
+                : '',
+            circle:
+              element.circleValues.length > 0
+                ? element.circleValues[0].name
+                : '',
             profilepic: './img/marc_zimmermann.jpg' // TODO: implement loading of images
           };
         })

@@ -4,7 +4,6 @@ const bcrypt = require('bcryptjs');
 const db = require('../helpers/db');
 const validateUrl = require('../helpers/urlValidator');
 const User = db.User;
-const Company = db.Company;
 
 module.exports = {
   update,
@@ -31,38 +30,25 @@ async function authenticate({ privateEmail, password }) {
 }
 
 async function getAll() {
-  let users = [];
-  let usersCopy = await User.find({}, '-password', function(err, loadedUsers) {
-    loadedUsers.forEach(u => {
-      users.push({
-        id: u._id,
-        firstname: u.firstname,
-        surname: u.surname,
-        privateEmail: u.privateEmail,
-        privateTel: u.privateTel,
-        job: u.job,
-        function: u.function,
-        sector: u.sector,
-        company: u.company,
-        circle: u.circle
-      });
-    });
-    return loadedUsers;
-  });
-  let companyIDs = users.map(user => user.company);
-  await Company.find({ _id: { $in: companyIDs } }, function(err, companies) {
-    if (err) {
-      console.log(err);
-      return;
+  let users = await User.aggregate([
+    { $project: { password: 0 } },
+    {
+      $lookup: {
+        from: 'companies', // why plural?
+        localField: 'company',
+        foreignField: '_id',
+        as: 'companyValues'
+      }
+    },
+    {
+      $lookup: {
+        from: 'circles',
+        localField: 'circle',
+        foreignField: '_id',
+        as: 'circleValues'
+      }
     }
-    users.forEach(user => {
-      let company = companies.find(c => {
-        return c._id.equals(user.company); // ObjectID comparison
-      });
-      user.company = company ? company.companyStreet : ''; // change to company.companyName
-    });
-    return usersCopy;
-  });
+  ]);
   return users;
 }
 
