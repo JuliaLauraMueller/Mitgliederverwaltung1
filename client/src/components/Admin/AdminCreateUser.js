@@ -28,7 +28,8 @@ class AdminCreateUser extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  cancel() {
+  cancel(event) {
+    event.preventDefault();
     this.props.close();
     this.setState(this.initialState);
   }
