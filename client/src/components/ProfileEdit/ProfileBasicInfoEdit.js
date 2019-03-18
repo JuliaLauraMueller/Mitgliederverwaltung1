@@ -37,7 +37,7 @@ class ProfileBasicInfoEDIT extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  onSave(e) {
+  onSave() {
     const basicInformationUpdate = {
       _id: this.props.profile._id,
       xingLink: this.state.xingLink,
@@ -58,8 +58,11 @@ class ProfileBasicInfoEDIT extends Component {
       birthdate: this.state.birthdate
     };
 
-    //TODO: Find a way to update all info or none at all (Together with BasicInfo)
+    // First
+    console.log('BASIC FIRST');
     this.props.dispatch(putProfile(basicInformationUpdate));
+    console.log('BASIC FIRST AFTER');
+    return basicInformationUpdate;
   }
 
   render() {

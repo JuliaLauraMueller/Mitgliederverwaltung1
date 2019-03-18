@@ -62,7 +62,7 @@ class ProfileMainInformationEDIT extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  onSave() {
+  onSave(newBasicInfo) {
     const mainInfoUpdate = {
       _id: this.props.profile._id,
       sector: this.state.sector,
@@ -90,9 +90,14 @@ class ProfileMainInformationEDIT extends Component {
       companyURL: this.state.companyURL
     };
 
-    //TODO: Find a way to update all info or none at all (Together with BasicInfo)
+    // Second
+
+    console.log(newBasicInfo);
+
+    console.log('MAIN SECOND BEFORE');
     this.props.dispatch(putProfile(mainInfoUpdate));
     this.props.dispatch(putCompany(companyUpdate));
+    console.log('MAIN SECOND AFTER');
   }
 
   render() {
@@ -128,7 +133,6 @@ class ProfileMainInformationEDIT extends Component {
                 <InputGroupAddon addonType="prepend">Beruf:</InputGroupAddon>
                 <form className="input-field">
                   <Input
-                    
                     type="text"
                     name="job"
                     onChange={this.onChange}
@@ -222,9 +226,7 @@ class ProfileMainInformationEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">
-                  Nr.:
-                </InputGroupAddon>
+                <InputGroupAddon addonType="prepend">Nr.:</InputGroupAddon>
                 <form id="input-field">
                   <Input
                     type="text"
@@ -364,9 +366,7 @@ class ProfileMainInformationEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">
-                  Nr.:
-                </InputGroupAddon>
+                <InputGroupAddon addonType="prepend">Nr.:</InputGroupAddon>
                 <form id="input-field">
                   <Input
                     type="text"

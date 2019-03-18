@@ -46,8 +46,8 @@ class ProfilePage extends Component {
 
   handleClick(e) {
     e.preventDefault();
-    this.basicInfo.getWrappedInstance().onSave();
-    this.mainInfo.getWrappedInstance().onSave();
+    var newBasicInfo = this.basicInfo.getWrappedInstance().onSave();
+    this.mainInfo.getWrappedInstance().onSave(newBasicInfo);
     this.toggleEdit();
   }
 
@@ -84,7 +84,7 @@ class ProfilePage extends Component {
       return (
         <Container className="profile-page__container">
           <Row>
-            <Col md="12" className="button-container" >
+            <Col md="12" className="button-container">
               <button className="button-save-edit" onClick={this.toggleEdit}>
                 Editieren
               </button>
