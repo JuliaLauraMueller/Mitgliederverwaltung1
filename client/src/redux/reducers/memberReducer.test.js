@@ -71,9 +71,9 @@ describe('search for prename', () => {
 describe('search for surname', () => {
   it('searches for the expected members on filterMembers', done => {
     let filteredMembers = usersFromMockDB;
-    filteredMembers = filterMembers(filteredMembers, 'goethe');
+    filteredMembers = filterMembers(filteredMembers, 'Pan');
     setTimeout(() => {
-      expect(filteredMembers.length).toEqual(1);
+      expect(filteredMembers.length).toEqual(2);
       done();
     }, 500);
   });
@@ -140,6 +140,17 @@ describe('show nothing if there is no match', () => {
     filteredMembers = filterMembers(filteredMembers, 'jihdshfhgfdhüqsq');
     setTimeout(() => {
       expect(filteredMembers.length).toEqual(0);
+      done();
+    }, 500);
+  });
+});
+
+describe('show when writing text without umlauts', () => {
+  it('searches for the expected members on filterMembers', done => {
+    let filteredMembers = usersFromMockDB;
+    filteredMembers = filterMembers(filteredMembers, 'goethe');
+    setTimeout(() => {
+      expect(filteredMembers.length).toEqual(1);
       done();
     }, 500);
   });
