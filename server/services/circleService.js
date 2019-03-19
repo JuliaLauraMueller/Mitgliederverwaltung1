@@ -39,15 +39,22 @@ async function deleteCircle(id) {
 }
 
 async function create(circleParam) {
-  // validate
-  if (!circleParam.name || circleParam.name.length == 0) {
-    throw 'Name darf nicht leer sein.';
-  } else if (circleParam.name.length > 30) {
-    throw 'Name muss kürzer als 30 Zeichen sein.';
-  }
+  validate(circleParam);
 
   const circle = new Circle(circleParam);
 
   // save circle
   return await circle.save();
+}
+
+function validate(circleParam) {
+  let errorMessage;
+  if (!circleParam.name || circleParam.name.length == 0) {
+    errorMessage = 'Name darf nicht leer sein.';
+  } else if (circleParam.name.length > 30) {
+    errorMessage = 'Name muss kürzer als 30 Zeichen sein.';
+  }
+  if (errorMessage) {
+    throw { type: 'invalid_input', errorMessage };
+  }
 }

@@ -45,5 +45,11 @@ function create(req, res, next) {
     .then(circle => {
       return res.json({ created: circle });
     })
-    .catch(err => res.status(422).send({ error: err }));
+    .catch(err => {
+      if (err && err.type == 'invalid_input') {
+        res.status(422).send({ error: err.errorMessage });
+      } else {
+        res.sendStatus(500);
+      }
+    });
 }
