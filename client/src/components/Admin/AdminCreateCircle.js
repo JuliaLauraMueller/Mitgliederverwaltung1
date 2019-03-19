@@ -4,6 +4,9 @@ import { Form, FormGroup, Label, Input, Col } from 'reactstrap';
 
 import { connect } from 'react-redux';
 
+import { createCircle } from '../../redux/actions/circleActions';
+import { alertError } from '../../redux/actions/alertActions';
+
 const initialState = {
   name: ''
 };
@@ -29,12 +32,15 @@ class AdminCreateCircle extends Component {
     this.props.close();
   }
 
-  createCircle(event) {
+  async createCircle(event) {
     event.preventDefault();
-    this.setState(initialState);
-    console.log('circle create');
-    // TODO: add logic
-    this.props.close();
+    await this.props
+      .dispatch(createCircle(this.state))
+      .then(res => {
+        this.setState(initialState);
+        this.props.close();
+      })
+      .catch(errorMessage => this.props.dispatch(alertError(errorMessage)));
   }
 
   render() {

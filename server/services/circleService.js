@@ -6,7 +6,8 @@ module.exports = {
   getById,
   getAll,
   updateCircle,
-  deleteCircle
+  deleteCircle,
+  create
 };
 
 async function getById(id) {
@@ -35,4 +36,18 @@ async function deleteCircle(id) {
   } else {
     await Circle.findByIdAndRemove(id);
   }
+}
+
+async function create(circleParam) {
+  // validate
+  if (!circleParam.name || circleParam.name.length == 0) {
+    throw 'Name darf nicht leer sein.';
+  } else if (circleParam.name.length > 30) {
+    throw 'Name muss kürzer als 30 Zeichen sein.';
+  }
+
+  const circle = new Circle(circleParam);
+
+  // save circle
+  return await circle.save();
 }

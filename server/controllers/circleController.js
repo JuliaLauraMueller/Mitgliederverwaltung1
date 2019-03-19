@@ -7,6 +7,7 @@ router.get('/', getAll);
 router.get('/:id', getById);
 router.put('/:id', update);
 router.delete('/:id', deleteCircle);
+router.post('/', create);
 
 module.exports = router;
 
@@ -35,5 +36,14 @@ function deleteCircle(req, res, next) {
   circleService
     .deleteCircle(req.params.id)
     .then(() => res.json({}))
-    .catch(err => res.status(500).send(err));
+    .catch(err => res.status(422).send(err));
+}
+
+function create(req, res, next) {
+  circleService
+    .create(req.body)
+    .then(circle => {
+      return res.json({ created: circle });
+    })
+    .catch(err => res.status(422).send({ error: err }));
 }

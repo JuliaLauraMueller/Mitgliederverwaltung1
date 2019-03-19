@@ -1,7 +1,8 @@
 import {
   CIRCLES_FETCHED,
   PUT_CIRCLE,
-  CIRCLE_DELETED
+  CIRCLE_DELETED,
+  CREATE_CIRCLE
 } from '../types/circleTypes';
 
 const initialState = {
@@ -33,6 +34,10 @@ export default function(state = initialState, action) {
     case CIRCLE_DELETED:
       return {
         circles: deleteCircle(state.circles, action.payload)
+      };
+    case CREATE_CIRCLE:
+      return {
+        circles: [...state.circles, action.payload]
       };
     default:
       return state;
