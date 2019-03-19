@@ -30,7 +30,6 @@ async function updateCircle(id, circleParam) {
 }
 
 async function deleteCircle(id) {
-  console.log('Count: ', await User.count({ circle: id }));
   if ((await User.count({ circle: id })) > 0) {
     throw 'cannot delete circle with members';
   } else {
