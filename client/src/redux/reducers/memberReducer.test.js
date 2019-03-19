@@ -2,6 +2,7 @@ import store from '../../helpers/store';
 import * as actions from '../actions/memberActions';
 import axios from 'axios';
 import { filterMembers } from './memberReducer';
+import { filterCircles } from './memberReducer';
 
 jest.mock('axios');
 
@@ -56,6 +57,8 @@ describe('redux store member tests', () => {
     }, 500);
   });
 });
+
+//TODO: enhance tests if contains... , add more members
 
 describe('search for prename', () => {
   it('searches for the expected members on filterMembers', done => {
@@ -149,6 +152,81 @@ describe('show when writing text without umlauts', () => {
   it('searches for the expected members on filterMembers', done => {
     let filteredMembers = usersFromMockDB;
     filteredMembers = filterMembers(filteredMembers, 'goethe');
+    setTimeout(() => {
+      expect(filteredMembers.length).toEqual(1);
+      done();
+    }, 500);
+  });
+});
+
+describe('show only the members who belong to the spefified circle', () => {
+  it('filters for expected members in Bern', done => {
+    let filteredMembers = usersFromMockDB;
+    let checkedCircles = ['Bern'];
+    filteredMembers = filterCircles(filteredMembers, checkedCircles);
+    setTimeout(() => {
+      expect(filteredMembers.length).toEqual(1);
+      done();
+    }, 500);
+  });
+});
+
+describe('show only the members who belong to the spefified circle', () => {
+  it('filters for expected members in Zürich', done => {
+    let filteredMembers = usersFromMockDB;
+    let checkedCircles = ['Zürich'];
+    filteredMembers = filterCircles(filteredMembers, checkedCircles);
+    setTimeout(() => {
+      expect(filteredMembers.length).toEqual(1);
+      done();
+    }, 500);
+  });
+});
+
+describe('show only the members who belong to the spefified circle', () => {
+  it('filters for expected members in Basel', done => {
+    let filteredMembers = usersFromMockDB;
+    let checkedCircles = ['Basel'];
+    filteredMembers = filterCircles(filteredMembers, checkedCircles);
+    setTimeout(() => {
+      expect(filteredMembers.length).toEqual(1);
+      done();
+    }, 500);
+  });
+});
+
+describe('show only the members who belong to the spefified circles', () => {
+  it('filters for expected members in multiple cities', done => {
+    let filteredMembers = usersFromMockDB;
+    let checkedCircles = ['Zürich', 'Bern', 'Basel'];
+    filteredMembers = filterCircles(filteredMembers, checkedCircles);
+    setTimeout(() => {
+      expect(filteredMembers.length).toEqual(3);
+      done();
+    }, 500);
+  });
+});
+
+describe('show no members if the circle does not exist', () => {
+  it('filters for expected members in a non existant city', done => {
+    let filteredMembers = usersFromMockDB;
+    let checkedCircles = ['St. Gallen'];
+    filteredMembers = filterCircles(filteredMembers, checkedCircles);
+    setTimeout(() => {
+      expect(filteredMembers.length).toEqual(0);
+      done();
+    }, 500);
+  });
+});
+
+describe('show members that fit to the searchText and are filtered by cities', () => {
+  it('filters for expected members in a city already filtered by searchText', done => {
+    let filteredMembers = usersFromMockDB;
+    let checkedCircles = ['Bern'];
+    filteredMembers = filterMembers(
+      filterCircles(filteredMembers, checkedCircles),
+      'Bruce'
+    );
     setTimeout(() => {
       expect(filteredMembers.length).toEqual(1);
       done();

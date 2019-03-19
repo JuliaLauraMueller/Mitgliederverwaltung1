@@ -64,7 +64,7 @@ export function filterMembers(members, searchText) {
   });
 }
 
-function filterCircles(members, filteredCircles) {
+export function filterCircles(members, filteredCircles) {
   if (!filteredCircles || filteredCircles.length == 0) {
     return members;
   } else {
