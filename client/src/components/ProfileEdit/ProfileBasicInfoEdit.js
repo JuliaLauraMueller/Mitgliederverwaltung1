@@ -60,7 +60,7 @@ class ProfileBasicInfoEDIT extends Component {
 
     // First
     console.log('BASIC FIRST');
-    this.props.dispatch(putProfile(basicInformationUpdate));
+    //this.props.dispatch(putProfile(basicInformationUpdate));
     console.log('BASIC FIRST AFTER');
     return basicInformationUpdate;
   }

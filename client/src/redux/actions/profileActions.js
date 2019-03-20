@@ -30,7 +30,7 @@ export const fetchProfile = id => dispatch => {
 };
 
 export function putProfile(profileData) {
-  profileService.setUserData(profileData);
+  //profileService.setUserData(profileData);
 
   return function(dispatch) {
     dispatch({ type: PUT_PROFILE, payload: profileData });
@@ -43,6 +43,27 @@ export function putCompany(companyData) {
     companyData.company = companyData.companyName;
   }
   return function(dispatch) {
+    dispatch({ type: PUT_PROFILE, payload: companyData });
+  };
+}
+
+export function putWholeData(profileMainData, profileBasicData, companyData) {
+  Object.assign(profileMainData, profileBasicData);
+
+  profileService.setUserData(profileMainData).then(res => {
+    if (res) {
+      var result = profileService.setCompanyData(companyData);
+      if (result) {
+        companyData.company = companyData.companyName;
+        //Object.assign(profileMainData, companyData);
+      }
+    }
+  });
+
+  //console.log(profileMainData);
+  //console.log(companyData);
+  return function(dispatch) {
+    dispatch({ type: PUT_PROFILE, payload: profileMainData });
     dispatch({ type: PUT_PROFILE, payload: companyData });
   };
 }

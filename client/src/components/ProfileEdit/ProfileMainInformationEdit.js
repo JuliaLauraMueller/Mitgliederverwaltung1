@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { putProfile, putCompany } from '../../redux/actions/profileActions';
+import {
+  putProfile,
+  putCompany,
+  putWholeData
+} from '../../redux/actions/profileActions';
 import {
   InputGroup,
   InputGroupAddon,
@@ -62,7 +66,7 @@ class ProfileMainInformationEDIT extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  onSave(newBasicInfo) {
+  onSave(basicInfoUpdate) {
     const mainInfoUpdate = {
       _id: this.props.profile._id,
       sector: this.state.sector,
@@ -92,11 +96,14 @@ class ProfileMainInformationEDIT extends Component {
 
     // Second
 
-    console.log(newBasicInfo);
+    //console.log(newBasicInfo);
 
     console.log('MAIN SECOND BEFORE');
-    this.props.dispatch(putProfile(mainInfoUpdate));
-    this.props.dispatch(putCompany(companyUpdate));
+    //this.props.dispatch(putProfile(mainInfoUpdate));
+    //this.props.dispatch(putCompany(companyUpdate));
+    this.props.dispatch(
+      putWholeData(mainInfoUpdate, basicInfoUpdate, companyUpdate)
+    );
     console.log('MAIN SECOND AFTER');
   }
 
