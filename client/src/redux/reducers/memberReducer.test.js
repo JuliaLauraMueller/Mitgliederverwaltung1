@@ -5,45 +5,59 @@ import { filterMembers } from './memberReducer';
 import { filterCircles } from './memberReducer';
 
 jest.mock('axios');
+const user1 = {
+  _id: '1',
+  firstname: 'Bruce',
+  surname: 'Wayne',
+  job: 'Banker',
+  privateEmail: 'privateEmail',
+  privateTel: 'privateTel',
+  function: 'CEO',
+  sector: 'Marketing',
+  company: 'Bruce Wayne Company',
+  circle: 'Bern'
+};
 
-const usersFromMockDB = [
-  {
-    _id: '1',
-    firstname: 'Bruce',
-    surname: 'Wayne',
-    job: 'Banker',
-    privateEmail: 'privateEmail',
-    privateTel: 'privateTel',
-    function: 'CEO',
-    sector: 'Marketing',
-    company: 'Bruce Wayne Company',
-    circle: 'Bern'
-  },
-  {
-    _id: '2',
-    firstname: 'Peter',
-    surname: 'Pan',
-    job: 'Pilot',
-    privateEmail: 'privateEmail',
-    privateTel: 'privateTel',
-    function: 'Piratenschreck',
-    sector: 'Fantasy',
-    company: 'PP Company',
-    circle: 'Zürich'
-  },
-  {
-    _id: '3',
-    firstname: 'Hans',
-    surname: 'Göthe',
-    job: 'Dichter',
-    privateEmail: 'privateEmail',
-    privateTel: 'privateTel',
-    function: 'Schreiber',
-    sector: 'Literatur',
-    company: 'Hansiverlag',
-    circle: 'Basel'
-  }
-];
+const user2 = {
+  _id: '2',
+  firstname: 'Peter',
+  surname: 'Pan',
+  job: 'Pilot',
+  privateEmail: 'privateEmail',
+  privateTel: 'privateTel',
+  function: 'Piratenschreck',
+  sector: 'Fantasy',
+  company: 'PP Company',
+  circle: 'Zürich'
+};
+
+const user3 = {
+  _id: '3',
+  firstname: 'Hans',
+  surname: 'Göthe',
+  job: 'Dichter',
+  privateEmail: 'privateEmail',
+  privateTel: 'privateTel',
+  function: 'Schreiber',
+  sector: 'Literatur',
+  company: 'Hansiverlag',
+  circle: 'Basel'
+};
+
+const user4 = {
+  _id: '4',
+  firstname: 'Peter',
+  surname: 'Parker',
+  job: 'Journalist',
+  privateEmail: 'privateEmail',
+  privateTel: 'privateTel',
+  function: 'Storywriter',
+  sector: 'Journalismus',
+  company: 'Berner Zeitung',
+  circle: 'Bern'
+};
+
+const usersFromMockDB = [user1, user2, user3, user4];
 
 describe('redux store member tests', () => {
   it('loads the expected number of members on fetch action', done => {
@@ -52,7 +66,9 @@ describe('redux store member tests', () => {
     store.dispatch(actions.fetchMembers());
 
     setTimeout(() => {
-      expect(store.getState().member.members.length).toEqual(3);
+      expect(store.getState().member.members.length).toEqual(
+        usersFromMockDB.length
+      );
       done();
     }, 500);
   });
@@ -65,7 +81,9 @@ describe('search for prename', () => {
     let filteredMembers = usersFromMockDB;
     filteredMembers = filterMembers(filteredMembers, 'Peter');
     setTimeout(() => {
-      expect(filteredMembers.length).toEqual(1);
+      expect(filteredMembers.length).toEqual(2);
+      expect(filteredMembers.includes(user2)).toBe(true);
+      expect(filteredMembers.includes(user4)).toBe(true);
       done();
     }, 500);
   });
@@ -74,9 +92,10 @@ describe('search for prename', () => {
 describe('search for surname', () => {
   it('searches for the expected members on filterMembers', done => {
     let filteredMembers = usersFromMockDB;
-    filteredMembers = filterMembers(filteredMembers, 'Pan');
+    filteredMembers = filterMembers(filteredMembers, 'Parker');
     setTimeout(() => {
-      expect(filteredMembers.length).toEqual(2);
+      expect(filteredMembers.length).toEqual(1);
+      expect(filteredMembers.includes(user4)).toBe(true);
       done();
     }, 500);
   });
@@ -88,6 +107,7 @@ describe('search for job', () => {
     filteredMembers = filterMembers(filteredMembers, 'pilot');
     setTimeout(() => {
       expect(filteredMembers.length).toEqual(1);
+      expect(filteredMembers.includes(user2)).toBe(true);
       done();
     }, 500);
   });
@@ -99,6 +119,7 @@ describe('search for sector', () => {
     filteredMembers = filterMembers(filteredMembers, 'mrketing');
     setTimeout(() => {
       expect(filteredMembers.length).toEqual(1);
+      expect(filteredMembers.includes(user1)).toBe(true);
       done();
     }, 500);
   });
@@ -121,6 +142,7 @@ describe('search for function', () => {
     filteredMembers = filterMembers(filteredMembers, 'schri');
     setTimeout(() => {
       expect(filteredMembers.length).toEqual(1);
+      expect(filteredMembers.includes(user3)).toBe(true);
       done();
     }, 500);
   });
@@ -131,7 +153,7 @@ describe('show all if searchText is empty', () => {
     let filteredMembers = usersFromMockDB;
     filteredMembers = filterMembers(filteredMembers, '');
     setTimeout(() => {
-      expect(filteredMembers.length).toEqual(3);
+      expect(filteredMembers.length).toEqual(usersFromMockDB.length);
       done();
     }, 500);
   });
@@ -154,6 +176,7 @@ describe('show when writing text without umlauts', () => {
     filteredMembers = filterMembers(filteredMembers, 'goethe');
     setTimeout(() => {
       expect(filteredMembers.length).toEqual(1);
+      expect(filteredMembers.includes(user3)).toBe(true);
       done();
     }, 500);
   });
@@ -165,7 +188,9 @@ describe('show only the members who belong to the spefified circle', () => {
     let checkedCircles = ['Bern'];
     filteredMembers = filterCircles(filteredMembers, checkedCircles);
     setTimeout(() => {
-      expect(filteredMembers.length).toEqual(1);
+      expect(filteredMembers.length).toEqual(2);
+      expect(filteredMembers.includes(user1)).toBe(true);
+      expect(filteredMembers.includes(user4)).toBe(true);
       done();
     }, 500);
   });
@@ -178,6 +203,7 @@ describe('show only the members who belong to the spefified circle', () => {
     filteredMembers = filterCircles(filteredMembers, checkedCircles);
     setTimeout(() => {
       expect(filteredMembers.length).toEqual(1);
+      expect(filteredMembers.includes(user2)).toBe(true);
       done();
     }, 500);
   });
@@ -190,6 +216,7 @@ describe('show only the members who belong to the spefified circle', () => {
     filteredMembers = filterCircles(filteredMembers, checkedCircles);
     setTimeout(() => {
       expect(filteredMembers.length).toEqual(1);
+      expect(filteredMembers.includes(user3)).toBe(true);
       done();
     }, 500);
   });
@@ -201,7 +228,7 @@ describe('show only the members who belong to the spefified circles', () => {
     let checkedCircles = ['Zürich', 'Bern', 'Basel'];
     filteredMembers = filterCircles(filteredMembers, checkedCircles);
     setTimeout(() => {
-      expect(filteredMembers.length).toEqual(3);
+      expect(filteredMembers.length).toEqual(usersFromMockDB.length);
       done();
     }, 500);
   });
@@ -229,6 +256,7 @@ describe('show members that fit to the searchText and are filtered by cities', (
     );
     setTimeout(() => {
       expect(filteredMembers.length).toEqual(1);
+      expect(filteredMembers.includes(user1)).toBe(true);
       done();
     }, 500);
   });
