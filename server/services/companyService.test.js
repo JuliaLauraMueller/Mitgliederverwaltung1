@@ -12,6 +12,7 @@ const { findById } = require('../models/CompanyModel');
 //     companyStreetNr: 'updatedStreetNr',
 //     companyZip: 'updatedZip',
 //     companyCity: 'updatedCity'
+
 //   })
 //     .then(response => {
 //       return findById(0);
