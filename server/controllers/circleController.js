@@ -29,7 +29,14 @@ function update(req, res, next) {
   circleService
     .updateCircle(req.params.id, req.body)
     .then(() => res.json({}))
-    .catch(err => next(err));
+    .catch(error => {
+      if (error && error.type == 'invalid_input') {
+        res.status(422).send({ error });
+      } else {
+        console.error('Circle create error: ', error);
+        res.sendStatus(500);
+      }
+    });
 }
 
 function deleteCircle(req, res, next) {

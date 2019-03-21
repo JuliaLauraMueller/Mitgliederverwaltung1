@@ -29,6 +29,7 @@ import AdminCreateUser from '../components/Admin/AdminCreateUser';
 import AdminCreateCircle from '../components/Admin/AdminCreateCircle';
 import { setNavVisible } from '../redux/actions/navigationActions';
 import { fetchMembers, deleteMember } from '../redux/actions/memberActions';
+import { alertError } from '../redux/actions/alertActions';
 import {
   fetchCircles,
   putCircle,
@@ -70,10 +71,16 @@ class AdminPage extends Component {
     this.handleCircleNameChange = this.handleCircleNameChange.bind(this);
   }
 
-  onCircleSave(event) {
+  async onCircleSave(event) {
     event.preventDefault();
-    this.props.dispatch(putCircle(this.state.circleToEdit));
-    this.toggleCircleEditModal({ name: '' });
+    await this.props
+      .dispatch(putCircle(this.state.circleToEdit))
+      .then(res => {
+        this.toggleCircleEditModal({ name: '' });
+      })
+      .catch(errorMessages => {
+        this.props.dispatch(alertError(errorMessages.join('\n')));
+      });
   }
 
   handleCircleNameChange(e) {

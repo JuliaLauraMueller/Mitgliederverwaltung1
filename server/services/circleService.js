@@ -22,7 +22,10 @@ async function updateCircle(id, circleParam) {
   const circle = await Circle.findById(id);
   if (!circle) throw 'Circle not found';
 
-  // TODO check for correct input
+  let errors = validate(circleParam);
+  if (errors.length != 0) {
+    throw { type: 'invalid_input', errors };
+  }
 
   await Circle.updateOne({ _id: id }, circleParam, function(err, res) {
     if (err) throw err;
