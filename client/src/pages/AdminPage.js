@@ -257,20 +257,21 @@ class AdminPage extends Component {
         <tr key={circle._id}>
           <td className="d-none d-sm-table-cell">{circle.name}</td>
           <td>
-            <span
+            <Link
               className="admin-link admin-link-small"
-              to=""
               onClick={() => this.toggleCircleEditModal(circle)}
+              to={''}
             >
               Bearbeiten
-            </span>
+            </Link>
             <br />
-            <span
+            <Link
               className="admin-link admin-link-small"
               onClick={() => this.toggleCircleDeleteModal(circle)}
+              to={''}
             >
               Löschen
-            </span>
+            </Link>
           </td>
         </tr>
       );
