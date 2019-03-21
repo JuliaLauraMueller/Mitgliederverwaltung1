@@ -10,6 +10,7 @@ module.exports = {
   update,
   authenticate,
   create,
+  getCircleForId,
   getById,
   getAll,
   generateJwtToken,
@@ -64,6 +65,10 @@ async function getAll() {
     return usersCopy;
   });
   return users;
+}
+
+async function getCircleForId(id) {
+  return await User.findById(id, 'circle');
 }
 
 async function getById(id) {
@@ -142,9 +147,13 @@ async function removeAllCompanyRelations(id) {
 }
 
 function generateJwtToken(user) {
-  const token = jwt.sign({ _id: user._id }, config.jwtSecret, {
-    expiresIn: config.jwtExpirationSeconds
-  });
+  const token = jwt.sign(
+    { _id: user._id, role: user.role, circle: user.circle },
+    config.jwtSecret,
+    {
+      expiresIn: config.jwtExpirationSeconds
+    }
+  );
   return token;
 }
 

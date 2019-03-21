@@ -81,7 +81,7 @@ class ProfileMainInformationEDIT extends Component {
       invoiceAddress: this.state.invoiceAddress
     };
     const companyUpdate = {
-      _id: this.props.profile.company_id,
+      company_id: this.props.profile.company_id,
       companyName: this.state.company,
       companyStreet: this.state.companyStreet,
       companyStreetNr: this.state.companyStreetNr,
@@ -128,7 +128,6 @@ class ProfileMainInformationEDIT extends Component {
                 <InputGroupAddon addonType="prepend">Beruf:</InputGroupAddon>
                 <form className="input-field">
                   <Input
-                    
                     type="text"
                     name="job"
                     onChange={this.onChange}
@@ -222,9 +221,7 @@ class ProfileMainInformationEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">
-                  Nr.:
-                </InputGroupAddon>
+                <InputGroupAddon addonType="prepend">Nr.:</InputGroupAddon>
                 <form id="input-field">
                   <Input
                     type="text"
@@ -364,9 +361,7 @@ class ProfileMainInformationEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">
-                  Nr.:
-                </InputGroupAddon>
+                <InputGroupAddon addonType="prepend">Nr.:</InputGroupAddon>
                 <form id="input-field">
                   <Input
                     type="text"

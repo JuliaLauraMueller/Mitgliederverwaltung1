@@ -88,7 +88,7 @@ async function setUserData(data) {
 }
 
 async function setCompanyData(data) {
-  var res = axios.put('/companies/' + data._id, data);
+  var res = axios.put('/companies/' + data.company_id, data);
   return res;
 }
 

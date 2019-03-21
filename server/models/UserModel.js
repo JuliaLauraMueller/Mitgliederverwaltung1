@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const schema = new Schema({
   privateEmail: { type: String, unique: true, required: true },
   password: { type: String, required: true },
+  role: { type: Number, required: true, default: 0 },
 
   memberNumber: { type: Number },
   status: { type: String },
