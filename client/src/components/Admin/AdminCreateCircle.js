@@ -40,7 +40,9 @@ class AdminCreateCircle extends Component {
         this.setState(initialState);
         this.props.close();
       })
-      .catch(errorMessage => this.props.dispatch(alertError(errorMessage)));
+      .catch(errorMessages => {
+        this.props.dispatch(alertError(errorMessages.join('\n')));
+      });
   }
 
   render() {

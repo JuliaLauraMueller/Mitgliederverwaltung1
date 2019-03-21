@@ -36,7 +36,14 @@ function deleteCircle(req, res, next) {
   circleService
     .deleteCircle(req.params.id)
     .then(() => res.json({}))
-    .catch(err => res.status(422).send(err));
+    .catch(error => {
+      if (error & (error.type == 'users_remaining_in_circle')) {
+        res.status(422).send(err);
+      } else {
+        console.error('Circle delete error: ', error);
+        res.sendStatus(500);
+      }
+    });
 }
 
 function create(req, res, next) {
@@ -45,10 +52,11 @@ function create(req, res, next) {
     .then(circle => {
       return res.json({ created: circle });
     })
-    .catch(err => {
-      if (err && err.type == 'invalid_input') {
-        res.status(422).send({ error: err.errorMessage });
+    .catch(error => {
+      if (error && error.type == 'invalid_input') {
+        res.status(422).send({ error });
       } else {
+        console.error('Circle create error: ', error);
         res.sendStatus(500);
       }
     });
