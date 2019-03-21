@@ -20,7 +20,7 @@ const { findById } = require('../models/CompanyModel');
 
 ////     .then(resp => {
 //       var company = resp;ojjosgdgds
-//       expect(company.companyName).toEqual('updatedN');
+//       expect(company.companyName).toEqual('updatedN');v
 //       expect(company.companyURL).toEqual('updatedURL');
 //       SCHLINGEL;
 //       expect(company.companyStreet).toEqual('updatedStreet');
