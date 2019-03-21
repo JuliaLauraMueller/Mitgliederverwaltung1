@@ -3,9 +3,12 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = require('../helpers/db');
 const validateUrl = require('../helpers/urlValidator');
+const isValidEmail = require('../helpers/emailValidator');
 const mongoose = require('mongoose');
+const companyService = require('./companyService');
 const User = db.User;
 const Company = db.Company;
+const Counter = db.Counter;
 
 module.exports = {
   update,
@@ -37,7 +40,7 @@ async function getAll() {
     { $project: { password: 0 } },
     {
       $lookup: {
-        from: 'companies', // why plural?
+        from: 'companies',
         localField: 'company',
         foreignField: '_id',
         as: 'companyValues'
@@ -60,21 +63,74 @@ async function getById(id) {
 }
 
 async function create(userParam) {
-  // validate
-  userParam.privateEmail = userParam.privateEmail.toLowerCase();
-  if (await User.findOne({ privateEmail: userParam.privateEmail })) {
-    throw 'email "' + userParam.privateEmail + '" is already taken';
+  let errors = await validateBasic(userParam);
+  if (errors.length != 0) {
+    throw { type: 'invalid_input', errors };
   }
 
   const user = new User(userParam);
+  // generate new member number
+  user.memberNumber = await getNextSequenceValue();
 
   // hash password
   if (userParam.password) {
-    user.hash = bcrypt.hashSync(userParam.password, 10);
+    user.password = bcrypt.hashSync(userParam.password, 10);
   }
 
-  // save user
-  await user.save();
+  try {
+    // create company for user
+    let company = await companyService.createEmpty();
+    user.company = company._id;
+    // create user
+    return await user.save();
+  } catch (error) {
+    throw { type: 'processing_error', error };
+  }
+}
+
+async function validateBasic(userParam) {
+  let errorMessages = [];
+  if (!userParam.privateEmail) {
+    errorMessages.push('E-Mail darf nicht leer sein.');
+  } else {
+    let existingUser = await User.findOne({
+      privateEmail: userParam.privateEmail
+    });
+    if (existingUser && existingUser._id != userParam._id) {
+      errorMessages.push('Diese E-Mail Adresse gibt es schon.');
+    } else if (!isValidEmail(userParam.privateEmail)) {
+      errorMessages.push('Email ist ungültig.');
+    }
+  }
+  if (!userParam.firstname || userParam.firstname.length == 0) {
+    errorMessages.push('Vorname darf nicht leer sein.');
+  } else if (userParam.firstname.length > 30) {
+    errorMessages.push('Vorname muss kürzer als 30 Zeichen sein.');
+  }
+  if (!userParam.surname || userParam.surname.length == 0) {
+    errorMessages.push('Nachname darf nicht leer sein.');
+  } else if (userParam.surname.length > 30) {
+    errorMessages.push('Nachname muss kürzer als 30 Zeichen sein.');
+  }
+  if (!userParam.password || userParam.password.length == 0) {
+    errorMessages.push('Passwort darf nicht leer sein.');
+  } else if (userParam.password.length < 7) {
+    errorMessages.push('Passwort muss länger als 7 Zeichen sein.');
+  } else if (userParam.password.length > 30) {
+    errorMessages.push('Passwort muss kürzer als 30 Zeichen sein.');
+  }
+  if (!userParam.circle) {
+    errorMessages.push('City darf nicht leer sein.');
+  }
+  return errorMessages;
+}
+
+async function getNextSequenceValue() {
+  let c = await Counter.findOne(); // get counter
+  var count = await Counter.findByIdAndUpdate(c._id, {
+    $inc: { sequenceVal: 1 }
+  });
+  return count.sequenceVal;
 }
 
 async function updateUser(id, userParam) {

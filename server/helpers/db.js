@@ -1,5 +1,6 @@
 module.exports = {
   User: require('../models/UserModel'),
   Company: require('../models/CompanyModel'),
-  Circle: require('../models/CircleModel')
+  Circle: require('../models/CircleModel'),
+  Counter: require('../models/CounterModel')
 };

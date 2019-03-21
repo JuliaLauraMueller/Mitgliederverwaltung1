@@ -1,7 +1,8 @@
 import {
   SEARCH_MEMBERS,
   FILTER_CIRCLES,
-  MEMBER_DELETED
+  MEMBER_DELETED,
+  CREATE_MEMBER
 } from '../types/memberTypes';
 import { MEMBERS_FETCHED } from '../types/memberTypes';
 import filterMembers from '../../helpers/memberSearch';
@@ -61,6 +62,17 @@ export default function(state = initialState, action) {
     case MEMBER_DELETED:
       return {
         members: deleteMember(state.members, action.payload),
+        searchText: state.searchText,
+        filteredCircles: state.filteredCircles,
+        filteredMembers: filterMembers(
+          filterCircles(state.members, state.filteredCircles),
+          state.searchText,
+          false
+        )
+      };
+    case CREATE_MEMBER:
+      return {
+        members: [...state.members, action.payload],
         searchText: state.searchText,
         filteredCircles: state.filteredCircles,
         filteredMembers: filterMembers(

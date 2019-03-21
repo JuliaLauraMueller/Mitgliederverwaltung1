@@ -31,7 +31,7 @@ export const deleteCircle = id => dispatch => {
 };
 
 export const createCircle = circleData => async dispatch => {
-  await circleService
+  return await circleService
     .createCircle(circleData)
     .then(res => {
       if (res && res.data.created) {

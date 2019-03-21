@@ -32,12 +32,7 @@ async function deleteCircle(id) {
       return id;
     })
     .catch(err => {
-      history.push('/admin');
-      store.dispatch(
-        alertError(
-          'City konnte nicht gelöscht werden. Cities mit Mitgliedern können nicht gelöscht werden.'
-        )
-      );
+      store.dispatch(alertError(err.data));
     });
 }
 
@@ -48,8 +43,8 @@ async function createCircle(data) {
       return res;
     })
     .catch(err => {
-      if (err && err.data) {
-        return Promise.reject(err.data.error);
+      if (err && err.data.error && err.data.error.type == 'invalid_input') {
+        return Promise.reject(err.data.error.errors);
       }
     });
 }

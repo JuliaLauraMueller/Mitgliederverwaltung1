@@ -3,14 +3,18 @@ import React, { Component } from 'react';
 import { Form, FormGroup, Label, Input, Col } from 'reactstrap';
 
 import { fetchCircles } from '../../redux/actions/circleActions';
+import { fetchMembers, createMember } from '../../redux/actions/memberActions';
+
+import { alertError } from '../../redux/actions/alertActions';
 
 import { connect } from 'react-redux';
 
 const initialState = {
   firstname: '',
   surname: '',
-  email: '',
-  password: ''
+  privateEmail: '',
+  password: '',
+  circle: ''
 };
 
 class AdminCreateUser extends Component {
@@ -20,7 +24,7 @@ class AdminCreateUser extends Component {
     this.state = initialState;
 
     this.handleChange = this.handleChange.bind(this);
-    this.createUser = this.createUser.bind(this);
+    this.submitMember = this.submitMember.bind(this);
     this.cancel = this.cancel.bind(this);
     this.getCircleSelectOptions = this.getCircleSelectOptions.bind(this);
     this.props.dispatch(fetchCircles());
@@ -36,19 +40,29 @@ class AdminCreateUser extends Component {
     this.props.close();
   }
 
-  createUser(event) {
+  async submitMember(event) {
     event.preventDefault();
-    console.log('user create');
-    // TODO: add logic
-    this.setState(initialState);
-    this.props.close();
+    if (this.state.circle == '' && this.props.circles[0]) {
+      this.state.circle = this.props.circles[0]._id; // set default value
+    }
+    await this.props
+      .dispatch(createMember(this.state))
+      .then(res => {
+        this.setState(initialState);
+        this.props.close();
+        this.props.dispatch(fetchMembers());
+      })
+      .catch(errorMessages => {
+        console.log(errorMessages);
+        this.props.dispatch(alertError(errorMessages.join('\n')));
+      });
   }
 
   render() {
     return (
       <div>
         <h4>Neues Mitglied</h4>
-        <Form onSubmit={this.createUser}>
+        <Form onSubmit={this.submitMember}>
           <FormGroup row>
             <Label for="firstname" sm={2}>
               Vorname
@@ -80,17 +94,17 @@ class AdminCreateUser extends Component {
             </Col>
           </FormGroup>
           <FormGroup row>
-            <Label for="email" sm={2}>
+            <Label for="privateEmail" sm={2}>
               E-Mail
             </Label>
             <Col sm={10}>
               <Input
                 type="email"
-                name="email"
-                id="email"
+                name="privateEmail"
+                id="privateEmail"
                 className="admin-form-control"
                 autoComplete="off"
-                value={this.state.email}
+                value={this.state.privateEmail}
                 onChange={this.handleChange}
               />
             </Col>
@@ -113,7 +127,13 @@ class AdminCreateUser extends Component {
           </FormGroup>
           <FormGroup>
             <Label for="circle">City</Label>
-            <Input type="select" name="circle" id="circle">
+            <Input
+              type="select"
+              name="circle"
+              id="circle"
+              value={this.state.circle}
+              onChange={this.handleChange}
+            >
               {this.getCircleSelectOptions()}
             </Input>
           </FormGroup>
@@ -126,7 +146,7 @@ class AdminCreateUser extends Component {
           <input
             type="submit"
             className="admin-button"
-            onClick={this.createUser}
+            onClick={this.submitMember}
             value="Speichern"
           />
         </Form>
@@ -136,7 +156,11 @@ class AdminCreateUser extends Component {
 
   getCircleSelectOptions() {
     return this.props.circles.map(circle => {
-      return <option key={circle._id}>{circle.name}</option>;
+      return (
+        <option key={circle._id} value={circle._id}>
+          {circle.name}
+        </option>
+      );
     });
   }
 }
