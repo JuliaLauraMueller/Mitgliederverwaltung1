@@ -19,8 +19,9 @@ import {
   ModalHeader,
   ModalFooter,
   ModalBody,
-  InputGroup,
-  InputGroupAddon,
+  Form,
+  FormGroup,
+  Label,
   Input
 } from 'reactstrap';
 import { connect } from 'react-redux';
@@ -69,8 +70,10 @@ class AdminPage extends Component {
     this.handleCircleNameChange = this.handleCircleNameChange.bind(this);
   }
 
-  onCircleSave() {
+  onCircleSave(event) {
+    event.preventDefault();
     this.props.dispatch(putCircle(this.state.circleToEdit));
+    this.toggleCircleEditModal({ name: '' });
   }
 
   handleCircleNameChange(e) {
@@ -322,42 +325,42 @@ class AdminPage extends Component {
         <ModalHeader toggle={() => this.toggleCircleEditModal({ name: '' })}>
           City editieren
         </ModalHeader>
-        <ModalBody>
-          <Row>
-            <Col>
-              <InputGroup>
-                <InputGroupAddon addonType="prepend">
-                  City-Name:
-                </InputGroupAddon>
-                <form className="input-field">
-                  <Input
-                    onChange={this.handleCircleNameChange}
-                    value={this.state.circleToEdit.name}
-                  />
-                </form>
-              </InputGroup>
-            </Col>
-          </Row>
-        </ModalBody>
-        <ModalFooter>
-          <Button
-            color="primary"
-            onClick={() => {
-              this.onCircleSave();
-              this.toggleCircleEditModal({ name: '' });
-            }}
-          >
-            Speichern
-          </Button>
-          <Button
-            color="secondary"
-            onClick={() => {
-              this.toggleCircleEditModal({ name: '' });
-            }}
-          >
-            Abbrechen
-          </Button>
-        </ModalFooter>
+        <Form onSubmit={this.onCircleSave}>
+          <ModalBody>
+            <FormGroup row>
+              <Label>City-Name:</Label>
+              <Col>
+                <Input
+                  type="text"
+                  id="name"
+                  name="name"
+                  className="admin-form-control"
+                  onChange={this.handleCircleNameChange}
+                  value={this.state.circleToEdit.name}
+                />
+              </Col>
+            </FormGroup>
+          </ModalBody>
+          <ModalFooter>
+            <input
+              type="submit"
+              className="admin-button"
+              color="primary"
+              onClick={this.onCircleSave}
+              value="Speichern"
+            />
+
+            <input
+              type="button"
+              className="admin-button"
+              color="secondary"
+              onClick={() => {
+                this.toggleCircleEditModal({ name: '' });
+              }}
+              value="Abbrechen"
+            />
+          </ModalFooter>
+        </Form>
       </Modal>
     );
   }
