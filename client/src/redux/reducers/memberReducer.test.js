@@ -60,7 +60,7 @@ const user4 = {
 const usersFromMockDB = [user1, user2, user3, user4];
 
 describe('redux store member tests', () => {
-  it('loads the expected number of members on fetch action', done => {
+  test('loads the expected number of members on fetch action', done => {
     const resp = { data: usersFromMockDB };
     axios.get.mockResolvedValue(resp);
     store.dispatch(actions.fetchMembers());
@@ -74,10 +74,8 @@ describe('redux store member tests', () => {
   });
 });
 
-//TODO: enhance tests if contains... , add more members
-
-describe('search for prename', () => {
-  it('searches for the expected members on filterMembers', done => {
+describe('Test if the searchfilter filters the expected members', () => {
+  test('search for firstname Peter', done => {
     let filteredMembers = usersFromMockDB;
     filteredMembers = filterMembers(filteredMembers, 'Peter');
     setTimeout(() => {
@@ -87,10 +85,8 @@ describe('search for prename', () => {
       done();
     }, 500);
   });
-});
 
-describe('search for surname', () => {
-  it('searches for the expected members on filterMembers', done => {
+  test('search for surname Parker', done => {
     let filteredMembers = usersFromMockDB;
     filteredMembers = filterMembers(filteredMembers, 'Parker');
     setTimeout(() => {
@@ -99,10 +95,8 @@ describe('search for surname', () => {
       done();
     }, 500);
   });
-});
 
-describe('search for job', () => {
-  it('searches for the expected members on filterMembers', done => {
+  test('search for job pilot', done => {
     let filteredMembers = usersFromMockDB;
     filteredMembers = filterMembers(filteredMembers, 'pilot');
     setTimeout(() => {
@@ -111,10 +105,8 @@ describe('search for job', () => {
       done();
     }, 500);
   });
-});
 
-describe('search for sector', () => {
-  it('searches for the expected members on filterMembers', done => {
+  test('search for sector marketing with 1 wrong char', done => {
     let filteredMembers = usersFromMockDB;
     filteredMembers = filterMembers(filteredMembers, 'mrketing');
     setTimeout(() => {
@@ -123,21 +115,26 @@ describe('search for sector', () => {
       done();
     }, 500);
   });
-});
 
-// describe('search for company', () => {
-//   it('searches for the expected members on filterMembers', done => {
-//     let filteredMembers = usersFromMockDB;
-//     filteredMembers = filterMembers(filteredMembers, 'enterCompanyNameHere');
-//     setTimeout(() => {
-//       expect(filteredMembers.length).toEqual(1);
-//       done();
-//     }, 500);
-//   });
-// });
+  test('search for sector marketing with 2 wrong chars', done => {
+    let filteredMembers = usersFromMockDB;
+    filteredMembers = filterMembers(filteredMembers, 'metketing');
+    setTimeout(() => {
+      expect(filteredMembers.length).toEqual(0);
+      done();
+    }, 500);
+  });
 
-describe('search for function', () => {
-  it('searches for the expected members on filterMembers', done => {
+  test('search for company Hansiverlag with uncompleted searchtext', done => {
+    let filteredMembers = usersFromMockDB;
+    filteredMembers = filterMembers(filteredMembers, 'Hansiverl');
+    setTimeout(() => {
+      expect(filteredMembers.length).toEqual(1);
+      done();
+    }, 500);
+  });
+
+  test('search for function Schreiber with uncompleted searchtext and 1 wrong char', done => {
     let filteredMembers = usersFromMockDB;
     filteredMembers = filterMembers(filteredMembers, 'schri');
     setTimeout(() => {
@@ -146,10 +143,8 @@ describe('search for function', () => {
       done();
     }, 500);
   });
-});
 
-describe('show all if searchText is empty', () => {
-  it('searches for the expected members on filterMembers', done => {
+  test('searching with an empty searchtext', done => {
     let filteredMembers = usersFromMockDB;
     filteredMembers = filterMembers(filteredMembers, '');
     setTimeout(() => {
@@ -157,10 +152,8 @@ describe('show all if searchText is empty', () => {
       done();
     }, 500);
   });
-});
 
-describe('show nothing if there is no match', () => {
-  it('searches for the expected members on filterMembers', done => {
+  test('searching for nonexistant entry', done => {
     let filteredMembers = usersFromMockDB;
     filteredMembers = filterMembers(filteredMembers, 'jihdshfhgfdhüqsq');
     setTimeout(() => {
@@ -168,10 +161,8 @@ describe('show nothing if there is no match', () => {
       done();
     }, 500);
   });
-});
 
-describe('show when writing text without umlauts', () => {
-  it('searches for the expected members on filterMembers', done => {
+  test('checking if umlauts are ignored', done => {
     let filteredMembers = usersFromMockDB;
     filteredMembers = filterMembers(filteredMembers, 'goethe');
     setTimeout(() => {
@@ -182,8 +173,8 @@ describe('show when writing text without umlauts', () => {
   });
 });
 
-describe('show only the members who belong to the spefified circle', () => {
-  it('filters for expected members in Bern', done => {
+describe('Test if the circle filter filters the expected members', () => {
+  test('filters for expected members in Bern', done => {
     let filteredMembers = usersFromMockDB;
     let checkedCircles = ['Bern'];
     filteredMembers = filterCircles(filteredMembers, checkedCircles);
@@ -194,10 +185,8 @@ describe('show only the members who belong to the spefified circle', () => {
       done();
     }, 500);
   });
-});
 
-describe('show only the members who belong to the spefified circle', () => {
-  it('filters for expected members in Zürich', done => {
+  test('filters for expected members in Zürich', done => {
     let filteredMembers = usersFromMockDB;
     let checkedCircles = ['Zürich'];
     filteredMembers = filterCircles(filteredMembers, checkedCircles);
@@ -207,10 +196,8 @@ describe('show only the members who belong to the spefified circle', () => {
       done();
     }, 500);
   });
-});
 
-describe('show only the members who belong to the spefified circle', () => {
-  it('filters for expected members in Basel', done => {
+  test('filters for expected members in Basel', done => {
     let filteredMembers = usersFromMockDB;
     let checkedCircles = ['Basel'];
     filteredMembers = filterCircles(filteredMembers, checkedCircles);
@@ -220,10 +207,8 @@ describe('show only the members who belong to the spefified circle', () => {
       done();
     }, 500);
   });
-});
 
-describe('show only the members who belong to the spefified circles', () => {
-  it('filters for expected members in multiple cities', done => {
+  test('filters for expected members in multiple cities', done => {
     let filteredMembers = usersFromMockDB;
     let checkedCircles = ['Zürich', 'Bern', 'Basel'];
     filteredMembers = filterCircles(filteredMembers, checkedCircles);
@@ -232,10 +217,8 @@ describe('show only the members who belong to the spefified circles', () => {
       done();
     }, 500);
   });
-});
 
-describe('show no members if the circle does not exist', () => {
-  it('filters for expected members in a non existant city', done => {
+  test('filters for expected members in a non existant city', done => {
     let filteredMembers = usersFromMockDB;
     let checkedCircles = ['St. Gallen'];
     filteredMembers = filterCircles(filteredMembers, checkedCircles);
@@ -244,10 +227,8 @@ describe('show no members if the circle does not exist', () => {
       done();
     }, 500);
   });
-});
 
-describe('show members that fit to the searchText and are filtered by cities', () => {
-  it('filters for expected members in a city already filtered by searchText', done => {
+  test('filters for expected members in a city already filtered by searchText', done => {
     let filteredMembers = usersFromMockDB;
     let checkedCircles = ['Bern'];
     filteredMembers = filterMembers(
