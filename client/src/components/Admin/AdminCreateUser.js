@@ -53,7 +53,6 @@ class AdminCreateUser extends Component {
         this.props.dispatch(fetchMembers());
       })
       .catch(errorMessages => {
-        console.log(errorMessages);
         this.props.dispatch(alertError(errorMessages.join('\n')));
       });
   }
