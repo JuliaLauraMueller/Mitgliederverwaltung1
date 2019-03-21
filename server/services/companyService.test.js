@@ -18,7 +18,7 @@ const { findById } = require('../models/CompanyModel');
 //       return findById(0);
 //     })
 
-//     .then(resp => {
+////     .then(resp => {
 //       var company = resp;
 //       expect(company.companyName).toEqual('updatedN');
 //       expect(company.companyURL).toEqual('updatedURL');
