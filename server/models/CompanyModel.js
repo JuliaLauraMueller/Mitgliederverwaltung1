@@ -10,6 +10,8 @@ const schema = new Schema({
   companyCity: { type: String }
 });
 
+//TODO: Add definition off mongoDB collection
+
 schema.set('toJSON', { virtuals: true });
 
 module.exports = mongoose.model('Company', schema);

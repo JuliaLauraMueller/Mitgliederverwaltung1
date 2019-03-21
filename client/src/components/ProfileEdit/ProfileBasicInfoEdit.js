@@ -19,7 +19,7 @@ class ProfileBasicInfoEDIT extends Component {
       salutation: profile.salutation,
       title: profile.title,
       firstname: profile.firstname,
-      surename: profile.surename,
+      surname: profile.surname,
       alias: profile.alias,
       status: profile.status,
       memberNumber: profile.memberNumber,
@@ -48,7 +48,7 @@ class ProfileBasicInfoEDIT extends Component {
       salutation: this.state.salutation,
       title: this.state.title,
       firstname: this.state.firstname,
-      surename: this.state.surename,
+      surname: this.state.surname,
       alias: this.state.alias,
       status: this.state.status,
       memberNumber: this.state.memberNumber,
@@ -150,9 +150,9 @@ class ProfileBasicInfoEDIT extends Component {
                 <form className="input-field">
                   <Input
                     type="text"
-                    name="surename"
+                    name="surname"
                     onChange={this.onChange}
-                    value={this.state.surename}
+                    value={this.state.surname}
                   />
                 </form>
               </InputGroup>

@@ -1,12 +1,13 @@
 const db = require('../helpers/db');
 const Company = db.Company;
-const usersService = require('../services/userService');
+const userService = require('../services/userService');
 
 module.exports = {
   getAll,
   getById,
   update,
-  _delete
+  _delete,
+  validateCompany
 };
 
 async function getAll() {
@@ -29,5 +30,9 @@ async function update(id, companyParam) {
 
 async function _delete(id) {
   await Company.findByIdAndRemove(id);
-  await usersService.removeAllCompanyLocRelations(id);
+  await userService.removeAllCompanyLocRelations(id);
+}
+
+function validateCompany(companyParam, errors) {
+  return errors;
 }

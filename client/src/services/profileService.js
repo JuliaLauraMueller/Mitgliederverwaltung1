@@ -32,7 +32,7 @@ async function getUserData(id) {
         salutation: resp.data.salutation,
         title: resp.data.title,
         firstname: resp.data.firstname,
-        surename: resp.data.surname,
+        surname: resp.data.surname,
         alias: resp.data.alias,
 
         xingLink: resp.data.xingLink,
@@ -82,8 +82,10 @@ function getCompanyData(id) {
   });
 }
 
-async function setUserData(data) {
-  var res = axios.put('/users/' + data._id, data);
+async function setUserData(userData, companyData) {
+  var data = { userData: userData, companyData: companyData };
+  console.log(data);
+  var res = axios.put('/users/' + data.userData._id, data);
   return res;
 }
 

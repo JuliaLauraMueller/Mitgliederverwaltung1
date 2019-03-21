@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = require('../helpers/db');
 const validateUrl = require('../helpers/urlValidator');
+const companyService = require('../services/companyService');
 const User = db.User;
 const Company = db.Company;
 
@@ -92,13 +93,21 @@ async function updateUser(id, userParam) {
   const user = await User.findById(id);
   if (!user) throw 'User not found';
 
+  var userData = userParam.userData;
+  var companyData = userParam.companyData;
+  console.log(userParam.userData);
+  console.log(userParam.companyData);
+
   // TODO check for correct input
-  userParam = validateInputs(userParam);
+  userData = updateURLs(userData);
+  var errors = [];
+  errors = validateAll(userData, errors);
+  errors = companyService.validateCompany(companyData, errors);
 
   var query = { _id: id };
-  await User.updateOne(query, userParam, function(err, res) {
-    if (err) throw err;
-  });
+  //await User.updateOne(query, userParam, function(err, res) {
+  //  if (err) throw err;
+  //});
 }
 
 async function update(id, userParam) {
@@ -148,7 +157,7 @@ function generateJwtToken(user) {
   return token;
 }
 
-function validateInputs(userParam) {
+function updateURLs(userParam) {
   //URL'S
   if (userParam.xingLink) {
     userParam.xingLink = validateUrl(userParam.xingLink);
@@ -165,4 +174,8 @@ function validateInputs(userParam) {
 
   // TODO: reload of site after input validation
   return userParam;
+}
+
+function validateAll(userParam, errors) {
+  return errors;
 }

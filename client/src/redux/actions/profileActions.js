@@ -47,18 +47,22 @@ export function putCompany(companyData) {
   };
 }
 
-export function putWholeData(profileMainData, profileBasicData, companyData) {
+export async function putWholeData(
+  profileMainData,
+  profileBasicData,
+  companyData
+) {
   Object.assign(profileMainData, profileBasicData);
 
-  profileService.setUserData(profileMainData).then(res => {
-    if (res) {
-      var result = profileService.setCompanyData(companyData);
-      if (result) {
-        companyData.company = companyData.companyName;
-        //Object.assign(profileMainData, companyData);
-      }
-    }
-  });
+  await profileService.setUserData(profileMainData, companyData); //.then(res => {
+  //if (res) {
+  //var result = profileService.setCompanyData(companyData);
+  //if (result) {
+  //companyData.company = companyData.companyName;
+  //Object.assign(profileMainData, companyData);
+  //}
+  //}
+  //});
 
   //console.log(profileMainData);
   //console.log(companyData);
