@@ -1,22 +1,32 @@
-import React, { Component } from 'react';
-import ProfileBasicInfo from '../components/ProfileView/ProfileBasicInfoView.js';
-import ProfileMainInformation from '../components/ProfileView/ProfileMainInformationView.js';
+import React, { Component } from "react";
+import ProfileBasicInfo from "../components/ProfileView/ProfileBasicInfoView.js";
+import ProfileMainInformation from "../components/ProfileView/ProfileMainInformationView.js";
 
-import ProfileBasicInfoEDIT from '../components/ProfileEdit/ProfileBasicInfoEdit.js';
-import ProfileMainInformationEDIT from '../components/ProfileEdit/ProfileMainInformationEdit.js';
+import ProfileBasicInfoEDIT from "../components/ProfileEdit/ProfileBasicInfoEdit.js";
+import ProfileMainInformationEDIT from "../components/ProfileEdit/ProfileMainInformationEdit.js";
 
-import { connect } from 'react-redux';
-import { setNavVisible } from '../redux/actions/navigationActions';
-import { fetchProfile } from '../redux/actions/profileActions';
+import { connect } from "react-redux";
+import { setNavVisible } from "../redux/actions/navigationActions";
+import { fetchProfile } from "../redux/actions/profileActions";
 
-import '../css/ProfilePage.css';
+import jwtToken from "../helpers/jwtAccessor";
 
-import { Container, Row, Col } from 'reactstrap';
+import {
+  personalAccessCheck,
+  roleAccessCheck
+} from "../../../server/services/roleService";
+
+import "../css/ProfilePage.css";
+
+import { Container, Row, Col } from "reactstrap";
 
 class ProfilePage extends Component {
   constructor(props) {
     super(props);
     this.props.dispatch(setNavVisible());
+    const profile = this.props.profile;
+    console.log("TEST");
+    console.log(profile);
     this.state = {
       isEditing: false
     };
@@ -52,6 +62,29 @@ class ProfilePage extends Component {
   }
 
   render() {
+    console.log(jwtToken);
+    console.log(this.mainInfo);
+    let EditButton = {};
+    if (
+      personalAccessCheck(this.props.match.params.id, jwtToken._id) ||
+      roleAccessCheck(
+        3,
+        this.props.match.params.circle,
+        jwtToken.role,
+        jwtToken.circle
+      )
+    ) {
+      console.log("Editbutton visible");
+      EditButton = (
+        <button className="button-save-edit" onClick={this.toggleEdit}>
+          Editieren
+        </button>
+      );
+    } else {
+      console.log("Editbutton unvisible");
+      EditButton = <div />;
+    }
+
     if (this.state.isEditing) {
       return (
         <Container className="profile-page__container">
@@ -84,10 +117,8 @@ class ProfilePage extends Component {
       return (
         <Container className="profile-page__container">
           <Row>
-            <Col md="12" className="button-container" >
-              <button className="button-save-edit" onClick={this.toggleEdit}>
-                Editieren
-              </button>
+            <Col md="12" className="button-container">
+              {EditButton}
             </Col>
           </Row>
           <Row>
