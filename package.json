@@ -1,5 +1,8 @@
 {
   "name": "mitgliederverwaltung1",
+  "jest": {
+    "testEnvironment": "node"
+  },
   "version": "1.0.0",
   "description": "Project mitgliederverwaltung1",
   "main": "index.js",
@@ -7,9 +10,10 @@
     "client": "npm start --prefix client",
     "server": "npm start --prefix server",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "test-jest": "jest",
+    "test-server": "jest ./server",
     "testwatch-jest": "jest --watchAll",
-    "test": "mocha \"test/**/*.js\"",
+    "test": "\"npm run test-server\"",
+    "test-example": "jest",
     "test-jenkins": "mocha test --colors --recursive --reporter mocha-jenkins-reporter",
     "mocha-test-jenkins": "mocha test --colors --recursive --reporter mocha-junit-reporter"
   },

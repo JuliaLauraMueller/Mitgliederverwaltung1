@@ -6,6 +6,7 @@ const schema = new Schema({
   password: { type: String, required: true },
 
   memberNumber: { type: Number },
+  status: { type: String },
   entryDate: { type: Date, required: true },
   birthdate: { type: Date, required: true },
   status: { type: String },

@@ -1,8 +1,7 @@
-jest.mock('../../server/services/userService');
+jest.mock('./functions');
 
-const { getAll } = require('../../server/services/userService');
+const functions = require('./functions');
 
-test('should get users from database', () => {
-  getAll();
-  expect(true);
+test('should call mocking class from user model', () => {
+  expect(functions.mockMethod()).toBe(true);
 });

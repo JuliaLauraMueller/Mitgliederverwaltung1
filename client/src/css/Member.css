@@ -10,6 +10,7 @@
 
 .member-page-container {
   display: flex;
+  position: relative;
   justify-content: center;
   align-content: center;
 }
@@ -71,8 +72,8 @@
 }
 
 .search-input {
-  background: 'none';
-  border: 'none';
+  background: "none";
+  border: "none";
   font-family: Helvetica, sans-serif;
   font-weight: 0;
   font-size: 22px;
@@ -109,7 +110,7 @@ hr {
   justify-content: center;
 }
 .member-cards-row::after {
-  content: '';
+  content: "";
 }
 
 .member-card {
@@ -155,7 +156,7 @@ hr {
   top: 50%;
   transform: translateY(-50%);
   font-family: Helvetica;
-  font-size: 16px;
+  font-size: 14pt;
   margin-left: 75px;
   margin-top: -30px;
 }
@@ -174,7 +175,7 @@ hr {
   top: 50%;
   transform: translateY(-50%);
   font-family: Helvetica;
-  font-size: 12px;
+  font-size: 11.5pt;
   margin-top: 21px;
   margin-left: 25px;
 }
@@ -193,7 +194,7 @@ hr {
   top: 50%;
   transform: translateY(-50%);
   font-family: Helvetica;
-  font-size: 12px;
+  font-size: 11.5pt;
   margin-top: 48px;
   margin-left: 25px;
 }
@@ -208,8 +209,8 @@ hr {
   border-bottom: 1px solid rgb(219, 157, 12);
   font-family: Helvetica, sans-serif;
   font-weight: lighter;
-  font-size: 13px;
-  margin-left: 125px;
+  font-size: 11pt;
+  margin-left: 120px;
 }
 
 .profile-text:hover {
@@ -218,8 +219,8 @@ hr {
   border-bottom: 1px solid rgb(15, 25, 41, 74%);
   font-family: Helvetica, sans-serif;
   font-weight: lighter;
-  font-size: 13px;
-  margin-left: 125px;
+  font-size: 11pt;
+  margin-left: 120px;
 }
 
 .profile-text svg {

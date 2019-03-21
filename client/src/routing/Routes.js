@@ -20,19 +20,17 @@ class Routes extends Component {
     return (
       <Router history={history}>
         <div>
-          <div className='navbar-app'>
-            <AppNavbar toggleSideMenu={this.props.toggleSideMenu} />
-          </div>
-          <div>
+          <AppNavbar toggleSideMenu={this.props.toggleSideMenu} />
+          <div id="page-wrap">
             <Switch>
-              <Route exact path='/login' component={LoginPage} />
-              <PrivateRoute exact path='/' component={HomePage} />
+              <Route exact path="/login" component={LoginPage} />
+              <PrivateRoute exact path="/" component={HomePage} />
               <PrivateRoute
                 exact
                 path={'/member/:id'}
                 component={ProfilePage}
               />
-              <PrivateRoute exact path='/members' component={MemberPage} />
+              <PrivateRoute exact path="/members" component={MemberPage} />
               <Route component={NotFoundPage} />
             </Switch>
           </div>
