@@ -31,34 +31,42 @@ export default function filterMembers(members, searchText, searchForCircles) {
       m.firstname.concat(' ', m.surname).toLowerCase()
     ).substring(0, searchText.length);
 
-    let company = m.company
-      ? replaceUmlauts(m.company.companyName.toLowerCase()).substring(
+    let company =
+      m.company && m.company.companyName
+        ? replaceUmlauts(m.company.companyName.toLowerCase()).substring(
+            0,
+            searchText.length + MAX_LEVENSHTEIN_DISTANCE
+          )
+        : '';
+
+    let circle =
+      m.circle && m.circle.name
+        ? replaceUmlauts(m.circle.name.toLowerCase()).substring(
+            0,
+            searchText.length + MAX_LEVENSHTEIN_DISTANCE
+          )
+        : '';
+
+    let job = m.job
+      ? replaceUmlauts(m.job.toLowerCase()).substring(
           0,
           searchText.length + MAX_LEVENSHTEIN_DISTANCE
         )
       : '';
 
-    let circle = m.circle
-      ? replaceUmlauts(m.circle.name.toLowerCase()).substring(
+    let funktion = m.function
+      ? replaceUmlauts(m.function.toLowerCase()).substring(
           0,
           searchText.length + MAX_LEVENSHTEIN_DISTANCE
         )
       : '';
 
-    let job = replaceUmlauts(m.job.toLowerCase()).substring(
-      0,
-      searchText.length + MAX_LEVENSHTEIN_DISTANCE
-    );
-
-    let funktion = replaceUmlauts(m.function.toLowerCase()).substring(
-      0,
-      searchText.length + MAX_LEVENSHTEIN_DISTANCE
-    );
-
-    let sector = replaceUmlauts(m.sector.toLowerCase()).substring(
-      0,
-      searchText.length + MAX_LEVENSHTEIN_DISTANCE
-    );
+    let sector = m.sector
+      ? replaceUmlauts(m.sector.toLowerCase()).substring(
+          0,
+          searchText.length + MAX_LEVENSHTEIN_DISTANCE
+        )
+      : '';
 
     let baseSearchFound =
       levenshteinInRange(searchText, surname) ||

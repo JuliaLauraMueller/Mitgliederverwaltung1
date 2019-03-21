@@ -278,7 +278,7 @@ class AdminPage extends Component {
     return filterMembers(members, this.state.searchText, true).map(member => {
       return (
         <tr key={member._id}>
-          <td className="d-none d-md-table-cell">{member.membernumber}</td>
+          <td className="d-none d-md-table-cell">{member.memberNumber}</td>
           <td>{member.firstname}</td>
           <td>{member.surname}</td>
           <td className="d-none d-md-table-cell">{member.privateEmail}</td>

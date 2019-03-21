@@ -13,7 +13,7 @@ async function getUserBody() {
         members: users.map(element => {
           return {
             _id: element._id,
-            membernumber: element.membernumber,
+            memberNumber: element.memberNumber,
             firstname: element.firstname,
             surname: element.surname,
             privateEmail: element.privateEmail,
@@ -54,5 +54,19 @@ async function deleteMember(id) {
     });
 }
 
-const memberService = { getUserBody, deleteMember };
+async function createMember(data) {
+  return await axios
+    .post('/users/', data)
+    .then(res => {
+      return res;
+    })
+    .catch(err => {
+      console.log(err);
+      if (err && err.data.error && err.data.error.type == 'invalid_input') {
+        return Promise.reject(err.data.error.errors);
+      }
+    });
+}
+
+const memberService = { getUserBody, deleteMember, createMember };
 export default memberService;
