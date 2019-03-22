@@ -44,8 +44,8 @@ function deleteCircle(req, res, next) {
     .deleteCircle(req.params.id)
     .then(() => res.json({}))
     .catch(error => {
-      if (error & (error.type == 'users_remaining_in_circle')) {
-        res.status(422).send(err);
+      if (error && error.type == 'users_remaining_in_circle') {
+        res.status(422).send(error);
       } else {
         console.error('Circle delete error: ', error);
         res.sendStatus(500);

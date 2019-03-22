@@ -39,7 +39,9 @@ async function deleteCircle(id) {
       return id;
     })
     .catch(err => {
-      store.dispatch(alertError(err.data));
+      if (err && err.data && err.data.type == 'users_remaining_in_circle') {
+        store.dispatch(alertError(err.data.message));
+      }
     });
 }
 
