@@ -35,7 +35,7 @@ import {
   putCircle,
   deleteCircle
 } from '../redux/actions/circleActions';
-import filterMembers from '../helpers/memberSearch';
+import { filterMembers } from '../helpers/memberSearch';
 
 import '../css/AdminPage.css';
 

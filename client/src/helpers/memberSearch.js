@@ -15,7 +15,7 @@ function replaceUmlauts(text) {
     .replace('ü', 'ue');
 }
 
-export default function filterMembers(members, searchText, searchForCircles) {
+export function filterMembers(members, searchText, searchForCircles = false) {
   if (!searchText || searchText.length == 0) {
     return members;
   }
@@ -83,3 +83,18 @@ export default function filterMembers(members, searchText, searchForCircles) {
     }
   });
 }
+
+export function filterByCircles(members, filteredCircles) {
+  if (!filteredCircles || filteredCircles.length == 0) {
+    return members;
+  } else {
+    return members.filter(m => {
+      return filteredCircles.includes(m.circle ? m.circle._id : '');
+    });
+  }
+}
+
+export default {
+  filterMembers,
+  filterByCircles
+};
