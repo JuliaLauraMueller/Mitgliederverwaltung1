@@ -15,7 +15,9 @@ async function getById(id) {
 }
 
 async function getAll() {
-  return Circle.find();
+  return Circle.find()
+    .collation({ locale: 'de' })
+    .sort({ name: 1 });
 }
 
 async function updateCircle(id, circleParam) {
@@ -36,7 +38,7 @@ async function deleteCircle(id) {
   if ((await User.count({ circle: id })) > 0) {
     throw {
       type: 'users_remaining_in_circle',
-      message: 'Cities mit Benutzern können nicht gelöscht werden.'
+      message: 'Cities mit Mitgliedern können nicht gelöscht werden.'
     };
   } else {
     await Circle.findByIdAndRemove(id);
