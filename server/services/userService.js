@@ -53,7 +53,8 @@ async function getAll() {
         foreignField: '_id',
         as: 'circleValues'
       }
-    }
+    },
+    { $sort: { memberNumber: 1 } }
   ]);
   return users;
 }
