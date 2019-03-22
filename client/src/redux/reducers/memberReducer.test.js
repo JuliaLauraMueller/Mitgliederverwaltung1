@@ -13,7 +13,10 @@ const user1 = {
   privateTel: 'privateTel',
   function: 'CEO',
   sector: 'Marketing',
-  company: 'Bruce Wayne Company',
+  company: {
+    _id: 'BW',
+    companyName: 'Bruce Wayne Company'
+  },
   circle: {
     _id: 'BE',
     name: 'Bern'
@@ -29,7 +32,10 @@ const user2 = {
   privateTel: 'privateTel',
   function: 'Piratenschreck',
   sector: 'Fantasy',
-  company: 'PP Company',
+  company: {
+    _id: 'PP',
+    companyName: 'PP Company'
+  },
   circle: {
     _id: 'ZH',
     name: 'Zürich'
@@ -45,7 +51,10 @@ const user3 = {
   privateTel: 'privateTel',
   function: 'Schreiber',
   sector: 'Literatur',
-  company: 'Hansiverlag',
+  company: {
+    _id: 'HV',
+    companyName: 'Hansiverlag'
+  },
   circle: {
     _id: 'BS',
     name: 'Basel'
@@ -61,7 +70,10 @@ const user4 = {
   privateTel: 'privateTel',
   function: 'Storywriter',
   sector: 'Journalismus',
-  company: 'Berner Zeitung',
+  company: {
+    _id: 'BZ',
+    companyName: 'Berner Zeitung'
+  },
   circle: {
     _id: 'BE',
     name: 'Bern'
@@ -77,7 +89,6 @@ describe('redux store member tests', () => {
     store.dispatch(actions.fetchMembers());
 
     setTimeout(() => {
-      console.log('State: ', store.getState());
       expect(store.getState().member.members.length).toEqual(
         usersFromMockDB.length
       );

@@ -22,11 +22,11 @@ async function getUserBody() {
             function: element.function,
             sector: element.sector,
             company:
-              element.companyValues.length > 0
+              element.companyValues && element.companyValues.length > 0
                 ? element.companyValues[0]
                 : undefined,
             circle:
-              element.circleValues.length > 0
+              element.circleValues && element.circleValues.length > 0
                 ? element.circleValues[0]
                 : undefined,
             profilepic: './img/marc_zimmermann.jpg' // TODO: implement loading of images
