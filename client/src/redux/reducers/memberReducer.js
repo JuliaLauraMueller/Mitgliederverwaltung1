@@ -1,10 +1,11 @@
 import {
   SEARCH_MEMBERS,
   FILTER_CIRCLES,
-  MEMBER_DELETED
+  MEMBER_DELETED,
+  CREATE_MEMBER
 } from '../types/memberTypes';
 import { MEMBERS_FETCHED } from '../types/memberTypes';
-import filterMembers from '../../helpers/memberSearch';
+import { filterMembers, filterByCircles } from '../../helpers/memberSearch';
 
 const initialState = {
   searchText: '',
@@ -12,16 +13,6 @@ const initialState = {
   members: [],
   filteredMembers: []
 };
-
-function filterCircles(members, filteredCircles) {
-  if (!filteredCircles || filteredCircles.length == 0) {
-    return members;
-  } else {
-    return members.filter(m => {
-      return filteredCircles.includes(m.circle ? m.circle._id : '');
-    });
-  }
-}
 
 function deleteMember(members, id) {
   return members.filter(member => {
@@ -42,7 +33,7 @@ export default function(state = initialState, action) {
         searchText: action.payload,
         filteredCircles: state.filteredCircles,
         filteredMembers: filterMembers(
-          filterCircles(state.members, state.filteredCircles),
+          filterByCircles(state.members, state.filteredCircles),
           action.payload,
           false
         )
@@ -53,7 +44,7 @@ export default function(state = initialState, action) {
         searchText: state.searchText,
         filteredCircles: action.payload,
         filteredMembers: filterMembers(
-          filterCircles(state.members, action.payload),
+          filterByCircles(state.members, action.payload),
           state.searchText,
           false
         )
@@ -64,7 +55,18 @@ export default function(state = initialState, action) {
         searchText: state.searchText,
         filteredCircles: state.filteredCircles,
         filteredMembers: filterMembers(
-          filterCircles(state.members, state.filteredCircles),
+          filterByCircles(state.members, state.filteredCircles),
+          state.searchText,
+          false
+        )
+      };
+    case CREATE_MEMBER:
+      return {
+        members: [...state.members, action.payload],
+        searchText: state.searchText,
+        filteredCircles: state.filteredCircles,
+        filteredMembers: filterMembers(
+          filterByCircles(state.members, state.filteredCircles),
           state.searchText,
           false
         )

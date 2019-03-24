@@ -15,14 +15,19 @@ async function getById(id) {
 }
 
 async function getAll() {
-  return Circle.find();
+  return Circle.find()
+    .collation({ locale: 'de' })
+    .sort({ name: 1 });
 }
 
 async function updateCircle(id, circleParam) {
   const circle = await Circle.findById(id);
   if (!circle) throw 'Circle not found';
 
-  // TODO check for correct input
+  let errors = validate(circleParam);
+  if (errors.length != 0) {
+    throw { type: 'invalid_input', errors };
+  }
 
   await Circle.updateOne({ _id: id }, circleParam, function(err, res) {
     if (err) throw err;
@@ -31,29 +36,35 @@ async function updateCircle(id, circleParam) {
 
 async function deleteCircle(id) {
   if ((await User.count({ circle: id })) > 0) {
-    throw 'cannot delete circle with members';
+    throw {
+      type: 'users_remaining_in_circle',
+      message: 'Cities mit Mitgliedern können nicht gelöscht werden.'
+    };
   } else {
     await Circle.findByIdAndRemove(id);
   }
 }
 
 async function create(circleParam) {
-  validate(circleParam);
+  let errors = validate(circleParam);
+  if (errors.length != 0) {
+    throw { type: 'invalid_input', errors };
+  }
 
   const circle = new Circle(circleParam);
-
-  // save circle
-  return await circle.save();
+  try {
+    return await circle.save();
+  } catch (error) {
+    throw { type: 'processing_error', error };
+  }
 }
 
 function validate(circleParam) {
-  let errorMessage;
+  let errorMessages = [];
   if (!circleParam.name || circleParam.name.length == 0) {
-    errorMessage = 'Name darf nicht leer sein.';
+    errorMessages.push('Name darf nicht leer sein.');
   } else if (circleParam.name.length > 30) {
-    errorMessage = 'Name muss kürzer als 30 Zeichen sein.';
+    errorMessages.push('Name muss kürzer als 30 Zeichen sein.');
   }
-  if (errorMessage) {
-    throw { type: 'invalid_input', errorMessage };
-  }
+  return errorMessages;
 }

@@ -13,7 +13,7 @@ async function getUserBody() {
         members: users.map(element => {
           return {
             _id: element._id,
-            membernumber: element.membernumber,
+            memberNumber: element.memberNumber,
             firstname: element.firstname,
             surname: element.surname,
             privateEmail: element.privateEmail,
@@ -22,11 +22,11 @@ async function getUserBody() {
             function: element.function,
             sector: element.sector,
             company:
-              element.companyValues.length > 0
+              element.companyValues && element.companyValues.length > 0
                 ? element.companyValues[0]
                 : undefined,
             circle:
-              element.circleValues.length > 0
+              element.circleValues && element.circleValues.length > 0
                 ? element.circleValues[0]
                 : undefined,
             profilepic: './img/marc_zimmermann.jpg' // TODO: implement loading of images
@@ -54,5 +54,18 @@ async function deleteMember(id) {
     });
 }
 
-const memberService = { getUserBody, deleteMember };
+async function createMember(data) {
+  return await axios
+    .post('/users/', data)
+    .then(res => {
+      return res;
+    })
+    .catch(err => {
+      if (err && err.data.error && err.data.error.type == 'invalid_input') {
+        return Promise.reject(err.data.error.errors);
+      }
+    });
+}
+
+const memberService = { getUserBody, deleteMember, createMember };
 export default memberService;

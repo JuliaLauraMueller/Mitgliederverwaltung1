@@ -2,7 +2,8 @@ import {
   SEARCH_MEMBERS,
   MEMBERS_FETCHED,
   FILTER_CIRCLES,
-  MEMBER_DELETED
+  MEMBER_DELETED,
+  CREATE_MEMBER
 } from '../types/memberTypes';
 import memberService from '../../services/memberService';
 
@@ -28,4 +29,17 @@ export const deleteMember = id => dispatch => {
       dispatch({ type: MEMBER_DELETED, payload: res });
     }
   });
+};
+
+export const createMember = memberData => async dispatch => {
+  return await memberService
+    .createMember(memberData)
+    .then(res => {
+      if (res && res.data.created) {
+        dispatch({ type: CREATE_MEMBER, payload: res.data.created });
+      }
+    })
+    .catch(errorMessage => {
+      return Promise.reject(errorMessage);
+    });
 };

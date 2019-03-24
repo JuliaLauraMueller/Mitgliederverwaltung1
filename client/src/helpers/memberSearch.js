@@ -15,7 +15,7 @@ function replaceUmlauts(text) {
     .replace('ü', 'ue');
 }
 
-export default function filterMembers(members, searchText, searchForCircles) {
+export function filterMembers(members, searchText, searchForCircles = false) {
   if (!searchText || searchText.length == 0) {
     return members;
   }
@@ -31,34 +31,42 @@ export default function filterMembers(members, searchText, searchForCircles) {
       m.firstname.concat(' ', m.surname).toLowerCase()
     ).substring(0, searchText.length);
 
-    let company = m.company
-      ? replaceUmlauts(m.company.companyName.toLowerCase()).substring(
+    let company =
+      m.company && m.company.companyName
+        ? replaceUmlauts(m.company.companyName.toLowerCase()).substring(
+            0,
+            searchText.length + MAX_LEVENSHTEIN_DISTANCE
+          )
+        : '';
+
+    let circle =
+      m.circle && m.circle.name
+        ? replaceUmlauts(m.circle.name.toLowerCase()).substring(
+            0,
+            searchText.length + MAX_LEVENSHTEIN_DISTANCE
+          )
+        : '';
+
+    let job = m.job
+      ? replaceUmlauts(m.job.toLowerCase()).substring(
           0,
           searchText.length + MAX_LEVENSHTEIN_DISTANCE
         )
       : '';
 
-    let circle = m.circle
-      ? replaceUmlauts(m.circle.name.toLowerCase()).substring(
+    let funktion = m.function
+      ? replaceUmlauts(m.function.toLowerCase()).substring(
           0,
           searchText.length + MAX_LEVENSHTEIN_DISTANCE
         )
       : '';
 
-    let job = replaceUmlauts(m.job.toLowerCase()).substring(
-      0,
-      searchText.length + MAX_LEVENSHTEIN_DISTANCE
-    );
-
-    let funktion = replaceUmlauts(m.function.toLowerCase()).substring(
-      0,
-      searchText.length + MAX_LEVENSHTEIN_DISTANCE
-    );
-
-    let sector = replaceUmlauts(m.sector.toLowerCase()).substring(
-      0,
-      searchText.length + MAX_LEVENSHTEIN_DISTANCE
-    );
+    let sector = m.sector
+      ? replaceUmlauts(m.sector.toLowerCase()).substring(
+          0,
+          searchText.length + MAX_LEVENSHTEIN_DISTANCE
+        )
+      : '';
 
     let baseSearchFound =
       levenshteinInRange(searchText, surname) ||
@@ -75,3 +83,18 @@ export default function filterMembers(members, searchText, searchForCircles) {
     }
   });
 }
+
+export function filterByCircles(members, filteredCircles) {
+  if (!filteredCircles || filteredCircles.length == 0) {
+    return members;
+  } else {
+    return members.filter(m => {
+      return filteredCircles.includes(m.circle ? m.circle._id : '');
+    });
+  }
+}
+
+export default {
+  filterMembers,
+  filterByCircles
+};

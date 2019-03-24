@@ -14,12 +14,17 @@ export const fetchCircles = () => dispatch => {
   });
 };
 
-export const putCircle = circleData => dispatch => {
-  circleService.setCircleData(circleData).then(res => {
-    if (res) {
-      dispatch({ type: PUT_CIRCLE, payload: circleData });
-    }
-  });
+export const putCircle = circleData => async dispatch => {
+  return circleService
+    .setCircleData(circleData)
+    .then(res => {
+      if (res) {
+        dispatch({ type: PUT_CIRCLE, payload: circleData });
+      }
+    })
+    .catch(errorMessage => {
+      return Promise.reject(errorMessage);
+    });
 };
 
 export const deleteCircle = id => dispatch => {
@@ -31,7 +36,7 @@ export const deleteCircle = id => dispatch => {
 };
 
 export const createCircle = circleData => async dispatch => {
-  await circleService
+  return await circleService
     .createCircle(circleData)
     .then(res => {
       if (res && res.data.created) {

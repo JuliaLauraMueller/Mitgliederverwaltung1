@@ -29,12 +29,13 @@ import AdminCreateUser from '../components/Admin/AdminCreateUser';
 import AdminCreateCircle from '../components/Admin/AdminCreateCircle';
 import { setNavVisible } from '../redux/actions/navigationActions';
 import { fetchMembers, deleteMember } from '../redux/actions/memberActions';
+import { alertError } from '../redux/actions/alertActions';
 import {
   fetchCircles,
   putCircle,
   deleteCircle
 } from '../redux/actions/circleActions';
-import filterMembers from '../helpers/memberSearch';
+import { filterMembers } from '../helpers/memberSearch';
 
 import '../css/AdminPage.css';
 
@@ -70,10 +71,16 @@ class AdminPage extends Component {
     this.handleCircleNameChange = this.handleCircleNameChange.bind(this);
   }
 
-  onCircleSave(event) {
+  async onCircleSave(event) {
     event.preventDefault();
-    this.props.dispatch(putCircle(this.state.circleToEdit));
-    this.toggleCircleEditModal({ name: '' });
+    await this.props
+      .dispatch(putCircle(this.state.circleToEdit))
+      .then(res => {
+        this.toggleCircleEditModal({ name: '' });
+      })
+      .catch(errorMessages => {
+        this.props.dispatch(alertError(errorMessages.join('\n')));
+      });
   }
 
   handleCircleNameChange(e) {
@@ -282,7 +289,7 @@ class AdminPage extends Component {
     return filterMembers(members, this.state.searchText, true).map(member => {
       return (
         <tr key={member._id}>
-          <td className="d-none d-md-table-cell">{member.membernumber}</td>
+          <td className="d-none d-md-table-cell">{member.memberNumber}</td>
           <td>{member.firstname}</td>
           <td>{member.surname}</td>
           <td className="d-none d-md-table-cell">{member.privateEmail}</td>

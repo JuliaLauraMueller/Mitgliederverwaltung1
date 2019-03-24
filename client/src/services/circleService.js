@@ -20,9 +20,16 @@ async function getCircles() {
 }
 
 async function setCircleData(data) {
-  return await axios.put('/circles/' + data._id, data).then(res => {
-    return res;
-  });
+  return await axios
+    .put('/circles/' + data._id, data)
+    .then(res => {
+      return res;
+    })
+    .catch(err => {
+      if (err && err.data.error && err.data.error.type == 'invalid_input') {
+        return Promise.reject(err.data.error.errors);
+      }
+    });
 }
 
 async function deleteCircle(id) {
@@ -32,12 +39,9 @@ async function deleteCircle(id) {
       return id;
     })
     .catch(err => {
-      history.push('/admin');
-      store.dispatch(
-        alertError(
-          'City konnte nicht gelöscht werden. Cities mit Mitgliedern können nicht gelöscht werden.'
-        )
-      );
+      if (err && err.data && err.data.type == 'users_remaining_in_circle') {
+        store.dispatch(alertError(err.data.message));
+      }
     });
 }
 
@@ -48,8 +52,8 @@ async function createCircle(data) {
       return res;
     })
     .catch(err => {
-      if (err && err.data) {
-        return Promise.reject(err.data.error);
+      if (err && err.data.error && err.data.error.type == 'invalid_input') {
+        return Promise.reject(err.data.error.errors);
       }
     });
 }
