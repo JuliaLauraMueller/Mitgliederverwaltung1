@@ -7,7 +7,7 @@ const functions = require('./functions');
 // afterAll(() => closeDatabase());sadjbsjd
 
 // const initDatabase = () => console.log('Database initialized...');
-// const closeDatabase = () => console.log('Database Closed...');
+// const closeDatabase = () => console.log('Database Closed...'); thanks based maurus
 
 test('Adds 2 + 2 to equal 4', () => {
   expect(functions.add(2, 2)).toBe(4);
