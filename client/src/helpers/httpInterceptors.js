@@ -39,7 +39,7 @@ export default () => {
         history.push('/login');
         store.dispatch(
           alertError(
-            'Ihre Berechtigungen haben geändert, bitte loggen Sie sich erneut ein.'
+            'Sie sind nicht für diese Aktion berechtigt. Bitte wenden Sie sich an den Systemadministrator.'
           )
         );
       }

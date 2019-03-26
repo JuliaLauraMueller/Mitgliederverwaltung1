@@ -1,6 +1,7 @@
 module.exports = {
   personalAccessCheck,
-  roleAccessCheck
+  roleAccessCheck,
+  isFederationAdmin
 };
 
 function isFederationAdmin(role) {

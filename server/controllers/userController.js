@@ -74,7 +74,7 @@ function update(req, res, next) {
   });
 }
 
-function _delete(req, res, next) {
+function deleteUser(req, res, next) {
   userService.getCircleForId(req.body._id).then(user => {
     if (
       roleHelper.roleAccessCheck(3, user.circle, req.user.role, req.user.circle)
