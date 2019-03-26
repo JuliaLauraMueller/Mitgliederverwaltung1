@@ -74,8 +74,16 @@ function update(req, res, next) {
 }
 
 function _delete(req, res, next) {
-  userService
-    .delete(req.params.id)
-    .then(() => res.json({}))
-    .catch(err => next(err));
+  userService.getCircleForId(req.body._id).then(user => {
+    if (
+      roleHelper.roleAccessCheck(3, user.circle, req.user.role, req.user.circle)
+    ) {
+      userService
+        .delete(req.params.id)
+        .then(() => res.json({}))
+        .catch(err => next(err));
+    } else {
+      res.sendStatus(403);
+    }
+  });
 }
