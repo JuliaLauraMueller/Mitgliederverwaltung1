@@ -84,7 +84,7 @@ function getCompanyData(id) {
 
 async function setUserData(userData, companyData) {
   var data = { userData: userData, companyData: companyData };
-  console.log(data);
+  //console.log(data);
   var res = axios.put('/users/' + data.userData._id, data);
   return res;
 }

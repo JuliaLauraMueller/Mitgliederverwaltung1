@@ -95,19 +95,25 @@ async function updateUser(id, userParam) {
 
   var userData = userParam.userData;
   var companyData = userParam.companyData;
-  console.log(userParam.userData);
-  console.log(userParam.companyData);
 
   // TODO check for correct input
-  userData = updateURLs(userData);
+  userData = updateURLs(userData, companyData);
   var errors = [];
   errors = validateAll(userData, errors);
+  console.log('User worked');
   errors = companyService.validateCompany(companyData, errors);
+  console.log('companyworked');
 
-  var query = { _id: id };
-  //await User.updateOne(query, userParam, function(err, res) {
-  //  if (err) throw err;
-  //});
+  if (errors.length === 0) {
+    var query = { _id: id };
+    //await User.updateOne(query, userParam, function(err, res) {
+    //  if (err) throw err;
+    //});
+    console.log('WORKED');
+  } else {
+    //TODO: Error handling
+    console.log(errors);
+  }
 }
 
 async function update(id, userParam) {
@@ -157,7 +163,7 @@ function generateJwtToken(user) {
   return token;
 }
 
-function updateURLs(userParam) {
+function updateURLs(userParam, companyParam) {
   //URL'S
   if (userParam.xingLink) {
     userParam.xingLink = validateUrl(userParam.xingLink);
@@ -171,8 +177,8 @@ function updateURLs(userParam) {
   if (userParam.instagramLink) {
     userParam.instagramLink = validateUrl(userParam.instagramLink);
   }
-  if (userParam.companyURL) {
-    userParam.companyURL = validateUrl(userParam.companyURL);
+  if (companyParam.companyURL) {
+    companyParam.companyURL = validateUrl(companyParam.companyURL);
   }
 
   // TODO: reload of site after input validation
@@ -181,7 +187,147 @@ function updateURLs(userParam) {
 
 function validateAll(userParam, errors) {
   //Links
+
   if (userParam.xingLink) {
+    if (!userParam.xingLink.startsWith('https://')) {
+      errors.push('Der Link für das Xing-Profil ist ungültig');
+    }
+  }
+  if (userParam.linkedinLink) {
+    if (!userParam.linkedinLink.startsWith('https://')) {
+      errors.push('Der Link für das LinkedIn-Profil ist ungültig');
+    }
+  }
+  if (userParam.facebookLink) {
+    if (!userParam.facebookLink.startsWith('https://')) {
+      errors.push('Der Link für das Facebook-Profil ist ungültig');
+    }
+  }
+  if (userParam.instagramLink) {
+    if (!userParam.instagramLink.startsWith('https://')) {
+      errors.push('Der Link für das Instagram-Profil ist ungültig');
+    }
+  }
+
+  // Personal data
+  if (userParam.offerings.length > 150) {
+    errors.push('Das Feld Angebot ist zu lang.');
+  }
+  if (userParam.salutation) {
+    if (userParam.salutation !== 'Herr' && userParam.salutation !== 'Frau') {
+      errors.push('Das Feld Anrede ist falsch');
+    }
+  }
+  if (userParam.title.length > 15) {
+    errors.push('Das Feld Titel ist zu lang');
+  }
+  if (
+    !userParam.firstname ||
+    (userParam.firstname.length < 2 && userParam.firstname.length > 20)
+  ) {
+    errors.push('Das Feld Vorname ist nicht korrekt');
+  }
+  if (
+    !userParam.surname ||
+    (userParam.surname.length < 2 && userParam.surname.length > 20)
+  ) {
+    errors.push('Das Feld Nachname ist nicht korrekt');
+  }
+  if (userParam.alias.length > 20) {
+    errors.push('Das Feld Spitzname ist nicht korrekt');
+  }
+  if (userParam.status.length > 20) {
+    errors.push('Das Feld Status ist nicht korrekt');
+  }
+  if (userParam.entryDate) {
+    var testEntryDate = Date.parse(userParam.entryDate);
+    if (!testEntryDate) {
+      errors.push(
+        'Das Feld Eintrittsdatum ist nicht korrekt. Empfohlenes Format: DD-MM-YYY'
+      );
+    }
+  }
+  if (userParam.birthdate) {
+    var testBirthdate = Date.parse(userParam.birthdate);
+    if (!testBirthdate) {
+      errors.push(
+        'Das Feld Geburtsdatum ist nicht korrekt. Empfohlenes Format: DD-MM-YYY'
+      );
+    }
+  }
+  // Business data
+  if (userParam.sector.length > 20) {
+    errors.push('Das Feld Sektor ist zu lang');
+  }
+  if (userParam.job.length > 20) {
+    errors.push('Das Feld Beruf ist zu lang');
+  }
+  if (userParam.function.length > 20) {
+    errors.push('Das Feld Funktion ist zu lang');
+  }
+  if (userParam.companyTel) {
+    if (
+      (!userParam.companyTel.startsWith('+') ||
+        userParam.companyTel.startsWith('0')) &&
+      userParam.companyTel.length > 15
+    ) {
+      errors.push('Das Feld Geschäftstelefon ist nicht korrekt');
+    }
+  }
+  if (userParam.companyMobile) {
+    if (
+      (!userParam.companyMobile.startsWith('+') ||
+        userParam.companyMobile.startsWith('0')) &&
+      userParam.companyMobile.length > 15
+    ) {
+      errors.push('Das Feld Geschäftshandy ist nicht korrekt');
+    }
+  }
+  if (userParam.companyEmail) {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userParam.companyEmail)) {
+      errors.push('Das Feld Geschäftsmail ist nicht korrekt');
+    }
+  }
+  if (userParam.privateTel) {
+    if (
+      (!userParam.privateTel.startsWith('+') ||
+        userParam.privateTel.startsWith('0')) &&
+      userParam.privateTel.length > 15
+    ) {
+      errors.push('Das Feld Telefon privat ist nicht korrekt');
+    }
+  }
+  if (userParam.privateMobile) {
+    if (
+      (!userParam.privateMobile.startsWith('+') ||
+        userParam.privateMobile.startsWith('0')) &&
+      userParam.privateMobile.length > 15
+    ) {
+      errors.push('Das Feld Handy privat ist nicht korrekt');
+    }
+  }
+  if (
+    !userParam.privateEmail ||
+    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userParam.privateEmail)
+  ) {
+    errors.push('Das Feld Email privat ist nicht korrekt');
+  }
+  if (userParam.privateStreet.length > 20) {
+    errors.push('Das Feld Strasse privat ist nicht korrekt');
+  }
+  if (userParam.privateStreetNr.length > 8) {
+    errors.push('Das Feld Strassennummer privat ist nicht korrekt');
+  }
+  if (userParam.privateZip) {
+    if (userParam.privateZip < 1000 || userParam.privateZip > 9999) {
+      errors.push('Das Feld Postleitzahl privat ist nicht korrekt');
+    }
+  }
+  if (userParam.privateCity.length > 25) {
+    errors.push('Das Feld Stadt privat ist nicht korrekt');
+  }
+  if (userParam.invoiceAddress > 20) {
+    errors.push('Das Feld Rechnungsadresse ist nicht korrekt');
   }
 
   return errors;
