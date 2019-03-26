@@ -1,7 +1,11 @@
 module.exports = {
   findById,
   findOne,
-  updateMany
+  updateMany,
+  aggregate,
+  create,
+  findByIdAndRemove,
+  count
 };
 
 let users = [
@@ -11,7 +15,7 @@ let users = [
     entryDate: '1.1.11',
     birthdate: '1.1.11',
     status: 'active',
-    circle: 'circle',
+    circle: '1', // don't change this without changing the corresponding id in the CircleModel mock
     godfather: 'godfather',
     salutation: 'salutation',
     title: 'mr',
@@ -39,16 +43,22 @@ let users = [
     offerings: 'offerings',
     save() {}
   },
-
   {
     id: '1',
     password: '$2a$10$gPHULGi/NTxwgyG7B5NXHOhD7WZ.wCCucOimptihWiktwFFaqGPZa',
     privateEmail: 'alreadytaken@gmail.com',
     save() {}
+  },
+  {
+    id: 'AAAAAAAAAAAAAAAAAAAAAAAA', // must be a String of 12 bytes or 24 hex characters
+    privateEmail: 'toDelete@example.com',
+    select(arg) {
+      return this;
+    }
   }
 ];
 
-async function findById(id) {
+function findById(id) {
   var result = users.find(user => user.id == id);
   if (result == undefined) {
     return null;
@@ -64,6 +74,24 @@ async function findOne(search) {
   return result;
 }
 
-async function updateMany(obj1, obj2) {
-  console.log('update many mock.');
+async function updateMany(obj1, obj2) {}
+
+async function aggregate(args) {
+  return users;
+}
+
+async function create(user) {
+  user._id = 'newUser';
+  users.push(user);
+  return user;
+}
+
+async function findByIdAndRemove(id) {
+  users = users.filter(user => {
+    return user.id != id;
+  });
+}
+
+async function count(args) {
+  return users.filter(user => user.circle == args.circle).length;
 }
