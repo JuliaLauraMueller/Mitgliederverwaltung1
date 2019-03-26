@@ -43,7 +43,7 @@ export default () => {
           )
         );
       }
-      return Promise.reject(error.statusText);
+      return Promise.reject(error.response);
     }
   );
 };

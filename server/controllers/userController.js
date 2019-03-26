@@ -11,7 +11,8 @@ router.get('/', getAll);
 router.get('/current', getCurrent);
 router.get('/:id', getById);
 router.put('/:id', update);
-router.delete('/:id', _delete);
+router.delete('/:id', deleteUser);
+router.post('/', create);
 
 module.exports = router;
 
@@ -86,4 +87,20 @@ function _delete(req, res, next) {
       res.sendStatus(403);
     }
   });
+}
+
+function create(req, res, next) {
+  userService
+    .create(req.body)
+    .then(user => {
+      return res.json({ created: user });
+    })
+    .catch(error => {
+      if (error && error.type == 'invalid_input') {
+        res.status(422).send({ error });
+      } else {
+        console.error('User create error: ', error);
+        res.sendStatus(500);
+      }
+    });
 }
