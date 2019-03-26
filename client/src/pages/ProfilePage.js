@@ -1,31 +1,32 @@
-import React, { Component } from "react";
-import ProfileBasicInfo from "../components/ProfileView/ProfileBasicInfoView.js";
-import ProfileMainInformation from "../components/ProfileView/ProfileMainInformationView.js";
+import React, { Component } from 'react';
+import ProfileBasicInfo from '../components/ProfileView/ProfileBasicInfoView.js';
+import ProfileMainInformation from '../components/ProfileView/ProfileMainInformationView.js';
 
-import ProfileBasicInfoEDIT from "../components/ProfileEdit/ProfileBasicInfoEdit.js";
-import ProfileMainInformationEDIT from "../components/ProfileEdit/ProfileMainInformationEdit.js";
+import ProfileBasicInfoEDIT from '../components/ProfileEdit/ProfileBasicInfoEdit.js';
+import ProfileMainInformationEDIT from '../components/ProfileEdit/ProfileMainInformationEdit.js';
 
-import { connect } from "react-redux";
-import { setNavVisible } from "../redux/actions/navigationActions";
-import { fetchProfile } from "../redux/actions/profileActions";
+import { connect } from 'react-redux';
+import { setNavVisible } from '../redux/actions/navigationActions';
+import { fetchProfile } from '../redux/actions/profileActions';
+import store from '../helpers/store';
 
-import jwtToken from "../helpers/jwtAccessor";
+import jwtToken from '../helpers/jwtAccessor';
 
 import {
   personalAccessCheck,
   roleAccessCheck
-} from "../../../server/services/roleService";
+} from '../../../server/services/roleService';
 
-import "../css/ProfilePage.css";
+import '../css/ProfilePage.css';
 
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row, Col } from 'reactstrap';
 
 class ProfilePage extends Component {
   constructor(props) {
     super(props);
     this.props.dispatch(setNavVisible());
     const profile = this.props.profile;
-    console.log("TEST");
+    console.log('TEST');
     console.log(profile);
     this.state = {
       isEditing: false
@@ -34,6 +35,10 @@ class ProfilePage extends Component {
     this.toggleEdit = this.toggleEdit.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.loadMember = this.loadMember.bind(this);
+
+    store.subscribe(() => {
+      this.setState({ role: store.getState().profile.member.role });
+    });
   }
 
   componentDidMount() {
@@ -62,8 +67,12 @@ class ProfilePage extends Component {
   }
 
   render() {
-    console.log(jwtToken);
-    console.log(this.mainInfo);
+    //console.log(jwtToken);
+    //console.log(this.mainInfo);
+    const profile = this.props.profile;
+    console.log(profile);
+    console.log(this.props);
+    console.log(this.state);
     let EditButton = {};
     if (
       personalAccessCheck(this.props.match.params.id, jwtToken._id) ||
@@ -74,14 +83,14 @@ class ProfilePage extends Component {
         jwtToken.circle
       )
     ) {
-      console.log("Editbutton visible");
+      console.log('Editbutton visible');
       EditButton = (
         <button className="button-save-edit" onClick={this.toggleEdit}>
           Editieren
         </button>
       );
     } else {
-      console.log("Editbutton unvisible");
+      console.log('Editbutton unvisible');
       EditButton = <div />;
     }
 
