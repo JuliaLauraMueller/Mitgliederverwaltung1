@@ -171,11 +171,18 @@ function updateURLs(userParam) {
   if (userParam.instagramLink) {
     userParam.instagramLink = validateUrl(userParam.instagramLink);
   }
+  if (userParam.companyURL) {
+    userParam.companyURL = validateUrl(userParam.companyURL);
+  }
 
   // TODO: reload of site after input validation
   return userParam;
 }
 
 function validateAll(userParam, errors) {
+  //Links
+  if (userParam.xingLink) {
+  }
+
   return errors;
 }
