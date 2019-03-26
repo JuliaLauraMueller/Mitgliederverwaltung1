@@ -1,5 +1,4 @@
-import jwtDecode from "jwt-decode";
+import jwtDecode from 'jwt-decode';
 
-const userToken = localStorage.getItem("user");
-console.log(jwtDecode(userToken));
+const userToken = localStorage.getItem('user');
 export default (userToken ? jwtDecode(userToken) : undefined);

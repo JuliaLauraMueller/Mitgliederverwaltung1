@@ -26,8 +26,6 @@ class ProfilePage extends Component {
     super(props);
     this.props.dispatch(setNavVisible());
     const profile = this.props.profile;
-    console.log('TEST');
-    console.log(profile);
     this.state = {
       isEditing: false
     };
@@ -37,7 +35,10 @@ class ProfilePage extends Component {
     this.loadMember = this.loadMember.bind(this);
 
     store.subscribe(() => {
-      this.setState({ role: store.getState().profile.member.role });
+      this.setState({
+        _id: store.getState().profile.member._id,
+        circle: store.getState().profile.member.city_id
+      });
     });
   }
 
@@ -67,30 +68,17 @@ class ProfilePage extends Component {
   }
 
   render() {
-    //console.log(jwtToken);
-    //console.log(this.mainInfo);
-    const profile = this.props.profile;
-    console.log(profile);
-    console.log(this.props);
-    console.log(this.state);
     let EditButton = {};
     if (
-      personalAccessCheck(this.props.match.params.id, jwtToken._id) ||
-      roleAccessCheck(
-        3,
-        this.props.match.params.circle,
-        jwtToken.role,
-        jwtToken.circle
-      )
+      personalAccessCheck(this.state._id, jwtToken._id) ||
+      roleAccessCheck(3, this.state.circle, jwtToken.role, jwtToken.circle)
     ) {
-      console.log('Editbutton visible');
       EditButton = (
         <button className="button-save-edit" onClick={this.toggleEdit}>
           Editieren
         </button>
       );
     } else {
-      console.log('Editbutton unvisible');
       EditButton = <div />;
     }
 
