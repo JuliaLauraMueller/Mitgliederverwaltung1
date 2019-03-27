@@ -190,14 +190,14 @@ class AdminPage extends Component {
                       onChange={this.handleChange.bind(this)}
                     />
                     <div>
-                      <Button
-                        color="primary"
-                        onClick={this.collapseMember}
+                      <input
+                        type="submit"
                         style={{ marginBottom: '1rem' }}
                         className="create-button"
-                      >
-                        Mitglied hinzufügen
-                      </Button>
+                        color="primary"
+                        onClick={this.collapseMember}
+                        value="Mitglied hinzufügen"
+                      />
                       <Collapse isOpen={this.state.collapseMember}>
                         <Card>
                           <CardBody>
@@ -227,14 +227,14 @@ class AdminPage extends Component {
           {this.createCircleEditModal()}
           <TabPane tabId="2">
             <div className="top-area">
-              <Button
-                color="primary"
-                onClick={this.collapseCircle}
+              <input
+                type="submit"
                 style={{ marginBottom: '1rem' }}
                 className="create-button"
-              >
-                City hinzufügen
-              </Button>
+                color="primary"
+                onClick={this.collapseCircle}
+                value="City hinzufügen"
+              />
               <Collapse isOpen={this.state.collapseCircle}>
                 <Card>
                   <CardBody>
@@ -472,23 +472,25 @@ class AdminPage extends Component {
           {this.state.memberToDelete.surname}' wirklich löschen?
         </ModalHeader>
         <ModalFooter>
-          <Button
+          <input
+            type="submit"
+            className="admin-button"
             color="primary"
             onClick={() => {
               this.deleteMember(this.state.memberToDelete._id);
               this.toggleMemberDeleteModal({});
             }}
-          >
-            Löschen
-          </Button>
-          <Button
-            color="secondary"
+            value="Löschen"
+          />
+          <input
+            type="submit"
+            className="admin-button"
+            color="primary"
             onClick={() => {
               this.toggleMemberDeleteModal({});
             }}
-          >
-            Abbrechen
-          </Button>
+            value="Abbrechen"
+          />
         </ModalFooter>
       </Modal>
     );
@@ -504,23 +506,26 @@ class AdminPage extends Component {
           City '{this.state.circleToDelete.name}' wirklich löschen?
         </ModalHeader>
         <ModalFooter>
-          <Button
+          <input
+            type="submit"
+            className="admin-button"
             color="primary"
             onClick={() => {
               this.deleteCircle(this.state.circleToDelete._id);
               this.toggleCircleDeleteModal({});
             }}
-          >
-            Löschen
-          </Button>{' '}
-          <Button
-            color="secondary"
+            value="Löschen"
+          />
+
+          <input
+            type="submit"
+            className="admin-button"
+            color="primary"
             onClick={() => {
               this.toggleCircleDeleteModal({});
             }}
-          >
-            Abbrechen
-          </Button>
+            value="Abbrechen"
+          />
         </ModalFooter>
       </Modal>
     );

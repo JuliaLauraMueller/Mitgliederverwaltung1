@@ -16,7 +16,10 @@ basic style admin page
   transition: none;
 }
 
-.create-button:hover {
+.create-button:hover,
+.create-button:active,
+.admin-button:hover,
+.admin-button:active {
   border-bottom: 1px solid rgb(15, 25, 41, 74%);
   background-color: transparent;
   color: rgb(15, 25, 41, 74%);
@@ -75,6 +78,7 @@ div .create-button {
 
 .admin-form-control {
   width: 100%;
+  margin-top: 1%;
 }
 
 .nav-tabs .nav-item.show .nav-link,
