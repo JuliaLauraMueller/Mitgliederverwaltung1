@@ -4,7 +4,7 @@ jest.mock('../models/UserModel');
 const { update } = require('./companyService');
 const { findById } = require('../models/CompanyModel');
 
-test('update company should return updated user', async () => {
+test('update company should return updated company', async () => {
   await update(0, {
     companyName: 'updatedN',
     companyURL: 'updatedURL',
@@ -27,7 +27,7 @@ test('update company should return updated user', async () => {
     });
 });
 
-test('update company should throw user not found', async () => {
+test('update company should throw company not found', async () => {
   var boolVal = false;
   try {
     await update(2, {

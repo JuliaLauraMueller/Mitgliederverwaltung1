@@ -1,6 +1,15 @@
 jest.mock('../models/UserModel');
+jest.mock('../models/CompanyModel');
+jest.mock('../models/CounterModel');
 
-const { update, authenticate } = require('./userService');
+const {
+  update,
+  authenticate,
+  deleteUser,
+  getAll,
+  create
+} = require('./userService');
+const { aggregate } = require('../models/CompanyModel');
 const { findById } = require('../models/UserModel');
 
 test('update user should return updated user', async () => {
@@ -78,4 +87,81 @@ test('authentication should return null when incorrect log in', async () => {
     password: 'wrong_password'
   });
   expect(result).toBeFalsy();
+});
+
+test('delete user should decrease the amount of users and companies', async () => {
+  let amountBefore = (await getAll()).length;
+  await deleteUser('AAAAAAAAAAAAAAAAAAAAAAAA');
+
+  let amountAfter = (await getAll()).length;
+  expect(amountAfter).toBe(amountBefore - 1);
+});
+
+test('create should throw an error when required fields are missing', async () => {
+  let errorReceived = false;
+  try {
+    await create({});
+  } catch (e) {
+    if (e && e.type == 'invalid_input') {
+      errorReceived = true;
+    }
+  }
+
+  expect(errorReceived).toBe(true);
+});
+
+test('create should throw an error when password is too short', async () => {
+  let errorReceived = false;
+  try {
+    await create({
+      firstname: 'Max',
+      surname: 'Muster',
+      circle: 'circle_id',
+      privateEmail: 'valid@example.com',
+      password: 'pa'
+    });
+  } catch (e) {
+    if (e && e.type == 'invalid_input') {
+      errorReceived = true;
+    }
+  }
+
+  expect(errorReceived).toBe(true);
+});
+
+test('create should throw an error when email is invalid', async () => {
+  let errorReceived = false;
+  try {
+    await create({
+      firstname: 'Max',
+      surname: 'Muster',
+      circle: 'circle_id',
+      privateEmail: 'invalid_email',
+      password: 'valid_password123'
+    });
+  } catch (e) {
+    if (e && e.type == 'invalid_input') {
+      errorReceived = true;
+    }
+  }
+
+  expect(errorReceived).toBe(true);
+});
+
+test('create should add a user and company when values are valid', async () => {
+  let userAmountBefore = (await getAll()).length;
+  let companyAmountBefore = (await aggregate()).length;
+  let newUser = {
+    firstname: 'Max',
+    surname: 'Muster',
+    circle: 'circle_id',
+    privateEmail: 'valid@example.com',
+    password: 'valid_password123'
+  };
+  await create(newUser);
+
+  let userAmountAfter = (await getAll()).length;
+  expect(userAmountAfter).toBe(userAmountBefore + 1);
+  let companyAmountAfter = (await aggregate()).length;
+  expect(companyAmountAfter).toBe(companyAmountBefore + 1);
 });
