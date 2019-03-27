@@ -264,8 +264,8 @@ class AdminPage extends Component {
         <tr key={circle._id}>
           <td className="d-none d-sm-table-cell">{circle.name}</td>
           <td>
-            <Link
-              className="admin-link admin-link-small"
+            <path
+              className="admin-link admin-link-small admin-cursor"
               onClick={() => this.toggleCircleEditModal(circle)}
               to={''}
             >
@@ -289,9 +289,9 @@ class AdminPage extends Component {
                   strokeWidth="0.25"
                 />
               </svg>
-            </Link>
-            <Link
-              className="admin-link admin-link-small"
+            </path>
+            <path
+              className="admin-link admin-link-small admin-cursor"
               onClick={() => this.toggleCircleDeleteModal(circle)}
               to={''}
             >
@@ -315,7 +315,7 @@ class AdminPage extends Component {
                   fill="#E1993D"
                 />
               </svg>
-            </Link>
+            </path>
           </td>
         </tr>
       );
@@ -359,8 +359,8 @@ class AdminPage extends Component {
                 />
               </svg>
             </Link>
-            <Link
-              className="admin-link admin-link-small"
+            <path
+              className="admin-link admin-link-small admin-cursor"
               to={'/members/changeRole/' + member._id}
             >
               <svg
@@ -379,9 +379,9 @@ class AdminPage extends Component {
                   fill="#E1993D"
                 />
               </svg>
-            </Link>
-            <Link
-              className="admin-link admin-link-small"
+            </path>
+            <path
+              className="admin-link admin-link-small admin-cursor"
               to=""
               onClick={() => this.toggleMemberDeleteModal(member)}
             >
@@ -405,7 +405,7 @@ class AdminPage extends Component {
                   fill="#E1993D"
                 />
               </svg>
-            </Link>
+            </path>
           </td>
         </tr>
       );

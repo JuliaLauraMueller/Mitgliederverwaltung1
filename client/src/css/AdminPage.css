@@ -87,3 +87,7 @@ div .create-button {
   border-color: rgb(15, 25, 41, 10%);
   border-bottom-color: transparent;
 }
+
+.admin-cursor:hover {
+  cursor: pointer;
+}
