@@ -36,13 +36,10 @@ app.use('/api/circles', circlesController);
 app.use(errorHandler);
 
 // Serve static client resources here if running in production
-process.env.NODE_ENV = 'production';
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('../client/dist'));
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client', 'dist', 'index.html'));
-  });
-}
+app.use(express.static('../client/build'));
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
+});
 
 //Start server
 const port = process.env.PORT || 5000;

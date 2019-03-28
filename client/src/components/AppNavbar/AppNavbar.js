@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import store from '../../helpers/store';
 
 import Toolbar from '../Toolbar/Toolbar';
 import SideDrawer from '../SideDrawer/SideDrawer';
@@ -13,28 +12,13 @@ import { setNavCollapsed } from '../../redux/actions/navigationActions';
 class AppNavbar extends Component {
   constructor(props) {
     super(props);
-    store.subscribe(() => {
-      const visibleStatus = store.getState().navigation.visible;
-      if (visibleStatus !== this.state.previouslyVisible) {
-        if (visibleStatus) {
-          this.state.visibleClass = 'visible';
-        } else {
-          this.state.visibleClass = 'invisible';
-        }
-        this.state.previouslyVisible = visibleStatus;
-        this.forceUpdate();
-      }
-    });
+    this.state = {
+      windowWith: window.innerWidth,
+      windowHeight: window.innerHeight,
+      sideDrawerOpen: false,
+      isMobile: false
+    };
   }
-
-  state = {
-    windowWith: window.innerWidth,
-    windowHeight: window.innerHeight,
-    sideDrawerOpen: false,
-    isMobile: false,
-    visibleClass: 'invisible',
-    previouslyVisible: false
-  };
 
   //window with
   handleResize() {
@@ -48,7 +32,9 @@ class AppNavbar extends Component {
     ) {
       // close nav when changing to mobile view
       this.props.dispatch(setNavCollapsed());
-      this.state.sideDrawerOpen = false;
+      this.setState({
+        sideDrawerOpen: false
+      });
     }
   }
   componentDidMount() {
@@ -66,11 +52,15 @@ class AppNavbar extends Component {
   };
 
   render() {
+    let visibleClass = 'invisible';
+    if (this.props.navigationVisible) {
+      visibleClass = 'visible';
+    }
     if (window.innerWidth <= 1200 || window.innerHeight <= 740) {
-      return <BurgerNav visibleClass={this.state.visibleClass} />;
+      return <BurgerNav visibleClass={visibleClass} />;
     } else {
       return (
-        <div className={'app-nav-bar ' + this.state.visibleClass}>
+        <div className={'app-nav-bar ' + visibleClass}>
           <div style={{ height: '100%' }}>
             <Toolbar
               className="tool-bar"
@@ -89,7 +79,9 @@ class AppNavbar extends Component {
 }
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    navigationVisible: state.navigation.visible
+  };
 }
 
 export default connect(mapStateToProps)(AppNavbar);

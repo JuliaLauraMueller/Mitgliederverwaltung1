@@ -42,10 +42,7 @@ class BurgerNav extends React.Component {
       >
         <div className="burger-navigation-logo-container">
           <div className="burger-navigation-logo">
-            <img
-              src={require('../../../public/img/logo_black_small.png')}
-              alt="Logo"
-            />
+            <img src={require('../../img/logo_black_small.png')} alt="Logo" />
           </div>
         </div>
 

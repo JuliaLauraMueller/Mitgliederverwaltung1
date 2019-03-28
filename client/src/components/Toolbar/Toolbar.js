@@ -184,7 +184,7 @@ const toolbar = props => (
           <a href="/">
             <img
               className="toolbar-icon"
-              src={require('../../../public/img/logo_black_small.png')}
+              src={require('../../img/logo_black_small.png')}
               alt="logo"
             />
           </a>

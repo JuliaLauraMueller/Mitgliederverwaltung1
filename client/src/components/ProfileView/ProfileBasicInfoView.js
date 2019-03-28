@@ -15,7 +15,7 @@ class ProfileBasicInfo extends Component {
               <img
                 id="profile-image"
                 style={{ width: '180px' }}
-                src={require('../../../public/img/marc_zimmermann.jpg')}
+                src={require('../../img/marc_zimmermann.jpg')}
                 alt="profile"
               />
             </Col>
@@ -43,7 +43,7 @@ class ProfileBasicInfo extends Component {
                 <img
                   className="icons"
                   alt="xing-icon"
-                  src={require('../../../public/img/xing.svg')}
+                  src={require('../../img/xing.svg')}
                 />
               </Button>
               <Button
@@ -54,7 +54,7 @@ class ProfileBasicInfo extends Component {
                 <img
                   className="icons"
                   alt="linkedin-icon"
-                  src={require('../../../public/img/linkedin.svg')}
+                  src={require('../../img/linkedin.svg')}
                 />
               </Button>
               <Button
@@ -65,7 +65,7 @@ class ProfileBasicInfo extends Component {
                 <img
                   className="icons"
                   alt="fb-icon"
-                  src={require('../../../public/img/facebook.svg')}
+                  src={require('../../img/facebook.svg')}
                 />
               </Button>
               <Button
@@ -76,14 +76,14 @@ class ProfileBasicInfo extends Component {
                 <img
                   className="icons"
                   alt="instagramm-icon"
-                  src={require('../../../public/img/instagram.svg')}
+                  src={require('../../img/instagram.svg')}
                 />
               </Button>
               <Button className="icon-button" id="mail-button">
                 <img
                   className="icons"
                   alt="mail-icon"
-                  src={require('../../../public/img/mail-profile.svg')}
+                  src={require('../../img/mail-profile.svg')}
                 />
               </Button>
             </Col>
