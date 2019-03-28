@@ -15,9 +15,19 @@ import ProfilePage from '../pages/ProfilePage';
 import MemberPage from '../pages/MemberPage';
 import AdminPage from '../pages/AdminPage';
 import AppNavbar from '../components/AppNavbar/AppNavbar';
+import jwtToken from '../helpers/jwtAccessor';
 
 class Routes extends Component {
   render() {
+    let AdminRoute = {};
+    if (jwtToken == undefined) {
+      AdminRoute = <PrivateRoute exact path="/admin" component={AdminPage} />;
+    } else if (3 <= jwtToken.role) {
+      AdminRoute = <PrivateRoute exact path="/admin" component={AdminPage} />;
+    } else {
+      AdminRoute = <PrivateRoute exact path="/login" component={LoginPage} />;
+    }
+
     return (
       <Router history={history}>
         <div>
@@ -32,7 +42,7 @@ class Routes extends Component {
                 component={ProfilePage}
               />
               <PrivateRoute exact path="/members" component={MemberPage} />
-              <PrivateRoute exact path="/admin" component={AdminPage} />
+              {AdminRoute}
               <Route component={NotFoundPage} />
             </Switch>
           </div>
