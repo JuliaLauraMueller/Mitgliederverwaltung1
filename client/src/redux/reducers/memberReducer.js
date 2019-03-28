@@ -17,7 +17,7 @@ function levenshteinInRange(searchText, matchingText) {
   }
 }
 
-function filterMembers(members, searchText) {
+export function filterMembers(members, searchText) {
   if (!searchText || searchText.length == 0) {
     return members;
   }
@@ -26,7 +26,7 @@ function filterMembers(members, searchText) {
   return members.filter(m => {
     let surname = replaceUmlauts(m.surname.toLowerCase()).substring(
       0,
-      searchText.length + MAX_LEVENSHTEIN_DISTANCE
+      searchText.length + 1
     );
 
     let fullname = replaceUmlauts(
@@ -35,22 +35,22 @@ function filterMembers(members, searchText) {
 
     let company = replaceUmlauts(m.company.toLowerCase()).substring(
       0,
-      searchText.length + MAX_LEVENSHTEIN_DISTANCE
+      searchText.length + 1
     );
 
     let job = replaceUmlauts(m.job.toLowerCase()).substring(
       0,
-      searchText.length + MAX_LEVENSHTEIN_DISTANCE
+      searchText.length + 1
     );
 
     let funktion = replaceUmlauts(m.function.toLowerCase()).substring(
       0,
-      searchText.length + MAX_LEVENSHTEIN_DISTANCE
+      searchText.length + 1
     );
 
     let sector = replaceUmlauts(m.sector.toLowerCase()).substring(
       0,
-      searchText.length + MAX_LEVENSHTEIN_DISTANCE
+      searchText.length + 1
     );
 
     return (
@@ -64,7 +64,7 @@ function filterMembers(members, searchText) {
   });
 }
 
-function filterCircles(members, filteredCircles) {
+export function filterCircles(members, filteredCircles) {
   if (!filteredCircles || filteredCircles.length == 0) {
     return members;
   } else {
@@ -112,3 +112,5 @@ export default function(state = initialState, action) {
       return state;
   }
 }
+
+//module.exports = { filterMembers };
