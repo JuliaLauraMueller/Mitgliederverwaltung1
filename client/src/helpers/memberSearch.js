@@ -94,7 +94,18 @@ export function filterByCircles(members, filteredCircles) {
   }
 }
 
+export function ownCircleMembers(members, filteredCircles, role) {
+  if (role >= 5 || !filteredCircles || filteredCircles.length == 0) {
+    return members;
+  } else {
+    return members.filter(m => {
+      return filteredCircles.includes(m.circle ? m.circle._id : '');
+    });
+  }
+}
+
 export default {
   filterMembers,
-  filterByCircles
+  filterByCircles,
+  ownCircleMembers
 };

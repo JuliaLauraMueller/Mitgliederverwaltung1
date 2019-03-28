@@ -15,7 +15,7 @@ import jwtToken from '../helpers/jwtAccessor';
 import {
   personalAccessCheck,
   roleAccessCheck
-} from '../../../server/services/roleService';
+} from '../../../server/helpers/roleHelper';
 
 import '../css/ProfilePage.css';
 
