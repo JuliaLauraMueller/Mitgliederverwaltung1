@@ -101,12 +101,15 @@ class ProfileMainInformationEDIT extends Component {
     console.log('MAIN SECOND BEFORE');
     //this.props.dispatch(putProfile(mainInfoUpdate));
     //this.props.dispatch(putCompany(companyUpdate));
-    await this.props
-      .dispatch(putWholeData(mainInfoUpdate, basicInfoUpdate, companyUpdate))
-      .catch(err => {
-        console.log('ERROR EDIT PAGE');
-        this.props.dispatch(alertError(err.join('\n')));
-      });
+    await this.props.dispatch(
+      putWholeData(mainInfoUpdate, basicInfoUpdate, companyUpdate).catch(
+        err => {
+          console.log('ERROR EDIT PAGE');
+          console.log(err);
+          this.props.dispatch(alertError(err.join('\n')));
+        }
+      )
+    );
     console.log('MAIN SECOND AFTER');
   }
 

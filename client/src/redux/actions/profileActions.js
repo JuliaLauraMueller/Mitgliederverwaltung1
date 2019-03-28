@@ -65,6 +65,8 @@ export async function putWholeData(
       }
     })
     .catch(error => {
+      console.log('ACTION');
+      console.log(error);
       return Promise.reject(error);
     });
   //.then(res => {
@@ -79,8 +81,8 @@ export async function putWholeData(
 
   //console.log(profileMainData);
   //console.log(companyData);
-  return function(dispatch) {
-    dispatch({ type: PUT_PROFILE, payload: profileMainData });
-    dispatch({ type: PUT_PROFILE, payload: companyData });
-  };
+  //return function(dispatch) {
+  //  dispatch({ type: PUT_PROFILE, payload: profileMainData });
+  //  dispatch({ type: PUT_PROFILE, payload: companyData });
+  //};
 }
