@@ -100,9 +100,7 @@ async function updateUser(id, userParam) {
   userData = updateURLs(userData, companyData);
   var errors = [];
   errors = validateAll(userData, errors);
-  console.log('User worked');
   errors = companyService.validateCompany(companyData, errors);
-  console.log('companyworked');
 
   if (errors.length != 0) {
     //TODO: Error handling

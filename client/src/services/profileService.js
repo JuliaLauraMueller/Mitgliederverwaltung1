@@ -85,14 +85,13 @@ function getCompanyData(id) {
 async function setUserData(userData, companyData) {
   var data = { userData: userData, companyData: companyData };
   //console.log(data);
-  var res = await axios.put('/users/' + data.userData._id, data).catch(err => {
+  await axios.put('/users/' + data.userData._id, data).catch(error => {
     console.log('SERVICE');
-    console.error(err);
-    if (err && err.data.error && err.data.error.type == 'invalid_input') {
+    console.log(error);
+    if (error && error.data.error && error.data.error.type == 'invalid_input') {
       return Promise.reject(err.data.error.errors);
     }
   });
-  return res;
 }
 
 async function setCompanyData(data) {
