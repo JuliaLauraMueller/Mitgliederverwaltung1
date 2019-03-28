@@ -74,6 +74,10 @@ svg {
   float: right;
 }
 
+.city-name-label {
+  margin-left: 15px;
+}
+
 .top-area {
   margin-top: 1rem;
 }
@@ -82,9 +86,10 @@ div .create-button {
   background-color: transparent;
 }
 
-.admin-form-control {
+.admin-form-control.form-control {
   width: 100%;
   margin-top: 1%;
+  margin-left: 5px;
 }
 
 .nav-tabs .nav-item.show .nav-link,
