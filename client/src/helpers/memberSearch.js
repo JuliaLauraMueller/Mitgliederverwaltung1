@@ -16,7 +16,7 @@ function replaceUmlauts(text) {
 }
 
 export function filterMembers(members, searchText, searchForCircles = false) {
-  if (!searchText || searchText.length == 0) {
+  if (!searchText || searchText.length === 0) {
     return members;
   }
   searchText = replaceUmlauts(searchText.toLowerCase());
@@ -85,7 +85,7 @@ export function filterMembers(members, searchText, searchForCircles = false) {
 }
 
 export function filterByCircles(members, filteredCircles) {
-  if (!filteredCircles || filteredCircles.length == 0) {
+  if (!filteredCircles || filteredCircles.length === 0) {
     return members;
   } else {
     return members.filter(m => {
