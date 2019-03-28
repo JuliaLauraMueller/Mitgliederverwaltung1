@@ -66,7 +66,7 @@ class ProfileMainInformationEDIT extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  onSave(basicInfoUpdate) {
+  async onSave(basicInfoUpdate) {
     const mainInfoUpdate = {
       _id: this.props.profile._id,
       sector: this.state.sector,
@@ -101,9 +101,12 @@ class ProfileMainInformationEDIT extends Component {
     console.log('MAIN SECOND BEFORE');
     //this.props.dispatch(putProfile(mainInfoUpdate));
     //this.props.dispatch(putCompany(companyUpdate));
-    this.props.dispatch(
-      putWholeData(mainInfoUpdate, basicInfoUpdate, companyUpdate)
-    );
+    await this.props
+      .dispatch(putWholeData(mainInfoUpdate, basicInfoUpdate, companyUpdate))
+      .catch(err => {
+        console.log('ERROR EDIT PAGE');
+        this.props.dispatch(alertError(err.join('\n')));
+      });
     console.log('MAIN SECOND AFTER');
   }
 

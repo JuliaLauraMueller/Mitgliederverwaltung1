@@ -54,7 +54,20 @@ export async function putWholeData(
 ) {
   Object.assign(profileMainData, profileBasicData);
 
-  await profileService.setUserData(profileMainData, companyData); //.then(res => {
+  await profileService
+    .setUserData(profileMainData, companyData)
+    .then(res => {
+      if (res) {
+        return function(dispatch) {
+          dispatch({ type: PUT_PROFILE, payload: profileMainData });
+          dispatch({ type: PUT_PROFILE, payload: companyData });
+        };
+      }
+    })
+    .catch(error => {
+      return Promise.reject(error);
+    });
+  //.then(res => {
   //if (res) {
   //var result = profileService.setCompanyData(companyData);
   //if (result) {

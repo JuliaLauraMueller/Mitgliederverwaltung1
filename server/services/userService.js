@@ -104,15 +104,16 @@ async function updateUser(id, userParam) {
   errors = companyService.validateCompany(companyData, errors);
   console.log('companyworked');
 
-  if (errors.length === 0) {
+  if (errors.length != 0) {
+    //TODO: Error handling
+    console.log(errors);
+    throw { type: 'invalid_input', errors };
+  } else {
     var query = { _id: id };
     //await User.updateOne(query, userParam, function(err, res) {
     //  if (err) throw err;
     //});
     console.log('WORKED');
-  } else {
-    //TODO: Error handling
-    console.log(errors);
   }
 }
 

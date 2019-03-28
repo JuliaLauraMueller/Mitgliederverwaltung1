@@ -54,7 +54,15 @@ function update(req, res, next) {
   userService
     .updateUser(req.params.id, req.body)
     .then(() => res.json({}))
-    .catch(err => next(err));
+    .catch(error => {
+      console.log('ERROR USERCONTROLLER');
+      if (error && error.type == 'invalid_input') {
+        res.status(422).send({ error });
+      } else {
+        console.error('User update error: ', error);
+        res.sendStatus(500);
+      }
+    });
 }
 
 function _delete(req, res, next) {
