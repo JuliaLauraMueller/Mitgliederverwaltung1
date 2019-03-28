@@ -35,7 +35,8 @@ const schema = new Schema({
   linkedinLink: { type: String },
   facebookLink: { type: String },
   instagramLink: { type: String },
-  offerings: { type: String }
+  offerings: { type: String },
+  avatar: { type: Buffer }
 });
 
 schema.set('toJSON', { virtuals: true });

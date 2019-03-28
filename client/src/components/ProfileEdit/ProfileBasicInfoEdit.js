@@ -65,14 +65,36 @@ class ProfileBasicInfoEDIT extends Component {
   }
 
   fileSelectedHandler = event => {
-    console.log(event.target.files[0]);
-    const fd = new FormData();
-    fd.append('image', this.state.avatar, this.state.avatar.name);
-    this.state.avatar = event.target.files[0];
+    var something = event.target.files[0];
+    this.state.avatar = something;
+    console.log('it set the avatar now.');
     console.log(this.state.avatar);
+    // console.log(this.state.avatar);
+    // console.log(event.target.files[0]);
+    // const fd = new FormData();
+    // this.state.avatar = event.target.files[0];
+    // fd.append('image', this.state.avatar, this.state.avatar.name);
+    // console.log(this.state.avatar);
+    // console.log(this.state);
   };
 
+  handleFileUpload({ file }) {
+    console.log(file);
+    //const f = fs.readFileSync(files[0].path);
+    //this.state.avatar = f;
+    var bla = 'Awesome Cat Pic';
+  }
+
+  arrayBufferToBase64(buffer) {
+    var binary = '';
+    var bytes = [].slice.call(new Uint8Array(buffer));
+    bytes.forEach(b => (binary += String.fromCharCode(b)));
+    return window.btoa(binary);
+  }
+
   render() {
+    var base64Flag = 'data:image/jpeg;base64,';
+    var imageStr = 'bla';
     return (
       <Row>
         <Col md={{ offset: 0, size: 6 }} xs={{ offset: 1 }}>
