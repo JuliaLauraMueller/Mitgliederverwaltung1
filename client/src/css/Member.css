@@ -72,8 +72,8 @@
 }
 
 .search-input {
-  background: "none";
-  border: "none";
+  background: 'none';
+  border: 'none';
   font-family: Helvetica, sans-serif;
   font-weight: 0;
   font-size: 22px;
@@ -110,7 +110,7 @@ hr {
   justify-content: center;
 }
 .member-cards-row::after {
-  content: "";
+  content: '';
 }
 
 .member-card {
@@ -210,7 +210,7 @@ hr {
   font-family: Helvetica, sans-serif;
   font-weight: lighter;
   font-size: 11pt;
-  margin-left: 120px;
+  margin-left: 117px;
 }
 
 .profile-text:hover {
@@ -220,7 +220,7 @@ hr {
   font-family: Helvetica, sans-serif;
   font-weight: lighter;
   font-size: 11pt;
-  margin-left: 120px;
+  margin-left: 117px;
 }
 
 .profile-text svg {
@@ -234,8 +234,8 @@ hr {
 }
 
 .profile-arrow {
-  height: 12px;
-  width: 7px;
+  height: 17px;
+  width: 12px;
   margin-top: -2px;
   margin-left: 3px;
 }
