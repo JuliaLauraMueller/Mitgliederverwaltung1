@@ -127,7 +127,7 @@ class ProfileBasicInfoEDIT extends Component {
                     type="text"
                     name="title"
                     onChange={this.onChange}
-                    value={this.state.title}
+                    value={this.state.title || ''}
                   />
                 </div>
               </InputGroup>
@@ -138,7 +138,7 @@ class ProfileBasicInfoEDIT extends Component {
                     type="text"
                     name="firstname"
                     onChange={this.onChange}
-                    value={this.state.firstname}
+                    value={this.state.firstname || ''}
                   />
                 </div>
               </InputGroup>
@@ -149,7 +149,7 @@ class ProfileBasicInfoEDIT extends Component {
                     type="text"
                     name="surename"
                     onChange={this.onChange}
-                    value={this.state.surename}
+                    value={this.state.surename || ''}
                   />
                 </div>
               </InputGroup>
@@ -162,7 +162,7 @@ class ProfileBasicInfoEDIT extends Component {
                     type="text"
                     name="alias"
                     onChange={this.onChange}
-                    value={this.state.alias}
+                    value={this.state.alias || ''}
                   />
                 </div>
               </InputGroup>
@@ -178,7 +178,7 @@ class ProfileBasicInfoEDIT extends Component {
                     type="text"
                     name="xingLink"
                     onChange={this.onChange}
-                    value={this.state.xingLink}
+                    value={this.state.xingLink || ''}
                   />
                 </div>
               </InputGroup>
@@ -194,7 +194,7 @@ class ProfileBasicInfoEDIT extends Component {
                     type="text"
                     name="linkedinLink"
                     onChange={this.onChange}
-                    value={this.state.linkedinLink}
+                    value={this.state.linkedinLink || ''}
                   />
                 </div>
               </InputGroup>
@@ -210,7 +210,7 @@ class ProfileBasicInfoEDIT extends Component {
                     type="text"
                     name="facebookLink"
                     onChange={this.onChange}
-                    value={this.state.facebookLink}
+                    value={this.state.facebookLink || ''}
                   />
                 </div>
               </InputGroup>
@@ -227,7 +227,7 @@ class ProfileBasicInfoEDIT extends Component {
                     type="text"
                     name="instagramLink"
                     onChange={this.onChange}
-                    value={this.state.instagramLink}
+                    value={this.state.instagramLink || ''}
                   />
                 </div>
               </InputGroup>
@@ -251,7 +251,7 @@ class ProfileBasicInfoEDIT extends Component {
                     type="text"
                     name="memberNumber"
                     onChange={this.onChange}
-                    value={this.state.memberNumber}
+                    value={this.state.memberNumber || ''}
                   />
                 </div>
               </InputGroup>
@@ -267,7 +267,7 @@ class ProfileBasicInfoEDIT extends Component {
                     type="text"
                     name="entryDate"
                     onChange={this.onChange}
-                    value={this.state.entryDate}
+                    value={this.state.entryDate || ''}
                   />
                 </div>
               </InputGroup>
@@ -285,7 +285,7 @@ class ProfileBasicInfoEDIT extends Component {
                     type="text"
                     name="birthdate"
                     onChange={this.onChange}
-                    value={this.state.birthdate}
+                    value={this.state.birthdate || ''}
                   />
                 </div>
               </InputGroup>
@@ -301,7 +301,7 @@ class ProfileBasicInfoEDIT extends Component {
                     type="text"
                     name="status"
                     onChange={this.onChange}
-                    value={this.state.status}
+                    value={this.state.status || ''}
                   />
                 </div>
               </InputGroup>
@@ -317,7 +317,7 @@ class ProfileBasicInfoEDIT extends Component {
                     type="text"
                     name="city"
                     onChange={this.onChange}
-                    value={this.state.city}
+                    value={this.state.city || ''}
                   />
                 </div>
               </InputGroup>
@@ -333,7 +333,7 @@ class ProfileBasicInfoEDIT extends Component {
                     type="text"
                     name="godfather"
                     onChange={this.onChange}
-                    value={this.state.godfather}
+                    value={this.state.godfather || ''}
                   />
                 </div>
               </InputGroup>
@@ -350,7 +350,7 @@ class ProfileBasicInfoEDIT extends Component {
                     name="offerings"
                     rows="3"
                     onChange={this.onChange}
-                    value={this.state.offerings}
+                    value={this.state.offerings || ''}
                   />
                 </div>
               </InputGroup>
