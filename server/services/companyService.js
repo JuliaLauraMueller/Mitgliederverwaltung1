@@ -3,16 +3,11 @@ const Company = db.Company;
 const usersService = require('../services/userService');
 
 module.exports = {
-  getAll,
   getById,
   update,
   _delete,
   createEmpty
 };
-
-async function getAll() {
-  return await Company.find().select();
-}
 
 async function getById(id) {
   return await Company.findById(id).select();
@@ -34,11 +29,9 @@ async function _delete(id) {
 }
 
 async function createEmpty() {
-  const company = new Company();
-
-  // save user
+  // save company
   try {
-    return await company.save();
+    return await Company.create({});
   } catch (error) {
     throw { type: 'processing_error', error };
   }

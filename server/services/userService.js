@@ -74,21 +74,20 @@ async function create(userParam) {
     throw { type: 'invalid_input', errors };
   }
 
-  const user = new User(userParam);
   // generate new member number
-  user.memberNumber = await getNextSequenceValue();
+  userParam.memberNumber = await getNextSequenceValue();
 
   // hash password
   if (userParam.password) {
-    user.password = bcrypt.hashSync(userParam.password, 10);
+    userParam.password = bcrypt.hashSync(userParam.password, 10);
   }
 
   try {
     // create company for user
     let company = await companyService.createEmpty();
-    user.company = company._id;
+    userParam.company = company._id;
     // create user
-    return await user.save();
+    return await User.create(userParam);
   } catch (error) {
     throw { type: 'processing_error', error };
   }
