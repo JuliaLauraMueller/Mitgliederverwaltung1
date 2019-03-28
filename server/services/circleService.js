@@ -51,9 +51,8 @@ async function create(circleParam) {
     throw { type: 'invalid_input', errors };
   }
 
-  const circle = new Circle(circleParam);
   try {
-    return await circle.save();
+    return await Circle.create(circleParam);
   } catch (error) {
     throw { type: 'processing_error', error };
   }
