@@ -42,7 +42,7 @@ class AdminCreateUser extends Component {
 
   async submitMember(event) {
     event.preventDefault();
-    if (this.state.circle == '' && this.props.circles[0]) {
+    if (this.state.circle === '' && this.props.circles[0]) {
       this.state.circle = this.props.circles[0]._id; // set default value
     }
     await this.props
