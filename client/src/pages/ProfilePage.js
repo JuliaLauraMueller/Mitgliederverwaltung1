@@ -19,7 +19,7 @@ import {
 
 import '../css/ProfilePage.css';
 
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Form, FormGroup } from 'reactstrap';
 
 class ProfilePage extends Component {
   constructor(props) {
@@ -85,29 +85,36 @@ class ProfilePage extends Component {
     if (this.state.isEditing) {
       return (
         <Container className="profile-page__container">
-          <Row>
-            <Col md="12">
-              <button className="button-save-edit" onClick={this.handleClick}>
-                Speichern
-              </button>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs="12" md="12">
-              <ProfileBasicInfoEDIT
-                ref={basicInfo => {
-                  this.basicInfo = basicInfo;
-                }}
-              />
-            </Col>
-            <Col xs="12" md="12">
-              <ProfileMainInformationEDIT
-                ref={mainInfo => {
-                  this.mainInfo = mainInfo;
-                }}
-              />
-            </Col>
-          </Row>
+          <Form onSubmit={this.handleClick}>
+            <Row>
+              <Col md="12">
+                <input
+                  type="submit"
+                  className="button-save-edit"
+                  value="Speichern"
+                  onClick={this.handleClick}
+                />
+              </Col>
+            </Row>
+            <FormGroup row>
+              <Row>
+                <Col xs="12" md="12">
+                  <ProfileBasicInfoEDIT
+                    ref={basicInfo => {
+                      this.basicInfo = basicInfo;
+                    }}
+                  />
+                </Col>
+                <Col xs="12" md="12">
+                  <ProfileMainInformationEDIT
+                    ref={mainInfo => {
+                      this.mainInfo = mainInfo;
+                    }}
+                  />
+                </Col>
+              </Row>
+            </FormGroup>
+          </Form>
         </Container>
       );
     } else {

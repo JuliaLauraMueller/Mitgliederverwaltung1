@@ -1,18 +1,19 @@
 module.exports = {
   findById,
-  findOne
+  findOne,
+  updateOne
 };
 
-let cricles = [
+let circles = [
   {
     id: '0',
-    name: 'correct',
+    name: 'Brugg',
     save() {}
   },
 
   {
     id: '1',
-    name: 'incorrect',
+    name: 'Aarau',
     save() {}
   }
 ];
@@ -31,4 +32,9 @@ async function findOne(search) {
     return circle.privateEmail == search.privateEmail;
   });
   return result;
+}
+
+async function updateOne(idObject, param) {
+  var result = await findById(idObject._id);
+  result.name = param.name;
 }

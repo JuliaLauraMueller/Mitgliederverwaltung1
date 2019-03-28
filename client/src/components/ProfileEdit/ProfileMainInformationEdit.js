@@ -111,14 +111,14 @@ class ProfileMainInformationEDIT extends Component {
             <Col>
               <InputGroup>
                 <InputGroupAddon addonType="prepend">Branche:</InputGroupAddon>
-                <form className="input-field">
+                <div className="input-field">
                   <Input
                     type="text"
                     name="sector"
                     onChange={this.onChange}
                     value={this.state.sector}
                   />
-                </form>
+                </div>
               </InputGroup>
             </Col>
           </Row>
@@ -126,14 +126,14 @@ class ProfileMainInformationEDIT extends Component {
             <Col>
               <InputGroup>
                 <InputGroupAddon addonType="prepend">Beruf:</InputGroupAddon>
-                <form className="input-field">
+                <div className="input-field">
                   <Input
                     type="text"
                     name="job"
                     onChange={this.onChange}
                     value={this.state.job}
                   />
-                </form>
+                </div>
               </InputGroup>
             </Col>
           </Row>
@@ -142,14 +142,14 @@ class ProfileMainInformationEDIT extends Component {
             <Col>
               <InputGroup>
                 <InputGroupAddon addonType="prepend">Funktion:</InputGroupAddon>
-                <form className="input-field">
+                <div className="input-field">
                   <Input
                     type="text"
                     name="function"
                     onChange={this.onChange}
                     value={this.state.function}
                   />
-                </form>
+                </div>
               </InputGroup>
             </Col>
           </Row>
@@ -158,14 +158,14 @@ class ProfileMainInformationEDIT extends Component {
             <Col>
               <InputGroup>
                 <InputGroupAddon addonType="prepend">Firma:</InputGroupAddon>
-                <form className="input-field">
+                <div className="input-field">
                   <Input
                     type="text"
                     name="company"
                     onChange={this.onChange}
                     value={this.state.company}
                   />
-                </form>
+                </div>
               </InputGroup>
             </Col>
           </Row>
@@ -174,14 +174,14 @@ class ProfileMainInformationEDIT extends Component {
             <Col>
               <InputGroup>
                 <InputGroupAddon addonType="prepend">Tel:</InputGroupAddon>
-                <form className="input-field">
+                <div className="input-field">
                   <Input
                     type="text"
                     name="companyTel"
                     onChange={this.onChange}
                     value={this.state.companyTel}
                   />
-                </form>
+                </div>
               </InputGroup>
             </Col>
           </Row>
@@ -190,14 +190,14 @@ class ProfileMainInformationEDIT extends Component {
             <Col>
               <InputGroup>
                 <InputGroupAddon addonType="prepend">Mobile:</InputGroupAddon>
-                <form className="input-field">
+                <div className="input-field">
                   <Input
                     type="text"
                     name="companyMobile"
                     onChange={this.onChange}
                     value={this.state.companyMobile}
                   />
-                </form>
+                </div>
               </InputGroup>
             </Col>
           </Row>
@@ -206,14 +206,14 @@ class ProfileMainInformationEDIT extends Component {
             <Col>
               <InputGroup>
                 <InputGroupAddon addonType="prepend">Strasse:</InputGroupAddon>
-                <form id="input-field">
+                <div id="input-field">
                   <Input
                     type="text"
                     name="companyStreet"
                     onChange={this.onChange}
                     value={this.state.companyStreet}
                   />
-                </form>
+                </div>
               </InputGroup>
             </Col>
           </Row>
@@ -222,14 +222,14 @@ class ProfileMainInformationEDIT extends Component {
             <Col>
               <InputGroup>
                 <InputGroupAddon addonType="prepend">Nr.:</InputGroupAddon>
-                <form id="input-field">
+                <div id="input-field">
                   <Input
                     type="text"
                     name="companyStreetNr"
                     onChange={this.onChange}
                     value={this.state.companyStreetNr}
                   />
-                </form>
+                </div>
               </InputGroup>
             </Col>
           </Row>
@@ -238,14 +238,14 @@ class ProfileMainInformationEDIT extends Component {
             <Col>
               <InputGroup>
                 <InputGroupAddon addonType="prepend">PLZ:</InputGroupAddon>
-                <form id="input-field">
+                <div id="input-field">
                   <Input
                     type="text"
                     name="companyZip"
                     onChange={this.onChange}
                     value={this.state.companyZip}
                   />
-                </form>
+                </div>
               </InputGroup>
             </Col>
           </Row>
@@ -254,14 +254,14 @@ class ProfileMainInformationEDIT extends Component {
             <Col>
               <InputGroup>
                 <InputGroupAddon addonType="prepend">Ort:</InputGroupAddon>
-                <form id="input-field">
+                <div id="input-field">
                   <Input
                     type="text"
                     name="companyCity"
                     onChange={this.onChange}
                     value={this.state.companyCity}
                   />
-                </form>
+                </div>
               </InputGroup>
             </Col>
           </Row>
@@ -270,14 +270,14 @@ class ProfileMainInformationEDIT extends Component {
             <Col>
               <InputGroup>
                 <InputGroupAddon addonType="prepend">E-Mail:</InputGroupAddon>
-                <form className="input-field">
+                <div className="input-field">
                   <Input
                     type="text"
                     name="companyEmail"
                     onChange={this.onChange}
                     value={this.state.companyEmail}
                   />
-                </form>
+                </div>
               </InputGroup>
             </Col>
           </Row>
@@ -288,14 +288,14 @@ class ProfileMainInformationEDIT extends Component {
                 <InputGroupAddon addonType="prepend">
                   URL Firma:
                 </InputGroupAddon>
-                <form className="input-field">
+                <div className="input-field">
                   <Input
                     type="text"
                     name="companyURL"
                     onChange={this.onChange}
                     value={this.state.companyURL}
                   />
-                </form>
+                </div>
               </InputGroup>
             </Col>
           </Row>
@@ -314,14 +314,14 @@ class ProfileMainInformationEDIT extends Component {
             <Col>
               <InputGroup>
                 <InputGroupAddon addonType="prepend">Tel</InputGroupAddon>
-                <form className="input-field">
+                <div className="input-field">
                   <Input
                     type="text"
                     name="privateTel"
                     onChange={this.onChange}
                     value={this.state.privateTel}
                   />
-                </form>
+                </div>
               </InputGroup>
             </Col>
           </Row>
@@ -330,14 +330,14 @@ class ProfileMainInformationEDIT extends Component {
             <Col>
               <InputGroup>
                 <InputGroupAddon addonType="prepend">Mobile:</InputGroupAddon>
-                <form className="input-field">
+                <div className="input-field">
                   <Input
                     type="text"
                     name="privateMobile"
                     onChange={this.onChange}
                     value={this.state.privateMobile}
                   />
-                </form>
+                </div>
               </InputGroup>
             </Col>
           </Row>
@@ -346,14 +346,14 @@ class ProfileMainInformationEDIT extends Component {
             <Col>
               <InputGroup>
                 <InputGroupAddon addonType="prepend">Strasse:</InputGroupAddon>
-                <form id="input-field">
+                <div id="input-field">
                   <Input
                     type="text"
                     name="privateStreet"
                     onChange={this.onChange}
                     value={this.state.privateStreet}
                   />
-                </form>
+                </div>
               </InputGroup>
             </Col>
           </Row>
@@ -362,14 +362,14 @@ class ProfileMainInformationEDIT extends Component {
             <Col>
               <InputGroup>
                 <InputGroupAddon addonType="prepend">Nr.:</InputGroupAddon>
-                <form id="input-field">
+                <div id="input-field">
                   <Input
                     type="text"
                     name="privateStreetNr"
                     onChange={this.onChange}
                     value={this.state.privateStreetNr}
                   />
-                </form>
+                </div>
               </InputGroup>
             </Col>
           </Row>
@@ -378,14 +378,14 @@ class ProfileMainInformationEDIT extends Component {
             <Col>
               <InputGroup>
                 <InputGroupAddon addonType="prepend">PLZ:</InputGroupAddon>
-                <form id="input-field">
+                <div id="input-field">
                   <Input
                     type="text"
                     name="privateZip"
                     onChange={this.onChange}
                     value={this.state.privateZip}
                   />
-                </form>
+                </div>
               </InputGroup>
             </Col>
           </Row>
@@ -394,14 +394,14 @@ class ProfileMainInformationEDIT extends Component {
             <Col>
               <InputGroup>
                 <InputGroupAddon addonType="prepend">Ort:</InputGroupAddon>
-                <form id="input-field">
+                <div id="input-field">
                   <Input
                     type="text"
                     name="privateCity"
                     onChange={this.onChange}
                     value={this.state.privateCity}
                   />
-                </form>
+                </div>
               </InputGroup>
             </Col>
           </Row>
@@ -447,14 +447,14 @@ class ProfileMainInformationEDIT extends Component {
             <Col>
               <InputGroup>
                 <InputGroupAddon addonType="prepend">E-Mail:</InputGroupAddon>
-                <form className="input-field space">
+                <div className="input-field space">
                   <Input
                     type="text"
                     name="privateEmail"
                     onChange={this.onChange}
                     value={this.state.privateEmail}
                   />
-                </form>
+                </div>
               </InputGroup>
             </Col>
           </Row>

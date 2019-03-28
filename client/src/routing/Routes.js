@@ -13,6 +13,7 @@ import LoginPage from '../pages/LoginPage';
 import NotFoundPage from '../pages/NotFoundPage';
 import ProfilePage from '../pages/ProfilePage';
 import MemberPage from '../pages/MemberPage';
+import AdminPage from '../pages/AdminPage';
 import AppNavbar from '../components/AppNavbar/AppNavbar';
 
 class Routes extends Component {
@@ -31,6 +32,7 @@ class Routes extends Component {
                 component={ProfilePage}
               />
               <PrivateRoute exact path="/members" component={MemberPage} />
+              <PrivateRoute exact path="/admin" component={AdminPage} />
               <Route component={NotFoundPage} />
             </Switch>
           </div>

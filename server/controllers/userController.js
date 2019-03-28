@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const userService = require('../services/userService');
-const roleService = require('../services/roleService');
+const roleHelper = require('../helpers/roleHelper');
+const errorHandler = require('../helpers/errorHandler');
 
 // routes
 router.post('/auth', authenticate);
@@ -10,7 +11,8 @@ router.get('/', getAll);
 router.get('/current', getCurrent);
 router.get('/:id', getById);
 router.put('/:id', update);
-router.delete('/:id', _delete);
+router.delete('/:id', deleteUser);
+router.post('/', create);
 
 module.exports = router;
 
@@ -52,41 +54,53 @@ function getById(req, res, next) {
 }
 
 function update(req, res, next) {
-  userService.getCircleForId(req.body._id).then(result => {
-    console.log(
-      '--------------------------------------------------------------'
-    );
-    console.log('Users:');
-    console.log('Request: ' + req.body._id);
-    console.log('JWT: ' + req.user._id);
-
-    console.log('Circles:');
-    console.log('Request: ' + result.circle);
-    console.log('JWT: ' + req.user.circle);
+  userService.getCircleForId(req.body._id).then(user => {
+    if (
+      roleHelper.roleAccessCheck(
+        3,
+        user.circle,
+        req.user.role,
+        req.user.circle
+      ) ||
+      roleHelper.personalAccessCheck(req.params.id, req.user._id)
+    ) {
+      userService
+        .updateUser(req.params.id, req.body)
+        .then(() => res.json({}))
+        .catch(err => next(err));
+    } else {
+      res.sendStatus(403);
+    }
   });
-
-  if (
-    !roleService.roleAccessCheck(
-      3,
-      userService.getCircleForId(req.params.id),
-      req.user.role,
-      req.user.circle
-    ) &&
-    !roleService.personalAccessCheck(req.params.id, req.user._id)
-  ) {
-    console.log("Shouldn't hit this...");
-    res.status(403).render();
-  }
-
-  userService
-    .updateUser(req.params.id, req.body)
-    .then(() => res.json({}))
-    .catch(err => next(err));
 }
 
-function _delete(req, res, next) {
+function deleteUser(req, res, next) {
+  userService.getCircleForId(req.body._id).then(user => {
+    if (
+      roleHelper.roleAccessCheck(3, user.circle, req.user.role, req.user.circle)
+    ) {
+      userService
+        .delete(req.params.id)
+        .then(() => res.json({}))
+        .catch(err => next(err));
+    } else {
+      res.sendStatus(403);
+    }
+  });
+}
+
+function create(req, res, next) {
   userService
-    .delete(req.params.id)
-    .then(() => res.json({}))
-    .catch(err => next(err));
+    .create(req.body)
+    .then(user => {
+      return res.json({ created: user });
+    })
+    .catch(error => {
+      if (error && error.type == 'invalid_input') {
+        res.status(422).send({ error });
+      } else {
+        console.error('User create error: ', error);
+        res.sendStatus(500);
+      }
+    });
 }

@@ -1,7 +1,12 @@
 module.exports = {
   personalAccessCheck,
-  roleAccessCheck
+  roleAccessCheck,
+  isFederationAdmin
 };
+
+function isFederationAdmin(role) {
+  return role === 5;
+}
 
 function personalAccessCheck(userId, accessedUserId) {
   return userId === accessedUserId;
