@@ -8,6 +8,14 @@ import ProfileMainInformationEDIT from '../components/ProfileEdit/ProfileMainInf
 import { connect } from 'react-redux';
 import { setNavVisible } from '../redux/actions/navigationActions';
 import { fetchProfile } from '../redux/actions/profileActions';
+import store from '../helpers/store';
+
+import jwtToken from '../helpers/jwtAccessor';
+
+import {
+  personalAccessCheck,
+  roleAccessCheck
+} from '../../../server/services/roleService';
 
 import '../css/ProfilePage.css';
 
@@ -17,6 +25,7 @@ class ProfilePage extends Component {
   constructor(props) {
     super(props);
     this.props.dispatch(setNavVisible());
+    const profile = this.props.profile;
     this.state = {
       isEditing: false
     };
@@ -24,6 +33,13 @@ class ProfilePage extends Component {
     this.toggleEdit = this.toggleEdit.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.loadMember = this.loadMember.bind(this);
+
+    store.subscribe(() => {
+      this.setState({
+        _id: store.getState().profile.member._id,
+        circle: store.getState().profile.member.city_id
+      });
+    });
   }
 
   componentDidMount() {
@@ -52,6 +68,20 @@ class ProfilePage extends Component {
   }
 
   render() {
+    let EditButton = {};
+    if (
+      personalAccessCheck(this.state._id, jwtToken._id) ||
+      roleAccessCheck(3, this.state.circle, jwtToken.role, jwtToken.circle)
+    ) {
+      EditButton = (
+        <button className="button-save-edit" onClick={this.toggleEdit}>
+          Editieren
+        </button>
+      );
+    } else {
+      EditButton = <div />;
+    }
+
     if (this.state.isEditing) {
       return (
         <Container className="profile-page__container">
@@ -91,10 +121,8 @@ class ProfilePage extends Component {
       return (
         <Container className="profile-page__container">
           <Row>
-            <Col md="12" className="button-container" >
-              <button className="button-save-edit" onClick={this.toggleEdit}>
-                Editieren
-              </button>
+            <Col md="12" className="button-container">
+              {EditButton}
             </Col>
           </Row>
           <Row>
