@@ -23,6 +23,7 @@
     "start": "webpack-dev-server --open --mode development",
     "build": "webpack -p --mode production",
     "test": "react-scripts test",
+    "test-coverage": "react-scripts test --verbose=false --coverage",
     "eject": "react-scripts eject",
     "client-install": "npm install"
   },
