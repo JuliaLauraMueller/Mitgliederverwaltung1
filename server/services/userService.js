@@ -96,21 +96,30 @@ async function updateUser(id, userParam) {
   var userData = userParam.userData;
   var companyData = userParam.companyData;
 
-  // TODO check for correct input
   userData = updateURLs(userData, companyData);
   var errors = [];
   errors = validateAll(userData, errors);
   errors = companyService.validateCompany(companyData, errors);
 
   if (errors.length != 0) {
-    //TODO: Error handling
-    console.log(errors);
     throw { type: 'invalid_input', errors };
   } else {
     var query = { _id: id };
-    //await User.updateOne(query, userParam, function(err, res) {
-    //  if (err) throw err;
-    //});
+
+    await User.updateOne(query, userData, function(err, res) {
+      //  if (err) throw err;
+    });
+    /*
+      .then(res => {
+        if (res) {
+          companyService.update(companyData._id, companyData);
+        }
+      })
+      .catch(err => {
+        throw { type: 'internal_server_error', err };
+      })
+      */
+
     console.log('WORKED');
   }
 }

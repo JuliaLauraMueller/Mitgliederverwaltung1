@@ -57,32 +57,13 @@ export async function putWholeData(
   await profileService
     .setUserData(profileMainData, companyData)
     .then(res => {
-      if (res) {
-        return function(dispatch) {
-          dispatch({ type: PUT_PROFILE, payload: profileMainData });
-          dispatch({ type: PUT_PROFILE, payload: companyData });
-        };
-      }
+      console.log(res);
+      return function(dispatch) {
+        dispatch({ type: PUT_PROFILE, payload: profileMainData });
+        dispatch({ type: PUT_PROFILE, payload: companyData });
+      };
     })
     .catch(error => {
-      console.log('ACTION');
-      console.log(error);
       return Promise.reject(error);
     });
-  //.then(res => {
-  //if (res) {
-  //var result = profileService.setCompanyData(companyData);
-  //if (result) {
-  //companyData.company = companyData.companyName;
-  //Object.assign(profileMainData, companyData);
-  //}
-  //}
-  //});
-
-  //console.log(profileMainData);
-  //console.log(companyData);
-  //return function(dispatch) {
-  //  dispatch({ type: PUT_PROFILE, payload: profileMainData });
-  //  dispatch({ type: PUT_PROFILE, payload: companyData });
-  //};
 }

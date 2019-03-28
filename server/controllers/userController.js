@@ -56,7 +56,6 @@ function update(req, res, next) {
     .then(() => res.json({}))
     .catch(error => {
       if (error && error.type == 'invalid_input') {
-        //console.log(error.errors);
         res.status(422).send(error);
       } else {
         console.error('User update error: ', error);

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { alertError } from '../../redux/actions/alertActions';
 import {
   putProfile,
   putCompany,
@@ -96,16 +97,10 @@ class ProfileMainInformationEDIT extends Component {
 
     // Second
 
-    //console.log(newBasicInfo);
-
     console.log('MAIN SECOND BEFORE');
-    //this.props.dispatch(putProfile(mainInfoUpdate));
-    //this.props.dispatch(putCompany(companyUpdate));
     await this.props.dispatch(
       putWholeData(mainInfoUpdate, basicInfoUpdate, companyUpdate).catch(
         err => {
-          console.log('ERROR EDIT PAGE');
-          console.log(err);
           this.props.dispatch(alertError(err.join('\n')));
         }
       )
