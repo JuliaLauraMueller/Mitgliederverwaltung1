@@ -23,7 +23,7 @@ class SideDrawer extends Component {
           <div className="navigation-user">
             <div className="navigation-user-picture">
               <Link to={`/member/${userId}`}>
-                <img src={require('../../../public/img/Marc.png')} alt="Marc" />
+                <img src={require('../../img/Marc.png')} alt="Marc" />
               </Link>
             </div>
             <div className="navigation-user-name">Marc Zimmermann</div>
@@ -177,7 +177,7 @@ class SideDrawer extends Component {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/">
+                    <Link to="/admin">
                       <svg
                         width="24"
                         height="26"
@@ -237,7 +237,7 @@ class SideDrawer extends Component {
               <div className="navigation-logo-container">
                 <div className="navigation-logo">
                   <img
-                    src={require('../../../public/img/logo_black_small.png')}
+                    src={require('../../img/logo_black_small.png')}
                     alt="Logo"
                   />
                 </div>

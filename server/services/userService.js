@@ -3,8 +3,12 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const db = require('../helpers/db');
 const validateUrl = require('../helpers/urlValidator');
+const isValidEmail = require('../helpers/emailValidator');
+const mongoose = require('mongoose');
+const companyService = require('./companyService');
 const User = db.User;
 const Company = db.Company;
+const Counter = db.Counter;
 
 module.exports = {
   update,
@@ -15,7 +19,8 @@ module.exports = {
   generateJwtToken,
   removeAllCompanyRelations,
   update,
-  updateUser
+  updateUser,
+  deleteUser
 };
 
 async function authenticate({ privateEmail, password }) {
@@ -31,38 +36,26 @@ async function authenticate({ privateEmail, password }) {
 }
 
 async function getAll() {
-  let users = [];
-  let usersCopy = await User.find({}, '-password', function(err, loadedUsers) {
-    loadedUsers.forEach(u => {
-      users.push({
-        id: u._id,
-        firstname: u.firstname,
-        surname: u.surname,
-        privateEmail: u.privateEmail,
-        privateTel: u.privateTel,
-        job: u.job,
-        function: u.function,
-        sector: u.sector,
-        company: u.company,
-        circle: u.circle
-      });
-    });
-    return loadedUsers;
-  });
-  let companyIDs = users.map(user => user.company);
-  await Company.find({ _id: { $in: companyIDs } }, function(err, companies) {
-    if (err) {
-      console.log(err);
-      return;
-    }
-    users.forEach(user => {
-      let company = companies.find(c => {
-        return c._id.equals(user.company); // ObjectID comparison
-      });
-      user.company = company ? company.companyStreet : ''; // change to company.companyName
-    });
-    return usersCopy;
-  });
+  let users = await User.aggregate([
+    { $project: { password: 0 } },
+    {
+      $lookup: {
+        from: 'companies',
+        localField: 'company',
+        foreignField: '_id',
+        as: 'companyValues'
+      }
+    },
+    {
+      $lookup: {
+        from: 'circles',
+        localField: 'circle',
+        foreignField: '_id',
+        as: 'circleValues'
+      }
+    },
+    { $sort: { memberNumber: 1 } }
+  ]);
   return users;
 }
 
@@ -71,21 +64,73 @@ async function getById(id) {
 }
 
 async function create(userParam) {
-  // validate
-  userParam.privateEmail = userParam.privateEmail.toLowerCase();
-  if (await User.findOne({ privateEmail: userParam.privateEmail })) {
-    throw 'email "' + userParam.privateEmail + '" is already taken';
+  let errors = await validateBasic(userParam);
+  if (errors.length != 0) {
+    throw { type: 'invalid_input', errors };
   }
 
-  const user = new User(userParam);
+  // generate new member number
+  userParam.memberNumber = await getNextSequenceValue();
 
   // hash password
   if (userParam.password) {
-    user.hash = bcrypt.hashSync(userParam.password, 10);
+    userParam.password = bcrypt.hashSync(userParam.password, 10);
   }
 
-  // save user
-  await user.save();
+  try {
+    // create company for user
+    let company = await companyService.createEmpty();
+    userParam.company = company._id;
+    // create user
+    return await User.create(userParam);
+  } catch (error) {
+    throw { type: 'processing_error', error };
+  }
+}
+
+async function validateBasic(userParam) {
+  let errorMessages = [];
+  if (!userParam.privateEmail) {
+    errorMessages.push('E-Mail darf nicht leer sein.');
+  } else {
+    let existingUser = await User.findOne({
+      privateEmail: userParam.privateEmail
+    });
+    if (existingUser && existingUser._id != userParam._id) {
+      errorMessages.push('Diese E-Mail Adresse gibt es schon.');
+    } else if (!isValidEmail(userParam.privateEmail)) {
+      errorMessages.push('Email ist ungültig.');
+    }
+  }
+  if (!userParam.firstname || userParam.firstname.length == 0) {
+    errorMessages.push('Vorname darf nicht leer sein.');
+  } else if (userParam.firstname.length > 30) {
+    errorMessages.push('Vorname muss kürzer als 30 Zeichen sein.');
+  }
+  if (!userParam.surname || userParam.surname.length == 0) {
+    errorMessages.push('Nachname darf nicht leer sein.');
+  } else if (userParam.surname.length > 30) {
+    errorMessages.push('Nachname muss kürzer als 30 Zeichen sein.');
+  }
+  if (!userParam.password || userParam.password.length == 0) {
+    errorMessages.push('Passwort darf nicht leer sein.');
+  } else if (userParam.password.length < 7) {
+    errorMessages.push('Passwort muss länger als 7 Zeichen sein.');
+  } else if (userParam.password.length > 30) {
+    errorMessages.push('Passwort muss kürzer als 30 Zeichen sein.');
+  }
+  if (!userParam.circle) {
+    errorMessages.push('City darf nicht leer sein.');
+  }
+  return errorMessages;
+}
+
+async function getNextSequenceValue() {
+  let c = await Counter.findOne(); // get counter
+  var count = await Counter.findByIdAndUpdate(c._id, {
+    $inc: { sequenceVal: 1 }
+  });
+  return count.sequenceVal;
 }
 
 async function updateUser(id, userParam) {
@@ -128,17 +173,27 @@ async function update(id, userParam) {
   await user.save();
 }
 
-async function _delete(id) {
-  await User.findByIdAndRemove(id);
-  await removeAllGodfathers(id);
+async function deleteUser(id) {
+  let user = await getById(id);
+  if (user) {
+    await User.findByIdAndRemove(id);
+    await Company.findByIdAndRemove(user.company);
+    await removeAllGodfathers(id);
+  }
 }
 
 async function removeAllGodfathers(id) {
-  User.updateMany({ godfather: { $eq: id } }, { $set: { godfather: '' } });
+  User.updateMany(
+    { godfather: { $eq: mongoose.Types.ObjectId(id) } },
+    { $set: { godfather: undefined } }
+  );
 }
 
 async function removeAllCompanyRelations(id) {
-  User.updateMany({ company: { $eq: id } }, { $set: { company: '' } });
+  User.updateMany(
+    { company: { $eq: mongoose.Types.ObjectId(id) } },
+    { $set: { company: undefined } }
+  );
 }
 
 function generateJwtToken(user) {
