@@ -264,10 +264,11 @@ class AdminPage extends Component {
         <tr key={circle._id}>
           <td className="d-none d-sm-table-cell">{circle.name}</td>
           <td>
-            <path
+            <span
               className="admin-link admin-link-small admin-cursor"
               onClick={() => this.toggleCircleEditModal(circle)}
-              to={''}
+              data-toggle="tooltip"
+              title="City bearbeiten"
             >
               <svg
                 width="26"
@@ -289,11 +290,12 @@ class AdminPage extends Component {
                   strokeWidth="0.25"
                 />
               </svg>
-            </path>
-            <path
+            </span>
+            <span
               className="admin-link admin-link-small admin-cursor"
               onClick={() => this.toggleCircleDeleteModal(circle)}
-              to={''}
+              data-toggle="tooltip"
+              title="City löschen"
             >
               <svg
                 width="27"
@@ -315,7 +317,7 @@ class AdminPage extends Component {
                   fill="#E1993D"
                 />
               </svg>
-            </path>
+            </span>
           </td>
         </tr>
       );
@@ -337,6 +339,8 @@ class AdminPage extends Component {
             <Link
               className="admin-link admin-link-small"
               to={'/member/' + member._id}
+              data-toggle="tooltip"
+              title="Mitglied bearbeiten"
             >
               <svg
                 width="26"
@@ -359,9 +363,11 @@ class AdminPage extends Component {
                 />
               </svg>
             </Link>
-            <path
+            <Link
               className="admin-link admin-link-small admin-cursor"
               to={'/members/changeRole/' + member._id}
+              data-toggle="tooltip"
+              title="Rolle bearbeiten"
             >
               <svg
                 width="25"
@@ -379,11 +385,12 @@ class AdminPage extends Component {
                   fill="#E1993D"
                 />
               </svg>
-            </path>
-            <path
+            </Link>
+            <span
               className="admin-link admin-link-small admin-cursor"
-              to=""
               onClick={() => this.toggleMemberDeleteModal(member)}
+              data-toggle="tooltip"
+              title="Mitglied löschen"
             >
               <svg
                 width="27"
@@ -405,7 +412,7 @@ class AdminPage extends Component {
                   fill="#E1993D"
                 />
               </svg>
-            </path>
+            </span>
           </td>
         </tr>
       );

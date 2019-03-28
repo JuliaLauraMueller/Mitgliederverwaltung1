@@ -92,6 +92,7 @@ div .create-button {
   border-bottom-color: transparent;
 }
 
-.admin-cursor:hover {
+.admin-cursor:hover > svg > path {
   cursor: pointer;
+  fill: rgb(15, 25, 41, 74%);
 }
