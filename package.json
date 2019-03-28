@@ -1,7 +1,18 @@
 {
   "name": "mitgliederverwaltung1",
   "jest": {
+    "coverageReporters": [
+      "text"
+    ],
+    "reporters": [
+      "default",
+      "jest-junit"
+    ],
     "testEnvironment": "node"
+  },
+  "jest-junit": {
+    "output": "output/coverage/junit/junit.xml",
+    "usePathForSuiteName": "true"
   },
   "version": "1.0.0",
   "description": "Project mitgliederverwaltung1",
@@ -11,11 +22,13 @@
     "server": "npm start --prefix server",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test-server": "jest ./server",
+    "test-client": "npm run test --prefix client",
     "testwatch-jest": "jest --watchAll",
     "test": "\"npm run test-server\"",
     "test-example": "jest",
-    "test-jenkins": "mocha test --colors --recursive --reporter mocha-jenkins-reporter",
-    "mocha-test-jenkins": "mocha test --colors --recursive --reporter mocha-junit-reporter"
+    "test-coverage": "concurrently \"npm run test-server-coverage\" \"npm run test-client-coverage\"",
+    "test-server-coverage": "npm run test-coverage --prefix server",
+    "test-client-coverage": "npm run test-coverage --prefix client"
   },
   "repository": {
     "type": "git",
@@ -25,9 +38,11 @@
   "license": "CC-BY-NC-ND-4.0",
   "dependencies": {
     "concurrently": "^4.1.0",
+    "jest-junit": "^6.3.0",
     "js-levenshtein": "^1.1.6"
   },
   "devDependencies": {
+    "babel-jest": "^24.4.0",
     "jest": "^24.1.0",
     "mocha": "^5.2.0",
     "mocha-jenkins-reporter": "^0.4.1",
