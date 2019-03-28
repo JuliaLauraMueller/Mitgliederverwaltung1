@@ -261,7 +261,7 @@ class AdminPage extends Component {
     return circles.map(circle => {
       return (
         <tr key={circle._id}>
-          <td className="d-none d-sm-table-cell">{circle.name}</td>
+          <td>{circle.name}</td>
           <td>
             <span
               className="admin-link admin-link-small admin-cursor"
@@ -429,7 +429,7 @@ class AdminPage extends Component {
         <Form onSubmit={this.onCircleSave}>
           <ModalBody>
             <FormGroup row>
-              <Label>City-Name:</Label>
+              <Label className="city-name-label">City-Name:</Label>
               <Col>
                 <Input
                   type="text"
