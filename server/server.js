@@ -14,6 +14,7 @@ const mongoose = require('mongoose');
 const app = express();
 
 mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
 mongoose
   .connect(config.mongoURI)
   .then(() => console.log('MongoDB connected...'))
