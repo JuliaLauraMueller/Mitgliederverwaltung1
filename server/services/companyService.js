@@ -6,7 +6,8 @@ module.exports = {
   getAll,
   getById,
   update,
-  _delete
+  _delete,
+  createEmpty
 };
 
 async function getAll() {
@@ -30,4 +31,15 @@ async function update(id, companyParam) {
 async function _delete(id) {
   await Company.findByIdAndRemove(id);
   await usersService.removeAllCompanyLocRelations(id);
+}
+
+async function createEmpty() {
+  const company = new Company();
+
+  // save user
+  try {
+    return await company.save();
+  } catch (error) {
+    throw { type: 'processing_error', error };
+  }
 }
