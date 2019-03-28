@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Form, FormGroup, Label, Input, Col } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Col, Row } from 'reactstrap';
 
 import { connect } from 'react-redux';
 
@@ -50,20 +50,22 @@ class AdminCreateCircle extends Component {
       <div>
         <h4>Neue City</h4>
         <Form onSubmit={this.createCircle}>
-          <FormGroup row>
-            <Label for="name" sm={2}>
-              Name
-            </Label>
-            <Col>
-              <Input
-                type="text"
-                id="name"
-                name="name"
-                className="admin-form-control"
-                value={this.state.name}
-                onChange={this.handleChange}
-              />
-            </Col>
+          <FormGroup>
+            <Row>
+              <Col xs="2">
+                <Label for="name">Name</Label>
+              </Col>
+              <Col xs="10">
+                <Input
+                  type="text"
+                  id="name"
+                  name="name"
+                  className="admin-form-control"
+                  value={this.state.name}
+                  onChange={this.handleChange}
+                />
+              </Col>
+            </Row>
           </FormGroup>
           <input
             type="button"

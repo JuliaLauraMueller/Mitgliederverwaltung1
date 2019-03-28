@@ -116,7 +116,7 @@ class ProfileMainInformationEDIT extends Component {
                     type="text"
                     name="sector"
                     onChange={this.onChange}
-                    value={this.state.sector}
+                    value={this.state.sector || ''}
                   />
                 </div>
               </InputGroup>
@@ -131,7 +131,7 @@ class ProfileMainInformationEDIT extends Component {
                     type="text"
                     name="job"
                     onChange={this.onChange}
-                    value={this.state.job}
+                    value={this.state.job || ''}
                   />
                 </div>
               </InputGroup>
@@ -147,7 +147,7 @@ class ProfileMainInformationEDIT extends Component {
                     type="text"
                     name="function"
                     onChange={this.onChange}
-                    value={this.state.function}
+                    value={this.state.function || ''}
                   />
                 </div>
               </InputGroup>
@@ -163,7 +163,7 @@ class ProfileMainInformationEDIT extends Component {
                     type="text"
                     name="company"
                     onChange={this.onChange}
-                    value={this.state.company}
+                    value={this.state.company || ''}
                   />
                 </div>
               </InputGroup>
@@ -179,7 +179,7 @@ class ProfileMainInformationEDIT extends Component {
                     type="text"
                     name="companyTel"
                     onChange={this.onChange}
-                    value={this.state.companyTel}
+                    value={this.state.companyTel || ''}
                   />
                 </div>
               </InputGroup>
@@ -195,7 +195,7 @@ class ProfileMainInformationEDIT extends Component {
                     type="text"
                     name="companyMobile"
                     onChange={this.onChange}
-                    value={this.state.companyMobile}
+                    value={this.state.companyMobile || ''}
                   />
                 </div>
               </InputGroup>
@@ -211,7 +211,7 @@ class ProfileMainInformationEDIT extends Component {
                     type="text"
                     name="companyStreet"
                     onChange={this.onChange}
-                    value={this.state.companyStreet}
+                    value={this.state.companyStreet || ''}
                   />
                 </div>
               </InputGroup>
@@ -227,7 +227,7 @@ class ProfileMainInformationEDIT extends Component {
                     type="text"
                     name="companyStreetNr"
                     onChange={this.onChange}
-                    value={this.state.companyStreetNr}
+                    value={this.state.companyStreetNr || ''}
                   />
                 </div>
               </InputGroup>
@@ -243,7 +243,7 @@ class ProfileMainInformationEDIT extends Component {
                     type="text"
                     name="companyZip"
                     onChange={this.onChange}
-                    value={this.state.companyZip}
+                    value={this.state.companyZip || ''}
                   />
                 </div>
               </InputGroup>
@@ -259,7 +259,7 @@ class ProfileMainInformationEDIT extends Component {
                     type="text"
                     name="companyCity"
                     onChange={this.onChange}
-                    value={this.state.companyCity}
+                    value={this.state.companyCity || ''}
                   />
                 </div>
               </InputGroup>
@@ -275,7 +275,7 @@ class ProfileMainInformationEDIT extends Component {
                     type="text"
                     name="companyEmail"
                     onChange={this.onChange}
-                    value={this.state.companyEmail}
+                    value={this.state.companyEmail || ''}
                   />
                 </div>
               </InputGroup>
@@ -293,7 +293,7 @@ class ProfileMainInformationEDIT extends Component {
                     type="text"
                     name="companyURL"
                     onChange={this.onChange}
-                    value={this.state.companyURL}
+                    value={this.state.companyURL || ''}
                   />
                 </div>
               </InputGroup>
@@ -319,7 +319,7 @@ class ProfileMainInformationEDIT extends Component {
                     type="text"
                     name="privateTel"
                     onChange={this.onChange}
-                    value={this.state.privateTel}
+                    value={this.state.privateTel || ''}
                   />
                 </div>
               </InputGroup>
@@ -335,7 +335,7 @@ class ProfileMainInformationEDIT extends Component {
                     type="text"
                     name="privateMobile"
                     onChange={this.onChange}
-                    value={this.state.privateMobile}
+                    value={this.state.privateMobile || ''}
                   />
                 </div>
               </InputGroup>
@@ -351,7 +351,7 @@ class ProfileMainInformationEDIT extends Component {
                     type="text"
                     name="privateStreet"
                     onChange={this.onChange}
-                    value={this.state.privateStreet}
+                    value={this.state.privateStreet || ''}
                   />
                 </div>
               </InputGroup>
@@ -367,7 +367,7 @@ class ProfileMainInformationEDIT extends Component {
                     type="text"
                     name="privateStreetNr"
                     onChange={this.onChange}
-                    value={this.state.privateStreetNr}
+                    value={this.state.privateStreetNr || ''}
                   />
                 </div>
               </InputGroup>
@@ -383,7 +383,7 @@ class ProfileMainInformationEDIT extends Component {
                     type="text"
                     name="privateZip"
                     onChange={this.onChange}
-                    value={this.state.privateZip}
+                    value={this.state.privateZip || ''}
                   />
                 </div>
               </InputGroup>
@@ -399,7 +399,7 @@ class ProfileMainInformationEDIT extends Component {
                     type="text"
                     name="privateCity"
                     onChange={this.onChange}
-                    value={this.state.privateCity}
+                    value={this.state.privateCity || ''}
                   />
                 </div>
               </InputGroup>
@@ -452,7 +452,7 @@ class ProfileMainInformationEDIT extends Component {
                     type="text"
                     name="privateEmail"
                     onChange={this.onChange}
-                    value={this.state.privateEmail}
+                    value={this.state.privateEmail || ''}
                   />
                 </div>
               </InputGroup>
