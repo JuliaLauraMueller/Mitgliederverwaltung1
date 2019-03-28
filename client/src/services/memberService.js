@@ -21,6 +21,7 @@ async function getUserBody() {
             job: element.job,
             function: element.function,
             sector: element.sector,
+            role: element.role,
             company:
               element.companyValues && element.companyValues.length > 0
                 ? element.companyValues[0]

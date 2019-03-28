@@ -54,7 +54,9 @@ class AdminPage extends Component {
       memberToDelete: {},
       editModal: false,
       circleToEdit: { name: '' },
-      circleToDelete: {}
+      circleToDelete: {},
+      changeRoleModal: false,
+      memberToChangeRole: { role: 0 }
     };
 
     this.toggle = this.toggle.bind(this);
@@ -69,6 +71,10 @@ class AdminPage extends Component {
     this.createCircleEditModal = this.createCircleEditModal.bind(this);
     this.onCircleSave = this.onCircleSave.bind(this);
     this.handleCircleNameChange = this.handleCircleNameChange.bind(this);
+    // Change role modal
+    this.createRoleChangeModal = this.createRoleChangeModal.bind(this);
+    this.changeRole = this.changeRole.bind(this);
+    this.handleRoleChange = this.handleRoleChange.bind(this);
   }
 
   async onCircleSave(event) {
@@ -92,6 +98,18 @@ class AdminPage extends Component {
       }
     }));
   }
+
+  handleRoleChange(e) {
+    e.persist();
+    this.setState(prevState => ({
+      memberToChangeRole: {
+        ...prevState.memberToChangeRole,
+        role: e.target.value
+      }
+    }));
+  }
+
+  handle;
 
   toggle(tab) {
     if (this.state.activeTab !== tab) {
@@ -122,6 +140,13 @@ class AdminPage extends Component {
     }));
   }
 
+  toggleRoleChangeModal(member) {
+    this.setState(prevState => ({
+      changeRoleModal: !prevState.changeRoleModal,
+      memberToChangeRole: member
+    }));
+  }
+
   collapseMember() {
     this.setState(state => ({ collapseMember: !state.collapseMember }));
   }
@@ -130,7 +155,7 @@ class AdminPage extends Component {
     this.setState(state => ({ collapseCircle: !state.collapseCircle }));
   }
 
-  handleChange(event) {
+  handleSearchChange(event) {
     this.setState({ searchText: event.target.value });
   }
 
@@ -147,11 +172,17 @@ class AdminPage extends Component {
     this.props.dispatch(deleteCircle(id));
   }
 
+  changeRole(member) {
+    console.log(member);
+    //this.props.dispatch(changeRole(id, newRole));
+  }
+
   render() {
     return (
       <div>
         {this.createMemberDeleteModal()}
         {this.createCircleDeleteModal()}
+        {this.createRoleChangeModal()}
         <h1>Administration</h1>
         <Nav tabs>
           <NavItem>
@@ -187,7 +218,7 @@ class AdminPage extends Component {
                       placeholder="Nach Name, City, Firma oder Funktion suchen..."
                       className="form-control"
                       value={this.state.searchText}
-                      onChange={this.handleChange.bind(this)}
+                      onChange={this.handleSearchChange.bind(this)}
                     />
                     <div>
                       <input
@@ -359,9 +390,9 @@ class AdminPage extends Component {
                 />
               </svg>
             </Link>
-            <path
+            <span
               className="admin-link admin-link-small admin-cursor"
-              to={'/members/changeRole/' + member._id}
+              onClick={() => this.toggleRoleChangeModal(member)}
             >
               <svg
                 width="25"
@@ -379,10 +410,9 @@ class AdminPage extends Component {
                   fill="#E1993D"
                 />
               </svg>
-            </path>
-            <path
+            </span>
+            <span
               className="admin-link admin-link-small admin-cursor"
-              to=""
               onClick={() => this.toggleMemberDeleteModal(member)}
             >
               <svg
@@ -405,7 +435,7 @@ class AdminPage extends Component {
                   fill="#E1993D"
                 />
               </svg>
-            </path>
+            </span>
           </td>
         </tr>
       );
@@ -518,7 +548,7 @@ class AdminPage extends Component {
           />
 
           <input
-            type="submit"
+            type="button"
             className="admin-button"
             color="primary"
             onClick={() => {
@@ -530,7 +560,75 @@ class AdminPage extends Component {
       </Modal>
     );
   }
+
+  createRoleChangeModal() {
+    return (
+      <Modal
+        isOpen={this.state.changeRoleModal}
+        toggle={() => this.toggleRoleChangeModal({})}
+      >
+        <ModalHeader>
+          Rolle von '{this.state.memberToChangeRole.firstname}{' '}
+          {this.state.memberToChangeRole.surname}' ändern
+        </ModalHeader>
+        <ModalBody>
+          <Form>
+            <FormGroup>
+              <Label for="circle">Rolle</Label>
+              <Input
+                type="select"
+                name="role"
+                id="role"
+                value={this.state.memberToChangeRole.role}
+                onChange={this.handleRoleChange}
+              >
+                <option key="0" value="0">
+                  Mitglied
+                </option>
+                <option key="1" value="1">
+                  Newsadministrator
+                </option>
+                <option key="2" value="2">
+                  Eventadministrator
+                </option>
+                <option key="3" value="3">
+                  Personaladministrator
+                </option>
+                <option key="4" value="4">
+                  Cityadministrator
+                </option>
+                <option key="5" value="5">
+                  Federationadministrator
+                </option>
+              </Input>
+            </FormGroup>
+          </Form>
+        </ModalBody>
+        <ModalFooter>
+          <input
+            type="submit"
+            className="admin-button"
+            color="primary"
+            onClick={() => {
+              this.changeRole(this.state.memberToChangeRole);
+            }}
+            value="Rolle ändern"
+          />
+          <input
+            type="button"
+            className="admin-button"
+            color="primary"
+            onClick={() => {
+              this.toggleRoleChangeModal({});
+            }}
+            value="Abbrechen"
+          />
+        </ModalFooter>
+      </Modal>
+    );
+  }
 }
+
 function mapStateToProps(state) {
   return {
     members: state.member.members,
