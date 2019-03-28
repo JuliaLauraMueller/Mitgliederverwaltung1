@@ -5,6 +5,10 @@ basic style admin page
   border-bottom: 1px solid black;
 }
 
+.table td.icon-row {
+  padding-right: 0;
+}
+
 .create-button {
   color: rgb(219, 157, 12);
   border: none;
