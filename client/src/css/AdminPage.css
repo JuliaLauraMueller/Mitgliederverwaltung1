@@ -53,6 +53,8 @@ svg {
 
 .form-control {
   border-color: rgb(15, 25, 41, 10%);
+  display: block;
+  float: right;
 }
 
 .admin-link-small {
@@ -99,4 +101,10 @@ div .create-button {
 .admin-cursor:hover > svg > path {
   cursor: pointer;
   fill: rgb(15, 25, 41, 74%);
+}
+
+@media only screen and (min-width: 0px) and (max-width: 768px) {
+  .form-control {
+    width: 130px;
+  }
 }
