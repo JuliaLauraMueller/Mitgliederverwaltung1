@@ -1,8 +1,8 @@
-const config = require("../config/settings");
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcryptjs");
-const db = require("../helpers/db");
-const validateUrl = require("../helpers/urlValidator");
+const config = require('../config/settings');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const db = require('../helpers/db');
+const validateUrl = require('../helpers/urlValidator');
 const User = db.User;
 const Company = db.Company;
 
@@ -33,7 +33,7 @@ async function authenticate({ privateEmail, password }) {
 
 async function getAll() {
   let users = [];
-  let usersCopy = await User.find({}, "-password", function(err, loadedUsers) {
+  let usersCopy = await User.find({}, '-password', function(err, loadedUsers) {
     loadedUsers.forEach(u => {
       users.push({
         id: u._id,
@@ -60,7 +60,7 @@ async function getAll() {
       let company = companies.find(c => {
         return c._id.equals(user.company); // ObjectID comparison
       });
-      user.company = company ? company.companyStreet : ""; // change to company.companyName
+      user.company = company ? company.companyStreet : ''; // change to company.companyName
     });
     return usersCopy;
   });
@@ -68,11 +68,11 @@ async function getAll() {
 }
 
 async function getCircleForId(id) {
-  return await User.findById(id, "circle");
+  return await User.findById(id, 'circle');
 }
 
 async function getById(id) {
-  return await User.findById(id).select("-password");
+  return await User.findById(id).select('-password');
 }
 
 async function create(userParam) {
@@ -95,7 +95,7 @@ async function create(userParam) {
 
 async function updateUser(id, userParam) {
   const user = await User.findById(id);
-  if (!user) throw "User not found";
+  if (!user) throw 'User not found';
 
   // TODO check for correct input
   userParam = validateInputs(userParam);
@@ -111,7 +111,7 @@ async function update(id, userParam) {
 
   // validate
   if (!user) {
-    throw "User not found";
+    throw 'User not found';
   }
 
   userParam.privateEmail = userParam.privateEmail.toLowerCase();
@@ -139,11 +139,11 @@ async function _delete(id) {
 }
 
 async function removeAllGodfathers(id) {
-  User.updateMany({ godfather: { $eq: id } }, { $set: { godfather: "" } });
+  User.updateMany({ godfather: { $eq: id } }, { $set: { godfather: '' } });
 }
 
 async function removeAllCompanyRelations(id) {
-  User.updateMany({ company: { $eq: id } }, { $set: { company: "" } });
+  User.updateMany({ company: { $eq: id } }, { $set: { company: '' } });
 }
 
 function generateJwtToken(user) {
