@@ -6,7 +6,6 @@ const userService = require('../services/userService');
 router.post('/auth', authenticate);
 router.post('/register', register);
 router.get('/', getAll);
-router.get('/current', getCurrent);
 router.get('/:id', getById);
 router.put('/:id', update);
 router.delete('/:id', deleteUser);
@@ -34,13 +33,6 @@ function getAll(req, res, next) {
   userService
     .getAll()
     .then(users => res.json(users))
-    .catch(err => next(err));
-}
-
-function getCurrent(req, res, next) {
-  userService
-    .getById(req.user.sub)
-    .then(user => (user ? res.json(user) : res.sendStatus(404)))
     .catch(err => next(err));
 }
 
