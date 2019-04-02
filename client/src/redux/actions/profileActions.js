@@ -85,10 +85,26 @@ export async function putWholeData(
       console.log(companyData);
       return function(dispatch) {
         dispatch({ type: PUT_PROFILE, payload: profileMainData });
-        dispatch({ type: PUT_PROFILE, payload: companyData });
+        //dispatch({ type: PUT_PROFILE, payload: companyData });
       };
     })
     .catch(error => {
       return Promise.reject(error);
     });
+
+  /*
+    return await function(dispatch) {
+    profileService
+      .setUserData(profileMainData, companyData)
+      .then(res => {
+        console.log(res);
+        console.log(profileMainData);
+        console.log(companyData);
+        dispatch({ type: PUT_PROFILE, payload: profileMainData });
+      })
+      .catch(error => {
+        return Promise.reject(error);
+      });
+  };
+*/
 }

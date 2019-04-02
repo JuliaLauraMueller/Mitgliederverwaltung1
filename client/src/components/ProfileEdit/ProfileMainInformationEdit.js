@@ -109,6 +109,7 @@ class ProfileMainInformationEDIT extends Component {
       putWholeData(mainInfoUpdate, basicInfoUpdate, companyUpdate)
         .then(res => {
           console.log(res);
+          //this.props.dispatch({ type: PUT_PROFILE, payload: mainInfoUpdate });
         })
         .catch(err => {
           this.props.dispatch(alertError(err.join('\n')));
