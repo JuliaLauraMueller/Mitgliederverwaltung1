@@ -87,6 +87,7 @@ async function setUserData(userData, companyData) {
   return await axios
     .put('/users/' + data.userData._id, data)
     .then(res => {
+      console.log('RES profileService');
       return res;
     })
     .catch(error => {

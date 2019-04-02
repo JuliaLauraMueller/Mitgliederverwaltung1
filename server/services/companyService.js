@@ -34,13 +34,13 @@ async function _delete(id) {
 }
 
 function validateCompany(companyParam, errors) {
-  if (companyParam.companyName.length > 20) {
+  if (companyParam.companyName && companyParam.companyName.length > 20) {
     errors.push('Das Feld Firmenname ist nicht korrekt');
   }
-  if (companyParam.companyStreet.length > 20) {
+  if (companyParam.companyStreet && companyParam.companyStreet.length > 20) {
     errors.push('Das Feld Strasse Firma ist nicht korrekt');
   }
-  if (companyParam.companyStreetNr.length > 8) {
+  if (companyParam.companyStreetNr && companyParam.companyStreetNr.length > 8) {
     errors.push('Das Feld Strassennummer Firma ist nicht korrekt');
   }
   if (companyParam.companyZip) {
@@ -48,7 +48,7 @@ function validateCompany(companyParam, errors) {
       errors.push('Das Feld Postleitzahl Firma ist nicht korrekt');
     }
   }
-  if (companyParam.companyCity.length > 25) {
+  if (companyParam.companyCity && companyParam.companyCity.length > 25) {
     errors.push('Das Feld Stadt Firma ist nicht korrekt');
   }
   if (companyParam.companyURL) {

@@ -218,7 +218,7 @@ function validateAll(userParam, errors) {
   }
 
   // Personal data
-  if (userParam.offerings.length > 150) {
+  if (userParam.offerings && userParam.offerings.length > 150) {
     errors.push('Das Feld Angebot ist zu lang.');
   }
   if (userParam.salutation) {
@@ -226,7 +226,7 @@ function validateAll(userParam, errors) {
       errors.push('Das Feld Anrede ist falsch');
     }
   }
-  if (userParam.title.length > 15) {
+  if (userParam.title && userParam.title.length > 15) {
     errors.push('Das Feld Titel ist zu lang');
   }
   if (
@@ -241,10 +241,10 @@ function validateAll(userParam, errors) {
   ) {
     errors.push('Das Feld Nachname ist nicht korrekt');
   }
-  if (userParam.alias.length > 20) {
+  if (userParam.alias && userParam.alias.length > 20) {
     errors.push('Das Feld Spitzname ist nicht korrekt');
   }
-  if (userParam.status.length > 20) {
+  if (userParam.status && userParam.status.length > 20) {
     errors.push('Das Feld Status ist nicht korrekt');
   }
   if (userParam.entryDate) {
@@ -264,13 +264,13 @@ function validateAll(userParam, errors) {
     }
   }
   // Business data
-  if (userParam.sector.length > 20) {
+  if (userParam.sector && userParam.sector.length > 20) {
     errors.push('Das Feld Sektor ist zu lang');
   }
-  if (userParam.job.length > 20) {
+  if (userParam.job && userParam.job.length > 20) {
     errors.push('Das Feld Beruf ist zu lang');
   }
-  if (userParam.function.length > 20) {
+  if (userParam.function && userParam.function.length > 20) {
     errors.push('Das Feld Funktion ist zu lang');
   }
   if (userParam.companyTel) {
@@ -320,10 +320,10 @@ function validateAll(userParam, errors) {
   ) {
     errors.push('Das Feld Email privat ist nicht korrekt');
   }
-  if (userParam.privateStreet.length > 20) {
+  if (userParam.privateStreet && userParam.privateStreet.length > 20) {
     errors.push('Das Feld Strasse privat ist nicht korrekt');
   }
-  if (userParam.privateStreetNr.length > 8) {
+  if (userParam.privateStreetNr && userParam.privateStreetNr.length > 8) {
     errors.push('Das Feld Strassennummer privat ist nicht korrekt');
   }
   if (userParam.privateZip) {
@@ -331,10 +331,10 @@ function validateAll(userParam, errors) {
       errors.push('Das Feld Postleitzahl privat ist nicht korrekt');
     }
   }
-  if (userParam.privateCity.length > 25) {
+  if (userParam.privateCity && userParam.privateCity.length > 25) {
     errors.push('Das Feld Stadt privat ist nicht korrekt');
   }
-  if (userParam.invoiceAddress > 20) {
+  if (userParam.invoiceAddress && userParam.invoiceAddress > 20) {
     errors.push('Das Feld Rechnungsadresse ist nicht korrekt');
   }
 
