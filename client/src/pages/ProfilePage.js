@@ -8,9 +8,6 @@ import ProfileMainInformationEDIT from '../components/ProfileEdit/ProfileMainInf
 import { connect } from 'react-redux';
 import { setNavVisible } from '../redux/actions/navigationActions';
 import { fetchProfile } from '../redux/actions/profileActions';
-import store from '../helpers/store';
-
-import jwtToken from '../helpers/jwtAccessor';
 
 import {
   personalAccessCheck,
@@ -61,7 +58,6 @@ class ProfilePage extends Component {
   }
 
   render() {
-    console.log(this.props.user);
     let EditButton = {};
     if (
       personalAccessCheck(this.props._id, this.props.user._id) ||
