@@ -403,9 +403,8 @@ class AdminPage extends Component {
         );
 
         DeleteButton = (
-          <Link
-            className="admin-link admin-link-small"
-            to=""
+          <span
+            className="admin-link admin-link-small admin-cursor"
             onClick={() => this.toggleMemberDeleteModal(member)}
           >
             <svg
@@ -428,7 +427,7 @@ class AdminPage extends Component {
                 fill="#E1993D"
               />
             </svg>
-          </Link>
+          </span>
         );
       } else {
         EditButton = <div />;
@@ -437,9 +436,9 @@ class AdminPage extends Component {
 
       if (this.props.user !== undefined && this.props.user.role >= 4) {
         RoleButton = (
-          <Link
-            className="admin-link admin-link-small"
-            to={'/members/changeRole/' + member._id}
+          <span
+            className="admin-link admin-link-small admin-cursor"
+            onClick={() => this.toggleRoleChangeModal(member)}
           >
             <svg
               width="25"
@@ -457,7 +456,7 @@ class AdminPage extends Component {
                 fill="#E1993D"
               />
             </svg>
-          </Link>
+          </span>
         );
       } else {
         RoleButton = <div />;
@@ -600,6 +599,18 @@ class AdminPage extends Component {
   }
 
   createRoleChangeModal() {
+    let FederationOption = {};
+
+    if (this.props.user !== undefined && this.props.user.role == 5) {
+      FederationOption = (
+        <option key="5" value="5">
+          Federationadministrator
+        </option>
+      );
+    } else {
+      FederationOption = <div />;
+    }
+
     return (
       <Modal
         isOpen={this.state.changeRoleModal}
@@ -635,9 +646,7 @@ class AdminPage extends Component {
                 <option key="4" value="4">
                   Cityadministrator
                 </option>
-                <option key="5" value="5">
-                  Federationadministrator
-                </option>
+                {FederationOption}
               </Input>
             </FormGroup>
           </Form>
