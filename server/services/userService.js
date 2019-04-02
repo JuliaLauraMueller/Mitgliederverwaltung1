@@ -15,7 +15,6 @@ module.exports = {
   getAll,
   generateJwtToken,
   removeAllCompanyRelations,
-  update,
   updateUser
 };
 
@@ -105,21 +104,11 @@ async function updateUser(id, userParam) {
     throw { type: 'invalid_input', errors };
   } else {
     var query = { _id: id };
-    return await User.updateOne(query, userData, function(err, res) {
-      //  if (err) throw err;
-    });
-    /*
-      .then(res => {
-        if (res) {
-          companyService.update(companyData._id, companyData);
-        }
-      })
-      .catch(err => {
-        throw { type: 'internal_server_error', err };
-      })
-      */
-
-    console.log('WORKED');
+    try {
+      return await User.updateOne(query, userData);
+    } catch (error) {
+      throw { type: 'processing_error', error };
+    }
   }
 }
 

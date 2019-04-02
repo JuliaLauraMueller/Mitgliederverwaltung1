@@ -99,11 +99,13 @@ class ProfileMainInformationEDIT extends Component {
 
     console.log('MAIN SECOND BEFORE');
     await this.props.dispatch(
-      putWholeData(mainInfoUpdate, basicInfoUpdate, companyUpdate).catch(
-        err => {
+      putWholeData(mainInfoUpdate, basicInfoUpdate, companyUpdate)
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => {
           this.props.dispatch(alertError(err.join('\n')));
-        }
-      )
+        })
     );
     console.log('MAIN SECOND AFTER');
   }
