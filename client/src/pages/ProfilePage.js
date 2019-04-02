@@ -49,24 +49,36 @@ class ProfilePage extends Component {
     e.preventDefault();
     var newBasicInfo = this.basicInfo.getWrappedInstance().onSave();
     var newMainInfo = this.mainInfo.getWrappedInstance().onSave(); //newBasicInfo);
-    await this.props.dispatch(
-      putWholeData(
-        newMainInfo.mainInfoUpdate,
-        newBasicInfo,
-        newMainInfo.companyUpdate
-      )
-        .then(res => {
-          console.log('RES');
-          console.log(res);
-          this.toggleEdit();
-          //return res;
-          //this.props.dispatch({ type: PUT_PROFILE, payload: newBasicInfo });
-        })
-        .catch(err => {
-          this.props.dispatch(alertError(err.join('\n')));
-          this.toggleEdit();
-        })
-    );
+    var data = {
+      profileMainData: newMainInfo.mainInfoUpdate,
+      profileBasicData: newBasicInfo,
+      companyData: newMainInfo.companyUpdate
+    };
+    try {
+      await this.props.dispatch(
+        putWholeData(
+          data
+          //newMainInfo.mainInfoUpdate,
+          //newBasicInfo,
+          //newMainInfo.companyUpdate
+        )
+        //.then(res => {
+        //console.log('RES');
+        //console.log(res);
+        //this.toggleEdit();
+        //return res;
+        //this.props.dispatch({ type: PUT_PROFILE, payload: newBasicInfo });
+        //})
+        //.catch(err => {
+        //  this.props.dispatch(alertError(err.join('\n')));
+        //this.toggleEdit();
+        //})
+      );
+    } catch (err) {
+      this.props.dispatch(alertError(err.join('\n')));
+    }
+    this.toggleEdit();
+    //TODO: Add update call for company in backend
   }
 
   render() {

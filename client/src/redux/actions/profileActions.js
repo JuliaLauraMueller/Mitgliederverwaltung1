@@ -70,6 +70,24 @@ export const putWholeData = data => async dispatch => {
 };
 */
 
+export const putWholeData = data => async dispatch => {
+  var profileMainData = data.profileMainData;
+  var profileBasicData = data.profileBasicData;
+  var companyData = data.companyData;
+  Object.assign(profileMainData, profileBasicData);
+
+  return await profileService
+    .setUserData(profileMainData, companyData)
+    .then(res => {
+      dispatch({ type: PUT_PROFILE, payload: profileMainData });
+      dispatch({ type: PUT_PROFILE, payload: companyData });
+    })
+    .catch(error => {
+      return Promise.reject(error);
+    });
+};
+
+/*
 export async function putWholeData(
   profileMainData,
   profileBasicData,
@@ -81,18 +99,18 @@ export async function putWholeData(
     .setUserData(profileMainData, companyData)
     .then(res => {
       console.log(res);
-      console.log(profileMainData);
-      console.log(companyData);
-      //return function(dispatch) {
-      //dispatch({ type: PUT_PROFILE, payload: profileMainData });
-      //dispatch({ type: PUT_PROFILE, payload: companyData });
-      //};
+      console.log(profileBasicData);
+      return function(dispatch) {
+        dispatch({ type: PUT_PROFILE, payload: profileBasicData });
+        //dispatch({ type: PUT_PROFILE, payload: companyData });
+      };
     })
     .catch(error => {
       return Promise.reject(error);
     });
+    */
 
-  /*
+/*
     return await function(dispatch) {
     profileService
       .setUserData(profileMainData, companyData)
@@ -107,4 +125,3 @@ export async function putWholeData(
       });
   };
 */
-}
