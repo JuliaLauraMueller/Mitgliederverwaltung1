@@ -53,7 +53,10 @@ function getById(req, res, next) {
 function update(req, res, next) {
   userService
     .updateUser(req.params.id, req.body)
-    .then(() => res.json({}))
+    .then(user => {
+      console.log(user);
+      return res.json({ updated: user });
+    })
     .catch(error => {
       if (error && error.type == 'invalid_input') {
         res.status(422).send(error);

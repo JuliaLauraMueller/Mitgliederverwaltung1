@@ -105,8 +105,7 @@ async function updateUser(id, userParam) {
     throw { type: 'invalid_input', errors };
   } else {
     var query = { _id: id };
-
-    await User.updateOne(query, userData, function(err, res) {
+    return await User.updateOne(query, userData, function(err, res) {
       //  if (err) throw err;
     });
     /*
