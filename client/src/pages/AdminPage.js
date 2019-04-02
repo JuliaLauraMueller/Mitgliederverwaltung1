@@ -12,7 +12,6 @@ import {
   Row,
   Col,
   Collapse,
-  Button,
   Card,
   CardBody,
   Modal,
@@ -184,8 +183,8 @@ class AdminPage extends Component {
                     <input
                       type="text"
                       name="search"
-                      placeholder="    suchen..."
-                      className="form-control search-icon-admin form-control-admin"
+                      placeholder="suchen..."
+                      className="form-control form-control-admin"
                       value={this.state.searchText}
                       onChange={this.handleChange.bind(this)}
                     />
