@@ -15,17 +15,12 @@ import ProfilePage from '../pages/ProfilePage';
 import MemberPage from '../pages/MemberPage';
 import AdminPage from '../pages/AdminPage';
 import AppNavbar from '../components/AppNavbar/AppNavbar';
-import jwtToken from '../helpers/jwtAccessor';
 
 class Routes extends Component {
   render() {
-    let AdminRoute = {};
-    if (jwtToken == undefined) {
+    let AdminRoute;
+    if (this.props.user !== undefined && this.props.user.role >= 3) {
       AdminRoute = <PrivateRoute exact path="/admin" component={AdminPage} />;
-    } else if (3 <= jwtToken.role) {
-      AdminRoute = <PrivateRoute exact path="/admin" component={AdminPage} />;
-    } else {
-      AdminRoute = <PrivateRoute exact path="/login" component={LoginPage} />;
     }
 
     return (
@@ -53,7 +48,9 @@ class Routes extends Component {
 }
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    user: state.auth.user
+  };
 }
 
 export default connect(mapStateToProps)(Routes);

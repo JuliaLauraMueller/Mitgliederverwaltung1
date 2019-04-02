@@ -4,7 +4,6 @@ import '../../css/BurgerNav.css';
 
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import jwtToken from '../../helpers/jwtAccessor';
 
 class BurgerNav extends React.Component {
   constructor(props) {
@@ -32,7 +31,7 @@ class BurgerNav extends React.Component {
   render() {
     let userId = this.props.user ? this.props.user._id : '';
     let AdminButton = {};
-    if (3 <= jwtToken.role) {
+    if (this.props.user !== undefined && 3 <= this.props.user.role) {
       AdminButton = (
         <Link
           to="/admin"

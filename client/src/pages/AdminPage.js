@@ -36,7 +36,7 @@ import {
   deleteCircle
 } from '../redux/actions/circleActions';
 import { filterMembers, ownCircleMembers } from '../helpers/memberSearch';
-import jwtToken from '../helpers/jwtAccessor';
+import getUserToken from '../helpers/jwtAccessor';
 
 import '../css/AdminPage.css';
 
@@ -180,7 +180,7 @@ class AdminPage extends Component {
 
   render() {
     let CitiesButton = {};
-    if (5 <= jwtToken.role) {
+    if (this.props.user !== undefined && this.props.user.role >= 5) {
       CitiesButton = (
         <NavItem>
           <NavLink
@@ -364,14 +364,14 @@ class AdminPage extends Component {
 
   getMemberRows(members) {
     return filterMembers(
-      ownCircleMembers(members, [jwtToken.circle], jwtToken.role),
+      ownCircleMembers(members, [getUserToken().circle], getUserToken().role),
       this.state.searchText,
       true
     ).map(member => {
       let EditButton = {};
       let DeleteButton = {};
       let RoleButton = {};
-      if (3 <= jwtToken.role) {
+      if (jwtToken !== undefined && 3 <= jwtToken.role) {
         EditButton = (
           <Link
             className="admin-link admin-link-small"
@@ -433,7 +433,7 @@ class AdminPage extends Component {
         DeleteButton = <div />;
       }
 
-      if (4 <= jwtToken.role) {
+      if (jwtToken !== undefined && 4 <= jwtToken.role) {
         RoleButton = (
           <Link
             className="admin-link admin-link-small"
@@ -669,7 +669,8 @@ class AdminPage extends Component {
 function mapStateToProps(state) {
   return {
     members: state.member.members,
-    circles: state.circle.circles
+    circles: state.circle.circles,
+    user: state.auth.user
   };
 }
 

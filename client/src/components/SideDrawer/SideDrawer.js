@@ -7,8 +7,6 @@ import '../../css/SideDrawer.css';
 
 import DrawerToggleButton from './DrawerToggleButton';
 
-import jwtToken from '../../helpers/jwtAccessor';
-
 class SideDrawer extends Component {
   render() {
     let drawerClasses = 'side-drawer';
@@ -21,7 +19,7 @@ class SideDrawer extends Component {
     let userId = this.props.user ? this.props.user._id : '';
 
     let AdminButton = {};
-    if (jwtToken == undefined || 3 <= jwtToken.role) {
+    if (this.props.user !== undefined && 3 <= this.props.user.role) {
       AdminButton = (
         <Link to="/admin">
           <svg
