@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { alertError } from '../../redux/actions/alertActions';
 import {
   putProfile,
   putCompany,
@@ -67,7 +66,8 @@ class ProfileMainInformationEDIT extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  async onSave(basicInfoUpdate) {
+  onSave() {
+    //basicInfoUpdate) {
     const mainInfoUpdate = {
       _id: this.props.profile._id,
       sector: this.state.sector,
@@ -97,6 +97,7 @@ class ProfileMainInformationEDIT extends Component {
 
     // Second
 
+    return { mainInfoUpdate: mainInfoUpdate, companyUpdate: companyUpdate };
     console.log('MAIN SECOND BEFORE');
     /*
     const data = {
@@ -105,10 +106,13 @@ class ProfileMainInformationEDIT extends Component {
       companyData: companyUpdate
     };
     */
+
+    /*
     await this.props.dispatch(
       putWholeData(mainInfoUpdate, basicInfoUpdate, companyUpdate)
         .then(res => {
           console.log(res);
+          return res;
           //this.props.dispatch({ type: PUT_PROFILE, payload: mainInfoUpdate });
         })
         .catch(err => {
@@ -116,6 +120,7 @@ class ProfileMainInformationEDIT extends Component {
         })
     );
     console.log('MAIN SECOND AFTER');
+  */
   }
 
   render() {

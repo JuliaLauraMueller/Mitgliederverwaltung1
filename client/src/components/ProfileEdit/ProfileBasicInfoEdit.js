@@ -57,11 +57,6 @@ class ProfileBasicInfoEDIT extends Component {
       //godfather: this.state.godfather,
       birthdate: this.state.birthdate
     };
-
-    // First
-    console.log('BASIC FIRST');
-    //this.props.dispatch(putProfile(basicInformationUpdate));
-    console.log('BASIC FIRST AFTER');
     return basicInformationUpdate;
   }
 

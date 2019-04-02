@@ -7,7 +7,8 @@ import ProfileMainInformationEDIT from '../components/ProfileEdit/ProfileMainInf
 
 import { connect } from 'react-redux';
 import { setNavVisible } from '../redux/actions/navigationActions';
-import { fetchProfile } from '../redux/actions/profileActions';
+import { fetchProfile, putWholeData } from '../redux/actions/profileActions';
+import { alertError } from '../redux/actions/alertActions';
 
 import '../css/ProfilePage.css';
 
@@ -44,11 +45,28 @@ class ProfilePage extends Component {
     this.setState({ isEditing: !this.state.isEditing });
   }
 
-  handleClick(e) {
+  async handleClick(e) {
     e.preventDefault();
     var newBasicInfo = this.basicInfo.getWrappedInstance().onSave();
-    this.mainInfo.getWrappedInstance().onSave(newBasicInfo);
-    this.toggleEdit();
+    var newMainInfo = this.mainInfo.getWrappedInstance().onSave(); //newBasicInfo);
+    await this.props.dispatch(
+      putWholeData(
+        newMainInfo.mainInfoUpdate,
+        newBasicInfo,
+        newMainInfo.companyUpdate
+      )
+        .then(res => {
+          console.log('RES');
+          console.log(res);
+          this.toggleEdit();
+          //return res;
+          //this.props.dispatch({ type: PUT_PROFILE, payload: newBasicInfo });
+        })
+        .catch(err => {
+          this.props.dispatch(alertError(err.join('\n')));
+          this.toggleEdit();
+        })
+    );
   }
 
   render() {

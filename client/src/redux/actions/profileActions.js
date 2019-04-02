@@ -83,10 +83,10 @@ export async function putWholeData(
       console.log(res);
       console.log(profileMainData);
       console.log(companyData);
-      return function(dispatch) {
-        dispatch({ type: PUT_PROFILE, payload: profileMainData });
-        //dispatch({ type: PUT_PROFILE, payload: companyData });
-      };
+      //return function(dispatch) {
+      //dispatch({ type: PUT_PROFILE, payload: profileMainData });
+      //dispatch({ type: PUT_PROFILE, payload: companyData });
+      //};
     })
     .catch(error => {
       return Promise.reject(error);
