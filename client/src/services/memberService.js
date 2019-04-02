@@ -12,7 +12,8 @@ async function getUserBody() {
       let mem = {
         members: users.map(element => {
           return {
-            _id: element.id,
+            _id: element._id,
+            memberNumber: element.memberNumber,
             firstname: element.firstname,
             surname: element.surname,
             privateEmail: element.privateEmail,
@@ -20,8 +21,14 @@ async function getUserBody() {
             job: element.job,
             function: element.function,
             sector: element.sector,
-            company: element.company,
-            circle: element.circle,
+            company:
+              element.companyValues && element.companyValues.length > 0
+                ? element.companyValues[0]
+                : undefined,
+            circle:
+              element.circleValues && element.circleValues.length > 0
+                ? element.circleValues[0]
+                : undefined,
             profilepic: './img/marc_zimmermann.jpg' // TODO: implement loading of images
           };
         })
@@ -35,5 +42,30 @@ async function getUserBody() {
     });
 }
 
-const memberService = { getUserBody };
+async function deleteMember(id) {
+  return await axios
+    .delete('/users/' + id)
+    .then(resp => {
+      return id;
+    })
+    .catch(err => {
+      history.push('/admin');
+      store.dispatch(alertError('Mitglied konnte nicht gelöscht werden.'));
+    });
+}
+
+async function createMember(data) {
+  return await axios
+    .post('/users/', data)
+    .then(res => {
+      return res;
+    })
+    .catch(err => {
+      if (err && err.data.error && err.data.error.type === 'invalid_input') {
+        return Promise.reject(err.data.error.errors);
+      }
+    });
+}
+
+const memberService = { getUserBody, deleteMember, createMember };
 export default memberService;

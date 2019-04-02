@@ -3,15 +3,11 @@ const Company = db.Company;
 const usersService = require('../services/userService');
 
 module.exports = {
-  getAll,
   getById,
   update,
-  _delete
+  _delete,
+  createEmpty
 };
-
-async function getAll() {
-  return await Company.find().select();
-}
 
 async function getById(id) {
   return await Company.findById(id).select();
@@ -30,4 +26,13 @@ async function update(id, companyParam) {
 async function _delete(id) {
   await Company.findByIdAndRemove(id);
   await usersService.removeAllCompanyLocRelations(id);
+}
+
+async function createEmpty() {
+  // save company
+  try {
+    return await Company.create({});
+  } catch (error) {
+    throw { type: 'processing_error', error };
+  }
 }

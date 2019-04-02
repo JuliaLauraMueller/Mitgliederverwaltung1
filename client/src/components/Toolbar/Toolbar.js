@@ -124,7 +124,7 @@ const toolbar = props => (
               </Link>
             </li>
             <li>
-              <Link to="/">
+              <Link to="/admin">
                 <svg
                   width="24"
                   height="26"
@@ -184,7 +184,7 @@ const toolbar = props => (
           <a href="/">
             <img
               className="toolbar-icon"
-              src={require('../../../public/img/logo_black_small.png')}
+              src={require('../../img/logo_black_small.png')}
               alt="logo"
             />
           </a>

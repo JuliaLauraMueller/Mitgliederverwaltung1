@@ -1,4 +1,9 @@
-import { CIRCLES_FETCHED } from '../types/circleTypes';
+import {
+  CIRCLES_FETCHED,
+  PUT_CIRCLE,
+  CIRCLE_DELETED,
+  CREATE_CIRCLE
+} from '../types/circleTypes';
 import circleService from '../../services/circleService';
 
 export const fetchCircles = () => dispatch => {
@@ -7,4 +12,38 @@ export const fetchCircles = () => dispatch => {
       dispatch({ type: CIRCLES_FETCHED, payload: res.circles });
     }
   });
+};
+
+export const putCircle = circleData => async dispatch => {
+  return circleService
+    .setCircleData(circleData)
+    .then(res => {
+      if (res) {
+        dispatch({ type: PUT_CIRCLE, payload: circleData });
+      }
+    })
+    .catch(errorMessage => {
+      return Promise.reject(errorMessage);
+    });
+};
+
+export const deleteCircle = id => dispatch => {
+  circleService.deleteCircle(id).then(res => {
+    if (res) {
+      dispatch({ type: CIRCLE_DELETED, payload: res });
+    }
+  });
+};
+
+export const createCircle = circleData => async dispatch => {
+  return await circleService
+    .createCircle(circleData)
+    .then(res => {
+      if (res && res.data.created) {
+        dispatch({ type: CREATE_CIRCLE, payload: res.data.created });
+      }
+    })
+    .catch(errorMessage => {
+      return Promise.reject(errorMessage);
+    });
 };
