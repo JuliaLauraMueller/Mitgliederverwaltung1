@@ -21,7 +21,8 @@ module.exports = {
   removeAllCompanyRelations,
   update,
   updateUser,
-  deleteUser
+  deleteUser,
+  changeRole
 };
 
 async function authenticate({ privateEmail, password }) {
@@ -61,7 +62,13 @@ async function getAll() {
 }
 
 async function getCircleForId(id) {
-  return await User.findById(id, 'circle');
+  const user = await User.findById(id, 'circle');
+
+  if (!user) {
+    throw 'User not found';
+  }
+
+  return user.circle;
 }
 
 async function getById(id) {
@@ -76,6 +83,7 @@ async function create(userParam) {
 
   // generate new member number
   userParam.memberNumber = await getNextSequenceValue();
+  userParam.role = 0;
 
   // hash password
   if (userParam.password) {
@@ -229,4 +237,17 @@ function validateInputs(userParam) {
 
   // TODO: reload of site after input validation
   return userParam;
+}
+
+async function changeRole(id, role) {
+  const user = await User.findById(id);
+  console.log('Reached changeRole');
+  console.log(user);
+
+  if (!user) {
+    throw 'User not found';
+  }
+
+  user.role = role;
+  await user.save();
 }

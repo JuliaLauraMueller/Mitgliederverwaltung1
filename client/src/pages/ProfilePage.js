@@ -12,10 +12,7 @@ import store from '../helpers/store';
 
 import jwtToken from '../helpers/jwtAccessor';
 
-import {
-  personalAccessCheck,
-  roleAccessCheck
-} from '../../../server/services/roleService';
+import { personalAccessCheck, roleAccessCheck } from '../helpers/roleHelper';
 
 import '../css/ProfilePage.css';
 

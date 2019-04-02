@@ -28,7 +28,11 @@ import { connect } from 'react-redux';
 import AdminCreateUser from '../components/Admin/AdminCreateUser';
 import AdminCreateCircle from '../components/Admin/AdminCreateCircle';
 import { setNavVisible } from '../redux/actions/navigationActions';
-import { fetchMembers, deleteMember } from '../redux/actions/memberActions';
+import {
+  fetchMembers,
+  deleteMember,
+  changeRole
+} from '../redux/actions/memberActions';
 import { alertError } from '../redux/actions/alertActions';
 import {
   fetchCircles,
@@ -173,8 +177,7 @@ class AdminPage extends Component {
   }
 
   changeRole(member) {
-    console.log(member);
-    //this.props.dispatch(changeRole(id, newRole));
+    this.props.dispatch(changeRole(member));
   }
 
   render() {
@@ -611,6 +614,7 @@ class AdminPage extends Component {
             color="primary"
             onClick={() => {
               this.changeRole(this.state.memberToChangeRole);
+              this.toggleRoleChangeModal({});
             }}
             value="Rolle ändern"
           />

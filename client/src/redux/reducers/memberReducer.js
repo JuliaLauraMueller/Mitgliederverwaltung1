@@ -2,7 +2,8 @@ import {
   SEARCH_MEMBERS,
   FILTER_CIRCLES,
   MEMBER_DELETED,
-  CREATE_MEMBER
+  CREATE_MEMBER,
+  ROLE_CHANGE
 } from '../types/memberTypes';
 import { MEMBERS_FETCHED } from '../types/memberTypes';
 import { filterMembers, filterByCircles } from '../../helpers/memberSearch';
@@ -18,6 +19,12 @@ function deleteMember(members, id) {
   return members.filter(member => {
     return member._id != id;
   });
+}
+
+function getUpdatedMembers(members, updatedMember) {
+  let index = members.findIndex(member => member._id == updatedMember._id);
+  members[index].role = updatedMember.role;
+  return members;
 }
 
 export default function(state = initialState, action) {
@@ -63,6 +70,17 @@ export default function(state = initialState, action) {
     case CREATE_MEMBER:
       return {
         members: [...state.members, action.payload],
+        searchText: state.searchText,
+        filteredCircles: state.filteredCircles,
+        filteredMembers: filterMembers(
+          filterByCircles(state.members, state.filteredCircles),
+          state.searchText,
+          false
+        )
+      };
+    case ROLE_CHANGE:
+      return {
+        members: [...getUpdatedMembers(state.members, action.payload)],
         searchText: state.searchText,
         filteredCircles: state.filteredCircles,
         filteredMembers: filterMembers(

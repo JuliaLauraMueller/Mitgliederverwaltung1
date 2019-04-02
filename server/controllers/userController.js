@@ -6,13 +6,13 @@ const errorHandler = require('../helpers/errorHandler');
 
 // routes
 router.post('/auth', authenticate);
-router.post('/register', register);
 router.get('/', getAll);
 router.get('/current', getCurrent);
 router.get('/:id', getById);
 router.put('/:id', update);
 router.delete('/:id', deleteUser);
 router.post('/', create);
+router.put('/changeRole/:id', changeRole);
 
 module.exports = router;
 
@@ -22,13 +22,6 @@ function authenticate(req, res, next) {
     .then(user => {
       return user ? res.json(user) : res.sendStatus(401, 'Unauthorized');
     })
-    .catch(err => next(err));
-}
-
-function register(req, res, next) {
-  userService
-    .create(req.body)
-    .then(() => res.json({}))
     .catch(err => next(err));
 }
 
@@ -54,39 +47,44 @@ function getById(req, res, next) {
 }
 
 function update(req, res, next) {
-  userService.getCircleForId(req.body._id).then(user => {
-    if (
-      roleHelper.roleAccessCheck(
-        3,
-        user.circle,
-        req.user.role,
-        req.user.circle
-      ) ||
-      roleHelper.personalAccessCheck(req.params.id, req.user._id)
-    ) {
-      userService
-        .updateUser(req.params.id, req.body)
-        .then(() => res.json({}))
-        .catch(err => next(err));
-    } else {
-      res.sendStatus(403);
-    }
-  });
+  userService
+    .getCircleForId(req.body._id)
+    .then(circle => {
+      if (
+        roleHelper.roleAccessCheck(3, circle, req.user.role, req.user.circle) ||
+        roleHelper.personalAccessCheck(req.params.id, req.user._id)
+      ) {
+        userService
+          .updateUser(req.params.id, req.body)
+          .then(() => res.json({}))
+          .catch(err => next(err));
+      } else {
+        res.sendStatus(403);
+      }
+    })
+    .catch(err => {
+      res.sendStatus(404);
+    });
 }
 
 function deleteUser(req, res, next) {
-  userService.getCircleForId(req.body._id).then(user => {
-    if (
-      roleHelper.roleAccessCheck(3, user.circle, req.user.role, req.user.circle)
-    ) {
-      userService
-        .delete(req.params.id)
-        .then(() => res.json({}))
-        .catch(err => next(err));
-    } else {
-      res.sendStatus(403);
-    }
-  });
+  userService
+    .getCircleForId(req.body._id)
+    .then(circle => {
+      if (
+        roleHelper.roleAccessCheck(3, circle, req.user.role, req.user.circle)
+      ) {
+        userService
+          .delete(req.params.id)
+          .then(() => res.json({}))
+          .catch(err => next(err));
+      } else {
+        res.sendStatus(403);
+      }
+    })
+    .catch(err => {
+      res.sendStatus(404);
+    });
 }
 
 function create(req, res, next) {
@@ -102,5 +100,28 @@ function create(req, res, next) {
         console.error('User create error: ', error);
         res.sendStatus(500);
       }
+    });
+}
+
+function changeRole(req, res, next) {
+  console.log('Reached call');
+  console.log(req.body._id);
+
+  userService
+    .getCircleForId(req.body._id)
+    .then(circle => {
+      if (
+        roleHelper.roleAccessCheck(4, circle, req.user.role, req.user.circle)
+      ) {
+        userService
+          .changeRole(req.body._id, req.body.role)
+          .then(() => res.json({}))
+          .catch(err => next(err));
+      } else {
+        res.sendStatus(403);
+      }
+    })
+    .catch(err => {
+      res.sendStatus(404);
     });
 }

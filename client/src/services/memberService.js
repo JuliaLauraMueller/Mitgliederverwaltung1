@@ -1,7 +1,7 @@
 import axios from 'axios';
 import store from '../helpers/store';
 import history from '../helpers/history';
-import { alertError } from '..//redux/actions/alertActions';
+import { alertError, alertSuccess } from '..//redux/actions/alertActions';
 
 async function getUserBody() {
   return await axios
@@ -68,5 +68,18 @@ async function createMember(data) {
     });
 }
 
-const memberService = { getUserBody, deleteMember, createMember };
+async function changeRole(member) {
+  return await axios
+    .put('/users/changeRole/' + member._id, member)
+    .then(res => {
+      store.dispatch(alertSuccess('Rolle wurde geändert.'));
+      return res;
+    })
+    .catch(err => {
+      history.push('/admin');
+      store.dispatch(alertError('Rolle konnte nicht geändert werden.'));
+    });
+}
+
+const memberService = { getUserBody, deleteMember, createMember, changeRole };
 export default memberService;
