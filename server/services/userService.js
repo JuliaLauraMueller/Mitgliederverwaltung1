@@ -241,8 +241,6 @@ function validateInputs(userParam) {
 
 async function changeRole(id, role) {
   const user = await User.findById(id);
-  console.log('Reached changeRole');
-  console.log(user);
 
   if (!user) {
     throw 'User not found';

@@ -89,24 +89,32 @@ function deleteUser(req, res, next) {
 
 function create(req, res, next) {
   userService
-    .create(req.body)
-    .then(user => {
-      return res.json({ created: user });
-    })
-    .catch(error => {
-      if (error && error.type == 'invalid_input') {
-        res.status(422).send({ error });
-      } else {
-        console.error('User create error: ', error);
-        res.sendStatus(500);
+    .getCircleForId(req.user._id)
+    .then(circle => {
+      if (
+        roleHelper.roleAccessCheck(3, circle, req.user.role, req.user.circle)
+      ) {
+        userService
+          .create(req.body)
+          .then(user => {
+            return res.json({ created: user });
+          })
+          .catch(error => {
+            if (error && error.type == 'invalid_input') {
+              res.status(422).send({ error });
+            } else {
+              console.error('User create error: ', error);
+              res.sendStatus(500);
+            }
+          });
       }
+    })
+    .catch(err => {
+      res.sendStatus(404);
     });
 }
 
 function changeRole(req, res, next) {
-  console.log('Reached call');
-  console.log(req.body._id);
-
   userService
     .getCircleForId(req.body._id)
     .then(circle => {
