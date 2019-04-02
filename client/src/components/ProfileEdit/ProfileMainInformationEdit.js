@@ -98,6 +98,13 @@ class ProfileMainInformationEDIT extends Component {
     // Second
 
     console.log('MAIN SECOND BEFORE');
+    /*
+    const data = {
+      profileMainData: mainInfoUpdate,
+      profileBasicData: basicInfoUpdate,
+      companyData: companyUpdate
+    };
+    */
     await this.props.dispatch(
       putWholeData(mainInfoUpdate, basicInfoUpdate, companyUpdate)
         .then(res => {

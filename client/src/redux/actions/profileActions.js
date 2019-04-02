@@ -47,6 +47,29 @@ export function putCompany(companyData) {
   };
 }
 
+/*
+export const putWholeData = data => async dispatch => {
+  var profileMainData = data.profileMainData;
+  var profileBasicData = data.profileBasicData;
+  var companyData = data.companyData;
+
+  Object.assign(profileMainData, profileBasicData);
+  return await profileService
+    .setUserData(profileMainData, companyData)
+    .then(res => {
+      console.log(res);
+      console.log(profileMainData);
+      console.log(companyData);
+
+      dispatch({ type: PUT_PROFILE, payload: profileMainData });
+      //dispatch({ type: PUT_PROFILE, payload: companyData });
+    })
+    .catch(error => {
+      return Promise.reject(error);
+    });
+};
+*/
+
 export async function putWholeData(
   profileMainData,
   profileBasicData,

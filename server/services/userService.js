@@ -99,7 +99,7 @@ async function updateUser(id, userParam) {
   var errors = [];
   errors = validateAll(userData, errors);
   errors = companyService.validateCompany(companyData, errors);
-
+  console.log('TEST');
   if (errors.length != 0) {
     throw { type: 'invalid_input', errors };
   } else {
