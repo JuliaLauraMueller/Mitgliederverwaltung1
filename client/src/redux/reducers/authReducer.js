@@ -4,9 +4,9 @@ import {
   UPDATE_TOKEN,
   LOGOUT
 } from '../types/authTypes';
-import userInfo from '../../helpers/jwtAccessor';
+import getUserToken from '../../helpers/jwtAccessor';
 
-const initialState = { loggedIn: true, user: userInfo };
+const initialState = { loggedIn: true, user: getUserToken() };
 
 export default function(state = initialState, action) {
   switch (action.type) {
