@@ -36,7 +36,6 @@ import {
   deleteCircle
 } from '../redux/actions/circleActions';
 import { filterMembers, ownCircleMembers } from '../helpers/memberSearch';
-import getUserToken from '../helpers/jwtAccessor';
 
 import '../css/AdminPage.css';
 
@@ -364,14 +363,14 @@ class AdminPage extends Component {
 
   getMemberRows(members) {
     return filterMembers(
-      ownCircleMembers(members, [getUserToken().circle], getUserToken().role),
+      ownCircleMembers(members, [this.props.user.circle], this.props.user.role),
       this.state.searchText,
       true
     ).map(member => {
       let EditButton = {};
       let DeleteButton = {};
       let RoleButton = {};
-      if (jwtToken !== undefined && 3 <= jwtToken.role) {
+      if (this.props.user !== undefined && this.props.user.role >= 3) {
         EditButton = (
           <Link
             className="admin-link admin-link-small"
@@ -433,7 +432,7 @@ class AdminPage extends Component {
         DeleteButton = <div />;
       }
 
-      if (jwtToken !== undefined && 4 <= jwtToken.role) {
+      if (this.props.user !== undefined && this.props.user.role >= 4) {
         RoleButton = (
           <Link
             className="admin-link admin-link-small"

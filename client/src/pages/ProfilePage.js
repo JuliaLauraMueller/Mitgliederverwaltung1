@@ -33,13 +33,6 @@ class ProfilePage extends Component {
     this.toggleEdit = this.toggleEdit.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.loadMember = this.loadMember.bind(this);
-
-    store.subscribe(() => {
-      this.setState({
-        _id: store.getState().profile.member._id,
-        circle: store.getState().profile.member.city_id
-      });
-    });
   }
 
   componentDidMount() {
@@ -68,13 +61,19 @@ class ProfilePage extends Component {
   }
 
   render() {
+    console.log(this.props.user);
     let EditButton = {};
     if (
-      personalAccessCheck(this.state._id, jwtToken._id) ||
-      roleAccessCheck(3, this.state.circle, jwtToken.role, jwtToken.circle)
+      personalAccessCheck(this.props._id, this.props.user._id) ||
+      roleAccessCheck(
+        3,
+        this.props.circle,
+        this.props.user.role,
+        this.props.user.circle
+      )
     ) {
       EditButton = (
-        <button className="button-save-edit" onClick={this.toggleEdit}>
+        <button className="button-save-edit" onClick={() => this.toggleEdit}>
           Editieren
         </button>
       );
@@ -140,7 +139,11 @@ class ProfilePage extends Component {
 }
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    user: state.auth.user,
+    _id: state.profile.member._id,
+    circle: state.profile.member.city_id
+  };
 }
 
 export default connect(mapStateToProps)(ProfilePage);
