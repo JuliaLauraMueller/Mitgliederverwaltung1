@@ -72,7 +72,7 @@ class SearchFieldMember extends Component {
             <div className="testerSearch">
               <img
                 className="search-icon"
-                src={require('../../public/img/search-grey.png')}
+                src={require('../img/search-grey.png')}
                 alt="Card i cap"
               />
               <input

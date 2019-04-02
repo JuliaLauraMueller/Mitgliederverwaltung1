@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Form, FormGroup, Label, Input, Col } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Col, Row } from 'reactstrap';
 
 import { fetchCircles } from '../../redux/actions/circleActions';
 import { fetchMembers, createMember } from '../../redux/actions/memberActions';
@@ -42,7 +42,7 @@ class AdminCreateUser extends Component {
 
   async submitMember(event) {
     event.preventDefault();
-    if (this.state.circle == '' && this.props.circles[0]) {
+    if (this.state.circle === '' && this.props.circles[0]) {
       this.state.circle = this.props.circles[0]._id; // set default value
     }
     await this.props
@@ -62,79 +62,93 @@ class AdminCreateUser extends Component {
       <div>
         <h4>Neues Mitglied</h4>
         <Form onSubmit={this.submitMember}>
-          <FormGroup row>
-            <Label for="firstname" sm={2}>
-              Vorname
-            </Label>
-            <Col>
-              <Input
-                type="text"
-                name="firstname"
-                id="firstname"
-                className="admin-form-control"
-                value={this.state.firstname}
-                onChange={this.handleChange}
-              />
-            </Col>
-          </FormGroup>
-          <FormGroup row>
-            <Label for="surname" sm={2}>
-              Nachname
-            </Label>
-            <Col sm={10}>
-              <Input
-                type="text"
-                name="surname"
-                id="surname"
-                className="admin-form-control"
-                value={this.state.surname}
-                onChange={this.handleChange}
-              />
-            </Col>
-          </FormGroup>
-          <FormGroup row>
-            <Label for="privateEmail" sm={2}>
-              E-Mail
-            </Label>
-            <Col sm={10}>
-              <Input
-                type="email"
-                name="privateEmail"
-                id="privateEmail"
-                className="admin-form-control"
-                autoComplete="off"
-                value={this.state.privateEmail}
-                onChange={this.handleChange}
-              />
-            </Col>
-          </FormGroup>
-          <FormGroup row>
-            <Label for="password" sm={2}>
-              Passwort
-            </Label>
-            <Col sm={10}>
-              <Input
-                type="password"
-                name="password"
-                id="password"
-                className="admin-form-control"
-                autoComplete="new-password"
-                value={this.state.password}
-                onChange={this.handleChange}
-              />
-            </Col>
+          <FormGroup>
+            <Row>
+              <Col xs="3">
+                <Label for="firstname">Vorname</Label>
+              </Col>
+              <Col xs="9">
+                <Input
+                  type="text"
+                  name="firstname"
+                  id="firstname"
+                  className="admin-form-control"
+                  value={this.state.firstname}
+                  onChange={this.handleChange}
+                />
+              </Col>
+            </Row>
           </FormGroup>
           <FormGroup>
-            <Label for="circle">City</Label>
-            <Input
-              type="select"
-              name="circle"
-              id="circle"
-              value={this.state.circle}
-              onChange={this.handleChange}
-            >
-              {this.getCircleSelectOptions()}
-            </Input>
+            <Row>
+              <Col xs="3">
+                <Label for="surname">Nachname</Label>
+              </Col>
+              <Col xs={9}>
+                <Input
+                  type="text"
+                  name="surname"
+                  id="surname"
+                  className="admin-form-control"
+                  value={this.state.surname}
+                  onChange={this.handleChange}
+                />
+              </Col>
+            </Row>
+          </FormGroup>
+          <FormGroup>
+            <Row>
+              <Col xs="3">
+                <Label for="privateEmail">E-Mail</Label>
+              </Col>
+              <Col xs={9}>
+                <Input
+                  type="email"
+                  name="privateEmail"
+                  id="privateEmail"
+                  className="admin-form-control"
+                  autoComplete="off"
+                  value={this.state.privateEmail}
+                  onChange={this.handleChange}
+                />
+              </Col>
+            </Row>
+          </FormGroup>
+          <FormGroup>
+            <Row>
+              <Col xs="3">
+                <Label for="password">Passwort</Label>
+              </Col>
+              <Col xs={9}>
+                <Input
+                  type="password"
+                  name="password"
+                  id="password"
+                  className="admin-form-control"
+                  autoComplete="new-password"
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                />
+              </Col>
+            </Row>
+          </FormGroup>
+          <FormGroup>
+            <Row>
+              <Col xs="3">
+                <Label for="circle">City</Label>
+              </Col>
+              <Col xs={9}>
+                <Input
+                  type="select"
+                  name="circle"
+                  id="circle"
+                  value={this.state.circle}
+                  onChange={this.handleChange}
+                >
+                  {this.getCircleSelectOptions()}
+                </Input>
+              </Col>
+            </Row>
           </FormGroup>
           <input
             type="button"

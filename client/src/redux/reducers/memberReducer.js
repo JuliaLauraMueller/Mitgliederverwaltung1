@@ -17,7 +17,7 @@ const initialState = {
 
 function deleteMember(members, id) {
   return members.filter(member => {
-    return member._id != id;
+    return member._id !== id;
   });
 }
 

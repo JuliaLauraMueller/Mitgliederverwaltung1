@@ -7,7 +7,6 @@ const errorHandler = require('../helpers/errorHandler');
 // routes
 router.post('/auth', authenticate);
 router.get('/', getAll);
-router.get('/current', getCurrent);
 router.get('/:id', getById);
 router.put('/:id', update);
 router.delete('/:id', deleteUser);
@@ -32,13 +31,6 @@ function getAll(req, res, next) {
     .catch(err => next(err));
 }
 
-function getCurrent(req, res, next) {
-  userService
-    .getById(req.user.sub)
-    .then(user => (user ? res.json(user) : res.sendStatus(404)))
-    .catch(err => next(err));
-}
-
 function getById(req, res, next) {
   userService
     .getById(req.params.id)
@@ -48,7 +40,7 @@ function getById(req, res, next) {
 
 function update(req, res, next) {
   userService
-    .getCircleForId(req.body._id)
+    .getCircleForId(req.user._id)
     .then(circle => {
       if (
         roleHelper.roleAccessCheck(3, circle, req.user.role, req.user.circle) ||
@@ -69,13 +61,13 @@ function update(req, res, next) {
 
 function deleteUser(req, res, next) {
   userService
-    .getCircleForId(req.body._id)
+    .getCircleForId(req.user._id)
     .then(circle => {
       if (
         roleHelper.roleAccessCheck(3, circle, req.user.role, req.user.circle)
       ) {
         userService
-          .delete(req.params.id)
+          .deleteUser(req.params.id)
           .then(() => res.json({}))
           .catch(err => next(err));
       } else {
@@ -116,7 +108,7 @@ function create(req, res, next) {
 
 function changeRole(req, res, next) {
   userService
-    .getCircleForId(req.body._id)
+    .getCircleForId(req.user._id)
     .then(circle => {
       if (
         roleHelper.roleAccessCheck(4, circle, req.user.role, req.user.circle)

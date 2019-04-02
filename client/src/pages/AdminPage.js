@@ -12,7 +12,6 @@ import {
   Row,
   Col,
   Collapse,
-  Button,
   Card,
   CardBody,
   Modal,
@@ -218,8 +217,8 @@ class AdminPage extends Component {
                     <input
                       type="text"
                       name="search"
-                      placeholder="Nach Name, City, Firma oder Funktion suchen..."
-                      className="form-control"
+                      placeholder="    suchen..."
+                      className="form-control search-icon-admin form-control-admin"
                       value={this.state.searchText}
                       onChange={this.handleSearchChange.bind(this)}
                     />
@@ -248,8 +247,7 @@ class AdminPage extends Component {
                       <th className="d-none d-md-table-cell">Nr.</th>
                       <th>Vorname</th>
                       <th>Nachname</th>
-                      <th className="d-none d-md-table-cell">E-Mail</th>
-                      <th className="d-none d-sm-table-cell">City</th>
+                      <th className="d-none d-md-table-cell">City</th>
                       <th>Aktionen</th>
                     </tr>
                   </thead>
@@ -296,16 +294,17 @@ class AdminPage extends Component {
     return circles.map(circle => {
       return (
         <tr key={circle._id}>
-          <td className="d-none d-sm-table-cell">{circle.name}</td>
+          <td>{circle.name}</td>
           <td>
-            <path
+            <span
               className="admin-link admin-link-small admin-cursor"
               onClick={() => this.toggleCircleEditModal(circle)}
-              to={''}
+              data-toggle="tooltip"
+              title="City bearbeiten"
             >
               <svg
-                width="26"
-                height="25"
+                width="24"
+                height="23"
                 viewBox="0 0 19 18"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -323,15 +322,16 @@ class AdminPage extends Component {
                   strokeWidth="0.25"
                 />
               </svg>
-            </path>
-            <path
+            </span>
+            <span
               className="admin-link admin-link-small admin-cursor"
               onClick={() => this.toggleCircleDeleteModal(circle)}
-              to={''}
+              data-toggle="tooltip"
+              title="City löschen"
             >
               <svg
-                width="27"
-                height="27"
+                width="25"
+                height="25"
                 viewBox="0 0 20 20"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -349,7 +349,7 @@ class AdminPage extends Component {
                   fill="#E1993D"
                 />
               </svg>
-            </path>
+            </span>
           </td>
         </tr>
       );
@@ -363,18 +363,19 @@ class AdminPage extends Component {
           <td className="d-none d-md-table-cell">{member.memberNumber}</td>
           <td>{member.firstname}</td>
           <td>{member.surname}</td>
-          <td className="d-none d-md-table-cell">{member.privateEmail}</td>
-          <td className="d-none d-sm-table-cell">
+          <td className="d-none d-md-table-cell">
             {member.circle ? member.circle.name : ''}
           </td>
-          <td>
+          <td className="icon-row">
             <Link
               className="admin-link admin-link-small"
               to={'/member/' + member._id}
+              data-toggle="tooltip"
+              title="Mitglied bearbeiten"
             >
               <svg
-                width="26"
-                height="25"
+                width="24"
+                height="23"
                 viewBox="0 0 19 18"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -398,8 +399,8 @@ class AdminPage extends Component {
               onClick={() => this.toggleRoleChangeModal(member)}
             >
               <svg
-                width="25"
-                height="34"
+                width="23"
+                height="32"
                 viewBox="0 0 12 19"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -417,10 +418,12 @@ class AdminPage extends Component {
             <span
               className="admin-link admin-link-small admin-cursor"
               onClick={() => this.toggleMemberDeleteModal(member)}
+              data-toggle="tooltip"
+              title="Mitglied löschen"
             >
               <svg
-                width="27"
-                height="27"
+                width="25"
+                height="25"
                 viewBox="0 0 20 20"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -457,7 +460,7 @@ class AdminPage extends Component {
         <Form onSubmit={this.onCircleSave}>
           <ModalBody>
             <FormGroup row>
-              <Label>City-Name:</Label>
+              <Label className="city-name-label">City-Name:</Label>
               <Col>
                 <Input
                   type="text"

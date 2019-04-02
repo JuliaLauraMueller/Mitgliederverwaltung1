@@ -72,8 +72,8 @@
 }
 
 .search-input {
-  background: "none";
-  border: "none";
+  background: 'none';
+  border: 'none';
   font-family: Helvetica, sans-serif;
   font-weight: 0;
   font-size: 22px;
@@ -102,6 +102,9 @@ hr {
   box-sizing: border-box;
 }
 .member-card-row {
+  display: block;
+}
+.member-card-col {
   justify-content: center;
 }
 .member-cards-row {
@@ -110,22 +113,12 @@ hr {
   justify-content: center;
 }
 .member-cards-row::after {
-  content: "";
+  content: '';
 }
 
 .member-card {
   display: flex;
   justify-content: center;
-}
-
-.overflow {
-  height: auto;
-  overflow: auto;
-  overflow-wrap: break-word;
-  padding: 0px;
-}
-
-.member-card {
   border: 0px solid white;
   min-width: 237px;
   max-width: 237px;
@@ -133,6 +126,13 @@ hr {
   max-height: 161px;
   border-radius: 0px;
   margin: 9px;
+}
+
+.overflow {
+  height: auto;
+  overflow: auto;
+  overflow-wrap: break-word;
+  padding: 0px;
 }
 
 .cardbody {

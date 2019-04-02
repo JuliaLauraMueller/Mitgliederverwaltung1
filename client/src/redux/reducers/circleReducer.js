@@ -10,14 +10,14 @@ const initialState = {
 };
 
 function getUpdatedCircles(circles, updatedCircle) {
-  let index = circles.findIndex(circle => circle._id == updatedCircle._id);
+  let index = circles.findIndex(circle => circle._id === updatedCircle._id);
   circles[index].name = updatedCircle.name;
   return circles;
 }
 
 function deleteCircle(circles, id) {
   return circles.filter(circle => {
-    return circle._id != id;
+    return circle._id !== id;
   });
 }
 
