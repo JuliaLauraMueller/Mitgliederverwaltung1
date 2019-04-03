@@ -22,7 +22,7 @@ function deleteMember(members, id) {
 }
 
 function getUpdatedMembers(members, updatedMember) {
-  let index = members.findIndex(member => member._id == updatedMember._id);
+  let index = members.findIndex(member => member._id === updatedMember._id);
   members[index].role = updatedMember.role;
   return members;
 }

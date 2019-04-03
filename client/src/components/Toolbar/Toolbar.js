@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../../css/ToolbarDesktop.css';
 import DrawerToggleButton from '../SideDrawer/DrawerToggleButton';
-import store from '../../helpers/store';
 
 import { connect } from 'react-redux';
 

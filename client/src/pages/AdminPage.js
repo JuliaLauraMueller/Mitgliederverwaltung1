@@ -617,7 +617,7 @@ class AdminPage extends Component {
 
     if (
       store.getState().auth.user !== undefined &&
-      store.getState().auth.user.role == 5
+      store.getState().auth.user.role === 5
     ) {
       FederationOption = (
         <option key="5" value="5">
