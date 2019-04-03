@@ -233,20 +233,20 @@ function validateAll(userParam, errors) {
     errors.push('Vorname: Darf nicht leer sein');
   } else if (
     userParam.firstname.length < 2 &&
-    userParam.firstname.length > 20
+    userParam.firstname.length > 30
   ) {
-    errors.push('Vorname: Muss zwischen 2 und 20 Zeichen haben');
+    errors.push('Vorname: Muss zwischen 2 und 30 Zeichen haben');
   }
   if (!userParam.surname) {
     errors.push('Nachname: Darf nicht leer sein');
-  } else if (userParam.surname.length < 2 && userParam.surname.length > 20) {
-    errors.push('Nachname: Muss zwischen 2 und 20 Zeichen haben');
+  } else if (userParam.surname.length < 2 && userParam.surname.length > 30) {
+    errors.push('Nachname: Muss zwischen 2 und 30 Zeichen haben');
   }
-  if (userParam.alias && userParam.alias.length > 20) {
-    errors.push('Spitzname: Maximal 20 Zeichen');
+  if (userParam.alias && userParam.alias.length > 30) {
+    errors.push('Spitzname: Maximal 30 Zeichen');
   }
-  if (userParam.status && userParam.status.length > 20) {
-    errors.push('Status: Maximal 20 Zeichen');
+  if (userParam.status && userParam.status.length > 30) {
+    errors.push('Status: Maximal 30 Zeichen');
   }
   if (userParam.entryDate) {
     var testEntryDate = Date.parse(userParam.entryDate);
@@ -265,14 +265,14 @@ function validateAll(userParam, errors) {
     }
   }
   // Business data
-  if (userParam.sector && userParam.sector.length > 20) {
-    errors.push('Branche: Maximal 20 Zeichen');
+  if (userParam.sector && userParam.sector.length > 30) {
+    errors.push('Branche: Maximal 30 Zeichen');
   }
-  if (userParam.job && userParam.job.length > 20) {
-    errors.push('Beruf: Maximal 20 Zeichen');
+  if (userParam.job && userParam.job.length > 30) {
+    errors.push('Beruf: Maximal 30 Zeichen');
   }
-  if (userParam.function && userParam.function.length > 20) {
-    errors.push('Funktion: Maximal 20 Zeichen');
+  if (userParam.function && userParam.function.length > 30) {
+    errors.push('Funktion: Maximal 30 Zeichen');
   }
   if (userParam.companyTel) {
     if (
@@ -321,8 +321,8 @@ function validateAll(userParam, errors) {
   ) {
     errors.push('E-Mail Privat: Ist keine Mailadresse');
   }
-  if (userParam.privateStreet && userParam.privateStreet.length > 20) {
-    errors.push('Strasse Privat: Maximal 20 Zeichen');
+  if (userParam.privateStreet && userParam.privateStreet.length > 30) {
+    errors.push('Strasse Privat: Maximal 30 Zeichen');
   }
   if (userParam.privateStreetNr && userParam.privateStreetNr.length > 8) {
     errors.push('Nr. Privat: Maximal 8 Zeichen');
@@ -336,8 +336,8 @@ function validateAll(userParam, errors) {
       errors.push('PLZ Privat: Keine Zahl zwischen 1000 und 9999');
     }
   }
-  if (userParam.privateCity && userParam.privateCity.length > 25) {
-    errors.push('Ort Privat: Maximal 25 Zeichen');
+  if (userParam.privateCity && userParam.privateCity.length > 30) {
+    errors.push('Ort Privat: Maximal 30 Zeichen');
   }
   return errors;
 }

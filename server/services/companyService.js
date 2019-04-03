@@ -32,11 +32,11 @@ async function _delete(id) {
 }
 
 function validateCompany(companyParam, errors) {
-  if (companyParam.companyName && companyParam.companyName.length > 20) {
-    errors.push('Firma: Maximal 20 Zeichen');
+  if (companyParam.companyName && companyParam.companyName.length > 30) {
+    errors.push('Firma: Maximal 30 Zeichen');
   }
-  if (companyParam.companyStreet && companyParam.companyStreet.length > 20) {
-    errors.push('Strasse Geschäft: Maximal 20 Zeichen');
+  if (companyParam.companyStreet && companyParam.companyStreet.length > 30) {
+    errors.push('Strasse Geschäft: Maximal 30 Zeichen');
   }
   if (companyParam.companyStreetNr && companyParam.companyStreetNr.length > 8) {
     errors.push('Strasse Geschäft: Maximal 8 Zeichen');
@@ -49,8 +49,8 @@ function validateCompany(companyParam, errors) {
       errors.push('PLZ Geschäft: Muss eine Zahl zwischen 1000 und 9999 sein');
     }
   }
-  if (companyParam.companyCity && companyParam.companyCity.length > 25) {
-    errors.push('Ort Geschäft: Maximal 25 Zeichen');
+  if (companyParam.companyCity && companyParam.companyCity.length > 30) {
+    errors.push('Ort Geschäft: Maximal 30 Zeichen');
   }
   var expr = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
   if (companyParam.companyURL) {

@@ -61,7 +61,6 @@ class ProfilePage extends Component {
       })
       .catch(err => {
         var msg = 'Folgende Felder sind nicht korrekt: \n' + err.join('\n');
-        console.log(msg);
         this.props.dispatch(alertError(msg));
       });
   }
