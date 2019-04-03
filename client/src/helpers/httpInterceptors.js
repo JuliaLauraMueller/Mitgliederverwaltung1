@@ -35,10 +35,11 @@ export default () => {
         history.push('/login');
       } else if (error.response.status === 403) {
         updateLocalStorage(error.response);
-        history.push('/');
+        authService.logout();
+        history.push('/login');
         store.dispatch(
           alertError(
-            'Ihre Berechtigungen haben geändert, bitte loggen Sie sich erneut ein.'
+            'Sie sind nicht für diese Aktion berechtigt. Bitte wenden Sie sich an den Systemadministrator.'
           )
         );
       }

@@ -3,16 +3,12 @@ const Company = db.Company;
 const userService = require('../services/userService');
 
 module.exports = {
-  getAll,
   getById,
   update,
   _delete,
+  createEmpty,
   validateCompany
 };
-
-async function getAll() {
-  return await Company.find().select();
-}
 
 async function getById(id) {
   return await Company.findById(id).select();
@@ -60,4 +56,13 @@ function validateCompany(companyParam, errors) {
   }
 
   return errors;
+}
+
+async function createEmpty() {
+  // save company
+  try {
+    return await Company.create({});
+  } catch (error) {
+    throw { type: 'processing_error', error };
+  }
 }

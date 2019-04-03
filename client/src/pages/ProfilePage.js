@@ -10,9 +10,13 @@ import { setNavVisible } from '../redux/actions/navigationActions';
 import { fetchProfile, putWholeData } from '../redux/actions/profileActions';
 import { alertError } from '../redux/actions/alertActions';
 
+import { personalAccessCheck, roleAccessCheck } from '../helpers/roleHelper';
+
 import '../css/ProfilePage.css';
 
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Form, FormGroup } from 'reactstrap';
+
+import store from '../helpers/store';
 
 class ProfilePage extends Component {
   constructor(props) {
@@ -66,32 +70,58 @@ class ProfilePage extends Component {
   }
 
   render() {
+    let EditButton = {};
+    if (
+      personalAccessCheck(this.props._id, store.getState().auth.user._id) ||
+      roleAccessCheck(
+        3,
+        this.props.circle,
+        store.getState().auth.user.role,
+        store.getState().auth.user.circle
+      )
+    ) {
+      EditButton = (
+        <button className="button-save-edit" onClick={this.toggleEdit}>
+          Editieren
+        </button>
+      );
+    } else {
+      EditButton = <div />;
+    }
+
     if (this.state.isEditing) {
       return (
         <Container className="profile-page__container">
-          <Row>
-            <Col md="12">
-              <button className="button-save-edit" onClick={this.handleClick}>
-                Speichern
-              </button>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs="12" md="12">
-              <ProfileBasicInfoEDIT
-                ref={basicInfo => {
-                  this.basicInfo = basicInfo;
-                }}
-              />
-            </Col>
-            <Col xs="12" md="12">
-              <ProfileMainInformationEDIT
-                ref={mainInfo => {
-                  this.mainInfo = mainInfo;
-                }}
-              />
-            </Col>
-          </Row>
+          <Form onSubmit={this.handleClick}>
+            <Row>
+              <Col md="12">
+                <input
+                  type="submit"
+                  className="button-save-edit"
+                  value="Speichern"
+                  onClick={this.handleClick}
+                />
+              </Col>
+            </Row>
+            <FormGroup row>
+              <Row>
+                <Col xs="12" md="12">
+                  <ProfileBasicInfoEDIT
+                    ref={basicInfo => {
+                      this.basicInfo = basicInfo;
+                    }}
+                  />
+                </Col>
+                <Col xs="12" md="12">
+                  <ProfileMainInformationEDIT
+                    ref={mainInfo => {
+                      this.mainInfo = mainInfo;
+                    }}
+                  />
+                </Col>
+              </Row>
+            </FormGroup>
+          </Form>
         </Container>
       );
     } else {
@@ -119,7 +149,10 @@ class ProfilePage extends Component {
 }
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    _id: state.profile.member._id,
+    circle: state.profile.member.city_id
+  };
 }
 
 export default connect(mapStateToProps)(ProfilePage);
