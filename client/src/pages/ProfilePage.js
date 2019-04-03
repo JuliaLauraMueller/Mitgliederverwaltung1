@@ -9,6 +9,8 @@ import { connect } from 'react-redux';
 import { setNavVisible } from '../redux/actions/navigationActions';
 import { fetchProfile } from '../redux/actions/profileActions';
 
+import { personalAccessCheck, roleAccessCheck } from '../helpers/roleHelper';
+
 import '../css/ProfilePage.css';
 
 import { Container, Row, Col, Form, FormGroup } from 'reactstrap';
@@ -17,6 +19,7 @@ class ProfilePage extends Component {
   constructor(props) {
     super(props);
     this.props.dispatch(setNavVisible());
+    const profile = this.props.profile;
     this.state = {
       isEditing: false
     };
@@ -52,6 +55,25 @@ class ProfilePage extends Component {
   }
 
   render() {
+    let EditButton = {};
+    if (
+      personalAccessCheck(this.props._id, this.props.user._id) ||
+      roleAccessCheck(
+        3,
+        this.props.circle,
+        this.props.user.role,
+        this.props.user.circle
+      )
+    ) {
+      EditButton = (
+        <button className="button-save-edit" onClick={() => this.toggleEdit}>
+          Editieren
+        </button>
+      );
+    } else {
+      EditButton = <div />;
+    }
+
     if (this.state.isEditing) {
       return (
         <Container className="profile-page__container">
@@ -91,10 +113,8 @@ class ProfilePage extends Component {
       return (
         <Container className="profile-page__container">
           <Row>
-            <Col md="12" className="button-container" >
-              <button className="button-save-edit" onClick={this.toggleEdit}>
-                Editieren
-              </button>
+            <Col md="12" className="button-container">
+              {EditButton}
             </Col>
           </Row>
           <Row>
@@ -112,7 +132,11 @@ class ProfilePage extends Component {
 }
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    user: state.auth.user,
+    _id: state.profile.member._id,
+    circle: state.profile.member.city_id
+  };
 }
 
 export default connect(mapStateToProps)(ProfilePage);

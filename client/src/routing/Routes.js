@@ -18,6 +18,11 @@ import AppNavbar from '../components/AppNavbar/AppNavbar';
 
 class Routes extends Component {
   render() {
+    let AdminRoute;
+    if (this.props.user !== undefined && this.props.user.role >= 3) {
+      AdminRoute = <PrivateRoute exact path="/admin" component={AdminPage} />;
+    }
+
     return (
       <Router history={history}>
         <div>
@@ -32,7 +37,7 @@ class Routes extends Component {
                 component={ProfilePage}
               />
               <PrivateRoute exact path="/members" component={MemberPage} />
-              <PrivateRoute exact path="/admin" component={AdminPage} />
+              {AdminRoute}
               <Route component={NotFoundPage} />
             </Switch>
           </div>
@@ -43,7 +48,9 @@ class Routes extends Component {
 }
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    user: state.auth.user
+  };
 }
 
 export default connect(mapStateToProps)(Routes);

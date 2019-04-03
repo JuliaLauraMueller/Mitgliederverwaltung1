@@ -81,7 +81,7 @@ class ProfileMainInformationEDIT extends Component {
       invoiceAddress: this.state.invoiceAddress
     };
     const companyUpdate = {
-      _id: this.props.profile.company_id,
+      company_id: this.props.profile.company_id,
       companyName: this.state.company,
       companyStreet: this.state.companyStreet,
       companyStreetNr: this.state.companyStreetNr,
