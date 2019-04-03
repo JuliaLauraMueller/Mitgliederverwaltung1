@@ -95,7 +95,7 @@ export function filterByCircles(members, filteredCircles) {
 }
 
 export function ownCircleMembers(members, filteredCircles, role) {
-  if (role >= 5 || !filteredCircles || filteredCircles.length == 0) {
+  if (role >= 5 || !filteredCircles || filteredCircles.length === 0) {
     return members;
   } else {
     return members.filter(m => {

@@ -14,8 +14,8 @@ function personalAccessCheck(userId, accessedUserId) {
 
 function roleAccessCheck(requiredRole, requiredCircle, userRole, userCircle) {
   if (
-    userRole == 5 ||
-    (userRole >= requiredRole && requiredCircle == userCircle)
+    userRole === 5 ||
+    (userRole >= requiredRole && requiredCircle === userCircle)
   ) {
     return true;
   }

@@ -213,9 +213,7 @@ class Toolbar extends Component {
 }
 
 function mapStateToProps(state) {
-  return {
-    user: state.auth.user
-  };
+  return { user: state.auth.user };
 }
 
 export default connect(mapStateToProps)(Toolbar);

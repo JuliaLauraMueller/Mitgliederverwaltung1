@@ -15,11 +15,15 @@ import ProfilePage from '../pages/ProfilePage';
 import MemberPage from '../pages/MemberPage';
 import AdminPage from '../pages/AdminPage';
 import AppNavbar from '../components/AppNavbar/AppNavbar';
+import store from '../helpers/store';
 
 class Routes extends Component {
   render() {
     let AdminRoute;
-    if (this.props.user !== undefined && this.props.user.role >= 3) {
+    if (
+      store.getState().auth.user !== undefined &&
+      store.getState().auth.user.role >= 3
+    ) {
       AdminRoute = <PrivateRoute exact path="/admin" component={AdminPage} />;
     }
 
@@ -48,9 +52,7 @@ class Routes extends Component {
 }
 
 function mapStateToProps(state) {
-  return {
-    user: state.auth.user
-  };
+  return { loggedIn: state.auth.loggedIn }; // trigger rerender when loggedIn state has changed
 }
 
 export default connect(mapStateToProps)(Routes);
