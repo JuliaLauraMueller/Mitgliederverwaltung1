@@ -51,7 +51,7 @@ class ProfileBasicInfoEDIT extends Component {
       surname: this.state.surname,
       alias: this.state.alias,
       status: this.state.status,
-      memberNumber: this.state.memberNumber,
+      //memberNumber: this.state.memberNumber,
       entryDate: this.state.entryDate,
       //city: this.state.city,
       //godfather: this.state.godfather,

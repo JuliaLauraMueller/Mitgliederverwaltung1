@@ -25,7 +25,7 @@ class ProfileMainInformationEDIT extends Component {
     this.state = {
       activeTab: '1',
 
-      invoiceAddress: profile.invoiceAddress,
+      invoiceAddress: profile.invoiceAddress === false ? '0' : '1',
 
       sector: profile.sector,
       job: profile.job,
@@ -82,7 +82,7 @@ class ProfileMainInformationEDIT extends Component {
       privateStreetNr: this.state.privateStreetNr,
       privateZip: this.state.privateZip,
       privateCity: this.state.privateCity,
-      invoiceAddress: this.state.invoiceAddress
+      invoiceAddress: this.state.invoiceAddress === '0' ? false : true
     };
     const companyUpdate = {
       _id: this.props.profile.company_id,
@@ -434,8 +434,8 @@ class ProfileMainInformationEDIT extends Component {
                       <Input
                         type="radio"
                         name="invoiceAddress"
-                        value="2"
-                        checked={this.state.invoiceAddress === '2'}
+                        value="0"
+                        checked={this.state.invoiceAddress === '0'}
                         onChange={this.onChange}
                       />{' '}
                       geschäftlich

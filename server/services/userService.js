@@ -184,64 +184,76 @@ function updateURLs(userParam, companyParam) {
 }
 
 function validateAll(userParam, errors) {
-  //Links
+  // Fields that cannot change yet
+  if (userParam.memberNumber) {
+    errors.push('Mitgliedernummer: Darf nicht geändert werden');
+  }
+  if (userParam.city) {
+    errors.push('City: Darf nicht geändert werden');
+  }
+  if (userParam.godfather) {
+    errors.push('Götti: Darf nicht geändert werden');
+  }
 
+  //Links
+  var URLexpr = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
   if (userParam.xingLink) {
-    if (!userParam.xingLink.startsWith('https://')) {
-      errors.push('Der Link für das Xing-Profil ist ungültig');
+    if (!URLexpr.test(userParam.xingLink)) {
+      errors.push('Xing: Kein gültiger Link');
     }
   }
   if (userParam.linkedinLink) {
-    if (!userParam.linkedinLink.startsWith('https://')) {
-      errors.push('Der Link für das LinkedIn-Profil ist ungültig');
+    if (!URLexpr.test(userParam.linkedinLink)) {
+      errors.push('LinkedIn: Kein gültiger Link');
     }
   }
   if (userParam.facebookLink) {
-    if (!userParam.facebookLink.startsWith('https://')) {
-      errors.push('Der Link für das Facebook-Profil ist ungültig');
+    if (!URLexpr.test(userParam.facebookLink)) {
+      errors.push('Facebook: Kein gültiger Link');
     }
   }
   if (userParam.instagramLink) {
-    if (!userParam.instagramLink.startsWith('https://')) {
-      errors.push('Der Link für das Instagram-Profil ist ungültig');
+    if (!URLexpr.test(userParam.instagramLink)) {
+      errors.push('Instagram: Kein gültiger Link');
     }
   }
 
   // Personal data
   if (userParam.offerings && userParam.offerings.length > 150) {
-    errors.push('Das Feld Angebot ist zu lang.');
+    errors.push('Angebot: Maximal 150 Zeichen');
   }
   if (userParam.salutation) {
     if (userParam.salutation !== 'Herr' && userParam.salutation !== 'Frau') {
-      errors.push('Das Feld Anrede ist falsch');
+      errors.push('Anrede: Muss entweder Herr oder Frau sein');
     }
   }
   if (userParam.title && userParam.title.length > 15) {
-    errors.push('Das Feld Titel ist zu lang');
+    errors.push('Titel: Maximal 15 Zeichen');
   }
-  if (
-    !userParam.firstname ||
-    (userParam.firstname.length < 2 && userParam.firstname.length > 20)
+  if (!userParam.firstname) {
+    errors.push('Vorname: Darf nicht leer sein');
+  } else if (
+    userParam.firstname.length < 2 &&
+    userParam.firstname.length > 20
   ) {
-    errors.push('Das Feld Vorname ist nicht korrekt');
+    errors.push('Vorname: Muss zwischen 2 und 20 Zeichen haben');
   }
-  if (
-    !userParam.surname ||
-    (userParam.surname.length < 2 && userParam.surname.length > 20)
-  ) {
-    errors.push('Das Feld Nachname ist nicht korrekt');
+  if (!userParam.surname) {
+    errors.push('Nachname: Darf nicht leer sein');
+  } else if (userParam.surname.length < 2 && userParam.surname.length > 20) {
+    errors.push('Nachname: Muss zwischen 2 und 20 Zeichen haben');
   }
   if (userParam.alias && userParam.alias.length > 20) {
-    errors.push('Das Feld Spitzname ist nicht korrekt');
+    errors.push('Spitzname: Maximal 20 Zeichen');
   }
   if (userParam.status && userParam.status.length > 20) {
-    errors.push('Das Feld Status ist nicht korrekt');
+    errors.push('Status: Maximal 20 Zeichen');
   }
   if (userParam.entryDate) {
     var testEntryDate = Date.parse(userParam.entryDate);
     if (!testEntryDate) {
       errors.push(
-        'Das Feld Eintrittsdatum ist nicht korrekt. Empfohlenes Format: DD-MM-YYY'
+        'Beitritt: Kein gültiges Datum (Empfohlenes Format: DD-MM-YYYY)'
       );
     }
   }
@@ -249,19 +261,19 @@ function validateAll(userParam, errors) {
     var testBirthdate = Date.parse(userParam.birthdate);
     if (!testBirthdate) {
       errors.push(
-        'Das Feld Geburtsdatum ist nicht korrekt. Empfohlenes Format: DD-MM-YYY'
+        'Geburtstag: Kein gültiges Datum (Empfohlenes Format: DD-MM-YYYY)'
       );
     }
   }
   // Business data
   if (userParam.sector && userParam.sector.length > 20) {
-    errors.push('Das Feld Sektor ist zu lang');
+    errors.push('Branche: Maximal 20 Zeichen');
   }
   if (userParam.job && userParam.job.length > 20) {
-    errors.push('Das Feld Beruf ist zu lang');
+    errors.push('Beruf: Maximal 20 Zeichen');
   }
   if (userParam.function && userParam.function.length > 20) {
-    errors.push('Das Feld Funktion ist zu lang');
+    errors.push('Funktion: Maximal 20 Zeichen');
   }
   if (userParam.companyTel) {
     if (
@@ -269,7 +281,7 @@ function validateAll(userParam, errors) {
         userParam.companyTel.startsWith('0')) &&
       userParam.companyTel.length > 15
     ) {
-      errors.push('Das Feld Geschäftstelefon ist nicht korrekt');
+      errors.push('Tel Geschäft: Ist keine gültige Telefonnummer');
     }
   }
   if (userParam.companyMobile) {
@@ -278,12 +290,12 @@ function validateAll(userParam, errors) {
         userParam.companyMobile.startsWith('0')) &&
       userParam.companyMobile.length > 15
     ) {
-      errors.push('Das Feld Geschäftshandy ist nicht korrekt');
+      errors.push('Mobile Geschäft: Ist keine gültige Telefonnummer');
     }
   }
   if (userParam.companyEmail) {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userParam.companyEmail)) {
-      errors.push('Das Feld Geschäftsmail ist nicht korrekt');
+      errors.push('E-Mail Geschäft: Ist keine Mailadresse');
     }
   }
   if (userParam.privateTel) {
@@ -292,7 +304,7 @@ function validateAll(userParam, errors) {
         userParam.privateTel.startsWith('0')) &&
       userParam.privateTel.length > 15
     ) {
-      errors.push('Das Feld Telefon privat ist nicht korrekt');
+      errors.push('Tel Privat: Ist keine gültige Telefonnummer');
     }
   }
   if (userParam.privateMobile) {
@@ -301,32 +313,32 @@ function validateAll(userParam, errors) {
         userParam.privateMobile.startsWith('0')) &&
       userParam.privateMobile.length > 15
     ) {
-      errors.push('Das Feld Handy privat ist nicht korrekt');
+      errors.push('Mobile Privat: Ist keine gültige Telefonnummer');
     }
   }
   if (
     !userParam.privateEmail ||
     !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userParam.privateEmail)
   ) {
-    errors.push('Das Feld Email privat ist nicht korrekt');
+    errors.push('E-Mail Privat: Ist keine Mailadresse');
   }
   if (userParam.privateStreet && userParam.privateStreet.length > 20) {
-    errors.push('Das Feld Strasse privat ist nicht korrekt');
+    errors.push('Strasse Privat: Maximal 20 Zeichen');
   }
   if (userParam.privateStreetNr && userParam.privateStreetNr.length > 8) {
-    errors.push('Das Feld Strassennummer privat ist nicht korrekt');
+    errors.push('Nr. Privat: Maximal 8 Zeichen');
   }
   if (userParam.privateZip) {
-    if (userParam.privateZip < 1000 || userParam.privateZip > 9999) {
-      errors.push('Das Feld Postleitzahl privat ist nicht korrekt');
+    if (
+      //typeof userParam.privateZip == 'number' &&
+      !/^[0-9]*$/.test(userParam.privateZip) ||
+      (userParam.privateZip < 1000 || userParam.privateZip > 9999)
+    ) {
+      errors.push('PLZ Privat: Keine Zahl zwischen 1000 und 9999');
     }
   }
   if (userParam.privateCity && userParam.privateCity.length > 25) {
-    errors.push('Das Feld Stadt privat ist nicht korrekt');
+    errors.push('Ort Privat: Maximal 25 Zeichen');
   }
-  if (userParam.invoiceAddress && userParam.invoiceAddress > 20) {
-    errors.push('Das Feld Rechnungsadresse ist nicht korrekt');
-  }
-
   return errors;
 }

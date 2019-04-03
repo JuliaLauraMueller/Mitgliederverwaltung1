@@ -155,7 +155,7 @@ class ProfileMainInformation extends Component {
             <Col>
               <label>Rechnung: </label>
               <label className="value-label">
-                {profile.invoiceAddress === '1' ? 'privat' : 'geschäftlich'}
+                {profile.invoiceAddress === false ? 'geschäftlich' : 'privat'}
               </label>
             </Col>
           </Row>

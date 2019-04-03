@@ -33,25 +33,29 @@ async function _delete(id) {
 
 function validateCompany(companyParam, errors) {
   if (companyParam.companyName && companyParam.companyName.length > 20) {
-    errors.push('Das Feld Firmenname ist nicht korrekt');
+    errors.push('Firma: Maximal 20 Zeichen');
   }
   if (companyParam.companyStreet && companyParam.companyStreet.length > 20) {
-    errors.push('Das Feld Strasse Firma ist nicht korrekt');
+    errors.push('Strasse Geschäft: Maximal 20 Zeichen');
   }
   if (companyParam.companyStreetNr && companyParam.companyStreetNr.length > 8) {
-    errors.push('Das Feld Strassennummer Firma ist nicht korrekt');
+    errors.push('Strasse Geschäft: Maximal 8 Zeichen');
   }
   if (companyParam.companyZip) {
-    if (companyParam.companyZip < 1000 || companyParam.companyZip > 9999) {
-      errors.push('Das Feld Postleitzahl Firma ist nicht korrekt');
+    if (
+      !/^[0-9]*$/.test(userParam.privateZip) ||
+      (companyParam.companyZip < 1000 || companyParam.companyZip > 9999)
+    ) {
+      errors.push('PLZ Geschäft: Muss eine Zahl zwischen 1000 und 9999 sein');
     }
   }
   if (companyParam.companyCity && companyParam.companyCity.length > 25) {
-    errors.push('Das Feld Stadt Firma ist nicht korrekt');
+    errors.push('Ort Geschäft: Maximal 25 Zeichen');
   }
+  var expr = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
   if (companyParam.companyURL) {
-    if (!companyParam.companyURL.startsWith('https://')) {
-      errors.push('Das Feld URL Firma ist nicht korrekt');
+    if (!expr.test(companyParam.companyURL)) {
+      errors.push('URL Firma: Keine gültige URL');
     }
   }
 

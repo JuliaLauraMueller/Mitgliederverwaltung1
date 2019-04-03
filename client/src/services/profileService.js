@@ -51,6 +51,8 @@ async function getUserData(id) {
           resp.data.firstname + ' ' + resp.data.surname;
       }
     });
+  } else {
+    userData.member.godfather = '';
   }
 
   if (userData.member.city_id) {
