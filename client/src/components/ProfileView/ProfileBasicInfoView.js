@@ -24,7 +24,7 @@ class ProfileBasicInfo extends Component {
             <Col>
               <label className="salutation-label">{profile.title}</label>
               <label className="name-label">{profile.firstname}</label>
-              <label className="name-label">{profile.surename}</label>
+              <label className="name-label">{profile.surname}</label>
             </Col>
           </Row>
           <Row className="profile-pic__image">

@@ -32,7 +32,7 @@ async function getUserData(id) {
         salutation: resp.data.salutation,
         title: resp.data.title,
         firstname: resp.data.firstname,
-        surename: resp.data.surname,
+        surname: resp.data.surname,
         alias: resp.data.alias,
 
         xingLink: resp.data.xingLink,
@@ -51,6 +51,8 @@ async function getUserData(id) {
           resp.data.firstname + ' ' + resp.data.surname;
       }
     });
+  } else {
+    userData.member.godfather = '';
   }
 
   if (userData.member.city_id) {
@@ -82,9 +84,18 @@ function getCompanyData(id) {
   });
 }
 
-async function setUserData(data) {
-  var res = axios.put('/users/' + data._id, data);
-  return res;
+async function setUserData(userData, companyData) {
+  var data = { userData: userData, companyData: companyData };
+  return await axios
+    .put('/users/' + data.userData._id, data)
+    .then(res => {
+      return res;
+    })
+    .catch(error => {
+      if (error && error.data.errors && error.data.type == 'invalid_input') {
+        return Promise.reject(error.data.errors);
+      }
+    });
 }
 
 async function setCompanyData(data) {

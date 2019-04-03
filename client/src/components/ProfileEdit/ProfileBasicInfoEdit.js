@@ -19,7 +19,7 @@ class ProfileBasicInfoEDIT extends Component {
       salutation: profile.salutation,
       title: profile.title,
       firstname: profile.firstname,
-      surename: profile.surename,
+      surname: profile.surname,
       alias: profile.alias,
       status: profile.status,
       memberNumber: profile.memberNumber,
@@ -37,7 +37,7 @@ class ProfileBasicInfoEDIT extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  onSave(e) {
+  onSave() {
     const basicInformationUpdate = {
       _id: this.props.profile._id,
       xingLink: this.state.xingLink,
@@ -48,18 +48,16 @@ class ProfileBasicInfoEDIT extends Component {
       salutation: this.state.salutation,
       title: this.state.title,
       firstname: this.state.firstname,
-      surename: this.state.surename,
+      surname: this.state.surname,
       alias: this.state.alias,
       status: this.state.status,
-      memberNumber: this.state.memberNumber,
+      //memberNumber: this.state.memberNumber,
       entryDate: this.state.entryDate,
       //city: this.state.city,
       //godfather: this.state.godfather,
       birthdate: this.state.birthdate
     };
-
-    //TODO: Find a way to update all info or none at all (Together with BasicInfo)
-    this.props.dispatch(putProfile(basicInformationUpdate));
+    return basicInformationUpdate;
   }
 
   render() {
@@ -147,9 +145,9 @@ class ProfileBasicInfoEDIT extends Component {
                 <div className="input-field">
                   <Input
                     type="text"
-                    name="surename"
+                    name="surname"
                     onChange={this.onChange}
-                    value={this.state.surename || ''}
+                    value={this.state.surname}
                   />
                 </div>
               </InputGroup>

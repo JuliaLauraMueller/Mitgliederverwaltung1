@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { putProfile, putCompany } from '../../redux/actions/profileActions';
+import {
+  putProfile,
+  putCompany,
+  putWholeData
+} from '../../redux/actions/profileActions';
 import {
   InputGroup,
   InputGroupAddon,
@@ -21,7 +25,7 @@ class ProfileMainInformationEDIT extends Component {
     this.state = {
       activeTab: '1',
 
-      invoiceAddress: profile.invoiceAddress,
+      invoiceAddress: profile.invoiceAddress === false ? '0' : '1',
 
       sector: profile.sector,
       job: profile.job,
@@ -78,7 +82,7 @@ class ProfileMainInformationEDIT extends Component {
       privateStreetNr: this.state.privateStreetNr,
       privateZip: this.state.privateZip,
       privateCity: this.state.privateCity,
-      invoiceAddress: this.state.invoiceAddress
+      invoiceAddress: this.state.invoiceAddress === '0' ? false : true
     };
     const companyUpdate = {
       company_id: this.props.profile.company_id,
@@ -90,9 +94,7 @@ class ProfileMainInformationEDIT extends Component {
       companyURL: this.state.companyURL
     };
 
-    //TODO: Find a way to update all info or none at all (Together with BasicInfo)
-    this.props.dispatch(putProfile(mainInfoUpdate));
-    this.props.dispatch(putCompany(companyUpdate));
+    return { mainInfoUpdate: mainInfoUpdate, companyUpdate: companyUpdate };
   }
 
   render() {
@@ -432,8 +434,8 @@ class ProfileMainInformationEDIT extends Component {
                       <Input
                         type="radio"
                         name="invoiceAddress"
-                        value="2"
-                        checked={this.state.invoiceAddress === '2'}
+                        value="0"
+                        checked={this.state.invoiceAddress === '0'}
                         onChange={this.onChange}
                       />{' '}
                       geschäftlich

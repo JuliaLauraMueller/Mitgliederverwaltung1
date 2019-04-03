@@ -47,9 +47,17 @@ function update(req, res, next) {
         roleHelper.personalAccessCheck(req.params.id, req.user._id)
       ) {
         userService
-          .updateUser(req.params.id, req.body)
-          .then(() => res.json({}))
-          .catch(err => next(err));
+            .updateUser(req.params.id, req.body)
+            .then(user => {
+                return res.json({ updated: user });
+            })
+            .catch(error => {
+                if (error && error.type == 'invalid_input') {
+                    res.status(422).send(error);
+                } else {
+                    console.error('User update error: ', error);
+                    res.sendStatus(500);
+                }});
       } else {
         res.sendStatus(403);
       }
