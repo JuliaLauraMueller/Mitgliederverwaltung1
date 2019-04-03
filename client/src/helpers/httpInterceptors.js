@@ -26,6 +26,7 @@ export default () => {
 
   axios.interceptors.response.use(
     response => {
+      updateLocalStorage(response);
       return response;
     },
     error => {

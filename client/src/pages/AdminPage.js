@@ -39,6 +39,7 @@ import {
   deleteCircle
 } from '../redux/actions/circleActions';
 import { filterMembers, ownCircleMembers } from '../helpers/memberSearch';
+import store from '../helpers/store';
 
 import '../css/AdminPage.css';
 
@@ -181,7 +182,10 @@ class AdminPage extends Component {
 
   render() {
     let CitiesButton = {};
-    if (this.props.user !== undefined && this.props.user.role >= 5) {
+    if (
+      store.getState().auth.user !== undefined &&
+      store.getState().auth.user.role >= 5
+    ) {
       CitiesButton = (
         <NavItem>
           <NavLink
@@ -366,14 +370,21 @@ class AdminPage extends Component {
 
   getMemberRows(members) {
     return filterMembers(
-      ownCircleMembers(members, [this.props.user.circle], this.props.user.role),
+      ownCircleMembers(
+        members,
+        [store.getState().auth.user.circle],
+        store.getState().auth.user.role
+      ),
       this.state.searchText,
       true
     ).map(member => {
       let EditButton = {};
       let DeleteButton = {};
       let RoleButton = {};
-      if (this.props.user !== undefined && this.props.user.role >= 3) {
+      if (
+        store.getState().auth.user !== undefined &&
+        store.getState().auth.user.role >= 3
+      ) {
         EditButton = (
           <Link
             className="admin-link admin-link-small"
@@ -434,7 +445,10 @@ class AdminPage extends Component {
         DeleteButton = <div />;
       }
 
-      if (this.props.user !== undefined && this.props.user.role >= 4) {
+      if (
+        store.getState().auth.user !== undefined &&
+        store.getState().auth.user.role >= 4
+      ) {
         RoleButton = (
           <span
             className="admin-link admin-link-small admin-cursor"
@@ -601,7 +615,10 @@ class AdminPage extends Component {
   createRoleChangeModal() {
     let FederationOption = {};
 
-    if (this.props.user !== undefined && this.props.user.role == 5) {
+    if (
+      store.getState().auth.user !== undefined &&
+      store.getState().auth.user.role == 5
+    ) {
       FederationOption = (
         <option key="5" value="5">
           Federationadministrator
@@ -680,8 +697,7 @@ class AdminPage extends Component {
 function mapStateToProps(state) {
   return {
     members: state.member.members,
-    circles: state.circle.circles,
-    user: state.auth.user
+    circles: state.circle.circles
   };
 }
 

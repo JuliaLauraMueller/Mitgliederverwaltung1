@@ -15,11 +15,12 @@ import '../css/ProfilePage.css';
 
 import { Container, Row, Col, Form, FormGroup } from 'reactstrap';
 
+import store from '../helpers/store';
+
 class ProfilePage extends Component {
   constructor(props) {
     super(props);
     this.props.dispatch(setNavVisible());
-    const profile = this.props.profile;
     this.state = {
       isEditing: false
     };
@@ -57,16 +58,16 @@ class ProfilePage extends Component {
   render() {
     let EditButton = {};
     if (
-      personalAccessCheck(this.props._id, this.props.user._id) ||
+      personalAccessCheck(this.props._id, store.getState().auth.user._id) ||
       roleAccessCheck(
         3,
         this.props.circle,
-        this.props.user.role,
-        this.props.user.circle
+        store.getState().auth.user.role,
+        store.getState().auth.user.circle
       )
     ) {
       EditButton = (
-        <button className="button-save-edit" onClick={() => this.toggleEdit}>
+        <button className="button-save-edit" onClick={this.toggleEdit}>
           Editieren
         </button>
       );
@@ -133,7 +134,6 @@ class ProfilePage extends Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.auth.user,
     _id: state.profile.member._id,
     circle: state.profile.member.city_id
   };

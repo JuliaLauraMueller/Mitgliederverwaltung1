@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
+import store from '../../helpers/store';
 
 import '../../css/SideDrawer.css';
 
@@ -16,10 +17,15 @@ class SideDrawer extends Component {
     if (!this.props.show) {
       drawerClasses = 'side-drawer close';
     }
-    let userId = this.props.user ? this.props.user._id : '';
+    let userId = store.getState().auth.user
+      ? store.getState().auth.user._id
+      : '';
 
     let AdminButton = {};
-    if (this.props.user !== undefined && this.props.user.role >= 3) {
+    if (
+      store.getState().auth.user !== undefined &&
+      store.getState().auth.user.role >= 3
+    ) {
       AdminButton = (
         <Link to="/admin">
           <svg
@@ -264,9 +270,7 @@ class SideDrawer extends Component {
 }
 
 function mapStateToProps(state) {
-  return {
-    user: state.auth.user
-  };
+  return {};
 }
 
 export default connect(mapStateToProps)(SideDrawer);

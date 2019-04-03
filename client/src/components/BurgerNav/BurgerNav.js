@@ -2,8 +2,9 @@ import { push as Menu } from 'react-burger-menu';
 import React from 'react';
 import '../../css/BurgerNav.css';
 
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+
+import store from '../../helpers/store';
 
 class BurgerNav extends React.Component {
   constructor(props) {
@@ -29,9 +30,14 @@ class BurgerNav extends React.Component {
   }
 
   render() {
-    let userId = this.props.user ? this.props.user._id : '';
+    let userId = store.getState().auth.user
+      ? store.getState().auth.user._id
+      : '';
     let AdminButton = {};
-    if (this.props.user !== undefined && 3 <= this.props.user.role) {
+    if (
+      store.getState().auth.user !== undefined &&
+      store.getState().auth.user.role >= 3
+    ) {
       AdminButton = (
         <Link
           to="/admin"
@@ -292,10 +298,4 @@ class BurgerNav extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    user: state.auth.user
-  };
-}
-
-export default connect(mapStateToProps)(BurgerNav);
+export default BurgerNav;
