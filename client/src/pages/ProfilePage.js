@@ -54,25 +54,14 @@ class ProfilePage extends Component {
       profileBasicData: newBasicInfo,
       companyData: newMainInfo.companyUpdate
     };
-    try {
-      await this.props.dispatch(
-        putWholeData(data)
-        //.then(res => {
-        //console.log('RES');
-        //console.log(res);
-        //this.toggleEdit();
-        //return res;
-        //this.props.dispatch({ type: PUT_PROFILE, payload: newBasicInfo });
-        //})
-        //.catch(err => {
-        //  this.props.dispatch(alertError(err.join('\n')));
-        //this.toggleEdit();
-        //})
-      );
-    } catch (err) {
-      this.props.dispatch(alertError(err.join('\n')));
-    }
-    this.toggleEdit();
+    await this.props
+      .dispatch(putWholeData(data))
+      .then(res => {
+        this.toggleEdit();
+      })
+      .catch(err => {
+        this.props.dispatch(alertError(err.join('\n')));
+      });
   }
 
   render() {
