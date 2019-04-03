@@ -2,8 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
-  privateEmail: { type: String },
-  password: { type: String },
+  privateEmail: { type: String, unique: true, required: true },
+  password: { type: String, required: true },
+  role: { type: Number, required: true, default: 0 },
+
   memberNumber: { type: Number },
   status: { type: String },
   entryDate: { type: Date },
@@ -34,7 +36,8 @@ const schema = new Schema({
   linkedinLink: { type: String },
   facebookLink: { type: String },
   instagramLink: { type: String },
-  offerings: { type: String }
+  offerings: { type: String },
+  role: { type: Number }
 });
 
 schema.set('toJSON', { virtuals: true });

@@ -1,6 +1,5 @@
 import axios from 'axios';
 import store from '../helpers/store';
-import history from '../helpers/history';
 import { alertError } from '..//redux/actions/alertActions';
 
 async function getCircles() {
@@ -26,7 +25,7 @@ async function setCircleData(data) {
       return res;
     })
     .catch(err => {
-      if (err && err.data.error && err.data.error.type == 'invalid_input') {
+      if (err && err.data.error && err.data.error.type === 'invalid_input') {
         return Promise.reject(err.data.error.errors);
       }
     });
@@ -39,7 +38,7 @@ async function deleteCircle(id) {
       return id;
     })
     .catch(err => {
-      if (err && err.data && err.data.type == 'users_remaining_in_circle') {
+      if (err && err.data && err.data.type === 'users_remaining_in_circle') {
         store.dispatch(alertError(err.data.message));
       }
     });
@@ -52,7 +51,7 @@ async function createCircle(data) {
       return res;
     })
     .catch(err => {
-      if (err && err.data.error && err.data.error.type == 'invalid_input') {
+      if (err && err.data.error && err.data.error.type === 'invalid_input') {
         return Promise.reject(err.data.error.errors);
       }
     });

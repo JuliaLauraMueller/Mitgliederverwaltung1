@@ -14,13 +14,15 @@ module.exports = {
   update,
   authenticate,
   create,
+  getCircleForId,
   getById,
   getAll,
   generateJwtToken,
   removeAllCompanyRelations,
   update,
   updateUser,
-  deleteUser
+  deleteUser,
+  changeRole
 };
 
 async function authenticate({ privateEmail, password }) {
@@ -59,6 +61,16 @@ async function getAll() {
   return users;
 }
 
+async function getCircleForId(id) {
+  const user = await User.findById(id, 'circle');
+
+  if (!user) {
+    throw 'User not found';
+  }
+
+  return user.circle;
+}
+
 async function getById(id) {
   return await User.findById(id).select('-password');
 }
@@ -71,6 +83,7 @@ async function create(userParam) {
 
   // generate new member number
   userParam.memberNumber = await getNextSequenceValue();
+  userParam.role = 0;
 
   // hash password
   if (userParam.password) {
@@ -197,9 +210,13 @@ async function removeAllCompanyRelations(id) {
 }
 
 function generateJwtToken(user) {
-  const token = jwt.sign({ _id: user._id }, config.jwtSecret, {
-    expiresIn: config.jwtExpirationSeconds
-  });
+  const token = jwt.sign(
+    { _id: user._id, role: user.role, circle: user.circle },
+    config.jwtSecret,
+    {
+      expiresIn: config.jwtExpirationSeconds
+    }
+  );
   return token;
 }
 
@@ -220,4 +237,15 @@ function validateInputs(userParam) {
 
   // TODO: reload of site after input validation
   return userParam;
+}
+
+async function changeRole(id, role) {
+  const user = await User.findById(id);
+
+  if (!user) {
+    throw 'User not found';
+  }
+
+  user.role = role;
+  await user.save();
 }
