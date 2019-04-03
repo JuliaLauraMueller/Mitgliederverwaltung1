@@ -183,7 +183,7 @@ class AdminPage extends Component {
                     <input
                       type="text"
                       name="search"
-                      placeholder="    suchen..."
+                      placeholder="suchen..."
                       className="form-control search-icon-admin form-control-admin"
                       value={this.state.searchText}
                       onChange={this.handleChange.bind(this)}
