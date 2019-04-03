@@ -9,10 +9,7 @@ import { connect } from 'react-redux';
 class Toolbar extends Component {
   render() {
     let AdminIcon = {};
-    if (
-      store.getState().auth.user !== undefined &&
-      store.getState().auth.user.role >= 3
-    ) {
+    if (this.props.user !== undefined && this.props.user.role >= 3) {
       AdminIcon = (
         <Link to="/admin">
           <svg
@@ -217,7 +214,7 @@ class Toolbar extends Component {
 }
 
 function mapStateToProps(state) {
-  return {};
+  return { user: state.auth.user };
 }
 
 export default connect(mapStateToProps)(Toolbar);
