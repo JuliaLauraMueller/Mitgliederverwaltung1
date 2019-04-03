@@ -64,6 +64,7 @@ class ProfilePage extends Component {
         this.toggleEdit();
       })
       .catch(err => {
+        var msg = 'Folgende Felder sind nicht korrekt: \n' + err.join('\n');
         this.props.dispatch(alertError(msg));
       });
   }
