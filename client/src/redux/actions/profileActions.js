@@ -47,29 +47,6 @@ export function putCompany(companyData) {
   };
 }
 
-/*
-export const putWholeData = data => async dispatch => {
-  var profileMainData = data.profileMainData;
-  var profileBasicData = data.profileBasicData;
-  var companyData = data.companyData;
-
-  Object.assign(profileMainData, profileBasicData);
-  return await profileService
-    .setUserData(profileMainData, companyData)
-    .then(res => {
-      console.log(res);
-      console.log(profileMainData);
-      console.log(companyData);
-
-      dispatch({ type: PUT_PROFILE, payload: profileMainData });
-      //dispatch({ type: PUT_PROFILE, payload: companyData });
-    })
-    .catch(error => {
-      return Promise.reject(error);
-    });
-};
-*/
-
 export const putWholeData = data => async dispatch => {
   var profileMainData = data.profileMainData;
   var profileBasicData = data.profileBasicData;
@@ -80,48 +57,11 @@ export const putWholeData = data => async dispatch => {
     .setUserData(profileMainData, companyData)
     .then(res => {
       dispatch({ type: PUT_PROFILE, payload: profileMainData });
+      companyData.company = companyData.companyName;
+      delete companyData.companyName;
       dispatch({ type: PUT_PROFILE, payload: companyData });
     })
     .catch(error => {
       return Promise.reject(error);
     });
 };
-
-/*
-export async function putWholeData(
-  profileMainData,
-  profileBasicData,
-  companyData
-) {
-  Object.assign(profileMainData, profileBasicData);
-
-  return await profileService
-    .setUserData(profileMainData, companyData)
-    .then(res => {
-      console.log(res);
-      console.log(profileBasicData);
-      return function(dispatch) {
-        dispatch({ type: PUT_PROFILE, payload: profileBasicData });
-        //dispatch({ type: PUT_PROFILE, payload: companyData });
-      };
-    })
-    .catch(error => {
-      return Promise.reject(error);
-    });
-    */
-
-/*
-    return await function(dispatch) {
-    profileService
-      .setUserData(profileMainData, companyData)
-      .then(res => {
-        console.log(res);
-        console.log(profileMainData);
-        console.log(companyData);
-        dispatch({ type: PUT_PROFILE, payload: profileMainData });
-      })
-      .catch(error => {
-        return Promise.reject(error);
-      });
-  };
-*/

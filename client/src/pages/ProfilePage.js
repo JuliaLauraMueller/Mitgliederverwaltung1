@@ -48,7 +48,7 @@ class ProfilePage extends Component {
   async handleClick(e) {
     e.preventDefault();
     var newBasicInfo = this.basicInfo.getWrappedInstance().onSave();
-    var newMainInfo = this.mainInfo.getWrappedInstance().onSave(); //newBasicInfo);
+    var newMainInfo = this.mainInfo.getWrappedInstance().onSave();
     var data = {
       profileMainData: newMainInfo.mainInfoUpdate,
       profileBasicData: newBasicInfo,
@@ -56,12 +56,7 @@ class ProfilePage extends Component {
     };
     try {
       await this.props.dispatch(
-        putWholeData(
-          data
-          //newMainInfo.mainInfoUpdate,
-          //newBasicInfo,
-          //newMainInfo.companyUpdate
-        )
+        putWholeData(data)
         //.then(res => {
         //console.log('RES');
         //console.log(res);
@@ -78,7 +73,6 @@ class ProfilePage extends Component {
       this.props.dispatch(alertError(err.join('\n')));
     }
     this.toggleEdit();
-    //TODO: Add update call for company in backend
   }
 
   render() {

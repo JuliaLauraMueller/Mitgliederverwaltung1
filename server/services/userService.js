@@ -105,6 +105,8 @@ async function updateUser(id, userParam) {
   } else {
     var query = { _id: id };
     try {
+      console.log(companyData);
+      await companyService.update(companyData._id, companyData);
       return await User.updateOne(query, userData);
     } catch (error) {
       throw { type: 'processing_error', error };

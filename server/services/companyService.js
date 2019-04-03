@@ -23,9 +23,7 @@ async function update(id, companyParam) {
   if (!company) throw 'Company not found';
 
   var query = { _id: id };
-  await Company.updateOne(query, companyParam, function(err, res) {
-    if (err) throw err;
-  });
+  await Company.updateOne(query, companyParam);
 }
 
 async function _delete(id) {

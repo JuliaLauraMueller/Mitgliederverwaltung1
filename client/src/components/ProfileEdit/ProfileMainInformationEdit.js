@@ -67,7 +67,6 @@ class ProfileMainInformationEDIT extends Component {
   }
 
   onSave() {
-    //basicInfoUpdate) {
     const mainInfoUpdate = {
       _id: this.props.profile._id,
       sector: this.state.sector,
@@ -95,32 +94,7 @@ class ProfileMainInformationEDIT extends Component {
       companyURL: this.state.companyURL
     };
 
-    // Second
-
     return { mainInfoUpdate: mainInfoUpdate, companyUpdate: companyUpdate };
-    console.log('MAIN SECOND BEFORE');
-    /*
-    const data = {
-      profileMainData: mainInfoUpdate,
-      profileBasicData: basicInfoUpdate,
-      companyData: companyUpdate
-    };
-    */
-
-    /*
-    await this.props.dispatch(
-      putWholeData(mainInfoUpdate, basicInfoUpdate, companyUpdate)
-        .then(res => {
-          console.log(res);
-          return res;
-          //this.props.dispatch({ type: PUT_PROFILE, payload: mainInfoUpdate });
-        })
-        .catch(err => {
-          this.props.dispatch(alertError(err.join('\n')));
-        })
-    );
-    console.log('MAIN SECOND AFTER');
-  */
   }
 
   render() {
