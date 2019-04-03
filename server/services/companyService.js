@@ -43,7 +43,7 @@ function validateCompany(companyParam, errors) {
   }
   if (companyParam.companyZip) {
     if (
-      !/^[0-9]*$/.test(userParam.privateZip) ||
+      !/^[0-9]*$/.test(companyParam.companyZip) ||
       (companyParam.companyZip < 1000 || companyParam.companyZip > 9999)
     ) {
       errors.push('PLZ Geschäft: Muss eine Zahl zwischen 1000 und 9999 sein');
