@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { InputGroup, InputGroupAddon, Input, Row, Col } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { putProfile } from '../../redux/actions/profileActions';
 
 import '../../css/ProfilePage.css';
 

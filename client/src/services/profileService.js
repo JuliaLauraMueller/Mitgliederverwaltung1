@@ -92,7 +92,7 @@ async function setUserData(userData, companyData) {
       return res;
     })
     .catch(error => {
-      if (error && error.data.errors && error.data.type == 'invalid_input') {
+      if (error && error.data.errors && error.data.type === 'invalid_input') {
         return Promise.reject(error.data.errors);
       }
     });
