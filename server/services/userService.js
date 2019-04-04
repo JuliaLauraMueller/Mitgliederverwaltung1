@@ -168,6 +168,10 @@ async function update(id, userParam) {
   }
 
   // copy userParam properties to user
+  console.log(userParam);
+  userParam.avatar = new Buffer(userParam.avatar.split(',')[1], 'base64');
+  console.log('after converting to binary', userParam.avatar);
+
   Object.assign(user, userParam);
 
   await user.save();

@@ -32,6 +32,8 @@ class ProfileBasicInfoEDIT extends Component {
 
     this.onChange = this.onChange.bind(this);
     this.onSave = this.onSave.bind(this);
+    this.fileSelectedHandler = this.fileSelectedHandler.bind(this);
+    this.getBase64 = this.getBase64.bind(this);
   }
 
   onChange(e) {
@@ -64,37 +66,60 @@ class ProfileBasicInfoEDIT extends Component {
     this.props.dispatch(putProfile(basicInformationUpdate));
   }
 
-  fileSelectedHandler = event => {
+  //getBase64Second(file) {}
+  fileSelectedHandler(event) {
     var something = event.target.files[0];
-    this.state.avatar = something;
-    console.log('it set the avatar now.');
-    console.log(this.state.avatar);
+    let x = this.getBase64(something);
+    console.log(x);
+  }
+
+  getBase64(file) {
+    let b64;
+    //var file;
+    const methRef = this.setState;
+
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function() {
+      b64 = reader.result;
+      console.log(b64);
+    };
+    console.log(b64);
+
+    // this.setState({ avatar: b64 });
     // console.log(this.state.avatar);
-    // console.log(event.target.files[0]);
-    // const fd = new FormData();
-    // this.state.avatar = event.target.files[0];
-    // fd.append('image', this.state.avatar, this.state.avatar.name);
-    // console.log(this.state.avatar);
-    // console.log(this.state);
-  };
+    reader.onerror = function(error) {
+      console.log('Error: ', error);
+    };
+
+    console.log(file);
+
+    console.log(b64);
+    return b64;
+  }
 
   handleFileUpload({ file }) {
     console.log(file);
     //const f = fs.readFileSync(files[0].path);
     //this.state.avatar = f;
-    var bla = 'Awesome Cat Pic';
   }
 
-  arrayBufferToBase64(buffer) {
-    var binary = '';
-    var bytes = [].slice.call(new Uint8Array(buffer));
-    bytes.forEach(b => (binary += String.fromCharCode(b)));
-    return window.btoa(binary);
+  arrayBufferToBase64(data) {
+    console.log(data);
+    //let buff = new Buffer(data);
+    //let base64data = buff.toString('base64');
+    //console.log(data);
+    //console.log(base64data);
+    //return base64data;
   }
 
   render() {
-    var base64Flag = 'data:image/jpeg;base64,';
     var imageStr = 'bla';
+    //console.log(base64Flag + this.arrayBufferToBase64(this.state.avatar.data));
+    //console.log(this.state.avatar.toString('base64'));
+    //console.log(this.state.avatar);
+    //console.log(this.arrayBufferToBase64(this.state.avatar.data));
+    //console.log(this.state.avatar);
     return (
       <Row>
         <Col md={{ offset: 0, size: 6 }} xs={{ offset: 1 }}>
@@ -105,7 +130,7 @@ class ProfileBasicInfoEDIT extends Component {
                   <img
                     className='profile-image-edit'
                     style={{ width: '147px' }}
-                    src={require('../../img/marc_zimmermann.jpg')}
+                    src={this.arrayBufferToBase64(this.state.avatar)}
                     alt='profile'
                   />
                 </div>

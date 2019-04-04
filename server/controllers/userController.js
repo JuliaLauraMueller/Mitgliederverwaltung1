@@ -52,6 +52,7 @@ function getById(req, res, next) {
 }
 
 function update(req, res, next) {
+  console.log('update on user controller req:', req);
   userService
     .updateUser(req.params.id, req.body)
     .then(() => res.json({}))
