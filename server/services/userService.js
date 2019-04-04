@@ -162,6 +162,8 @@ async function updateUser(id, userParam) {
     throw { type: 'invalid_input', errors };
   } else {
     var query = { _id: id };
+    companyData._id = companyData.company_id;
+    delete companyData.company_id;
     try {
       await companyService.update(companyData._id, companyData);
       return await User.updateOne(query, userData);
