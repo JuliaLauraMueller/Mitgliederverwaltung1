@@ -8,7 +8,6 @@ import { PrivateRoute } from './PrivateRoute';
 import { connect } from 'react-redux';
 
 // Import pages
-import HomePage from '../pages/HomePage';
 import LoginPage from '../pages/LoginPage';
 import NotFoundPage from '../pages/NotFoundPage';
 import ProfilePage from '../pages/ProfilePage';
@@ -34,7 +33,7 @@ class Routes extends Component {
           <div id="page-wrap">
             <Switch>
               <Route exact path="/login" component={LoginPage} />
-              <PrivateRoute exact path="/" component={HomePage} />
+              <PrivateRoute exact path="/" component={MemberPage} />
               <PrivateRoute
                 exact
                 path={'/member/:id'}
