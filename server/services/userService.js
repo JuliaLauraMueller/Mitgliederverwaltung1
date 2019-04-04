@@ -37,7 +37,7 @@ async function authenticate({ privateEmail, password }) {
 }
 
 async function getAll() {
-  let users = await User.aggregate([
+  let aggregation = User.aggregate([
     { $project: { password: 0 } },
     {
       $lookup: {
@@ -55,9 +55,10 @@ async function getAll() {
         as: 'circleValues'
       }
     },
-    { $sort: { memberNumber: 1 } }
+    { $sort: { firstname: 1 } }
   ]);
-  return users;
+  aggregation.options = { collation: { locale: 'de' } };
+  return await aggregation.exec();
 }
 
 async function getCircleForId(id) {
@@ -263,7 +264,6 @@ async function changeRole(id, role) {
   user.role = role;
   await user.save();
 }
-
 
 function validateAll(userParam, errors) {
   // Fields that cannot change yet
