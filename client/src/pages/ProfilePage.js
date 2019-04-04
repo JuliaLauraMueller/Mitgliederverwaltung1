@@ -129,9 +129,7 @@ class ProfilePage extends Component {
         <Container className="profile-page__container">
           <Row>
             <Col md="12" className="button-container">
-              <button className="button-save-edit" onClick={this.toggleEdit}>
-                Editieren
-              </button>
+              {EditButton}
             </Col>
           </Row>
           <Row>
