@@ -293,6 +293,24 @@ class BurgerNav extends React.Component {
         </Link>
 
         {AdminButton}
+
+        <Link
+          to="/login"
+          id="contact"
+          className="burger-menu-item"
+          href="/contact"
+          onClick={() => this.closeMenu()}
+        >
+          <svg
+            width="13"
+            height="26"
+            viewBox="0 0 13 26"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="navbar-mobile-extended-logo"
+          />
+          &emsp;Logout
+        </Link>
       </Menu>
     );
   }

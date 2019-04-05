@@ -239,6 +239,19 @@ class SideDrawer extends Component {
                     </Link>
                   </li>
                   <li>{AdminButton}</li>
+                  <li>
+                    <Link to="/login">
+                      <svg
+                        width="13"
+                        height="26"
+                        viewBox="0 0 13 26"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="navbar-desktop-extended-logo"
+                      />
+                      &emsp;Logout
+                    </Link>
+                  </li>
                 </ul>
               </div>
               <div className="navigation-logo-container">
