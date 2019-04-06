@@ -76,8 +76,12 @@ async function findOne(search) {
 
 async function updateMany(obj1, obj2) {}
 
-async function aggregate(args) {
-  return users;
+function aggregate(args) {
+  return {
+    exec() {
+      return users;
+    }
+  };
 }
 
 async function create(user) {
