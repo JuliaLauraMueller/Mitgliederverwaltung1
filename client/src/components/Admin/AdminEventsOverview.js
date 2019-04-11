@@ -72,9 +72,7 @@ class AdminEventsOverview extends Component {
 
                   <Collapse isOpen={this.state.collapseEvent}>
                     <Card>
-                      <CardBody>
-                        <AdminCreateEvent close={this.collapseMember} />
-                      </CardBody>
+                      <CardBody />
                     </Card>
                   </Collapse>
                 </div>

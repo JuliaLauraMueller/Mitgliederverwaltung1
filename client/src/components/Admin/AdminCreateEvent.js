@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Form, FormGroup, Label, Input, Col, Row } from 'reactstrap';
 
-import { fetchCircles } from '../../redux/actions/circleActions';
+//import { fetchCircles } from '../../redux/actions/circleActions';
 //import { fetchEvents } from '../../redux/actions/eventActions';
 //import { fetchEvents, createEvent } from '../../redux/actions/eventActions';
 
@@ -34,7 +34,7 @@ class AdminCreateEvent extends Component {
     this.submitEvent = this.submitEvent.bind(this);
     this.cancel = this.cancel.bind(this);
     this.getCircleSelectOptions = this.getCircleSelectOptions.bind(this);
-    this.props.dispatch(fetchCircles());
+    //this.props.dispatch(fetchCircles());
   }
 
   handleChange(event) {
@@ -47,7 +47,7 @@ class AdminCreateEvent extends Component {
     this.props.close();
   }
 
-  async submitEvent(event) {
+  /*async submitEvent(event) {
     event.preventDefault();
     if (this.state.event === '' && this.props.circles[0]) {
       this.state.event = this.props.events[0]._id; // set default value
@@ -62,7 +62,7 @@ class AdminCreateEvent extends Component {
       .catch(errorMessages => {
         this.props.dispatch(alertError(errorMessages.join('\n')));
       });
-  }
+  }*/
 
   render() {
     return (
@@ -285,4 +285,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(AdminCreateUser);
+export default connect(mapStateToProps)(AdminCreateEvent);
