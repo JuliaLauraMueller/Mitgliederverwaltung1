@@ -19,6 +19,7 @@ import {
 //import { filterEvents, ownCircleEvents } from '../../helpers/eventsSearch';
 //mport store from '../../helpers/store';
 //import { connect } from 'react-redux';
+import AdminCreateEvent from './AdminCreateEvent';
 
 class AdminEventsOverview extends Component {
   constructor(props) {
@@ -71,7 +72,9 @@ class AdminEventsOverview extends Component {
 
                   <Collapse isOpen={this.state.collapseEvent}>
                     <Card>
-                      <CardBody />
+                      <CardBody>
+                        <AdminCreateEvent close={this.collapseMember} />
+                      </CardBody>
                     </Card>
                   </Collapse>
                 </div>
@@ -405,7 +408,9 @@ class AdminEventsOverview extends Component {
 }
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    events: state.event.events
+  };
 }
 
 export default connect(mapStateToProps)(AdminEventsOverview);
