@@ -33,6 +33,12 @@ class BurgerNav extends React.Component {
     let userId = store.getState().auth.user
       ? store.getState().auth.user._id
       : '';
+    let userFirstname = store.getState().auth.userData
+      ? store.getState().auth.userData.firstname
+      : '';
+    let userSurname = store.getState().auth.userData
+      ? store.getState().auth.userData.surname
+      : '';
     let AdminButton = {};
     if (
       store.getState().auth.user !== undefined &&
@@ -120,7 +126,9 @@ class BurgerNav extends React.Component {
         </div>
 
         <div className="burger-navigation-profile">
-          <p className="burger-menu-item title-name">Marc Zimmermann</p>
+          <p className="burger-menu-item title-name">
+            {userFirstname} {userSurname}
+          </p>
           <div className="burger-navigation-edit-profile" />
           <Link
             to={`/member/${userId}`}

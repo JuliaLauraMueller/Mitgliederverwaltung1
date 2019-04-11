@@ -12,7 +12,22 @@ function login(privateEmail, password) {
 
 function logout() {
   localStorage.removeItem('user');
+  localStorage.removeItem('userData');
 }
 
-const authService = { login, logout };
+function getUserData(id) {
+  return axios.get('/users/' + id).then(resp => {
+    var userData = {
+      firstname: resp.data.firstname,
+      surname: resp.data.surname
+      // TODO: avatar
+    };
+    if (userData) {
+      localStorage.setItem('userData', userData);
+    }
+    return userData;
+  });
+}
+
+const authService = { login, logout, getUserData };
 export default authService;

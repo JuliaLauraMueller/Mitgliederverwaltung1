@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
+import store from '../../helpers/store';
 
 import '../../css/SideDrawer.css';
 
@@ -17,6 +18,12 @@ class SideDrawer extends Component {
       drawerClasses = 'side-drawer close';
     }
     let userId = this.props.user ? this.props.user._id : '';
+    let userFirstname = store.getState().auth.userData
+      ? store.getState().auth.userData.firstname
+      : '';
+    let userSurname = store.getState().auth.userData
+      ? store.getState().auth.userData.surname
+      : '';
 
     let AdminButton = {};
     if (this.props.user !== undefined && this.props.user.role >= 3) {
@@ -88,7 +95,9 @@ class SideDrawer extends Component {
                 <img src={require('../../img/Marc.png')} alt="Marc" />
               </Link>
             </div>
-            <div className="navigation-user-name">Marc Zimmermann</div>
+            <div className="navigation-user-name">
+              {userFirstname} {userSurname}
+            </div>
             <div id="profile-edit-text">
               <Link to={`/member/${userId}`}>
                 <svg
