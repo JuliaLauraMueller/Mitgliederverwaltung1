@@ -407,7 +407,7 @@ class AdminEventsOverview extends Component {
 
 function mapStateToProps(state) {
   return {
-    events: state.event.events
+    //events: state.event.events
   };
 }
 
