@@ -2,12 +2,6 @@ import React, { Component } from 'react';
 import { Card, CardText, CardBody, CardTitle, Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-/*
-TODO: 
--Fix Link
--make a mobile version
-*/
-
 class MemberCard extends Component {
   render() {
     return (
