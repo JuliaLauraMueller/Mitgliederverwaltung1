@@ -82,12 +82,12 @@ async function create(eventParam) {
 
 function validate(eventParam) {
   let errorMessages = [];
-  if (!eventParam.title || circleParam.name.length == 0) {
+  if (!eventParam.title || eventParam.title.length == 0) {
     errorMessages.push('Titel darf nicht leer sein.');
   } else if (eventParam.title.length > 30) {
     errorMessages.push('Titel muss kürzer als 30 Zeichen sein.');
   }
-  if (!eventParam.location || circleParam.location.length == 0) {
+  if (!eventParam.location || eventParam.location.length == 0) {
     errorMessages.push('Ort darf nicht leer sein.');
   } else if (eventParam.location.length > 30) {
     errorMessages.push('Ort muss kürzer als 30 Zeichen sein.');
@@ -96,12 +96,17 @@ function validate(eventParam) {
     errorMessages.push('Es muss mindestens eine City angewählt sein.');
   }
   if (!Date.parse(eventParam.date)) {
-    errorMessages.push('Kein gültiges Datum (Empfohlenes Format: DD-MM-YYYY)');
+    errorMessages.push('Kein gültiges Datum (Empfohlenes Format: YYYY-DD-MM)');
   }
   if (!Date.parse(eventParam.registrationEndDate)) {
     errorMessages.push(
-      'Kein gültiger Anmeldeschluss (Empfohlenes Format: DD-MM-YYYY)'
+      'Kein gültiger Anmeldeschluss (Empfohlenes Format: YYYY-MM-DD)'
     );
+  }
+  if (
+    Date.parse(eventParam.date) < Date.parse(eventParam.registrationEndDate)
+  ) {
+    errorMessages.push('Datum darf nicht vor dem Anmeldeschluss liegen.');
   }
   if (!eventParam.permittedRoles || eventParam.permittedRoles.length == 0) {
     errorMessages.push('Es muss mindestens eine Rolle angewählt sein.');

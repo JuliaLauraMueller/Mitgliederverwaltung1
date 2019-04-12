@@ -28,8 +28,9 @@ function getById(req, res, next) {
 
 function update(req, res, next) {
   eventService
-    .getCirclesForId(req.user._id)
+    .getCirclesForId(req.params.id)
     .then(circles => {
+      console.log(circles);
       if (
         roleHelper.roleAccessCheckMultipleCircles(
           2,
@@ -56,13 +57,14 @@ function update(req, res, next) {
       }
     })
     .catch(err => {
+      console.log(err);
       res.sendStatus(404);
     });
 }
 
 function deleteEvent(req, res, next) {
   eventService
-    .getCirclesForId(req.user._id)
+    .getCirclesForId(req.params.id)
     .then(circles => {
       if (
         roleHelper.roleAccessCheckMultipleCircles(
@@ -85,34 +87,20 @@ function deleteEvent(req, res, next) {
     });
 }
 
-function create(req, res, next) {
-  eventService
-    .getCirclesForId(req.user._id)
-    .then(circles => {
-      if (
-        roleHelper.roleAccessCheckMultipleCircles(
-          2,
-          circles,
-          req.user.role,
-          req.user.circle
-        )
-      ) {
-        eventService
-          .create(req.body)
-          .then(event => {
-            return res.json({ created: event });
-          })
-          .catch(error => {
-            if (error && error.type == 'invalid_input') {
-              res.status(422).send({ error });
-            } else {
-              console.error('Event create error: ', error);
-              res.sendStatus(500);
-            }
-          });
-      }
-    })
-    .catch(err => {
-      res.sendStatus(404);
-    });
+async function create(req, res, next) {
+  if (req.user.role >= 2) {
+    eventService
+      .create(req.body)
+      .then(event => {
+        return res.json({ created: event });
+      })
+      .catch(error => {
+        if (error && error.type == 'invalid_input') {
+          res.status(422).send({ error });
+        } else {
+          console.error('Event create error: ', error);
+          res.sendStatus(500);
+        }
+      });
+  }
 }
