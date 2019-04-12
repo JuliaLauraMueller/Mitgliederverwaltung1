@@ -9,8 +9,6 @@ import AdminMembersOverview from '../components/Admin/AdminMembersOverview';
 import AdminEventsOverview from '../components/Admin/AdminEventsOverview';
 import store from '../helpers/store';
 
-import { fetchEvents } from '../redux/actions/eventActions';
-
 import '../css/AdminPage.css';
 
 class AdminPage extends Component {
