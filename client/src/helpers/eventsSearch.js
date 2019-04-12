@@ -14,11 +14,12 @@ function replaceUmlauts(text) {
     .replace('ö', 'oe')
     .replace('ü', 'ue');
 }
-
+//TODO: handle circles array
 export function filterEvents(events, searchText, pastEventsIncluded = false) {
   if (!searchText || searchText.length === 0) {
     return events;
   }
+
   searchText = replaceUmlauts(searchText.toLowerCase());
 
   return events.filter(e => {
@@ -31,8 +32,7 @@ export function filterEvents(events, searchText, pastEventsIncluded = false) {
 
     let circle =
       e.circle && e.circle.name
-        ? //TODO
-          replaceUmlauts(e.circleValues.name.toLowerCase()).substring(
+        ? replaceUmlauts(e.circleValues.name.toLowerCase()).substring(
             0,
             searchText.length + MAX_LEVENSHTEIN_DISTANCE
           )
@@ -45,10 +45,14 @@ export function filterEvents(events, searchText, pastEventsIncluded = false) {
     if (pastEventsIncluded) {
       return baseSearchFound;
     } else {
-      let currentDate = new Date();
-      let timestamp = currentDate.getTime();
-      //console.log(e.date); //TODO: log ist undefined
-      return baseSearchFound && e.date >= timestamp;
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0');
+      var yyyy = today.getFullYear();
+      today = yyyy + mm + dd;
+      //TODO: formation date?
+      //console.log(e.date); console.log(today); console.log(e.date >= today);
+      return baseSearchFound && e.date >= today;
     }
   });
 }

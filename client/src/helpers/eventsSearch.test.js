@@ -4,6 +4,7 @@ import { filterEvents } from './eventsSearch';
 const event1 = {
   _id: '1',
   title: 'Bierabend Bern',
+  date: '20200910',
   circles: {
     _id: 'BE',
     name: 'Bern'
@@ -13,6 +14,7 @@ const event1 = {
 const event2 = {
   _id: '2',
   title: 'Bierabend Bern',
+  date: '20200910',
   circles: {
     _id: 'BE',
     name: 'Bern'
@@ -22,6 +24,7 @@ const event2 = {
 const event3 = {
   _id: '3',
   title: 'Networking',
+  date: '20200910',
   circles: {
     _id: 'ZH',
     name: 'Zürich'
@@ -30,11 +33,22 @@ const event3 = {
 
 const event4 = {
   _id: '4',
+  title: 'Startup Day',
+  date: '20100910',
+  circles: {
+    _id: 'ZH',
+    name: 'Zürich'
+  }
+};
+
+const event5 = {
+  _id: '4',
   title: 'Teamevent alle Mitglieder',
+  date: '20200910',
   circles: [
     {
-      _id: 'BE',
-      name: 'Bern'
+      _id: 'GE',
+      name: 'Genf'
     },
     {
       _id: 'ZH',
@@ -46,9 +60,35 @@ const event4 = {
     }
   ]
 };
-const eventsFromMockDB = [event1, event2, event3];
+
+const eventsFromMockDB = [event1, event2, event3, event4, event5];
 
 describe('Test if the searchfilter filters the expected events', () => {
+  test('filters for expected circles', () => {
+    let filteredEvents = eventsFromMockDB;
+    let checkedEvents = 'BE';
+    filteredEvents = filterEvents(filteredEvents, checkedEvents);
+    expect(filteredEvents.length).toEqual(2);
+    expect(filteredEvents.includes(event1)).toBe(true);
+    expect(filteredEvents.includes(event2)).toBe(true);
+  });
+
+  //TODO: Tests for multiple cities
+  test('filters for multiple cities', () => {
+    let filteredEvents = eventsFromMockDB;
+    let checkedEvents = ['GE', 'SG'];
+    filteredEvents = filterEvents(filteredEvents, checkedEvents);
+    expect(filteredEvents.length).toEqual(1);
+    expect(filteredEvents.includes(event5)).toBe(true);
+  });
+
+  test('filters for multiple cities in different arrys', () => {
+    let filteredEvents = eventsFromMockDB;
+    let checkedEvents = ['ZH', 'GE', 'SG'];
+    filteredEvents = filterEvents(filteredEvents, checkedEvents);
+    expect(filteredEvents.length).toEqual(3);
+  });
+
   test('search for event Bierabend Bern', () => {
     let filteredEvents = eventsFromMockDB;
     filteredEvents = filterEvents(filteredEvents, 'Bierabend Bern');
@@ -77,11 +117,36 @@ describe('Test if the searchfilter filters the expected events', () => {
     expect(filteredEvents.includes(event3)).toBe(true);
   });
 
-  test('search for Networking with uncompleted searchtext and 1 wrong char', () => {
+  test('show past event (Startup Day) if pastEventIncluded is true', () => {
     let filteredEvents = eventsFromMockDB;
-    filteredEvents = filterEvents(filteredEvents, 'Netwoek');
+    filteredEvents = filterEvents(filteredEvents, 'Startup Day', true);
     expect(filteredEvents.length).toEqual(1);
+    expect(filteredEvents.includes(event4)).toBe(true);
+  });
+
+  test('hide past event (Startup Day)', () => {
+    let filteredEvents = eventsFromMockDB;
+    filteredEvents = filterEvents(filteredEvents, 'Startup Day');
+    expect(filteredEvents.length).toEqual(0);
+    expect(filteredEvents.includes(event4)).toBe(false);
+  });
+
+  test('show all events including past ones', () => {
+    let filteredEvents = eventsFromMockDB;
+    filteredEvents = filterEvents(filteredEvents, '', true);
+    expect(filteredEvents.length).toEqual(5);
+  });
+
+  //TODO: data format
+  test('show all events excluding past ones', () => {
+    let filteredEvents = eventsFromMockDB;
+    filteredEvents = filterEvents(filteredEvents, '');
+    expect(filteredEvents.includes(event1)).toBe(true);
+    expect(filteredEvents.includes(event2)).toBe(true);
     expect(filteredEvents.includes(event3)).toBe(true);
+    expect(filteredEvents.includes(event5)).toBe(true);
+    expect(filteredEvents.includes(event4)).toBe(false);
+    expect(filteredEvents.length).toEqual(4);
   });
 
   test('searching with an empty searchtext', () => {
