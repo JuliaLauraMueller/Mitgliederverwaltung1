@@ -141,6 +141,7 @@ class AdminEventsOverview extends Component {
 
   handleChange(event) {
     let attr = 'eventToEdit.' + event.target.name;
+    console.log("attr")
     this.setState({ attr: event.target.value });
   }
 
@@ -309,7 +310,7 @@ class AdminEventsOverview extends Component {
               <Label className="city-name-label">Datum:</Label>
               <Col>
                 <Input
-                  type="text"
+                  type="date"
                   id="date"
                   name="date"
                   className="admin-form-control"
@@ -364,7 +365,7 @@ class AdminEventsOverview extends Component {
               <Label className="city-name-label">Anmeldeschluss:</Label>
               <Col>
                 <Input
-                  type="text"
+                  type="date"
                   id="registrationEndDate"
                   name="registrationEndDate"
                   className="admin-form-control"

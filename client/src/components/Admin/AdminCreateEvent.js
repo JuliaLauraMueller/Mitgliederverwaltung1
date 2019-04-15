@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Form, FormGroup, Label, Input, Col, Row} from 'reactstrap';
+import { Form, FormGroup, Label, Input, Col, Row, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
 import { fetchCircles } from '../../redux/actions/circleActions';
 import { fetchEvents, createEvent } from '../../redux/actions/eventActions';
 import { alertError } from '../../redux/actions/alertActions';
@@ -24,15 +24,20 @@ class AdminCreateEvent extends Component {
   constructor(props) {
     super(props);
 
-    this.state = initialState;
+    this.state = {
+      initialState,
+      checkedCircles: [],
+      checkedRoles: [],
+      citiesDropdownOpen: false,
+    }
 
     this.handleChange = this.handleChange.bind(this);
     this.submitEvent = this.submitEvent.bind(this);
     this.cancel = this.cancel.bind(this);
-    this.getCircleSelectOptions = this.getCircleSelectOptions.bind(this);
     this.props.dispatch(fetchCircles());
-    this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
-
+    this.handleCitiesSelection = this.handleCitiesSelection.bind(this);
+    this.handleRoleSelection = this.handleRoleSelection.bind(this);
+    this.toggle = this.toggle.bind(this);
   }
 
   handleChange(event) {
@@ -43,6 +48,34 @@ class AdminCreateEvent extends Component {
     event.preventDefault();
     this.setState(initialState);
     this.props.close();
+  }
+
+  handleCitiesSelection(event) {
+    if (event.target.checked) {
+      this.state.checkedCircles.push(event.target.id);
+    } else {
+      this.state.checkedCircles.splice(
+        this.state.checkedCircles.indexOf(event.target.id),
+        1
+      );
+    }
+  }
+
+  handleRoleSelection(event) {
+    if (event.target.checked) {
+      this.state.checkedRoles.push(event.target.value);
+    } else {
+      this.state.checkedRoles.splice(
+        this.state.checkedRoles.indexOf(event.target.value),
+        1
+      );
+    }
+  }
+
+  toggle() {
+    this.setState({
+      citiesDropdownOpen: !this.state.citiesDropdownOpen
+    });
   }
 
   async submitEvent(event) {
@@ -63,9 +96,26 @@ class AdminCreateEvent extends Component {
   }
 
   render() {
+    let circleLabels = this.props.circles.map(circle => {
+      return (
+        <div className="checkbox-container" key={circle._id}>
+          <input
+            type="checkbox"
+            id={circle._id}
+            onClick={this.handleCitiesSelection.bind(this)}
+            defaultChecked={this.state.checkedCircles.includes(circle._id)}
+          />
+
+          <label htmlFor={circle._id} className="filter-cities">
+            {circle.name}
+          </label>
+        </div>
+      );
+    });   
+    
     return (
       <div>
-        <h4>Neues Event</h4>
+        <h4>Neuer Event</h4>
         <Form onSubmit={this.submitEvent}>
           <FormGroup>
             <Row>
@@ -103,21 +153,26 @@ class AdminCreateEvent extends Component {
           </FormGroup>
           <FormGroup>
             <Row>
-              <Col xs="3">
-                <Label for="cities">Cities</Label>
-              </Col>
-              <Col xs={9}>
-                <Input
-                  type="select"
-                  name="cities"
-                  id="cities"
-                  value={this.state.cities}
-                  onChange={this.handleChange}
+          <Col xs="3">
+                <Label for="description">Cities</Label>
+          </Col>
+          <ButtonDropdown
+                isOpen={this.state.citiesDropdownOpen}
+                toggle={this.toggle}
+              >
+                <DropdownToggle
+                  caret
+                  className="filter-button"
+                  color={'rgb(15, 25, 41, 40%)'}
                 >
-                  {this.getCircleSelectOptions()}
-                </Input>
-              </Col>
-            </Row>
+                </DropdownToggle>
+
+                <DropdownMenu>
+                  <DropdownItem header>Cities wählen</DropdownItem>
+                  {circleLabels}
+                </DropdownMenu>
+              </ButtonDropdown>
+              </Row>
           </FormGroup>
           <FormGroup>
             <Row>
@@ -214,7 +269,7 @@ class AdminCreateEvent extends Component {
               </Col>
               <Col xs={9}>
                 <Input
-                  type="text"
+                  type="date"
                   name="registrationEndDate"
                   id="registrationEndDate"
                   className="admin-form-control"
@@ -230,15 +285,79 @@ class AdminCreateEvent extends Component {
                 <Label for="permittedRoles">Rollen</Label>
               </Col>
               <Col xs={9}>
-                <Input
-                  type="text"
-                  name="permittedRoles"
-                  id="permittedRoles"
-                  value={this.state.permittedRoles}
-                  onChange={this.handleChange}
-                >
-                </Input>
-              </Col>
+                  <div className="checkbox-container" key="0">
+                    <input
+                      type="checkbox"
+                      id="mitglied"
+                      value="0"
+                      onClick={this.handleRoleSelection.bind(this)}
+                      defaultChecked={this.state.checkedRoles.includes("0")}
+                    />
+                    <label htmlFor="newsadministrator" className="filter-cities">
+                      Mitglied
+                    </label>
+                  </div>
+                  <div className="checkbox-container" key="1">
+                    <input
+                      type="checkbox"
+                      id="newsadministrator"
+                      value="1"
+                      onClick={this.handleRoleSelection.bind(this)}
+                      defaultChecked={this.state.checkedRoles.includes("1")}
+                    />
+                    <label htmlFor="newsadministrator" className="filter-cities">
+                      Newsadministrator
+                    </label>
+                  </div>
+                  <div className="checkbox-container" key="2">
+                    <input
+                      type="checkbox"
+                      id="eventadministrator"
+                      value="2"
+                      onClick={this.handleRoleSelection.bind(this)}
+                      defaultChecked={this.state.checkedRoles.includes("2")}
+                    />
+                    <label htmlFor="eventadministrator" className="filter-cities">
+                      Eventadministrator
+                    </label>
+                  </div>
+                  <div className="checkbox-container" key="3">
+                    <input
+                      type="checkbox"
+                      id="personaladministrator"
+                      value="3"
+                      onClick={this.handleRoleSelection.bind(this)}
+                      defaultChecked={this.state.checkedRoles.includes("3")}
+                    />
+                    <label htmlFor="personaladministrator" className="filter-cities">
+                      Personaladministrator
+                    </label>
+                  </div>
+                  <div className="checkbox-container" key="4">
+                    <input
+                      type="checkbox"
+                      id="cityadministrator"
+                      value="4"
+                      onClick={this.handleRoleSelection.bind(this)}
+                      defaultChecked={this.state.checkedRoles.includes("4")}
+                    />
+                    <label htmlFor="cityadministrator" className="filter-cities">
+                      Cityadministrator
+                    </label>
+                  </div>
+                  <div className="checkbox-container" key={5}>
+                    <input
+                      type="checkbox"
+                      id="federationsadministrator"
+                      value="5"
+                      onClick={this.handleRoleSelection.bind(this)}
+                      defaultChecked={this.state.checkedRoles.includes("5")}
+                    />
+                    <label htmlFor="federationsadministrator" className="filter-cities">
+                      Federationsadministrator
+                    </label>
+                  </div>
+                  </Col>
             </Row>
           </FormGroup>
           <FormGroup>
@@ -263,16 +382,6 @@ class AdminCreateEvent extends Component {
         </Form>
       </div>
     );
-  }
-
-  getCircleSelectOptions() {
-    return this.props.circles.map(circle => {
-      return (
-        <option key={circle._id} value={circle._id}>
-          {circle.name}
-        </option>
-      );
-    });
   }
 }
 
