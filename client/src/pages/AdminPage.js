@@ -15,10 +15,13 @@ class AdminPage extends Component {
   constructor(props) {
     super(props);
     this.props.dispatch(setNavVisible());
-
-    this.state = {
-      activeTab: '1'
-    };
+    let activeTab = '1';
+    if (store.getState().auth.user !== undefined) {
+      if (store.getState().auth.user.role === 2) {
+        activeTab = '3'; // event managers should only be able to change events in admin page
+      }
+    }
+    this.state = { activeTab };
 
     this.toggle = this.toggle.bind(this);
   }
@@ -32,7 +35,32 @@ class AdminPage extends Component {
   }
 
   render() {
-    let CitiesButton = {};
+    let MembersButton = <div />;
+    let MemberTab = <div />;
+    if (
+      store.getState().auth.user !== undefined &&
+      store.getState().auth.user.role >= 3
+    ) {
+      MembersButton = (
+        <NavItem>
+          <NavLink
+            className={classnames({ active: this.state.activeTab === '1' })}
+            onClick={() => {
+              this.toggle('1');
+            }}
+          >
+            Mitglieder
+          </NavLink>
+        </NavItem>
+      );
+      MemberTab = (
+        <TabPane tabId="1">
+          <AdminMembersOverview />
+        </TabPane>
+      );
+    }
+    let CitiesButton = <div />;
+    let CitiesTab = <div />;
     if (
       store.getState().auth.user !== undefined &&
       store.getState().auth.user.role >= 5
@@ -49,10 +77,14 @@ class AdminPage extends Component {
           </NavLink>
         </NavItem>
       );
-    } else {
-      CitiesButton = <div />;
+      CitiesTab = (
+        <TabPane tabId="2">
+          <AdminCirclesOverview />
+        </TabPane>
+      );
     }
-    let EventsButton = {};
+    let EventsButton = <div />;
+    let EventsTab = <div />;
     if (
       store.getState().auth.user !== undefined &&
       store.getState().auth.user.role >= 2
@@ -69,37 +101,25 @@ class AdminPage extends Component {
           </NavLink>
         </NavItem>
       );
-    } else {
-      EventsButton = <div />;
+      EventsTab = (
+        <TabPane tabId="3">
+          <AdminEventsOverview />
+        </TabPane>
+      );
     }
 
     return (
       <div>
         <h1>Administration</h1>
         <Nav tabs>
-          <NavItem>
-            <NavLink
-              className={classnames({ active: this.state.activeTab === '1' })}
-              onClick={() => {
-                this.toggle('1');
-              }}
-            >
-              Mitglieder
-            </NavLink>
-          </NavItem>
+          {MembersButton}
           {CitiesButton}
           {EventsButton}
         </Nav>
         <TabContent activeTab={this.state.activeTab}>
-          <TabPane tabId="1">
-            <AdminMembersOverview />
-          </TabPane>
-          <TabPane tabId="2">
-            <AdminCirclesOverview />
-          </TabPane>
-          <TabPane tabId="3">
-            <AdminEventsOverview />
-          </TabPane>
+          {MemberTab}
+          {CitiesTab}
+          {EventsTab}
         </TabContent>
       </div>
     );

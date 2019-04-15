@@ -12,7 +12,7 @@ const schema = new Schema({
   location: { type: String },
   organisationTeam: { type: String },
   registrationEndDate: { type: Date },
-  permittedRoles: [Schema.Types.ObjectId]
+  permittedRoles: [Number]
 });
 
 schema.set('toJSON', { virtuals: true });
