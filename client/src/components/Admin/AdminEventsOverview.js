@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { alertError } from '../../redux/actions/alertActions';
 import {
   Table,
   Row,
@@ -16,9 +17,12 @@ import {
   Input,
   Form
 } from 'reactstrap';
-//import { filterEvents, ownCircleEvents } from '../../helpers/eventsSearch';
-//mport store from '../../helpers/store';
-//import { connect } from 'react-redux';
+import {
+  deleteEvent,
+  putEvent
+} from '../../redux/actions/eventActions';
+import { filterEvents, ownCircleEvents } from '../../helpers/eventsSearch';
+import store from '../../helpers/store';
 import AdminCreateEvent from './AdminCreateEvent';
 
 class AdminEventsOverview extends Component {
@@ -32,9 +36,9 @@ class AdminEventsOverview extends Component {
       eventToEdit: {},
       editModal: false
     };
-    //this.getEventRows = this.getEventRows.bind(this);
+    this.getEventRows = this.getEventRows.bind(this);
     this.collapseEvent = this.collapseEvent.bind(this);
-    //this.deleteEvent = this.deleteEvent.bind(this);
+    this.deleteEvent = this.deleteEvent.bind(this);
     this.toggleEventDeleteModal = this.toggleEventDeleteModal.bind(this);
     this.createEventDeleteModal = this.createEventDeleteModal.bind(this);
     this.createEventEditModal = this.createEventEditModal.bind(this);
@@ -72,7 +76,9 @@ class AdminEventsOverview extends Component {
 
                   <Collapse isOpen={this.state.collapseEvent}>
                     <Card>
-                      <CardBody />
+                      <CardBody>
+                        <AdminCreateEvent close={this.collapseEvent} />
+                      </CardBody>
                     </Card>
                   </Collapse>
                 </div>
@@ -87,7 +93,7 @@ class AdminEventsOverview extends Component {
                   <th className="d-none d-md-table-cell">Rollen</th>
                 </tr>
               </thead>
-              <tbody />
+              <tbody>{this.getEventRows(this.props.events)}</tbody>
             </Table>
           </Col>
         </Row>
@@ -99,9 +105,9 @@ class AdminEventsOverview extends Component {
     this.setState({ searchText: event.target.value });
   }
 
-  //deleteEvent(id) {
-  //this.props.dispatch(deleteEvent(id));
-  //}
+  deleteEvent(id) {
+  this.props.dispatch(deleteEvent(id));
+  }
 
   collapseEvent() {
     this.setState(state => ({ collapseEvent: !state.collapseEvent }));
@@ -121,7 +127,7 @@ class AdminEventsOverview extends Component {
     }));
   }
 
-  /*async onEventSave(event) {
+  async onEventSave(event) {
     event.preventDefault();
     await this.props
       .dispatch(putEvent(this.state.eventToEdit))
@@ -131,17 +137,17 @@ class AdminEventsOverview extends Component {
       .catch(errorMessages => {
         this.props.dispatch(alertError(errorMessages.join('\n')));
       });
-  }*/
+  }
 
   handleChange(event) {
     let attr = 'eventToEdit.' + event.target.name;
     this.setState({ attr: event.target.value });
   }
 
-  /*getEventRows(events) {
+  getEventRows(events) {
     return filterEvents(
       ownCircleEvents(
-        members,
+        events,
         [store.getState().auth.user.circle],
         store.getState().auth.user.role
       ),
@@ -220,7 +226,7 @@ class AdminEventsOverview extends Component {
         </tr>
       );
     });
-  }*/
+  }
   createEventDeleteModal() {
     return (
       <Modal
@@ -407,7 +413,7 @@ class AdminEventsOverview extends Component {
 
 function mapStateToProps(state) {
   return {
-    //events: state.event.events
+    events: state.event.events
   };
 }
 

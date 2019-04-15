@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 
-import { Form, FormGroup, Label, Input, Col, Row } from 'reactstrap';
-
-//import { fetchCircles } from '../../redux/actions/circleActions';
-//import { fetchEvents } from '../../redux/actions/eventActions';
-//import { fetchEvents, createEvent } from '../../redux/actions/eventActions';
-
+import { Form, FormGroup, Label, Input, Col, Row} from 'reactstrap';
+import { fetchCircles } from '../../redux/actions/circleActions';
+import { fetchEvents, createEvent } from '../../redux/actions/eventActions';
 import { alertError } from '../../redux/actions/alertActions';
-
 import { connect } from 'react-redux';
 
 const initialState = {
@@ -34,7 +30,9 @@ class AdminCreateEvent extends Component {
     this.submitEvent = this.submitEvent.bind(this);
     this.cancel = this.cancel.bind(this);
     this.getCircleSelectOptions = this.getCircleSelectOptions.bind(this);
-    //this.props.dispatch(fetchCircles());
+    this.props.dispatch(fetchCircles());
+    this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
+
   }
 
   handleChange(event) {
@@ -47,7 +45,7 @@ class AdminCreateEvent extends Component {
     this.props.close();
   }
 
-  /*async submitEvent(event) {
+  async submitEvent(event) {
     event.preventDefault();
     if (this.state.event === '' && this.props.circles[0]) {
       this.state.event = this.props.events[0]._id; // set default value
@@ -62,7 +60,7 @@ class AdminCreateEvent extends Component {
       .catch(errorMessages => {
         this.props.dispatch(alertError(errorMessages.join('\n')));
       });
-  }*/
+  }
 
   render() {
     return (
@@ -233,13 +231,12 @@ class AdminCreateEvent extends Component {
               </Col>
               <Col xs={9}>
                 <Input
-                  type="select"
+                  type="text"
                   name="permittedRoles"
                   id="permittedRoles"
-                  value={this.state.cities}
+                  value={this.state.permittedRoles}
                   onChange={this.handleChange}
                 >
-                  {this.getCircleSelectOptions()}
                 </Input>
               </Col>
             </Row>
