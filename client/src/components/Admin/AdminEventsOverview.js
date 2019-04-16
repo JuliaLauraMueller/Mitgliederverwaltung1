@@ -19,7 +19,8 @@ import {
 } from 'reactstrap';
 import {
   deleteEvent,
-  putEvent
+  putEvent,
+  fetchEvents
 } from '../../redux/actions/eventActions';
 import { filterEvents, ownCircleEvents } from '../../helpers/eventsSearch';
 import store from '../../helpers/store';
@@ -43,6 +44,7 @@ class AdminEventsOverview extends Component {
     this.createEventDeleteModal = this.createEventDeleteModal.bind(this);
     this.createEventEditModal = this.createEventEditModal.bind(this);
     this.toggleEventEditModal = this.toggleEventEditModal.bind(this);
+    this.props.dispatch(fetchEvents());
   }
 
   componentDidMount() {}
@@ -106,7 +108,7 @@ class AdminEventsOverview extends Component {
   }
 
   deleteEvent(id) {
-  this.props.dispatch(deleteEvent(id));
+    this.props.dispatch(deleteEvent(id));
   }
 
   collapseEvent() {
@@ -141,7 +143,7 @@ class AdminEventsOverview extends Component {
 
   handleChange(event) {
     let attr = 'eventToEdit.' + event.target.name;
-    console.log("attr")
+    console.log('attr');
     this.setState({ attr: event.target.value });
   }
 
@@ -153,7 +155,7 @@ class AdminEventsOverview extends Component {
         store.getState().auth.user.role
       ),
       this.state.searchText,
-      true
+      true // TODO change
     ).map(event => {
       let EditButton = {};
       let DeleteButton = {};

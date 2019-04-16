@@ -3,6 +3,7 @@ import levenshtein from 'js-levenshtein';
 const MAX_LEVENSHTEIN_DISTANCE = 1;
 
 function levenshteinInRange(searchText, matchingText) {
+  console.log(levenshtein(searchText, matchingText));
   if (levenshtein(searchText, matchingText) <= MAX_LEVENSHTEIN_DISTANCE) {
     return true;
   }
@@ -14,33 +15,39 @@ function replaceUmlauts(text) {
     .replace('ö', 'oe')
     .replace('ü', 'ue');
 }
-//TODO: handle circles array
+
 export function filterEvents(events, searchText, pastEventsIncluded = false) {
   if (!searchText || searchText.length === 0) {
     return events;
   }
 
   searchText = replaceUmlauts(searchText.toLowerCase());
-
   return events.filter(e => {
     let title = e.title
-      ? replaceUmlauts(e.title.toLowerCase()).substring(
-          0,
-          searchText.length + MAX_LEVENSHTEIN_DISTANCE
-        )
+      ? replaceUmlauts(e.title.toLowerCase()).substring(0, searchText.length)
       : '';
+    console.log(e.title.toLowerCase(), searchText, title);
 
-    let circle =
-      e.circle && e.circle.name
-        ? replaceUmlauts(e.circleValues.name.toLowerCase()).substring(
-            0,
-            searchText.length + MAX_LEVENSHTEIN_DISTANCE
-          )
-        : '';
+    let circles = e.circleValues
+      ? e.circleValues.map(c => {
+          return c.name
+            ? replaceUmlauts(c.name.toLowerCase()).substring(
+                0,
+                searchText.length
+              )
+            : '';
+        })
+      : [];
+    let circleSearchFound = false;
+    for (let circle of circles) {
+      if (levenshteinInRange(searchText, circle)) {
+        circleSearchFound = true;
+        break;
+      }
+    }
 
     let baseSearchFound =
-      levenshteinInRange(searchText, title) ||
-      levenshteinInRange(searchText, circle);
+      levenshteinInRange(searchText, title) || circleSearchFound;
 
     if (pastEventsIncluded) {
       return baseSearchFound;

@@ -15,7 +15,10 @@ module.exports = router;
 function getAll(req, res, next) {
   eventService
     .getAll()
-    .then(events => res.json(events))
+    .then(events => {
+      console.log(events);
+      res.json(events);
+    })
     .catch(err => next(err));
 }
 

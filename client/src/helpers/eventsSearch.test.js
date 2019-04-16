@@ -5,47 +5,55 @@ const event1 = {
   _id: '1',
   title: 'Bierabend Bern',
   date: '2020-09-10',
-  circles: {
-    _id: 'BE',
-    name: 'Bern'
-  }
+  circleValues: [
+    {
+      _id: 'BE',
+      name: 'Bern'
+    }
+  ]
 };
 
 const event2 = {
   _id: '2',
   title: 'Bierabend Bern',
   date: '2020-09-10',
-  circles: {
-    _id: 'BE',
-    name: 'Bern'
-  }
+  circleValues: [
+    {
+      _id: 'BE',
+      name: 'Bern'
+    }
+  ]
 };
 
 const event3 = {
   _id: '3',
   title: 'Networking',
   date: '2020-09-10',
-  circles: {
-    _id: 'ZH',
-    name: 'Zürich'
-  }
+  circleValues: [
+    {
+      _id: 'ZH',
+      name: 'Zürich'
+    }
+  ]
 };
 
 const event4 = {
   _id: '4',
   title: 'Startup Day',
   date: '2010-09-10',
-  circles: {
-    _id: 'ZH',
-    name: 'Zürich'
-  }
+  circleValues: [
+    {
+      _id: 'ZH',
+      name: 'Zürich'
+    }
+  ]
 };
 
 const event5 = {
   _id: '5',
   title: 'Teamevent alle Mitglieder',
   date: '2020-09-10',
-  circles: [
+  circleValues: [
     {
       _id: 'GE',
       name: 'Genf'
@@ -65,28 +73,19 @@ const eventsFromMockDB = [event1, event2, event3, event4, event5];
 
 describe('Test if the searchfilter filters the expected events', () => {
   test('filters for expected circles', () => {
-    let filteredEvents = eventsFromMockDB;
-    let checkedEvents = 'BE';
-    filteredEvents = filterEvents(filteredEvents, checkedEvents);
+    let filteredEvents = filterEvents(eventsFromMockDB, 'Bern');
     expect(filteredEvents.length).toEqual(2);
     expect(filteredEvents.includes(event1)).toBe(true);
     expect(filteredEvents.includes(event2)).toBe(true);
   });
 
-  //TODO: Tests for multiple cities
   test('filters for multiple cities', () => {
-    let filteredEvents = eventsFromMockDB;
-    let checkedEvents = ['GE', 'SG'];
-    filteredEvents = filterEvents(filteredEvents, checkedEvents);
+    let filteredEvents = filterEvents(eventsFromMockDB, 'Genf');
     expect(filteredEvents.length).toEqual(1);
     expect(filteredEvents.includes(event5)).toBe(true);
-  });
-
-  test('filters for multiple cities in different arrys', () => {
-    let filteredEvents = eventsFromMockDB;
-    let checkedEvents = ['ZH', 'GE', 'SG'];
-    filteredEvents = filterEvents(filteredEvents, checkedEvents);
-    expect(filteredEvents.length).toEqual(3);
+    filteredEvents = filterEvents(eventsFromMockDB, 'St.Gallen');
+    expect(filteredEvents.length).toEqual(1);
+    expect(filteredEvents.includes(event5)).toBe(true);
   });
 
   test('search for event Bierabend Bern', () => {
@@ -99,14 +98,14 @@ describe('Test if the searchfilter filters the expected events', () => {
 
   test('search for Networking with 1 wrong char', () => {
     let filteredEvents = eventsFromMockDB;
-    filteredEvents = filterEvents(filteredEvents, 'Netwoeking');
+    filteredEvents = filterEvents(filteredEvents, 'Cetworki');
     expect(filteredEvents.length).toEqual(1);
     expect(filteredEvents.includes(event3)).toBe(true);
   });
 
   test('search for Networking with 2 wrong char', () => {
     let filteredEvents = eventsFromMockDB;
-    filteredEvents = filterEvents(filteredEvents, 'Netwoekieg');
+    filteredEvents = filterEvents(filteredEvents, 'Netwoekiig');
     expect(filteredEvents.length).toEqual(0);
   });
 

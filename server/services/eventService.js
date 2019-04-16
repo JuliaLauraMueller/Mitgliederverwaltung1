@@ -39,7 +39,7 @@ async function getAll() {
         organisationTeam: { $first: '$organisationTeam' },
         registrationEndDate: { $first: '$registrationEndDate' },
         circles: { $first: '$circles' },
-        circleValues: { $first: '$circleValues' }
+        circleValues: { $addToSet: '$circleValues' }
       }
     },
     { $sort: { date: 1 } }
