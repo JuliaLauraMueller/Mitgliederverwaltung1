@@ -4,7 +4,7 @@ import { filterEvents } from './eventsSearch';
 const event1 = {
   _id: '1',
   title: 'Bierabend Bern',
-  date: '20200910',
+  date: '2020-09-10',
   circles: {
     _id: 'BE',
     name: 'Bern'
@@ -14,7 +14,7 @@ const event1 = {
 const event2 = {
   _id: '2',
   title: 'Bierabend Bern',
-  date: '20200910',
+  date: '2020-09-10',
   circles: {
     _id: 'BE',
     name: 'Bern'
@@ -24,7 +24,7 @@ const event2 = {
 const event3 = {
   _id: '3',
   title: 'Networking',
-  date: '20200910',
+  date: '2020-09-10',
   circles: {
     _id: 'ZH',
     name: 'Zürich'
@@ -34,7 +34,7 @@ const event3 = {
 const event4 = {
   _id: '4',
   title: 'Startup Day',
-  date: '20100910',
+  date: '2010-09-10',
   circles: {
     _id: 'ZH',
     name: 'Zürich'
@@ -42,9 +42,9 @@ const event4 = {
 };
 
 const event5 = {
-  _id: '4',
+  _id: '5',
   title: 'Teamevent alle Mitglieder',
-  date: '20200910',
+  date: '2020-09-10',
   circles: [
     {
       _id: 'GE',
@@ -137,16 +137,13 @@ describe('Test if the searchfilter filters the expected events', () => {
     expect(filteredEvents.length).toEqual(5);
   });
 
-  //TODO: data format
-  test('show all events excluding past ones', () => {
+  //TODO: loop cities
+  test('show all events from Zurich excluding past ones', () => {
     let filteredEvents = eventsFromMockDB;
-    filteredEvents = filterEvents(filteredEvents, '');
-    expect(filteredEvents.includes(event1)).toBe(true);
-    expect(filteredEvents.includes(event2)).toBe(true);
+    filteredEvents = filterEvents(filteredEvents, 'Zürich', true);
     expect(filteredEvents.includes(event3)).toBe(true);
+    expect(filteredEvents.includes(event4)).toBe(true);
     expect(filteredEvents.includes(event5)).toBe(true);
-    expect(filteredEvents.includes(event4)).toBe(false);
-    expect(filteredEvents.length).toEqual(4);
   });
 
   test('searching with an empty searchtext', () => {
