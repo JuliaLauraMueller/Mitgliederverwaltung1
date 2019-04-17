@@ -14,6 +14,7 @@ import ProfilePage from '../pages/ProfilePage';
 import MemberPage from '../pages/MemberPage';
 import EventPage from '../pages/EventPage';
 import AdminPage from '../pages/AdminPage';
+import SingleEventPage from '../pages/SinlgeEventPage';
 import AppNavbar from '../components/AppNavbar/AppNavbar';
 import store from '../helpers/store';
 
@@ -42,6 +43,11 @@ class Routes extends Component {
               />
               <PrivateRoute exact path="/members" component={MemberPage} />
               <PrivateRoute exact path="/events" component={EventPage} />
+              <PrivateRoute
+                exact
+                path="/singleEvents"
+                component={SingleEventPage}
+              />
               {AdminRoute}
               <Route component={NotFoundPage} />
             </Switch>
