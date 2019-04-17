@@ -1,4 +1,5 @@
 const db = require('../helpers/db');
+const mongoose = require('mongoose');
 const Event = db.Event;
 
 module.exports = {
@@ -7,7 +8,8 @@ module.exports = {
   updateEvent,
   deleteEvent,
   create,
-  getCirclesForId
+  getCirclesForId,
+  removeCircleFromEvents
 };
 
 async function getById(id) {
@@ -122,4 +124,10 @@ async function getCirclesForId(id) {
   }
 
   return event.circles;
+}
+
+async function removeCircleFromEvents(circleId) {
+  await Event.updateMany({
+    $pull: { circles: mongoose.Types.ObjectId(circleId) }
+  });
 }
