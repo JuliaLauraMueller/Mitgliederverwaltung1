@@ -3,7 +3,6 @@ import levenshtein from 'js-levenshtein';
 const MAX_LEVENSHTEIN_DISTANCE = 1;
 
 function levenshteinInRange(searchText, matchingText) {
-  console.log(levenshtein(searchText, matchingText));
   if (levenshtein(searchText, matchingText) <= MAX_LEVENSHTEIN_DISTANCE) {
     return true;
   }
@@ -26,7 +25,6 @@ export function filterEvents(events, searchText, pastEventsIncluded = false) {
     let title = e.title
       ? replaceUmlauts(e.title.toLowerCase()).substring(0, searchText.length)
       : '';
-    console.log(e.title.toLowerCase(), searchText, title);
 
     let circles = e.circleValues
       ? e.circleValues.map(c => {
@@ -57,8 +55,7 @@ export function filterEvents(events, searchText, pastEventsIncluded = false) {
       var mm = String(today.getMonth() + 1).padStart(2, '0');
       var yyyy = today.getFullYear();
       today = yyyy + '-' + mm + '-' + dd;
-      //TODO: formation date?
-      //console.log(e.date); console.log(today); console.log(e.date >= today);
+
       return baseSearchFound && e.date >= today;
     }
   });

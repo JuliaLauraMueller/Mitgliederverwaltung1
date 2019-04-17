@@ -1,4 +1,3 @@
-//import { filterMembers, filterByCircles } from './eventsSearch';
 import { filterEvents } from './eventsSearch';
 
 const event1 = {
@@ -89,71 +88,70 @@ describe('Test if the searchfilter filters the expected events', () => {
   });
 
   test('search for event Bierabend Bern', () => {
-    let filteredEvents = eventsFromMockDB;
-    filteredEvents = filterEvents(filteredEvents, 'Bierabend Bern');
+    let filteredEvents = filterEvents(eventsFromMockDB, 'Bierabend Bern');
     expect(filteredEvents.length).toEqual(2);
     expect(filteredEvents.includes(event1)).toBe(true);
     expect(filteredEvents.includes(event2)).toBe(true);
   });
 
   test('search for Networking with 1 wrong char', () => {
-    let filteredEvents = eventsFromMockDB;
-    filteredEvents = filterEvents(filteredEvents, 'Cetworki');
+    let filteredEvents = filterEvents(eventsFromMockDB, 'Cetworki');
     expect(filteredEvents.length).toEqual(1);
     expect(filteredEvents.includes(event3)).toBe(true);
   });
 
   test('search for Networking with 2 wrong char', () => {
-    let filteredEvents = eventsFromMockDB;
-    filteredEvents = filterEvents(filteredEvents, 'Netwoekiig');
+    let filteredEvents = filterEvents(eventsFromMockDB, 'Netwoekiig');
     expect(filteredEvents.length).toEqual(0);
   });
 
+  test('search for company title Bierabend with uncompleted searchtext', () => {
+    let filteredEvents = filterEvents(eventsFromMockDB, 'Bie');
+    expect(filteredEvents.length).toEqual(2);
+  });
+
+  test('search for title networking with uncompleted searchtext and 1 wrong char', () => {
+    let filteredMembers = filterEvents(eventsFromMockDB, 'Netwe');
+    expect(filteredMembers.length).toEqual(1);
+  });
+
   test('search for Networking with uncompleted searchtext', () => {
-    let filteredEvents = eventsFromMockDB;
-    filteredEvents = filterEvents(filteredEvents, 'Network');
+    let filteredEvents = filterEvents(eventsFromMockDB, 'Network');
     expect(filteredEvents.length).toEqual(1);
     expect(filteredEvents.includes(event3)).toBe(true);
   });
 
   test('show past event (Startup Day) if pastEventIncluded is true', () => {
-    let filteredEvents = eventsFromMockDB;
-    filteredEvents = filterEvents(filteredEvents, 'Startup Day', true);
+    let filteredEvents = filterEvents(eventsFromMockDB, 'Startup Day', true);
     expect(filteredEvents.length).toEqual(1);
     expect(filteredEvents.includes(event4)).toBe(true);
   });
 
   test('hide past event (Startup Day)', () => {
-    let filteredEvents = eventsFromMockDB;
-    filteredEvents = filterEvents(filteredEvents, 'Startup Day');
+    let filteredEvents = filterEvents(eventsFromMockDB, 'Startup Day');
     expect(filteredEvents.length).toEqual(0);
     expect(filteredEvents.includes(event4)).toBe(false);
   });
 
   test('show all events including past ones', () => {
-    let filteredEvents = eventsFromMockDB;
-    filteredEvents = filterEvents(filteredEvents, '', true);
+    let filteredEvents = filterEvents(eventsFromMockDB, '', true);
     expect(filteredEvents.length).toEqual(5);
   });
 
-  //TODO: loop cities
   test('show all events from Zurich excluding past ones', () => {
-    let filteredEvents = eventsFromMockDB;
-    filteredEvents = filterEvents(filteredEvents, 'Zürich', true);
+    let filteredEvents = filterEvents(eventsFromMockDB, 'Zürich', true);
     expect(filteredEvents.includes(event3)).toBe(true);
     expect(filteredEvents.includes(event4)).toBe(true);
     expect(filteredEvents.includes(event5)).toBe(true);
   });
 
   test('searching with an empty searchtext', () => {
-    let filteredEvents = eventsFromMockDB;
-    filteredEvents = filterEvents(filteredEvents, '');
+    let filteredEvents = filterEvents(eventsFromMockDB, '');
     expect(filteredEvents.length).toEqual(eventsFromMockDB.length);
   });
 
   test('searching for nonexistant entry', () => {
-    let filteredEvents = eventsFromMockDB;
-    filteredEvents = filterEvents(filteredEvents, 'jihdshfhgfdhüqsq');
+    let filteredEvents = filterEvents(eventsFromMockDB, 'jihdshfhgfdhüqsq');
     expect(filteredEvents.length).toEqual(0);
   });
 });
