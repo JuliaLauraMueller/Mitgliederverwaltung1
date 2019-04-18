@@ -11,3 +11,20 @@
   display: flex;
   justify-content: center;
 }
+
+.event-date {
+}
+
+.event-title {
+  font-size: 2em;
+}
+
+.event-dateDay {
+  font-size: 2em;
+}
+
+.event-dateweekday {
+}
+
+.dateMonth {
+}
