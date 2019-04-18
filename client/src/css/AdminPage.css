@@ -112,8 +112,8 @@ div .create-button {
   margin-left: 5px;
 }
 
-.dropdown-toggle::after{
-  margin-left:8px;
+.dropdown-toggle::after {
+  margin-left: 8px;
   width: 11px;
   height: auto;
 }
@@ -122,4 +122,15 @@ div .create-button {
   .form-control-admin {
     width: 130px;
   }
+}
+
+/** Events admin*/
+.event-edit-row {
+  margin-left: 20px;
+  justify-content: flex-end;
+}
+.event-edit-txt {
+  float: right;
+  max-width: 300px;
+  min-width: 280px;
 }

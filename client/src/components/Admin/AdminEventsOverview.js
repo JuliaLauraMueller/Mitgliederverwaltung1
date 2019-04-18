@@ -15,7 +15,9 @@ import {
   ModalBody,
   FormGroup,
   Input,
-  Form
+  Form,
+  InputGroup,
+  InputGroupAddon
 } from 'reactstrap';
 import {
   deleteEvent,
@@ -193,6 +195,7 @@ class AdminEventsOverview extends Component {
         <span
           className="admin-link admin-link-small admin-cursor"
           onClick={() => this.toggleEventDeleteModal(event)}
+          title="Event löschen"
         >
           <svg
             width="27"
@@ -267,6 +270,7 @@ class AdminEventsOverview extends Component {
   createEventEditModal() {
     return (
       <Modal
+        className=".modal-lg"
         isOpen={this.state.editModal}
         toggle={() => this.toggleEventEditModal({})}
       >
@@ -276,117 +280,121 @@ class AdminEventsOverview extends Component {
         <Form onSubmit={this.onEventSave}>
           <ModalBody>
             <FormGroup row>
-              <Label className="city-name-label">Titel:</Label>
-              <Col>
+              <Col className="event-edit-row">
+                <Label className="event-edit-label">Titel:</Label>
                 <Input
                   type="text"
                   id="title"
                   name="title"
-                  className="admin-form-control"
                   onChange={this.handleChange}
                   value={this.state.eventToEdit.title}
+                  className="event-edit-txt"
                 />
               </Col>
-              <Label className="city-name-label">Beschreibung:</Label>
-              <Col>
+              <Col className="event-edit-row">
+                <Label className="event-edit-label">Beschreibung:</Label>
                 <Input
                   type="text"
                   id="description"
                   name="description"
-                  className="admin-form-control"
+                  className="event-edit-txt"
                   onChange={this.handleChange}
                   value={this.state.eventToEdit.description}
                 />
               </Col>
-              <Label className="city-name-label">Teilnehmende Cities:</Label>
-              <Col>
+              <Col className="event-edit-row">
+                <Label className="event-edit-label">Teilnehmende Cities:</Label>
                 <Input
                   type="text"
                   id="cities"
                   name="cities"
-                  className="admin-form-control"
+                  className="event-edit-txt"
                   onChange={this.handleChange}
                   value={this.state.eventToEdit.cities}
                 />
               </Col>
-              <Label className="city-name-label">Datum:</Label>
-              <Col>
+              <Col className="event-edit-row">
+                <Label className="event-edit-label">Datum:</Label>
                 <Input
                   type="date"
                   id="date"
                   name="date"
-                  className="admin-form-control"
+                  className="event-edit-txt"
                   onChange={this.handleChange}
                   value={this.state.eventToEdit.date}
                 />
               </Col>
-              <Label className="city-name-label">Beginn:</Label>
-              <Col>
+              <Col className="event-edit-row">
+                <Label className="event-edit-label">Beginn:</Label>
                 <Input
                   type="text"
                   id="startTime"
                   name="startTime"
-                  className="admin-form-control"
+                  className="event-edit-txt"
                   onChange={this.handleChange}
                   value={this.state.eventToEdit.startTime}
                 />
               </Col>
-              <Label className="city-name-label">Ende:</Label>
-              <Col>
+              <Col className="event-edit-row">
+                <Label className="event-edit-label">Ende:</Label>
                 <Input
                   type="text"
                   id="endTime"
                   name="endTime"
-                  className="admin-form-control"
+                  className="event-edit-txt"
                   onChange={this.handleChange}
                   value={this.state.eventToEdit.endTime}
                 />
               </Col>
-              <Label className="city-name-label">Ort:</Label>
-              <Col>
+              <Col className="event-edit-row">
+                <Label className="event-edit-label">Ort:</Label>
                 <Input
                   type="text"
                   id="location"
                   name="location"
-                  className="admin-form-control"
+                  className="event-edit-txt"
                   onChange={this.handleChange}
                   value={this.state.eventToEdit.location}
                 />
               </Col>
-              <Label className="city-name-label">Organisation:</Label>
-              <Col>
+              <Col className="event-edit-row">
+                <Label className="event-edit-label">Organisation:</Label>
                 <Input
                   type="text"
                   id="organisationTeam"
                   name="organisationTeam"
-                  className="admin-form-control"
+                  className="event-edit-txt"
                   onChange={this.handleChange}
                   value={this.state.eventToEdit.organisationTeam}
                 />
               </Col>
-              <Label className="city-name-label">Anmeldeschluss:</Label>
-              <Col>
+              <Col className="event-edit-row">
+                <Label className="event-edit-label">Anmeldeschluss:</Label>
                 <Input
                   type="date"
                   id="registrationEndDate"
                   name="registrationEndDate"
-                  className="admin-form-control"
+                  className="event-edit-txt"
                   onChange={this.handleChange}
                   value={this.state.eventToEdit.registrationEndDate}
                 />
               </Col>
-              <Label className="city-name-label">Rollen:</Label>
-              <Col>
+              <Col className="event-edit-row">
+                <Label className="event-edit-label">Rollen:</Label>
                 <Input
                   type="text"
                   id="permittedRoles"
                   name="permittedRoles"
-                  className="admin-form-control"
+                  className="event-edit-txt"
                   onChange={this.handleChange}
                   value={this.state.eventToEdit.permittedRoles}
                 />
               </Col>
-              <Label className="city-name-label">Bild:</Label>
+
+              <Col className="event-edit-row">
+                <Label className="event-edit-label">Bild:</Label>
+                <Input className="event-edit-txt" />
+              </Col>
             </FormGroup>
           </ModalBody>
           <ModalFooter>
