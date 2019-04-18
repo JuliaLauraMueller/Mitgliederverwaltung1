@@ -83,6 +83,11 @@
   padding-right: auto;
 }
 
+.navigation-user-picture-img,
+#navigation-user-picture-img {
+  border-radius: 50%;
+}
+
 .navbar-desktop-extended-logo {
   height: 26px;
   width: 24px;

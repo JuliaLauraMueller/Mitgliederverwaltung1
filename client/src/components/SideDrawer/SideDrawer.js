@@ -85,7 +85,11 @@ class SideDrawer extends Component {
           <div className="navigation-user">
             <div className="navigation-user-picture">
               <Link to={`/member/${userId}`}>
-                <img src={require('../../img/Marc.png')} alt="Marc" />
+                <img
+                  id="navigation-user-picture-img"
+                  src={require('../../img/Profile_Placeholder.png')}
+                  alt="Profilbild"
+                />
               </Link>
             </div>
             <div className="navigation-user-name">Marc Zimmermann</div>
