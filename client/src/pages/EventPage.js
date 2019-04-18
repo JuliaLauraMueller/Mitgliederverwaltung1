@@ -21,11 +21,11 @@ class EventPage extends Component {
           'Dieser Bierevent ist dafür da, dass wir uns auch mal entspannen können und zusammen Freedom geniessen',
         circles: ['Bern'],
         date: '21.02.2019',
-        startTime: '',
-        endTime: '',
-        location: '',
-        organisationTeam: '',
-        registrationEndDate: '',
+        startTime: '18:00',
+        endTime: '20:00',
+        location: 'Berner Resti',
+        organisationTeam: 'Marc Zimmermann',
+        registrationEndDate: '10.02.2019',
         permittedRoles: [2, 3, 4]
       }
     ];
