@@ -47,7 +47,7 @@ function update(req, res, next) {
           })
           .catch(error => {
             if (error && error.type == 'invalid_input') {
-              res.status(422).send(error);
+              res.status(422).send({ error });
             } else {
               console.error('Event update error: ', error);
               res.sendStatus(500);
