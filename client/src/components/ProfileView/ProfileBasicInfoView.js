@@ -15,7 +15,11 @@ class ProfileBasicInfo extends Component {
               <img
                 id="profile-image"
                 style={{ width: '180px' }}
-                src={require('../../img/marc_zimmermann.jpg')}
+                src={
+                  profile.avatar
+                    ? profile.avatar
+                    : require('../../img/Placeholder.png')
+                }
                 alt="profile"
               />
             </Col>

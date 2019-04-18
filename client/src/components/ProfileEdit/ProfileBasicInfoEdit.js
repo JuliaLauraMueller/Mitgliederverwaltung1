@@ -70,7 +70,11 @@ class ProfileBasicInfoEDIT extends Component {
                   <img
                     className="profile-image-edit"
                     style={{ width: '147px' }}
-                    src={require('../../img/marc_zimmermann.jpg')}
+                    src={
+                      this.state.avatar
+                        ? this.state.avatar
+                        : require('../../img/Placeholder.png')
+                    }
                     alt="profile"
                   />
                 </div>
