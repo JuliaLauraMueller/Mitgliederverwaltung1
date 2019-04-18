@@ -38,7 +38,7 @@ async function getAll() {
         location: { $first: '$location' },
         organisationTeam: { $first: '$organisationTeam' },
         registrationEndDate: { $first: '$registrationEndDate' },
-        circles: { $first: '$circles' },
+        circles: { $addToSet: '$circles' },
         circleValues: { $addToSet: '$circleValues' }
       }
     },

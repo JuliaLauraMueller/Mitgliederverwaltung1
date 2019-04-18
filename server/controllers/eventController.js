@@ -16,7 +16,6 @@ function getAll(req, res, next) {
   eventService
     .getAll()
     .then(events => {
-      console.log(events);
       res.json(events);
     })
     .catch(err => next(err));
@@ -33,7 +32,6 @@ function update(req, res, next) {
   eventService
     .getCirclesForId(req.params.id)
     .then(circles => {
-      console.log(circles);
       if (
         roleHelper.roleAccessCheckMultipleCircles(
           2,

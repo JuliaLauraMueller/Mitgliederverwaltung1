@@ -61,12 +61,14 @@ export function filterEvents(events, searchText, pastEventsIncluded = false) {
   });
 }
 
-export function ownCircleEvents(events, filteredCircles, role) {
-  if (role >= 2 || !filteredCircles || filteredCircles.length === 0) {
-    return events;
-  } else {
+export function ownCircleEvents(events, userCircle, role) {
+  if (role >= 2) {
+      console.log(events);
+      console.log(userCircle );
     return events.filter(e => {
-      return filteredCircles.includes(e.circle ? e.circle._id : '');
+      console.log(e.circles);
+
+      return e.circles.includes(userCircle);
     });
   }
 }
