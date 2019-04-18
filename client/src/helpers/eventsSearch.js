@@ -55,21 +55,17 @@ export function filterEvents(events, searchText, pastEventsIncluded = false) {
       var mm = String(today.getMonth() + 1).padStart(2, '0');
       var yyyy = today.getFullYear();
       today = yyyy + '-' + mm + '-' + dd;
-
+      console.log(today);
+      console.log(e.date);
       return baseSearchFound && e.date >= today;
     }
   });
 }
 
 export function ownCircleEvents(events, userCircle, role) {
+  if (role === 5) return events;
   if (role >= 2) {
-      console.log(events);
-      console.log(userCircle );
-    return events.filter(e => {
-      console.log(e.circles);
-
-      return e.circles.includes(userCircle);
-    });
+    return events.filter(e => e.circles.includes(userCircle));
   }
 }
 

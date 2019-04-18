@@ -37,7 +37,8 @@ class AdminEventsOverview extends Component {
       collapseEvent: false,
       eventToDelete: {},
       eventToEdit: {},
-      editModal: false
+      editModal: false,
+      pastEventedIncluded: false
     };
     this.getEventRows = this.getEventRows.bind(this);
     this.collapseEvent = this.collapseEvent.bind(this);
@@ -46,6 +47,8 @@ class AdminEventsOverview extends Component {
     this.createEventDeleteModal = this.createEventDeleteModal.bind(this);
     this.createEventEditModal = this.createEventEditModal.bind(this);
     this.toggleEventEditModal = this.toggleEventEditModal.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.onEventSave = this.onEventSave.bind(this);
     this.props.dispatch(fetchEvents());
   }
 
@@ -160,7 +163,7 @@ class AdminEventsOverview extends Component {
         store.getState().auth.user.role
       ),
       this.state.searchText,
-      true // TODO change
+      false
     ).map(event => {
       let EditButton = {};
       let DeleteButton = {};
@@ -274,37 +277,9 @@ class AdminEventsOverview extends Component {
     return (
       <Modal
         isOpen={this.state.editModal}
-        toggle={() =>
-          this.toggleEventEditModal({
-            title: '',
-            description: '',
-            cities: '',
-            date: '',
-            startTime: '',
-            endTime: '',
-            location: '',
-            organisationTeam: '',
-            permittedRoles: '',
-            registrationEndDate: ''
-          })
-        }
+        toggle={() => this.toggleEventEditModal({})}
       >
-        <ModalHeader
-          toggle={() =>
-            this.toggleEventEditModal({
-              title: '',
-              description: '',
-              cities: '',
-              date: '',
-              startTime: '',
-              endTime: '',
-              location: '',
-              organisationTeam: '',
-              permittedRoles: '',
-              registrationEndDate: ''
-            })
-          }
-        >
+        <ModalHeader toggle={() => this.toggleEventEditModal({})}>
           Event editieren
         </ModalHeader>
         <Form onSubmit={this.onEventSave}>

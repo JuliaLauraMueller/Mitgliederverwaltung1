@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
 
-import { Form, FormGroup, Label, Input, Col, Row, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
+import {
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Col,
+  Row,
+  ButtonDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
+} from 'reactstrap';
 import { fetchCircles } from '../../redux/actions/circleActions';
 import { fetchEvents, createEvent } from '../../redux/actions/eventActions';
 import { alertError } from '../../redux/actions/alertActions';
@@ -27,7 +38,7 @@ class AdminCreateEvent extends Component {
     this.state = {
       ...initialState,
       citiesDropdownOpen: false
-    }
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.submitEvent = this.submitEvent.bind(this);
@@ -51,12 +62,14 @@ class AdminCreateEvent extends Component {
   handleCitiesSelection(event) {
     event.persist();
     if (event.target.checked) {
-      this.setState({circles: [...this.state.circles, event.target.id]});
+      this.setState({ circles: [...this.state.circles, event.target.id] });
     } else {
       this.setState(prevState => {
-       return{
-        circles: prevState.circles.splice(prevState.circles.indexOf(event.target.id))
-       }; 
+        return {
+          circles: prevState.circles.splice(
+            prevState.circles.indexOf(event.target.id)
+          )
+        };
       });
     }
   }
@@ -64,13 +77,17 @@ class AdminCreateEvent extends Component {
   handleRoleSelection(event) {
     event.persist();
     if (event.target.checked) {
-      this.setState({permittedRoles: [...this.state.permittedRoles, event.target.value]});
+      this.setState({
+        permittedRoles: [...this.state.permittedRoles, event.target.value]
+      });
     } else {
       this.setState(prevState => {
-        return{
-         permittedRoles: prevState.permittedRoles.splice(prevState.permittedRoles.indexOf(event.target.id))
-        }; 
-       });
+        return {
+          permittedRoles: prevState.permittedRoles.splice(
+            prevState.permittedRoles.indexOf(event.target.id)
+          )
+        };
+      });
     }
   }
 
@@ -110,8 +127,8 @@ class AdminCreateEvent extends Component {
           </label>
         </div>
       );
-    });   
-    
+    });
+
     return (
       <div>
         <h4>Neuer Event</h4>
@@ -152,10 +169,10 @@ class AdminCreateEvent extends Component {
           </FormGroup>
           <FormGroup>
             <Row>
-          <Col xs="3">
+              <Col xs="3">
                 <Label for="description">Cities</Label>
-          </Col>
-          <ButtonDropdown
+              </Col>
+              <ButtonDropdown
                 isOpen={this.state.citiesDropdownOpen}
                 toggle={this.toggle}
               >
@@ -163,15 +180,14 @@ class AdminCreateEvent extends Component {
                   caret
                   className="filter-button"
                   color={'rgb(15, 25, 41, 40%)'}
-                >
-                </DropdownToggle>
+                />
 
                 <DropdownMenu>
                   <DropdownItem header>Cities wählen</DropdownItem>
                   {circleLabels}
                 </DropdownMenu>
               </ButtonDropdown>
-              </Row>
+            </Row>
           </FormGroup>
           <FormGroup>
             <Row>
@@ -284,74 +300,85 @@ class AdminCreateEvent extends Component {
                 <Label for="permittedRoles">Rollen</Label>
               </Col>
               <Col xs={9}>
-                  <div className="checkbox-container" key="0">
-                    <input
-                      type="checkbox"
-                      id="mitglied"
-                      value="0"
-                      onClick={this.handleRoleSelection.bind(this)}
-                      
-                    />
-                    <label htmlFor="newsadministrator" className="filter-cities">
-                      Mitglied
-                    </label>
-                  </div>
-                  <div className="checkbox-container" key="1">
-                    <input
-                      type="checkbox"
-                      id="newsadministrator"
-                      value="1"
-                      onClick={this.handleRoleSelection.bind(this)}
-                    />
-                    <label htmlFor="newsadministrator" className="filter-cities">
-                      Newsadministrator
-                    </label>
-                  </div>
-                  <div className="checkbox-container" key="2">
-                    <input
-                      type="checkbox"
-                      id="eventadministrator"
-                      value="2"
-                      onClick={this.handleRoleSelection.bind(this)}
-                    />
-                    <label htmlFor="eventadministrator" className="filter-cities">
-                      Eventadministrator
-                    </label>
-                  </div>
-                  <div className="checkbox-container" key="3">
-                    <input
-                      type="checkbox"
-                      id="personaladministrator"
-                      value="3"
-                      onClick={this.handleRoleSelection.bind(this)}
-                    />
-                    <label htmlFor="personaladministrator" className="filter-cities">
-                      Personaladministrator
-                    </label>
-                  </div>
-                  <div className="checkbox-container" key="4">
-                    <input
-                      type="checkbox"
-                      id="cityadministrator"
-                      value="4"
-                      onClick={this.handleRoleSelection.bind(this)}
-                      />
-                    <label htmlFor="cityadministrator" className="filter-cities">
-                      Cityadministrator
-                    </label>
-                  </div>
-                  <div className="checkbox-container" key={5}>
-                    <input
-                      type="checkbox"
-                      id="federationsadministrator"
-                      value="5"
-                      onClick={this.handleRoleSelection.bind(this)}
-                    />
-                    <label htmlFor="federationsadministrator" className="filter-cities">
-                      Federationsadministrator
-                    </label>
-                  </div>
-                  </Col>
+                <div className="checkbox-container" key="0">
+                  <input
+                    type="checkbox"
+                    id="mitglied"
+                    value="0"
+                    onClick={this.handleRoleSelection.bind(this)}
+                    defaultValue={this.state.permittedRoles.includes('0')}
+                  />
+                  <label htmlFor="newsadministrator" className="filter-cities">
+                    Mitglied
+                  </label>
+                </div>
+                <div className="checkbox-container" key="1">
+                  <input
+                    type="checkbox"
+                    id="newsadministrator"
+                    value="1"
+                    onClick={this.handleRoleSelection.bind(this)}
+                    defaultValue={this.state.permittedRoles.includes('1')}
+                  />
+                  <label htmlFor="newsadministrator" className="filter-cities">
+                    Newsadministrator
+                  </label>
+                </div>
+                <div className="checkbox-container" key="2">
+                  <input
+                    type="checkbox"
+                    id="eventadministrator"
+                    value="2"
+                    onClick={this.handleRoleSelection.bind(this)}
+                    defaultValue={this.state.permittedRoles.includes('2')}
+                  />
+                  <label htmlFor="eventadministrator" className="filter-cities">
+                    Eventadministrator
+                  </label>
+                </div>
+                <div className="checkbox-container" key="3">
+                  <input
+                    type="checkbox"
+                    id="personaladministrator"
+                    value="3"
+                    onClick={this.handleRoleSelection.bind(this)}
+                    defaultValue={this.state.permittedRoles.includes('3')}
+                  />
+                  <label
+                    htmlFor="personaladministrator"
+                    className="filter-cities"
+                  >
+                    Personaladministrator
+                  </label>
+                </div>
+                <div className="checkbox-container" key="4">
+                  <input
+                    type="checkbox"
+                    id="cityadministrator"
+                    value="4"
+                    onClick={this.handleRoleSelection.bind(this)}
+                    defaultValue={this.state.permittedRoles.includes('4')}
+                  />
+                  <label htmlFor="cityadministrator" className="filter-cities">
+                    Cityadministrator
+                  </label>
+                </div>
+                <div className="checkbox-container" key={5}>
+                  <input
+                    type="checkbox"
+                    id="federationsadministrator"
+                    value="5"
+                    onClick={this.handleRoleSelection.bind(this)}
+                    defaultValue={this.state.permittedRoles.includes('5')}
+                  />
+                  <label
+                    htmlFor="federationsadministrator"
+                    className="filter-cities"
+                  >
+                    Federationsadministrator
+                  </label>
+                </div>
+              </Col>
             </Row>
           </FormGroup>
           <FormGroup>
