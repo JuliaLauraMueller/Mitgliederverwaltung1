@@ -21,7 +21,7 @@ class MemberCard extends Component {
                   src={
                     this.props.member.avatar
                       ? this.props.member.avatar
-                      : require('../img/Placeholder.png')
+                      : require('../img/Profile_Placeholder.png')
                   }
                   alt="Card i cap"
                 />

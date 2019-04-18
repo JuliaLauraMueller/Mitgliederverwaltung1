@@ -18,7 +18,7 @@ class ProfileBasicInfo extends Component {
                 src={
                   profile.avatar
                     ? profile.avatar
-                    : require('../../img/Placeholder.png')
+                    : require('../../img/Profile_Placeholder.png')
                 }
                 alt="profile"
               />

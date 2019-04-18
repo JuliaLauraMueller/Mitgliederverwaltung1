@@ -73,7 +73,7 @@ class ProfileBasicInfoEDIT extends Component {
                     src={
                       this.state.avatar
                         ? this.state.avatar
-                        : require('../../img/Placeholder.png')
+                        : require('../../img/Profile_Placeholder.png')
                     }
                     alt="profile"
                   />
