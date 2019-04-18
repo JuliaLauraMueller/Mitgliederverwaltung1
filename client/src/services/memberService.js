@@ -11,7 +11,7 @@ async function getUserBody() {
 
       let mem = {
         members: users.map(element => {
-          console.log(element.avatar);
+          //console.log(element.avatar);
           return {
             _id: element._id,
             memberNumber: element.memberNumber,

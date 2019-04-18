@@ -21,7 +21,7 @@ mongoose
   .catch(err => console.log(err));
 
 // Middleware
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '16mb' }));
 app.use(cors({ exposedHeaders: 'Set-Authorization' }));
 app.use('/api', jwt());
 

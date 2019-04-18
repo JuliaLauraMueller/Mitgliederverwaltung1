@@ -60,7 +60,13 @@ async function getAll() {
 }
 
 async function getById(id) {
-  return await User.findById(id).select('-password');
+  let user = await User.findById(id).select('-password');
+  let buff = new Buffer(user.avatar);
+  let b64 = buff.toString('base64');
+  user = user.toObject();
+  user.avatar = b64;
+
+  return user;
 }
 
 async function create(userParam) {
@@ -137,12 +143,20 @@ async function updateUser(id, userParam) {
   const user = await User.findById(id);
   if (!user) throw 'User not found';
 
+  try {
+    userParam.avatar = Buffer.from(userParam.avatar, 'base64');
+  } catch (e) {
+    console.log('error', e);
+  }
+
   // TODO check for correct input
   userParam = validateInputs(userParam);
 
   var query = { _id: id };
   await User.updateOne(query, userParam, function(err, res) {
-    if (err) throw err;
+    if (err) {
+      throw err;
+    }
   });
 }
 
@@ -168,9 +182,7 @@ async function update(id, userParam) {
   }
 
   // copy userParam properties to user
-  console.log(userParam);
-  userParam.avatar = new Buffer(userParam.avatar.split(',')[1], 'base64');
-  console.log('after converting to binary', userParam.avatar);
+  userParam.avatar = new Buffer(userParam.avatar, 'base64');
 
   Object.assign(user, userParam);
 

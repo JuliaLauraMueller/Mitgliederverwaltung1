@@ -27,7 +27,8 @@ class ProfileBasicInfoEDIT extends Component {
       city: profile.city,
       godfather: profile.godfather,
       birthdate: profile.birthdate,
-      avatar: profile.avatar
+      avatar: profile.avatar,
+      avatarTag: profile.avatarTag
     };
 
     this.onChange = this.onChange.bind(this);
@@ -59,67 +60,37 @@ class ProfileBasicInfoEDIT extends Component {
       //city: this.state.city,
       //godfather: this.state.godfather,
       birthdate: this.state.birthdate,
-      avatar: this.state.avatar
+      avatar: this.state.avatar,
+      avatarTag: this.state.avatarTag
     };
 
     //TODO: Find a way to update all info or none at all (Together with BasicInfo)
     this.props.dispatch(putProfile(basicInformationUpdate));
   }
 
-  //getBase64Second(file) {}
-  fileSelectedHandler(event) {
+  async fileSelectedHandler(event) {
     var something = event.target.files[0];
-    let x = this.getBase64(something);
-    console.log(x);
+
+    let fileInB64 = await this.getBase64(something);
+    let splitArr = fileInB64.split(',');
+    this.setState({
+      avatarTag: splitArr[0],
+      avatar: splitArr[1]
+    });
   }
 
   getBase64(file) {
-    let b64;
-    //var file;
-    const methRef = this.setState;
-
-    var reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = function() {
-      b64 = reader.result;
-      console.log(b64);
-    };
-    console.log(b64);
-
-    // this.setState({ avatar: b64 });
-    // console.log(this.state.avatar);
-    reader.onerror = function(error) {
-      console.log('Error: ', error);
-    };
-
-    console.log(file);
-
-    console.log(b64);
-    return b64;
-  }
-
-  handleFileUpload({ file }) {
-    console.log(file);
-    //const f = fs.readFileSync(files[0].path);
-    //this.state.avatar = f;
-  }
-
-  arrayBufferToBase64(data) {
-    console.log(data);
-    //let buff = new Buffer(data);
-    //let base64data = buff.toString('base64');
-    //console.log(data);
-    //console.log(base64data);
-    //return base64data;
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
   }
 
   render() {
-    var imageStr = 'bla';
-    //console.log(base64Flag + this.arrayBufferToBase64(this.state.avatar.data));
-    //console.log(this.state.avatar.toString('base64'));
-    //console.log(this.state.avatar);
-    //console.log(this.arrayBufferToBase64(this.state.avatar.data));
-    //console.log(this.state.avatar);
+    console.log('avatar', this.state.avatar);
+    console.log(this.state.avatarTag);
     return (
       <Row>
         <Col md={{ offset: 0, size: 6 }} xs={{ offset: 1 }}>
@@ -130,7 +101,7 @@ class ProfileBasicInfoEDIT extends Component {
                   <img
                     className='profile-image-edit'
                     style={{ width: '147px' }}
-                    src={this.arrayBufferToBase64(this.state.avatar)}
+                    src={this.state.avatarTag + ',' + this.state.avatar}
                     alt='profile'
                   />
                 </div>

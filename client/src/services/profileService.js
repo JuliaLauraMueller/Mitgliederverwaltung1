@@ -41,7 +41,8 @@ async function getUserData(id) {
         instagramLink: resp.data.instagramLink,
         offerings: resp.data.offerings,
 
-        avatar: resp.data.avatar
+        avatar: resp.data.avatar,
+        avatarTag: resp.data.avatarTag
       }
     };
   });
@@ -85,7 +86,6 @@ function getCompanyData(id) {
 }
 
 async function setUserData(data) {
-  console.log('enters put command on profile service.');
   var res = axios.put('/users/' + data._id, data);
   return res;
 }
