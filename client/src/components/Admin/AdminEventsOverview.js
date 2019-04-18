@@ -144,16 +144,19 @@ class AdminEventsOverview extends Component {
   }
 
   handleChange(event) {
-    let attr = 'eventToEdit.' + event.target.name;
-    console.log('attr');
-    this.setState({ attr: event.target.value });
+    this.setState({
+      eventToEdit: {
+        ...this.state.eventToEdit,
+        [event.target.name]: event.target.value
+      }
+    });
   }
 
   getEventRows(events) {
     return filterEvents(
       ownCircleEvents(
         events,
-        [store.getState().auth.user.circle],
+        store.getState().auth.user.circle,
         store.getState().auth.user.role
       ),
       this.state.searchText,

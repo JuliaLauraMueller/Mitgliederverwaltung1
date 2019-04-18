@@ -9,15 +9,15 @@ import { connect } from 'react-redux';
 const initialState = {
   title: '',
   description: '',
-  cities: '',
   date: '',
   startTime: '',
   endTime: '',
   location: '',
   organisationTeam: '',
   registrationEndDate: '',
-  permittedRoles: '',
-  img: ''
+  image: '',
+  circles: [],
+  permittedRoles: []
 };
 
 class AdminCreateEvent extends Component {
@@ -25,10 +25,8 @@ class AdminCreateEvent extends Component {
     super(props);
 
     this.state = {
-      initialState,
-      checkedCircles: [],
-      checkedRoles: [],
-      citiesDropdownOpen: false,
+      ...initialState,
+      citiesDropdownOpen: false
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -51,24 +49,28 @@ class AdminCreateEvent extends Component {
   }
 
   handleCitiesSelection(event) {
+    event.persist();
     if (event.target.checked) {
-      this.state.checkedCircles.push(event.target.id);
+      this.setState({circles: [...this.state.circles, event.target.id]});
     } else {
-      this.state.checkedCircles.splice(
-        this.state.checkedCircles.indexOf(event.target.id),
-        1
-      );
+      this.setState(prevState => {
+       return{
+        circles: prevState.circles.splice(prevState.circles.indexOf(event.target.id))
+       }; 
+      });
     }
   }
 
   handleRoleSelection(event) {
+    event.persist();
     if (event.target.checked) {
-      this.state.checkedRoles.push(event.target.value);
+      this.setState({permittedRoles: [...this.state.permittedRoles, event.target.value]});
     } else {
-      this.state.checkedRoles.splice(
-        this.state.checkedRoles.indexOf(event.target.value),
-        1
-      );
+      this.setState(prevState => {
+        return{
+         permittedRoles: prevState.permittedRoles.splice(prevState.permittedRoles.indexOf(event.target.id))
+        }; 
+       });
     }
   }
 
@@ -80,9 +82,6 @@ class AdminCreateEvent extends Component {
 
   async submitEvent(event) {
     event.preventDefault();
-    if (this.state.event === '' && this.props.circles[0]) {
-      this.state.event = this.props.events[0]._id; // set default value
-    }
     await this.props
       .dispatch(createEvent(this.state))
       .then(res => {
@@ -103,7 +102,7 @@ class AdminCreateEvent extends Component {
             type="checkbox"
             id={circle._id}
             onClick={this.handleCitiesSelection.bind(this)}
-            defaultChecked={this.state.checkedCircles.includes(circle._id)}
+            defaultChecked={this.state.circles.includes(circle._id)}
           />
 
           <label htmlFor={circle._id} className="filter-cities">
@@ -291,7 +290,7 @@ class AdminCreateEvent extends Component {
                       id="mitglied"
                       value="0"
                       onClick={this.handleRoleSelection.bind(this)}
-                      defaultChecked={this.state.checkedRoles.includes("0")}
+                      
                     />
                     <label htmlFor="newsadministrator" className="filter-cities">
                       Mitglied
@@ -303,7 +302,6 @@ class AdminCreateEvent extends Component {
                       id="newsadministrator"
                       value="1"
                       onClick={this.handleRoleSelection.bind(this)}
-                      defaultChecked={this.state.checkedRoles.includes("1")}
                     />
                     <label htmlFor="newsadministrator" className="filter-cities">
                       Newsadministrator
@@ -315,7 +313,6 @@ class AdminCreateEvent extends Component {
                       id="eventadministrator"
                       value="2"
                       onClick={this.handleRoleSelection.bind(this)}
-                      defaultChecked={this.state.checkedRoles.includes("2")}
                     />
                     <label htmlFor="eventadministrator" className="filter-cities">
                       Eventadministrator
@@ -327,7 +324,6 @@ class AdminCreateEvent extends Component {
                       id="personaladministrator"
                       value="3"
                       onClick={this.handleRoleSelection.bind(this)}
-                      defaultChecked={this.state.checkedRoles.includes("3")}
                     />
                     <label htmlFor="personaladministrator" className="filter-cities">
                       Personaladministrator
@@ -339,8 +335,7 @@ class AdminCreateEvent extends Component {
                       id="cityadministrator"
                       value="4"
                       onClick={this.handleRoleSelection.bind(this)}
-                      defaultChecked={this.state.checkedRoles.includes("4")}
-                    />
+                      />
                     <label htmlFor="cityadministrator" className="filter-cities">
                       Cityadministrator
                     </label>
@@ -351,7 +346,6 @@ class AdminCreateEvent extends Component {
                       id="federationsadministrator"
                       value="5"
                       onClick={this.handleRoleSelection.bind(this)}
-                      defaultChecked={this.state.checkedRoles.includes("5")}
                     />
                     <label htmlFor="federationsadministrator" className="filter-cities">
                       Federationsadministrator
@@ -363,7 +357,7 @@ class AdminCreateEvent extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="img">Bild</Label>
+                <Label for="image">Bild</Label>
               </Col>
             </Row>
           </FormGroup>
