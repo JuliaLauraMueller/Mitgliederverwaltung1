@@ -126,11 +126,11 @@ div .create-button {
 
 /** Events admin*/
 .event-edit-row {
-  margin-left: 20px;
+  margin: 1px 20px;
   justify-content: flex-end;
 }
 .event-edit-txt {
   float: right;
   max-width: 300px;
-  min-width: 280px;
+  min-width: 260px;
 }

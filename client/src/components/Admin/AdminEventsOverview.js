@@ -237,9 +237,9 @@ class AdminEventsOverview extends Component {
     return (
       <Modal
         isOpen={this.state.eventDeleteModal}
-        toggle={() => this.createEventDeleteModal({})}
+        toggle={() => this.toggleEventDeleteModal({})}
       >
-        <ModalHeader toggle={() => this.createEventDeleteModal({})}>
+        <ModalHeader toggle={() => this.toggleEventDeleteModal({})}>
           Event wirklich löschen?
         </ModalHeader>
         <ModalFooter>
@@ -249,7 +249,7 @@ class AdminEventsOverview extends Component {
             color="primary"
             onClick={() => {
               this.deleteEvent(this.state.eventToDelete._id);
-              this.createEventDeleteModal({});
+              this.toggleEventDeleteModal({});
             }}
             value="Löschen"
           />
@@ -258,7 +258,7 @@ class AdminEventsOverview extends Component {
             className="admin-button"
             color="primary"
             onClick={() => {
-              this.createEventDeleteModal({});
+              this.toggleEventDeleteModal({});
             }}
             value="Abbrechen"
           />
@@ -270,11 +270,38 @@ class AdminEventsOverview extends Component {
   createEventEditModal() {
     return (
       <Modal
-        className=".modal-lg"
         isOpen={this.state.editModal}
-        toggle={() => this.toggleEventEditModal({})}
+        toggle={() =>
+          this.toggleEventEditModal({
+            title: '',
+            description: '',
+            cities: '',
+            date: '',
+            startTime: '',
+            endTime: '',
+            location: '',
+            organisationTeam: '',
+            permittedRoles: '',
+            registrationEndDate: ''
+          })
+        }
       >
-        <ModalHeader toggle={() => this.toggleEventEditModal({})}>
+        <ModalHeader
+          toggle={() =>
+            this.toggleEventEditModal({
+              title: '',
+              description: '',
+              cities: '',
+              date: '',
+              startTime: '',
+              endTime: '',
+              location: '',
+              organisationTeam: '',
+              permittedRoles: '',
+              registrationEndDate: ''
+            })
+          }
+        >
           Event editieren
         </ModalHeader>
         <Form onSubmit={this.onEventSave}>
