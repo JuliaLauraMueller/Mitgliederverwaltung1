@@ -308,7 +308,7 @@ class AdminCreateEvent extends Component {
                     onClick={this.handleRoleSelection.bind(this)}
                     defaultValue={this.state.permittedRoles.includes('0')}
                   />
-                  <label htmlFor="newsadministrator" className="filter-cities">
+                  <label htmlFor="mitglied" className="filter-cities">
                     Mitglied
                   </label>
                 </div>
