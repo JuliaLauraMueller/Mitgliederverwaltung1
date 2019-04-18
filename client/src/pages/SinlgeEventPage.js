@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 import { Container, Row, Col } from 'reactstrap';
 import { setNavVisible } from '../redux/actions/navigationActions';
+import { alertError } from '../redux/actions/alertActions';
+
 import SingleEventInfo from '../components/SingleEvent/SingleEventInfoView.js';
+import store from '../helpers/store';
 
 import '../css/EventPage.css';
 
 class SingleEventPage extends Component {
   constructor(props) {
     super(props);
-    this.props.dispatch(setNavVisible());
+    //this.props.dispatch(setNavVisible());
   }
 
   render() {

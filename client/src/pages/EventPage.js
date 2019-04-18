@@ -18,9 +18,6 @@ class EventPage extends Component {
   }
 
   render() {
-    let memberCards = this.props.members.map(member => {
-      return <MemberCard key={member._id} member={member} />;
-    });
     return (
       <Container className="member-page-container">
         <Row>
@@ -32,9 +29,6 @@ class EventPage extends Component {
             </Helmet>
 
             <SearchFieldMember />
-            <Row className="member-cards-row" key={memberCards}>
-              {memberCards}
-            </Row>
           </Col>
         </Row>
       </Container>

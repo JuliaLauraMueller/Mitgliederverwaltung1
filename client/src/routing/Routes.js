@@ -43,11 +43,7 @@ class Routes extends Component {
               />
               <PrivateRoute exact path="/members" component={MemberPage} />
               <PrivateRoute exact path="/events" component={EventPage} />
-              <PrivateRoute
-                exact
-                path="/singleEvents"
-                component={SingleEventPage}
-              />
+              <PrivateRoute exact path="/event" component={SingleEventPage} />
               {AdminRoute}
               <Route component={NotFoundPage} />
             </Switch>
