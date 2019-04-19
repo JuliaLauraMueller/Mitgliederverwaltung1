@@ -56,12 +56,11 @@
 
 .profile-edit {
   position: relative;
-  bottom: 2px;
   padding-right: 3px;
 }
 
 #profile-edit-text a {
-  font-size: 16pt;
+  font-size: 14pt;
 }
 
 .navigation-user-editlink:hover {
