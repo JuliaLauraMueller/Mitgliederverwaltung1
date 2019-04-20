@@ -1,4 +1,5 @@
 import {
+  EVENT_FETCHED,
   EVENT_DELETED,
   CREATE_EVENT,
   EVENTS_FETCHED,
@@ -6,7 +7,8 @@ import {
 } from '../types/eventTypes';
 
 const initialState = {
-  events: []
+  events: [],
+  fetchedEvent: {}
 };
 
 function getUpdatedEvents(events, updatedEvent) {
@@ -34,21 +36,30 @@ function deleteEvent(events, id) {
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case EVENT_FETCHED:
+      return {
+        events: state.events,
+        fetchedEvent: action.payload
+      };
     case EVENTS_FETCHED:
       return {
-        events: [...action.payload]
+        events: [...action.payload],
+        fetchedEvent: state.fetchedEvent
       };
     case EVENT_DELETED:
       return {
-        events: deleteEvent(state.events, action.payload)
+        events: deleteEvent(state.events, action.payload),
+        fetchedEvent: state.fetchedEvent
       };
     case CREATE_EVENT:
       return {
-        events: [...state.events, action.payload]
+        events: [...state.events, action.payload],
+        fetchedEvent: state.fetchedEvent
       };
     case PUT_EVENT:
       return {
-        events: [...getUpdatedEvents(state.circles, action.payload)]
+        events: [...getUpdatedEvents(state.circles, action.payload)],
+        fetchedEvent: state.fetchedEvent
       };
     default:
       return state;

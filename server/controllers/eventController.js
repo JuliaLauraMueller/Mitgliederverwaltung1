@@ -24,7 +24,28 @@ function getAll(req, res, next) {
 function getById(req, res, next) {
   eventService
     .getById(req.params.id)
-    .then(event => (event ? res.json(event) : res.sendStatus(404)))
+    .then(event => {
+      if (event) {
+        if (
+          roleHelper.roleEventAccessCheckPermittedRoles(
+            event.permittedRoles,
+            req.user.role
+          ) &&
+          roleHelper.roleAccessCheckMultipleCircles(
+            0,
+            event.circles,
+            req.user.role,
+            req.user.circle
+          )
+        ) {
+          res.json(event);
+        } else {
+          res.sendStatus(403);
+        }
+      } else {
+        res.sendStatus(404);
+      }
+    })
     .catch(err => next(err));
 }
 
@@ -103,5 +124,7 @@ async function create(req, res, next) {
           res.sendStatus(500);
         }
       });
+  } else {
+    res.sendStatus(403);
   }
 }

@@ -1,10 +1,29 @@
 import {
+  EVENT_FETCHED,
   EVENT_DELETED,
   CREATE_EVENT,
   EVENTS_FETCHED,
   PUT_EVENT
 } from '../types/eventTypes';
 import eventService from '../../services/eventService';
+import store from '../../helpers/store';
+import history from '../../helpers/history';
+import { alertError } from './alertActions';
+
+export const fetchEvent = id => dispatch => {
+  eventService
+    .getEventData(id)
+    .then(res => {
+      if (res) {
+        dispatch({ type: EVENT_FETCHED, payload: res.event });
+      }
+    })
+    .catch(err => {
+      // couldn't load member
+      history.push('/');
+      store.dispatch(alertError('Event konnte nicht geladen werden.'));
+    });
+};
 
 export const fetchEvents = () => dispatch => {
   eventService.getEventBody().then(res => {

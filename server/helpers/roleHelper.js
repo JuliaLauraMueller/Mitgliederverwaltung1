@@ -2,7 +2,8 @@ module.exports = {
   personalAccessCheck,
   roleAccessCheck,
   isFederationAdmin,
-  roleAccessCheckMultipleCircles
+  roleAccessCheckMultipleCircles,
+  roleEventAccessCheckPermittedRoles
 };
 
 function isFederationAdmin(role) {
@@ -29,10 +30,20 @@ function roleAccessCheckMultipleCircles(
   userRole,
   userCircle
 ) {
+  let containsUserCircle = false;
+  for (let c of givenCircles) {
+    // loose equality comparison instead of strict equality comparison
+    containsUserCircle = containsUserCircle || userCircle == c;
+  }
   return (
     userRole == 5 ||
-    (userRole >= requiredRole &&
-      givenCircles &&
-      givenCircles.includes(userCircle))
+    (userRole >= requiredRole && givenCircles && containsUserCircle)
+  );
+}
+
+function roleEventAccessCheckPermittedRoles(permittedEventRoles, userRole) {
+  return (
+    userRole == 5 ||
+    (permittedEventRoles && permittedEventRoles.includes(userRole))
   );
 }
