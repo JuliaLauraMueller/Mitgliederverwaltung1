@@ -58,7 +58,7 @@ export default function(state = initialState, action) {
       };
     case PUT_EVENT:
       return {
-        events: [...getUpdatedEvents(state.circles, action.payload)],
+        events: [...getUpdatedEvents(state.events, action.payload)],
         fetchedEvent: state.fetchedEvent
       };
     default:

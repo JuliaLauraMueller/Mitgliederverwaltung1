@@ -16,8 +16,10 @@ import {
   FormGroup,
   Input,
   Form,
-  InputGroup,
-  InputGroupAddon
+  ButtonDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
 } from 'reactstrap';
 import {
   deleteEvent,
@@ -32,13 +34,29 @@ class AdminEventsOverview extends Component {
   constructor(props) {
     super(props);
 
+    this.emptyEvent = {
+      title: '',
+      description: '',
+      circles: [],
+      date: '',
+      startTime: '',
+      endTime: '',
+      location: '',
+      organisationTeam: '',
+      registrationEndDate: '',
+      permittedRoles: []
+    };
+
     this.state = {
       searchText: '',
       collapseEvent: false,
       eventToDelete: {},
-      eventToEdit: {},
+      eventToEdit: {
+        ...this.emptyEvent
+      },
       editModal: false,
-      pastEventedIncluded: false
+      pastEventedIncluded: false,
+      circlesDropdownOpen: false
     };
     this.getEventRows = this.getEventRows.bind(this);
     this.collapseEvent = this.collapseEvent.bind(this);
@@ -49,10 +67,12 @@ class AdminEventsOverview extends Component {
     this.toggleEventEditModal = this.toggleEventEditModal.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.onEventSave = this.onEventSave.bind(this);
+    this.toggle = this.toggle.bind(this);
+    this.handleCircleSelectionEdit = this.handleCircleSelectionEdit.bind(this);
+    this.handleRoleSelectionEdit = this.handleRoleSelectionEdit.bind(this);
+
     this.props.dispatch(fetchEvents());
   }
-
-  componentDidMount() {}
 
   render() {
     return (
@@ -108,6 +128,63 @@ class AdminEventsOverview extends Component {
     );
   }
 
+  toggle() {
+    this.setState({
+      circlesDropdownOpen: !this.state.circlesDropdownOpen
+    });
+  }
+
+  handleCircleSelectionEdit(event) {
+    console.log(event.target.value);
+    event.persist();
+    if (event.target.checked) {
+      let newCircles = [...this.state.eventToEdit.circles, event.target.value];
+      this.setState({
+        eventToEdit: {
+          ...this.state.eventToEdit,
+          circles: newCircles
+        }
+      });
+    } else {
+      let newCircles = [...this.state.eventToEdit.circles];
+      newCircles.splice(newCircles.indexOf(event.target.value), 1);
+      this.setState({
+        eventToEdit: {
+          ...this.state.eventToEdit,
+          circles: newCircles
+        }
+      });
+    }
+  }
+
+  handleRoleSelectionEdit(event) {
+    event.persist();
+    if (event.target.checked) {
+      let newPermittedRoles = [
+        ...this.state.eventToEdit.permittedRoles,
+        Number(event.target.value)
+      ];
+      this.setState({
+        eventToEdit: {
+          ...this.state.eventToEdit,
+          permittedRoles: newPermittedRoles
+        }
+      });
+    } else {
+      let newPermittedRoles = [...this.state.eventToEdit.permittedRoles];
+      newPermittedRoles.splice(
+        newPermittedRoles.indexOf(Number(event.target.value)),
+        1
+      );
+      this.setState({
+        eventToEdit: {
+          ...this.state.eventToEdit,
+          permittedRoles: newPermittedRoles
+        }
+      });
+    }
+  }
+
   handleSearchChange(event) {
     this.setState({ searchText: event.target.value });
   }
@@ -139,7 +216,7 @@ class AdminEventsOverview extends Component {
     await this.props
       .dispatch(putEvent(this.state.eventToEdit))
       .then(res => {
-        this.toggleEventEditModal({});
+        this.toggleEventEditModal(this.emptyEvent);
       })
       .catch(errorMessages => {
         this.props.dispatch(alertError(errorMessages.join('\n')));
@@ -170,7 +247,25 @@ class AdminEventsOverview extends Component {
       EditButton = (
         <span
           className="admin-link admin-link-small admin-cursor"
-          onClick={() => this.toggleEventEditModal(event)}
+          onClick={() =>
+            this.toggleEventEditModal({
+              _id: event._id,
+              title: event.title || this.emptyEvent.title,
+              description: event.description || this.emptyEvent.description,
+              circles: event.circles || this.emptyEvent.circles,
+              date: event.date || this.emptyEvent.date,
+              startTime: event.startTime || this.emptyEvent.startTime,
+              endTime: event.endTime || this.emptyEvent.endTime,
+              location: event.location || this.emptyEvent.location,
+              organisationTeam:
+                event.organisationTeam || this.emptyEvent.organisationTeam,
+              registrationEndDate:
+                event.registrationEndDate ||
+                this.emptyEvent.registrationEndDate,
+              permittedRoles:
+                event.permittedRoles || this.emptyEvent.permittedRoles
+            })
+          }
           data-toggle="tooltip"
           title="Event bearbeiten"
         >
@@ -277,9 +372,9 @@ class AdminEventsOverview extends Component {
     return (
       <Modal
         isOpen={this.state.editModal}
-        toggle={() => this.toggleEventEditModal({})}
+        toggle={() => this.toggleEventEditModal(this.emptyEvent)}
       >
-        <ModalHeader toggle={() => this.toggleEventEditModal({})}>
+        <ModalHeader toggle={() => this.toggleEventEditModal(this.emptyEvent)}>
           Event editieren
         </ModalHeader>
         <Form onSubmit={this.onEventSave}>
@@ -308,15 +403,44 @@ class AdminEventsOverview extends Component {
                 />
               </Col>
               <Col className="event-edit-row">
-                <Label className="event-edit-label">Teilnehmende Cities:</Label>
-                <Input
-                  type="text"
-                  id="cities"
-                  name="cities"
-                  className="event-edit-txt"
-                  onChange={this.handleChange}
-                  value={this.state.eventToEdit.cities}
-                />
+                <Label className="event-edit-label">Cities:</Label>
+                <div className="event-edit-txt">
+                  <ButtonDropdown
+                    isOpen={this.state.circlesDropdownOpen}
+                    toggle={this.toggle}
+                  >
+                    <DropdownToggle
+                      caret
+                      className="filter-button"
+                      color={'rgb(15, 25, 41, 40%)'}
+                    />
+
+                    <DropdownMenu>
+                      <DropdownItem header>Cities wählen</DropdownItem>
+                      {this.props.circles.map(circle => {
+                        return (
+                          <div className="checkbox-container" key={circle._id}>
+                            <input
+                              type="checkbox"
+                              id={circle._id}
+                              value={circle._id}
+                              defaultChecked={this.state.eventToEdit.circles.includes(
+                                circle._id
+                              )}
+                              onChange={this.handleCircleSelectionEdit}
+                            />{' '}
+                            <label
+                              htmlFor={circle._id}
+                              className="filter-cities"
+                            >
+                              {circle.name}
+                            </label>
+                          </div>
+                        );
+                      })}
+                    </DropdownMenu>
+                  </ButtonDropdown>
+                </div>
               </Col>
               <Col className="event-edit-row">
                 <Label className="event-edit-label">Datum:</Label>
@@ -385,20 +509,85 @@ class AdminEventsOverview extends Component {
                 />
               </Col>
               <Col className="event-edit-row">
-                <Label className="event-edit-label">Rollen:</Label>
-                <Input
-                  type="text"
-                  id="permittedRoles"
-                  name="permittedRoles"
-                  className="event-edit-txt"
-                  onChange={this.handleChange}
-                  value={this.state.eventToEdit.permittedRoles}
-                />
-              </Col>
-
-              <Col className="event-edit-row">
-                <Label className="event-edit-label">Bild:</Label>
-                <Input className="event-edit-txt" />
+                <Label for="event-edit-label">Rollen</Label>
+                <div className="checkbox-container event-edit-txt" key="0">
+                  <input
+                    type="checkbox"
+                    id="mitglied"
+                    value="0"
+                    checked={this.state.eventToEdit.permittedRoles.includes(0)}
+                    onChange={this.handleRoleSelectionEdit.bind(this)}
+                  />
+                  <label htmlFor="mitglied" className="filter-cities">
+                    Mitglied
+                  </label>
+                </div>
+                <div className="checkbox-container event-edit-txt" key="1">
+                  <input
+                    type="checkbox"
+                    id="newsadministrator"
+                    value="1"
+                    checked={this.state.eventToEdit.permittedRoles.includes(1)}
+                    onChange={this.handleRoleSelectionEdit}
+                  />
+                  <label htmlFor="newsadministrator" className="filter-cities">
+                    Newsadministrator
+                  </label>
+                </div>
+                <div className="checkbox-container event-edit-txt" key="2">
+                  <input
+                    type="checkbox"
+                    id="eventadministrator"
+                    value="2"
+                    checked={this.state.eventToEdit.permittedRoles.includes(2)}
+                    onChange={this.handleRoleSelectionEdit}
+                  />
+                  <label htmlFor="eventadministrator" className="filter-cities">
+                    Eventadministrator
+                  </label>
+                </div>
+                <div className="checkbox-container event-edit-txt" key="3">
+                  <input
+                    type="checkbox"
+                    id="personaladministrator"
+                    value="3"
+                    checked={this.state.eventToEdit.permittedRoles.includes(3)}
+                    onChange={this.handleRoleSelectionEdit}
+                  />
+                  <label
+                    htmlFor="personaladministrator"
+                    className="filter-cities"
+                  >
+                    Personaladministrator
+                  </label>
+                </div>
+                <div className="checkbox-container event-edit-txt" key="4">
+                  <input
+                    type="checkbox"
+                    id="cityadministrator"
+                    value="4"
+                    checked={this.state.eventToEdit.permittedRoles.includes(4)}
+                    onChange={this.handleRoleSelectionEdit}
+                  />
+                  <label htmlFor="cityadministrator" className="filter-cities">
+                    Cityadministrator
+                  </label>
+                </div>
+                <div className="checkbox-container event-edit-txt" key={5}>
+                  <input
+                    type="checkbox"
+                    id="federationsadministrator"
+                    value="5"
+                    checked={this.state.eventToEdit.permittedRoles.includes(5)}
+                    onChange={this.handleRoleSelectionEdit}
+                  />
+                  <label
+                    htmlFor="federationsadministrator"
+                    className="filter-cities"
+                  >
+                    Federationsadministrator
+                  </label>
+                </div>
               </Col>
             </FormGroup>
           </ModalBody>
@@ -416,7 +605,7 @@ class AdminEventsOverview extends Component {
               className="admin-button"
               color="secondary"
               onClick={() => {
-                this.toggleEventEditModal({});
+                this.toggleEventEditModal(this.emptyEvent);
               }}
               value="Abbrechen"
             />
@@ -429,7 +618,8 @@ class AdminEventsOverview extends Component {
 
 function mapStateToProps(state) {
   return {
-    events: state.event.events
+    events: state.event.events,
+    circles: state.circle.circles
   };
 }
 

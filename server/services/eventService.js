@@ -102,6 +102,9 @@ function validate(eventParam) {
   if (!Date.parse(eventParam.date)) {
     errorMessages.push('Kein gültiges Datum (Empfohlenes Format: YYYY-DD-MM)');
   }
+  if (!eventParam.startTime || eventParam.startTime.length == 0) {
+    errorMessages.push('Beginn darf nicht leer sein.');
+  }
   if (!Date.parse(eventParam.registrationEndDate)) {
     errorMessages.push(
       'Kein gültiger Anmeldeschluss (Empfohlenes Format: YYYY-MM-DD)'
