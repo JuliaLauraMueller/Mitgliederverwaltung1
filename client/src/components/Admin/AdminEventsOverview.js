@@ -135,7 +135,6 @@ class AdminEventsOverview extends Component {
   }
 
   handleCircleSelectionEdit(event) {
-    console.log(event.target.value);
     event.persist();
     if (event.target.checked) {
       let newCircles = [...this.state.eventToEdit.circles, event.target.value];
@@ -422,15 +421,15 @@ class AdminEventsOverview extends Component {
                           <div className="checkbox-container" key={circle._id}>
                             <input
                               type="checkbox"
-                              id={circle._id}
+                              id={circle._id + '-edit'}
                               value={circle._id}
                               defaultChecked={this.state.eventToEdit.circles.includes(
                                 circle._id
                               )}
                               onChange={this.handleCircleSelectionEdit}
-                            />{' '}
+                            />
                             <label
-                              htmlFor={circle._id}
+                              htmlFor={circle._id + '-edit'}
                               className="filter-cities"
                             >
                               {circle.name}
@@ -513,49 +512,55 @@ class AdminEventsOverview extends Component {
                 <div className="checkbox-container event-edit-txt" key="0">
                   <input
                     type="checkbox"
-                    id="mitglied"
+                    id="mitglied-edit"
                     value="0"
                     checked={this.state.eventToEdit.permittedRoles.includes(0)}
                     onChange={this.handleRoleSelectionEdit.bind(this)}
                   />
-                  <label htmlFor="mitglied" className="filter-cities">
+                  <label htmlFor="mitglied-edit" className="filter-cities">
                     Mitglied
                   </label>
                 </div>
                 <div className="checkbox-container event-edit-txt" key="1">
                   <input
                     type="checkbox"
-                    id="newsadministrator"
+                    id="newsadministrator-edit"
                     value="1"
                     checked={this.state.eventToEdit.permittedRoles.includes(1)}
                     onChange={this.handleRoleSelectionEdit}
                   />
-                  <label htmlFor="newsadministrator" className="filter-cities">
+                  <label
+                    htmlFor="newsadministrator-edit"
+                    className="filter-cities"
+                  >
                     Newsadministrator
                   </label>
                 </div>
                 <div className="checkbox-container event-edit-txt" key="2">
                   <input
                     type="checkbox"
-                    id="eventadministrator"
+                    id="eventadministrator-edit"
                     value="2"
                     checked={this.state.eventToEdit.permittedRoles.includes(2)}
                     onChange={this.handleRoleSelectionEdit}
                   />
-                  <label htmlFor="eventadministrator" className="filter-cities">
+                  <label
+                    htmlFor="eventadministrator-edit"
+                    className="filter-cities"
+                  >
                     Eventadministrator
                   </label>
                 </div>
                 <div className="checkbox-container event-edit-txt" key="3">
                   <input
                     type="checkbox"
-                    id="personaladministrator"
+                    id="personaladministrator-edit"
                     value="3"
                     checked={this.state.eventToEdit.permittedRoles.includes(3)}
                     onChange={this.handleRoleSelectionEdit}
                   />
                   <label
-                    htmlFor="personaladministrator"
+                    htmlFor="personaladministrator-edit"
                     className="filter-cities"
                   >
                     Personaladministrator
@@ -564,25 +569,28 @@ class AdminEventsOverview extends Component {
                 <div className="checkbox-container event-edit-txt" key="4">
                   <input
                     type="checkbox"
-                    id="cityadministrator"
+                    id="cityadministrator-edit"
                     value="4"
                     checked={this.state.eventToEdit.permittedRoles.includes(4)}
                     onChange={this.handleRoleSelectionEdit}
                   />
-                  <label htmlFor="cityadministrator" className="filter-cities">
+                  <label
+                    htmlFor="cityadministrator-edit"
+                    className="filter-cities"
+                  >
                     Cityadministrator
                   </label>
                 </div>
                 <div className="checkbox-container event-edit-txt" key={5}>
                   <input
                     type="checkbox"
-                    id="federationsadministrator"
+                    id="federationsadministrator-edit"
                     value="5"
                     checked={this.state.eventToEdit.permittedRoles.includes(5)}
                     onChange={this.handleRoleSelectionEdit}
                   />
                   <label
-                    htmlFor="federationsadministrator"
+                    htmlFor="federationsadministrator-edit"
                     className="filter-cities"
                   >
                     Federationsadministrator
