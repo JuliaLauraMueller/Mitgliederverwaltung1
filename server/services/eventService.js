@@ -28,6 +28,7 @@ async function getAll() {
       }
     },
     { $unwind: '$circleValues' },
+    { $unwind: '$permittedRoles' },
     {
       $group: {
         _id: '$_id',
@@ -41,7 +42,8 @@ async function getAll() {
         organisationTeam: { $first: '$organisationTeam' },
         registrationEndDate: { $first: '$registrationEndDate' },
         circles: { $first: '$circles' },
-        circleValues: { $first: '$circleValues' }
+        circleValues: { $first: '$circleValues' },
+        permittedRoles: { $addToSet: '$permittedRoles' }
       }
     },
     { $sort: { date: 1 } }
