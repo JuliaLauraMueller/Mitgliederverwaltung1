@@ -35,14 +35,20 @@ async function getAll() {
         title: { $first: '$title' },
         image: { $first: '$image' },
         description: { $first: '$description' },
-        date: { $first: '$date' },
+        date: {
+          $first: { $dateToString: { format: '%Y-%m-%d', date: '$date' } }
+        },
         startTime: { $first: '$startTime' },
         endTime: { $first: '$endTime' },
         location: { $first: '$location' },
         organisationTeam: { $first: '$organisationTeam' },
-        registrationEndDate: { $first: '$registrationEndDate' },
-        circles: { $first: '$circles' },
-        circleValues: { $first: '$circleValues' },
+        registrationEndDate: {
+          $first: {
+            $dateToString: { format: '%Y-%m-%d', date: '$registrationEndDate' }
+          }
+        },
+        circles: { $addToSet: '$circles' },
+        circleValues: { $addToSet: '$circleValues' },
         permittedRoles: { $addToSet: '$permittedRoles' }
       }
     },
