@@ -45,6 +45,28 @@ async function createEvent(data) {
     });
 }
 
+async function getEventData(id) {
+  return await axios.get('/events/' + id).then(resp => {
+    return {
+      event: {
+        _id: id,
+        title: resp.data.title,
+        image: resp.data.image,
+        description: resp.data.description,
+        circles: resp.data.circles,
+        circleValues: resp.data.circleValues,
+        date: resp.data.date,
+        startTime: resp.data.startTime,
+        endTime: resp.data.endTime,
+        location: resp.data.location,
+        organisationTeam: resp.data.organisationTeam,
+        registrationEndDate: resp.data.registrationEndDate,
+        permittedRoles: resp.data.permittedRoles
+      }
+    };
+  });
+}
+
 async function setEventData(data) {
   return await axios
     .put('/events/' + data._id, data)
@@ -58,4 +80,10 @@ async function setEventData(data) {
     });
 }
 
-export default { getEventBody, deleteEvent, createEvent, setEventData };
+export default {
+  getEventBody,
+  deleteEvent,
+  createEvent,
+  setEventData,
+  getEventData
+};
