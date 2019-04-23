@@ -16,10 +16,6 @@ function replaceUmlauts(text) {
 }
 
 export function filterEvents(events, searchText, pastEventsIncluded = false) {
-  if (!searchText || searchText.length === 0) {
-    return events;
-  }
-
   searchText = replaceUmlauts(searchText.toLowerCase());
   return events.filter(e => {
     let title = e.title
@@ -55,8 +51,9 @@ export function filterEvents(events, searchText, pastEventsIncluded = false) {
       var mm = String(today.getMonth() + 1).padStart(2, '0');
       var yyyy = today.getFullYear();
       today = yyyy + '-' + mm + '-' + dd;
-      console.log(today);
-      console.log(e.date);
+      //console.log(today);
+      //console.log(e.date);
+      //console.log(baseSearchFound && e.date >= today);
       return baseSearchFound && e.date >= today;
     }
   });

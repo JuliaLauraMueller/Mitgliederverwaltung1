@@ -134,3 +134,11 @@ div .create-button {
   max-width: 300px;
   min-width: 260px;
 }
+
+.past-events {
+  float: right;
+}
+
+.past-event-txt {
+  font-size: 94%;
+}
