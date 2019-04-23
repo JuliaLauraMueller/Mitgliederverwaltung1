@@ -56,7 +56,7 @@ class AdminEventsOverview extends Component {
         ...this.emptyEvent
       },
       editModal: false,
-      pastEventedIncluded: false,
+      pastEventsIncluded: false,
       circlesDropdownOpen: false
     };
     this.getEventRows = this.getEventRows.bind(this);
@@ -72,6 +72,7 @@ class AdminEventsOverview extends Component {
     this.handleCircleSelectionEdit = this.handleCircleSelectionEdit.bind(this);
     this.handleRoleSelectionEdit = this.handleRoleSelectionEdit.bind(this);
     this.decodeRoles = this.decodeRoles.bind(this);
+    this.togglePastEvents = this.togglePastEvents.bind(this);
 
     this.props.dispatch(fetchEvents());
   }
@@ -111,6 +112,14 @@ class AdminEventsOverview extends Component {
                     </Card>
                   </Collapse>
                 </div>
+                <div className="past-events">
+                  <FormGroup>
+                    <Label className="past-event-txt">
+                      <Input type="checkbox" onChange={this.togglePastEvents} />
+                      Vergangene Events anzeigen
+                    </Label>
+                  </FormGroup>
+                </div>
               </Col>
             </Row>
             <Table hover className="adminTable">
@@ -148,6 +157,12 @@ class AdminEventsOverview extends Component {
       }
       return roles
     }
+  }
+
+  togglePastEvents() {
+    this.setState({
+      pastEventsIncluded: !this.state.pastEventsIncluded
+    });
   }
 
   toggle() {
@@ -261,7 +276,7 @@ class AdminEventsOverview extends Component {
         store.getState().auth.user.role
       ),
       this.state.searchText,
-      false
+      this.state.pastEventsIncluded
     ).map(event => {
       let EditButton = {};
       let DeleteButton = {};
