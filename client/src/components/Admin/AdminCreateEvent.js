@@ -382,13 +382,6 @@ class AdminCreateEvent extends Component {
               </Col>
             </Row>
           </FormGroup>
-          <FormGroup>
-            <Row>
-              <Col xs="3">
-                <Label for="image">Bild</Label>
-              </Col>
-            </Row>
-          </FormGroup>
           <input
             type="button"
             className="admin-button"
