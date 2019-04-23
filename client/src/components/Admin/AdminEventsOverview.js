@@ -127,7 +127,7 @@ class AdminEventsOverview extends Component {
                 <tr>
                   <th> Titel</th>
                   <th>Datum</th>
-                  <th className="d-none d-sm-table-cell">Ort</th>
+                  <th className="d-none d-md-table-cell">Ort</th>
                   <UncontrolledTooltip placement="bottom-start" target="tooltipRoles">
                   0 = Mitglieder <br></br>
                   1 = Newsadministrator <br></br>
@@ -136,7 +136,7 @@ class AdminEventsOverview extends Component {
                   4 = Cityadministrator <br></br>
                   5 = Fed. Administrator
                   </UncontrolledTooltip>
-                  <th id="tooltipRoles" className="d-none d-sm-table-cell"> Rollen</th>
+                  <th id="tooltipRoles" className="d-none d-md-table-cell"> Rollen</th>
                 </tr>
               </thead>
               <tbody>{this.getEventRows(this.props.events)}</tbody>
@@ -367,8 +367,8 @@ class AdminEventsOverview extends Component {
         <tr key={event._id}>
           <td>{event.title}</td>
           <td>{event.date}</td>
-          <td className="d-none d-sm-table-cell">{event.location}</td>
-          <td className="d-none d-sm-table-cell">{this.decodeRoles(event)}</td>
+          <td className="d-none d-md-table-cell">{event.location}</td>
+          <td className="d-none d-md-table-cell">{this.decodeRoles(event)}</td>
           <td>
             {EditButton}
             {DeleteButton}
