@@ -116,8 +116,8 @@ class AdminEventsOverview extends Component {
                 <tr>
                   <th> Titel</th>
                   <th>Datum</th>
-                  <th className="d-none d-md-table-cell">Ort</th>
-                  <th className="d-none d-md-table-cell">Rollen</th>
+                  <th className="d-none d-sm-table-cell">Ort</th>
+                  <th className="d-none d-sm-table-cell"  >Rollen</th>
                 </tr>
               </thead>
               <tbody>{this.getEventRows(this.props.events)}</tbody>
@@ -321,10 +321,10 @@ class AdminEventsOverview extends Component {
       );
       return (
         <tr key={event._id}>
-          <td className="d-none d-md-table-cell">{event.title}</td>
-          <td className="d-none d-md-table-cell">{event.date}</td>
-          <td className="d-none d-md-table-cell">{event.location}</td>
-          <td className="d-none d-md-table-cell">{event.permittedRoles}</td>
+          <td>{event.title}</td>
+          <td>{event.date}</td>
+          <td className="d-none d-sm-table-cell">{event.location}</td>
+          <td className="d-none d-sm-table-cell">{event.permittedRoles}</td>
           <td>
             {EditButton}
             {DeleteButton}
@@ -497,7 +497,7 @@ class AdminEventsOverview extends Component {
                 />
               </Col>
               <Col className="event-edit-row">
-                <Label className="event-edit-label">Anmeldeschluss:</Label>
+                <Label className="event-edit-label">Anmeldefrist:</Label>
                 <Input
                   type="date"
                   id="registrationEndDate"

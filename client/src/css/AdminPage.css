@@ -87,7 +87,7 @@ div .create-button {
 }
 
 .admin-form-control.form-control {
-  width: 100%;
+  width: 90%;
   margin-top: 1%;
   margin-left: 5px;
 }
@@ -122,6 +122,10 @@ div .create-button {
   .form-control-admin {
     width: 130px;
   }
+
+  td {
+    font-size: 11pt;
+  }
 }
 
 /** Events admin*/
@@ -131,6 +135,6 @@ div .create-button {
 }
 .event-edit-txt {
   float: right;
-  max-width: 300px;
-  min-width: 260px;
+  max-width: 240px;
+  min-width: 240px;
 }
