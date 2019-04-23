@@ -51,9 +51,6 @@ export function filterEvents(events, searchText, pastEventsIncluded = false) {
       var mm = String(today.getMonth() + 1).padStart(2, '0');
       var yyyy = today.getFullYear();
       today = yyyy + '-' + mm + '-' + dd;
-      //console.log(today);
-      //console.log(e.date);
-      //console.log(baseSearchFound && e.date >= today);
       return baseSearchFound && e.date >= today;
     }
   });
