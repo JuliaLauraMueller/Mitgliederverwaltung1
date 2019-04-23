@@ -36,7 +36,7 @@ class BurgerNav extends React.Component {
     let AdminButton = {};
     if (
       store.getState().auth.user !== undefined &&
-      store.getState().auth.user.role >= 3
+      store.getState().auth.user.role >= 2
     ) {
       AdminButton = (
         <Link

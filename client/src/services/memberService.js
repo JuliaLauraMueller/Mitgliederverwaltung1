@@ -62,7 +62,12 @@ async function createMember(data) {
       return res;
     })
     .catch(err => {
-      if (err && err.data.error && err.data.error.type === 'invalid_input') {
+      if (
+        err &&
+        err.data &&
+        err.data.error &&
+        err.data.error.type === 'invalid_input'
+      ) {
         return Promise.reject(err.data.error.errors);
       }
     });

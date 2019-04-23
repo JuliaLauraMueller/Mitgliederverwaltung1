@@ -5,6 +5,7 @@ import profileReducer from './profileReducer';
 import navigationReducer from './navigationReducer';
 import memberReducer from './memberReducer';
 import circleReducer from './circleReducer';
+import eventReducer from './eventReducer';
 
 export default combineReducers({
   alert: alertReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
   profile: profileReducer,
   navigation: navigationReducer,
   member: memberReducer,
-  circle: circleReducer
+  circle: circleReducer,
+  event: eventReducer
 });

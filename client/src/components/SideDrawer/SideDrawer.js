@@ -19,7 +19,7 @@ class SideDrawer extends Component {
     let userId = this.props.user ? this.props.user._id : '';
 
     let AdminButton = {};
-    if (this.props.user !== undefined && this.props.user.role >= 3) {
+    if (this.props.user !== undefined && this.props.user.role >= 2) {
       AdminButton = (
         <Link to="/admin">
           <svg
