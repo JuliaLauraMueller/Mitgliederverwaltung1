@@ -118,6 +118,11 @@ div .create-button {
   height: auto;
 }
 
+.tooltip-inner {
+  text-align: left;
+  background-color: rgb(15, 25, 41, 10%);
+}
+
 @media only screen and (min-width: 0px) and (max-width: 768px) {
   .form-control-admin {
     width: 130px;

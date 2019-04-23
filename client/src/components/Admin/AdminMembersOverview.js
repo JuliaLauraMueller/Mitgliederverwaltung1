@@ -14,7 +14,8 @@ import {
   Form,
   FormGroup,
   Label,
-  Input
+  Input,
+  UncontrolledTooltip
 } from 'reactstrap';
 import AdminCreateUser from './AdminCreateUser';
 import {
@@ -168,7 +169,11 @@ class AdminMembersOverview extends Component {
           <Link
             className="admin-link admin-link-small"
             to={'/member/' + member._id}
+            id="tooltip-edit-member"
           >
+            <UncontrolledTooltip placement="bottom-start" target="tooltip-edit-member">
+                  Mitglied bearbeiten
+            </UncontrolledTooltip>
             <svg
               width="26"
               height="25"
@@ -194,9 +199,13 @@ class AdminMembersOverview extends Component {
 
         DeleteButton = (
           <span
+            id="tooltip-delete-member"
             className="admin-link admin-link-small admin-cursor"
             onClick={() => this.toggleMemberDeleteModal(member)}
           >
+              <UncontrolledTooltip placement="bottom-start" target="tooltip-delete-member">
+                  Mitglied löschen
+              </UncontrolledTooltip>
             <svg
               width="27"
               height="27"
@@ -230,9 +239,13 @@ class AdminMembersOverview extends Component {
       ) {
         RoleButton = (
           <span
+            id="tooltip-change-role"
             className="admin-link admin-link-small admin-cursor"
             onClick={() => this.toggleRoleChangeModal(member)}
           >
+              <UncontrolledTooltip placement="bottom-start" target="tooltip-change-role">
+                  Rolle bearbeiten
+              </UncontrolledTooltip>
             <svg
               width="25"
               height="34"

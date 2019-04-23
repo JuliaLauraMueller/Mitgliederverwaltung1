@@ -15,7 +15,8 @@ import {
   Form,
   FormGroup,
   Label,
-  Input
+  Input,
+  UncontrolledTooltip
 } from 'reactstrap';
 import {
   fetchCircles,
@@ -134,11 +135,13 @@ class AdminCirclesOverview extends Component {
           <td>{circle.name}</td>
           <td>
             <span
+              id="tooltip-edit-cities"
               className="admin-link admin-link-small admin-cursor"
               onClick={() => this.toggleCircleEditModal(circle)}
-              data-toggle="tooltip"
-              title="City bearbeiten"
             >
+              <UncontrolledTooltip placement="bottom-start" target="tooltip-edit-cities">
+                  City bearbeiten
+              </UncontrolledTooltip>
               <svg
                 width="24"
                 height="23"
@@ -161,11 +164,13 @@ class AdminCirclesOverview extends Component {
               </svg>
             </span>
             <span
+              id="tooltip-delete-cities"
               className="admin-link admin-link-small admin-cursor"
               onClick={() => this.toggleCircleDeleteModal(circle)}
-              data-toggle="tooltip"
-              title="City löschen"
             >
+              <UncontrolledTooltip placement="bottom-start" target="tooltip-delete-cities">
+                  City löschen
+              </UncontrolledTooltip>
               <svg
                 width="25"
                 height="25"

@@ -19,7 +19,8 @@ import {
   ButtonDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem
+  DropdownItem,
+  UncontrolledTooltip
 } from 'reactstrap';
 import {
   deleteEvent,
@@ -70,6 +71,7 @@ class AdminEventsOverview extends Component {
     this.toggle = this.toggle.bind(this);
     this.handleCircleSelectionEdit = this.handleCircleSelectionEdit.bind(this);
     this.handleRoleSelectionEdit = this.handleRoleSelectionEdit.bind(this);
+    this.decodeRoles = this.decodeRoles.bind(this);
 
     this.props.dispatch(fetchEvents());
   }
@@ -117,7 +119,15 @@ class AdminEventsOverview extends Component {
                   <th> Titel</th>
                   <th>Datum</th>
                   <th className="d-none d-sm-table-cell">Ort</th>
-                  <th className="d-none d-sm-table-cell"  >Rollen</th>
+                  <UncontrolledTooltip placement="bottom-start" target="tooltipRoles">
+                  0 = Mitglieder <br></br>
+                  1 = Newsadministrator <br></br>
+                  2 = Eventadministrator <br></br>
+                  3 = Personaladministrator <br></br>
+                  4 = Cityadministrator <br></br>
+                  5 = Fed. Administrator
+                  </UncontrolledTooltip>
+                  <th id="tooltipRoles" className="d-none d-sm-table-cell"> Rollen</th>
                 </tr>
               </thead>
               <tbody>{this.getEventRows(this.props.events)}</tbody>
@@ -126,6 +136,18 @@ class AdminEventsOverview extends Component {
         </Row>
       </div>
     );
+  }
+
+  decodeRoles(event) {
+    if(event.permittedRoles.length === 6) {
+      return "alle"
+    } else {
+      var roles = event.permittedRoles[0];
+      for(var i = 1; i < event.permittedRoles.length; i++) {
+        roles += ', ' + event.permittedRoles[i]
+      }
+      return roles
+    }
   }
 
   toggle() {
@@ -246,6 +268,7 @@ class AdminEventsOverview extends Component {
       EditButton = (
         <span
           className="admin-link admin-link-small admin-cursor"
+          id="tooltip-edit"
           onClick={() =>
             this.toggleEventEditModal({
               _id: event._id,
@@ -265,9 +288,10 @@ class AdminEventsOverview extends Component {
                 event.permittedRoles || this.emptyEvent.permittedRoles
             })
           }
-          data-toggle="tooltip"
-          title="Event bearbeiten"
         >
+        <UncontrolledTooltip placement="bottom-start" target="tooltip-edit">
+          Event bearbeiten
+        </UncontrolledTooltip>
           <svg
             width="26"
             height="25"
@@ -296,7 +320,11 @@ class AdminEventsOverview extends Component {
           className="admin-link admin-link-small admin-cursor"
           onClick={() => this.toggleEventDeleteModal(event)}
           title="Event löschen"
+          id= "tooltip-delete"
         >
+        <UncontrolledTooltip placement="bottom-start" target="tooltip-delete">
+          Event löschen
+        </UncontrolledTooltip>
           <svg
             width="27"
             height="27"
@@ -318,13 +346,14 @@ class AdminEventsOverview extends Component {
             />
           </svg>
         </span>
+      
       );
       return (
         <tr key={event._id}>
           <td>{event.title}</td>
           <td>{event.date}</td>
           <td className="d-none d-sm-table-cell">{event.location}</td>
-          <td className="d-none d-sm-table-cell">{event.permittedRoles}</td>
+          <td className="d-none d-sm-table-cell">{this.decodeRoles(event)}</td>
           <td>
             {EditButton}
             {DeleteButton}
