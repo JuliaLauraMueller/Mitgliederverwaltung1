@@ -120,7 +120,7 @@ div .create-button {
 
 .tooltip-inner {
   text-align: left;
-  background-color: rgb(15, 25, 41, 10%);
+  background-color: rgb(15, 25, 41, 100%);
 }
 
 @media only screen and (min-width: 0px) and (max-width: 768px) {
