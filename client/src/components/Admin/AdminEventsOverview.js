@@ -369,8 +369,8 @@ class AdminEventsOverview extends Component {
         <tr key={event._id}>
           <td>{event.title}</td>
           <td>{event.date}</td>
-          <td className="d-none d-sm-table-cell">{event.location}</td>
-          <td className="d-none d-sm-table-cell">{this.decodeRoles(event)}</td>
+          <td className="d-none d-md-table-cell">{event.location}</td>
+          <td className="d-none d-md-table-cell">{this.decodeRoles(event)}</td>
           <td>
             {EditButton}
             {DeleteButton}
