@@ -116,7 +116,7 @@ class AdminEventsOverview extends Component {
                   <FormGroup>
                     <Label className="past-event-txt">
                       <Input type="checkbox" onChange={this.togglePastEvents} />
-                      Vergangene Events anzeigen
+                      inkl. vergangene Events
                     </Label>
                   </FormGroup>
                 </div>
@@ -128,15 +128,18 @@ class AdminEventsOverview extends Component {
                   <th> Titel</th>
                   <th>Datum</th>
                   <th className="d-none d-sm-table-cell">Ort</th>
-                  <UncontrolledTooltip placement="bottom-start" target="tooltipRoles">
-                  0 = Mitglieder <br></br>
-                  1 = Newsadministrator <br></br>
-                  2 = Eventadministrator <br></br>
-                  3 = Personaladministrator <br></br>
-                  4 = Cityadministrator <br></br>
-                  5 = Fed. Administrator
+                  <UncontrolledTooltip
+                    placement="bottom-start"
+                    target="tooltipRoles"
+                  >
+                    0 = Mitglieder <br />1 = Newsadministrator <br />2 =
+                    Eventadministrator <br />3 = Personaladministrator <br />4 =
+                    Cityadministrator <br />5 = Fed. Administrator
                   </UncontrolledTooltip>
-                  <th id="tooltipRoles" className="d-none d-sm-table-cell"> Rollen</th>
+                  <th id="tooltipRoles" className="d-none d-sm-table-cell">
+                    {' '}
+                    Rollen
+                  </th>
                 </tr>
               </thead>
               <tbody>{this.getEventRows(this.props.events)}</tbody>
@@ -148,14 +151,14 @@ class AdminEventsOverview extends Component {
   }
 
   decodeRoles(event) {
-    if(event.permittedRoles.length === 6) {
-      return "alle"
+    if (event.permittedRoles.length === 6) {
+      return 'alle';
     } else {
       var roles = event.permittedRoles[0];
-      for(var i = 1; i < event.permittedRoles.length; i++) {
-        roles += ', ' + event.permittedRoles[i]
+      for (var i = 1; i < event.permittedRoles.length; i++) {
+        roles += ', ' + event.permittedRoles[i];
       }
-      return roles
+      return roles;
     }
   }
 
@@ -304,9 +307,9 @@ class AdminEventsOverview extends Component {
             })
           }
         >
-        <UncontrolledTooltip placement="bottom-start" target="tooltip-edit">
-          Event bearbeiten
-        </UncontrolledTooltip>
+          <UncontrolledTooltip placement="bottom-start" target="tooltip-edit">
+            Event bearbeiten
+          </UncontrolledTooltip>
           <svg
             width="26"
             height="25"
@@ -335,11 +338,11 @@ class AdminEventsOverview extends Component {
           className="admin-link admin-link-small admin-cursor"
           onClick={() => this.toggleEventDeleteModal(event)}
           title="Event löschen"
-          id= "tooltip-delete"
+          id="tooltip-delete"
         >
-        <UncontrolledTooltip placement="bottom-start" target="tooltip-delete">
-          Event löschen
-        </UncontrolledTooltip>
+          <UncontrolledTooltip placement="bottom-start" target="tooltip-delete">
+            Event löschen
+          </UncontrolledTooltip>
           <svg
             width="27"
             height="27"
@@ -361,7 +364,6 @@ class AdminEventsOverview extends Component {
             />
           </svg>
         </span>
-      
       );
       return (
         <tr key={event._id}>
