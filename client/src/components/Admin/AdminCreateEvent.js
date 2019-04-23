@@ -281,7 +281,7 @@ class AdminCreateEvent extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="registrationEndDate">Anmeldeschluss</Label>
+                <Label for="registrationEndDate">Anmeldefrist</Label>
               </Col>
               <Col xs={9}>
                 <Input
