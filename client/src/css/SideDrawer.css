@@ -56,12 +56,11 @@
 
 .profile-edit {
   position: relative;
-  bottom: 2px;
   padding-right: 3px;
 }
 
 #profile-edit-text a {
-  font-size: 16pt;
+  font-size: 14pt;
 }
 
 .navigation-user-editlink:hover {
@@ -81,6 +80,11 @@
 .navigation-user-picture {
   padding-left: auto;
   padding-right: auto;
+}
+
+.navigation-user-picture-img,
+#navigation-user-picture-img {
+  border-radius: 50%;
 }
 
 .navbar-desktop-extended-logo {
