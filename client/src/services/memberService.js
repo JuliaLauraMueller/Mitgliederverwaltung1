@@ -31,7 +31,8 @@ async function getUserBody() {
               element.circleValues && element.circleValues.length > 0
                 ? element.circleValues[0]
                 : undefined,
-            avatar: element.avatar
+            avatar: element.avatar,
+            avatarTag: element.avatarTag
           };
         })
       };
