@@ -44,7 +44,7 @@
   padding-bottom: 1rem;
 }
 
-.side-drawer a{
+.side-drawer a {
   color: #ffffff;
   font-family: 'Roboto', sans-serif;
   font-size: 1rem;
@@ -54,13 +54,13 @@
   text-decoration: none;
 }
 
-.profile-edit{
+.profile-edit {
   position: relative;
   bottom: 2px;
   padding-right: 3px;
 }
 
-#profile-edit-text a{
+#profile-edit-text a {
   font-size: 16pt;
 }
 
@@ -94,7 +94,8 @@
   stroke: none;
 }
 
-.side-drawer a, .navigation-user-name {
+.side-drawer a,
+.navigation-user-name {
   color: #ffffff;
   font-family: helveticaNeueLtThinCn;
   font-size: 18pt;
@@ -146,7 +147,7 @@
 
 .navigation-logo-container {
   height: 98px;
-  text-align: center; 
+  text-align: center;
 }
 
 .navigation-logo {

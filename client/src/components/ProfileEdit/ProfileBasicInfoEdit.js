@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { InputGroup, InputGroupAddon, Input, Row, Col } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { putProfile } from '../../redux/actions/profileActions';
 
 import '../../css/ProfilePage.css';
 
 class ProfileBasicInfoEDIT extends Component {
+  _isMounted = false;
   constructor(props) {
     super(props);
     const profile = this.props.profile;
@@ -19,7 +19,7 @@ class ProfileBasicInfoEDIT extends Component {
       salutation: profile.salutation,
       title: profile.title,
       firstname: profile.firstname,
-      surename: profile.surename,
+      surname: profile.surname,
       alias: profile.alias,
       status: profile.status,
       memberNumber: profile.memberNumber,
@@ -37,11 +37,21 @@ class ProfileBasicInfoEDIT extends Component {
     this.getBase64 = this.getBase64.bind(this);
   }
 
-  onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+  componentDidMount() {
+    this._isMounted = true;
   }
 
-  onSave(e) {
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
+  onChange(e) {
+    if (this._isMounted) {
+      this.setState({ [e.target.name]: e.target.value });
+    }
+  }
+
+  onSave() {
     const basicInformationUpdate = {
       _id: this.props.profile._id,
       xingLink: this.state.xingLink,
@@ -52,10 +62,10 @@ class ProfileBasicInfoEDIT extends Component {
       salutation: this.state.salutation,
       title: this.state.title,
       firstname: this.state.firstname,
-      surename: this.state.surename,
+      surname: this.state.surname,
       alias: this.state.alias,
       status: this.state.status,
-      memberNumber: this.state.memberNumber,
+      //memberNumber: this.state.memberNumber,
       entryDate: this.state.entryDate,
       //city: this.state.city,
       //godfather: this.state.godfather,
@@ -63,9 +73,7 @@ class ProfileBasicInfoEDIT extends Component {
       avatar: this.state.avatar,
       avatarTag: this.state.avatarTag
     };
-
-    //TODO: Find a way to update all info or none at all (Together with BasicInfo)
-    this.props.dispatch(putProfile(basicInformationUpdate));
+    return basicInformationUpdate;
   }
 
   async fileSelectedHandler(event) {
@@ -73,10 +81,12 @@ class ProfileBasicInfoEDIT extends Component {
 
     let fileInB64 = await this.getBase64(something);
     let splitArr = fileInB64.split(',');
-    this.setState({
-      avatarTag: splitArr[0],
-      avatar: splitArr[1]
-    });
+    if (this._isMounted) {
+      this.setState({
+        avatarTag: splitArr[0],
+        avatar: splitArr[1]
+      });
+    }
   }
 
   getBase64(file) {
@@ -89,8 +99,6 @@ class ProfileBasicInfoEDIT extends Component {
   }
 
   render() {
-    console.log('avatar', this.state.avatar);
-    console.log(this.state.avatarTag);
     return (
       <Row>
         <Col md={{ offset: 0, size: 6 }} xs={{ offset: 1 }}>
@@ -101,7 +109,11 @@ class ProfileBasicInfoEDIT extends Component {
                   <img
                     className='profile-image-edit'
                     style={{ width: '147px' }}
-                    src={this.state.avatarTag + ',' + this.state.avatar}
+                    src={
+                      this.state.avatar
+                        ? this.state.avatarTag + ',' + this.state.avatar
+                        : 'undefined'
+                    }
                     alt='profile'
                   />
                 </div>
@@ -176,9 +188,9 @@ class ProfileBasicInfoEDIT extends Component {
                 <div className='input-field'>
                   <Input
                     type='text'
-                    name='surename'
+                    name='surname'
                     onChange={this.onChange}
-                    value={this.state.surename || ''}
+                    value={this.state.surname}
                   />
                 </div>
               </InputGroup>

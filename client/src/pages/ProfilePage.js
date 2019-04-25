@@ -7,11 +7,16 @@ import ProfileMainInformationEDIT from '../components/ProfileEdit/ProfileMainInf
 
 import { connect } from 'react-redux';
 import { setNavVisible } from '../redux/actions/navigationActions';
-import { fetchProfile } from '../redux/actions/profileActions';
+import { fetchProfile, putWholeData } from '../redux/actions/profileActions';
+import { alertError } from '../redux/actions/alertActions';
+
+import { personalAccessCheck, roleAccessCheck } from '../helpers/roleHelper';
 
 import '../css/ProfilePage.css';
 
 import { Container, Row, Col, Form, FormGroup } from 'reactstrap';
+
+import store from '../helpers/store';
 
 class ProfilePage extends Component {
   constructor(props) {
@@ -44,38 +49,70 @@ class ProfilePage extends Component {
     this.setState({ isEditing: !this.state.isEditing });
   }
 
-  handleClick(e) {
+  async handleClick(e) {
     e.preventDefault();
-    this.basicInfo.getWrappedInstance().onSave();
-    this.mainInfo.getWrappedInstance().onSave();
-    this.toggleEdit();
+    var newBasicInfo = this.basicInfo.getWrappedInstance().onSave();
+    var newMainInfo = this.mainInfo.getWrappedInstance().onSave();
+    var data = {
+      profileMainData: newMainInfo.mainInfoUpdate,
+      profileBasicData: newBasicInfo,
+      companyData: newMainInfo.companyUpdate
+    };
+    await this.props
+      .dispatch(putWholeData(data))
+      .then(res => {
+        this.toggleEdit();
+      })
+      .catch(err => {
+        var msg = 'Folgende Felder sind nicht korrekt: \n' + err.join('\n');
+        this.props.dispatch(alertError(msg));
+      });
   }
 
   render() {
+    let EditButton = {};
+    if (
+      personalAccessCheck(this.props._id, store.getState().auth.user._id) ||
+      roleAccessCheck(
+        3,
+        this.props.circle,
+        store.getState().auth.user.role,
+        store.getState().auth.user.circle
+      )
+    ) {
+      EditButton = (
+        <button className='button-save-edit' onClick={this.toggleEdit}>
+          Editieren
+        </button>
+      );
+    } else {
+      EditButton = <div />;
+    }
+
     if (this.state.isEditing) {
       return (
-        <Container className="profile-page__container">
+        <Container className='profile-page__container'>
           <Form onSubmit={this.handleClick}>
             <Row>
-              <Col md="12">
+              <Col md='12'>
                 <input
-                  type="submit"
-                  className="button-save-edit"
-                  value="Speichern"
+                  type='submit'
+                  className='button-save-edit'
+                  value='Speichern'
                   onClick={this.handleClick}
                 />
               </Col>
             </Row>
             <FormGroup row>
               <Row>
-                <Col xs="12" md="12">
+                <Col xs='12' md='12'>
                   <ProfileBasicInfoEDIT
                     ref={basicInfo => {
                       this.basicInfo = basicInfo;
                     }}
                   />
                 </Col>
-                <Col xs="12" md="12">
+                <Col xs='12' md='12'>
                   <ProfileMainInformationEDIT
                     ref={mainInfo => {
                       this.mainInfo = mainInfo;
@@ -89,19 +126,17 @@ class ProfilePage extends Component {
       );
     } else {
       return (
-        <Container className="profile-page__container">
+        <Container className='profile-page__container'>
           <Row>
-            <Col md="12" className="button-container" >
-              <button className="button-save-edit" onClick={this.toggleEdit}>
-                Editieren
-              </button>
+            <Col md='12' className='button-container'>
+              {EditButton}
             </Col>
           </Row>
           <Row>
-            <Col xs="12" md="12">
+            <Col xs='12' md='12'>
               <ProfileBasicInfo />
             </Col>
-            <Col xs="12" md="12">
+            <Col xs='12' md='12'>
               <ProfileMainInformation />
             </Col>
           </Row>
@@ -112,7 +147,10 @@ class ProfilePage extends Component {
 }
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    _id: state.profile.member._id,
+    circle: state.profile.member.city_id
+  };
 }
 
 export default connect(mapStateToProps)(ProfilePage);

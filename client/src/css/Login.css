@@ -21,7 +21,6 @@
 
 .input-container {
   position: relative;
-  margin-bottom: 8%;
 }
 
 .input-icon {
@@ -30,6 +29,8 @@
   left: 5px;
   margin-top: 0px;
   margin-left: -30px;
+  position: relative;
+  top: 25px;
 }
 
 .icon-input {
@@ -57,7 +58,7 @@
 .login-button:hover {
   background-color: transparent;
   border-bottom: 1x solid rgb(219, 157, 12);
-  color: rgb(219, 157, 12);
+  color: rgb(0, 0, 0);
 }
 
 .login-logo {
@@ -66,4 +67,9 @@
   display: block;
   margin: auto;
   margin-bottom: 40px;
+}
+
+#emailInp,
+#passwordInp {
+  width: 220px;
 }

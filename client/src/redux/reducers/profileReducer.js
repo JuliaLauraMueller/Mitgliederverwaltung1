@@ -12,6 +12,7 @@ export default function(state = initialState, action) {
     case FETCH_PROFILE:
       return state;
     case PUT_PROFILE:
+      delete action.payload._id;
       return {
         member: { ...state.member, ...action.payload }
       };

@@ -15,6 +15,8 @@ function errorHandler(err, req, res, next) {
   } else if (err.name === 'RoleChangedError') {
     addUpdatedTokenToHeader(req, res, next);
     return res.status(403).json({ error: 'Roles changed' });
+  } else if (err.name === 'Forbidden') {
+    return res.status(403).json({ error: 'Forbidden' });
   }
 
   return res.status(500).json({ error: err.message });
