@@ -30,15 +30,10 @@ class BurgerNav extends React.Component {
   }
 
   render() {
-    let userId = store.getState().auth.user
-      ? store.getState().auth.user._id
-      : '';
-    let userFirstname = store.getState().auth.userData
-      ? store.getState().auth.userData.firstname
-      : '';
-    let userSurname = store.getState().auth.userData
-      ? store.getState().auth.userData.surname
-      : '';
+    let storeData = store.getState().auth;
+    let userId = storeData.user ? storeData.user._id : '';
+    let userFirstname = storeData.userData ? storeData.userData.firstname : '';
+    let userSurname = storeData.userData ? storeData.userData.surname : '';
     let AdminButton = {};
     if (
       store.getState().auth.user !== undefined &&

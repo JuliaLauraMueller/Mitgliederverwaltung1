@@ -19,8 +19,9 @@ function getUserData(id) {
   return axios.get('/users/' + id).then(resp => {
     var userData = {
       firstname: resp.data.firstname,
-      surname: resp.data.surname
-      // TODO: avatar
+      surname: resp.data.surname,
+      avatar: resp.data.avatar,
+      avatarTag: resp.data.avatarTag
     };
     if (userData) {
       localStorage.setItem('userData', userData);

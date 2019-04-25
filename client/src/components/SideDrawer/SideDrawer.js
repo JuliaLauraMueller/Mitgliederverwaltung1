@@ -18,12 +18,19 @@ class SideDrawer extends Component {
       drawerClasses = 'side-drawer close';
     }
     let userId = this.props.user ? this.props.user._id : '';
-    let userFirstname = store.getState().auth.userData
-      ? store.getState().auth.userData.firstname
-      : '';
-    let userSurname = store.getState().auth.userData
-      ? store.getState().auth.userData.surname
-      : '';
+    let storeData = store.getState().auth;
+    let userFirstname = '';
+    let userSurname = '';
+    let userPic = require('../../img/Profile_Placeholder.png');
+    if (storeData.userData) {
+      userFirstname = storeData.userData.firstname;
+      userSurname = storeData.userData.surname;
+      if (storeData.userData.avatar && storeData.userData.avatarTag) {
+        console.log(storeData.userData.avatar);
+        userPic =
+          storeData.userData.avatarTag + ',' + storeData.userData.avatar;
+      }
+    }
 
     let AdminButton = {};
     if (this.props.user !== undefined && this.props.user.role >= 2) {
@@ -94,7 +101,7 @@ class SideDrawer extends Component {
               <Link to={`/member/${userId}`}>
                 <img
                   id="navigation-user-picture-img"
-                  src={require('../../img/Profile_Placeholder.png')}
+                  src={userPic}
                   alt="Profilbild"
                 />
               </Link>
