@@ -112,7 +112,7 @@ class ProfileBasicInfoEDIT extends Component {
                     src={
                       this.state.avatar
                         ? this.state.avatarTag + ',' + this.state.avatar
-                        : 'undefined'
+                        : require('../../img/Profile_Placeholder.png')
                     }
                     alt='profile'
                   />

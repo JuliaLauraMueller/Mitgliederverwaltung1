@@ -1,6 +1,7 @@
 const db = require('../helpers/db');
 const Circle = db.Circle;
 const User = db.User;
+const eventService = require('./eventService');
 
 module.exports = {
   getById,
@@ -35,13 +36,14 @@ async function updateCircle(id, circleParam) {
 }
 
 async function deleteCircle(id) {
-  if ((await User.count({ circle: id })) > 0) {
+  if ((await User.countDocuments({ circle: id })) > 0) {
     throw {
       type: 'users_remaining_in_circle',
       message: 'Cities mit Mitgliedern können nicht gelöscht werden.'
     };
   } else {
     await Circle.findByIdAndRemove(id);
+    await eventService.removeCircleFromEvents(id);
   }
 }
 

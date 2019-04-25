@@ -63,6 +63,7 @@ class AdminCreateCircle extends Component {
                   className="admin-form-control"
                   value={this.state.name}
                   onChange={this.handleChange}
+                  
                 />
               </Col>
             </Row>
