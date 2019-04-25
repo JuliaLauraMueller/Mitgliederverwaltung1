@@ -92,6 +92,15 @@ async function setUserData(userData, companyData) {
   return await axios
     .put('/users/' + data.userData._id, data)
     .then(res => {
+      var navbarData = {
+        firstname: data.userData.firstname,
+        surname: data.userData.surname,
+        avatar: data.userData.avatar,
+        avatarTag: data.userData.avatarTag
+      };
+      if (navbarData) {
+        localStorage.setItem('userData', JSON.stringify(userData));
+      }
       return res;
     })
     .catch(error => {

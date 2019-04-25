@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import store from '../../helpers/store';
 
 import '../../css/SideDrawer.css';
 
@@ -17,18 +16,16 @@ class SideDrawer extends Component {
     if (!this.props.show) {
       drawerClasses = 'side-drawer close';
     }
+    let storeData = JSON.parse(localStorage.getItem('userData'));
     let userId = this.props.user ? this.props.user._id : '';
-    let storeData = store.getState().auth;
     let userFirstname = '';
     let userSurname = '';
     let userPic = require('../../img/Profile_Placeholder.png');
-    if (storeData.userData) {
-      userFirstname = storeData.userData.firstname;
-      userSurname = storeData.userData.surname;
-      if (storeData.userData.avatar && storeData.userData.avatarTag) {
-        console.log(storeData.userData.avatar);
-        userPic =
-          storeData.userData.avatarTag + ',' + storeData.userData.avatar;
+    if (storeData) {
+      userFirstname = storeData.firstname;
+      userSurname = storeData.surname;
+      if (storeData.avatar && storeData.avatarTag) {
+        userPic = storeData.avatarTag + ',' + storeData.avatar;
       }
     }
 

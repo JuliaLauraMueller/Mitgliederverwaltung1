@@ -24,7 +24,7 @@ function getUserData(id) {
       avatarTag: resp.data.avatarTag
     };
     if (userData) {
-      localStorage.setItem('userData', userData);
+      localStorage.setItem('userData', JSON.stringify(userData));
     }
     return userData;
   });
