@@ -81,7 +81,7 @@ class ProfilePage extends Component {
       )
     ) {
       EditButton = (
-        <button className="button-save-edit" onClick={this.toggleEdit}>
+        <button className='button-save-edit' onClick={this.toggleEdit}>
           Editieren
         </button>
       );
@@ -91,28 +91,28 @@ class ProfilePage extends Component {
 
     if (this.state.isEditing) {
       return (
-        <Container className="profile-page__container">
+        <Container className='profile-page__container'>
           <Form onSubmit={this.handleClick}>
             <Row>
-              <Col md="12">
+              <Col md='12'>
                 <input
-                  type="submit"
-                  className="button-save-edit"
-                  value="Speichern"
+                  type='submit'
+                  className='button-save-edit'
+                  value='Speichern'
                   onClick={this.handleClick}
                 />
               </Col>
             </Row>
             <FormGroup row>
               <Row>
-                <Col xs="12" md="12">
+                <Col xs='12' md='12'>
                   <ProfileBasicInfoEDIT
                     ref={basicInfo => {
                       this.basicInfo = basicInfo;
                     }}
                   />
                 </Col>
-                <Col xs="12" md="12">
+                <Col xs='12' md='12'>
                   <ProfileMainInformationEDIT
                     ref={mainInfo => {
                       this.mainInfo = mainInfo;
@@ -126,17 +126,17 @@ class ProfilePage extends Component {
       );
     } else {
       return (
-        <Container className="profile-page__container">
+        <Container className='profile-page__container'>
           <Row>
-            <Col md="12" className="button-container">
+            <Col md='12' className='button-container'>
               {EditButton}
             </Col>
           </Row>
           <Row>
-            <Col xs="12" md="12">
+            <Col xs='12' md='12'>
               <ProfileBasicInfo />
             </Col>
-            <Col xs="12" md="12">
+            <Col xs='12' md='12'>
               <ProfileMainInformation />
             </Col>
           </Row>

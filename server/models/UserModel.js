@@ -37,6 +37,8 @@ const schema = new Schema({
   facebookLink: { type: String },
   instagramLink: { type: String },
   offerings: { type: String },
+  avatar: { type: Buffer },
+  avatarTag: { type: String },
   role: { type: Number }
 });
 
