@@ -11,6 +11,7 @@ async function getUserBody() {
 
       let mem = {
         members: users.map(element => {
+          //console.log(element.avatar);
           return {
             _id: element._id,
             memberNumber: element.memberNumber,
@@ -30,7 +31,8 @@ async function getUserBody() {
               element.circleValues && element.circleValues.length > 0
                 ? element.circleValues[0]
                 : undefined,
-            profilepic: './img/marc_zimmermann.jpg' // TODO: implement loading of images
+            avatar: element.avatar,
+            avatarTag: element.avatarTag
           };
         })
       };

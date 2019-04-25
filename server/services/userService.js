@@ -72,7 +72,16 @@ async function getCircleForId(id) {
 }
 
 async function getById(id) {
-  return await User.findById(id).select('-password');
+  let user = await User.findById(id).select('-password');
+  if (user.avatar) {
+    let buff = Buffer.from(user.avatar);
+
+    let b64 = buff.toString('base64');
+    user = user.toObject();
+    user.avatar = b64;
+  }
+
+  return user;
 }
 
 async function create(userParam) {
@@ -157,6 +166,17 @@ async function updateUser(id, userParam) {
   var errors = [];
   errors = validateAll(userData, errors);
   errors = companyService.validateCompany(companyData, errors);
+  if (userParam.userData.avatar) {
+    try {
+      userParam.userData.avatar = Buffer.from(
+        userParam.userData.avatar,
+        'base64'
+      );
+    } catch (e) {
+      console.log(e);
+      errors.push('Ungültiges Bild');
+    }
+  }
 
   if (errors.length != 0) {
     throw { type: 'invalid_input', errors };
@@ -195,6 +215,10 @@ async function update(id, userParam) {
   }
 
   // copy userParam properties to user
+  if (userParam.avatar) {
+    userParam.avatar = Buffer.from(userParam.avatar, 'base64');
+  }
+
   Object.assign(user, userParam);
 
   await user.save();

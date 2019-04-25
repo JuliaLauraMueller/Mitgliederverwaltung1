@@ -39,7 +39,10 @@ async function getUserData(id) {
         linkedinLink: resp.data.linkedinLink,
         facebookLink: resp.data.facebookLink,
         instagramLink: resp.data.instagramLink,
-        offerings: resp.data.offerings
+        offerings: resp.data.offerings,
+
+        avatar: resp.data.avatar,
+        avatarTag: resp.data.avatarTag
       }
     };
   });
