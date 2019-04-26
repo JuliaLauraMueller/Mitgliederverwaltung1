@@ -6,6 +6,7 @@ import history from './history';
 import { alertError } from '../redux/actions/alertActions';
 import { updateToken } from '../redux/actions/authActions';
 import authService from '../services/authService';
+import { updateNavUserdata } from '../redux/actions/navigationActions';
 
 export default () => {
   axios.defaults.baseURL = config.api;
@@ -26,6 +27,7 @@ export default () => {
 
   axios.interceptors.response.use(
     response => {
+      store.dispatch(updateNavUserdata());
       updateLocalStorage(response);
       return response;
     },

@@ -7,6 +7,7 @@ import store from '../../helpers/store';
 import profileService from '../../services/profileService';
 import history from '../../helpers/history';
 import { alertError } from './alertActions';
+import { updateNavUserdata } from './navigationActions';
 
 export const fetchProfile = id => dispatch => {
   profileService
@@ -60,6 +61,16 @@ export const putWholeData = data => async dispatch => {
       companyData.company = companyData.companyName;
       delete companyData.companyName;
       dispatch({ type: PUT_PROFILE, payload: companyData });
+
+      if (store.getState().auth.user._id === profileBasicData._id) {
+        var navbarData = {
+          firstname: profileMainData.firstname,
+          surname: profileMainData.surname,
+          avatar: profileMainData.avatar,
+          avatarTag: profileMainData.avatarTag
+        };
+        store.dispatch(updateNavUserdata(navbarData));
+      }
     })
     .catch(error => {
       return Promise.reject(error);

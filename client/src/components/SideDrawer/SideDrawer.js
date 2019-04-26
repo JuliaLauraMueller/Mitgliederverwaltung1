@@ -16,16 +16,16 @@ class SideDrawer extends Component {
     if (!this.props.show) {
       drawerClasses = 'side-drawer close';
     }
-    let storeData = JSON.parse(localStorage.getItem('userData'));
     let userId = this.props.user ? this.props.user._id : '';
     let userFirstname = '';
     let userSurname = '';
     let userPic = require('../../img/Profile_Placeholder.png');
-    if (storeData) {
-      userFirstname = storeData.firstname;
-      userSurname = storeData.surname;
-      if (storeData.avatar && storeData.avatarTag) {
-        userPic = storeData.avatarTag + ',' + storeData.avatar;
+    if (this.props.userData) {
+      userFirstname = this.props.userData.firstname;
+      userSurname = this.props.userData.surname;
+      if (this.props.userData.avatar && this.props.userData.avatarTag) {
+        userPic =
+          this.props.userData.avatarTag + ',' + this.props.userData.avatar;
       }
     }
 
@@ -303,7 +303,7 @@ class SideDrawer extends Component {
 }
 
 function mapStateToProps(state) {
-  return { user: state.auth.user };
+  return { user: state.auth.user, userData: state.navigation.userData };
 }
 
 export default connect(mapStateToProps)(SideDrawer);

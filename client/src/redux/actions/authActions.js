@@ -3,12 +3,13 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   UPDATE_TOKEN,
-  LOGOUT,
-  USERDATA_FETCHED
+  LOGOUT
 } from '../types/authTypes';
 import { ALERT_ERROR } from '../types/alertTypes';
 import authService from '../../services/authService';
 import history from '../../helpers/history';
+import store from '../../helpers/store';
+import { updateNavUserdata } from '../actions/navigationActions';
 
 export const login = (privateEmail, password) => dispatch => {
   authService.login(privateEmail, password).then(
@@ -16,7 +17,21 @@ export const login = (privateEmail, password) => dispatch => {
       var decodedToken = jwtDecode(userToken);
       authService.getUserData(decodedToken._id).then(userData => {
         if (userData.firstname && userData.surname) {
-          dispatch({ type: USERDATA_FETCHED, payload: userData });
+          var navData = {};
+          if (userData.avatar) {
+            navData = {
+              firstname: userData.firstname,
+              surname: userData.surname,
+              avatar: userData.avatar,
+              avatarTag: userData.avatarTag
+            };
+          } else {
+            navData = {
+              firstname: userData.firstname,
+              surname: userData.surname
+            };
+          }
+          store.dispatch(updateNavUserdata(navData));
         }
 
         dispatch({ type: LOGIN_SUCCESS, payload: decodedToken });
