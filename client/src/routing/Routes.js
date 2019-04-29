@@ -23,7 +23,7 @@ class Routes extends Component {
     let AdminRoute;
     if (
       store.getState().auth.user !== undefined &&
-      store.getState().auth.user.role >= 3
+      store.getState().auth.user.role >= 2
     ) {
       AdminRoute = <PrivateRoute exact path="/admin" component={AdminPage} />;
     }

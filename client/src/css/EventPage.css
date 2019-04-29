@@ -12,19 +12,71 @@
   justify-content: center;
 }
 
-.event-date {
+.event-card {
+  display: flex;
+  justify-content: center;
+  border: 0px solid white;
+  min-width: 700px;
+  max-width: 700px;
+  min-height: 190px;
+  max-height: 190px;
+  border-radius: 0px;
+  margin: 9px;
 }
 
-.event-title {
-  font-size: 2em;
+.event-card-date {
+  text-align: center;
+  margin: auto;
+  margin-left: 18px;
+  width: 100%;
 }
 
-.event-dateDay {
-  font-size: 2em;
+.event-card-content {
+  margin-left: 50px;
 }
 
-.event-dateweekday {
+.event-card-month {
+  font-size: 30px;
+  margin-top: 0px;
+  margin-bottom: -20px;
 }
 
-.dateMonth {
+.event-card-day {
+  font-size: 60px;
+  margin-bottom: -7px;
+}
+
+.event-card-weekDay {
+  font-size: 20px;
+}
+
+.event-card-location {
+  margin-top: -10px;
+  font-size: 20px;
+}
+
+.event-card-title {
+  font-size: 30px;
+}
+
+.event-card-time {
+  margin-top: -7px;
+  font-size: 20px;
+}
+
+.event-card-description {
+  margin-top: 0px;
+  font-size: 18px;
+  display: block;
+  width: 350px;
+  white-space: normal;
+}
+
+.event-card-link {
+  position: absolute;
+  bottom: 20;
+  left: 0;
+  margin-left: -90px;
+  margin-top: 130px;
+  white-space: nowrap;
 }

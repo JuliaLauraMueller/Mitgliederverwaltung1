@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 class Toolbar extends Component {
   render() {
     let AdminIcon = {};
-    if (this.props.user !== undefined && this.props.user.role >= 3) {
+    if (this.props.user !== undefined && this.props.user.role >= 2) {
       AdminIcon = (
         <Link to="/admin">
           <svg
