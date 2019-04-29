@@ -12,6 +12,60 @@
   justify-content: center;
 }
 
+.overflow {
+  height: auto;
+  overflow: auto;
+  overflow-wrap: break-word;
+  padding: 0px;
+  display: flex;
+  justify-content: center;
+}
+
+.event-infos {
+  display: flex;
+  justify-content: center;
+  padding-left: 8.5em;
+  padding-right: 8.5em;
+  text-align: justify;
+}
+
+.event-title-infos {
+  display: inline;
+  justify-content: left;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  text-align: left;
+}
+
+.event-title {
+  font-size: 38px;
+}
+
+.event-time {
+  font-size: 22px;
+}
+
+.event-location {
+  font-size: 22px;
+}
+
+.event-description-title {
+  margin-top: 1em;
+  margin-bottom: em;
+  font-size: 25px;
+  display: block;
+  white-space: normal;
+}
+
+.event-description {
+  margin-top: 0px;
+  font-size: 18px;
+  display: block;
+  white-space: normal;
+}
+
+/*Event-Card style*/
+
 .event-card {
   display: flex;
   justify-content: center;

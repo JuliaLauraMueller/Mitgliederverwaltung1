@@ -10,7 +10,7 @@ class SingleEventInfoView extends Component {
       event: {
         title: 'Bier-Event',
         describtion:
-          'Dieser Bierevent ist dafür da, dass wir uns auch mal entspannen können und zusammen Freedom geniessen',
+          'Dieser Bierevent ist dafür da, dass wir uns auch mal entspannen können und zusammen Freedom geniessen. Wir wollen gemeinsam auf unseren Erfolg anstossen. Essen wird zur Verfügung stehen aber wir wären froh wenn Ihr selbst Getränke mitnehmt, damit es sicher genug hat. Weiter wird es später Live-Musik geben von der Jazz-Band "Jazz-Musiker" und sie wären froh um eine Collecte für den Support. Endlich ist es so weit: Wir haben Sie in unserem Save-the-Date-Mail schon vorab informiert! Sie und Ihre Begleitung sind herzlich zur Weihnachtsfeier der Company.com GmbH eingeladen! Wir verwöhnen Sie dort mit köstlichen Schmankerln und werden im atemberaubenden Ambiente des Schloss Schönbrunn in Wien eine großartige Party feiern.  Wir verwöhnen Sie dort mit köstlichen Schmankerln und werden im atemberaubenden Ambiente des Schloss Schönbrunn in Wien eine großartige Party feiern.',
         circles: ['Bern'],
         dateMonth: 'Okt',
         dateDay: '13',
@@ -29,43 +29,71 @@ class SingleEventInfoView extends Component {
     return (
       <Row>
         <Col md="6" align="center">
-          <Col className="event-dateMonth">
-            <label> {this.state.event.dateMonth} </label>
-          </Col>
-
-          <Col>
-            <label className="event-dateDay">{this.state.event.dateDay} </label>
-          </Col>
-
-          <Col className="event-dateweekday">
-            <label> {this.state.event.dateWeekday} </label>
-          </Col>
-        </Col>
-
-        <Col md={{ offset: 0, size: 6 }} xs={{ offset: 1 }}>
-          <Col>
-            <label className="event-title">{this.state.event.title} </label>
-          </Col>
-
-          <Col>
-            <label className="">{this.state.event.location} </label>
-          </Col>
-
-          <Col>
-            <label className="">{this.state.event.startTime}</label>
-            <label className=""> - </label>
-            <label className="">{this.state.event.endTime} </label>
-          </Col>
-        </Col>
-
-        <Row>
-          <Col>
-            <Col className="event-dateweekday">
-              <label> Infos </label>
-              <label> {this.state.event.describtion} </label>
+          <Row className="overflow">
+            <Col>
+              <label className="event-card-month">
+                {' '}
+                {this.state.event.dateMonth}{' '}
+              </label>
             </Col>
-          </Col>
-        </Row>
+          </Row>
+
+          <Row className="overflow">
+            <Col>
+              <label className="event-card-day">
+                {this.state.event.dateDay}{' '}
+              </label>
+            </Col>
+          </Row>
+
+          <Row className="overflow">
+            <Col>
+              <label className="event-card-weekDay">
+                {this.state.event.dateWeekday}{' '}
+              </label>
+            </Col>
+          </Row>
+        </Col>
+
+        <Col md="4" align="center">
+          <Row className="overflow">
+            <Col className="event-title-infos">
+              <label className="event-title">{this.state.event.title} </label>
+            </Col>
+          </Row>
+
+          <Row className="overflow">
+            <Col className="event-title-infos">
+              <label className="event-location">
+                {this.state.event.location}{' '}
+              </label>
+            </Col>
+          </Row>
+
+          <Row className="overflow">
+            <Col className="event-title-infos">
+              <label className="event-time">{this.state.event.startTime}</label>
+              <label className="event-time"> - </label>
+              <label className="event-time">{this.state.event.endTime} </label>
+            </Col>
+          </Row>
+        </Col>
+
+        <Col md="12">
+          <Row className="event-infos">
+            <Col>
+              <label className="event-description-title"> Infos </label>
+            </Col>
+          </Row>
+
+          <Row className="event-infos">
+            <Col>
+              <label className="event-description">
+                {this.state.event.describtion}{' '}
+              </label>
+            </Col>
+          </Row>
+        </Col>
       </Row>
     );
   }
