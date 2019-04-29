@@ -1,5 +1,6 @@
 import { push as Menu } from 'react-burger-menu';
 import React from 'react';
+import { connect } from 'react-redux';
 import '../../css/BurgerNav.css';
 
 import { Link } from 'react-router-dom';
@@ -33,6 +34,10 @@ class BurgerNav extends React.Component {
     let userId = store.getState().auth.user
       ? store.getState().auth.user._id
       : '';
+    let userFirstname = this.props.userData
+      ? this.props.userData.firstname
+      : '';
+    let userSurname = this.props.userData ? this.props.userData.surname : '';
     let AdminButton = {};
     if (
       store.getState().auth.user !== undefined &&
@@ -120,7 +125,9 @@ class BurgerNav extends React.Component {
         </div>
 
         <div className="burger-navigation-profile">
-          <p className="burger-menu-item title-name">Marc Zimmermann</p>
+          <p className="burger-menu-item title-name">
+            {userFirstname} {userSurname}
+          </p>
           <div className="burger-navigation-edit-profile" />
           <div>
             <Link
@@ -324,4 +331,8 @@ class BurgerNav extends React.Component {
   }
 }
 
-export default BurgerNav;
+function mapStateToProps(state) {
+  return { userData: state.navigation.userData };
+}
+
+export default connect(mapStateToProps)(BurgerNav);

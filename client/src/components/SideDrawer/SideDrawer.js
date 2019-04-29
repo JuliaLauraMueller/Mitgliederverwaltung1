@@ -17,6 +17,17 @@ class SideDrawer extends Component {
       drawerClasses = 'side-drawer close';
     }
     let userId = this.props.user ? this.props.user._id : '';
+    let userFirstname = '';
+    let userSurname = '';
+    let userPic = require('../../img/Profile_Placeholder.png');
+    if (this.props.userData) {
+      userFirstname = this.props.userData.firstname;
+      userSurname = this.props.userData.surname;
+      if (this.props.userData.avatar && this.props.userData.avatarTag) {
+        userPic =
+          this.props.userData.avatarTag + ',' + this.props.userData.avatar;
+      }
+    }
 
     let AdminButton = {};
     if (this.props.user !== undefined && this.props.user.role >= 2) {
@@ -87,12 +98,14 @@ class SideDrawer extends Component {
               <Link to={`/member/${userId}`}>
                 <img
                   id="navigation-user-picture-img"
-                  src={require('../../img/Profile_Placeholder.png')}
+                  src={userPic}
                   alt="Profilbild"
                 />
               </Link>
             </div>
-            <div className="navigation-user-name">Marc Zimmermann</div>
+            <div className="navigation-user-name">
+              {userFirstname} {userSurname}
+            </div>
             <div id="profile-edit-text">
               <div>
                 <Link to={`/member/${userId}`}>
@@ -290,7 +303,7 @@ class SideDrawer extends Component {
 }
 
 function mapStateToProps(state) {
-  return { user: state.auth.user };
+  return { user: state.auth.user, userData: state.navigation.userData };
 }
 
 export default connect(mapStateToProps)(SideDrawer);
