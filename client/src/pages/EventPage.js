@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MemberCard from '../components/MemberCard';
+import EventCard from '../components/EventCard';
 import SearchFieldMember from '../components/SearchFieldMember';
 import { Helmet } from 'react-helmet';
 import { Container, Row, Col } from 'reactstrap';
@@ -15,26 +16,33 @@ class EventPage extends Component {
     super(props);
     this.props.dispatch(fetchMembers());
     this.props.dispatch(setNavVisible());
-    let events = [
-      {
-        title: 'Bierevent',
-        describtion:
-          'Dieser Bierevent ist dafür da, dass wir uns auch mal entspannen können und zusammen Freedom geniessen',
-        circles: ['Bern'],
-        date: '21.02.2019',
-        startTime: '18:00',
-        endTime: '20:00',
-        location: 'Berner Resti',
-        organisationTeam: 'Marc Zimmermann',
-        registrationEndDate: '10.02.2019',
-        permittedRoles: [2, 3, 4]
-      }
-    ];
+    this.state = {
+      events: [
+        {
+          _id: 1,
+          title: 'Bierevent',
+          describtion:
+            'Dieser Bierevent ist dafür da, dass wir uns auch mal entspannen können und zusammen Freedom geniessen',
+          circles: ['Bern'],
+          date: '21.02.2019',
+          startTime: '18:00',
+          endTime: '20:00',
+          location: 'Berner Resti',
+          organisationTeam: 'Marc Zimmermann',
+          registrationEndDate: '10.02.2019',
+          permittedRoles: [2, 3, 4],
+          month: 'Okt',
+          weekDay: 'Sonntag',
+          day: 13
+        }
+      ]
+    };
   }
 
   render() {
-    let memberCards = this.props.members.map(member => {
-      return <MemberCard key={member._id} member={member} />;
+    console.log(this.state.events);
+    let eventCards = this.state.events.map(event => {
+      return <EventCard key={event._id} event={event} />;
     });
     return (
       <Container className="member-page-container">
@@ -47,8 +55,8 @@ class EventPage extends Component {
             </Helmet>
 
             <SearchFieldMember />
-            <Row className="member-cards-row" key={memberCards}>
-              {memberCards}
+            <Row className="member-cards-row" key={eventCards}>
+              {eventCards}
             </Row>
           </Col>
         </Row>

@@ -12,3 +12,36 @@
   display: flex;
   justify-content: center;
 }
+
+.event-card {
+  display: flex;
+  justify-content: center;
+  border: 0px solid white;
+  min-width: 700px;
+  max-width: 700px;
+  min-height: 190px;
+  max-height: 190px;
+  border-radius: 0px;
+  margin: 9px;
+}
+
+.event-card-date {
+  text-align: center;
+  margin: auto;
+  width: 100%;
+}
+
+.event-card-month {
+  font-size: 30px;
+  margin-top: 0px;
+  margin-bottom: -20px;
+}
+
+.event-card-day {
+  font-size: 60px;
+  margin-bottom: -10px;
+}
+
+.event-card-weekDay {
+  font-size: 20px;
+}
