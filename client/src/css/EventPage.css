@@ -28,7 +28,12 @@
 .event-card-date {
   text-align: center;
   margin: auto;
+  margin-left: 18px;
   width: 100%;
+}
+
+.event-card-content {
+  margin-left: 50px;
 }
 
 .event-card-month {
@@ -39,9 +44,40 @@
 
 .event-card-day {
   font-size: 60px;
-  margin-bottom: -10px;
+  margin-bottom: -7px;
 }
 
 .event-card-weekDay {
   font-size: 20px;
+}
+
+.event-card-location {
+  margin-top: -10px;
+  font-size: 20px;
+}
+
+.event-card-title {
+  font-size: 30px;
+}
+
+.event-card-time {
+  margin-top: -7px;
+  font-size: 20px;
+}
+
+.event-card-description {
+  margin-top: 0px;
+  font-size: 18px;
+  display: block;
+  width: 350px;
+  white-space: normal;
+}
+
+.event-card-link {
+  position: absolute;
+  bottom: 20;
+  left: 0;
+  margin-left: -90px;
+  margin-top: 130px;
+  white-space: nowrap;
 }

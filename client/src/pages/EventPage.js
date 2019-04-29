@@ -21,7 +21,7 @@ class EventPage extends Component {
         {
           _id: 1,
           title: 'Bierevent',
-          describtion:
+          description:
             'Dieser Bierevent ist dafür da, dass wir uns auch mal entspannen können und zusammen Freedom geniessen',
           circles: ['Bern'],
           date: '21.02.2019',
