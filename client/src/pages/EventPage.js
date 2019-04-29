@@ -15,7 +15,7 @@ class EventPage extends Component {
     super(props);
     this.props.dispatch(fetchMembers());
     this.props.dispatch(setNavVisible());
-    let events = [
+    const events = [
       {
         title: 'Bierevent',
         describtion:
