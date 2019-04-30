@@ -108,7 +108,7 @@ class ProfileBasicInfoEDIT extends Component {
                 <div className='input-field'>
                   <img
                     className='profile-image-edit'
-                    style={{ width: '147px' }}
+                    style={{ width: '147px', height: '147px' }}
                     src={
                       this.state.avatar
                         ? this.state.avatarTag + ',' + this.state.avatar

@@ -2,20 +2,18 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   UPDATE_TOKEN,
-  LOGOUT,
-  USERDATA_FETCHED
+  LOGOUT
 } from '../types/authTypes';
 import getUserToken from '../../helpers/jwtAccessor';
 
-const initialState = { loggedIn: true, user: getUserToken(), userData: {} };
+const initialState = { loggedIn: true, user: getUserToken() };
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case LOGIN_SUCCESS:
       return {
         loggedIn: true,
-        user: action.payload,
-        userData: state.userData
+        user: action.payload
       };
     case LOGIN_FAILURE:
       return {};
@@ -24,14 +22,7 @@ export default function(state = initialState, action) {
     case UPDATE_TOKEN:
       return {
         loggedIn: state.loggedIn,
-        user: action.payload,
-        userData: state.userData
-      };
-    case USERDATA_FETCHED:
-      return {
-        loggedIn: state.loggedIn,
-        user: state.user,
-        userData: action.payload
+        user: action.payload
       };
     default:
       return state;

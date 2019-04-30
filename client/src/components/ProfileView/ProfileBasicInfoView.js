@@ -9,84 +9,84 @@ class ProfileBasicInfo extends Component {
     const profile = this.props.profile;
     return (
       <Row>
-        <Col md="6" align="center">
+        <Col md='6' align='center'>
           <Row>
             <Col>
               <img
-                id="profile-image"
-                style={{ width: '180px' }}
+                id='profile-image'
+                style={{ width: '180px', height: '180px' }}
                 src={
                   profile.avatar
-                    ? profile.avatar
+                    ? profile.avatarTag + ',' + profile.avatar
                     : require('../../img/Profile_Placeholder.png')
                 }
-                alt="profile"
+                alt='profile'
               />
             </Col>
           </Row>
-          <Row className="profile-pic__image">
+          <Row className='profile-pic__image'>
             <Col>
-              <label className="salutation-label">{profile.title}</label>
-              <label className="name-label">{profile.firstname}</label>
-              <label className="name-label">{profile.surname}</label>
+              <label className='salutation-label'>{profile.title}</label>
+              <label className='name-label'>{profile.firstname}</label>
+              <label className='name-label'>{profile.surname}</label>
             </Col>
           </Row>
-          <Row className="profile-pic__image">
+          <Row className='profile-pic__image'>
             <Col>
-              <label className="alias-label">({profile.alias})</label>
+              <label className='alias-label'>({profile.alias})</label>
             </Col>
           </Row>
-          <Row className="profile-pic__icons">
+          <Row className='profile-pic__icons'>
             <Col>
               <Button
-                className="icon-button"
-                id="xing-button"
+                className='icon-button'
+                id='xing-button'
                 href={profile.xingLink}
                 disabled={!profile.xingLink}
               >
                 <img
-                  className="icons"
-                  alt="xing-icon"
+                  className='icons'
+                  alt='xing-icon'
                   src={require('../../img/xing.svg')}
                 />
               </Button>
               <Button
-                className="icon-button"
+                className='icon-button'
                 href={profile.linkedinLink}
                 disabled={!profile.linkedinLink}
               >
                 <img
-                  className="icons"
-                  alt="linkedin-icon"
+                  className='icons'
+                  alt='linkedin-icon'
                   src={require('../../img/linkedin.svg')}
                 />
               </Button>
               <Button
-                className="icon-button"
+                className='icon-button'
                 href={profile.facebookLink}
                 disabled={!profile.facebookLink}
               >
                 <img
-                  className="icons"
-                  alt="fb-icon"
+                  className='icons'
+                  alt='fb-icon'
                   src={require('../../img/facebook.svg')}
                 />
               </Button>
               <Button
-                className="icon-button"
+                className='icon-button'
                 href={profile.instagramLink}
                 disabled={!profile.instagramLink}
               >
                 <img
-                  className="icons"
-                  alt="instagramm-icon"
+                  className='icons'
+                  alt='instagramm-icon'
                   src={require('../../img/instagram.svg')}
                 />
               </Button>
-              <Button className="icon-button" id="mail-button">
+              <Button className='icon-button' id='mail-button'>
                 <img
-                  className="icons"
-                  alt="mail-icon"
+                  className='icons'
+                  alt='mail-icon'
                   src={require('../../img/mail-profile.svg')}
                 />
               </Button>
@@ -97,53 +97,53 @@ class ProfileBasicInfo extends Component {
         <Col md={{ offset: 0, size: 6 }} xs={{ offset: 1 }}>
           <Row>
             <Col>
-              <p className="main-title title-maininfo">Kurzprofil</p>
+              <p className='main-title title-maininfo'>Kurzprofil</p>
             </Col>
           </Row>
-          <Row className="overflow">
+          <Row className='overflow'>
             <Col>
               <label>Mitglied:</label>
-              <label className="value-label">{profile.memberNumber}</label>
+              <label className='value-label'>{profile.memberNumber}</label>
             </Col>
           </Row>
-          <Row className="overflow">
+          <Row className='overflow'>
             <Col>
               <label>Beitritt:</label>
-              <label className="value-label">{profile.entryDate}</label>
+              <label className='value-label'>{profile.entryDate}</label>
             </Col>
           </Row>
-          <Row className="overflow">
+          <Row className='overflow'>
             <Col>
               <label>Geburtstag:</label>
-              <label className="value-label">{profile.birthdate}</label>
+              <label className='value-label'>{profile.birthdate}</label>
             </Col>
           </Row>
-          <Row className="overflow">
+          <Row className='overflow'>
             <Col>
               <label>Status:</label>
-              <label className="value-label">{profile.status}</label>
+              <label className='value-label'>{profile.status}</label>
             </Col>
           </Row>
-          <Row className="overflow">
+          <Row className='overflow'>
             <Col>
               <label>City:</label>
-              <label className="value-label">{profile.city}</label>
+              <label className='value-label'>{profile.city}</label>
             </Col>
           </Row>
-          <Row className="overflow">
+          <Row className='overflow'>
             <Col>
-              <label className="godfather-label">Götti:</label>
-              <label className="value-label">{profile.godfather}</label>
+              <label className='godfather-label'>Götti:</label>
+              <label className='value-label'>{profile.godfather}</label>
             </Col>
           </Row>
           <Row>
             <Col>
-              <div className="offerings overflow">
-                <label className="main-title" id="offerings-label">
+              <div className='offerings overflow'>
+                <label className='main-title' id='offerings-label'>
                   Was biete ich an?
                 </label>
                 <br />
-                <label className="information">{profile.offerings}</label>
+                <label className='information'>{profile.offerings}</label>
               </div>
             </Col>
           </Row>
