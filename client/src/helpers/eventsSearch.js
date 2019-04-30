@@ -16,6 +16,7 @@ function replaceUmlauts(text) {
 }
 
 export function filterEvents(events, searchText, pastEventsIncluded = false) {
+  if (!events) return [];
   searchText = replaceUmlauts(searchText.toLowerCase());
   return events.filter(e => {
     let title = e.title

@@ -4,7 +4,6 @@ import { Row, Col, Button } from 'reactstrap';
 import '../../pages/EventPage';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchEvent } from '../../redux/actions/eventActions';
 
 class SingleEventInfo extends Component {
   constructor(props) {
@@ -40,6 +39,10 @@ class SingleEventInfo extends Component {
     let registrationEndDate = new Date(event.registrationEndDate);
     let weekday = this.days[date.getDay()];
     let month = this.months[date.getMonth()];
+    let circlesText = '';
+    if (event.circles) {
+      circlesText = event.circles.map(c => c.name).join(', ');
+    }
     return (
       <Row>
         <Col md={{ offset: 0, size: 4 }} xs={{ offset: 2 }} align="center">
@@ -121,7 +124,7 @@ class SingleEventInfo extends Component {
           <Row className="event-infos">
             <Col>
               <label className="event-description-additional">
-                Cities: {event.circles}
+                Cities: {circlesText}
               </label>
             </Col>
           </Row>
@@ -159,7 +162,4 @@ SingleEventInfo.propTypes = {
 const mapStateToProps = state => ({
   event: state.event.fetchedEvent
 });
-export default connect(
-  mapStateToProps,
-  { fetchEvent }
-)(SingleEventInfo);
+export default connect(mapStateToProps)(SingleEventInfo);

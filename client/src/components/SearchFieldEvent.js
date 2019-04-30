@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, Form } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import { connect } from 'react-redux';
 import { searchEvents } from '../redux/actions/eventActions';
 
@@ -14,7 +14,6 @@ class SearchFieldEvent extends Component {
   }
 
   handleInputChange() {
-    console.log(this.search.value);
     this.props.dispatch(searchEvents(this.search.value, false));
   }
 

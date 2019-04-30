@@ -5,7 +5,7 @@ const schema = new Schema({
   title: { type: String },
   image: { type: Buffer },
   description: { type: String },
-  circles: [Schema.Types.ObjectId],
+  circles: [{ type: Schema.Types.ObjectId, ref: 'Circle' }],
   date: { type: Date },
   startTime: { type: String },
   endTime: { type: String },

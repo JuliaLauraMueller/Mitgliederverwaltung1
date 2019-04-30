@@ -14,7 +14,7 @@ import ProfilePage from '../pages/ProfilePage';
 import MemberPage from '../pages/MemberPage';
 import EventPage from '../pages/EventPage';
 import AdminPage from '../pages/AdminPage';
-import SingleEventPage from '../pages/SinlgeEventPage';
+import SingleEventPage from '../pages/SingleEventPage';
 import AppNavbar from '../components/AppNavbar/AppNavbar';
 import store from '../helpers/store';
 

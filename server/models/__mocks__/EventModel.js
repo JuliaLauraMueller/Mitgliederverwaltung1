@@ -21,6 +21,9 @@ let events = [
     registrationEndDate: new Date('07/20/2018'),
     permittedRoles: [1, 2, 3],
     save() {},
+    populate(field) {
+      return this;
+    },
     select(arg) {
       return this;
     }
@@ -30,6 +33,9 @@ let events = [
     title: 'Second Event',
     description: 'Desc.',
     save() {},
+    populate(field) {
+      return this;
+    },
     select(arg) {
       return this;
     }

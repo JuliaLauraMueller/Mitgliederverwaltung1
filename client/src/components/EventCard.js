@@ -33,6 +33,9 @@ class EventCard extends Component {
     let date = new Date(this.props.event.date);
     let weekday = this.days[date.getDay()];
     let month = this.months[date.getMonth()];
+    let trimmedDescription = this.props.event.description.substring(0, 80);
+    if (this.props.event.description.length > 80)
+      trimmedDescription = trimmedDescription + '...';
     return (
       <Card className="event-card" style={{ border: '1px solid white' }}>
         <CardBody>
@@ -82,7 +85,7 @@ class EventCard extends Component {
                 </div>
                 <div>
                   <CardText className="event-card-description">
-                    {this.props.event.description.substring(0, 80)} ...
+                    {trimmedDescription}
                   </CardText>
                 </div>
               </div>

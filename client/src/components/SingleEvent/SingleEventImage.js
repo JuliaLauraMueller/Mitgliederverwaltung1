@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../../css/EventPage.css';
-import { Row, Col, Button } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import '../../pages/EventPage';
 
 class SingleEventImage extends Component {

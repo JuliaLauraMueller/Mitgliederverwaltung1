@@ -19,14 +19,16 @@ class EventPage extends Component {
   }
 
   render() {
-    let eventCards = this.props.events.map(event => {
-      if (
-        event.permittedRoles.includes(store.getState().auth.user.role) &&
-        event.circles.includes(store.getState().auth.user.circle)
-      ) {
-        return <EventCard key={event._id} event={event} />;
-      }
-    });
+    let eventCards = [];
+    if (this.props.events) {
+      eventCards = this.props.events
+        .filter(
+          event =>
+            event.permittedRoles.includes(store.getState().auth.user.role) &&
+            event.circles.includes(store.getState().auth.user.circle)
+        )
+        .map(event => <EventCard key={event._id} event={event} />);
+    }
     return (
       <Container className="member-page-container">
         <Row>
