@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 import { Container, Row, Col } from 'reactstrap';
 import { setNavVisible } from '../redux/actions/navigationActions';
-import { fetchMembers } from '../redux/actions/memberActions';
+import { fetchEvent } from '../redux/actions/eventActions';
 import { alertError } from '../redux/actions/alertActions';
 import { connect } from 'react-redux';
 
@@ -15,23 +15,22 @@ import '../css/EventPage.css';
 class SingleEventPage extends Component {
   constructor(props) {
     super(props);
-    this.props.dispatch(fetchMembers());
     this.props.dispatch(setNavVisible());
-    this.props = {
-      event: {
-        title: 'Bierevent',
-        describtion:
-          'Dieser Bierevent ist dafür da, dass wir uns auch mal entspannen können und zusammen Freedom geniessen',
-        circles: ['Bern'],
-        date: '21.02.2019',
-        startTime: '18:00',
-        endTime: '20:00',
-        location: 'Berner Resti',
-        organisationTeam: 'Marc Zimmermann',
-        registrationEndDate: '10.02.2019',
-        permittedRoles: [2, 3, 4]
-      }
-    };
+    this.loadEvent = this.loadEvent.bind(this);
+  }
+
+  componentDidMount() {
+    // first time profile page is loaded
+    this.loadEvent(this.props.match.params.id);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // switch between two profiles (when already on profile page)
+    this.loadEvent(nextProps.match.params.id);
+  }
+
+  loadEvent(eventId) {
+    this.props.dispatch(fetchEvent(eventId));
   }
 
   render() {
@@ -55,7 +54,7 @@ class SingleEventPage extends Component {
 
 function mapStateToProps(state) {
   return {
-    members: state.member.filteredMembers
+    event: state.event.fetchedEvent
   };
 }
 

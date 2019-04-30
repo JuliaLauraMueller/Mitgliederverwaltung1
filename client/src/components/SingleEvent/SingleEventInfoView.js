@@ -2,50 +2,60 @@ import React, { Component } from 'react';
 import '../../css/EventPage.css';
 import { Row, Col, Button } from 'reactstrap';
 import '../../pages/EventPage';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchEvent } from '../../redux/actions/eventActions';
 
-class SingleEventInfoView extends Component {
+class SingleEventInfo extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      event: {
-        title: 'Bier-Treffen-Event',
-        describtion:
-          'Dieser Bierevent ist dafür da, dass wir uns auch mal entspannen können und zusammen Freedom geniessen. Wir wollen gemeinsam auf unseren Erfolg anstossen. Essen wird zur Verfügung stehen aber wir wären froh wenn Ihr selbst Getränke mitnehmt, damit es sicher genug hat. Weiter wird es später Live-Musik geben von der Jazz-Band "Jazz-Musiker" und sie wären froh um eine Collecte für den Support. Endlich ist es so weit: Wir haben Sie in unserem Save-the-Date-Mail schon vorab informiert! Sie und Ihre Begleitung sind herzlich zur Weihnachtsfeier der Company.com GmbH eingeladen! Wir verwöhnen Sie dort mit köstlichen Schmankerln und werden im atemberaubenden Ambiente des Schloss Schönbrunn in Wien eine großartige Party feiern.  Wir verwöhnen Sie dort mit köstlichen Schmankerln und werden im atemberaubenden Ambiente des Schloss Schönbrunn in Wien eine großartige Party feiern.',
-        circles: ['Bern', , ',', ' ', 'Zürich'],
-        dateMonth: 'Okt',
-        dateDay: '13',
-        dateWeekday: 'Sonntag',
-        startTime: '18:00',
-        endTime: '20:00',
-        location: 'Berner Resti',
-        organisationTeam: 'Marc Zimmermann',
-        registrationEndDate: '10.02.2019',
-        permittedRoles: [2, 3, 4]
-      }
-    };
+    this.days = [
+      'Sonntag',
+      'Montag',
+      'Dienstag',
+      'Mittwoch',
+      'Donnerstag',
+      'Freitag',
+      'Samstag'
+    ];
+    this.months = [
+      'Januar',
+      'Februar',
+      'März',
+      'April',
+      'Mai',
+      'Juni',
+      'Juli',
+      'August',
+      'September',
+      'Oktober',
+      'November',
+      'Dezember'
+    ];
   }
 
   render() {
+    const event = this.props.event;
+    let date = new Date(event.date);
+    let registrationEndDate = new Date(event.registrationEndDate);
+    let weekday = this.days[date.getDay()];
+    let month = this.months[date.getMonth()];
     return (
       <Row>
         <Col md={{ offset: 0, size: 4 }} xs={{ offset: 2 }} align="center">
           <Row className="date">
             <Col>
-              <label className="event-month">
-                {this.state.event.dateMonth}{' '}
-              </label>
+              <label className="event-month">{month} </label>
             </Col>
           </Row>
           <Row className="date">
             <Col>
-              <label className="event-day">{this.state.event.dateDay} </label>
+              <label className="event-day">{date.getDate()} </label>
             </Col>
           </Row>
           <Row className="date">
             <Col>
-              <label className="event-weekDay">
-                {this.state.event.dateWeekday}
-              </label>
+              <label className="event-weekDay">{weekday}</label>
             </Col>
           </Row>
         </Col>
@@ -53,7 +63,7 @@ class SingleEventInfoView extends Component {
         <Col md={{ offset: 0, size: 6 }} xs={{ offset: 6 }}>
           <Row className="overflow">
             <Col>
-              <label className="event-title">{this.state.event.title} </label>
+              <label className="event-title">{event.title} </label>
             </Col>
           </Row>
           <Row className="overflow">
@@ -76,16 +86,14 @@ class SingleEventInfoView extends Component {
                   />
                 </svg>
               </span>
-              <label className="event-location">
-                {this.state.event.location}{' '}
-              </label>
+              <label className="event-location">{event.location} </label>
             </Col>
           </Row>
           <Row className="overflow">
             <Col>
-              <label className="event-time">{this.state.event.startTime}</label>
+              <label className="event-time">{event.startTime}</label>
               <label className="event-time"> - </label>
-              <label className="event-time">{this.state.event.endTime} </label>
+              <label className="event-time">{event.endTime} </label>
             </Col>
           </Row>
         </Col>
@@ -113,29 +121,29 @@ class SingleEventInfoView extends Component {
           <Row className="event-infos">
             <Col>
               <label className="event-description-additional">
-                Cities: {this.state.event.circles}
+                Cities: {event.circles}
               </label>
             </Col>
           </Row>
           <Row className="event-infos">
             <Col>
               <label className="event-description-additional">
-                Organisator: {this.state.event.organisationTeam}
+                Organisator: {event.organisationTeam}
               </label>
             </Col>
           </Row>
           <Row className="event-infos">
             <Col>
               <label className="event-description-additional">
-                Anmeldefrist bis: {this.state.event.registrationEndDate}
+                Anmeldefrist bis: {registrationEndDate.getDate()}.{' '}
+                {this.months[registrationEndDate.getMonth()]}.{' '}
+                {registrationEndDate.getFullYear()}
               </label>
             </Col>
           </Row>
           <Row className="event-infos">
             <Col>
-              <label className="event-description">
-                {this.state.event.describtion}{' '}
-              </label>
+              <label className="event-description">{event.description} </label>
             </Col>
           </Row>
         </Col>
@@ -144,4 +152,14 @@ class SingleEventInfoView extends Component {
   }
 }
 
-export default SingleEventInfoView;
+SingleEventInfo.propTypes = {
+  event: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  event: state.event.fetchedEvent
+});
+export default connect(
+  mapStateToProps,
+  { fetchEvent }
+)(SingleEventInfo);
