@@ -7,12 +7,12 @@ class SingleEventImage extends Component {
   render() {
     return (
       <Row>
-        <Col md="6" align="center">
-          <Row>
-            <Col>
+        <Col>
+          <Row className="event-image">
+            <Col md="12" align="center">
               <img
                 id="event-image"
-                style={{ width: '600px' }}
+                style={{ width: '800px' }}
                 src={require('../../img/event_default_image.png')}
                 alt="event"
               />
