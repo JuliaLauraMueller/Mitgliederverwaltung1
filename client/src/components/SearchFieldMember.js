@@ -68,7 +68,7 @@ class SearchFieldMember extends Component {
     return (
       <Row className="search-field-member">
         <Col md="12">
-          <form className="search-form">
+          <div className="search-form">
             <div className="testerSearch">
               <img
                 className="search-icon"
@@ -108,7 +108,7 @@ class SearchFieldMember extends Component {
               </ButtonDropdown>
               <hr />
             </div>
-          </form>
+          </div>
         </Col>
       </Row>
     );

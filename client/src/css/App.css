@@ -82,6 +82,14 @@ global style for all pages
   margin-top: auto;
   margin-bottom: auto;
 }
+
+.search-field {
+  display: flex;
+  justify-content: center;
+  max-width: 300px;
+  min-width: 300px;
+}
+
 @media only screen and (max-width: 1200px) {
   .collapsed {
     padding-left: 0px;

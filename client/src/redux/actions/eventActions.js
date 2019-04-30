@@ -3,12 +3,20 @@ import {
   EVENT_DELETED,
   CREATE_EVENT,
   EVENTS_FETCHED,
-  PUT_EVENT
+  PUT_EVENT,
+  SEARCH_EVENTS
 } from '../types/eventTypes';
 import eventService from '../../services/eventService';
 import store from '../../helpers/store';
 import history from '../../helpers/history';
 import { alertError } from './alertActions';
+
+export const searchEvents = (searchText, pastEventsIncluded) => dispatch => {
+  dispatch({
+    type: SEARCH_EVENTS,
+    payload: { searchText, pastEventsIncluded }
+  });
+};
 
 export const fetchEvent = id => dispatch => {
   eventService
