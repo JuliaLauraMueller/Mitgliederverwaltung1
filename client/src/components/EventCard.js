@@ -31,8 +31,6 @@ class EventCard extends Component {
   }
   render() {
     let date = new Date(this.props.event.date);
-    console.log(this.props.event.date);
-    console.log(date);
     let weekday = this.days[date.getDay()];
     let month = this.months[date.getMonth()];
     return (
