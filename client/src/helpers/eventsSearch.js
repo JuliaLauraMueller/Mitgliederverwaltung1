@@ -22,6 +22,10 @@ export function filterEvents(events, searchText, pastEventsIncluded = false) {
       ? replaceUmlauts(e.title.toLowerCase()).substring(0, searchText.length)
       : '';
 
+    let location = e.location
+      ? replaceUmlauts(e.location.toLowerCase()).substring(0, searchText.length)
+      : '';
+
     let circles = e.circleValues
       ? e.circleValues.map(c => {
           return c.name
@@ -41,7 +45,9 @@ export function filterEvents(events, searchText, pastEventsIncluded = false) {
     }
 
     let baseSearchFound =
-      levenshteinInRange(searchText, title) || circleSearchFound;
+      levenshteinInRange(searchText, title) ||
+      levenshteinInRange(searchText, location) ||
+      circleSearchFound;
 
     if (pastEventsIncluded) {
       return baseSearchFound;

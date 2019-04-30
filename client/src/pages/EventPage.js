@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import MemberCard from '../components/MemberCard';
 import EventCard from '../components/EventCard';
-import SearchFieldMember from '../components/SearchFieldMember';
+import SearchFieldEvent from '../components/SearchFieldEvent';
 import { Helmet } from 'react-helmet';
 import { Container, Row, Col } from 'reactstrap';
 import { connect } from 'react-redux';
 import { setNavVisible } from '../redux/actions/navigationActions';
-import { fetchMembers } from '../redux/actions/memberActions';
+import { fetchEvents } from '../redux/actions/eventActions';
 
 import '../css/Member.css';
 import '../css/EventPage.css';
@@ -14,34 +13,13 @@ import '../css/EventPage.css';
 class EventPage extends Component {
   constructor(props) {
     super(props);
-    this.props.dispatch(fetchMembers());
+    this.props.dispatch(fetchEvents());
     this.props.dispatch(setNavVisible());
-    this.state = {
-      events: [
-        {
-          _id: 1,
-          title: 'Bierevent',
-          description:
-            'Dieser Bierevent ist dafür da, dass wir uns auch mal entspannen können und zusammen Freedom geniessen',
-          circles: ['Bern'],
-          date: '21.02.2019',
-          startTime: '18:00',
-          endTime: '20:00',
-          location: 'Berner Resti',
-          organisationTeam: 'Marc Zimmermann',
-          registrationEndDate: '10.02.2019',
-          permittedRoles: [2, 3, 4],
-          month: 'Okt',
-          weekDay: 'Sonntag',
-          day: 13
-        }
-      ]
-    };
   }
 
   render() {
-    console.log(this.state.events);
-    let eventCards = this.state.events.map(event => {
+    console.log(this.props);
+    let eventCards = this.props.events.map(event => {
       return <EventCard key={event._id} event={event} />;
     });
     return (
@@ -54,7 +32,7 @@ class EventPage extends Component {
               </style>
             </Helmet>
 
-            <SearchFieldMember />
+            <SearchFieldEvent />
             <Row className="member-cards-row" key={eventCards}>
               {eventCards}
             </Row>
@@ -67,7 +45,7 @@ class EventPage extends Component {
 
 function mapStateToProps(state) {
   return {
-    members: state.member.filteredMembers
+    events: state.event.filteredEvents
   };
 }
 

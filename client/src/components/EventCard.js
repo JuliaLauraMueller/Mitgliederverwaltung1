@@ -3,22 +3,47 @@ import { Card, CardText, CardBody, CardTitle, Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 class EventCard extends Component {
+  constructor(props) {
+    super(props);
+    this.days = [
+      'Sonntag',
+      'Montag',
+      'Dienstag',
+      'Mittwoch',
+      'Donnerstag',
+      'Freitag',
+      'Samstag'
+    ];
+    this.months = [
+      'Januar',
+      'Februar',
+      'März',
+      'April',
+      'Mai',
+      'Juni',
+      'Juli',
+      'August',
+      'September',
+      'Oktober',
+      'November',
+      'Dezember'
+    ];
+  }
   render() {
+    let date = new Date(this.props.event.date);
+    console.log(this.props.event.date);
+    console.log(date);
+    let weekday = this.days[date.getDay()];
+    let month = this.months[date.getMonth()];
     return (
       <Card className="event-card" style={{ border: '1px solid white' }}>
         <CardBody>
           <Row>
             <Col xs="auto" sm={{ size: 'auto' }}>
               <div className="event-card-date">
-                <CardText className="event-card-month">
-                  {this.props.event.month}
-                </CardText>
-                <CardText className="event-card-day">
-                  {this.props.event.day}
-                </CardText>
-                <CardText className="event-card-weekDay">
-                  {this.props.event.weekDay}
-                </CardText>
+                <CardText className="event-card-month">{month}</CardText>
+                <CardText className="event-card-day">{date.getDate()}</CardText>
+                <CardText className="event-card-weekDay">{weekday}</CardText>
               </div>{' '}
             </Col>
             <Col>
@@ -70,7 +95,7 @@ class EventCard extends Component {
                   className="profile-text"
                   to={`/event/${this.props.event._id}`}
                 >
-                  Weiterlesen
+                  Mehr
                   <svg
                     className="profile-arrow"
                     viewBox="0 0 7 12"

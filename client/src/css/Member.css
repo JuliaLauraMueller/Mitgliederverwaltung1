@@ -94,6 +94,12 @@ hr {
   margin-top: -17px;
   padding: 0;
   margin-top: 0px;
+  width: 100%;
+}
+
+.search-field {
+  display: flex;
+  justify-content: center;
 }
 
 /*MemberCard*/

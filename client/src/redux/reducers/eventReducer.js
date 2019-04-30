@@ -1,13 +1,16 @@
 import {
+  SEARCH_EVENTS,
   EVENT_FETCHED,
   EVENT_DELETED,
   CREATE_EVENT,
   EVENTS_FETCHED,
   PUT_EVENT
 } from '../types/eventTypes';
+import { filterEvents } from '../../helpers/eventsSearch';
 
 const initialState = {
   events: [],
+  filteredEvents: [],
   fetchedEvent: {}
 };
 
@@ -36,24 +39,39 @@ function deleteEvent(events, id) {
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case SEARCH_EVENTS:
+      return {
+        events: state.events,
+        searchText: action.payload,
+        fetchedEvent: state.fetchedEvent,
+        filteredEvents: filterEvents(
+          state.events,
+          action.payload.searchText,
+          action.payload.pastEventsIncluded
+        )
+      };
     case EVENT_FETCHED:
       return {
         events: state.events,
+        filteredEvents: state.filteredEvents,
         fetchedEvent: action.payload
       };
     case EVENTS_FETCHED:
       return {
         events: [...action.payload],
+        filteredEvents: filterEvents(action.payload, '', false),
         fetchedEvent: state.fetchedEvent
       };
     case EVENT_DELETED:
       return {
         events: deleteEvent(state.events, action.payload),
+        filteredEvents: state.filteredEvents,
         fetchedEvent: state.fetchedEvent
       };
     case CREATE_EVENT:
       return {
         events: [...state.events, action.payload],
+        filteredEvents: state.filteredEvents,
         fetchedEvent: state.fetchedEvent
       };
     case PUT_EVENT:
