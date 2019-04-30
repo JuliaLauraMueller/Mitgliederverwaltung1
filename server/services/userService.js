@@ -164,19 +164,16 @@ async function updateUser(id, userParam) {
 
   userData = updateURLs(userData, companyData);
   var errors = [];
-  errors = validateAll(userData, errors);
-  errors = companyService.validateCompany(companyData, errors);
-  if (userParam.userData.avatar) {
+  if (userData.avatar) {
     try {
-      userParam.userData.avatar = Buffer.from(
-        userParam.userData.avatar,
-        'base64'
-      );
+      userData.avatar = Buffer.from(userData.avatar, 'base64');
     } catch (e) {
       console.log(e);
-      errors.push('Ungültiges Bild');
+      errors.push('Profilbild: Bild korrupt');
     }
   }
+  errors = validateAll(userData, errors);
+  errors = companyService.validateCompany(companyData, errors);
 
   if (errors.length != 0) {
     throw { type: 'invalid_input', errors };
@@ -448,5 +445,19 @@ function validateAll(userParam, errors) {
   if (userParam.privateCity && userParam.privateCity.length > 30) {
     errors.push('Ort Privat: Maximal 30 Zeichen');
   }
+
+  //ProfilePic
+  if (userParam.avatar) {
+    if (
+      userParam.avatarTag !== 'data:image/png;base64' &&
+      userParam.avatarTag !== 'data:image/jpeg;base64' &&
+      userParam.avatarTag !== 'data:image/gif;base64'
+    ) {
+      errors.push('Profilbild: Dateityp muss jpg/jpeg/png/gif sein');
+    } else if (userParam.avatar.toString().length > 500000) {
+      errors.push('Profilbild: Bild zu gross, maximal 500KB');
+    }
+  }
+
   return errors;
 }
