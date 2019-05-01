@@ -127,6 +127,7 @@
 .event-card-date {
   text-align: center;
   margin: auto;
+  margin-top: 10px;
   margin-left: 12px;
   width: 100%;
   min-width: 143px;
@@ -158,11 +159,12 @@
 }
 
 .event-card-title {
-  font-size: 30px;
+  font-size: 27px;
+  white-space: nowrap;
 }
 
 .event-card-time {
-  margin-top: -7px;
+  margin-top: -5px;
   font-size: 20px;
 }
 
@@ -171,15 +173,15 @@
   font-size: 18px;
   display: block;
   width: 350px;
+  min-height: 54px;
+  max-height: 54px;
   white-space: normal;
 }
 
 .event-card-link {
-  position: absolute;
-  bottom: 20;
-  left: 5;
-  margin-left: -80px;
-  margin-top: 125px;
+  position: static;
+  margin-left: 500px;
+  margin-top: 0px;
   white-space: nowrap;
 }
 
