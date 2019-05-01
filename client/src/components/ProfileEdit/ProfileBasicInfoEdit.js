@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { InputGroup, InputGroupAddon, Input, Row, Col } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import AvatarEditor from 'react-avatar-editor';
 
 import '../../css/ProfilePage.css';
 
 class ProfileBasicInfoEDIT extends Component {
   _isMounted = false;
+
   constructor(props) {
     super(props);
     const profile = this.props.profile;
@@ -52,6 +54,15 @@ class ProfileBasicInfoEDIT extends Component {
   }
 
   onSave() {
+    let canv = this.editor.getImage();
+    let pictureB64 = canv.toDataURL('image/jpeg', 1);
+    let quality = 0.9;
+    while ((pictureB64.length * 3) / 4 > 500 * 1024 && quality > 0) {
+      pictureB64 = canv.toDataURL('image/jpeg', quality);
+      quality -= 0.1;
+    }
+    let splitArr = pictureB64.split(',');
+
     const basicInformationUpdate = {
       _id: this.props.profile._id,
       xingLink: this.state.xingLink,
@@ -70,8 +81,8 @@ class ProfileBasicInfoEDIT extends Component {
       //city: this.state.city,
       //godfather: this.state.godfather,
       birthdate: this.state.birthdate,
-      avatar: this.state.avatar,
-      avatarTag: this.state.avatarTag
+      avatar: splitArr[1],
+      avatarTag: splitArr[0]
     };
     return basicInformationUpdate;
   }
@@ -98,6 +109,8 @@ class ProfileBasicInfoEDIT extends Component {
     });
   }
 
+  setEditorRef = editor => (this.editor = editor);
+
   render() {
     return (
       <Row>
@@ -106,19 +119,32 @@ class ProfileBasicInfoEDIT extends Component {
             <Col>
               <InputGroup>
                 <div className='input-field'>
-                  <img
-                    className='profile-image-edit'
-                    style={{ width: '147px', height: '147px' }}
-                    src={
+                  <AvatarEditor
+                    image={
                       this.state.avatar
                         ? this.state.avatarTag + ',' + this.state.avatar
                         : require('../../img/Profile_Placeholder.png')
                     }
-                    alt='profile'
+                    ref={this.setEditorRef}
+                    width={147}
+                    height={147}
+                    border={0}
+                    color={[0, 0, 0, 0.6]} // RGBA
+                    scale={1.0}
+                    rotate={0}
+                    borderRadius={180}
                   />
                 </div>
               </InputGroup>
-              <input type='file' onChange={this.fileSelectedHandler} />
+              <input
+                type='file'
+                id='pictureUpload'
+                onChange={this.fileSelectedHandler}
+                className='hidden'
+              />
+              <label htmlFor='pictureUpload' className='picture-button'>
+                Neues Profilbild
+              </label>
             </Col>
           </Row>
 
