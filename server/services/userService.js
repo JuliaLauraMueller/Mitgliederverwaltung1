@@ -166,12 +166,6 @@ async function updateUser(id, userParam) {
   var errors = [];
 
   if (userData.avatar) {
-    if (
-      ((userData.avatarTag + ',' + userData.avatar).length * 3) / 4 >
-      500 * 1024
-    ) {
-      errors.push('Profilbild ist zu gross');
-    }
     try {
       userData.avatar = Buffer.from(userData.avatar, 'base64');
     } catch (e) {
@@ -457,10 +451,9 @@ function validateAll(userParam, errors) {
   if (userParam.avatar) {
     if (
       userParam.avatarTag !== 'data:image/png;base64' &&
-      userParam.avatarTag !== 'data:image/jpeg;base64' &&
-      userParam.avatarTag !== 'data:image/gif;base64'
+      userParam.avatarTag !== 'data:image/jpeg;base64'
     ) {
-      errors.push('Profilbild: Dateityp muss jpg/jpeg/png/gif sein');
+      errors.push('Profilbild: Dateityp muss jpg/jpeg/png sein');
     } else if (userParam.avatar.toString().length > 500000) {
       errors.push('Profilbild: Bild zu gross, maximal 500KB');
     }
