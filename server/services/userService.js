@@ -164,7 +164,14 @@ async function updateUser(id, userParam) {
 
   userData = updateURLs(userData, companyData);
   var errors = [];
+
   if (userData.avatar) {
+    if (
+      ((userData.avatarTag + ',' + userData.avatar).length * 3) / 4 >
+      500 * 1024
+    ) {
+      errors.push('Profilbild ist zu gross');
+    }
     try {
       userData.avatar = Buffer.from(userData.avatar, 'base64');
     } catch (e) {
