@@ -13,7 +13,9 @@ module.exports = {
 };
 
 async function getById(id) {
-  return await Event.findById(id).select();
+  return await Event.findById(id)
+    .populate('circles')
+    .select();
 }
 
 async function getAll() {

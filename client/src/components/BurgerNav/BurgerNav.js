@@ -250,7 +250,7 @@ class BurgerNav extends React.Component {
         </Link>
 
         <Link
-          to="/"
+          to="/events"
           id="contact"
           className="burger-menu-item"
           href="/contact"

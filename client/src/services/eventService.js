@@ -54,7 +54,6 @@ async function getEventData(id) {
         image: resp.data.image,
         description: resp.data.description,
         circles: resp.data.circles,
-        circleValues: resp.data.circleValues,
         date: resp.data.date,
         startTime: resp.data.startTime,
         endTime: resp.data.endTime,

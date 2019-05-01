@@ -1,0 +1,191 @@
+.event-page-container {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-content: center;
+}
+
+.event-image,
+#event-image {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.overflow {
+  overflow: auto;
+  overflow-wrap: break-word;
+  padding: 0px;
+  display: flex;
+  justify-content: center;
+}
+
+.date {
+  padding-left: 0em;
+}
+
+.event-infos {
+  display: flex;
+  justify-content: center;
+  padding-left: 8.5em;
+  padding-right: 8.5em;
+  text-align: justify;
+}
+
+.event-title-infos {
+  display: inline;
+  justify-content: left;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  text-align: left;
+}
+
+.event-title {
+  font-size: 38px;
+}
+
+.event-time {
+  font-size: 22px;
+}
+
+.event-location {
+  font-size: 22px;
+}
+
+.event-description-title {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  font-size: 26px;
+  display: block;
+  white-space: normal;
+}
+
+.event-description {
+  margin-top: 18px;
+  font-size: 18px;
+  display: block;
+  white-space: normal;
+}
+
+.event-description-additional {
+  margin-top: 2px;
+  font-size: 20px;
+  display: block;
+  white-space: normal;
+}
+
+.event-anmeldung {
+  display: flex;
+  justify-content: right;
+  padding-left: 8.5em;
+  padding-right: 8.5em;
+  padding-top: -4em;
+  padding-bottom: 0.8em;
+}
+
+.event-month {
+  font-size: 30px;
+  margin-bottom: -10px;
+}
+
+.event-day {
+  font-size: 60px;
+  margin-top: -10px;
+  margin-bottom: -10px;
+}
+
+.event-weekDay {
+  font-size: 20px;
+}
+
+.button-accompaniments {
+  border-radius: 2em;
+  font-size: 1em;
+}
+
+.button-attending {
+  margin-right: 16px;
+  margin-left: 16px;
+}
+
+/*Tooltip style*/
+
+/*Event-Card style*/
+
+.event-card {
+  display: flex;
+  justify-content: center;
+  border: 0px solid white;
+  min-width: 700px;
+  max-width: 700px;
+  min-height: 190px;
+  max-height: 190px;
+  border-radius: 0px;
+  margin: 9px;
+}
+
+.event-card-date {
+  text-align: center;
+  margin: auto;
+  margin-top: 13px;
+  margin-left: 12px;
+  width: 100%;
+  min-width: 143px;
+  max-width: 143px;
+}
+
+.event-card-content {
+  margin-left: 0px;
+}
+
+.event-card-month {
+  font-size: 27px;
+  margin-top: 0px;
+  margin-bottom: -20px;
+}
+
+.event-card-day {
+  font-size: 60px;
+  margin-top: 6px;
+  margin-bottom: -7px;
+}
+
+.event-card-weekDay {
+  font-size: 20px;
+}
+
+.event-card-location {
+  margin-top: -15px;
+  font-size: 20px;
+}
+
+.event-card-title {
+  font-size: 27px;
+  white-space: nowrap;
+}
+
+.event-card-time {
+  margin-top: -5px;
+  font-size: 20px;
+}
+
+.event-card-description {
+  margin-top: 5px;
+  font-size: 18px;
+  display: block;
+  width: 350px;
+  min-height: 54px;
+  max-height: 54px;
+  white-space: normal;
+}
+
+.event-card-link {
+  position: static;
+  margin-left: 500px;
+  margin-top: 0px;
+  white-space: nowrap;
+}
+
+.event-card-location-icon {
+  padding-top: 3em;
+}

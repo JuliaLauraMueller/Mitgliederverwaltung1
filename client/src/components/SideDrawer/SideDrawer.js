@@ -217,7 +217,7 @@ class SideDrawer extends Component {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/">
+                    <Link to="/events">
                       <svg
                         width="14"
                         height="26"

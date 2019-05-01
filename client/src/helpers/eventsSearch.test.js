@@ -3,6 +3,7 @@ import { filterEvents } from './eventsSearch';
 const event1 = {
   _id: '1',
   title: 'Bierabend Bern',
+  location: 'X-Tra',
   date: '2020-09-10',
   circleValues: [
     {
@@ -15,6 +16,7 @@ const event1 = {
 const event2 = {
   _id: '2',
   title: 'Bierabend Bern',
+  location: 'Keller',
   date: '2020-09-10',
   circleValues: [
     {
@@ -27,6 +29,7 @@ const event2 = {
 const event3 = {
   _id: '3',
   title: 'Networking',
+  location: 'X-Tra',
   date: '2020-09-10',
   circleValues: [
     {
@@ -39,6 +42,7 @@ const event3 = {
 const event4 = {
   _id: '4',
   title: 'Startup Day',
+  location: 'Messe',
   date: '2010-09-10',
   circleValues: [
     {
@@ -51,6 +55,7 @@ const event4 = {
 const event5 = {
   _id: '5',
   title: 'Teamevent alle Mitglieder',
+  location: 'X-Tra',
   date: '2020-09-10',
   circleValues: [
     {
@@ -119,6 +124,22 @@ describe('Test if the searchfilter filters the expected events', () => {
     let filteredEvents = filterEvents(eventsFromMockDB, 'Network');
     expect(filteredEvents.length).toEqual(1);
     expect(filteredEvents.includes(event3)).toBe(true);
+  });
+
+  test('search for location x-tra with completed searchtext', () => {
+    let filteredEvents = filterEvents(eventsFromMockDB, 'x-tra');
+    expect(filteredEvents.length).toEqual(3);
+    expect(filteredEvents.includes(event1)).toBe(true);
+    expect(filteredEvents.includes(event3)).toBe(true);
+    expect(filteredEvents.includes(event5)).toBe(true);
+  });
+
+  test('search for location x-tra with uncompleted searchtext', () => {
+    let filteredEvents = filterEvents(eventsFromMockDB, 'xtra');
+    expect(filteredEvents.length).toEqual(3);
+    expect(filteredEvents.includes(event1)).toBe(true);
+    expect(filteredEvents.includes(event3)).toBe(true);
+    expect(filteredEvents.includes(event5)).toBe(true);
   });
 
   test('show past event (Startup Day) if pastEventIncluded is true', () => {

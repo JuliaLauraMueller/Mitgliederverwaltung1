@@ -33,7 +33,7 @@ function getById(req, res, next) {
           ) &&
           roleHelper.roleAccessCheckMultipleCircles(
             0,
-            event.circles,
+            event.circles.map(c => c._id),
             req.user.role,
             req.user.circle
           )

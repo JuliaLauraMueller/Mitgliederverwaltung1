@@ -16,10 +16,15 @@ function replaceUmlauts(text) {
 }
 
 export function filterEvents(events, searchText, pastEventsIncluded = false) {
+  if (!events) return [];
   searchText = replaceUmlauts(searchText.toLowerCase());
   return events.filter(e => {
     let title = e.title
       ? replaceUmlauts(e.title.toLowerCase()).substring(0, searchText.length)
+      : '';
+
+    let location = e.location
+      ? replaceUmlauts(e.location.toLowerCase()).substring(0, searchText.length)
       : '';
 
     let circles = e.circleValues
@@ -41,7 +46,9 @@ export function filterEvents(events, searchText, pastEventsIncluded = false) {
     }
 
     let baseSearchFound =
-      levenshteinInRange(searchText, title) || circleSearchFound;
+      levenshteinInRange(searchText, title) ||
+      levenshteinInRange(searchText, location) ||
+      circleSearchFound;
 
     if (pastEventsIncluded) {
       return baseSearchFound;
