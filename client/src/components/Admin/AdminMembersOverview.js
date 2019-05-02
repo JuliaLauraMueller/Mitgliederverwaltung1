@@ -161,6 +161,9 @@ class AdminMembersOverview extends Component {
       let EditButton = {};
       let DeleteButton = {};
       let RoleButton = {};
+      var tooltipIdEdit = "tooltip-edit-" + member._id
+      var tooltipIdDelete = "tooltip-delete-" + member._id
+      var tooltipIdRoles = "tooltip-roles-" + member._id
       if (
         store.getState().auth.user !== undefined &&
         store.getState().auth.user.role >= 3
@@ -169,9 +172,9 @@ class AdminMembersOverview extends Component {
           <Link
             className="admin-link admin-link-small"
             to={'/member/' + member._id}
-            id="tooltip-edit-member"
+            id={tooltipIdEdit}
           >
-            <UncontrolledTooltip placement="bottom-start" target="tooltip-edit-member">
+            <UncontrolledTooltip placement="bottom-start" target={tooltipIdEdit}>
                   Mitglied bearbeiten
             </UncontrolledTooltip>
             <svg
@@ -199,11 +202,11 @@ class AdminMembersOverview extends Component {
 
         DeleteButton = (
           <span
-            id="tooltip-delete-member"
+            id={tooltipIdDelete}
             className="admin-link admin-link-small admin-cursor"
             onClick={() => this.toggleMemberDeleteModal(member)}
           >
-              <UncontrolledTooltip placement="bottom-start" target="tooltip-delete-member">
+              <UncontrolledTooltip placement="bottom-start" target={tooltipIdDelete}>
                   Mitglied löschen
               </UncontrolledTooltip>
             <svg
@@ -239,11 +242,11 @@ class AdminMembersOverview extends Component {
       ) {
         RoleButton = (
           <span
-            id="tooltip-change-role"
+            id={tooltipIdRoles}
             className="admin-link admin-link-small admin-cursor"
             onClick={() => this.toggleRoleChangeModal(member)}
           >
-              <UncontrolledTooltip placement="bottom-start" target="tooltip-change-role">
+              <UncontrolledTooltip placement="bottom-start" target={tooltipIdRoles}>
                   Rolle bearbeiten
               </UncontrolledTooltip>
             <svg

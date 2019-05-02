@@ -130,16 +130,18 @@ class AdminCirclesOverview extends Component {
 
   getCircleRows(circles) {
     return circles.map(circle => {
+      var tooltipIdEdit = "tooltip-edit-" + circle._id
+      var tooltipIdDelete = "tooltip-delete-" + circle._id
       return (
         <tr key={circle._id}>
           <td>{circle.name}</td>
           <td>
             <span
-              id="tooltip-edit-cities"
+              id={tooltipIdEdit}
               className="admin-link admin-link-small admin-cursor"
               onClick={() => this.toggleCircleEditModal(circle)}
             >
-              <UncontrolledTooltip placement="bottom-start" target="tooltip-edit-cities">
+              <UncontrolledTooltip placement="bottom-start" target={tooltipIdEdit}>
                   City bearbeiten
               </UncontrolledTooltip>
               <svg
@@ -164,11 +166,11 @@ class AdminCirclesOverview extends Component {
               </svg>
             </span>
             <span
-              id="tooltip-delete-cities"
+              id={tooltipIdDelete}
               className="admin-link admin-link-small admin-cursor"
               onClick={() => this.toggleCircleDeleteModal(circle)}
             >
-              <UncontrolledTooltip placement="bottom-start" target="tooltip-delete-cities">
+              <UncontrolledTooltip placement="bottom-start" target={tooltipIdDelete}>
                   City löschen
               </UncontrolledTooltip>
               <svg

@@ -283,10 +283,12 @@ class AdminEventsOverview extends Component {
     ).map(event => {
       let EditButton = {};
       let DeleteButton = {};
+      var tooltipIdEdit = "tooltip-edit-" + event._id
+      var tooltipIdDelete = "tooltip-delete-" + event._id
       EditButton = (
         <span
           className="admin-link admin-link-small admin-cursor"
-          id="tooltip-edit"
+          id={tooltipIdEdit}
           onClick={() =>
             this.toggleEventEditModal({
               _id: event._id,
@@ -307,7 +309,7 @@ class AdminEventsOverview extends Component {
             })
           }
         >
-          <UncontrolledTooltip placement="bottom-start" target="tooltip-edit">
+          <UncontrolledTooltip placement="bottom-start" target={tooltipIdEdit}>
             Event bearbeiten
           </UncontrolledTooltip>
           <svg
@@ -338,9 +340,9 @@ class AdminEventsOverview extends Component {
           className="admin-link admin-link-small admin-cursor"
           onClick={() => this.toggleEventDeleteModal(event)}
           title="Event löschen"
-          id="tooltip-delete"
+          id={tooltipIdDelete}
         >
-          <UncontrolledTooltip placement="bottom-start" target="tooltip-delete">
+          <UncontrolledTooltip placement="bottom-start" target={tooltipIdDelete}>
             Event löschen
           </UncontrolledTooltip>
           <svg
