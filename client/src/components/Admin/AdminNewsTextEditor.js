@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { EditorState, RichUtils } from 'draft-js';
+import { EditorState, RichUtils, convertToRaw, convertFromRaw } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
-import createInlineToolbarPlugin from 'draft-js-inline-toolbar-plugin';
 import createToolbarPlugin from 'draft-js-static-toolbar-plugin';
 import {
   ItalicButton,
@@ -13,23 +12,41 @@ import {
   UnorderedListButton,
   OrderedListButton
 } from 'draft-js-buttons';
-import 'draft-js-inline-toolbar-plugin/lib/plugin.css';
 import 'draft-js-static-toolbar-plugin/lib/plugin.css';
 import '../../css/TextEditor.css';
 
-// inline toolbar plugin
-const inlineToolbarPlugin = createInlineToolbarPlugin();
-const { InlineToolbar } = inlineToolbarPlugin;
-
-//static toolbar plugin
+// static toolbar plugin
 const staticToolbarPlugin = createToolbarPlugin();
-const { StaticToolbar } = staticToolbarPlugin;
+const { Toolbar } = staticToolbarPlugin;
 
 class TextEditor extends Component {
   constructor(props) {
     super(props);
     this.state = { editorState: EditorState.createEmpty() };
-    this.onChange = editorState => this.setState({ editorState });
+    this.getRawContent = this.getRawContent.bind(this);
+    this.setEditorState = this.setEditorState.bind(this);
+    this.onChange = editorState => {
+      this.setState({ editorState });
+    };
+  }
+
+  setEditorState(editorState) {
+    if (editorState) {
+      this.setState({
+        editorState: EditorState.createWithContent(
+          convertFromRaw(JSON.parse(editorState))
+        )
+      });
+    }
+  }
+
+  getRawContent() {
+    let content = this.state.editorState.getCurrentContent();
+    if (content.hasText()) {
+      return JSON.stringify(convertToRaw(content));
+    } else {
+      return '';
+    }
   }
 
   //Allowing key commands (Ctrl + b...)
@@ -50,12 +67,11 @@ class TextEditor extends Component {
           <Editor
             editorState={this.state.editorState}
             onChange={this.onChange}
-            plugins={[inlineToolbarPlugin, staticToolbarPlugin]}
+            plugins={[staticToolbarPlugin]}
             handleKeyCommand={this.handleKeyCommand}
           />
         </div>
-
-        <StaticToolbar>
+        <Toolbar>
           {externalProps => (
             <div>
               <BoldButton {...externalProps} />
@@ -68,7 +84,7 @@ class TextEditor extends Component {
               <OrderedListButton {...externalProps} />
             </div>
           )}
-        </StaticToolbar>
+        </Toolbar>
       </div>
     );
   }
