@@ -75,7 +75,7 @@ class AdminNewsArticleOverview extends Component {
                 <tr>
                   <th>Title</th>
                   <th>Datum</th>
-                  <th className="d-none d-sm-table-cell">Author</th>
+                  <th className="d-none d-md-table-cell">Author</th>
                 </tr>
               </thead>
               <tbody>{this.getNewsArticleRows(this.props.newsArticles)}</tbody>
@@ -161,9 +161,7 @@ class AdminNewsArticleOverview extends Component {
         <tr key={newsArticle._id}>
           <td>{newsArticle.title}</td>
           <td>{newsArticle.date}</td>
-          <td className="d-none d-md-table-cell">
-            {newsArticle.author.surname}
-          </td>
+          <td className="d-none d-md-table-cell">{newsArticle.author}</td>
           <td>
             {EditButton}
             {DeleteButton}
