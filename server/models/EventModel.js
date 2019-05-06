@@ -12,7 +12,8 @@ const schema = new Schema({
   location: { type: String },
   organisationTeam: { type: String },
   registrationEndDate: { type: Date },
-  permittedRoles: [Number]
+  permittedRoles: [Number],
+  attendees: [{ user: Schema.Types.ObjectId, accompaniments: Number }]
 });
 
 schema.set('toJSON', { virtuals: true });

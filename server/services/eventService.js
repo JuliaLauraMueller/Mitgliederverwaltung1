@@ -9,7 +9,9 @@ module.exports = {
   deleteEvent,
   create,
   getCirclesForId,
-  removeCircleFromEvents
+  removeCircleFromEvents,
+  addAttendee,
+  removeAttendee
 };
 
 async function getById(id) {
@@ -143,4 +145,29 @@ async function removeCircleFromEvents(circleId) {
   await Event.updateMany({
     $pull: { circles: mongoose.Types.ObjectId(circleId) }
   });
+}
+
+async function addAttendee(eventId, userId, accompaniments) {
+  const event = await Event.findById(eventId);
+  if (!event) throw 'Event not found';
+
+  const attendee = event.attendees.find(a => a.user === userId);
+  if (attendee) {
+    attendee.accompaniments = accompaniments;
+  } else {
+    attendee.user = userId;
+    attendee.accompaniments = accompaniments;
+    event.attendees.push(attendee);
+  }
+
+  return await event.save();
+}
+
+async function removeAttendee(eventId, userId) {
+  const event = await Event.findById(eventId);
+  if (!event) throw 'Event not found';
+
+  event.attendees.splice(event.findIndex(a => a.user === userId), 1);
+
+  return await event.save();
 }

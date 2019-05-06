@@ -9,6 +9,8 @@ router.get('/:id', getById);
 router.put('/:id', update);
 router.delete('/:id', deleteEvent);
 router.post('/', create);
+router.put('/:id/addAttendee', addAttendee);
+router.delete('/:id/removeAttendee', removeAttendee);
 
 module.exports = router;
 
@@ -127,4 +129,26 @@ async function create(req, res, next) {
   } else {
     res.sendStatus(403);
   }
+}
+
+async function addAttendee(req, res, next) {
+  eventService
+    .addAttendee(req.params.id, req.user._id, req.body.accompaniments)
+    .then(event => {
+      return res.json({ updated: event });
+    })
+    .catch(error => {
+      res.sendStatus(404);
+    });
+}
+
+async function removeAttendee(req, res, next) {
+  eventService
+    .removeAttendee(req.params.id, req.user._id)
+    .then(() => {
+      res.json({});
+    })
+    .catch(() => {
+      res.json({});
+    });
 }
