@@ -52,7 +52,6 @@ class AdminCreateNewsArticle extends Component {
           date: this.state.newsArticleDate
         })
       )
-
       .then(res => {
         this.setState(initialState);
         this.props.close();
