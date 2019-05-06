@@ -7,28 +7,30 @@
 
 .event-image,
 #event-image {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   display: flex;
   justify-content: center;
+  width: 1000px;
+  height: 400px;
 }
 
 .overflow {
   overflow: auto;
-  overflow-wrap: break-word;
   padding: 0px;
   display: flex;
   justify-content: center;
 }
 
 .date {
-  padding-left: 0em;
+  padding-left: 3.5em;
+  padding-right: 3.5em;
 }
 
 .event-infos {
   display: flex;
   justify-content: center;
-  padding-left: 8.5em;
-  padding-right: 8.5em;
+  padding-left: 3.5em;
+  padding-right: 3.5em;
   text-align: justify;
 }
 
@@ -77,9 +79,9 @@
 .event-anmeldung {
   display: flex;
   justify-content: right;
-  padding-left: 8.5em;
-  padding-right: 8.5em;
-  padding-top: -4em;
+  padding-left: 3.5em;
+  padding-right: 3.5em;
+  padding-top: -5em;
   padding-bottom: 0.8em;
 }
 
@@ -108,7 +110,124 @@
   margin-left: 16px;
 }
 
-/*Tooltip style*/
+@media only screen and (max-width: 1200px) {
+  .event-image,
+  #event-image {
+    width: 760px;
+    height: 320px;
+  }
+
+  .event-infos {
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+  }
+
+  .event-anmeldung {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+
+  .date {
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+  }
+}
+
+@media only screen and (max-width: 780px) {
+  .event-image,
+  #event-image {
+    width: 580px;
+    height: 270px;
+  }
+
+  .event-infos {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+
+  .date {
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+  }
+
+  .overflow {
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+  }
+
+  .event-month {
+    font-size: 22px;
+  }
+
+  .event-day {
+    font-size: 40px;
+  }
+
+  .event-weekDay {
+    font-size: 18px;
+  }
+
+  .event-title {
+    font-size: 30px;
+  }
+
+  .event-time {
+    font-size: 18px;
+  }
+
+  .event-location {
+    font-size: 18px;
+  }
+
+  .event-description-additional {
+    line-height: 1em;
+    font-size: 18px;
+  }
+}
+
+@media only screen and (max-width: 767px) and (min-width: 540px) {
+  .event-title {
+    margin-top: 0.5em;
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  .event-image,
+  #event-image {
+    width: 295px;
+    height: 140px;
+    margin-right: 1em;
+  }
+
+  .event-infos {
+    padding-left: 0em;
+    padding-right: 0em;
+  }
+
+  .event-anmeldung {
+    padding-left: 0em;
+    padding-right: 0em;
+  }
+
+  .button-attending {
+    margin-top: 1em;
+  }
+
+  .date {
+    padding-left: 0em;
+    padding-right: 0em;
+  }
+
+  .overflow {
+    padding-left: 0em;
+    padding-right: 0em;
+    margin-top: -0.5em;
+  }
+
+  .event-title {
+    margin-top: 0.5em;
+  }
+}
 
 /*Event-Card style*/
 
@@ -192,7 +311,7 @@
   padding-top: 3em;
 }
 
-@media only screen and (min-width: 732px) and (max-width: 3000px) {
+@media only screen and (min-width: 732px) and (max-width: 10000px) {
   .event-card {
     min-width: 700px;
     min-height: 190px;
@@ -233,7 +352,7 @@
 
 @media only screen and (max-width: 480px) {
   .event-card {
-    max-width: 345px;
+    max-width: 325px;
     max-height: 170px;
   }
 
@@ -286,7 +405,6 @@
 
   .event-card-link {
     margin-left: 150px;
-
     white-space: nowrap;
   }
 }
