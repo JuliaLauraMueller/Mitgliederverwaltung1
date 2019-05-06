@@ -4,7 +4,9 @@ import {
   EVENT_DELETED,
   CREATE_EVENT,
   EVENTS_FETCHED,
-  PUT_EVENT
+  PUT_EVENT,
+  ADD_ATTENDEE,
+  REMOVE_ATTENDEE
 } from '../types/eventTypes';
 import { filterEvents } from '../../helpers/eventsSearch';
 
@@ -75,6 +77,16 @@ export default function(state = initialState, action) {
         fetchedEvent: state.fetchedEvent
       };
     case PUT_EVENT:
+      return {
+        events: [...getUpdatedEvents(state.events, action.payload)],
+        fetchedEvent: state.fetchedEvent
+      };
+    case ADD_ATTENDEE:
+      return {
+        events: [...getUpdatedEvents(state.events, action.payload)],
+        fetchedEvent: state.fetchedEvent
+      };
+    case REMOVE_ATTENDEE:
       return {
         events: [...getUpdatedEvents(state.events, action.payload)],
         fetchedEvent: state.fetchedEvent

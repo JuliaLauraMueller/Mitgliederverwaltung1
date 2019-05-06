@@ -4,7 +4,9 @@ import {
   CREATE_EVENT,
   EVENTS_FETCHED,
   PUT_EVENT,
-  SEARCH_EVENTS
+  SEARCH_EVENTS,
+  ADD_ATTENDEE,
+  REMOVE_ATTENDEE
 } from '../types/eventTypes';
 import eventService from '../../services/eventService';
 import store from '../../helpers/store';
@@ -72,5 +74,31 @@ export const putEvent = eventData => async dispatch => {
     })
     .catch(errorMessage => {
       return Promise.reject(errorMessage);
+    });
+};
+
+export const addAttendee = (id, data) => {
+  return eventService
+    .addAttendee(id, data)
+    .then(res => {
+      if (res) {
+        dispatch({ type: ADD_ATTENDEE, payload: res.data.updated });
+      }
+    })
+    .catch(() => {
+      return Promise.reject();
+    });
+};
+
+export const removeAttendee = id => {
+  return eventService
+    .removeAttendee(id)
+    .then(res => {
+      if (res) {
+        dispatch({ type: REMOVE_ATTENDEE, payload: res.data.updated });
+      }
+    })
+    .catch(() => {
+      return Promise.reject();
     });
 };

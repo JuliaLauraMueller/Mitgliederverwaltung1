@@ -145,8 +145,8 @@ async function addAttendee(req, res, next) {
 async function removeAttendee(req, res, next) {
   eventService
     .removeAttendee(req.params.id, req.user._id)
-    .then(() => {
-      res.json({});
+    .then(event => {
+      res.json({ updated: event });
     })
     .catch(() => {
       res.json({});
