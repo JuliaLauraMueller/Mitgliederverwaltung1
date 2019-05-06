@@ -160,7 +160,7 @@ class SideDrawer extends Component {
               <div className="navigation-links-nav">
                 <ul>
                   <li>
-                    <Link to="/">
+                    <Link to="/news">
                       <svg
                         height="26"
                         width="18"
