@@ -20,6 +20,7 @@ async function getAll() {
         _id: '$_id',
         title: '$title',
         article: '$article',
+        author: '$author',
         date: { $dateToString: { format: '%Y-%m-%d', date: '$date' } }
       }
     }
