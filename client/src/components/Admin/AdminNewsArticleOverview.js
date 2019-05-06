@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { alertError } from '../../redux/actions/alertActions';
 import {
   Table,
   Row,
@@ -7,9 +8,20 @@ import {
   Collapse,
   Card,
   CardBody,
-  UncontrolledTooltip
+  UncontrolledTooltip,
+  Form,
+  Modal,
+  ModalFooter,
+  Input,
+  Label,
+  FormGroup,
+  ModalBody,
+  ModalHeader
 } from 'reactstrap';
-import { fetchNewsArticles } from '../../redux/actions/newsArticleActions';
+import {
+  fetchNewsArticles,
+  putNewsArticle
+} from '../../redux/actions/newsArticleActions';
 import AdminCreateNewsArticle from './AdminCreateNewsArticle';
 
 class AdminNewsArticleOverview extends Component {
@@ -19,7 +31,7 @@ class AdminNewsArticleOverview extends Component {
     this.emptyNewsArticle = {
       title: '',
       article: '',
-      author: {},
+      author: '',
       date: ''
     };
 
@@ -34,12 +46,22 @@ class AdminNewsArticleOverview extends Component {
     };
     this.getNewsArticleRows = this.getNewsArticleRows.bind(this);
     this.collapseNewsArticle = this.collapseNewsArticle.bind(this);
+    this.toggleNewsArticleEditModal = this.toggleNewsArticleEditModal.bind(
+      this
+    );
+    this.createNewsArticleEditModal = this.createNewsArticleEditModal.bind(
+      this
+    );
+    this.handleChange = this.handleChange.bind(this);
+    this.onNewsArticleSave = this.onNewsArticleSave.bind(this);
+
     this.props.dispatch(fetchNewsArticles());
   }
 
   render() {
     return (
       <div>
+        {this.createNewsArticleEditModal()}
         <Row>
           <Col sm="12">
             <Row className="top-area">
@@ -95,6 +117,14 @@ class AdminNewsArticleOverview extends Component {
       EditButton = (
         <span
           className="admin-link admin-link-small admin-cursor"
+          onClick={() =>
+            this.toggleNewsArticleEditModal({
+              _id: newsArticle._id,
+              title: newsArticle.title || this.emptyNewsArticle.title,
+              date: newsArticle.date || this.emptyNewsArticle.date,
+              author: newsArticle.author || this.emptyNewsArticle.author
+            })
+          }
           id={tooltipIdEdit}
         >
           <UncontrolledTooltip placement="bottom-start" target={tooltipIdEdit}>
@@ -175,6 +205,118 @@ class AdminNewsArticleOverview extends Component {
     this.setState(state => ({
       collapseNewsArticle: !state.collapseNewsArticle
     }));
+  }
+
+  toggleNewsArticleEditModal(newsArticle) {
+    this.setState(prevState => ({
+      editModal: !prevState.editModal,
+      newsArticleToEdit: newsArticle
+    }));
+  }
+
+  async onNewsArticleSave(newsArticle) {
+    newsArticle.preventDefault();
+    await this.props
+      .dispatch(putNewsArticle(this.state.newsArticleToEdit))
+      .then(res => {
+        this.toggleNewsArticleEditModal(this.emptyNewsArticle);
+      })
+      .catch(errorMessages => {
+        this.props.dispatch(alertError(errorMessages.join('\n')));
+      });
+  }
+
+  handleChange(newsArticle) {
+    this.setState({
+      newsArticleToEdit: {
+        ...this.state.newsArticleToEdit,
+        [newsArticle.target.name]: newsArticle.target.value
+      }
+    });
+  }
+
+  createNewsArticleEditModal() {
+    return (
+      <Modal
+        isOpen={this.state.editModal}
+        toggle={() => this.toggleNewsArticleEditModal(this.emptyNewsArticle)}
+      >
+        <ModalHeader
+          toggle={() => this.toggleNewsArticleEditModal(this.emptyNewsArticle)}
+        >
+          News editieren
+        </ModalHeader>
+        <Form onSubmit={this.onNewsArticleSave}>
+          <ModalBody>
+            <FormGroup row>
+              <Col className="event-edit-row">
+                <Label className="event-edit-label">Titel:</Label>
+                <Input
+                  type="text"
+                  id="title"
+                  name="title"
+                  onChange={this.handleChange}
+                  value={this.state.newsArticleToEdit.title}
+                  className="event-edit-txt"
+                />
+              </Col>
+              <Col className="event-edit-row">
+                <Label className="event-edit-label">Author:</Label>
+                <Input
+                  type="text"
+                  id="author"
+                  name="author"
+                  className="event-edit-txt"
+                  onChange={this.handleChange}
+                  value={this.state.newsArticleToEdit.author}
+                />
+              </Col>
+              <Col className="event-edit-row">
+                <Label className="event-edit-label">Article:</Label>
+                <Input
+                  type="text"
+                  id="article"
+                  name="article"
+                  className="event-edit-txt"
+                  onChange={this.handleChange}
+                  value={this.state.newsArticleToEdit.article}
+                />
+              </Col>
+              <Col className="event-edit-row">
+                <Label className="event-edit-label">Datum:</Label>
+                <Input
+                  type="date"
+                  id="date"
+                  name="date"
+                  className="event-edit-txt"
+                  onChange={this.handleChange}
+                  value={this.state.newsArticleToEdit.date}
+                />
+              </Col>
+            </FormGroup>
+          </ModalBody>
+          <ModalFooter>
+            <input
+              type="submit"
+              className="admin-button"
+              color="primary"
+              onClick={this.putNewsArticle}
+              value="Speichern"
+            />
+
+            <input
+              type="button"
+              className="admin-button"
+              color="secondary"
+              onClick={() => {
+                this.toggleNewsArticleEditModal(this.emptyNewsArticle);
+              }}
+              value="Abbrechen"
+            />
+          </ModalFooter>
+        </Form>
+      </Modal>
+    );
   }
 }
 
