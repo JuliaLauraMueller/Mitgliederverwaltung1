@@ -30,9 +30,9 @@ class NewsCard extends Component {
   }
   render() {
     console.log(this.props);
-    let previewContent = this.props.newsArticle.content.substring(0, 320);
-    let wrappedContent = this.props.newsArticle.content.substring(320, 1000);
-    if (this.props.newsArticle.content.length > 320)
+    let previewContent = this.props.newsArticle.article.substring(0, 320);
+    let wrappedContent = this.props.newsArticle.article.substring(320, 1000);
+    if (this.props.newsArticle.article.length > 320)
       previewContent = previewContent + '...';
     return (
       <Card className="news-card" style={{ border: '1px solid white' }}>
