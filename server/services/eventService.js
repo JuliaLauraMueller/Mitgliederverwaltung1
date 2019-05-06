@@ -147,16 +147,18 @@ async function removeCircleFromEvents(circleId) {
   });
 }
 
-async function addAttendee(eventId, userId, accompaniments) {
+async function addAttendee(eventId, userId, accompanimentsAmount) {
   const event = await Event.findById(eventId);
   if (!event) throw 'Event not found';
 
-  const attendee = event.attendees.find(a => a.user === userId);
-  if (attendee) {
-    attendee.accompaniments = accompaniments;
+  const originalAttendee = event.attendees.find(a => a.user == userId);
+  if (originalAttendee) {
+    originalAttendee.accompaniments = accompanimentsAmount;
   } else {
-    attendee.user = userId;
-    attendee.accompaniments = accompaniments;
+    var attendee = {
+      user: userId,
+      accompaniments: accompanimentsAmount
+    };
     event.attendees.push(attendee);
   }
 
@@ -167,7 +169,8 @@ async function removeAttendee(eventId, userId) {
   const event = await Event.findById(eventId);
   if (!event) throw 'Event not found';
 
-  event.attendees.splice(event.findIndex(a => a.user === userId), 1);
+  const index = event.attendees.findIndex(att => att.user == userId);
+  event.attendees.splice(index, 1);
 
   return await event.save();
 }

@@ -91,8 +91,9 @@ async function addAttendee(id, data) {
 }
 
 async function removeAttendee(id) {
+  console.log(':)');
   return await axios
-    .delete('/events/ ' + id + ' /removeAttendee')
+    .delete('/events/' + id + '/removeAttendee')
     .then(event => {
       return event;
     })
