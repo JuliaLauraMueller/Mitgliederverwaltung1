@@ -7,7 +7,7 @@ import { setNavVisible } from '../redux/actions/navigationActions';
 import AdminCirclesOverview from '../components/Admin/AdminCirclesOverview';
 import AdminMembersOverview from '../components/Admin/AdminMembersOverview';
 import AdminEventsOverview from '../components/Admin/AdminEventsOverview';
-import AdminNewsOverview from '../components/Admin/AdminNewsOverview';
+//import AdminNewsOverview from '../components/Admin/AdminNewsOverview';
 import store from '../helpers/store';
 
 import '../css/AdminPage.css';
