@@ -65,6 +65,9 @@ function validate(newsArticleParam) {
   } else if (newsArticleParam.article.length > 1000) {
     errorMessages.push('Inhalt muss kürzer als 1000 Zeichen sein.');
   }
+  if (Date.parse(newsArticleParam.date) > new Date()) {
+    errorMessages.push('Datum darf nicht in der Zukunft liegen.');
+  }
   if (!Date.parse(newsArticleParam.date)) {
     errorMessages.push('Kein gültiges Datum (Empfohlenes Format: YYYY-DD-MM)');
   }
