@@ -7,6 +7,7 @@ import { setNavVisible } from '../redux/actions/navigationActions';
 import AdminCirclesOverview from '../components/Admin/AdminCirclesOverview';
 import AdminMembersOverview from '../components/Admin/AdminMembersOverview';
 import AdminEventsOverview from '../components/Admin/AdminEventsOverview';
+import AdminNewsOverview from '../components/Admin/AdminNewsOverview';
 import store from '../helpers/store';
 
 import '../css/AdminPage.css';
@@ -108,6 +109,31 @@ class AdminPage extends Component {
       );
     }
 
+    let NewsButton = <div />;
+    let NewsTab = <div />;
+    if (
+      store.getState().auth.user !== undefined &&
+      store.getState().auth.user.role >= 1
+    ) {
+      NewsButton = (
+        <NavItem>
+          <NavLink
+            className={classnames({ active: this.state.activeTab === '4' })}
+            onClick={() => {
+              this.toggle('4');
+            }}
+          >
+            News
+          </NavLink>
+        </NavItem>
+      );
+      NewsTab = (
+        <TabPane tabId="4">
+        </TabPane>
+      );
+    }
+
+
     return (
       <div>
         <h1>Administration</h1>
@@ -115,11 +141,13 @@ class AdminPage extends Component {
           {MembersButton}
           {CitiesButton}
           {EventsButton}
+          {NewsButton}
         </Nav>
         <TabContent activeTab={this.state.activeTab}>
           {MemberTab}
           {CitiesTab}
           {EventsTab}
+          {NewsTab}
         </TabContent>
       </div>
     );
