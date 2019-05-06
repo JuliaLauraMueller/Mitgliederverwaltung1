@@ -70,7 +70,7 @@ class NewsCard extends Component {
                     </CardText>
 
                     <label
-                      for={this.props.newsArticle._id}
+                      htmlFor={this.props.newsArticle._id}
                       className="read-more-trigger"
                     />
                   </div>
