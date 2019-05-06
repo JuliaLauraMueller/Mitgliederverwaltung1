@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Card, CardText, CardBody, CardTitle, Row, Col } from 'reactstrap';
-import { Link } from 'react-router-dom';
 
 class NewsCard extends Component {
   constructor(props) {
