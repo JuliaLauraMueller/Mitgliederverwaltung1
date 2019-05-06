@@ -4,6 +4,7 @@ const userController = require('./controllers/userController');
 const companyController = require('./controllers/companyController');
 const circleController = require('./controllers/circleController');
 const eventController = require('./controllers/eventController');
+const newsArticleController = require('./controllers/newsArticleController');
 const jwt = require('./helpers/jwt');
 const cors = require('cors');
 const errorHandler = require('./helpers/errorHandler');
@@ -33,6 +34,7 @@ app.use('/api/users', userController);
 app.use('/api/companies', companyController);
 app.use('/api/circles', circleController);
 app.use('/api/events', eventController);
+app.use('/api/newsArticles', newsArticleController);
 
 // Error handler
 app.use(errorHandler);
