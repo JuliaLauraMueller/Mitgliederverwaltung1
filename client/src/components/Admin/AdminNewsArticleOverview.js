@@ -101,7 +101,7 @@ class AdminNewsArticleOverview extends Component {
             <Table hover className="adminTable">
               <thead>
                 <tr>
-                  <th>Title</th>
+                  <th>Titel</th>
                   <th>Datum</th>
                   <th className="d-none d-md-table-cell">Author</th>
                 </tr>
@@ -258,7 +258,7 @@ class AdminNewsArticleOverview extends Component {
         <ModalHeader
           toggle={() => this.toggleNewsArticleEditModal(this.emptyNewsArticle)}
         >
-          News editieren
+          News-Beitrag editieren
         </ModalHeader>
         <Form onSubmit={this.onNewsArticleSave}>
           <ModalBody>
@@ -344,7 +344,8 @@ class AdminNewsArticleOverview extends Component {
         toggle={() => this.toggleNewsArticleDeleteModal({})}
       >
         <ModalHeader toggle={() => this.toggleNewsArticleDeleteModal({})}>
-          News '{this.state.newsArticleToDelete.title}' wirklich löschen?
+          News-Beitrag '{this.state.newsArticleToDelete.title}' wirklich
+          löschen?
         </ModalHeader>
         <ModalFooter>
           <input
