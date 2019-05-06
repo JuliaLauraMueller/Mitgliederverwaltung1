@@ -14,7 +14,16 @@ async function getById(id) {
 }
 
 async function getAll() {
-  return await NewsArticle.find({}).select();
+  return await NewsArticle.aggregate([
+    {
+      $project: {
+        _id: '$_id',
+        title: '$title',
+        article: '$article',
+        date: { $dateToString: { format: '%Y-%m-%d', date: '$date' } }
+      }
+    }
+  ]).exec();
 }
 
 async function updateNewsArticle(id, newsArticleParam) {
