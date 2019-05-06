@@ -10,15 +10,11 @@ module.exports = {
 };
 
 async function getById(id) {
-  return await NewsArticle.findById(id)
-    .populate('author', '-avatar -avatarTag -password')
-    .select();
+  return await NewsArticle.findById(id).select();
 }
 
 async function getAll() {
-  return await NewsArticle.find({})
-    .populate('author', '-avatar -avatarTag -password')
-    .select();
+  return await NewsArticle.find({}).select();
 }
 
 async function updateNewsArticle(id, newsArticleParam) {
