@@ -43,7 +43,7 @@ class MemberPage extends Component {
 
 function mapStateToProps(state) {
   return {
-    members: state.member.filteredNewsArticles
+    members: state.member.filteredMembers
   };
 }
 
