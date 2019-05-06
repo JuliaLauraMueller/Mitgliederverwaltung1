@@ -57,6 +57,7 @@ class AdminNewsArticleOverview extends Component {
                     <Card>
                       <CardBody>
                         <AdminCreateNewsArticle
+                          initialAuthor={this.props.currentUser}
                           close={this.collapseNewsArticle}
                         />
                       </CardBody>
@@ -83,7 +84,6 @@ class AdminNewsArticleOverview extends Component {
 
   getNewsArticleRows(newsArticles) {
     return newsArticles.map(newsArticle => {
-      console.log(newsArticle);
       let EditButton = {};
       let DeleteButton = {};
       var tooltipIdEdit = 'tooltip-edit-' + newsArticle._id;
@@ -178,6 +178,7 @@ class AdminNewsArticleOverview extends Component {
 
 function mapStateToProps(state) {
   return {
+    currentUser: state.navigation.userData,
     newsArticles: state.newsArticle.newsArticles
   };
 }
