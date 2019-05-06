@@ -188,7 +188,7 @@ class BurgerNav extends React.Component {
         </div>
 
         <Link
-          to="/"
+          to="/news"
           id="home"
           className="burger-menu-item"
           href="/"
