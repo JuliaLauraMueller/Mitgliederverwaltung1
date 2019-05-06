@@ -8,10 +8,10 @@
 .event-image,
 #event-image {
   margin-bottom: 2rem;
-  display: flex;
+  display: inline;
   justify-content: center;
-  width: 1000px;
-  height: 400px;
+  max-width: 100%;
+  height: auto;
 }
 
 .overflow {
@@ -111,12 +111,6 @@
 }
 
 @media only screen and (max-width: 1200px) {
-  .event-image,
-  #event-image {
-    width: 760px;
-    height: 320px;
-  }
-
   .event-infos {
     padding-left: 1.5em;
     padding-right: 1.5em;
@@ -134,12 +128,6 @@
 }
 
 @media only screen and (max-width: 780px) {
-  .event-image,
-  #event-image {
-    width: 580px;
-    height: 270px;
-  }
-
   .event-infos {
     padding-left: 1em;
     padding-right: 1em;
@@ -160,7 +148,7 @@
   }
 
   .event-day {
-    font-size: 40px;
+    font-size: 35px;
   }
 
   .event-weekDay {
@@ -168,7 +156,7 @@
   }
 
   .event-title {
-    font-size: 30px;
+    font-size: 28px;
   }
 
   .event-time {
@@ -186,19 +174,9 @@
 }
 
 @media only screen and (max-width: 767px) and (min-width: 540px) {
-  .event-title {
-    margin-top: 0.5em;
-  }
 }
 
 @media only screen and (max-width: 540px) {
-  .event-image,
-  #event-image {
-    width: 295px;
-    height: 140px;
-    margin-right: 1em;
-  }
-
   .event-infos {
     padding-left: 0em;
     padding-right: 0em;
@@ -340,26 +318,40 @@
   }
 
   .event-card-content {
-    margin-top: 1.8em;
+    margin-top: 1.5em;
   }
 
   .event-card-link {
     margin-left: 255px;
     white-space: nowrap;
-    margin-bottom: -4px;
+    margin-top: 0.4em;
+  }
+
+  .event-card-month {
+    font-size: 22px;
+  }
+
+  .event-card-day {
+    font-size: 55px;
+  }
+
+  .event-card-weekDay {
+    font-size: 18px;
   }
 }
 
 @media only screen and (max-width: 480px) {
   .event-card {
-    max-width: 325px;
-    max-height: 170px;
+    max-width: 305px;
+    max-height: 165px;
   }
 
   .event-card-date {
     margin-top: 20px;
     width: 100%;
-    min-width: 72px;
+    max-width: 60px;
+    max-width: 60px;
+    margin-left: -10px;
   }
 
   .event-card-description {
@@ -367,15 +359,11 @@
   }
 
   .event-card-month {
-    font-size: 22px;
-    margin-top: 0px;
-    margin-bottom: -20px;
+    font-size: 18px;
   }
 
   .event-card-day {
-    font-size: 50px;
-    margin-top: 6px;
-    margin-bottom: -7px;
+    font-size: 40px;
   }
 
   .event-card-weekDay {
@@ -383,28 +371,30 @@
   }
 
   .event-card-title {
-    font-size: 22px;
-    max-width: 195px;
+    font-size: 18px;
+    max-width: 200px;
     white-space: normal;
     margin-bottom: 18px;
   }
 
   .event-card-location {
     margin-top: -15px;
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .event-card-time {
     margin-top: -5px;
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .event-card-content {
-    margin-top: 1.8em;
+    margin-top: 1.6em;
+    margin-right: -2em;
   }
 
   .event-card-link {
-    margin-left: 150px;
+    margin-left: 110px;
+    margin-top: 1em;
     white-space: nowrap;
   }
 }

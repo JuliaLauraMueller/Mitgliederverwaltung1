@@ -8,13 +8,15 @@ class SingleEventImage extends Component {
     return (
       <Row>
         <Col align="center">
-          <Row className="event-image">
+          <Row>
             <Col md="12">
-              <img
-                id="event-image"
-                src={require('../../img/event_default_image.png')}
-                alt="event"
-              />
+              <div className="event-image">
+                <img
+                  id="event-image"
+                  src={require('../../img/event_default_image.png')}
+                  alt="event"
+                />
+              </div>
             </Col>
           </Row>
         </Col>

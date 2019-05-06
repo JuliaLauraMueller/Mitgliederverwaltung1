@@ -36,6 +36,9 @@ class EventCard extends Component {
     let trimmedDescription = this.props.event.description.substring(0, 75);
     if (this.props.event.description.length > 75)
       trimmedDescription = trimmedDescription + '...';
+    let trimmedLocation = this.props.event.location.substring(0, 13);
+    if (this.props.event.location.length > 13)
+      trimmedLocation = trimmedLocation + '...';
     return (
       <Row>
         <Col md={{ offset: 0, size: 4 }} xs={{ offset: 0 }}>
@@ -81,7 +84,7 @@ class EventCard extends Component {
                             />
                           </svg>
                         </span>
-                        {this.props.event.location}
+                        {trimmedLocation}
                       </CardText>
                     </div>
                     <div>
