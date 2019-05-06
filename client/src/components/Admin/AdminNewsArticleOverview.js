@@ -7,9 +7,15 @@ import {
   Collapse,
   Card,
   CardBody,
+  Modal,
+  ModalHeader,
+  ModalFooter,
   UncontrolledTooltip
 } from 'reactstrap';
-import { fetchNewsArticles } from '../../redux/actions/newsArticleActions';
+import {
+  fetchNewsArticles,
+  deleteNewsArticle
+} from '../../redux/actions/newsArticleActions';
 import AdminCreateNewsArticle from './AdminCreateNewsArticle';
 
 class AdminNewsArticleOverview extends Component {
@@ -32,14 +38,19 @@ class AdminNewsArticleOverview extends Component {
       },
       editModal: false
     };
+
     this.getNewsArticleRows = this.getNewsArticleRows.bind(this);
     this.collapseNewsArticle = this.collapseNewsArticle.bind(this);
+    this.createNewsArticleDeleteModal = this.createNewsArticleDeleteModal.bind(
+      this
+    );
     this.props.dispatch(fetchNewsArticles());
   }
 
   render() {
     return (
       <div>
+        {this.createNewsArticleDeleteModal()}
         <Row>
           <Col sm="12">
             <Row className="top-area">
@@ -75,7 +86,7 @@ class AdminNewsArticleOverview extends Component {
                 <tr>
                   <th>Title</th>
                   <th>Datum</th>
-                  <th className="d-none d-sm-table-cell">Author</th>
+                  <th className="d-none d-md-table-cell">Author</th>
                 </tr>
               </thead>
               <tbody>{this.getNewsArticleRows(this.props.newsArticles)}</tbody>
@@ -84,6 +95,13 @@ class AdminNewsArticleOverview extends Component {
         </Row>
       </div>
     );
+  }
+
+  toggleNewsArticleDeleteModal(newsArticle) {
+    this.setState(prevState => ({
+      newsArticleDeleteModal: !prevState.newsArticleDeleteModal,
+      newsArticleToDelete: newsArticle
+    }));
   }
 
   getNewsArticleRows(newsArticles) {
@@ -126,7 +144,8 @@ class AdminNewsArticleOverview extends Component {
       DeleteButton = (
         <span
           className="admin-link admin-link-small admin-cursor"
-          title="Event löschen"
+          title="News löschen"
+          onClick={() => this.toggleNewsArticleDeleteModal(newsArticle)}
           id={tooltipIdDelete}
         >
           <UncontrolledTooltip
@@ -161,9 +180,7 @@ class AdminNewsArticleOverview extends Component {
         <tr key={newsArticle._id}>
           <td>{newsArticle.title}</td>
           <td>{newsArticle.date}</td>
-          <td className="d-none d-md-table-cell">
-            {newsArticle.author.surname}
-          </td>
+          <td className="d-none d-md-table-cell">{newsArticle.author}</td>
           <td>
             {EditButton}
             {DeleteButton}
@@ -177,6 +194,45 @@ class AdminNewsArticleOverview extends Component {
     this.setState(state => ({
       collapseNewsArticle: !state.collapseNewsArticle
     }));
+  }
+
+  deleteNewsArticle(id) {
+    this.props.dispatch(deleteNewsArticle(id));
+  }
+
+  createNewsArticleDeleteModal() {
+    return (
+      <Modal
+        isOpen={this.state.newsArticleDeleteModal}
+        toggle={() => this.toggleNewsArticleDeleteModal({})}
+      >
+        <ModalHeader toggle={() => this.toggleNewsArticleDeleteModal({})}>
+          News '{this.state.newsArticleToDelete.title}' wirklich löschen?
+        </ModalHeader>
+        <ModalFooter>
+          <input
+            type="submit"
+            className="admin-button"
+            color="primary"
+            onClick={() => {
+              this.deleteNewsArticle(this.state.newsArticleToDelete._id);
+              this.toggleNewsArticleDeleteModal({});
+            }}
+            value="Löschen"
+          />
+
+          <input
+            type="button"
+            className="admin-button"
+            color="primary"
+            onClick={() => {
+              this.toggleNewsArticleDeleteModal({});
+            }}
+            value="Abbrechen"
+          />
+        </ModalFooter>
+      </Modal>
+    );
   }
 }
 
