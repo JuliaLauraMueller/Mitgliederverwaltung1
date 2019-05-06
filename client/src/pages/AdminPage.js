@@ -7,7 +7,7 @@ import { setNavVisible } from '../redux/actions/navigationActions';
 import AdminCirclesOverview from '../components/Admin/AdminCirclesOverview';
 import AdminMembersOverview from '../components/Admin/AdminMembersOverview';
 import AdminEventsOverview from '../components/Admin/AdminEventsOverview';
-//import AdminNewsOverview from '../components/Admin/AdminNewsOverview';
+import AdminNewsArticleOverview from '../components/Admin/AdminNewsArticleOverview';
 import store from '../helpers/store';
 
 import '../css/AdminPage.css';
@@ -129,10 +129,10 @@ class AdminPage extends Component {
       );
       NewsTab = (
         <TabPane tabId="4">
+          <AdminNewsArticleOverview />
         </TabPane>
       );
     }
-
 
     return (
       <div>
