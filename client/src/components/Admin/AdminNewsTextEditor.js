@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { convertToRaw, EditorState, RichUtils } from 'draft-js';
-import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
+import { EditorState, RichUtils } from 'draft-js';
+import Editor from 'draft-js-plugins-editor';
 import createInlineToolbarPlugin from 'draft-js-inline-toolbar-plugin';
+import createToolbarPlugin from 'draft-js-static-toolbar-plugin';
 import {
   ItalicButton,
   BoldButton,
@@ -13,14 +14,16 @@ import {
   OrderedListButton
 } from 'draft-js-buttons';
 import 'draft-js-inline-toolbar-plugin/lib/plugin.css';
+import 'draft-js-static-toolbar-plugin/lib/plugin.css';
 import '../../css/TextEditor.css';
 
 // inline toolbar plugin
 const inlineToolbarPlugin = createInlineToolbarPlugin();
 const { InlineToolbar } = inlineToolbarPlugin;
 
-//Default text
-const text = 'Enter text...';
+//static toolbar plugin
+const staticToolbarPlugin = createToolbarPlugin();
+const { StaticToolbar } = staticToolbarPlugin;
 
 class TextEditor extends Component {
   constructor(props) {
@@ -40,14 +43,6 @@ class TextEditor extends Component {
     return 'non-handled';
   };
 
-  //Helper method (blocks)
-  getContentStateInJSON = () => {
-    const rawJson = convertToRaw(this.state.editorState.getCurrentContent());
-    const jsonStr = JSON.stringify(rawJson, null, 1);
-
-    this.setState({ data: jsonStr });
-  };
-
   render() {
     return (
       <div className={'editor'}>
@@ -55,12 +50,12 @@ class TextEditor extends Component {
           <Editor
             editorState={this.state.editorState}
             onChange={this.onChange}
-            plugins={[inlineToolbarPlugin]}
+            plugins={[inlineToolbarPlugin, staticToolbarPlugin]}
             handleKeyCommand={this.handleKeyCommand}
           />
         </div>
 
-        <InlineToolbar>
+        <StaticToolbar>
           {externalProps => (
             <div>
               <BoldButton {...externalProps} />
@@ -73,18 +68,7 @@ class TextEditor extends Component {
               <OrderedListButton {...externalProps} />
             </div>
           )}
-        </InlineToolbar>
-
-        <button
-          style={{ marginTop: '30px', marginLeft: '0px' }}
-          className={'var'}
-          onClick={this.getContentStateInJSON}
-        >
-          Fetch Content State
-        </button>
-        <div style={{ background: '#345678', color: '#fff', padding: '20px' }}>
-          <pre>{this.state.data}</pre>
-        </div>
+        </StaticToolbar>
       </div>
     );
   }
