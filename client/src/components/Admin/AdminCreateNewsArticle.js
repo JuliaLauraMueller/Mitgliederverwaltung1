@@ -8,7 +8,7 @@ import {
 } from '../../redux/actions/newsArticleActions';
 
 let initialState = {
-  newsArticlenewsArticleTitle: '',
+  newsArticleTitle: '',
   article: '',
   author: '',
   newsArticleDate: ''
@@ -95,11 +95,7 @@ class AdminCreateNewsArticle extends Component {
                   name="author"
                   id="author"
                   className="admin-form-control"
-                  value={
-                    this.state.author.firstname +
-                    ' ' +
-                    this.state.author.surname
-                  }
+                  value={this.state.author}
                   onChange={this.handleChange}
                 />
               </Col>

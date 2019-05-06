@@ -57,7 +57,11 @@ class AdminNewsArticleOverview extends Component {
                     <Card>
                       <CardBody>
                         <AdminCreateNewsArticle
-                          initialAuthor={this.props.currentUser}
+                          initialAuthor={
+                            this.props.currentUser.firstname +
+                            ' ' +
+                            this.props.currentUser.surname
+                          }
                           close={this.collapseNewsArticle}
                         />
                       </CardBody>
