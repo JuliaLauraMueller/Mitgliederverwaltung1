@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import NewsCard from '../components/NewsCard';
-import SearchFieldEvent from '../components/SearchFieldEvent';
 import { Helmet } from 'react-helmet';
 import { Container, Row, Col } from 'reactstrap';
 import { connect } from 'react-redux';
 import { setNavVisible } from '../redux/actions/navigationActions';
 import { fetchEvents } from '../redux/actions/eventActions';
-import store from '../helpers/store';
 
 import '../css/Member.css';
-import '../css/EventPage.css';
+import '../css/News.css';
 
 class NewsPage extends Component {
   constructor(props) {
@@ -33,6 +31,22 @@ class NewsPage extends Component {
           author: 'Marc Zimmermann',
           content:
             'Donec sed ullamcorper lectus. Nunc eleifend purus et libero finibus posuere. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam vitae nibh et tortor mattis dictum vitae id odio. Quisque cursus hendrerit ex, in lacinia mi dignissim quis. Sed euismod nec lacus eget faucibus. Aenean massa augue, convallis in nisl mollis, bibendum efficitur est.'
+        },
+        {
+          _id: '3',
+          title: 'Patrick hats wieder geschafft',
+          date: '16.07.2019',
+          author: 'Marc Zimmermann',
+          content:
+            'Donec sed ullamcorper lectus. Nunc eleifend purus et libero finibus posuere. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam vitae nibh et tortor mattis dictum vitae id odio. Quisque cursus hendrerit ex, in lacinia mi dignissim quis. Sed euismod nec lacus eget faucibus. Aenean massa augue, convallis in nisl mollis, bibendum efficitur est.'
+        },
+        {
+          _id: '4',
+          title: 'One morning, when Gregor Samsa',
+          date: '16.07.2019',
+          author: 'Marc Zimmermann',
+          content:
+            'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. N'
         }
       ]
     };
@@ -47,7 +61,7 @@ class NewsPage extends Component {
       ));
     }
     return (
-      <Container className="member-page-container">
+      <Container className="news-page-container">
         <Row>
           <Col>
             <Helmet>

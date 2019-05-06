@@ -1,0 +1,96 @@
+.news-page-container {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-content: center;
+}
+
+/*News-Card style*/
+
+.news-card {
+  display: flex;
+  justify-content: center;
+  border: 0px solid white;
+  min-width: 700px;
+  max-width: 700px;
+  border-radius: 0px;
+  margin: 9px;
+}
+
+.news-card-content {
+  margin-left: 0px;
+}
+
+.news-card-title {
+  font-size: 27px;
+  white-space: nowrap;
+}
+
+.news-card-author {
+  margin-top: -5px;
+  font-size: 16px;
+}
+
+.news-card-date {
+  margin-top: -10px;
+  font-size: 16px;
+}
+
+.news-card-description {
+  position: static;
+  margin-top: 15px;
+  font-size: 18px;
+  display: block;
+  width: 650px;
+  white-space: normal;
+}
+
+.news-card-link {
+  position: static;
+  margin-left: 200px;
+  margin-top: 200px;
+  white-space: nowrap;
+}
+
+.read-more-state {
+  display: none;
+}
+
+.read-more-target {
+  opacity: 0;
+  max-height: 0;
+  font-size: 0;
+  transition: 0.25s ease;
+}
+
+.read-more-state:checked ~ .read-more-wrap .read-more-target {
+  opacity: 1;
+  font-size: inherit;
+  max-height: 999em;
+}
+
+.read-more-state ~ .read-more-trigger:before {
+  content: 'Mehr';
+}
+
+.read-more-state:checked ~ .read-more-trigger:before {
+  content: 'Weniger';
+}
+
+.read-more-trigger {
+  cursor: pointer;
+  color: rgb(219, 157, 12);
+  border-bottom: 1px solid rgb(219, 157, 12);
+  font-family: Helvetica, sans-serif;
+  font-weight: lighter;
+  font-size: 11pt;
+  margin-left: 610px;
+  margin-bottom: 50x;
+  opacity: 1;
+}
+
+.read-more-trigger:hover {
+  color: rgb(15, 25, 41, 74%);
+  border-bottom: 1px solid rgb(15, 25, 41, 74%);
+  stroke: none;
+}
