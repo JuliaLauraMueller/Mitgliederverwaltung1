@@ -72,7 +72,7 @@ async function updateEvent(id, eventParam) {
   const event = await Event.findById(id);
   if (!event) throw 'Event not found';
 
-  // convert binary data to base64 for front-end
+  // convert base64 data to binary for backend
   if (eventParam.image) {
     eventParam.image = Buffer.from(eventParam.image, 'base64');
   }
@@ -141,6 +141,17 @@ function validate(eventParam) {
   }
   if (!eventParam.permittedRoles || eventParam.permittedRoles.length == 0) {
     errorMessages.push('Es muss mindestens eine Rolle angewählt sein.');
+  }
+  //ProfilePic
+  if (eventParam.image) {
+    if (
+      eventParam.imageTag !== 'data:image/png;base64' &&
+      eventParam.imageTag !== 'data:image/jpeg;base64'
+    ) {
+      errorMessages.push('Profilbild: Dateityp muss jpg/jpeg/png sein');
+    } else if (eventParam.image.toString().length > 500000) {
+      errorMessages.push('Profilbild: Bild zu gross, maximal 500KB');
+    }
   }
   return errorMessages;
 }

@@ -12,7 +12,7 @@ class SingleEventImage extends Component {
             <Col md='12' align='center'>
               <img
                 id='event-image'
-                style={{ width: '800px' }}
+                style={{ width: '100%' }}
                 src={
                   this.props.imageB64 == ''
                     ? require('../../img/event_default_image.png')

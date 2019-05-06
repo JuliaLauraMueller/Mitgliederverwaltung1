@@ -13,10 +13,10 @@ import '../css/EventPage.css';
 class SingleEventPage extends Component {
   constructor(props) {
     super(props);
-    const event = this.props.event;
+    const eve = this.props.event;
     this.state = {
-      imageTag: event.imageTag,
-      image: event.image
+      imageTag: eve.imageTag,
+      image: eve.image
     };
 
     this.props.dispatch(setNavVisible());
@@ -28,7 +28,10 @@ class SingleEventPage extends Component {
 
   componentWillReceiveProps(nextProps) {
     // switch between two events (when already on event page)
-    this.loadEvent(nextProps.match.params.id);
+    this.setState({
+      imageTag: nextProps.event.imageTag,
+      image: nextProps.event.image
+    });
   }
 
   loadEvent(eventId) {
