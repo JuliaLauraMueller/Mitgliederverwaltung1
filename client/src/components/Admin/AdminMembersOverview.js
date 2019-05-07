@@ -173,7 +173,7 @@ class AdminMembersOverview extends Component {
       ) {
         EditButton = (
           <Link
-            className="admin-link admin-link-small"
+            className="admin-link admin-link-small admin-link-edit"
             to={'/member/' + member._id}
             id={tooltipIdEdit}
           >
@@ -209,7 +209,7 @@ class AdminMembersOverview extends Component {
         DeleteButton = (
           <span
             id={tooltipIdDelete}
-            className="admin-link admin-link-small admin-cursor"
+            className="admin-link admin-link-small admin-link-delete admin-cursor"
             onClick={() => this.toggleMemberDeleteModal(member)}
           >
             <UncontrolledTooltip
@@ -252,7 +252,7 @@ class AdminMembersOverview extends Component {
         RoleButton = (
           <span
             id={tooltipIdRoles}
-            className="admin-link admin-link-small admin-cursor"
+            className="admin-link admin-link-small admin-link-role admin-cursor"
             onClick={() => this.toggleRoleChangeModal(member)}
           >
             <UncontrolledTooltip

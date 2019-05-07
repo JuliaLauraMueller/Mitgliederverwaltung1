@@ -61,6 +61,23 @@ svg {
   margin-top: 0.6rem;
 }
 
+.admin-link {
+  display: inline-block;
+  padding-right: 10px;
+}
+
+.admin-link-edit {
+  height: 30px;
+}
+
+.admin-link-delete {
+  height: 30px;
+}
+
+.admin-link-role {
+  height: 34px;
+}
+
 .admin-link-small {
   font-size: 13px;
 }
