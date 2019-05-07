@@ -126,14 +126,17 @@ label {
   padding-left: 16px;
   margin-top: 14px;
 }
-#xing-button {
-  padding-left: 0px;
+
+.icon-button:active,
+.icon-button:focus,
+.icon-button:hover {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
 }
 
-#mail-button {
-  padding-right: 0px;
-}
-.icon-button:hover {
+.btn-secondary:active,
+:hover .icon-button:hover {
   background-color: transparent;
   opacity: 0.5;
 }
@@ -181,6 +184,10 @@ label {
 
 .profile-pic__icons {
   margin-bottom: 6%;
+}
+
+button:focus {
+  outline: none;
 }
 
 .profile-pic__image img {

@@ -7,6 +7,7 @@ import { Row, Col, Button } from 'reactstrap';
 class ProfileBasicInfo extends Component {
   render() {
     const profile = this.props.profile;
+    let mail = profile.privateEmail;
     return (
       <Row>
         <Col md="6" align="center">
@@ -83,7 +84,11 @@ class ProfileBasicInfo extends Component {
                   src={require('../../img/instagram.svg')}
                 />
               </Button>
-              <Button className="icon-button" id="mail-button">
+              <Button
+                className="icon-button"
+                id="mail-button"
+                href={'mailto:' + mail}
+              >
                 <img
                   className="icons"
                   alt="mail-icon"
@@ -109,13 +114,21 @@ class ProfileBasicInfo extends Component {
           <Row className="overflow">
             <Col>
               <label>Beitritt</label>
-              <label className="value-label">{profile.entryDate}</label>
+              <label className="value-label">
+                {profile.entryDate
+                  ? new Date(profile.entryDate).toLocaleDateString('de-DE')
+                  : ''}
+              </label>
             </Col>
           </Row>
           <Row className="overflow">
             <Col>
               <label>Geburtstag</label>
-              <label className="value-label">{profile.birthdate}</label>
+              <label className="value-label">
+                {profile.birthdate
+                  ? new Date(profile.birthdate).toLocaleDateString('de-DE')
+                  : ''}
+              </label>
             </Col>
           </Row>
           <Row className="overflow">

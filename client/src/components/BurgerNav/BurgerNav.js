@@ -37,6 +37,11 @@ class BurgerNav extends React.Component {
     let userFirstname = this.props.userData
       ? this.props.userData.firstname
       : '';
+    let userPic = require('../../img/Profile_Placeholder.png');
+    if (this.props.userData.avatar && this.props.userData.avatarTag) {
+      userPic =
+        this.props.userData.avatarTag + ',' + this.props.userData.avatar;
+    }
     let userSurname = this.props.userData ? this.props.userData.surname : '';
     let AdminButton = {};
     if (
@@ -119,9 +124,13 @@ class BurgerNav extends React.Component {
         burgerButtonClassName={this.props.visibleClass}
       >
         <div className="burger-navigation-logo-container">
-          <div className="burger-navigation-logo">
-            <img src={require('../../img/logo_black_small.png')} alt="Logo" />
-          </div>
+          <Link to={`/member/${userId}`}>
+            <img
+              id="navigation-user-picture-img"
+              src={userPic}
+              alt="Profilbild"
+            />
+          </Link>
         </div>
 
         <div className="burger-navigation-profile">
