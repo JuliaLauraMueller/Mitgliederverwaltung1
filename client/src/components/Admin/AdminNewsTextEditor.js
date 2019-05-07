@@ -82,7 +82,7 @@ class TextEditor extends Component {
             handleKeyCommand={this.handleKeyCommand}
           />
           <div className="remainingCharactersRichtText">
-            Verbleibende Zeichen: {5000 - this.state.contentLength}
+            Anzahl Zeichen: {this.state.contentLength}
           </div>
         </div>
         <Toolbar>

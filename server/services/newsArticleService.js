@@ -68,8 +68,6 @@ function validate(newsArticleParam) {
   }
   if (!newsArticleParam.article || newsArticleParam.article.length == 0) {
     errorMessages.push('Inhalt darf nicht leer sein.');
-  } else if (newsArticleParam.article.length > 1000) {
-    errorMessages.push('Inhalt muss kürzer als 1000 Zeichen sein.');
   }
   if (Date.parse(newsArticleParam.date) > new Date()) {
     errorMessages.push('Datum darf nicht in der Zukunft liegen.');
