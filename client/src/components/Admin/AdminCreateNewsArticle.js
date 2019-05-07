@@ -108,7 +108,7 @@ class AdminCreateNewsArticle extends Component {
               <Col xs="3">
                 <Label for="article">Inhalt</Label>
               </Col>
-              <Col xs={9}>
+              <Col xs={12} md={9}>
                 <TextEditor
                   className="admin-form-control-create-news"
                   ref="texteditor"

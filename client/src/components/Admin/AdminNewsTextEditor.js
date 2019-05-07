@@ -13,6 +13,7 @@ import {
   UnorderedListButton,
   OrderedListButton
 } from 'draft-js-buttons';
+import AdminLinkInput from './AdminLinkInput';
 import 'draft-js-static-toolbar-plugin/lib/plugin.css';
 import 'draft-js/dist/Draft.css';
 import '../../css/TextEditor.css';
@@ -22,7 +23,10 @@ const staticToolbarPlugin = createToolbarPlugin();
 const { Toolbar } = staticToolbarPlugin;
 
 //link plugin
-const toolbarLinkPlugin = createToolbarLinkPlugin();
+const toolbarLinkPlugin = createToolbarLinkPlugin({
+  inputPlaceholder: 'http://www.url.com',
+  inputWrapperComponent: AdminLinkInput
+});
 const { LinkButton } = toolbarLinkPlugin;
 
 class TextEditor extends Component {

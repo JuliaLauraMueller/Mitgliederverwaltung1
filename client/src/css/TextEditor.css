@@ -29,3 +29,12 @@
 .editor a {
   color: rgb(219, 157, 12);
 }
+
+.custom-admin-link-input {
+  vertical-align: text-bottom;
+  height: 34px;
+  max-width: 250px;
+  padding: 0px 5px;
+  border: none;
+  background: #f0f0f0;
+}
