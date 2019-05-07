@@ -62,7 +62,6 @@ class ProfileBasicInfoEDIT extends Component {
       quality -= 0.1;
     }
     let splitArr = pictureB64.split(',');
-
     const basicInformationUpdate = {
       _id: this.props.profile._id,
       xingLink: this.state.xingLink,
@@ -141,6 +140,7 @@ class ProfileBasicInfoEDIT extends Component {
                 id='pictureUpload'
                 onChange={this.fileSelectedHandler}
                 className='hidden'
+                accept='.jpg,.jpeg,.png'
               />
               <label htmlFor='pictureUpload' className='picture-button'>
                 Neues Profilbild
