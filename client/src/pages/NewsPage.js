@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import NewsCard from '../components/NewsCard';
+import SearchFieldNews from '../components/SearchFieldNews';
 import { Helmet } from 'react-helmet';
 import { Container, Row, Col } from 'reactstrap';
 import { connect } from 'react-redux';
@@ -32,6 +33,7 @@ class NewsPage extends Component {
                 {'body { background-color: rgb(15, 25, 41, 10%); }'}
               </style>
             </Helmet>
+            <SearchFieldNews />
             <Row className="member-cards-row" key={newsCards}>
               {newsCards}
             </Row>
