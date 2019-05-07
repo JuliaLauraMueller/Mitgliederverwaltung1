@@ -450,7 +450,6 @@ class AdminEventsOverview extends Component {
   }
 
   createEventEditModal() {
-    console.log(this.state.eventToEdit);
     return (
       <Modal
         isOpen={this.state.editModal}
@@ -473,7 +472,7 @@ class AdminEventsOverview extends Component {
                         this.state.eventToEdit.image
                       : require('../../img/event_default_image.png')
                   }
-                  alt='event-picture'
+                  alt=''
                   style={{ width: '90%', height: 'auto' }}
                   className='event-edit-image'
                 />

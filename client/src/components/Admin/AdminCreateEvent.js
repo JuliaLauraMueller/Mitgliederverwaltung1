@@ -173,6 +173,7 @@ class AdminCreateEvent extends Component {
                   }
                   className='event-image'
                   style={{ width: '90%', height: 'auto' }}
+                  alt=''
                 />
                 <Col>
                   <input
