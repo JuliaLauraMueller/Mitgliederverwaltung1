@@ -219,7 +219,7 @@ class AdminCirclesOverview extends Component {
           <ModalBody>
             <FormGroup row>
               <Label className="city-name-label">
-                City-Name<pre className="required-field">*</pre>
+                Name<pre className="required-field">*</pre>
               </Label>
               <Col>
                 <Input
