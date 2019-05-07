@@ -1,0 +1,30 @@
+.editor {
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.remainingCharactersRichtText {
+  font-size: 10pt;
+  padding-top: 5px;
+  opacity: 0.7;
+}
+
+.header-one {
+  font-size: 10pt;
+}
+
+.editor h1 {
+  font-size: 18pt;
+}
+
+.editor h2 {
+  font-size: 15pt;
+}
+
+.editor h3 {
+  font-size: 13pt;
+}
+
+.editor a {
+  color: rgb(219, 157, 12);
+}

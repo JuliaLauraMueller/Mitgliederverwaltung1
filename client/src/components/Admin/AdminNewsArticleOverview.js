@@ -25,6 +25,7 @@ import {
 } from '../../redux/actions/newsArticleActions';
 import { filterNewsArticles } from '../../helpers/newsArticleSearch';
 import AdminCreateNewsArticle from './AdminCreateNewsArticle';
+import TextEditor from './AdminNewsTextEditor';
 
 class AdminNewsArticleOverview extends Component {
   constructor(props) {
@@ -246,10 +247,18 @@ class AdminNewsArticleOverview extends Component {
     }));
   }
 
-  async onNewsArticleSave(newsArticle) {
-    newsArticle.preventDefault();
+  async onNewsArticleSave(event) {
+    event.preventDefault();
     await this.props
-      .dispatch(putNewsArticle(this.state.newsArticleToEdit))
+      .dispatch(
+        putNewsArticle({
+          _id: this.state.newsArticleToEdit._id,
+          title: this.state.newsArticleToEdit.title,
+          article: this.refs.texteditor.getRawContent(),
+          author: this.state.newsArticleToEdit.author,
+          date: this.state.newsArticleToEdit.date
+        })
+      )
       .then(res => {
         this.toggleNewsArticleEditModal(this.emptyNewsArticle);
       })
@@ -272,6 +281,11 @@ class AdminNewsArticleOverview extends Component {
       <Modal
         isOpen={this.state.editModal}
         toggle={() => this.toggleNewsArticleEditModal(this.emptyNewsArticle)}
+        onOpened={() => {
+          this.refs.texteditor.setEditorState(
+            this.state.newsArticleToEdit.article
+          );
+        }}
       >
         <ModalHeader
           toggle={() => this.toggleNewsArticleEditModal(this.emptyNewsArticle)}
@@ -304,14 +318,13 @@ class AdminNewsArticleOverview extends Component {
                 />
               </Col>
               <Col className="event-edit-row">
-                <Label className="event-edit-label">Article:</Label>
-                <Input
-                  type="text"
-                  id="article"
-                  name="article"
+                <Label className="event-edit-label text-editor-label">
+                  Inhalt:
+                </Label>
+                <TextEditor
                   className="event-edit-txt"
-                  onChange={this.handleChange}
-                  value={this.state.newsArticleToEdit.article}
+                  ref="texteditor"
+                  getArticleContent={() => this.state.newsArticleToEdit.article}
                 />
               </Col>
               <Col className="event-edit-row">

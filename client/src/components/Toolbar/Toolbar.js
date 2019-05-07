@@ -74,7 +74,7 @@ class Toolbar extends Component {
             <div className="toolbar_navigation-links">
               <ul>
                 <li>
-                  <Link to="/">
+                  <Link to="/news">
                     <svg
                       height="26"
                       width="18"

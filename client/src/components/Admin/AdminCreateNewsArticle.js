@@ -6,6 +6,7 @@ import {
   createNewsArticle,
   fetchNewsArticles
 } from '../../redux/actions/newsArticleActions';
+import TextEditor from './AdminNewsTextEditor.js';
 
 let initialState = {
   newsArticleTitle: '',
@@ -31,6 +32,7 @@ class AdminCreateNewsArticle extends Component {
       ...initialState
     });
   }
+
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
@@ -47,7 +49,7 @@ class AdminCreateNewsArticle extends Component {
       .dispatch(
         createNewsArticle({
           title: this.state.newsArticleTitle,
-          article: this.state.article,
+          article: this.refs.texteditor.getRawContent(),
           author: this.state.author,
           date: this.state.newsArticleDate
         })
@@ -104,17 +106,10 @@ class AdminCreateNewsArticle extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="article">Article</Label>
+                <Label for="article">Inhalt</Label>
               </Col>
               <Col xs={9}>
-                <Input
-                  type="text"
-                  name="article"
-                  id="article"
-                  className="admin-form-control"
-                  value={this.state.article}
-                  onChange={this.handleChange}
-                />
+                <TextEditor className="admin-form-control" ref="texteditor" />
               </Col>
             </Row>
           </FormGroup>
