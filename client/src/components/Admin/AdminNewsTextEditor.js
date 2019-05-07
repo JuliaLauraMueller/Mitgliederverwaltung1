@@ -71,6 +71,8 @@ class TextEditor extends Component {
     return 'non-handled';
   };
 
+  //Custom Design
+
   render() {
     return (
       <div className="editor">
@@ -80,6 +82,7 @@ class TextEditor extends Component {
             onChange={this.onChange}
             plugins={[staticToolbarPlugin, toolbarLinkPlugin]}
             handleKeyCommand={this.handleKeyCommand}
+            customStyleMap={this.styleMap}
           />
           <div className="remainingCharactersRichtText">
             Verbleibende Zeichen: {5000 - this.state.contentLength}
