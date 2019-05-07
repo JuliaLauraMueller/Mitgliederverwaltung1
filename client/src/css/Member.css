@@ -212,9 +212,6 @@ hr {
 
 .profile-text {
   color: rgb(219, 157, 12);
-  border-bottom: 1px solid rgb(219, 157, 12);
-  font-family: Helvetica, sans-serif;
-  font-weight: lighter;
   font-size: 11pt;
   margin-left: 116px;
 }
@@ -222,28 +219,24 @@ hr {
 .profile-text:hover {
   color: rgb(15, 25, 41, 74%);
   text-decoration: none;
-  border-bottom: 1px solid rgb(15, 25, 41, 74%);
-  font-family: Helvetica, sans-serif;
-  font-weight: lighter;
   font-size: 11pt;
   margin-left: 116px;
 }
 
 .profile-text svg {
   fill: rgb(219, 157, 12);
-  stroke: none;
 }
 
 .profile-text:hover > svg {
-  fill: rgb(15, 25, 41, 74%);
-  stroke: none;
+  background-color: transparent;
+  opacity: 0.5 !important;
 }
 
 .profile-arrow {
-  height: 17px;
-  width: 12px;
-  margin-top: -2px;
-  margin-left: 3px;
+  height: 25px;
+  width: 24px;
+  margin-top: -0.4rem;
+  margin-left: 2.5rem;
 }
 
 .drop-down-filter {
