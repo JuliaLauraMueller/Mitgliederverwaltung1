@@ -72,6 +72,14 @@ class AdminNewsArticleOverview extends Component {
           <Col sm="12">
             <Row className="top-area">
               <Col sm="12">
+                <input
+                  type="text"
+                  name="search"
+                  placeholder="suchen..."
+                  className="form-control form-control-admin"
+                  value={this.state.searchText}
+                  onChange={this.handleSearchChange.bind(this)}
+                />
                 <div>
                   <input
                     type="submit"
@@ -112,6 +120,10 @@ class AdminNewsArticleOverview extends Component {
         </Row>
       </div>
     );
+  }
+
+  handleSearchChange(newsArticle) {
+    this.setState({ searchText: newsArticle.target.value });
   }
 
   toggleNewsArticleDeleteModal(newsArticle) {
