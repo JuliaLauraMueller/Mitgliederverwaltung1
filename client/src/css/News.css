@@ -94,3 +94,19 @@
   border-bottom: 1px solid rgb(15, 25, 41, 74%);
   stroke: none;
 }
+
+.news-card h1 {
+  font-size: 18pt;
+}
+
+.news-card h2 {
+  font-size: 15pt;
+}
+
+.news-card h3 {
+  font-size: 13pt;
+}
+
+.news-card a {
+  color: rgb(219, 157, 12);
+}

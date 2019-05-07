@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Card, CardText, CardBody, CardTitle, Row, Col } from 'reactstrap';
 import { ContentState, EditorState, convertFromRaw } from 'draft-js';
-import Editor from 'draft-js-plugins-editor';
+import { stateToHTML } from 'draft-js-export-html';
+import Parser from 'html-react-parser';
 
 class NewsCard extends Component {
   constructor(props) {
@@ -77,17 +78,12 @@ class NewsCard extends Component {
         convertFromRaw(JSON.parse(this.props.newsArticle.article))
       );
       if (!this.state.isChecked) {
-        articleContent = (
-          <Editor
-            editorState={this.truncate(editorState, 80)}
-            onChange={() => {}}
-            readOnly
-          />
-        );
+        editorState = this.truncate(editorState, 200);
+        let editorContentHtml = stateToHTML(editorState.getCurrentContent());
+        articleContent = editorContentHtml;
       } else {
-        articleContent = (
-          <Editor editorState={editorState} onChange={() => {}} readOnly />
-        );
+        let editorContentHtml = stateToHTML(editorState.getCurrentContent());
+        articleContent = editorContentHtml;
       }
     }
     return (
@@ -120,7 +116,8 @@ class NewsCard extends Component {
                       id={this.props.newsArticle._id}
                       onChange={this.handleCheckboxChange.bind(this)}
                     />
-                    {articleContent}
+                    <div>{Parser(articleContent)}</div>
+
                     <label
                       htmlFor={this.props.newsArticle._id}
                       className="read-more-trigger"
