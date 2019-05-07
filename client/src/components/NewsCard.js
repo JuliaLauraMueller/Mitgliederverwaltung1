@@ -38,7 +38,6 @@ class NewsCard extends Component {
 
   handleCheckboxChange() {
     this.setState({ isChecked: !this.state.isChecked });
-    console.log(this.state.isChecked);
   }
 
   truncate(editorState, charCount) {
@@ -79,10 +78,16 @@ class NewsCard extends Component {
       );
       if (!this.state.isChecked) {
         articleContent = (
-          <Editor editorState={this.truncate(editorState, 10)} readOnly />
+          <Editor
+            editorState={this.truncate(editorState, 80)}
+            onChange={() => {}}
+            readOnly
+          />
         );
       } else {
-        articleContent = <Editor editorState={editorState} readOnly />;
+        articleContent = (
+          <Editor editorState={editorState} onChange={() => {}} readOnly />
+        );
       }
     }
     return (
@@ -115,9 +120,7 @@ class NewsCard extends Component {
                       id={this.props.newsArticle._id}
                       onChange={this.handleCheckboxChange.bind(this)}
                     />
-
                     {articleContent}
-
                     <label
                       htmlFor={this.props.newsArticle._id}
                       className="read-more-trigger"

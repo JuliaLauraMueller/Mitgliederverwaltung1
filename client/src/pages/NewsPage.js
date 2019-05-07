@@ -17,7 +17,6 @@ class NewsPage extends Component {
   }
 
   render() {
-    console.log(this.props.news);
     let newsCards = [];
     if (this.props.news) {
       newsCards = this.props.news.map(newsArticle => (
