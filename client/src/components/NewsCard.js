@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Card, CardText, CardBody, CardTitle, Row, Col } from 'reactstrap';
+import { ContentState, EditorState, convertFromRaw } from 'draft-js';
+import Editor from 'draft-js-plugins-editor';
 
 class NewsCard extends Component {
   constructor(props) {
@@ -27,13 +29,62 @@ class NewsCard extends Component {
       'November',
       'Dezember'
     ];
+    this.state = {
+      isChecked: false
+    };
+
+    this.truncate = this.truncate.bind(this);
   }
+
+  handleCheckboxChange() {
+    this.setState({ isChecked: !this.state.isChecked });
+    console.log(this.state.isChecked);
+  }
+
+  truncate(editorState, charCount) {
+    const contentState = editorState.getCurrentContent();
+    const blocks = contentState.getBlockMap();
+
+    let count = 0;
+    let isTruncated = false;
+    const truncatedBlocks = [];
+    blocks.forEach(block => {
+      if (!isTruncated) {
+        const length = block.getLength();
+        if (count + length > charCount) {
+          isTruncated = true;
+          const truncatedText = block.getText().slice(0, charCount - count);
+          const state = ContentState.createFromText(`${truncatedText}...`);
+          truncatedBlocks.push(state.getFirstBlock());
+        } else {
+          truncatedBlocks.push(block);
+        }
+        count += length + 1;
+      }
+    });
+
+    if (isTruncated) {
+      const state = ContentState.createFromBlockArray(truncatedBlocks);
+      return EditorState.createWithContent(state);
+    }
+
+    return editorState;
+  }
+
   render() {
-    console.log(this.props);
-    let previewContent = this.props.newsArticle.content.substring(0, 320);
-    let wrappedContent = this.props.newsArticle.content.substring(320, 1000);
-    if (this.props.newsArticle.content.length > 320)
-      previewContent = previewContent + '...';
+    let articleContent = <div />;
+    if (this.props.newsArticle.article.length !== 0) {
+      let editorState = EditorState.createWithContent(
+        convertFromRaw(JSON.parse(this.props.newsArticle.article))
+      );
+      if (!this.state.isChecked) {
+        articleContent = (
+          <Editor editorState={this.truncate(editorState, 10)} readOnly />
+        );
+      } else {
+        articleContent = <Editor editorState={editorState} readOnly />;
+      }
+    }
     return (
       <Card className="news-card" style={{ border: '1px solid white' }}>
         <CardBody>
@@ -62,11 +113,10 @@ class NewsCard extends Component {
                       type="checkbox"
                       className="read-more-state"
                       id={this.props.newsArticle._id}
+                      onChange={this.handleCheckboxChange.bind(this)}
                     />
-                    <CardText className="read-more-wrap">
-                      {previewContent}{' '}
-                      <span className="read-more-target">{wrappedContent}</span>
-                    </CardText>
+
+                    {articleContent}
 
                     <label
                       htmlFor={this.props.newsArticle._id}
