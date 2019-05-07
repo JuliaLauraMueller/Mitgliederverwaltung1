@@ -140,6 +140,7 @@ class ProfileBasicInfoEDIT extends Component {
                 id='pictureUpload'
                 onChange={this.fileSelectedHandler}
                 className='hidden'
+                accept='.jpg,.jpeg,.png'
               />
               <label htmlFor='pictureUpload' className='picture-button'>
                 Neues Profilbild

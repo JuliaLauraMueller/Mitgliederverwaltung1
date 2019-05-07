@@ -463,38 +463,33 @@ class AdminEventsOverview extends Component {
           <ModalBody>
             <FormGroup row>
               <Col className='event-edit-row'>
-                <Col xs='3' className='event-edit-label'>
-                  <Label for='image'>Eventbild</Label>
-                </Col>
-                <Col xs='9'>
-                  <img
-                    id='modalImage'
-                    src={
-                      this.state.eventToEdit.image !== ''
-                        ? this.state.eventToEdit.imageTag +
-                          ',' +
-                          this.state.eventToEdit.image
-                        : require('../../img/event_default_image.png')
-                    }
-                    alt='event-picture'
-                    style={{ width: '50%', height: 'auto' }}
-                    className='event-edit-txt'
-                  />
-                  <Col className='event-edit-txt'>
-                    <input
-                      type='file'
-                      id='eventPictureUpload-Edit'
-                      onChange={this.handleFileSelection}
-                      className='hidden'
-                    />
-                    <label
-                      htmlFor='eventPictureUpload-Edit'
-                      className='event-edit-txt'
-                    >
-                      Neues Eventbild
-                    </label>
-                  </Col>
-                </Col>
+                <Label for='image'>Eventbild:</Label>
+                <img
+                  id='modalImage'
+                  src={
+                    this.state.eventToEdit.image !== ''
+                      ? this.state.eventToEdit.imageTag +
+                        ',' +
+                        this.state.eventToEdit.image
+                      : require('../../img/event_default_image.png')
+                  }
+                  alt='event-picture'
+                  style={{ width: '90%', height: 'auto' }}
+                  className='event-edit-image'
+                />
+                <input
+                  type='file'
+                  id='eventPictureUpload-Edit'
+                  onChange={this.handleFileSelection}
+                  className='hidden'
+                  accept='.jpg,.jpeg,.png'
+                />
+                <label
+                  htmlFor='eventPictureUpload-Edit'
+                  className='event-edit-picture-input'
+                >
+                  Neues Eventbild
+                </label>
               </Col>
               <Col className='event-edit-row'>
                 <Label className='event-edit-label'>Titel:</Label>

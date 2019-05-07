@@ -171,8 +171,8 @@ class AdminCreateEvent extends Component {
                       ? this.state.imageTag + ',' + this.state.image
                       : require('../../img/event_default_image.png')
                   }
-                  alt='event-picture'
-                  style={{ width: '100%', height: 'auto' }}
+                  className='event-image'
+                  style={{ width: '90%', height: 'auto' }}
                 />
                 <Col>
                   <input
@@ -180,6 +180,7 @@ class AdminCreateEvent extends Component {
                     id='pictureUpload'
                     onChange={this.handleFileSelection}
                     className='hidden'
+                    accept='.jpg,.jpeg,.png'
                   />
                   <label htmlFor='pictureUpload' className='picture-button'>
                     Neues Eventbild
