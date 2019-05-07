@@ -99,6 +99,9 @@ function validate(eventParam) {
   } else if (eventParam.title.length > 30) {
     errorMessages.push('Titel muss kürzer als 30 Zeichen sein.');
   }
+  if (eventParam.description && eventParam.description.length > 700) {
+    errorMessages.push('Beschreibung muss kürzer als 700 Zeichen sein.');
+  }
   if (!eventParam.location || eventParam.location.length == 0) {
     errorMessages.push('Ort darf nicht leer sein.');
   } else if (eventParam.location.length > 30) {
