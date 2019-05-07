@@ -14,7 +14,7 @@ class SingleEventImage extends Component {
                 id='event-image'
                 style={{ width: '100%' }}
                 src={
-                  this.props.imageB64 == ''
+                  this.props.imageB64 === ''
                     ? require('../../img/event_default_image.png')
                     : this.props.imageB64
                 }
