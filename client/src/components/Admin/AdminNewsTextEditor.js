@@ -86,7 +86,7 @@ class TextEditor extends Component {
             placeholder="News-Inhalt hinzufügen..."
           />
           <div className="remainingCharactersRichtText">
-            Verbleibende Zeichen: {5000 - this.state.contentLength}
+            Anzahl Zeichen: {this.state.contentLength}
           </div>
         </div>
         <Toolbar>
