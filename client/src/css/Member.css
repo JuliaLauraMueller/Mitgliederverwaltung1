@@ -126,8 +126,8 @@ hr {
   display: flex;
   justify-content: center;
   border: 0px solid white;
-  min-width: 237px;
-  max-width: 237px;
+  min-width: 244px;
+  max-width: 244px;
   min-height: 161px;
   max-height: 161px;
   border-radius: 0px;
@@ -206,7 +206,7 @@ hr {
 }
 
 .profile-link {
-  margin-left: 30px;
+  margin-left: 38px;
   margin-top: -12px;
 }
 
