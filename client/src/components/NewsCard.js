@@ -7,28 +7,19 @@ import Parser from 'html-react-parser';
 class NewsCard extends Component {
   constructor(props) {
     super(props);
-    this.days = [
-      'Sonntag',
-      'Montag',
-      'Dienstag',
-      'Mittwoch',
-      'Donnerstag',
-      'Freitag',
-      'Samstag'
-    ];
     this.months = [
-      'Januar',
-      'Februar',
-      'März',
-      'April',
-      'Mai',
-      'Juni',
-      'Juli',
-      'August',
-      'September',
-      'Oktober',
-      'November',
-      'Dezember'
+      '1',
+      '2',
+      '3',
+      '4',
+      '5',
+      '6',
+      '7',
+      '8',
+      '9',
+      '10',
+      '11',
+      '12'
     ];
     this.state = {
       isChecked: false
@@ -72,6 +63,8 @@ class NewsCard extends Component {
   }
 
   render() {
+    let date = new Date(this.props.newsArticle.date);
+    let month = this.months[date.getMonth()];
     let articleContent = <div />;
     if (this.props.newsArticle.article.length !== 0) {
       let editorState = EditorState.createWithContent(
@@ -100,7 +93,7 @@ class NewsCard extends Component {
                 </div>
                 <div>
                   <CardText className="news-card-date">
-                    {this.props.newsArticle.date}
+                    {date.getDay()}.{month}.{date.getFullYear()}
                   </CardText>
                 </div>
                 <div>
