@@ -66,6 +66,11 @@ function validate(newsArticleParam) {
   } else if (newsArticleParam.title.length > 30) {
     errorMessages.push('Titel muss kürzer als 30 Zeichen sein.');
   }
+  if (!newsArticleParam.author || newsArticleParam.author.length == 0) {
+    errorMessages.push('Autor darf nicht leer sein.');
+  } else if (newsArticleParam.author.length > 30) {
+    errorMessages.push('Autor muss kürzer als 30 Zeichen sein.');
+  }
   if (!newsArticleParam.article || newsArticleParam.article.length == 0) {
     errorMessages.push('Inhalt darf nicht leer sein.');
   }
