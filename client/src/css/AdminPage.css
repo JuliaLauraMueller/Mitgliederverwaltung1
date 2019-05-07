@@ -144,10 +144,17 @@ div .create-button {
   min-width: 240px;
 }
 
+/** News admin */
 .past-events {
   float: right;
 }
 
 .past-event-txt {
   font-size: 94%;
+}
+
+.admin-form-control-create-news {
+  width: 99%;
+  margin-top: 1%;
+  margin-left: 5px;
 }
