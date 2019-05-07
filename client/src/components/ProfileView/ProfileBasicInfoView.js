@@ -114,13 +114,21 @@ class ProfileBasicInfo extends Component {
           <Row className="overflow">
             <Col>
               <label>Beitritt</label>
-              <label className="value-label">{profile.entryDate}</label>
+              <label className="value-label">
+                {profile.entryDate
+                  ? new Date(profile.entryDate).toLocaleDateString('de-DE')
+                  : ''}
+              </label>
             </Col>
           </Row>
           <Row className="overflow">
             <Col>
               <label>Geburtstag</label>
-              <label className="value-label">{profile.birthdate}</label>
+              <label className="value-label">
+                {profile.birthdate
+                  ? new Date(profile.birthdate).toLocaleDateString('de-DE')
+                  : ''}
+              </label>
             </Col>
           </Row>
           <Row className="overflow">

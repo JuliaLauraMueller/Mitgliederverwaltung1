@@ -127,7 +127,7 @@ class AdminEventsOverview extends Component {
                 <tr>
                   <th> Titel</th>
                   <th>Datum</th>
-                  <th className="d-none d-sm-table-cell">Ort</th>
+                  <th className="d-none d-md-table-cell">Ort</th>
                   <UncontrolledTooltip
                     placement="bottom-start"
                     target="tooltipRoles"
@@ -136,10 +136,11 @@ class AdminEventsOverview extends Component {
                     Eventadministrator <br />3 = Personaladministrator <br />4 =
                     Cityadministrator <br />5 = Fed. Administrator
                   </UncontrolledTooltip>
-                  <th id="tooltipRoles" className="d-none d-sm-table-cell">
+                  <th id="tooltipRoles" className="d-none d-md-table-cell">
                     {' '}
                     Rollen
                   </th>
+                  <th>Aktionen</th>
                 </tr>
               </thead>
               <tbody>{this.getEventRows(this.props.events)}</tbody>
@@ -374,7 +375,9 @@ class AdminEventsOverview extends Component {
       return (
         <tr key={event._id}>
           <td>{event.title}</td>
-          <td>{event.date}</td>
+          <td>
+            {event.date ? new Date(event.date).toLocaleDateString('de-DE') : ''}
+          </td>
           <td className="d-none d-md-table-cell">{event.location}</td>
           <td className="d-none d-md-table-cell">{this.decodeRoles(event)}</td>
           <td>
