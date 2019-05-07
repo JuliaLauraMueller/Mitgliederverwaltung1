@@ -156,3 +156,7 @@ div .create-button {
   font-size: 94%;
   margin-top: -20px;
 }
+
+.admin-form-control.description-area {
+  height: 150px;
+}

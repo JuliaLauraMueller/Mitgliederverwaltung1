@@ -158,10 +158,10 @@ class AdminCreateEvent extends Component {
               </Col>
               <Col xs={9}>
                 <Input
-                  type="text"
+                  type="textarea"
                   name="description"
                   id="description"
-                  className="admin-form-control"
+                  className="admin-form-control description-area"
                   value={this.state.description}
                   onChange={this.handleChange}
                 />

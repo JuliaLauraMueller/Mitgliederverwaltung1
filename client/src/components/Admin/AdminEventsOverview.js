@@ -445,10 +445,10 @@ class AdminEventsOverview extends Component {
               <Col className="event-edit-row">
                 <Label className="event-edit-label">Beschreibung:</Label>
                 <Input
-                  type="text"
+                  type="textarea"
                   id="description"
                   name="description"
-                  className="event-edit-txt"
+                  className="event-edit-txt admin-form-control description-area"
                   onChange={this.handleChange}
                   value={this.state.eventToEdit.description}
                 />
