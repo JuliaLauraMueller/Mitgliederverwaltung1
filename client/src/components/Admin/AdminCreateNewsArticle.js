@@ -106,7 +106,7 @@ class AdminCreateNewsArticle extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="article">Article</Label>
+                <Label for="article">Inhalt</Label>
               </Col>
               <Col xs={9}>
                 <TextEditor className="admin-form-control" ref="texteditor" />

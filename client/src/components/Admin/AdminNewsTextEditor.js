@@ -26,16 +26,21 @@ class TextEditor extends Component {
     this.getRawContent = this.getRawContent.bind(this);
     this.setEditorState = this.setEditorState.bind(this);
     this.onChange = editorState => {
-      this.setState({ editorState });
+      this.setState({
+        editorState,
+        contentLength: editorState.getCurrentContent().getPlainText().length
+      });
     };
   }
 
-  setEditorState(editorState) {
-    if (editorState) {
+  setEditorState(contentState) {
+    if (contentState) {
+      let editorState = EditorState.createWithContent(
+        convertFromRaw(JSON.parse(contentState))
+      );
       this.setState({
-        editorState: EditorState.createWithContent(
-          convertFromRaw(JSON.parse(editorState))
-        )
+        editorState,
+        contentLength: editorState.getCurrentContent().getPlainText().length
       });
     }
   }
@@ -62,7 +67,7 @@ class TextEditor extends Component {
 
   render() {
     return (
-      <div className={'editor'}>
+      <div className="editor">
         <div style={{ padding: '10px', border: '1px solid #ddd' }}>
           <Editor
             editorState={this.state.editorState}
@@ -70,6 +75,9 @@ class TextEditor extends Component {
             plugins={[staticToolbarPlugin]}
             handleKeyCommand={this.handleKeyCommand}
           />
+          <div className="remainingCharactersRichtText">
+            Verbleibende Zeichen: {5000 - this.state.contentLength}
+          </div>
         </div>
         <Toolbar>
           {externalProps => (

@@ -301,7 +301,9 @@ class AdminNewsArticleOverview extends Component {
                 />
               </Col>
               <Col className="event-edit-row">
-                <Label className="event-edit-label">Article:</Label>
+                <Label className="event-edit-label text-editor-label">
+                  Inhalt:
+                </Label>
                 <TextEditor
                   className="event-edit-txt"
                   ref="texteditor"
