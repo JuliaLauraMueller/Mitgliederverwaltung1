@@ -1,13 +1,3 @@
-import levenshtein from 'js-levenshtein';
-
-const MAX_LEVENSHTEIN_DISTANCE = 1;
-
-function levenshteinInRange(searchText, matchingText) {
-  if (levenshtein(searchText, matchingText) <= MAX_LEVENSHTEIN_DISTANCE) {
-    return true;
-  }
-}
-
 function replaceUmlauts(text) {
   return text
     .replace('ä', 'ae')
@@ -19,17 +9,16 @@ export function filterNewsArticles(newsArticles, searchText) {
   if (!newsArticles) return [];
   searchText = replaceUmlauts(searchText.toLowerCase());
   return newsArticles.filter(e => {
-    let title = e.title
-      ? replaceUmlauts(e.title.toLowerCase()).substring(0, searchText.length)
-      : '';
+    let title = e.title ? replaceUmlauts(e.title.toLowerCase()) : '';
 
-    let author = e.author
-      ? replaceUmlauts(e.author.toLowerCase()).substring(0, searchText.length)
-      : '';
+    let author = e.author ? replaceUmlauts(e.author.toLowerCase()) : '';
+
+    let article = e.article ? replaceUmlauts(e.article.toLowerCase()) : '';
 
     return (
-      levenshteinInRange(searchText, title) ||
-      levenshteinInRange(searchText, author)
+      title.toLowerCase().search(searchText.toLowerCase()) !== -1 ||
+      author.toLowerCase().search(searchText.toLowerCase()) !== -1 ||
+      article.toLowerCase().search(searchText.toLowerCase()) !== -1
     );
   });
 }
