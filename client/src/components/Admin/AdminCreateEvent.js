@@ -28,7 +28,7 @@ const initialState = {
   registrationEndDate: '',
   image: '',
   circles: [],
-  permittedRoles: []
+  permittedRoles: [0, 1, 2, 3, 4, 5]
 };
 
 class AdminCreateEvent extends Component {
@@ -307,7 +307,7 @@ class AdminCreateEvent extends Component {
                     id="mitglied"
                     value="0"
                     onChange={this.handleRoleSelection.bind(this)}
-                    checked={this.state.permittedRoles.includes(0)}
+                    checked={true}
                   />
                   <label htmlFor="mitglied" className="filter-cities">
                     Mitglied
