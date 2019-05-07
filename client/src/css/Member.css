@@ -263,3 +263,30 @@ a[href^='tel:'] {
 .filter-cities {
   margin-left: 5px;
 }
+
+@media only screen and (max-width: 480px) {
+  .member-card {
+    min-width: 274px;
+    max-width: 274px;
+    min-height: 170px;
+    max-height: 170px;
+  }
+
+  .profile-link {
+    margin-left: 68px;
+    margin-top: -2px;
+  }
+
+  .profile-text {
+    margin-left: 116px;
+  }
+
+  .profile-text:hover {
+    margin-left: 116px;
+  }
+
+  .profile-arrow {
+    margin-top: -2px;
+    margin-left: 3px;
+  }
+}
