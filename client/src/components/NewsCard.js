@@ -93,7 +93,7 @@ class NewsCard extends Component {
                 </div>
                 <div>
                   <CardText className="news-card-date">
-                    {date.getDay()}.{month}.{date.getFullYear()}
+                    {date.getDate()}.{month}.{date.getFullYear()}
                   </CardText>
                 </div>
                 <div>
