@@ -23,7 +23,14 @@ export function filterNewsArticles(newsArticles, searchText) {
       ? replaceUmlauts(e.title.toLowerCase()).substring(0, searchText.length)
       : '';
 
-    return levenshteinInRange(searchText, title);
+    let author = e.author
+      ? replaceUmlauts(e.author.toLowerCase()).substring(0, searchText.length)
+      : '';
+
+    return (
+      levenshteinInRange(searchText, title) ||
+      levenshteinInRange(searchText, author)
+    );
   });
 }
 
