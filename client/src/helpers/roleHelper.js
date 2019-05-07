@@ -1,7 +1,8 @@
 module.exports = {
   personalAccessCheck,
   roleAccessCheck,
-  isFederationAdmin
+  isFederationAdmin,
+  roleToString
 };
 
 function isFederationAdmin(role) {
@@ -20,4 +21,26 @@ function roleAccessCheck(requiredRole, requiredCircle, userRole, userCircle) {
     return true;
   }
   return false;
+}
+
+function roleToString(role) {
+  let roleText = 'Mitglied';
+  switch (role) {
+    case 1:
+      roleText = 'Newsadministrator';
+      break;
+    case 2:
+      roleText = 'Eventadministrator';
+      break;
+    case 3:
+      roleText = 'Personaladministrator';
+      break;
+    case 4:
+      roleText = 'Cityadministrator';
+      break;
+    case 5:
+      roleText = 'Federationsadministrator';
+      break;
+  }
+  return roleText;
 }

@@ -432,7 +432,9 @@ class AdminEventsOverview extends Component {
           <ModalBody>
             <FormGroup row>
               <Col className="event-edit-row">
-                <Label className="event-edit-label">Titel:</Label>
+                <Label className="event-edit-label">
+                  Titel<pre className="required-field">*</pre>
+                </Label>
                 <Input
                   type="text"
                   id="title"
@@ -443,7 +445,7 @@ class AdminEventsOverview extends Component {
                 />
               </Col>
               <Col className="event-edit-row">
-                <Label className="event-edit-label">Beschreibung:</Label>
+                <Label className="event-edit-label">Beschreibung</Label>
                 <Input
                   type="textarea"
                   id="description"
@@ -454,7 +456,9 @@ class AdminEventsOverview extends Component {
                 />
               </Col>
               <Col className="event-edit-row">
-                <Label className="event-edit-label">Cities:</Label>
+                <Label className="event-edit-label">
+                  Cities<pre className="required-field">*</pre>
+                </Label>
                 <div className="event-edit-txt">
                   <ButtonDropdown
                     isOpen={this.state.circlesDropdownOpen}
@@ -494,7 +498,9 @@ class AdminEventsOverview extends Component {
                 </div>
               </Col>
               <Col className="event-edit-row">
-                <Label className="event-edit-label">Datum:</Label>
+                <Label className="event-edit-label">
+                  Datum<pre className="required-field">*</pre>
+                </Label>
                 <Input
                   type="date"
                   id="date"
@@ -505,7 +511,9 @@ class AdminEventsOverview extends Component {
                 />
               </Col>
               <Col className="event-edit-row">
-                <Label className="event-edit-label">Beginn:</Label>
+                <Label className="event-edit-label">
+                  Beginn<pre className="required-field">*</pre>
+                </Label>
                 <Input
                   type="text"
                   id="startTime"
@@ -516,7 +524,7 @@ class AdminEventsOverview extends Component {
                 />
               </Col>
               <Col className="event-edit-row">
-                <Label className="event-edit-label">Ende:</Label>
+                <Label className="event-edit-label">Ende</Label>
                 <Input
                   type="text"
                   id="endTime"
@@ -527,7 +535,9 @@ class AdminEventsOverview extends Component {
                 />
               </Col>
               <Col className="event-edit-row">
-                <Label className="event-edit-label">Ort:</Label>
+                <Label className="event-edit-label">
+                  Ort<pre className="required-field">*</pre>
+                </Label>
                 <Input
                   type="text"
                   id="location"
@@ -538,7 +548,7 @@ class AdminEventsOverview extends Component {
                 />
               </Col>
               <Col className="event-edit-row">
-                <Label className="event-edit-label">Organisation:</Label>
+                <Label className="event-edit-label">Organisation</Label>
                 <Input
                   type="text"
                   id="organisationTeam"
@@ -549,7 +559,9 @@ class AdminEventsOverview extends Component {
                 />
               </Col>
               <Col className="event-edit-row">
-                <Label className="event-edit-label">Anmeldefrist:</Label>
+                <Label className="event-edit-label">
+                  Anmeldefrist<pre className="required-field">*</pre>
+                </Label>
                 <Input
                   type="date"
                   id="registrationEndDate"
@@ -560,7 +572,9 @@ class AdminEventsOverview extends Component {
                 />
               </Col>
               <Col className="event-edit-row">
-                <Label for="event-edit-label">Rollen</Label>
+                <Label for="event-edit-label">
+                  Rollen<pre className="required-field">*</pre>
+                </Label>
                 <div className="checkbox-container event-edit-txt" key="0">
                   <input
                     type="checkbox"

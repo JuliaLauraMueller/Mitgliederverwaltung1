@@ -65,7 +65,10 @@ class AdminCreateUser extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="firstname">Vorname</Label>
+                <Label for="firstname">
+                  Vorname
+                  <pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs="9">
                 <Input
@@ -82,7 +85,9 @@ class AdminCreateUser extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="surname">Nachname</Label>
+                <Label for="surname">
+                  Nachname<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs={9}>
                 <Input
@@ -99,7 +104,9 @@ class AdminCreateUser extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="privateEmail">E-Mail</Label>
+                <Label for="privateEmail">
+                  E-Mail<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs={9}>
                 <Input
@@ -117,7 +124,9 @@ class AdminCreateUser extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="password">Passwort</Label>
+                <Label for="password">
+                  Passwort<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs={9}>
                 <Input
@@ -135,7 +144,9 @@ class AdminCreateUser extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="circle">City</Label>
+                <Label for="circle">
+                  City<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs={9}>
                 <Input

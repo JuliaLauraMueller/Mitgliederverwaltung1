@@ -118,7 +118,7 @@ class ProfileMainInformationEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">Branche:</InputGroupAddon>
+                <InputGroupAddon addonType="prepend">Branche</InputGroupAddon>
                 <div className="input-field">
                   <Input
                     type="text"
@@ -133,7 +133,7 @@ class ProfileMainInformationEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">Beruf:</InputGroupAddon>
+                <InputGroupAddon addonType="prepend">Beruf</InputGroupAddon>
                 <div className="input-field">
                   <Input
                     type="text"
@@ -149,7 +149,7 @@ class ProfileMainInformationEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">Funktion:</InputGroupAddon>
+                <InputGroupAddon addonType="prepend">Funktion</InputGroupAddon>
                 <div className="input-field">
                   <Input
                     type="text"
@@ -165,7 +165,7 @@ class ProfileMainInformationEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">Firma:</InputGroupAddon>
+                <InputGroupAddon addonType="prepend">Firma</InputGroupAddon>
                 <div className="input-field">
                   <Input
                     type="text"
@@ -181,7 +181,7 @@ class ProfileMainInformationEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">Tel:</InputGroupAddon>
+                <InputGroupAddon addonType="prepend">Tel</InputGroupAddon>
                 <div className="input-field">
                   <Input
                     type="text"
@@ -197,7 +197,7 @@ class ProfileMainInformationEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">Mobile:</InputGroupAddon>
+                <InputGroupAddon addonType="prepend">Mobile</InputGroupAddon>
                 <div className="input-field">
                   <Input
                     type="text"
@@ -213,7 +213,7 @@ class ProfileMainInformationEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">Strasse:</InputGroupAddon>
+                <InputGroupAddon addonType="prepend">Strasse</InputGroupAddon>
                 <div id="input-field">
                   <Input
                     type="text"
@@ -229,7 +229,7 @@ class ProfileMainInformationEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">Nr.:</InputGroupAddon>
+                <InputGroupAddon addonType="prepend">Nr.</InputGroupAddon>
                 <div id="input-field">
                   <Input
                     type="text"
@@ -245,7 +245,7 @@ class ProfileMainInformationEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">PLZ:</InputGroupAddon>
+                <InputGroupAddon addonType="prepend">PLZ</InputGroupAddon>
                 <div id="input-field">
                   <Input
                     type="text"
@@ -261,7 +261,7 @@ class ProfileMainInformationEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">Ort:</InputGroupAddon>
+                <InputGroupAddon addonType="prepend">Ort</InputGroupAddon>
                 <div id="input-field">
                   <Input
                     type="text"
@@ -277,7 +277,7 @@ class ProfileMainInformationEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">E-Mail:</InputGroupAddon>
+                <InputGroupAddon addonType="prepend">E-Mail</InputGroupAddon>
                 <div className="input-field">
                   <Input
                     type="text"
@@ -293,9 +293,7 @@ class ProfileMainInformationEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">
-                  URL Firma:
-                </InputGroupAddon>
+                <InputGroupAddon addonType="prepend">URL Firma</InputGroupAddon>
                 <div className="input-field">
                   <Input
                     type="text"
@@ -337,7 +335,7 @@ class ProfileMainInformationEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">Mobile:</InputGroupAddon>
+                <InputGroupAddon addonType="prepend">Mobile</InputGroupAddon>
                 <div className="input-field">
                   <Input
                     type="text"
@@ -353,7 +351,7 @@ class ProfileMainInformationEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">Strasse:</InputGroupAddon>
+                <InputGroupAddon addonType="prepend">Strasse</InputGroupAddon>
                 <div id="input-field">
                   <Input
                     type="text"
@@ -369,7 +367,7 @@ class ProfileMainInformationEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">Nr.:</InputGroupAddon>
+                <InputGroupAddon addonType="prepend">Nr.</InputGroupAddon>
                 <div id="input-field">
                   <Input
                     type="text"
@@ -385,7 +383,7 @@ class ProfileMainInformationEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">PLZ:</InputGroupAddon>
+                <InputGroupAddon addonType="prepend">PLZ</InputGroupAddon>
                 <div id="input-field">
                   <Input
                     type="text"
@@ -401,7 +399,7 @@ class ProfileMainInformationEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">Ort:</InputGroupAddon>
+                <InputGroupAddon addonType="prepend">Ort</InputGroupAddon>
                 <div id="input-field">
                   <Input
                     type="text"
@@ -417,7 +415,7 @@ class ProfileMainInformationEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">Rechnung:</InputGroupAddon>
+                <InputGroupAddon addonType="prepend">Rechnung</InputGroupAddon>
                 <FormGroup
                   tag="fieldset"
                   className="input-field-radio"
@@ -454,7 +452,10 @@ class ProfileMainInformationEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">E-Mail:</InputGroupAddon>
+                <InputGroupAddon addonType="prepend">
+                  <p className="input-group-text">E-Mail</p>
+                  <pre className="required-field">*</pre>
+                </InputGroupAddon>
                 <div className="input-field space">
                   <Input
                     type="text"

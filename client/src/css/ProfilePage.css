@@ -286,6 +286,12 @@ additional style EDIT profile page
   padding-left: 2%;
 }
 
+.required-field {
+  color: rgb(219, 157, 12);
+  font-size: 104%;
+  display: inline;
+}
+
 @media only screen and (min-width: 769px) and (max-width: 1200px) {
   .basic-info {
     margin-top: 147px;
