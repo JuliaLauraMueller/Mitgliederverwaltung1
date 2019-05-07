@@ -14,7 +14,7 @@ import {
   OrderedListButton
 } from 'draft-js-buttons';
 import 'draft-js-static-toolbar-plugin/lib/plugin.css';
-
+import 'draft-js/dist/Draft.css';
 import '../../css/TextEditor.css';
 
 // static toolbar plugin
@@ -83,6 +83,7 @@ class TextEditor extends Component {
             plugins={[staticToolbarPlugin, toolbarLinkPlugin]}
             handleKeyCommand={this.handleKeyCommand}
             customStyleMap={this.styleMap}
+            placeholder="News-Inhalt hinzufügen..."
           />
           <div className="remainingCharactersRichtText">
             Verbleibende Zeichen: {5000 - this.state.contentLength}
