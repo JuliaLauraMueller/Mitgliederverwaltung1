@@ -37,73 +37,73 @@ class ProfileMainInformation extends Component {
 
           <Row className="overflow">
             <Col>
-              <label>Branche:</label>
+              <label>Branche</label>
               <label className="value-label">{profile.sector}</label>
             </Col>
           </Row>
           <Row className="overflow">
             <Col>
-              <label>Beruf:</label>
+              <label>Beruf</label>
               <label className="value-label">{profile.job}</label>
             </Col>
           </Row>
           <Row className="overflow">
             <Col>
-              <label>Funktion:</label>
+              <label>Funktion</label>
               <label className="value-label">{profile.function}</label>
             </Col>
           </Row>
           <Row className="overflow">
             <Col>
-              <label>Firma:</label>
+              <label>Firma</label>
               <label className="value-label">{profile.company}</label>
             </Col>
           </Row>
           <Row className="overflow">
             <Col>
-              <label>Tel:</label>
+              <label>Tel</label>
               <label className="value-label">{profile.companyTel}</label>
             </Col>
           </Row>
           <Row className="overflow">
             <Col>
-              <label>Mobile:</label>
+              <label>Mobile</label>
               <label className="value-label">{profile.companyMobile}</label>
             </Col>
           </Row>
           <Row className="overflow">
             <Col>
-              <label>Strasse:</label>
+              <label>Strasse</label>
               <label className="value-label">{profile.companyStreet}</label>
             </Col>
           </Row>
           <Row className="overflow">
             <Col>
-              <label>Nr:</label>
+              <label>Nr</label>
               <label className="value-label">{profile.companyStreetNr}</label>
             </Col>
           </Row>
           <Row className="overflow">
             <Col>
-              <label>PLZ:</label>
+              <label>PLZ</label>
               <label className="value-label">{profile.companyZip}</label>
             </Col>
           </Row>
           <Row className="overflow">
             <Col>
-              <label>Ort:</label>
+              <label>Ort</label>
               <label className="value-label">{profile.companyCity}</label>
             </Col>
           </Row>
           <Row className="overflow">
             <Col>
-              <label>E-Mail:</label>
+              <label>E-Mail</label>
               <label className="value-label">{profile.companyEmail}</label>
             </Col>
           </Row>
           <Row className="overflow">
             <Col>
-              <label className="space">URL Firma:</label>
+              <label className="space">URL Firma</label>
               <label className="value-label space">{profile.companyURL}</label>
             </Col>
           </Row>
@@ -117,43 +117,43 @@ class ProfileMainInformation extends Component {
           </Row>
           <Row className="overflow">
             <Col>
-              <label>Tel:</label>
+              <label>Tel</label>
               <label className="value-label">{profile.privateTel}</label>
             </Col>
           </Row>
           <Row className="overflow">
             <Col>
-              <label>Mobile:</label>
+              <label>Mobile</label>
               <label className="value-label">{profile.privateMobile}</label>
             </Col>
           </Row>
           <Row className="overflow">
             <Col>
-              <label>Strasse:</label>
+              <label>Strasse</label>
               <label className="value-label">{profile.privateStreet}</label>
             </Col>
           </Row>
           <Row className="overflow">
             <Col>
-              <label>Nr:</label>
+              <label>Nr</label>
               <label className="value-label">{profile.privateStreetNr}</label>
             </Col>
           </Row>
           <Row className="overflow">
             <Col>
-              <label>PLZ:</label>
+              <label>PLZ</label>
               <label className="value-label">{profile.privateZip}</label>
             </Col>
           </Row>
           <Row className="overflow">
             <Col>
-              <label>Ort:</label>
+              <label>Ort</label>
               <label className="value-label">{profile.privateCity}</label>
             </Col>
           </Row>
           <Row className="overflow">
             <Col>
-              <label>Rechnung: </label>
+              <label>Rechnung</label>
               <label className="value-label">
                 {profile.invoiceAddress === false ? 'geschäftlich' : 'privat'}
               </label>
@@ -161,7 +161,7 @@ class ProfileMainInformation extends Component {
           </Row>
           <Row className="overflow">
             <Col>
-              <label className="space">E-Mail:</label>
+              <label className="space">E-Mail</label>
               <label className="value-label space">
                 {profile.privateEmail}
               </label>

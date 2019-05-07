@@ -137,7 +137,9 @@ class AdminCreateEvent extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="title">Titel</Label>
+                <Label for="title">
+                  Titel<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs="9">
                 <Input
@@ -171,7 +173,9 @@ class AdminCreateEvent extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="description">Cities</Label>
+                <Label for="description">
+                  Cities<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <ButtonDropdown
                 isOpen={this.state.citiesDropdownOpen}
@@ -193,7 +197,9 @@ class AdminCreateEvent extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="date">Datum</Label>
+                <Label for="date">
+                  Datum<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs={9}>
                 <Input
@@ -211,7 +217,9 @@ class AdminCreateEvent extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="startTime">Beginn</Label>
+                <Label for="startTime">
+                  Beginn<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs={9}>
                 <Input
@@ -247,7 +255,9 @@ class AdminCreateEvent extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="location">Ort</Label>
+                <Label for="location">
+                  Ort<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs={9}>
                 <Input
@@ -281,7 +291,9 @@ class AdminCreateEvent extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="registrationEndDate">Anmeldefrist</Label>
+                <Label for="registrationEndDate">
+                  Anmeldefrist<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs={9}>
                 <Input
@@ -298,7 +310,9 @@ class AdminCreateEvent extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="permittedRoles">Rollen</Label>
+                <Label for="permittedRoles">
+                  Rollen<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs={9}>
                 <div className="checkbox-container" key="0">
