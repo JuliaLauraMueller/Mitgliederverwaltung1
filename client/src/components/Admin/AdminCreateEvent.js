@@ -28,7 +28,7 @@ const initialState = {
   registrationEndDate: '',
   image: '',
   circles: [],
-  permittedRoles: []
+  permittedRoles: [0, 1, 2, 3, 4, 5]
 };
 
 class AdminCreateEvent extends Component {
