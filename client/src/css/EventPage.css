@@ -80,7 +80,6 @@
 .event-anmeldung {
   display: flex;
   justify-content: right;
-  padding-left: 3.5em;
   padding-right: 3.5em;
   padding-top: -5em;
   padding-bottom: 0.8em;
@@ -107,11 +106,11 @@
 }
 
 .button-attending {
-  margin-right: 16px;
   margin-left: 16px;
+  margin-top: 8px;
 }
 
-@media only screen and (max-width: 780px) {
+@media only screen and (max-width: 765px) {
   .event-infos {
     padding-left: 1em;
     padding-right: 1em;
@@ -120,6 +119,11 @@
   .date {
     padding-left: 1.5em;
     padding-right: 1.5em;
+  }
+
+  .event-anmeldung {
+    padding-right: 0em;
+    text-align: left;
   }
 
   .overflow {
@@ -170,6 +174,8 @@
 
   .button-attending {
     margin-top: 1em;
+    margin-left: 0px;
+    margin-right: 16px;
   }
 
   .date {

@@ -89,7 +89,7 @@ class SingleEventInfo extends Component {
       <div>
         {this.createAttendeeModal(attendee)}
         <Row>
-          <Col md={{ offset: 0, size: 4 }} xs={{ offset: 0 }}>
+          <Col md={{ offset: 0, size: 3 }} xs={{ offset: 0 }}>
             <Row className="date">
               <Col>
                 <label className="event-month">{month} </label>
@@ -107,7 +107,7 @@ class SingleEventInfo extends Component {
             </Row>
           </Col>
 
-          <Col md={{ offset: 0, size: 6 }}>
+          <Col md={{ offset: 0, size: 5 }}>
             <Row className="overflow">
               <Col>
                 <label className="event-title">{event.title} </label>
@@ -145,7 +145,7 @@ class SingleEventInfo extends Component {
             </Row>
           </Col>
 
-          <Col md={{ offset: 0, size: 12 }} xs={{ offset: 2 }} align="right">
+          <Col md={{ offset: 0, size: 4 }} align="right">
             <Row className="event-anmeldung">
               <Col>{this.attendeeButtons(attendee.isAttending)}</Col>
             </Row>
