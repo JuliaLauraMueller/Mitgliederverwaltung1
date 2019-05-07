@@ -1,7 +1,7 @@
 .editor {
   word-wrap: break-word;
   word-break: break-all;
-  padding-top: 7px;
+  padding: 1% 0 2% 0;
 }
 
 .remainingCharactersRichtText {
