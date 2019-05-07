@@ -79,7 +79,7 @@ class AdminCreateNewsArticle extends Component {
                   type="text"
                   name="newsArticleTitle"
                   id="newsArticleTitle"
-                  className="admin-form-control"
+                  className="admin-form-control-create-news"
                   value={this.state.newsArticleTitle}
                   onChange={this.handleChange}
                 />
@@ -96,7 +96,7 @@ class AdminCreateNewsArticle extends Component {
                   type="text"
                   name="author"
                   id="author"
-                  className="admin-form-control"
+                  className="admin-form-control-create-news"
                   value={this.state.author}
                   onChange={this.handleChange}
                 />
@@ -109,7 +109,10 @@ class AdminCreateNewsArticle extends Component {
                 <Label for="article">Inhalt</Label>
               </Col>
               <Col xs={9}>
-                <TextEditor className="admin-form-control" ref="texteditor" />
+                <TextEditor
+                  className="admin-form-control-create-news"
+                  ref="texteditor"
+                />
               </Col>
             </Row>
           </FormGroup>
@@ -123,7 +126,7 @@ class AdminCreateNewsArticle extends Component {
                   type="date"
                   name="newsArticleDate"
                   id="newsArticleDate"
-                  className="admin-form-control"
+                  className="admin-form-control-create-news"
                   autoComplete="off"
                   value={this.state.newsArticleDate}
                   onChange={this.handleChange}
