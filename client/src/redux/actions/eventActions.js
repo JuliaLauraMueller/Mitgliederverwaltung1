@@ -77,7 +77,7 @@ export const putEvent = eventData => async dispatch => {
     });
 };
 
-export const addAttendee = (id, data) => dispatch => {
+export const addAttendee = (id, data) => async dispatch => {
   return eventService
     .addAttendee(id, data)
     .then(res => {
@@ -90,7 +90,7 @@ export const addAttendee = (id, data) => dispatch => {
     });
 };
 
-export const removeAttendee = id => dispatch => {
+export const removeAttendee = id => async dispatch => {
   return eventService
     .removeAttendee(id)
     .then(res => {

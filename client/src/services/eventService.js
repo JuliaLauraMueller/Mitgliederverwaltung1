@@ -60,7 +60,8 @@ async function getEventData(id) {
         location: resp.data.location,
         organisationTeam: resp.data.organisationTeam,
         registrationEndDate: resp.data.registrationEndDate,
-        permittedRoles: resp.data.permittedRoles
+        permittedRoles: resp.data.permittedRoles,
+        attendees: resp.data.attendees
       }
     };
   });
@@ -91,7 +92,6 @@ async function addAttendee(id, data) {
 }
 
 async function removeAttendee(id) {
-  console.log(':)');
   return await axios
     .delete('/events/' + id + '/removeAttendee')
     .then(event => {

@@ -148,7 +148,9 @@ async function removeCircleFromEvents(circleId) {
 }
 
 async function addAttendee(eventId, userId, accompanimentsAmount) {
-  const event = await Event.findById(eventId);
+  const event = await Event.findById(eventId)
+    .populate('circles')
+    .select();
   if (!event) throw 'Event not found';
 
   const originalAttendee = event.attendees.find(a => a.user == userId);
@@ -166,7 +168,9 @@ async function addAttendee(eventId, userId, accompanimentsAmount) {
 }
 
 async function removeAttendee(eventId, userId) {
-  const event = await Event.findById(eventId);
+  const event = await Event.findById(eventId)
+    .populate('circles')
+    .select();
   if (!event) throw 'Event not found';
 
   const index = event.attendees.findIndex(att => att.user == userId);

@@ -25,7 +25,8 @@ class SingleEventInfo extends Component {
 
     this.state = {
       attendeeModal: false,
-      attendee: { accompaniments: 0 }
+      attendee: { accompaniments: 0 },
+      isAttending: false
     };
 
     this.days = [
@@ -56,7 +57,8 @@ class SingleEventInfo extends Component {
     this.removeAttendee = this.removeAttendee.bind(this);
     this.createAttendeeModal = this.createAttendeeModal.bind(this);
     this.toggleAttendeeModal = this.toggleAttendeeModal.bind(this);
-    this.handleAttendeeChange = this.handleAttendeeChange.bind(this);
+    this.attendeeButtons = this.attendeeButtons.bind(this);
+    this.attendingCount = this.attendingCount.bind(this);
   }
 
   render() {
@@ -70,16 +72,22 @@ class SingleEventInfo extends Component {
       circlesText = event.circles.map(c => c.name).join(', ');
     }
 
-    if (!event) {
-      const attendee = event.attendees.filter(
-        att => att.user == store.getState().auth.user._id
+    let attendee = { user: store.getState().auth.user._id, accompaniments: 0 };
+    if (event.attendees) {
+      const attendeesWithId = event.attendees.filter(
+        att => att.user === store.getState().auth.user._id
       );
-      this.state.attendee = attendee;
+
+      if (attendeesWithId[0]) {
+        attendee.user = attendeesWithId[0].user;
+        attendee.accompaniments = attendeesWithId[0].accompaniments;
+        attendee.isAttending = true;
+      }
     }
 
     return (
       <div>
-        {this.createAttendeeModal()}
+        {this.createAttendeeModal(attendee)}
         <Row>
           <Col md={{ offset: 0, size: 4 }} xs={{ offset: 2 }} align="center">
             <Row className="date">
@@ -139,31 +147,10 @@ class SingleEventInfo extends Component {
 
           <Col md={{ offset: 0, size: 12 }} xs={{ offset: 6 }} align="right">
             <Row className="event-anmeldung">
-              <Col>
-                <Button
-                  className="button-attending"
-                  onClick={() => this.toggleAttendeeModal()}
-                >
-                  Zusagen
-                </Button>
-                <Button
-                  className="button-attending"
-                  onClick={() => this.removeAttendee()}
-                >
-                  Absagen
-                </Button>
-                <Button
-                  className="button-attending"
-                  onClick={() => this.toggleAttendeeModal()}
-                >
-                  Begleitungen
-                </Button>
-              </Col>
+              <Col>{this.attendeeButtons(attendee.isAttending)}</Col>
             </Row>
             <Row className="event-anmeldung">
-              <Col>
-                <label className=""> Zusagen: 13 Begleitungen: 5 </label>
-              </Col>
+              <Col>{this.attendingCount()}</Col>
             </Row>
           </Col>
 
@@ -209,14 +196,72 @@ class SingleEventInfo extends Component {
     );
   }
 
+  attendingCount() {
+    const amountAtt = this.props.event.attendees
+      ? this.props.event.attendees.length
+      : 0;
+    let amountAcc = 0;
+    if (amountAtt > 0) {
+      this.props.event.attendees.forEach(attendee => {
+        amountAcc += attendee.accompaniments;
+      });
+    }
+
+    return (
+      <label className="">
+        {' '}
+        Zusagen: {amountAtt} Begleitungen: {amountAcc}{' '}
+      </label>
+    );
+  }
+
+  attendeeButtons(isAttending) {
+    let Buttons = {};
+
+    if (isAttending) {
+      Buttons = (
+        <div>
+          <Button
+            className="button-attending"
+            onClick={() => this.removeAttendee()}
+          >
+            Absagen
+          </Button>
+          <Button
+            className="button-attending"
+            onClick={() => this.toggleAttendeeModal()}
+          >
+            Begleitungen
+          </Button>
+        </div>
+      );
+    } else {
+      Buttons = (
+        <div>
+          <Button
+            className="button-attending"
+            onClick={() => this.toggleAttendeeModal()}
+          >
+            Zusagen
+          </Button>
+        </div>
+      );
+    }
+
+    return <div>{Buttons}</div>;
+  }
+
   addAttendee(amount) {
     this.props.dispatch(
       addAttendee(this.props.event._id, { accompaniments: amount })
     );
+
+    this.setState({ isAttending: true });
   }
 
   removeAttendee() {
     this.props.dispatch(removeAttendee(this.props.event._id));
+    this.setState({ isAttending: false });
   }
 
   toggleAttendeeModal() {
@@ -225,17 +270,7 @@ class SingleEventInfo extends Component {
     }));
   }
 
-  handleAttendeeChange(e) {
-    e.persist();
-    this.setState(prevState => ({
-      attendee: {
-        ...prevState.attendee.user,
-        accompaniments: e.target.value
-      }
-    }));
-  }
-
-  createAttendeeModal() {
+  createAttendeeModal(attendee) {
     return (
       <Modal
         isOpen={this.state.attendeeModal}
@@ -250,8 +285,8 @@ class SingleEventInfo extends Component {
                 type="select"
                 name="accompaniments"
                 id="accompaniments"
-                value={this.state.attendee.accompaniments}
-                onChange={this.handleAttendeeChange}
+                defaultValue={attendee.accompaniments}
+                onChange={e => (attendee.accompaniments = e.target.value)}
               >
                 <option key="0" value="0">
                   0
@@ -284,7 +319,7 @@ class SingleEventInfo extends Component {
             className="admin-button"
             color="primary"
             onClick={() => {
-              this.addAttendee(this.state.attendee.accompaniments);
+              this.addAttendee(attendee.accompaniments);
               this.toggleAttendeeModal({});
             }}
             value="Speichern"
