@@ -150,7 +150,8 @@ class AdminNewsArticleOverview extends Component {
                 _id: newsArticle._id,
                 title: newsArticle.title || this.emptyNewsArticle.title,
                 date: newsArticle.date || this.emptyNewsArticle.date,
-                author: newsArticle.author || this.emptyNewsArticle.author
+                author: newsArticle.author || this.emptyNewsArticle.author,
+                article: newsArticle.article || this.emptyNewsArticle.article
               })
             }
             id={tooltipIdEdit}
@@ -271,7 +272,8 @@ class AdminNewsArticleOverview extends Component {
     this.setState({
       newsArticleToEdit: {
         ...this.state.newsArticleToEdit,
-        [newsArticle.target.name]: newsArticle.target.value
+        [newsArticle.target.name]: newsArticle.target.value,
+        article: this.refs.texteditor.getRawContent()
       }
     });
   }
@@ -282,6 +284,7 @@ class AdminNewsArticleOverview extends Component {
         isOpen={this.state.editModal}
         toggle={() => this.toggleNewsArticleEditModal(this.emptyNewsArticle)}
         onOpened={() => {
+          console.log(this.state.newsArticleToEdit);
           this.refs.texteditor.setEditorState(
             this.state.newsArticleToEdit.article
           );
