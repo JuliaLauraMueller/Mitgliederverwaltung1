@@ -42,6 +42,8 @@ async function getAll() {
       $group: {
         _id: '$_id',
         title: { $first: '$title' },
+        image: { $first: '$image' },
+        imageTag: { $first: '$imageTag' },
         description: { $first: '$description' },
         date: {
           $first: { $dateToString: { format: '%Y-%m-%d', date: '$date' } }
