@@ -9,10 +9,17 @@
   background: transparent;
   border: none;
   padding: 0;
+  margin-top: 22px;
+  margin-left: 6px;
 }
 
-.toggle-button:focus {
-  outline: none;
+.toggle-button-arrow {
+  margin-left: 250px;
+}
+
+button.toggle-button:hover > svg.svg-svg > path {
+  fill: #db9d0c !important;
+  background-color: aquamarine;
 }
 
 .toggle-button_line {
