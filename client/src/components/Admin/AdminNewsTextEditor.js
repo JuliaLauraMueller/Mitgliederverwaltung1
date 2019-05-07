@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { EditorState, RichUtils, convertToRaw, convertFromRaw } from 'draft-js';
 import Editor from 'draft-js-plugins-editor';
 import createToolbarPlugin from 'draft-js-static-toolbar-plugin';
+import createToolbarLinkPlugin from 'draft-js-toolbar-link-plugin';
 import {
   ItalicButton,
   BoldButton,
@@ -13,11 +14,16 @@ import {
   OrderedListButton
 } from 'draft-js-buttons';
 import 'draft-js-static-toolbar-plugin/lib/plugin.css';
+
 import '../../css/TextEditor.css';
 
 // static toolbar plugin
 const staticToolbarPlugin = createToolbarPlugin();
 const { Toolbar } = staticToolbarPlugin;
+
+//link plugin
+const toolbarLinkPlugin = createToolbarLinkPlugin();
+const { LinkButton } = toolbarLinkPlugin;
 
 class TextEditor extends Component {
   constructor(props) {
@@ -67,7 +73,7 @@ class TextEditor extends Component {
           <Editor
             editorState={this.state.editorState}
             onChange={this.onChange}
-            plugins={[staticToolbarPlugin]}
+            plugins={[staticToolbarPlugin, toolbarLinkPlugin]}
             handleKeyCommand={this.handleKeyCommand}
           />
         </div>
@@ -82,6 +88,7 @@ class TextEditor extends Component {
               <HeadlineThreeButton {...externalProps} />
               <UnorderedListButton {...externalProps} />
               <OrderedListButton {...externalProps} />
+              <LinkButton {...externalProps} />
             </div>
           )}
         </Toolbar>
