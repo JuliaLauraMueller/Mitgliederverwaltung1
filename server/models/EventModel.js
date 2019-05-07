@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const schema = new Schema({
   title: { type: String },
+  imageTag: { type: String },
   image: { type: Buffer },
   description: { type: String },
   circles: [{ type: Schema.Types.ObjectId, ref: 'Circle' }],
