@@ -35,6 +35,11 @@ global style for all pages
   height: 100%;
 }
 
+.title {
+  text-align: center;
+  margin-bottom: 5%;
+}
+
 .collapsed {
   padding-left: 90px;
 }

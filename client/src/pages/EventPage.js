@@ -33,6 +33,7 @@ class EventPage extends Component {
       <Container className="member-page-container">
         <Row>
           <Col>
+            <h1 className="title">Events</h1>
             <Helmet>
               <style>
                 {'body { background-color: rgb(15, 25, 41, 10%); }'}
