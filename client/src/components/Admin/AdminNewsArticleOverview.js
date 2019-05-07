@@ -284,7 +284,6 @@ class AdminNewsArticleOverview extends Component {
         isOpen={this.state.editModal}
         toggle={() => this.toggleNewsArticleEditModal(this.emptyNewsArticle)}
         onOpened={() => {
-          console.log(this.state.newsArticleToEdit);
           this.refs.texteditor.setEditorState(
             this.state.newsArticleToEdit.article
           );
