@@ -36,8 +36,8 @@ class EventCard extends Component {
     let trimmedDescription = this.props.event.description.substring(0, 75);
     if (this.props.event.description.length > 75)
       trimmedDescription = trimmedDescription + '...';
-    let trimmedLocation = this.props.event.location.substring(0, 13);
-    if (this.props.event.location.length > 13)
+    let trimmedLocation = this.props.event.location.substring(0, 14);
+    if (this.props.event.location.length > 14)
       trimmedLocation = trimmedLocation + '...';
     return (
       <Row>
@@ -68,9 +68,9 @@ class EventCard extends Component {
                       <CardText className="event-card-location">
                         <span className="event-card-location-icon">
                           <svg
-                            width="16"
-                            height="25"
-                            viewBox="0 0 16 25"
+                            width="20"
+                            height="30"
+                            viewBox="0 0 20 30"
                             fill="none"
                             xmlns="http://www.w3.org/2000/svg"
                           >
