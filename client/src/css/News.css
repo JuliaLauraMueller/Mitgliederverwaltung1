@@ -23,7 +23,7 @@
 
 .news-card-title {
   font-size: 27px;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .news-card-author {
@@ -43,13 +43,6 @@
   display: block;
   width: 650px;
   white-space: normal;
-}
-
-.news-card-link {
-  position: static;
-  margin-left: 200px;
-  margin-top: 200px;
-  white-space: nowrap;
 }
 
 .read-more-state {
@@ -109,4 +102,85 @@
 
 .news-card a {
   color: rgb(219, 157, 12);
+}
+
+@media only screen and (max-width: 730px) {
+  .news-card {
+    min-width: 500px;
+    max-width: 500px;
+  }
+
+  .news-card-description {
+    width: 450px;
+  }
+
+  .read-more-trigger {
+    margin-left: 410px;
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .news-card {
+    min-width: 350px;
+    max-width: 350px;
+  }
+
+  .news-card-description {
+    width: 320px;
+    font-size: 14px;
+  }
+
+  .read-more-trigger {
+    margin-left: 260px;
+    font-size: 14px;
+  }
+
+  .news-card-title {
+    font-size: 22px;
+  }
+
+  .news-card h1 {
+    font-size: 16pt;
+  }
+
+  .news-card h2 {
+    font-size: 15pt;
+  }
+
+  .news-card h3 {
+    font-size: 14pt;
+  }
+}
+
+@media only screen and (max-width: 372px) {
+  .news-card {
+    min-width: 300px;
+    max-width: 300px;
+  }
+
+  .news-card-description {
+    width: 270px;
+    font-size: 14px;
+  }
+
+  .read-more-trigger {
+    margin-left: 220px;
+    font-size: 13px;
+  }
+
+  .news-card-title {
+    font-size: 22px;
+  }
+
+  .news-card h1 {
+    font-size: 16pt;
+  }
+
+  .news-card h2 {
+    font-size: 15pt;
+  }
+
+  .news-card h3 {
+    font-size: 14pt;
+  }
 }

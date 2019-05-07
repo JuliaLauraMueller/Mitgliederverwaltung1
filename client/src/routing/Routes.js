@@ -36,7 +36,7 @@ class Routes extends Component {
           <div id="page-wrap">
             <Switch>
               <Route exact path="/login" component={LoginPage} />
-              <PrivateRoute exact path="/" component={MemberPage} />
+              <PrivateRoute exact path="/" component={NewsPage} />
               <PrivateRoute
                 exact
                 path={'/member/:id'}

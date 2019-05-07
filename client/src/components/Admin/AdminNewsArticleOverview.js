@@ -113,7 +113,7 @@ class AdminNewsArticleOverview extends Component {
                 <tr>
                   <th>Titel</th>
                   <th>Datum</th>
-                  <th className="d-none d-md-table-cell">Author</th>
+                  <th className="d-none d-md-table-cell">Autor</th>
                 </tr>
               </thead>
               <tbody>{this.getNewsArticleRows(this.props.newsArticles)}</tbody>
@@ -298,7 +298,9 @@ class AdminNewsArticleOverview extends Component {
           <ModalBody>
             <FormGroup row>
               <Col className="event-edit-row">
-                <Label className="event-edit-label">Titel:</Label>
+                <Label className="event-edit-label">
+                  Titel<pre className="required-field">*</pre>
+                </Label>
                 <Input
                   type="text"
                   id="title"
@@ -309,7 +311,9 @@ class AdminNewsArticleOverview extends Component {
                 />
               </Col>
               <Col className="event-edit-row">
-                <Label className="event-edit-label">Author:</Label>
+                <Label className="event-edit-label">
+                  Autor<pre className="required-field">*</pre>
+                </Label>
                 <Input
                   type="text"
                   id="author"
@@ -321,7 +325,7 @@ class AdminNewsArticleOverview extends Component {
               </Col>
               <Col className="event-edit-row">
                 <Label className="event-edit-label text-editor-label">
-                  Inhalt:
+                  Inhalt<pre className="required-field">*</pre>
                 </Label>
                 <TextEditor
                   className="event-edit-txt"
@@ -330,7 +334,9 @@ class AdminNewsArticleOverview extends Component {
                 />
               </Col>
               <Col className="event-edit-row">
-                <Label className="event-edit-label">Datum:</Label>
+                <Label className="event-edit-label">
+                  Datum<pre className="required-field">*</pre>
+                </Label>
                 <Input
                   type="date"
                   id="date"
