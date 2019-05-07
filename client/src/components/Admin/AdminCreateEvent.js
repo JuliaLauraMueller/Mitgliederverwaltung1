@@ -307,7 +307,7 @@ class AdminCreateEvent extends Component {
                     id="mitglied"
                     value="0"
                     onChange={this.handleRoleSelection.bind(this)}
-                    checked={true}
+                    checked={this.state.permittedRoles.includes(0)}
                   />
                   <label htmlFor="mitglied" className="filter-cities">
                     Mitglied
