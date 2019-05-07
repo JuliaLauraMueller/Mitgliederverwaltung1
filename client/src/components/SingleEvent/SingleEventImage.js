@@ -7,19 +7,16 @@ class SingleEventImage extends Component {
   render() {
     return (
       <Row>
-        <Col>
-          <Row className='event-image'>
-            <Col md='12' align='center'>
-              <img
-                id='event-image'
-                style={{ width: '100%' }}
-                src={
-                  this.props.imageB64 === ''
-                    ? require('../../img/event_default_image.png')
-                    : this.props.imageB64
-                }
-                alt='event'
-              />
+        <Col align="center">
+          <Row>
+            <Col md="12">
+              <div className="event-image">
+                <img
+                  id="event-image"
+                  src={require('../../img/event_default_image.png')}
+                  alt="event"
+                />
+              </div>
             </Col>
           </Row>
         </Col>
