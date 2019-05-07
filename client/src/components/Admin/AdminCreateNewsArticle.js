@@ -72,7 +72,9 @@ class AdminCreateNewsArticle extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="newsArticleTitle">Titel</Label>
+                <Label for="newsArticleTitle">
+                  Titel<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs="9">
                 <Input
@@ -89,7 +91,9 @@ class AdminCreateNewsArticle extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="author">Author</Label>
+                <Label for="author">
+                  Autor <pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs={9}>
                 <Input
@@ -106,7 +110,9 @@ class AdminCreateNewsArticle extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="article">Inhalt</Label>
+                <Label for="article">
+                  Inhalt<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs={9}>
                 <TextEditor
@@ -119,7 +125,9 @@ class AdminCreateNewsArticle extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="newsArticleDate">Datum</Label>
+                <Label for="newsArticleDate">
+                  Datum<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs={9}>
                 <Input
