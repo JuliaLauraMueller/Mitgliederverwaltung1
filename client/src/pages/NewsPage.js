@@ -18,27 +18,45 @@ class NewsPage extends Component {
   }
 
   render() {
-    let newsCards = <p className="no-data-found">Keine News gefunden</p>;
+    let newsCards = <p className='no-data-found'>Keine News gefunden</p>;
     if (this.props.news && this.props.news.length !== 0) {
       let currentNews = this.props.news.slice(0, 30);
       newsCards = currentNews.map(newsArticle => (
         <NewsCard key={newsArticle._id} newsArticle={newsArticle} />
       ));
     }
+
+    let content = <div />;
+
+    if (this.props.isLoading) {
+      content = (
+        <div>
+          <img
+            src={require('../img/LoadingIcon.gif')}
+            alt='loading-icon'
+            className='loading-icon'
+          />
+        </div>
+      );
+    } else {
+      content = (
+        <Row className='member-cards-row' key={newsCards}>
+          {newsCards}
+        </Row>
+      );
+    }
     return (
-      <Container className="news-page-container">
+      <Container className='news-page-container'>
         <Row>
           <Col>
-            <h1 className="title">News</h1>
+            <h1 className='title'>News</h1>
             <Helmet>
               <style>
                 {'body { background-color: rgb(15, 25, 41, 10%); }'}
               </style>
             </Helmet>
             <SearchFieldNews />
-            <Row className="member-cards-row" key={newsCards}>
-              {newsCards}
-            </Row>
+            {content}
           </Col>
         </Row>
       </Container>
@@ -48,7 +66,8 @@ class NewsPage extends Component {
 
 function mapStateToProps(state) {
   return {
-    news: state.newsArticle.filteredNewsArticles
+    news: state.newsArticle.filteredNewsArticles,
+    isLoading: state.loading.isLoading
   };
 }
 

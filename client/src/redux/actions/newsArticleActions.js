@@ -6,6 +6,8 @@ import {
   PUT_NEWS_ARTICLE,
   SEARCH_NEWS_ARTICLES
 } from '../types/newsArticleTypes';
+
+import { DATA_FETCHED, DATA_FETCHING } from '../types/loadingTypes';
 import newsArticleService from '../../services/newsArticleService';
 import store from '../../helpers/store';
 import history from '../../helpers/history';
@@ -19,11 +21,13 @@ export const searchNewsArticles = searchText => dispatch => {
 };
 
 export const fetchNewsArticle = id => dispatch => {
+  dispatch({ type: DATA_FETCHING });
   newsArticleService
     .getNewsArticleData(id)
     .then(res => {
       if (res) {
         dispatch({ type: NEWS_ARTICLE_FETCHED, payload: res.newsArticle });
+        dispatch({ type: DATA_FETCHED });
       }
     })
     .catch(err => {
@@ -34,9 +38,11 @@ export const fetchNewsArticle = id => dispatch => {
 };
 
 export const fetchNewsArticles = () => dispatch => {
+  dispatch({ type: DATA_FETCHING });
   newsArticleService.getNewsArticleBody().then(res => {
     if (res) {
       dispatch({ type: NEWS_ARTICLES_FETCHED, payload: res.newsArticles });
+      dispatch({ type: DATA_FETCHED });
     }
   });
 };
