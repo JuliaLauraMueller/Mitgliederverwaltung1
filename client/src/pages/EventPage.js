@@ -19,8 +19,8 @@ class EventPage extends Component {
   }
 
   render() {
-    let eventCards = [];
-    if (this.props.events) {
+    let eventCards = <p className="no-data-found">Keine Events gefunden</p>;
+    if (this.props.events && this.props.events.length > 0) {
       eventCards = this.props.events
         .filter(event =>
           event.permittedRoles.includes(store.getState().auth.user.role)

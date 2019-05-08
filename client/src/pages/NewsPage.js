@@ -18,8 +18,8 @@ class NewsPage extends Component {
   }
 
   render() {
-    let newsCards = [];
-    if (this.props.news) {
+    let newsCards = <p className="no-data-found">Keine News gefunden</p>;
+    if (this.props.news && this.props.news.length !== 0) {
       let currentNews = this.props.news.slice(0, 30);
       newsCards = currentNews.map(newsArticle => (
         <NewsCard key={newsArticle._id} newsArticle={newsArticle} />
