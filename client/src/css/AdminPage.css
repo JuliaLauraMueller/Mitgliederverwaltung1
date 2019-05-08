@@ -165,6 +165,34 @@ div .create-button {
   min-width: 240px;
 }
 
+.event-edit-picture-input {
+  float: right;
+  max-width: 240px;
+  min-width: 240px;
+  color: rgb(219, 157, 12);
+  border: none;
+  padding: 0;
+  border-radius: 0;
+  font-size: 1rem;
+  font-family: Helvetica, sans-serif;
+  font-weight: lighter;
+  transition: none;
+  margin-top: 0.5rem;
+}
+
+.event-edit-picture-input:hover,
+.event-edit-picture-input:active {
+  background-color: transparent;
+  color: rgb(15, 25, 41, 74%);
+}
+
+.event-edit-image {
+  float: right;
+  max-width: 240px;
+  min-width: 240px;
+  max-height: 90px;
+}
+
 .past-events {
   float: right;
 }

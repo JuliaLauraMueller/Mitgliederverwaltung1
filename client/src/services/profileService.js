@@ -106,10 +106,26 @@ async function setCompanyData(data) {
   return res;
 }
 
+async function changePassword(data) {
+  return await axios
+    .put('/users/changePassword/' + data._id, data)
+    .then(res => {
+      return Promise.resolve(res);
+    })
+    .catch(error => {
+      if (error && error.data.msg) {
+        return Promise.reject(error.data.msg);
+      } else {
+        return Promise.reject('Passwort konnte nicht geändert werden');
+      }
+    });
+}
+
 const profileService = {
   getUserData,
   getCompanyData,
   setUserData,
-  setCompanyData
+  setCompanyData,
+  changePassword
 };
 export default profileService;

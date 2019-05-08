@@ -21,7 +21,8 @@ module.exports = {
   removeAllCompanyRelations,
   updateUser,
   deleteUser,
-  changeRole
+  changeRole,
+  changePassword
 };
 
 async function authenticate({ privateEmail, password }) {
@@ -288,6 +289,40 @@ async function changeRole(id, role) {
 
   user.role = role;
   await user.save();
+}
+
+async function changePassword(id, passwords) {
+  const user = await User.findById(id);
+
+  if (!user) {
+    throw 'Benutzer nicht gefunden';
+  } else if (!bcrypt.compareSync(passwords.oldPassword, user.password)) {
+    throw {
+      type: 'invalid_input',
+      msg: 'Aktuelles Passwort ist nicht korrekt'
+    };
+  } else if (passwords.newPassword1 === '' || passwords.newPassword2 === '') {
+    throw { type: 'invalid_input', msg: 'Das Passwort darf nicht leer sein' };
+  } else if (passwords.newPassword1 !== passwords.newPassword2) {
+    throw {
+      type: 'invalid_input',
+      msg: 'Die neuen Passwörter stimmen nicht überein'
+    };
+  } else if (passwords.newPassword1.length < 7) {
+    throw {
+      type: 'invalid_input',
+      msg: 'Passwort muss länger als 7 Zeichen sein.'
+    };
+  } else if (passwords.newPassword1.length > 30) {
+    throw {
+      type: 'invalid_input',
+      msg: 'Passwort muss kürzer als 30 Zeichen sein.'
+    };
+  } else {
+    user.password = bcrypt.hashSync(passwords.newPassword1, 10);
+
+    await user.save();
+  }
 }
 
 function validateAll(userParam, errors) {

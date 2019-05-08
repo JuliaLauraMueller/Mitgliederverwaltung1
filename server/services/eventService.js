@@ -13,9 +13,16 @@ module.exports = {
 };
 
 async function getById(id) {
-  return await Event.findById(id)
+  let event = await Event.findById(id)
     .populate('circles')
     .select();
+  if (event.image) {
+    let buff = Buffer.from(event.image);
+    let b64 = buff.toString('base64');
+    event = event.toObject();
+    event.image = b64;
+  }
+  return event;
 }
 
 async function getAll() {
@@ -36,6 +43,7 @@ async function getAll() {
         _id: '$_id',
         title: { $first: '$title' },
         image: { $first: '$image' },
+        imageTag: { $first: '$imageTag' },
         description: { $first: '$description' },
         date: {
           $first: { $dateToString: { format: '%Y-%m-%d', date: '$date' } }
@@ -64,6 +72,11 @@ async function updateEvent(id, eventParam) {
   const event = await Event.findById(id);
   if (!event) throw 'Event not found';
 
+  // convert base64 data to binary for backend
+  if (eventParam.image) {
+    eventParam.image = Buffer.from(eventParam.image, 'base64');
+  }
+
   let errors = validate(eventParam);
   if (errors.length != 0) {
     throw { type: 'invalid_input', errors };
@@ -80,6 +93,9 @@ async function deleteEvent(id) {
 }
 
 async function create(eventParam) {
+  if (eventParam.image) {
+    eventParam.image = Buffer.from(eventParam.image, 'base64');
+  }
   let errors = validate(eventParam);
   if (errors.length != 0) {
     throw { type: 'invalid_input', errors };
@@ -128,6 +144,17 @@ function validate(eventParam) {
   }
   if (!eventParam.permittedRoles || eventParam.permittedRoles.length == 0) {
     errorMessages.push('Es muss mindestens eine Rolle angewählt sein.');
+  }
+  //ProfilePic
+  if (eventParam.image) {
+    if (
+      eventParam.imageTag !== 'data:image/png;base64' &&
+      eventParam.imageTag !== 'data:image/jpeg;base64'
+    ) {
+      errorMessages.push('Profilbild: Dateityp muss jpg/jpeg/png sein');
+    } else if (eventParam.image.toString().length > 500000) {
+      errorMessages.push('Profilbild: Bild zu gross, maximal 500KB');
+    }
   }
   return errorMessages;
 }

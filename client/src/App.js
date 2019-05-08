@@ -39,36 +39,6 @@ class App extends Component {
       store.dispatch(setNavVisible());
     }
 
-    store.subscribe(() => {
-      const visibleStatus = store.getState().navigation.visible;
-      const expandedStatus = store.getState().navigation.expanded;
-
-      if (
-        visibleStatus !== this.state.previouslyVisible ||
-        expandedStatus !== this.state.previouslyExpanded
-      ) {
-        if (!this.state.previouslyVisible && visibleStatus) {
-          // Changed from invisible to visible
-          this.state.AppClassNames = 'app collapsed';
-        } else if (this.state.previouslyVisible && visibleStatus) {
-          // Remained visible
-          if (expandedStatus) {
-            this.state.AppClassNames = 'app expanded';
-          } else {
-            this.state.AppClassNames = 'app collapsed';
-          }
-        } else {
-          this.state.AppClassNames = 'app';
-        }
-
-        if (this.state.previouslyVisible !== visibleStatus) {
-          this.forceUpdate();
-        }
-        this.state.previouslyVisible = visibleStatus;
-        this.state.previouslyExpanded = expandedStatus;
-      }
-    });
-
     history.listen((location, action) => {
       dispatch(alertClear);
     });
@@ -90,38 +60,30 @@ class App extends Component {
 
   // Add global layout components before route
   state = {
-    windowWidth: window.innerWidth,
-    previouslyVisible: false,
-    previouslyExpanded: false,
-    AppClassNames: 'app'
+    windowWidth: window.innerWidth
   };
 
   toggleSideMenu() {
-    if (this.state.previouslyExpanded) {
+    if (this.props.sideMenuExpanded) {
       this.props.dispatch(setNavCollapsed());
     } else {
       this.props.dispatch(setNavExpanded());
     }
-
-    if (this.props.sideMenuExpanded) {
-      this.setState(prevState => {
-        return { AppClassNames: 'app collapsed' };
-      });
-    } else {
-      this.setState(prevState => {
-        return { AppClassNames: 'app expanded' };
-      });
-    }
   }
 
   render() {
+    let navigationClassNames = 'app';
+    if (this.props.sideMenuVisible) {
+      if (this.props.sideMenuExpanded) {
+        navigationClassNames = 'app expanded';
+      } else {
+        navigationClassNames = 'app collapsed';
+      }
+    }
+
     const { alert } = this.props;
     return (
-      <div
-        id="App"
-        className={this.state.AppClassNames}
-        style={{ height: '100%' }}
-      >
+      <div id="App" className={navigationClassNames} style={{ height: '100%' }}>
         <Helmet>
           <style>{'body { background-color: rgb(15, 25, 41, 10%); }'}</style>
         </Helmet>
@@ -139,7 +101,8 @@ class App extends Component {
 function mapStateToProps(state) {
   return {
     alert: state.alert,
-    sideMenuExpanded: state.navigation.expanded
+    sideMenuExpanded: state.navigation.expanded,
+    sideMenuVisible: state.navigation.visible
   };
 }
 

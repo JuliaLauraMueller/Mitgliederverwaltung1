@@ -9,7 +9,10 @@ import { ALERT_ERROR } from '../types/alertTypes';
 import authService from '../../services/authService';
 import history from '../../helpers/history';
 import store from '../../helpers/store';
-import { updateNavUserdata } from '../actions/navigationActions';
+import {
+  updateNavUserdata,
+  setNavExpanded
+} from '../actions/navigationActions';
 
 export const login = (privateEmail, password) => dispatch => {
   authService.login(privateEmail, password).then(
@@ -32,6 +35,7 @@ export const login = (privateEmail, password) => dispatch => {
             };
           }
           store.dispatch(updateNavUserdata(navData));
+          store.dispatch(setNavExpanded());
         }
 
         dispatch({ type: LOGIN_SUCCESS, payload: decodedToken });
