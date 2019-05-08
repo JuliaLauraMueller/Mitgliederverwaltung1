@@ -66,10 +66,19 @@ class NewsCard extends Component {
     let date = new Date(this.props.newsArticle.date);
     let month = this.months[date.getMonth()];
     let articleContent = <div />;
+    let expandButton = (
+      <label
+        htmlFor={this.props.newsArticle._id}
+        className="read-more-trigger"
+      />
+    );
     if (this.props.newsArticle.article.length !== 0) {
       let editorState = EditorState.createWithContent(
         convertFromRaw(JSON.parse(this.props.newsArticle.article))
       );
+      if (editorState.getCurrentContent().getPlainText().length < 200) {
+        expandButton = <div />;
+      }
       if (!this.state.isChecked) {
         editorState = this.truncate(editorState, 200);
         let editorContentHtml = stateToHTML(editorState.getCurrentContent());
@@ -111,10 +120,7 @@ class NewsCard extends Component {
                     />
                     <div>{Parser(articleContent)}</div>
 
-                    <label
-                      htmlFor={this.props.newsArticle._id}
-                      className="read-more-trigger"
-                    />
+                    {expandButton}
                   </div>
                 </div>
               </div>
