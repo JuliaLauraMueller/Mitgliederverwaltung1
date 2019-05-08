@@ -441,7 +441,7 @@
   }
 
   .event-card-date {
-    margin-top: 20px;
+    margin-top: 26px;
     width: 100%;
     max-width: 60px;
     max-width: 60px;
@@ -489,7 +489,6 @@
 
   .event-card-link {
     margin-left: 110px;
-    margin-top: 1em;
     white-space: nowrap;
   }
 }
