@@ -17,33 +17,58 @@ class MemberPage extends Component {
   }
 
   render() {
-    let memberCards = this.props.members.map(member => {
-      return <MemberCard key={member._id} member={member} />;
-    });
-    return (
-      <Container className="member-page-container">
-        <Row>
-          <Col xs="12">
-            <Helmet>
-              <style>
-                {'body { background-color: rgb(15, 25, 41, 10%); }'}
-              </style>
-            </Helmet>
+    if (this.props.isLoading) {
+      return (
+        <Container className='member-page-container'>
+          <Row>
+            <Col xs='12'>
+              <Helmet>
+                <style>
+                  {'body { background-color: rgb(15, 25, 41, 10%); }'}
+                </style>
+              </Helmet>
 
-            <SearchFieldMember />
-            <Row className="member-cards-row" key={memberCards}>
-              {memberCards}
-            </Row>
-          </Col>
-        </Row>
-      </Container>
-    );
+              <SearchFieldMember />
+              <img
+                src={require('../img/LoadingIcon.gif')}
+                alt='loading-icon'
+                className='loading-icon'
+              />
+            </Col>
+          </Row>
+        </Container>
+      );
+    }
+    {
+      let memberCards = this.props.members.map(member => {
+        return <MemberCard key={member._id} member={member} />;
+      });
+      return (
+        <Container className='loading-icon-container'>
+          <Row>
+            <Col xs='12'>
+              <Helmet>
+                <style>
+                  {'body { background-color: rgb(15, 25, 41, 10%); }'}
+                </style>
+              </Helmet>
+
+              <SearchFieldMember />
+              <Row className='member-cards-row' key={memberCards}>
+                {memberCards}
+              </Row>
+            </Col>
+          </Row>
+        </Container>
+      );
+    }
   }
 }
 
 function mapStateToProps(state) {
   return {
-    members: state.member.filteredMembers
+    members: state.member.filteredMembers,
+    isLoading: state.loading.isLoading
   };
 }
 

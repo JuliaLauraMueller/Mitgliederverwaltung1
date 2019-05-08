@@ -6,6 +6,9 @@ import {
   PUT_EVENT,
   SEARCH_EVENTS
 } from '../types/eventTypes';
+
+import { DATA_FETCHED, DATA_FETCHING } from '../types/loadingTypes';
+
 import eventService from '../../services/eventService';
 import store from '../../helpers/store';
 import history from '../../helpers/history';
@@ -19,11 +22,13 @@ export const searchEvents = (searchText, pastEventsIncluded) => dispatch => {
 };
 
 export const fetchEvent = id => dispatch => {
+  dispatch({ type: DATA_FETCHING });
   eventService
     .getEventData(id)
     .then(res => {
       if (res) {
         dispatch({ type: EVENT_FETCHED, payload: res.event });
+        dispatch({ type: DATA_FETCHED });
       }
     })
     .catch(err => {
@@ -34,9 +39,11 @@ export const fetchEvent = id => dispatch => {
 };
 
 export const fetchEvents = () => dispatch => {
+  dispatch({ type: DATA_FETCHING });
   eventService.getEventBody().then(res => {
     if (res) {
       dispatch({ type: EVENTS_FETCHED, payload: res.events });
+      dispatch({ type: DATA_FETCHED });
     }
   });
 };

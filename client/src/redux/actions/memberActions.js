@@ -6,6 +6,9 @@ import {
   CREATE_MEMBER,
   ROLE_CHANGE
 } from '../types/memberTypes';
+
+import { DATA_FETCHING, DATA_FETCHED } from '../types/loadingTypes';
+
 import memberService from '../../services/memberService';
 
 export const searchMembers = searchText => dispatch => {
@@ -17,9 +20,11 @@ export const filterCircles = filteredCircles => dispatch => {
 };
 
 export const fetchMembers = () => dispatch => {
+  dispatch({ type: DATA_FETCHING });
   memberService.getUserBody().then(res => {
     if (res) {
       dispatch({ type: MEMBERS_FETCHED, payload: res.members });
+      dispatch({ type: DATA_FETCHED });
     }
   });
 };

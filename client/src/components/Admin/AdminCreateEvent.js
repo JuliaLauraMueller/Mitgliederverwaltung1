@@ -121,7 +121,6 @@ class AdminCreateEvent extends Component {
 
     let fileInB64 = await this.getBase64(something);
     let splitArr = fileInB64.split(',');
-    console.log(splitArr[0] + ',' + splitArr[1]);
     this.setState({
       imageTag: splitArr[0],
       image: splitArr[1]

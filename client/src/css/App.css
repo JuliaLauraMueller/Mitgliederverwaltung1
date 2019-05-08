@@ -90,6 +90,30 @@ global style for all pages
   min-width: 300px;
 }
 
+.loading-icon {
+  position: relative;
+  padding-top: 60%;
+  margin-left: 50%;
+  transform: translate(-50%, -50%);
+  justify-content: center;
+}
+
+.loading-icon-app {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  justify-content: center;
+  z-index: 30000;
+}
+
+.loading-icon-container {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-content: center;
+}
+
 @media only screen and (max-width: 1200px) {
   .collapsed {
     padding-left: 0px;

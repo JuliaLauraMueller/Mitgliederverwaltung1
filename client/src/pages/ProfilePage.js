@@ -25,7 +25,6 @@ class ProfilePage extends Component {
     this.state = {
       isEditing: false
     };
-
     this.toggleEdit = this.toggleEdit.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.loadMember = this.loadMember.bind(this);
@@ -38,7 +37,9 @@ class ProfilePage extends Component {
 
   componentWillReceiveProps(nextProps) {
     // switch between two profiles (when already on profile page)
-    this.loadMember(nextProps.match.params.id);
+    if (nextProps.match.params.id !== this.props.match.params.id) {
+      this.loadMember(nextProps.match.params.id);
+    }
   }
 
   loadMember(memberId) {
@@ -70,78 +71,96 @@ class ProfilePage extends Component {
   }
 
   render() {
-    let EditButton = {};
-    if (
-      personalAccessCheck(this.props._id, store.getState().auth.user._id) ||
-      roleAccessCheck(
-        3,
-        this.props.circle,
-        store.getState().auth.user.role,
-        store.getState().auth.user.circle
-      )
-    ) {
-      EditButton = (
-        <button className='button-save-edit' onClick={this.toggleEdit}>
-          Editieren
-        </button>
+    if (this.props.isLoading) {
+      return (
+        <Container className='loading-icon-container'>
+          <Row>
+            <Col xs='12'>
+              <Col md='12' />
+              <div className='search-form' />
+              <img
+                src={require('../img/LoadingIcon.gif')}
+                alt='loading-icon'
+                className='loading-icon'
+              />
+            </Col>
+          </Row>
+        </Container>
       );
     } else {
-      EditButton = <div />;
-    }
+      let EditButton = {};
+      if (
+        personalAccessCheck(this.props._id, store.getState().auth.user._id) ||
+        roleAccessCheck(
+          3,
+          this.props.circle,
+          store.getState().auth.user.role,
+          store.getState().auth.user.circle
+        )
+      ) {
+        EditButton = (
+          <button className='button-save-edit' onClick={this.toggleEdit}>
+            Editieren
+          </button>
+        );
+      } else {
+        EditButton = <div />;
+      }
 
-    if (this.state.isEditing) {
-      return (
-        <Container className='profile-page__container'>
-          <Form onSubmit={this.handleClick}>
-            <Row>
-              <Col md='12'>
-                <input
-                  type='submit'
-                  className='button-save-edit'
-                  value='Speichern'
-                  onClick={this.handleClick}
-                />
-              </Col>
-            </Row>
-            <FormGroup row>
+      if (this.state.isEditing) {
+        return (
+          <Container className='profile-page__container'>
+            <Form onSubmit={this.handleClick}>
               <Row>
-                <Col xs='12' md='12'>
-                  <ProfileBasicInfoEDIT
-                    ref={basicInfo => {
-                      this.basicInfo = basicInfo;
-                    }}
-                  />
-                </Col>
-                <Col xs='12' md='12'>
-                  <ProfileMainInformationEDIT
-                    ref={mainInfo => {
-                      this.mainInfo = mainInfo;
-                    }}
+                <Col md='12'>
+                  <input
+                    type='submit'
+                    className='button-save-edit'
+                    value='Speichern'
+                    onClick={this.handleClick}
                   />
                 </Col>
               </Row>
-            </FormGroup>
-          </Form>
-        </Container>
-      );
-    } else {
-      return (
-        <Container className='profile-page__container'>
-          <Row>
-            <Col md='12' className='button-container'>
-              {EditButton}
-            </Col>
-          </Row>
-          <Row>
-            <Col xs='12' md='12'>
-              <ProfileBasicInfo />
-            </Col>
-            <Col xs='12' md='12'>
-              <ProfileMainInformation />
-            </Col>
-          </Row>
-        </Container>
-      );
+              <FormGroup row>
+                <Row>
+                  <Col xs='12' md='12'>
+                    <ProfileBasicInfoEDIT
+                      ref={basicInfo => {
+                        this.basicInfo = basicInfo;
+                      }}
+                    />
+                  </Col>
+                  <Col xs='12' md='12'>
+                    <ProfileMainInformationEDIT
+                      ref={mainInfo => {
+                        this.mainInfo = mainInfo;
+                      }}
+                    />
+                  </Col>
+                </Row>
+              </FormGroup>
+            </Form>
+          </Container>
+        );
+      } else {
+        return (
+          <Container className='profile-page__container'>
+            <Row>
+              <Col md='12' className='button-container'>
+                {EditButton}
+              </Col>
+            </Row>
+            <Row>
+              <Col xs='12' md='12'>
+                <ProfileBasicInfo />
+              </Col>
+              <Col xs='12' md='12'>
+                <ProfileMainInformation />
+              </Col>
+            </Row>
+          </Container>
+        );
+      }
     }
   }
 }
@@ -149,7 +168,8 @@ class ProfilePage extends Component {
 function mapStateToProps(state) {
   return {
     _id: state.profile.member._id,
-    circle: state.profile.member.city_id
+    circle: state.profile.member.city_id,
+    isLoading: state.loading.isLoading
   };
 }
 

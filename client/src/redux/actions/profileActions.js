@@ -3,6 +3,8 @@ import {
   PROFILE_COMP_FETCHED,
   PUT_PROFILE
 } from '../types/profileTypes';
+
+import { DATA_FETCHED, DATA_FETCHING } from '../types/loadingTypes';
 import store from '../../helpers/store';
 import profileService from '../../services/profileService';
 import history from '../../helpers/history';
@@ -10,6 +12,7 @@ import { alertError } from './alertActions';
 import { updateNavUserdata } from './navigationActions';
 
 export const fetchProfile = id => dispatch => {
+  dispatch({ type: DATA_FETCHING });
   profileService
     .getUserData(id)
     .then(res => {
@@ -21,6 +24,7 @@ export const fetchProfile = id => dispatch => {
     .then(res => {
       if (res) {
         dispatch({ type: PROFILE_COMP_FETCHED, payload: res.member });
+        dispatch({ type: DATA_FETCHED });
       }
     })
     .catch(err => {
@@ -53,7 +57,7 @@ export const putWholeData = data => async dispatch => {
   var profileBasicData = data.profileBasicData;
   var companyData = data.companyData;
   Object.assign(profileMainData, profileBasicData);
-
+  dispatch({ type: DATA_FETCHING });
   return await profileService
     .setUserData(profileMainData, companyData)
     .then(res => {
@@ -61,6 +65,7 @@ export const putWholeData = data => async dispatch => {
       companyData.company = companyData.companyName;
       delete companyData.companyName;
       dispatch({ type: PUT_PROFILE, payload: companyData });
+      dispatch({ type: DATA_FETCHED });
 
       if (store.getState().auth.user._id === profileBasicData._id) {
         var navbarData = {

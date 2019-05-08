@@ -54,7 +54,7 @@ class AdminPage extends Component {
         </NavItem>
       );
       MemberTab = (
-        <TabPane tabId="1">
+        <TabPane tabId='1'>
           <AdminMembersOverview />
         </TabPane>
       );
@@ -78,7 +78,7 @@ class AdminPage extends Component {
         </NavItem>
       );
       CitiesTab = (
-        <TabPane tabId="2">
+        <TabPane tabId='2'>
           <AdminCirclesOverview />
         </TabPane>
       );
@@ -102,7 +102,7 @@ class AdminPage extends Component {
         </NavItem>
       );
       EventsTab = (
-        <TabPane tabId="3">
+        <TabPane tabId='3'>
           <AdminEventsOverview />
         </TabPane>
       );

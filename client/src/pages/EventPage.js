@@ -29,30 +29,54 @@ class EventPage extends Component {
         )
         .map(event => <EventCard key={event._id} event={event} />);
     }
-    return (
-      <Container className="member-page-container">
-        <Row>
-          <Col>
-            <Helmet>
-              <style>
-                {'body { background-color: rgb(15, 25, 41, 10%); }'}
-              </style>
-            </Helmet>
+    if (this.props.isLoading) {
+      return (
+        <Container className='member-page-container'>
+          <Row>
+            <Col>
+              <Helmet>
+                <style>
+                  {'body { background-color: rgb(15, 25, 41, 10%); }'}
+                </style>
+              </Helmet>
 
-            <SearchFieldEvent />
-            <Row className="member-cards-row" key={eventCards}>
-              {eventCards}
-            </Row>
-          </Col>
-        </Row>
-      </Container>
-    );
+              <SearchFieldEvent />
+              <img
+                src={require('../img/LoadingIcon.gif')}
+                alt='loading-icon'
+                className='loading-icon'
+              />
+            </Col>
+          </Row>
+        </Container>
+      );
+    } else {
+      return (
+        <Container className='member-page-container'>
+          <Row>
+            <Col>
+              <Helmet>
+                <style>
+                  {'body { background-color: rgb(15, 25, 41, 10%); }'}
+                </style>
+              </Helmet>
+
+              <SearchFieldEvent />
+              <Row className='member-cards-row' key={eventCards}>
+                {eventCards}
+              </Row>
+            </Col>
+          </Row>
+        </Container>
+      );
+    }
   }
 }
 
 function mapStateToProps(state) {
   return {
-    events: state.event.filteredEvents
+    events: state.event.filteredEvents,
+    isLoading: state.loading.isLoading
   };
 }
 

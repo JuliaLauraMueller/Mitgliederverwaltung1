@@ -1,0 +1,2 @@
+export const DATA_FETCHING = 'DATA_FETCHING';
+export const DATA_FETCHED = 'DATA_FETCHED';
