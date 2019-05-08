@@ -41,6 +41,8 @@ function roleToString(role) {
     case 5:
       roleText = 'Federationsadministrator';
       break;
+    default:
+      break;
   }
   return roleText;
 }
