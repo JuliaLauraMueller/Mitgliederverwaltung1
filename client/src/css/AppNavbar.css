@@ -12,3 +12,14 @@
   top: 0;
   left: 0;
 }
+
+.sticky {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 81px;
+  background-color: rgb(230, 231, 233);
+  font-size: 20px;
+}

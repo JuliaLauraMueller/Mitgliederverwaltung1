@@ -87,7 +87,9 @@ class App extends Component {
     return (
       <div id="App" className={navigationClassNames} style={{ height: '100%' }}>
         <Helmet>
-          <style>{'body { background-color: rgb(15, 25, 41, 10%); }'}</style>
+          <style>
+            {'body { background-color: rgb(230, 231, 233, 100%); }'}
+          </style>
         </Helmet>
         <Container style={{ marginTop: '5rem' }}>
           {alert.message && (

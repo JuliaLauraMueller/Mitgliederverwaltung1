@@ -50,7 +50,11 @@ class AppNavbar extends Component {
       visibleClass = 'visible';
     }
     if (window.innerWidth <= 1200 || window.innerHeight <= 740) {
-      return <BurgerNav visibleClass={visibleClass} />;
+      return (
+        <nav className="sticky">
+          <BurgerNav visibleClass={visibleClass} />
+        </nav>
+      );
     } else {
       return (
         <div className={'app-nav-bar ' + visibleClass}>
