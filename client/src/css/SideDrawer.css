@@ -79,7 +79,7 @@
 }
 
 .navigation-user {
-  margin-top: 3rem;
+  margin-top: 1.5rem;
   text-align: center;
 }
 
@@ -114,6 +114,10 @@
   font-size: 22pt;
 }
 
+.navigation-user-name-txt {
+  font-size: 24pt !important;
+}
+
 .side-drawer a:hover > svg,
 .side-drawer a:active > svg,
 .side-drawer a:hover > svg > path,
@@ -141,12 +145,12 @@
 
 .navigation-links-nav > ul > li {
   margin: 0.5rem 0;
-  padding-bottom: 1rem;
+  padding-bottom: 0rem;
 }
 
 .navigation-links-nav > ul {
   padding-inline-start: 0px;
-  padding-left: 2rem;
+  padding-left: 2.05rem;
   margin: 0;
   padding-bottom: 0;
   width: 350px;
@@ -163,12 +167,12 @@
 }
 
 .navigation-logo-container {
-  height: 98px;
+  height: 121.5px;
   text-align: center;
 }
 
 .navigation-logo {
-  padding-top: 1rem;
+  padding-top: 2rem;
 }
 
 .navigation-user-name {
