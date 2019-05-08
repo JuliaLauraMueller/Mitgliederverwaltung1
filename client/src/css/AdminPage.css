@@ -179,8 +179,11 @@ div .create-button {
   }
 
   .filter-button-edit {
-    padding-left: 0 !important;
+    padding-left: 25px !important;
     margin-left: 0 !important;
+    position: relative;
+    bottom: 0 !important;
+    right: 0 !important;
   }
 
   .event-edit-txt {
@@ -198,6 +201,11 @@ div .create-button {
     float: left;
     left: 22px;
     font-size: 12pt !important;
+  }
+
+  .event-edit-image {
+    max-width: 200px !important;
+    min-width: 200px !important;
   }
 }
 
