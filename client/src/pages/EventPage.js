@@ -6,6 +6,7 @@ import { Container, Row, Col } from 'reactstrap';
 import { connect } from 'react-redux';
 import { setNavVisible } from '../redux/actions/navigationActions';
 import { fetchEvents } from '../redux/actions/eventActions';
+import store from '../helpers/store';
 
 import '../css/Member.css';
 import '../css/EventPage.css';
