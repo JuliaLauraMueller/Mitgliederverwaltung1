@@ -183,7 +183,10 @@ class AdminCreateEvent extends Component {
                     className="hidden"
                     accept=".jpg,.jpeg,.png"
                   />
-                  <label htmlFor="pictureUpload" className="picture-button">
+                  <label
+                    htmlFor="pictureUpload"
+                    className="picture-button-create"
+                  >
                     Neues Eventbild
                   </label>
                 </Col>

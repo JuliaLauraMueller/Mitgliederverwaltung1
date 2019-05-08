@@ -145,9 +145,6 @@ div .create-button {
 }
 
 @media only screen and (min-width: 0px) and (max-width: 768px) {
-  input.create-button {
-    margin-left: 0;
-  }
   .form-control-admin {
     width: 130px;
   }
@@ -189,6 +186,18 @@ div .create-button {
   .event-edit-txt {
     max-width: 200px !important;
     min-width: 200px !important;
+  }
+
+  .event-image {
+    float: right;
+    margin-bottom: 2%;
+    width: 85% !important;
+  }
+
+  label.picture-button-create {
+    float: left;
+    left: 17px;
+    font-size: 12pt;
   }
 }
 
@@ -246,4 +255,17 @@ div .create-button {
 
 .filter-button-edit {
   padding-left: 60px;
+}
+
+.picture-button-create {
+  float: left;
+  position: relative;
+  right: 10px;
+}
+
+.event-image {
+  position: relative;
+  top: 7px;
+  margin-bottom: 5px;
+  margin-left: 5px;
 }
