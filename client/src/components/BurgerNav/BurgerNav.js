@@ -16,7 +16,7 @@ import {
 
 import { Link } from 'react-router-dom';
 import { changePassword } from '../../redux/actions/navigationActions';
-import { alertError } from '../../redux/actions/alertActions';
+import { alertError, alertSuccess } from '../../redux/actions/alertActions';
 import store from '../../helpers/store';
 
 class BurgerNav extends React.Component {
@@ -154,6 +154,7 @@ class BurgerNav extends React.Component {
       .dispatch(changePassword(this.state.passwordData))
       .then(res => {
         this.togglePasswordChangeModal();
+        this.props.dispatch(alertSuccess('Das neue Passwort wurde gesetzt'));
         return res;
       })
       .catch(err => {

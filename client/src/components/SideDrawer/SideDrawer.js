@@ -18,7 +18,7 @@ import { changePassword } from '../../redux/actions/navigationActions';
 import '../../css/SideDrawer.css';
 
 import DrawerToggleButton from './DrawerToggleButton';
-import { alertError } from '../../redux/actions/alertActions';
+import { alertError, alertSuccess } from '../../redux/actions/alertActions';
 
 class SideDrawer extends Component {
   constructor(props) {
@@ -138,6 +138,7 @@ class SideDrawer extends Component {
       .dispatch(changePassword(this.state.passwordData))
       .then(res => {
         this.togglePasswordChangeModal();
+        this.props.dispatch(alertSuccess('Das neue Passwort wurde gesetzt'));
         return res;
       })
       .catch(err => {

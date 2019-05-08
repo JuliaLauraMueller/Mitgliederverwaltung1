@@ -113,8 +113,10 @@ async function changePassword(data) {
       return Promise.resolve(res);
     })
     .catch(error => {
-      if (error) {
+      if (error && error.data.msg) {
         return Promise.reject(error.data.msg);
+      } else {
+        return Promise.reject('Passwort konnte nicht geändert werden');
       }
     });
 }
