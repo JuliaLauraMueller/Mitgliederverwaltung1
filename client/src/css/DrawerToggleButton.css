@@ -2,25 +2,26 @@
     basic style toggle button
 *-------------------------------------------*/
 
-.toggle-button {
-  justify-content: space-around;
-  height: 24px;
-  width: 30px;
+button.toggle-button {
   background: transparent;
   border: none;
   padding: 0;
   margin-top: 22px;
-  margin-left: 4px;
+  margin-left: 22px;
 }
 
 .toggle-button-arrow {
-  margin-left: 250px;
+  margin-left: 270px;
+  justify-content: space-around;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin-top: 22px;
 }
 
-button.toggle-button:hover > svg.svg-svg > g.path-svg > rect,
+button.toggle-button-arrow:hover > svg.svg-svg > path,
 button.toggle-button:hover > svg.svg-svg > path {
   fill: #db9d0c !important;
-  background-color: aquamarine;
 }
 
 .toggle-button_line {

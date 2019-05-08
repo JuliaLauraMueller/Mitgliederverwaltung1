@@ -8,50 +8,31 @@ export default class DrawerToggleButton extends Component {
       return (
         <button className="toggle-button" onClick={this.props.click}>
           <svg
-            version="1.1"
-            id="Capa_1"
             xmlns="http://www.w3.org/2000/svg"
-            x="0px"
-            y="0px"
-            width="55px"
-            height="47px"
-            viewBox="0 0 100 500"
+            viewBox="0 0 384 256"
             class="svg-svg"
+            height="35px"
+            width="40px"
           >
-            <g class="path-svg">
-              <rect
-                fill="white"
-                x="0"
-                y="277.333"
-                width="384"
-                height="42.667"
-              />
-              <rect
-                fill="white"
-                x="0"
-                y="170.667"
-                width="384"
-                height="42.667"
-              />
-              <rect fill="white" x="0" y="64" width="384" height="42.667" />
-            </g>
+            <path
+              fill="white"
+              class="path-svg"
+              d="M0,277.33H384V320H0ZM0,170.67H384v42.66H0ZM0,64H384v42.67H0Z"
+              transform="translate(0 -64)"
+            />
           </svg>
         </button>
       );
     } else if (this.props.image === 'arrow') {
       return (
-        <button
-          className="toggle-button toggle-button-arrow"
-          onClick={this.props.click}
-        >
+        <button className="toggle-button-arrow" onClick={this.props.click}>
           <svg
             version="1.1"
-            id="Capa_1"
             xmlns="http://www.w3.org/2000/svg"
             x="0px"
             y="0px"
-            width="55px"
-            height="auto"
+            width="27px"
+            height="25px"
             viewBox="0 0 284.935 284.936"
             class="svg-svg"
           >
