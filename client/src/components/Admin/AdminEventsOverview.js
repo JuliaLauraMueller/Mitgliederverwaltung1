@@ -457,7 +457,7 @@ class AdminEventsOverview extends Component {
               </Col>
               <Col className="event-edit-row">
                 <Label className="event-edit-label">
-                  Cities<pre className="required-field">*</pre>
+                  Verwaltende Cities<pre className="required-field">*</pre>
                 </Label>
                 <div className="event-edit-txt">
                   <ButtonDropdown

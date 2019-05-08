@@ -38,10 +38,13 @@ class BurgerNav extends React.Component {
       ? this.props.userData.firstname
       : '';
     let userPic = require('../../img/Profile_Placeholder.png');
-    if (this.props.userData.avatar && this.props.userData.avatarTag) {
-      userPic =
-        this.props.userData.avatarTag + ',' + this.props.userData.avatar;
+    if (this.props.userData) {
+      if (this.props.userData.avatar && this.props.userData.avatarTag) {
+        userPic =
+          this.props.userData.avatarTag + ',' + this.props.userData.avatar;
+      }
     }
+
     let userSurname = this.props.userData ? this.props.userData.surname : '';
     let AdminButton = {};
     if (
