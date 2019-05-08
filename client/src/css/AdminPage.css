@@ -194,10 +194,10 @@ div .create-button {
     width: 85% !important;
   }
 
-  label.picture-button-create {
+  .picture-button-create {
     float: left;
-    left: 17px;
-    font-size: 12pt;
+    left: 22px;
+    font-size: 12pt !important;
   }
 }
 
@@ -261,12 +261,32 @@ div .create-button {
   float: left;
   position: relative;
   right: 10px;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid rgb(219, 157, 12);
+  line-height: 2.3;
+  color: rgb(219, 157, 12);
+  padding: 0;
+  border-radius: 0;
+  transition: none;
+  height: 32px;
+  margin-bottom: 10px;
+  font-size: 110%;
+  float: left;
+  opacity: 1 !important;
+}
+
+.picture-button-create:hover,
+.picture-button-create:active {
+  background-color: transparent;
+  opacity: 0.5 !important;
 }
 
 .event-image {
   position: relative;
   top: 7px;
   margin-bottom: 5px;
+  margin-left: 5px;
 }
 .admin-form-control-create-news {
   width: 99%;
