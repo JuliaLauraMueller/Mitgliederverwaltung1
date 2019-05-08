@@ -2,18 +2,42 @@ import { push as Menu } from 'react-burger-menu';
 import React from 'react';
 import { connect } from 'react-redux';
 import '../../css/BurgerNav.css';
+import {
+  Modal,
+  ModalHeader,
+  ModalBody,
+  Form,
+  FormGroup,
+  Input,
+  Col,
+  Label,
+  ModalFooter
+} from 'reactstrap';
 
 import { Link } from 'react-router-dom';
-
+import { changePassword } from '../../redux/actions/navigationActions';
+import { alertError, alertSuccess } from '../../redux/actions/alertActions';
 import store from '../../helpers/store';
 
 class BurgerNav extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      menuOpen: false
+      menuOpen: false,
+      passwordChangeModal: false,
+      passwordData: {
+        oldPassword: '',
+        newPassword1: '',
+        newPassword2: ''
+      }
     };
+
+    this.togglePasswordChangeModal = this.togglePasswordChangeModal.bind(this);
+    this.onPasswordChangeSave = this.onPasswordChangeSave.bind(this);
+    this.createPasswordChangeModal = this.createPasswordChangeModal.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
+
   showSettings(event) {
     event.preventDefault();
   }
@@ -28,6 +52,123 @@ class BurgerNav extends React.Component {
 
   toggleMenu() {
     this.setState({ menuOpen: !this.state.menuOpen });
+  }
+
+  togglePasswordChangeModal() {
+    this.toggleMenu();
+    this.setState(prevState => ({
+      passwordChangeModal: !prevState.passwordChangeModal
+    }));
+
+    if (!this.state.passwordChangeModal) {
+      this.setState({
+        passwordData: {
+          oldPassword: '',
+          newPassword1: '',
+          newPassword2: ''
+        }
+      });
+    }
+  }
+
+  createPasswordChangeModal() {
+    return (
+      <Modal
+        isOpen={this.state.passwordChangeModal}
+        toggle={() => this.togglePasswordChangeModal()}
+      >
+        <ModalHeader toggle={() => this.togglePasswordChangeModal()}>
+          Passwort ändern
+        </ModalHeader>
+        <Form onSubmit={this.onPasswordChangeSave}>
+          <ModalBody>
+            <FormGroup row>
+              <Col className="password-edit-row">
+                <Label className="password-edit-label">
+                  Aktuelles Passwort:
+                </Label>
+                <Input
+                  type="password"
+                  id="oldPassword"
+                  name="oldPassword"
+                  autoComplete="current-password"
+                  onChange={this.handleChange}
+                  value={this.state.passwordData.oldPassword}
+                  className="password-edit-txt-mobile"
+                />
+              </Col>
+              <Col className="password-edit-row">
+                <Label className="password-edit-label">Neues Passwort:</Label>
+                <Input
+                  type="password"
+                  id="newPassword1"
+                  name="newPassword1"
+                  autoComplete="new-password"
+                  onChange={this.handleChange}
+                  value={this.state.passwordData.newPassword1}
+                  className="password-edit-txt-mobile"
+                />
+              </Col>
+              <Col className="password-edit-row">
+                <Label className="password-edit-label">
+                  Passwort erneut eingeben:
+                </Label>
+                <Input
+                  type="password"
+                  id="newPassword2"
+                  name="newPassword2"
+                  autoComplete="new-password"
+                  onChange={this.handleChange}
+                  value={this.state.passwordData.newPassword2}
+                  className="password-edit-txt-mobile"
+                />
+              </Col>
+            </FormGroup>
+          </ModalBody>
+          <ModalFooter>
+            <input
+              type="submit"
+              className="password-change-button"
+              onClick={this.onPasswordChangeSave}
+              color="primary"
+              value="Speichern"
+            />
+            <input
+              type="button"
+              className="password-change-button"
+              color="secondary"
+              onClick={() => {
+                this.togglePasswordChangeModal();
+              }}
+              value="Abbrechen"
+            />
+          </ModalFooter>
+        </Form>
+      </Modal>
+    );
+  }
+
+  async onPasswordChangeSave(event) {
+    event.preventDefault();
+    await this.props
+      .dispatch(changePassword(this.state.passwordData))
+      .then(res => {
+        this.togglePasswordChangeModal();
+        this.props.dispatch(alertSuccess('Das neue Passwort wurde gesetzt'));
+        return res;
+      })
+      .catch(err => {
+        this.props.dispatch(alertError(err));
+      });
+  }
+
+  handleChange(data) {
+    this.setState({
+      passwordData: {
+        ...this.state.passwordData,
+        [data.target.name]: data.target.value
+      }
+    });
   }
 
   render() {
@@ -118,6 +259,7 @@ class BurgerNav extends React.Component {
         className={'burger-nav app-nav-bar ' + this.props.visibleClass}
         burgerButtonClassName={this.props.visibleClass}
       >
+        {this.createPasswordChangeModal()}
         <div className="burger-navigation-logo-container">
           <div className="burger-navigation-logo">
             <img src={require('../../img/logo_black_small.png')} alt="Logo" />
@@ -162,6 +304,29 @@ class BurgerNav extends React.Component {
             </Link>
           </div>
           <div>
+            <span
+              onClick={() => this.togglePasswordChangeModal()}
+              className="burger-navigation-edit-profile burger-menu-item"
+            >
+              <svg
+                className="profile-edit"
+                width="19"
+                height="19"
+                viewBox="0 0 25 26"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6 6c0-3.311 2.689-6 6-6s6 2.688 6 6v4h3v14h-18v-14h3v-4zm14 5h-16v12h16v-12zm-13-5v4h10v-4c0-2.76-2.24-5-5-5s-5 2.24-5 5z"
+                  fill="white"
+                  stroke="white"
+                  strokeWidth="0.25"
+                />
+              </svg>
+              Passwort ändern
+            </span>
+          </div>
+          <div>
             <Link
               to="/login"
               className="burger-navigation-edit-profile burger-menu-item"
@@ -188,7 +353,7 @@ class BurgerNav extends React.Component {
         </div>
 
         <Link
-          to="/news"
+          to="/"
           id="home"
           className="burger-menu-item"
           href="/"
