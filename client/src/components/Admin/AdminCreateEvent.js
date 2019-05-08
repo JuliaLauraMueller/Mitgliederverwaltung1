@@ -174,7 +174,7 @@ class AdminCreateEvent extends Component {
             <Row>
               <Col xs="3">
                 <Label for="description">
-                  Cities<pre className="required-field">*</pre>
+                  Verwaltende Cities<pre className="required-field">*</pre>
                 </Label>
               </Col>
               <ButtonDropdown
