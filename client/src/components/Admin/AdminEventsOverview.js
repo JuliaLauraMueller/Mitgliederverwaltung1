@@ -465,7 +465,7 @@ class AdminEventsOverview extends Component {
         <Form onSubmit={this.onEventSave}>
           <ModalBody>
             <FormGroup row>
-              <Col className="event-edit-row">
+              <Col>
                 <Label for="image">Eventbild:</Label>
                 <img
                   id="modalImage"
@@ -494,7 +494,7 @@ class AdminEventsOverview extends Component {
                   Neues Eventbild
                 </label>
               </Col>
-              <Col className="event-edit-row">
+              <Col>
                 <Label className="event-edit-label">
                   Titel<pre className="required-field">*</pre>
                 </Label>
