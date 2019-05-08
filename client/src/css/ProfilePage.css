@@ -200,7 +200,8 @@ button:focus {
 }
 
 .btn-secondary.disabled,
-.btn-secondary:disabled {
+.btn-secondary:disabled,
+.btn-secondary.disabled:hover {
   background-color: transparent;
   opacity: 0.3;
 }
