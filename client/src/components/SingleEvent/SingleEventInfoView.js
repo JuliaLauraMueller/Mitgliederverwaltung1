@@ -11,7 +11,8 @@ import {
   Form,
   FormGroup,
   Label,
-  Input
+  Input,
+  CardText
 } from 'reactstrap';
 import '../../pages/EventPage';
 import PropTypes from 'prop-types';
@@ -92,17 +93,11 @@ class SingleEventInfo extends Component {
           <Col md={{ offset: 0, size: 3 }} xs={{ offset: 0 }}>
             <Row className="date">
               <Col>
-                <label className="event-month">{month} </label>
-              </Col>
-            </Row>
-            <Row className="date">
-              <Col>
-                <label className="event-day">{date.getDate()} </label>
-              </Col>
-            </Row>
-            <Row className="date">
-              <Col>
-                <label className="event-weekDay">{weekday}</label>
+                <div className="event-date">
+                  <CardText className="event-month">{month}</CardText>
+                  <CardText className="event-day">{date.getDate()}</CardText>
+                  <CardText className="event-weekDay">{weekday}</CardText>
+                </div>{' '}
               </Col>
             </Row>
           </Col>
@@ -206,7 +201,7 @@ class SingleEventInfo extends Component {
     }
 
     return (
-      <label className="">
+      <label className="event-amount-attendence">
         {' '}
         Zusagen: {amountAtt} Begleitungen: {amountAcc}{' '}
       </label>
