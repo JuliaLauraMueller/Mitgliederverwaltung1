@@ -83,8 +83,14 @@
   width: 76%;
 }
 
-.testerSearch {
+.tester-Search {
   justify-content: center;
+  background-color: rgb(15, 25, 41, 0%);
+  color: rgb(15, 25, 41, 0%);
+}
+
+.fixed-tester-Search {
+  position: fixed;
 }
 
 hr {
@@ -100,6 +106,14 @@ hr {
 .search-field {
   display: flex;
   justify-content: center;
+}
+
+.drop-down-filter {
+}
+
+.dropdown-menu.show {
+  position: absolute;
+  left: -95px;
 }
 
 /*MemberCard*/
