@@ -29,7 +29,7 @@ const initialState = {
   image: '',
   imageTag: '',
   circles: [],
-  permittedRoles: []
+  permittedRoles: [0, 1, 2, 3, 4, 5]
 };
 
 class AdminCreateEvent extends Component {
@@ -139,15 +139,15 @@ class AdminCreateEvent extends Component {
   render() {
     let circleLabels = this.props.circles.map(circle => {
       return (
-        <div className='checkbox-container' key={circle._id}>
+        <div className="checkbox-container" key={circle._id}>
           <input
-            type='checkbox'
+            type="checkbox"
             id={circle._id}
             onClick={this.handleCitiesSelection.bind(this)}
             defaultChecked={this.state.circles.includes(circle._id)}
           />
 
-          <label htmlFor={circle._id} className='filter-cities'>
+          <label htmlFor={circle._id} className="filter-cities">
             {circle.name}
           </label>
         </div>
@@ -160,44 +160,49 @@ class AdminCreateEvent extends Component {
         <Form onSubmit={this.submitEvent}>
           <FormGroup>
             <Row>
-              <Col xs='3'>
-                <Label for='image'>Eventbild</Label>
+              <Col xs="3">
+                <Label for="image">Eventbild</Label>
               </Col>
-              <Col xs='9'>
+              <Col xs="9">
                 <img
                   src={
                     this.state.image !== ''
                       ? this.state.imageTag + ',' + this.state.image
                       : require('../../img/event_default_image.png')
                   }
-                  className='event-image'
+                  className="event-image"
                   style={{ width: '90%', height: 'auto' }}
-                  alt=''
+                  alt=""
                 />
                 <Col>
                   <input
-                    type='file'
-                    id='pictureUpload'
+                    type="file"
+                    id="pictureUpload"
                     onChange={this.handleFileSelection}
-                    className='hidden'
-                    accept='.jpg,.jpeg,.png'
+                    className="hidden"
+                    accept=".jpg,.jpeg,.png"
                   />
-                  <label htmlFor='pictureUpload' className='picture-button'>
+                  <label
+                    htmlFor="pictureUpload"
+                    className="picture-button-create"
+                  >
                     Neues Eventbild
                   </label>
                 </Col>
               </Col>
             </Row>
             <Row>
-              <Col xs='3'>
-                <Label for='title'>Titel</Label>
+              <Col xs="3">
+                <Label for="title">
+                  Titel<pre className="required-field">*</pre>
+                </Label>
               </Col>
-              <Col xs='9'>
+              <Col xs="9">
                 <Input
-                  type='text'
-                  name='title'
-                  id='title'
-                  className='admin-form-control'
+                  type="text"
+                  name="title"
+                  id="title"
+                  className="admin-form-control"
                   value={this.state.title}
                   onChange={this.handleChange}
                 />
@@ -206,15 +211,15 @@ class AdminCreateEvent extends Component {
           </FormGroup>
           <FormGroup>
             <Row>
-              <Col xs='3'>
-                <Label for='description'>Beschreibung</Label>
+              <Col xs="3">
+                <Label for="description">Beschreibung</Label>
               </Col>
               <Col xs={9}>
                 <Input
-                  type='text'
-                  name='description'
-                  id='description'
-                  className='admin-form-control'
+                  type="textarea"
+                  name="description"
+                  id="description"
+                  className="admin-form-control description-area"
                   value={this.state.description}
                   onChange={this.handleChange}
                 />
@@ -223,8 +228,10 @@ class AdminCreateEvent extends Component {
           </FormGroup>
           <FormGroup>
             <Row>
-              <Col xs='3'>
-                <Label for='description'>Cities</Label>
+              <Col xs="3">
+                <Label for="description">
+                  Verwaltende Cities<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <ButtonDropdown
                 isOpen={this.state.citiesDropdownOpen}
@@ -232,7 +239,7 @@ class AdminCreateEvent extends Component {
               >
                 <DropdownToggle
                   caret
-                  className='filter-button'
+                  className="filter-button"
                   color={'rgb(15, 25, 41, 40%)'}
                 />
 
@@ -245,16 +252,18 @@ class AdminCreateEvent extends Component {
           </FormGroup>
           <FormGroup>
             <Row>
-              <Col xs='3'>
-                <Label for='date'>Datum</Label>
+              <Col xs="3">
+                <Label for="date">
+                  Datum<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs={9}>
                 <Input
-                  type='date'
-                  name='date'
-                  id='date'
-                  className='admin-form-control'
-                  autoComplete='off'
+                  type="date"
+                  name="date"
+                  id="date"
+                  className="admin-form-control"
+                  autoComplete="off"
                   value={this.state.date}
                   onChange={this.handleChange}
                 />
@@ -263,16 +272,18 @@ class AdminCreateEvent extends Component {
           </FormGroup>
           <FormGroup>
             <Row>
-              <Col xs='3'>
-                <Label for='startTime'>Beginn</Label>
+              <Col xs="3">
+                <Label for="startTime">
+                  Beginn<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs={9}>
                 <Input
-                  type='text'
-                  name='startTime'
-                  id='startTime'
-                  className='admin-form-control'
-                  autoComplete='new-password'
+                  type="text"
+                  name="startTime"
+                  id="startTime"
+                  className="admin-form-control"
+                  autoComplete="new-password"
                   value={this.state.startTime}
                   onChange={this.handleChange}
                 />
@@ -281,16 +292,16 @@ class AdminCreateEvent extends Component {
           </FormGroup>
           <FormGroup>
             <Row>
-              <Col xs='3'>
-                <Label for='endTime'>Ende</Label>
+              <Col xs="3">
+                <Label for="endTime">Ende</Label>
               </Col>
               <Col xs={9}>
                 <Input
-                  type='text'
-                  name='endTime'
-                  id='endTime'
-                  className='admin-form-control'
-                  autoComplete='new-password'
+                  type="text"
+                  name="endTime"
+                  id="endTime"
+                  className="admin-form-control"
+                  autoComplete="new-password"
                   value={this.state.endTime}
                   onChange={this.handleChange}
                 />
@@ -299,15 +310,17 @@ class AdminCreateEvent extends Component {
           </FormGroup>
           <FormGroup>
             <Row>
-              <Col xs='3'>
-                <Label for='location'>Ort</Label>
+              <Col xs="3">
+                <Label for="location">
+                  Ort<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs={9}>
                 <Input
-                  type='text'
-                  name='location'
-                  id='location'
-                  className='admin-form-control'
+                  type="text"
+                  name="location"
+                  id="location"
+                  className="admin-form-control"
                   value={this.state.location}
                   onChange={this.handleChange}
                 />
@@ -316,15 +329,15 @@ class AdminCreateEvent extends Component {
           </FormGroup>
           <FormGroup>
             <Row>
-              <Col xs='3'>
-                <Label for='organisationTeam'>Organisation</Label>
+              <Col xs="3">
+                <Label for="organisationTeam">Organisation</Label>
               </Col>
               <Col xs={9}>
                 <Input
-                  type='text'
-                  name='organisationTeam'
-                  id='organisationTeam'
-                  className='admin-form-control'
+                  type="text"
+                  name="organisationTeam"
+                  id="organisationTeam"
+                  className="admin-form-control"
                   value={this.state.organisationTeam}
                   onChange={this.handleChange}
                 />
@@ -333,15 +346,17 @@ class AdminCreateEvent extends Component {
           </FormGroup>
           <FormGroup>
             <Row>
-              <Col xs='3'>
-                <Label for='registrationEndDate'>Anmeldefrist</Label>
+              <Col xs="3">
+                <Label for="registrationEndDate">
+                  Anmeldefrist<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs={9}>
                 <Input
-                  type='date'
-                  name='registrationEndDate'
-                  id='registrationEndDate'
-                  className='admin-form-control'
+                  type="date"
+                  name="registrationEndDate"
+                  id="registrationEndDate"
+                  className="admin-form-control"
                   value={this.state.registrationEndDate}
                   onChange={this.handleChange}
                 />
@@ -350,84 +365,86 @@ class AdminCreateEvent extends Component {
           </FormGroup>
           <FormGroup>
             <Row>
-              <Col xs='3'>
-                <Label for='permittedRoles'>Rollen</Label>
+              <Col xs="3">
+                <Label for="permittedRoles">
+                  Rollen<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs={9}>
-                <div className='checkbox-container' key='0'>
+                <div className="checkbox-container" key="0">
                   <input
-                    type='checkbox'
-                    id='mitglied'
-                    value='0'
+                    type="checkbox"
+                    id="mitglied"
+                    value="0"
                     onChange={this.handleRoleSelection.bind(this)}
                     checked={this.state.permittedRoles.includes(0)}
                   />
-                  <label htmlFor='mitglied' className='filter-cities'>
+                  <label htmlFor="mitglied" className="filter-cities">
                     Mitglied
                   </label>
                 </div>
-                <div className='checkbox-container' key='1'>
+                <div className="checkbox-container" key="1">
                   <input
-                    type='checkbox'
-                    id='newsadministrator'
-                    value='1'
+                    type="checkbox"
+                    id="newsadministrator"
+                    value="1"
                     onChange={this.handleRoleSelection.bind(this)}
                     checked={this.state.permittedRoles.includes(1)}
                   />
-                  <label htmlFor='newsadministrator' className='filter-cities'>
+                  <label htmlFor="newsadministrator" className="filter-cities">
                     Newsadministrator
                   </label>
                 </div>
-                <div className='checkbox-container' key='2'>
+                <div className="checkbox-container" key="2">
                   <input
-                    type='checkbox'
-                    id='eventadministrator'
-                    value='2'
+                    type="checkbox"
+                    id="eventadministrator"
+                    value="2"
                     onChange={this.handleRoleSelection.bind(this)}
                     checked={this.state.permittedRoles.includes(2)}
                   />
-                  <label htmlFor='eventadministrator' className='filter-cities'>
+                  <label htmlFor="eventadministrator" className="filter-cities">
                     Eventadministrator
                   </label>
                 </div>
-                <div className='checkbox-container' key='3'>
+                <div className="checkbox-container" key="3">
                   <input
-                    type='checkbox'
-                    id='personaladministrator'
-                    value='3'
+                    type="checkbox"
+                    id="personaladministrator"
+                    value="3"
                     onChange={this.handleRoleSelection.bind(this)}
                     checked={this.state.permittedRoles.includes(3)}
                   />
                   <label
-                    htmlFor='personaladministrator'
-                    className='filter-cities'
+                    htmlFor="personaladministrator"
+                    className="filter-cities"
                   >
                     Personaladministrator
                   </label>
                 </div>
-                <div className='checkbox-container' key='4'>
+                <div className="checkbox-container" key="4">
                   <input
-                    type='checkbox'
-                    id='cityadministrator'
-                    value='4'
+                    type="checkbox"
+                    id="cityadministrator"
+                    value="4"
                     onChange={this.handleRoleSelection.bind(this)}
                     checked={this.state.permittedRoles.includes(4)}
                   />
-                  <label htmlFor='cityadministrator' className='filter-cities'>
+                  <label htmlFor="cityadministrator" className="filter-cities">
                     Cityadministrator
                   </label>
                 </div>
-                <div className='checkbox-container' key={5}>
+                <div className="checkbox-container" key={5}>
                   <input
-                    type='checkbox'
-                    id='federationsadministrator'
-                    value='5'
+                    type="checkbox"
+                    id="federationsadministrator"
+                    value="5"
                     onChange={this.handleRoleSelection.bind(this)}
                     checked={this.state.permittedRoles.includes(5)}
                   />
                   <label
-                    htmlFor='federationsadministrator'
-                    className='filter-cities'
+                    htmlFor="federationsadministrator"
+                    className="filter-cities"
                   >
                     Federationsadministrator
                   </label>
@@ -436,16 +453,16 @@ class AdminCreateEvent extends Component {
             </Row>
           </FormGroup>
           <input
-            type='button'
-            className='admin-button'
+            type="button"
+            className="admin-button"
             onClick={this.cancel}
-            value='Abbrechen'
+            value="Abbrechen"
           />
           <input
-            type='submit'
-            className='admin-button'
+            type="submit"
+            className="admin-button"
             onClick={this.submitEvent}
-            value='Speichern'
+            value="Speichern"
           />
         </Form>
       </div>

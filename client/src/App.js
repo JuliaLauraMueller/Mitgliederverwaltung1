@@ -50,10 +50,12 @@ class App extends Component {
   handleResize() {
     this.setState({ windowWidth: window.innerWidth });
   }
+
   componentDidMount() {
     window.addEventListener('resize', this.handleResize.bind(this));
     this.handleResize();
   }
+
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize.bind(this));
   }
@@ -74,7 +76,7 @@ class App extends Component {
   render() {
     let navigationClassNames = 'app';
     if (this.props.sideMenuVisible) {
-      if (this.props.sideMenuExpanded) {
+      if (this.props.sideMenuExpanded && this.state.windowWidth > 1200) {
         navigationClassNames = 'app expanded';
       } else {
         navigationClassNames = 'app collapsed';

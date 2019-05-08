@@ -19,57 +19,49 @@ class EventPage extends Component {
   }
 
   render() {
-    let eventCards = [];
-    if (this.props.events) {
+    let eventCards = <p className='no-data-found'>Keine Events gefunden</p>;
+    if (this.props.events && this.props.events.length > 0) {
       eventCards = this.props.events
-        .filter(
-          event =>
-            event.permittedRoles.includes(store.getState().auth.user.role) &&
-            event.circles.includes(store.getState().auth.user.circle)
+        .filter(event =>
+          event.permittedRoles.includes(store.getState().auth.user.role)
         )
         .map(event => <EventCard key={event._id} event={event} />);
     }
+    let content = <div />;
     if (this.props.isLoading) {
-      return (
-        <Container className='member-page-container'>
-          <Row>
-            <Col>
-              <Helmet>
-                <style>
-                  {'body { background-color: rgb(15, 25, 41, 10%); }'}
-                </style>
-              </Helmet>
-
-              <SearchFieldEvent />
-              <img
-                src={require('../img/LoadingIcon.gif')}
-                alt='loading-icon'
-                className='loading-icon'
-              />
-            </Col>
-          </Row>
-        </Container>
+      content = (
+        <div>
+          <img
+            src={require('../img/LoadingIcon.gif')}
+            alt='loading-icon'
+            className='loading-icon'
+          />
+        </div>
       );
     } else {
-      return (
-        <Container className='member-page-container'>
-          <Row>
-            <Col>
-              <Helmet>
-                <style>
-                  {'body { background-color: rgb(15, 25, 41, 10%); }'}
-                </style>
-              </Helmet>
-
-              <SearchFieldEvent />
-              <Row className='member-cards-row' key={eventCards}>
-                {eventCards}
-              </Row>
-            </Col>
-          </Row>
-        </Container>
+      content = (
+        <Row className='member-cards-row' key={eventCards}>
+          {eventCards}
+        </Row>
       );
     }
+    return (
+      <Container className='member-page-container'>
+        <Row>
+          <Col>
+            <h1 className='title'>Events</h1>
+            <Helmet>
+              <style>
+                {'body { background-color: rgb(15, 25, 41, 10%); }'}
+              </style>
+            </Helmet>
+
+            <SearchFieldEvent />
+            {content}
+          </Col>
+        </Row>
+      </Container>
+    );
   }
 }
 

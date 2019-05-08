@@ -78,13 +78,12 @@
 
 .burger-menu-item {
   font-family: helveticaNeueLtThinCn;
-  font-size: 18pt;
+  font-size: 19pt;
   text-decoration: none;
   color: white;
 }
 
 .burger-navigation-logo-container {
-  height: 80px;
   text-align: center;
   width: 100%;
 }
@@ -109,7 +108,7 @@
 
 .title-name {
   margin-bottom: -5%;
-  font-size: 20pt;
+  font-size: 23pt;
 }
 
 .burger-navigation-profile {
@@ -120,7 +119,7 @@
 
 .burger-navigation-edit-profile {
   margin-top: 0.5rem;
-  font-size: 14pt;
+  font-size: 16pt;
 }
 
 .burger-navigation-edit-profile:hover {
@@ -201,4 +200,10 @@
   border-bottom: 1px solid rgb(15, 25, 41, 74%);
   background-color: transparent;
   color: rgb(15, 25, 41, 74%);
+}
+
+.burger-navigation-user-picture-img {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
 }
