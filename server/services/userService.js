@@ -100,6 +100,9 @@ async function create(userParam) {
     userParam.password = bcrypt.hashSync(userParam.password, 10);
   }
 
+  // set entry date
+  userParam.entryDate = new Date();
+
   try {
     // create company for user
     let company = await companyService.createEmpty();
@@ -141,6 +144,9 @@ async function validateBasic(userParam) {
     errorMessages.push('Passwort muss länger als 7 Zeichen sein.');
   } else if (userParam.password.length > 30) {
     errorMessages.push('Passwort muss kürzer als 30 Zeichen sein.');
+  }
+  if (userParam.godfather && userParam.godfather.length > 40) {
+    errorMessages.push('Name des Göttis muss kürzer als 40 Zeichen sein.');
   }
   if (!userParam.circle) {
     errorMessages.push('City darf nicht leer sein.');
