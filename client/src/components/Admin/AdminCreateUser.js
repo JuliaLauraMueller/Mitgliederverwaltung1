@@ -14,7 +14,8 @@ const initialState = {
   surname: '',
   privateEmail: '',
   password: '',
-  circle: ''
+  circle: '',
+  godfather: ''
 };
 
 class AdminCreateUser extends Component {
@@ -136,6 +137,24 @@ class AdminCreateUser extends Component {
                   className="admin-form-control"
                   autoComplete="new-password"
                   value={this.state.password}
+                  onChange={this.handleChange}
+                />
+              </Col>
+            </Row>
+          </FormGroup>
+          <FormGroup>
+            <Row>
+              <Col xs="3">
+                <Label for="godfather">Götti</Label>
+              </Col>
+              <Col xs={9}>
+                <Input
+                  type="text"
+                  name="godfather"
+                  id="godfather"
+                  className="admin-form-control"
+                  autoComplete="off"
+                  value={this.state.godfather}
                   onChange={this.handleChange}
                 />
               </Col>
