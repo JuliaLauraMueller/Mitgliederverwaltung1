@@ -185,7 +185,8 @@ async function updateUser(id, userParam) {
     delete companyData.company_id;
     try {
       await companyService.update(companyData._id, companyData);
-      return await User.updateOne(query, userData);
+      await User.updateOne(query, userData);
+      return await User.findById(id).select('-password');
     } catch (error) {
       throw { type: 'processing_error', error };
     }

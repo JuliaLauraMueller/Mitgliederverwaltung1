@@ -88,3 +88,7 @@
   stroke: none;
   fill: #db9d0c;
 }
+
+.toolbar-burger-menu {
+  margin-left: -11px;
+}

@@ -10,23 +10,26 @@ basic style admin page
 }
 
 .create-button {
-  color: rgb(219, 157, 12);
-  border: none;
+  background-color: transparent;
+  border: 0;
   border-bottom: 1px solid rgb(219, 157, 12);
+  line-height: 2.3;
+  color: rgb(219, 157, 12);
+  margin-left: 0.7rem;
   padding: 0;
   border-radius: 0;
-  font-family: Helvetica, sans-serif;
-  font-weight: lighter;
   transition: none;
+  height: 32px;
+  font-size: 110%;
+  opacity: 1 !important;
 }
 
 .create-button:hover,
 .create-button:active,
 .admin-button:hover,
 .admin-button:active {
-  border-bottom: 1px solid rgb(15, 25, 41, 74%);
   background-color: transparent;
-  color: rgb(15, 25, 41, 74%);
+  opacity: 0.5 !important;
 }
 
 .admin-button {
@@ -55,6 +58,24 @@ svg {
   border-color: rgb(15, 25, 41, 10%);
   display: block;
   float: right;
+  margin-top: 0.6rem;
+}
+
+.admin-link {
+  display: inline-block;
+  padding-right: 8px;
+}
+
+.admin-link-edit {
+  height: 30px;
+}
+
+.admin-link-delete {
+  height: 30px;
+}
+
+.admin-link-role {
+  height: 34px;
 }
 
 .admin-link-small {
@@ -124,12 +145,50 @@ div .create-button {
 }
 
 @media only screen and (min-width: 0px) and (max-width: 768px) {
+  input.create-button {
+    margin-left: 0;
+  }
   .form-control-admin {
     width: 130px;
   }
 
   td {
     font-size: 11pt;
+  }
+
+  input#title {
+    float: right;
+  }
+
+  .admin-form-control.form-control {
+    float: right;
+    width: 85%;
+  }
+
+  .checkbox-container {
+    width: 85%;
+    float: right;
+  }
+
+  label.filter-cities {
+    font-size: 10pt;
+  }
+
+  .dropdown-toggle::after {
+    margin-left: 40px;
+    width: 11px;
+    height: auto;
+    margin-top: 10px;
+  }
+
+  .filter-button-edit {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+  }
+
+  .event-edit-txt {
+    max-width: 200px !important;
+    min-width: 200px !important;
   }
 }
 
@@ -178,4 +237,13 @@ div .create-button {
 
 .past-event-txt {
   font-size: 94%;
+  margin-top: -20px;
+}
+
+.admin-form-control.description-area {
+  height: 150px;
+}
+
+.filter-button-edit {
+  padding-left: 60px;
 }

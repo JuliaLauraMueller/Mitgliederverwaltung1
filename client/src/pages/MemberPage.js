@@ -24,6 +24,7 @@ class MemberPage extends Component {
       <Container className="member-page-container">
         <Row>
           <Col xs="12">
+            <h1 className="title">Mitglieder</h1>
             <Helmet>
               <style>
                 {'body { background-color: rgb(15, 25, 41, 10%); }'}
