@@ -17,7 +17,8 @@
   margin-left: 250px;
 }
 
-button.toggle-button:hover > svg.svg-svg > g.path-svg > rect {
+button.toggle-button:hover > svg.svg-svg > g.path-svg > rect,
+button.toggle-button:hover > svg.svg-svg > path {
   fill: #db9d0c !important;
   background-color: aquamarine;
 }
