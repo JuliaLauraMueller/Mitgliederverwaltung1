@@ -136,7 +136,7 @@ class AdminPage extends Component {
 
     return (
       <div>
-        <h1>Administration</h1>
+        <h1 className="title">Administration</h1>
         <Nav tabs>
           {MembersButton}
           {CitiesButton}

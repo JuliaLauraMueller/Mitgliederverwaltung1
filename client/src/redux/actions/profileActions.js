@@ -56,8 +56,13 @@ export const putWholeData = data => async dispatch => {
 
   return await profileService
     .setUserData(profileMainData, companyData)
-    .then(res => {
-      dispatch({ type: PUT_PROFILE, payload: profileMainData });
+    .then(user => {
+      profileBasicData.xingLink = user.xingLink;
+      profileBasicData.linkedinLink = user.linkedinLink;
+      profileBasicData.facebookLink = user.facebookLink;
+      profileBasicData.instagramLink = user.instagramLink;
+
+      dispatch({ type: PUT_PROFILE, payload: profileBasicData });
       companyData.company = companyData.companyName;
       delete companyData.companyName;
       dispatch({ type: PUT_PROFILE, payload: companyData });

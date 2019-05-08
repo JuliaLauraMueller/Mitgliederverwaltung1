@@ -92,7 +92,7 @@ async function setUserData(userData, companyData) {
   return await axios
     .put('/users/' + data.userData._id, data)
     .then(res => {
-      return res;
+      return res.data.updated;
     })
     .catch(error => {
       if (error && error.data.errors && error.data.type === 'invalid_input') {

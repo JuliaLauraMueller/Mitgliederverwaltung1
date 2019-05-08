@@ -218,7 +218,9 @@ class AdminCirclesOverview extends Component {
         <Form onSubmit={this.onCircleSave}>
           <ModalBody>
             <FormGroup row>
-              <Label className="city-name-label">City-Name:</Label>
+              <Label className="city-name-label">
+                Name<pre className="required-field">*</pre>
+              </Label>
               <Col>
                 <Input
                   type="text"
