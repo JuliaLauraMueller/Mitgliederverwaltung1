@@ -173,7 +173,7 @@ class SingleEventInfo extends Component {
               <Col>
                 <label className="event-description-additional">
                   Anmeldefrist bis: {registrationEndDate.getDate()}.{' '}
-                  {this.months[registrationEndDate.getMonth()]}.{' '}
+                  {this.months[registrationEndDate.getMonth()]}{' '}
                   {registrationEndDate.getFullYear()}
                 </label>
               </Col>
