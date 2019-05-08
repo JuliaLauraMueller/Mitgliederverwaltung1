@@ -6,6 +6,7 @@ function replaceUmlauts(text) {
 }
 
 export function filterNewsArticles(newsArticles, searchText) {
+  newsArticles = newsArticles.slice(0, 30);
   if (!newsArticles) return [];
   searchText = replaceUmlauts(searchText.toLowerCase());
   return newsArticles.filter(e => {

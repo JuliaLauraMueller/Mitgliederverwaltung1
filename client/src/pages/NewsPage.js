@@ -20,7 +20,8 @@ class NewsPage extends Component {
   render() {
     let newsCards = [];
     if (this.props.news) {
-      newsCards = this.props.news.map(newsArticle => (
+      let currentNews = this.props.news.slice(0, 30);
+      newsCards = currentNews.map(newsArticle => (
         <NewsCard key={newsArticle._id} newsArticle={newsArticle} />
       ));
     }
