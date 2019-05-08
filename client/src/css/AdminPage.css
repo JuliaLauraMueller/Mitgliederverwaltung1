@@ -145,12 +145,50 @@ div .create-button {
 }
 
 @media only screen and (min-width: 0px) and (max-width: 768px) {
+  input.create-button {
+    margin-left: 0;
+  }
   .form-control-admin {
     width: 130px;
   }
 
   td {
     font-size: 11pt;
+  }
+
+  input#title {
+    float: right;
+  }
+
+  .admin-form-control.form-control {
+    float: right;
+    width: 85%;
+  }
+
+  .checkbox-container {
+    width: 85%;
+    float: right;
+  }
+
+  label.filter-cities {
+    font-size: 10pt;
+  }
+
+  .dropdown-toggle::after {
+    margin-left: 40px;
+    width: 11px;
+    height: auto;
+    margin-top: 10px;
+  }
+
+  .filter-button-edit {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+  }
+
+  .event-edit-txt {
+    max-width: 200px !important;
+    min-width: 200px !important;
   }
 }
 
@@ -176,4 +214,8 @@ div .create-button {
 
 .admin-form-control.description-area {
   height: 150px;
+}
+
+.filter-button-edit {
+  padding-left: 60px;
 }
