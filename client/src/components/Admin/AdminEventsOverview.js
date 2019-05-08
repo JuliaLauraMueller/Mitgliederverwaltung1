@@ -592,7 +592,7 @@ class AdminEventsOverview extends Component {
                 />
               </Col>
               <Col>
-                <Label className="">Ende</Label>
+                <Label>Ende</Label>
                 <Input
                   type="text"
                   id="endTime"

@@ -247,3 +247,9 @@ div .create-button {
 .filter-button-edit {
   padding-left: 60px;
 }
+
+.admin-form-control-create-news {
+  width: 99%;
+  margin-top: 1%;
+  margin-left: 5px;
+}
