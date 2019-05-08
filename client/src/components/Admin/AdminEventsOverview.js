@@ -43,6 +43,8 @@ class AdminEventsOverview extends Component {
       startTime: '',
       endTime: '',
       location: '',
+      image: '',
+      imageTag: '',
       organisationTeam: '',
       registrationEndDate: '',
       permittedRoles: []
@@ -73,6 +75,8 @@ class AdminEventsOverview extends Component {
     this.handleRoleSelectionEdit = this.handleRoleSelectionEdit.bind(this);
     this.decodeRoles = this.decodeRoles.bind(this);
     this.togglePastEvents = this.togglePastEvents.bind(this);
+    this.handleFileSelection = this.handleFileSelection.bind(this);
+    this.getBase64 = this.getBase64.bind(this);
 
     this.props.dispatch(fetchEvents());
   }
@@ -294,6 +298,8 @@ class AdminEventsOverview extends Component {
           onClick={() =>
             this.toggleEventEditModal({
               _id: event._id,
+              image: event.image || this.emptyEvent.image,
+              imageTag: event.imageTag || this.emptyEvent.imageTag,
               title: event.title || this.emptyEvent.title,
               description: event.description || this.emptyEvent.description,
               circles: event.circles || this.emptyEvent.circles,
@@ -388,6 +394,31 @@ class AdminEventsOverview extends Component {
       );
     });
   }
+
+  async handleFileSelection(event) {
+    var something = event.target.files[0];
+
+    let fileInB64 = await this.getBase64(something);
+    let splitArr = fileInB64.split(',');
+
+    this.setState({
+      eventToEdit: {
+        ...this.state.eventToEdit,
+        imageTag: splitArr[0],
+        image: splitArr[1]
+      }
+    });
+  }
+
+  getBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
+  }
+
   createEventDeleteModal() {
     return (
       <Modal
@@ -434,8 +465,37 @@ class AdminEventsOverview extends Component {
         <Form onSubmit={this.onEventSave}>
           <ModalBody>
             <FormGroup row>
-              <Col>
-                <Label>
+              <Col className="event-edit-row">
+                <Label for="image">Eventbild:</Label>
+                <img
+                  id="modalImage"
+                  src={
+                    this.state.eventToEdit.image !== ''
+                      ? this.state.eventToEdit.imageTag +
+                        ',' +
+                        this.state.eventToEdit.image
+                      : require('../../img/event_default_image.png')
+                  }
+                  alt=""
+                  style={{ width: '90%', height: 'auto' }}
+                  className="event-edit-image"
+                />
+                <input
+                  type="file"
+                  id="eventPictureUpload-Edit"
+                  onChange={this.handleFileSelection}
+                  className="hidden"
+                  accept=".jpg,.jpeg,.png"
+                />
+                <label
+                  htmlFor="eventPictureUpload-Edit"
+                  className="event-edit-picture-input"
+                >
+                  Neues Eventbild
+                </label>
+              </Col>
+              <Col className="event-edit-row">
+                <Label className="event-edit-label">
                   Titel<pre className="required-field">*</pre>
                 </Label>
                 <Input

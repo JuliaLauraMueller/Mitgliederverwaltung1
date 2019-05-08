@@ -18,6 +18,7 @@ function getUpdatedEvents(events, updatedEvent) {
   let index = events.findIndex(event => event._id === updatedEvent._id);
   events[index].title = updatedEvent.title;
   events[index].image = updatedEvent.image;
+  events[index].imageTag = updatedEvent.imageTag;
   events[index].description = updatedEvent.description;
   events[index].circles = updatedEvent.circles;
   events[index].circleValues = updatedEvent.circleValues;

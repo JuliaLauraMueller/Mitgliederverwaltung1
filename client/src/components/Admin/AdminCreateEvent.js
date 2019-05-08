@@ -27,6 +27,7 @@ const initialState = {
   organisationTeam: '',
   registrationEndDate: '',
   image: '',
+  imageTag: '',
   circles: [],
   permittedRoles: [0, 1, 2, 3, 4, 5]
 };
@@ -47,6 +48,8 @@ class AdminCreateEvent extends Component {
     this.handleCitiesSelection = this.handleCitiesSelection.bind(this);
     this.handleRoleSelection = this.handleRoleSelection.bind(this);
     this.toggle = this.toggle.bind(this);
+    this.handleFileSelection = this.handleFileSelection.bind(this);
+    this.getBase64 = this.getBase64.bind(this);
   }
 
   handleChange(event) {
@@ -98,6 +101,7 @@ class AdminCreateEvent extends Component {
       citiesDropdownOpen: !this.state.citiesDropdownOpen
     });
   }
+
   async submitEvent(event) {
     event.preventDefault();
     await this.props
@@ -110,6 +114,27 @@ class AdminCreateEvent extends Component {
       .catch(errorMessages => {
         this.props.dispatch(alertError(errorMessages.join('\n')));
       });
+  }
+
+  async handleFileSelection(event) {
+    var something = event.target.files[0];
+
+    let fileInB64 = await this.getBase64(something);
+    let splitArr = fileInB64.split(',');
+    console.log(splitArr[0] + ',' + splitArr[1]);
+    this.setState({
+      imageTag: splitArr[0],
+      image: splitArr[1]
+    });
+  }
+
+  getBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
   }
 
   render() {
@@ -135,6 +160,35 @@ class AdminCreateEvent extends Component {
         <h4>Neuer Event</h4>
         <Form onSubmit={this.submitEvent}>
           <FormGroup>
+            <Row>
+              <Col xs="3">
+                <Label for="image">Eventbild</Label>
+              </Col>
+              <Col xs="9">
+                <img
+                  src={
+                    this.state.image !== ''
+                      ? this.state.imageTag + ',' + this.state.image
+                      : require('../../img/event_default_image.png')
+                  }
+                  className="event-image"
+                  style={{ width: '90%', height: 'auto' }}
+                  alt=""
+                />
+                <Col>
+                  <input
+                    type="file"
+                    id="pictureUpload"
+                    onChange={this.handleFileSelection}
+                    className="hidden"
+                    accept=".jpg,.jpeg,.png"
+                  />
+                  <label htmlFor="pictureUpload" className="picture-button">
+                    Neues Eventbild
+                  </label>
+                </Col>
+              </Col>
+            </Row>
             <Row>
               <Col xs="3">
                 <Label for="title">

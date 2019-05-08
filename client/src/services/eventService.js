@@ -52,6 +52,7 @@ async function getEventData(id) {
         _id: id,
         title: resp.data.title,
         image: resp.data.image,
+        imageTag: resp.data.imageTag,
         description: resp.data.description,
         circles: resp.data.circles,
         date: resp.data.date,

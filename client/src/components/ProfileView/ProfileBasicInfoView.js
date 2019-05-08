@@ -107,12 +107,6 @@ class ProfileBasicInfo extends Component {
           </Row>
           <Row className="overflow">
             <Col>
-              <label>Mitglied</label>
-              <label className="value-label">{profile.memberNumber}</label>
-            </Col>
-          </Row>
-          <Row className="overflow">
-            <Col>
               <label>Beitritt</label>
               <label className="value-label">
                 {profile.entryDate
