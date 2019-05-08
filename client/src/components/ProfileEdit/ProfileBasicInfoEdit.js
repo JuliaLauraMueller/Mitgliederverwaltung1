@@ -228,9 +228,7 @@ class ProfileBasicInfoEDIT extends Component {
                 </div>
               </InputGroup>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">
-                  Spitzname
-                </InputGroupAddon>
+                <InputGroupAddon addonType="prepend">Spitzname</InputGroupAddon>
                 <div className="input-field">
                   <Input
                     type="text"
@@ -293,9 +291,7 @@ class ProfileBasicInfoEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">
-                  Instagram
-                </InputGroupAddon>
+                <InputGroupAddon addonType="prepend">Instagram</InputGroupAddon>
                 <div className="input-field">
                   <Input
                     type="text"
@@ -313,38 +309,6 @@ class ProfileBasicInfoEDIT extends Component {
           <Row className="basic-info">
             <Col>
               <p className="main-title title-maininfo space-top">Kurzprofil</p>
-            </Col>
-          </Row>
-
-          <Row>
-            <Col>
-              <InputGroup>
-                <InputGroupAddon addonType="prepend">Mitglied</InputGroupAddon>
-                <div className="input-field">
-                  <Input
-                    type="text"
-                    name="memberNumber"
-                    onChange={this.onChange}
-                    value={this.state.memberNumber || ''}
-                  />
-                </div>
-              </InputGroup>
-            </Col>
-          </Row>
-
-          <Row>
-            <Col>
-              <InputGroup>
-                <InputGroupAddon addonType="prepend">Beitritt</InputGroupAddon>
-                <div className="input-field">
-                  <Input
-                    type="date"
-                    name="entryDate"
-                    onChange={this.onChange}
-                    value={this.state.entryDate || ''}
-                  />
-                </div>
-              </InputGroup>
             </Col>
           </Row>
 
@@ -376,38 +340,6 @@ class ProfileBasicInfoEDIT extends Component {
                     name="status"
                     onChange={this.onChange}
                     value={this.state.status || ''}
-                  />
-                </div>
-              </InputGroup>
-            </Col>
-          </Row>
-
-          <Row>
-            <Col>
-              <InputGroup>
-                <InputGroupAddon addonType="prepend">City</InputGroupAddon>
-                <div className="input-field">
-                  <Input
-                    type="text"
-                    name="city"
-                    onChange={this.onChange}
-                    value={this.state.city || ''}
-                  />
-                </div>
-              </InputGroup>
-            </Col>
-          </Row>
-
-          <Row>
-            <Col>
-              <InputGroup>
-                <InputGroupAddon addonType="prepend">Götti</InputGroupAddon>
-                <div className="input-field">
-                  <Input
-                    type="text"
-                    name="godfather"
-                    onChange={this.onChange}
-                    value={this.state.godfather || ''}
                   />
                 </div>
               </InputGroup>

@@ -43,22 +43,27 @@
   border: none;
   border-bottom: 1px solid rgb(219, 157, 12);
   display: block;
-  color: white;
   margin: 0px;
   padding: 0px;
   float: right;
   font-size: 20px;
-  color: rgb(219, 157, 12);
+  color: rgb(219, 157, 12) !important;
   font-family: Helvetica, sans-serif;
   transition: none;
   border-radius: 0px;
   margin-top: 20px;
 }
 
-.login-button:hover {
+.login-button:hover,
+.login-button:active {
   background-color: transparent;
-  border-bottom: 1x solid rgb(219, 157, 12);
-  color: rgb(0, 0, 0);
+  opacity: 0.5;
+}
+
+.btn-secondary:hover,
+.btn-secondary:active {
+  background-color: transparent !important;
+  border-color: inherit;
 }
 
 .login-logo {
