@@ -23,7 +23,8 @@ async function getAll() {
         author: '$author',
         date: { $dateToString: { format: '%Y-%m-%d', date: '$date' } }
       }
-    }
+    },
+    { $sort: { date: -1 } }
   ]).exec();
 }
 
