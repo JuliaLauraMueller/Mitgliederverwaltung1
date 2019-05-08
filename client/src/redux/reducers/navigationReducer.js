@@ -5,7 +5,7 @@ import { SET_NAV_EXPANDED } from '../types/navigationTypes';
 import { UPDATE_NAV_USERDATA } from '../types/navigationTypes';
 
 const initialState = {
-  expanded: false,
+  expanded: true,
   visible: true,
   userData: {}
 };
