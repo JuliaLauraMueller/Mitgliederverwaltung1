@@ -257,7 +257,7 @@ class SideDrawer extends Component {
                 />
               </Link>
             </div>
-            <div className="navigation-user-name">
+            <div className="navigation-user-name navigation-user-name-txt">
               {userFirstname} {userSurname}
             </div>
             <div id="profile-edit-text">
@@ -311,8 +311,8 @@ class SideDrawer extends Component {
                 <Link to="/login">
                   <svg
                     className="profile-edit"
-                    height="18"
-                    width="18"
+                    height="17"
+                    width="17"
                     fill="none"
                     viewBox="0 0 512 512"
                     xmlns="http://www.w3.org/2000/svg"
@@ -324,7 +324,7 @@ class SideDrawer extends Component {
                       strokeWidth="0.25"
                     />
                   </svg>
-                  Logout
+                  Abmelden
                 </Link>
               </div>
             </div>
@@ -334,7 +334,7 @@ class SideDrawer extends Component {
               <div className="navigation-links-nav">
                 <ul>
                   <li>
-                    <Link to="/">
+                    <Link to="/news">
                       <svg
                         height="26"
                         width="18"

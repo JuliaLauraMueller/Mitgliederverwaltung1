@@ -36,8 +36,10 @@ global style for all pages
 }
 
 .title {
+  position: static;
   text-align: center;
-  margin-bottom: 5%;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
 }
 
 .collapsed {
@@ -93,6 +95,14 @@ global style for all pages
   justify-content: center;
   max-width: 300px;
   min-width: 300px;
+}
+
+.text-editor-label {
+  min-width: 150px;
+}
+
+.no-data-found {
+  opacity: 0.6;
 }
 
 @media only screen and (max-width: 1200px) {

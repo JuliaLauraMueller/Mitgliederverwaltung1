@@ -267,5 +267,9 @@ div .create-button {
   position: relative;
   top: 7px;
   margin-bottom: 5px;
+}
+.admin-form-control-create-news {
+  width: 99%;
+  margin-top: 1%;
   margin-left: 5px;
 }

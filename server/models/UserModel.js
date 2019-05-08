@@ -12,7 +12,7 @@ const schema = new Schema({
   birthdate: { type: Date },
   status: { type: String },
   circle: { type: Schema.Types.ObjectId },
-  godfather: { type: Schema.Types.ObjectId },
+  godfather: { type: String },
   salutation: { type: String },
   title: { type: String },
   firstname: { type: String },

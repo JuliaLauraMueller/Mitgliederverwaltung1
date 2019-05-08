@@ -15,6 +15,7 @@ import MemberPage from '../pages/MemberPage';
 import EventPage from '../pages/EventPage';
 import AdminPage from '../pages/AdminPage';
 import SingleEventPage from '../pages/SingleEventPage';
+import NewsPage from '../pages/NewsPage';
 import AppNavbar from '../components/AppNavbar/AppNavbar';
 import store from '../helpers/store';
 
@@ -35,12 +36,13 @@ class Routes extends Component {
           <div id="page-wrap">
             <Switch>
               <Route exact path="/login" component={LoginPage} />
-              <PrivateRoute exact path="/" component={MemberPage} />
+              <PrivateRoute exact path="/" component={NewsPage} />
               <PrivateRoute
                 exact
                 path={'/member/:id'}
                 component={ProfilePage}
               />
+              <PrivateRoute exact path="/news" component={NewsPage} />
               <PrivateRoute exact path="/members" component={MemberPage} />
               <PrivateRoute exact path="/events" component={EventPage} />
               <PrivateRoute

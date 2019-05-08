@@ -80,7 +80,7 @@ class Toolbar extends Component {
             <div className="toolbar_navigation-links">
               <ul>
                 <li>
-                  <Link to="/">
+                  <Link to="/news">
                     <svg
                       height="26"
                       width="18"
@@ -175,16 +175,6 @@ class Toolbar extends Component {
                   </Link>
                 </li>
                 <li>{AdminIcon}</li>
-                <li>
-                  <svg
-                    width="13"
-                    height="26"
-                    viewBox="0 0 13 26"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="navbar-desktop-extended-logo"
-                  />
-                </li>
               </ul>
             </div>
             <div className="toolbar_logo">
