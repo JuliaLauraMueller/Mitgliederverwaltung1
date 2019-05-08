@@ -208,35 +208,34 @@ div .create-button {
 }
 .event-edit-txt {
   float: right;
-  max-width: 240px;
-  min-width: 240px;
+  max-width: 280px;
+  min-width: 280px;
 }
 
 .event-edit-picture-input {
   float: right;
-  max-width: 240px;
-  min-width: 240px;
+  position: relative;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid rgb(219, 157, 12);
+  line-height: 2.3;
   color: rgb(219, 157, 12);
-  border: none;
   padding: 0;
   border-radius: 0;
-  font-size: 1rem;
-  font-family: Helvetica, sans-serif;
-  font-weight: lighter;
   transition: none;
-  margin-top: 0.5rem;
-}
-
-.event-edit-picture-input:hover,
-.event-edit-picture-input:active {
-  background-color: transparent;
-  color: rgb(15, 25, 41, 74%);
+  height: 32px;
+  margin-bottom: 10px;
+  font-size: 12pt;
+  float: left;
+  opacity: 1 !important;
 }
 
 .event-edit-image {
+  position: relative;
+  top: 5px;
   float: right;
-  max-width: 240px;
-  min-width: 240px;
+  max-width: 280px;
+  min-width: 280px;
   max-height: 90px;
 }
 
@@ -255,6 +254,20 @@ div .create-button {
 
 .filter-button-edit {
   padding-left: 60px;
+  position: relative;
+  bottom: 48px;
+  right: 40px;
+}
+
+.event-edit-txt-btn {
+  float: right;
+  max-width: 280px;
+  min-width: 280px;
+  height: 1px;
+}
+
+.btn-group {
+  height: 0;
 }
 
 .picture-button-create {
@@ -271,13 +284,14 @@ div .create-button {
   transition: none;
   height: 32px;
   margin-bottom: 10px;
-  font-size: 110%;
-  float: left;
+  font-size: 12pt;
   opacity: 1 !important;
 }
 
 .picture-button-create:hover,
-.picture-button-create:active {
+.picture-button-create:active,
+.event-edit-picture-input:hover,
+.event-edit-picture-input:active {
   background-color: transparent;
   opacity: 0.5 !important;
 }
