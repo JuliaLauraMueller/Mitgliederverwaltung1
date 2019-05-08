@@ -3,6 +3,7 @@ import { SET_NAV_INVISIBLE } from '../types/navigationTypes';
 import { SET_NAV_COLLAPSED } from '../types/navigationTypes';
 import { SET_NAV_EXPANDED } from '../types/navigationTypes';
 import { UPDATE_NAV_USERDATA } from '../types/navigationTypes';
+import profileService from '../../services/profileService';
 
 export function setNavVisible() {
   return function(dispatch) {
@@ -44,3 +45,14 @@ export function updateNavUserdata(newData) {
     dispatch({ type: UPDATE_NAV_USERDATA, payload: newData });
   };
 }
+
+export const changePassword = data => async dispatch => {
+  return profileService
+    .changePassword(data)
+    .then(res => {
+      Promise.resolve();
+    })
+    .catch(err => {
+      return Promise.reject(err);
+    });
+};

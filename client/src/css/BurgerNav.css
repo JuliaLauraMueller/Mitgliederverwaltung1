@@ -68,7 +68,6 @@
 
 .bm-item:hover {
   text-decoration: none;
-  color: #db9d0c;
 }
 
 /* Styling of overlay */
@@ -105,6 +104,7 @@
 .burger-navigation-edit-profile:hover {
   color: #db9d0c;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .title-name {
@@ -149,13 +149,19 @@
 .burger-nav a:hover > svg,
 .burger-nav a:active > svg,
 .burger-nav a:hover > svg > path,
-.burger-nav a:active > svg > path {
+.burger-nav a:active > svg > path,
+.burger-nav span:hover > svg,
+.burger-nav span:active > svg,
+.burger-nav span:hover > svg > path,
+.burger-nav span:active > svg > path {
   stroke: none;
   fill: #db9d0c;
 }
 
 .burger-nav a:hover,
-.burger-nav a:active {
+.burger-nav a:active,
+.burger-nav span:hover,
+.burger-nav span:active {
   color: #db9d0c;
 }
 
@@ -163,4 +169,36 @@
   position: relative;
   bottom: 2px;
   padding-right: 3px;
+}
+
+/** Modal for password change */
+.password-edit-row {
+  margin: 1px 20px;
+  justify-content: flex-end;
+}
+
+.password-edit-txt-mobile {
+  float: right;
+  max-width: 100%;
+  min-width: 100%;
+}
+
+.password-change-button {
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  margin-left: 10px;
+  border-radius: 0;
+  transition: none;
+  color: rgb(219, 157, 12);
+  border-bottom: 1px solid rgb(219, 157, 12);
+  font-family: Helvetica, sans-serif;
+  font-weight: lighter;
+  float: right;
+}
+
+.password-change-button:hover {
+  border-bottom: 1px solid rgb(15, 25, 41, 74%);
+  background-color: transparent;
+  color: rgb(15, 25, 41, 74%);
 }
