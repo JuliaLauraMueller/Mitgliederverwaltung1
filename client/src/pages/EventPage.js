@@ -6,6 +6,7 @@ import { Container, Row, Col } from 'reactstrap';
 import { connect } from 'react-redux';
 import { setNavVisible } from '../redux/actions/navigationActions';
 import { fetchEvents } from '../redux/actions/eventActions';
+import store from '../helpers/store';
 
 import '../css/Member.css';
 import '../css/EventPage.css';
@@ -20,9 +21,11 @@ class EventPage extends Component {
   render() {
     let eventCards = [];
     if (this.props.events) {
-      eventCards = this.props.events.map(event => (
-        <EventCard key={event._id} event={event} />
-      ));
+      eventCards = this.props.events
+        .filter(event =>
+          event.permittedRoles.includes(store.getState().auth.user.role)
+        )
+        .map(event => <EventCard key={event._id} event={event} />);
     }
     return (
       <Container className="member-page-container">

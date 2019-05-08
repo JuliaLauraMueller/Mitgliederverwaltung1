@@ -30,12 +30,6 @@ function getById(req, res, next) {
           roleHelper.roleEventAccessCheckPermittedRoles(
             event.permittedRoles,
             req.user.role
-          ) &&
-          roleHelper.roleAccessCheckMultipleCircles(
-            0,
-            event.circles.map(c => c._id),
-            req.user.role,
-            req.user.circle
           )
         ) {
           res.json(event);
