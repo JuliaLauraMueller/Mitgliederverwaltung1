@@ -1,5 +1,9 @@
 /*MemberPage*/
 
+.row {
+  min-width: 290px;
+}
+
 .member-logo {
   min-height: 66px;
   min-width: 57px;
@@ -111,27 +115,22 @@
 
 @media only screen and (max-width: 400px) {
   .search-container {
-    margin-left: 15%;
     min-width: 220px;
     max-width: 220px;
-  }
-
-  .search-form {
-    min-width: 220px;
-    max-width: 220px;
-  }
-
-  .search-input {
-    min-width: 165px;
-    max-width: 165px;
+    margin-left: calc(-90px + 50%);
   }
 }
 
 @media only screen and (max-width: 370px) {
   .search-container {
-    min-width: 250px;
-    max-width: 250px;
-    margin-left: calc(-100px + 50%);
+    min-width: 190px;
+    max-width: 190px;
+    margin-left: calc(-75px + 50%);
+  }
+
+  .search-field-member {
+    min-width: 260px;
+    max-width: 260px;
   }
 }
 
