@@ -54,15 +54,7 @@ class ProfileBasicInfoEDIT extends Component {
   }
 
   onSave() {
-    let canv = this.editor.getImage();
-    let pictureB64 = canv.toDataURL('image/jpeg', 1);
-    let quality = 0.9;
-    while ((pictureB64.length * 3) / 4 > 500 * 1024 && quality > 0) {
-      pictureB64 = canv.toDataURL('image/jpeg', quality);
-      quality -= 0.1;
-    }
-    let splitArr = pictureB64.split(',');
-    const basicInformationUpdate = {
+    let basicInformationUpdate = {
       _id: this.props.profile._id,
       xingLink: this.state.xingLink,
       linkedinLink: this.state.linkedinLink,
@@ -79,10 +71,23 @@ class ProfileBasicInfoEDIT extends Component {
       entryDate: this.state.entryDate,
       //city: this.state.city,
       //godfather: this.state.godfather,
-      birthdate: this.state.birthdate,
-      avatar: splitArr[1],
-      avatarTag: splitArr[0]
+      birthdate: this.state.birthdate
     };
+    if (this.editor) {
+      let canv = this.editor.getImage();
+      let pictureB64 = canv.toDataURL('image/jpeg', 1);
+      let quality = 0.9;
+      while ((pictureB64.length * 3) / 4 > 500 * 1024 && quality > 0) {
+        pictureB64 = canv.toDataURL('image/jpeg', quality);
+        quality -= 0.1;
+      }
+      let splitArr = pictureB64.split(',');
+      basicInformationUpdate = {
+        ...basicInformationUpdate,
+        avatar: splitArr[1],
+        avatarTag: splitArr[0]
+      };
+    }
     return basicInformationUpdate;
   }
 

@@ -19,6 +19,7 @@ import { Container, Row, Col, Form, FormGroup } from 'reactstrap';
 import store from '../helpers/store';
 
 class ProfilePage extends Component {
+  _isMounted = false;
   constructor(props) {
     super(props);
     this.props.dispatch(setNavVisible());
@@ -30,8 +31,12 @@ class ProfilePage extends Component {
     this.loadMember = this.loadMember.bind(this);
   }
 
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
   componentDidMount() {
     // first time profile page is loaded
+    this._isMounted = true;
     this.loadMember(this.props.match.params.id);
   }
 
@@ -43,7 +48,9 @@ class ProfilePage extends Component {
   }
 
   loadMember(memberId) {
-    this.props.dispatch(fetchProfile(memberId));
+    if (this._isMounted) {
+      this.props.dispatch(fetchProfile(memberId));
+    }
   }
 
   toggleEdit() {
@@ -71,96 +78,95 @@ class ProfilePage extends Component {
   }
 
   render() {
+    let content = <div />;
     if (this.props.isLoading) {
+      content = (
+        <div>
+          <div className='page-wrap-loading-screen' />
+          <img
+            src={require('../img/LoadingIcon.gif')}
+            alt='loading-icon'
+            className='modal-loading-screen'
+          />
+        </div>
+      );
+    } else {
+      content = <div />;
+    }
+    let EditButton = {};
+    if (
+      personalAccessCheck(this.props._id, store.getState().auth.user._id) ||
+      roleAccessCheck(
+        3,
+        this.props.circle,
+        store.getState().auth.user.role,
+        store.getState().auth.user.circle
+      )
+    ) {
+      EditButton = (
+        <button className='button-save-edit' onClick={this.toggleEdit}>
+          Editieren
+        </button>
+      );
+    } else {
+      EditButton = <div />;
+    }
+
+    if (this.state.isEditing) {
       return (
-        <Container className='loading-icon-container'>
+        <Container className='profile-page__container'>
+          {content}
+          <Form onSubmit={this.handleClick}>
+            <Row>
+              <Col md='12'>
+                <input
+                  type='submit'
+                  className='button-save-edit'
+                  value='Speichern'
+                  onClick={this.handleClick}
+                />
+              </Col>
+            </Row>
+            <FormGroup row>
+              <Row>
+                <Col xs='12' md='12'>
+                  <ProfileBasicInfoEDIT
+                    ref={basicInfo => {
+                      this.basicInfo = basicInfo;
+                    }}
+                  />
+                </Col>
+                <Col xs='12' md='12'>
+                  <ProfileMainInformationEDIT
+                    ref={mainInfo => {
+                      this.mainInfo = mainInfo;
+                    }}
+                  />
+                </Col>
+              </Row>
+            </FormGroup>
+          </Form>
+        </Container>
+      );
+    } else {
+      return (
+        <Container className='profile-page__container'>
+          {content}
           <Row>
-            <Col xs='12'>
-              <Col md='12' />
-              <div className='search-form' />
-              <img
-                src={require('../img/LoadingIcon.gif')}
-                alt='loading-icon'
-                className='loading-icon'
-              />
+            <Col md='12' className='button-container'>
+              {EditButton}
+            </Col>
+          </Row>
+          <Row>
+            <Col xs='12' md='12'>
+              <ProfileBasicInfo />
+            </Col>
+            <Col xs='12' md='12'>
+              <ProfileMainInformation />
             </Col>
           </Row>
         </Container>
       );
-    } else {
-      let EditButton = {};
-      if (
-        personalAccessCheck(this.props._id, store.getState().auth.user._id) ||
-        roleAccessCheck(
-          3,
-          this.props.circle,
-          store.getState().auth.user.role,
-          store.getState().auth.user.circle
-        )
-      ) {
-        EditButton = (
-          <button className='button-save-edit' onClick={this.toggleEdit}>
-            Editieren
-          </button>
-        );
-      } else {
-        EditButton = <div />;
-      }
-
-      if (this.state.isEditing) {
-        return (
-          <Container className='profile-page__container'>
-            <Form onSubmit={this.handleClick}>
-              <Row>
-                <Col md='12'>
-                  <input
-                    type='submit'
-                    className='button-save-edit'
-                    value='Speichern'
-                    onClick={this.handleClick}
-                  />
-                </Col>
-              </Row>
-              <FormGroup row>
-                <Row>
-                  <Col xs='12' md='12'>
-                    <ProfileBasicInfoEDIT
-                      ref={basicInfo => {
-                        this.basicInfo = basicInfo;
-                      }}
-                    />
-                  </Col>
-                  <Col xs='12' md='12'>
-                    <ProfileMainInformationEDIT
-                      ref={mainInfo => {
-                        this.mainInfo = mainInfo;
-                      }}
-                    />
-                  </Col>
-                </Row>
-              </FormGroup>
-            </Form>
-          </Container>
-        );
-      } else {
-        return (
-          <Container className='profile-page__container'>
-            <Row>
-              <Col md='12' className='button-container'>
-                {EditButton}
-              </Col>
-            </Row>
-            <Row>
-              <Col xs='12' md='12'>
-                <ProfileBasicInfo />
-              </Col>
-              <Col xs='12' md='12'>
-                <ProfileMainInformation />
-              </Col>
-            </Row>
-          </Container>
-        );
-      }
     }
   }
 }
