@@ -92,7 +92,7 @@ class SingleEventInfo extends Component {
       <div>
         {this.createAttendeeModal(attendee)}
         <Row>
-          <Col md={{ offset: 0, size: 3 }} xs={{ offset: 0 }}>
+          <Col md={{ offset: 0, size: 4 }} sm={{ offset: 0 }}>
             <Row className="date">
               <Col>
                 <div className="event-date">
@@ -104,18 +104,18 @@ class SingleEventInfo extends Component {
             </Row>
           </Col>
 
-          <Col md={{ offset: 0, size: 5 }}>
+          <Col md={{ offset: 0, size: 4 }}>
             <Row className="overflow">
               <Col>
                 <label className="event-title">{event.title} </label>
               </Col>
             </Row>
-            <Row className="overflow">
+            <Row className="overflow event-location-container">
               <Col>
                 <span className="event-card-location-icon">
                   <svg
                     width="24"
-                    height="35"
+                    height="24"
                     viewBox="0 0 24 35"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -140,6 +140,29 @@ class SingleEventInfo extends Component {
                 <label className="event-time">{event.endTime} </label>
               </Col>
             </Row>
+            <Row className="overflow">
+              <Col>
+                <label className="event-description-additional">
+                  Cities: {circlesText}
+                </label>
+              </Col>
+            </Row>
+            <Row className="overflow">
+              <Col>
+                <label className="event-description-additional">
+                  Organisator: {event.organisationTeam}
+                </label>
+              </Col>
+            </Row>
+            <Row className="overflow">
+              <Col>
+                <label className="event-description-additional">
+                  Anmeldefrist bis: {registrationEndDate.getDate()}.{' '}
+                  {this.months[registrationEndDate.getMonth()]}{' '}
+                  {registrationEndDate.getFullYear()}
+                </label>
+              </Col>
+            </Row>
           </Col>
 
           <Col md={{ offset: 0, size: 4 }} align="right">
@@ -151,35 +174,7 @@ class SingleEventInfo extends Component {
             </Row>
           </Col>
 
-          <Col md={{ offset: 0, size: 8 }} xs={{ offset: 0 }}>
-            <Row className="event-infos">
-              <Col>
-                <label className="event-description-title"> Infos </label>
-              </Col>
-            </Row>
-            <Row className="event-infos">
-              <Col>
-                <label className="event-description-additional">
-                  Cities: {circlesText}
-                </label>
-              </Col>
-            </Row>
-            <Row className="event-infos">
-              <Col>
-                <label className="event-description-additional">
-                  Organisator: {event.organisationTeam}
-                </label>
-              </Col>
-            </Row>
-            <Row className="event-infos">
-              <Col>
-                <label className="event-description-additional">
-                  Anmeldefrist bis: {registrationEndDate.getDate()}.{' '}
-                  {this.months[registrationEndDate.getMonth()]}{' '}
-                  {registrationEndDate.getFullYear()}
-                </label>
-              </Col>
-            </Row>
+          <Col md={{ offset: 0, size: 8 }} sm={{ offset: 0 }}>
             <Row className="event-infos">
               <Col>
                 <label className="event-description">{event.description}</label>
@@ -187,18 +182,13 @@ class SingleEventInfo extends Component {
             </Row>
           </Col>
 
-          <Col md={{ offset: 0, size: 4 }} xs={{ offset: 0 }}>
-            <Row className="event-infos event-infos-attendees">
-              <Col>
-                <label className="event-description-title">Teilnehmer</label>
-              </Col>
-            </Row>
+          <Col md={{ offset: 1, size: 3 }} sm={{ offset: 0 }}>
             <Row className="event-infos event-infos-attendees">
               <Table>
                 <thead>
                   <tr>
-                    <th>Teilnehmer</th>
-                    <th>Begleitungen</th>
+                    <th class="title-attendees">Teilnehmer</th>
+                    <th class="title-attendees">Begleitungen</th>
                   </tr>
                 </thead>
                 <tbody>{this.getAttendeeRows(5)}</tbody>
@@ -224,7 +214,8 @@ class SingleEventInfo extends Component {
     return (
       <label className="event-amount-attendence">
         {' '}
-        Zusagen: {amountAtt} Begleitungen: {amountAcc}{' '}
+        <span className="gap">Zusagen: {amountAtt} </span> Begleitungen:{' '}
+        {amountAcc}{' '}
       </label>
     );
   }
@@ -275,8 +266,10 @@ class SingleEventInfo extends Component {
     return event.attendees.slice(0, amount).map(attendee => {
       return (
         <tr key={attendee.user._id}>
-          <td>{attendee.user.firstname + ' ' + attendee.user.surname}</td>
-          <td>{attendee.accompaniments}</td>
+          <td className="event-attendee">
+            {attendee.user.firstname + ' ' + attendee.user.surname}
+          </td>
+          <td className="event-attendee">{attendee.accompaniments}</td>
         </tr>
       );
     });
