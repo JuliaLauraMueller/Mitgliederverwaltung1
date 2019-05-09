@@ -6,6 +6,7 @@ import {
   EVENTS_FETCHED,
   PUT_EVENT
 } from '../types/eventTypes';
+
 import { filterEvents } from '../../helpers/eventsSearch';
 
 const initialState = {

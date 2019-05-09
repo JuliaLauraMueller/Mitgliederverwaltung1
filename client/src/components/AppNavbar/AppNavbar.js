@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import classnames from 'classnames';
 
 import Toolbar from '../Toolbar/Toolbar';
 import SideDrawer from '../SideDrawer/SideDrawer';
@@ -15,7 +16,9 @@ class AppNavbar extends Component {
     this.state = {
       windowWith: window.innerWidth,
       windowHeight: window.innerHeight,
-      isMobile: false
+      isMobile: false,
+      prevScrollpos: window.pageYOffset,
+      visible: true
     };
   }
 
@@ -35,13 +38,27 @@ class AppNavbar extends Component {
   }
   componentDidMount() {
     window.addEventListener('resize', this.handleResize.bind(this));
+    window.addEventListener('scroll', this.handleScroll);
   }
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize.bind(this));
+    window.removeEventListener('scroll', this.handleScroll);
   }
 
   drawerToggleClickHandler = () => {
     this.props.toggleSideMenu();
+  };
+
+  handleScroll = () => {
+    const { prevScrollpos } = this.state;
+
+    const currentScrollPos = window.pageYOffset;
+    const visible = prevScrollpos > currentScrollPos;
+
+    this.setState({
+      prevScrollpos: currentScrollPos,
+      visible
+    });
   };
 
   render() {
@@ -50,7 +67,16 @@ class AppNavbar extends Component {
       visibleClass = 'visible';
     }
     if (window.innerWidth <= 1200 || window.innerHeight <= 740) {
-      return <BurgerNav visibleClass={visibleClass} />;
+      return (
+        <nav
+          className={classnames('navbar', {
+            'navbar--hidden': !this.state.visible
+          })}
+        >
+          {' '}
+          <BurgerNav className="navbar--hidden" visibleClass={visibleClass} />
+        </nav>
+      );
     } else {
       return (
         <div className={'app-nav-bar ' + visibleClass}>
