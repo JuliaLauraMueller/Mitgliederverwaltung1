@@ -87,8 +87,6 @@ class Login extends Component {
               </Button>
               <div className="additional-login-box">
                 <a
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="login-button-additional"
                   href="mailto:mz@youngleader.ch"
                 >
