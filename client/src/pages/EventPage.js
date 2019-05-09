@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { setNavVisible } from '../redux/actions/navigationActions';
 import { fetchEvents } from '../redux/actions/eventActions';
 import store from '../helpers/store';
+import classnames from 'classnames';
 
 import '../css/Member.css';
 import '../css/EventPage.css';
@@ -16,7 +17,30 @@ class EventPage extends Component {
     super(props);
     this.props.dispatch(fetchEvents());
     this.props.dispatch(setNavVisible());
+    this.state = {
+      prevScrollpos: window.pageYOffset,
+      visible: true
+    };
   }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll = () => {
+    const { prevScrollpos } = this.state;
+
+    const currentScrollPos = window.pageYOffset;
+    const visible = prevScrollpos > currentScrollPos;
+
+    this.setState({
+      prevScrollpos: currentScrollPos,
+      visible
+    });
+  };
 
   render() {
     let eventCards = <p className="no-data-found">Keine Events gefunden</p>;
@@ -37,8 +61,14 @@ class EventPage extends Component {
                 {'body { background-color: rgb(15, 25, 41, 10%); }'}
               </style>
             </Helmet>
+            <div
+              className={classnames('search-container', {
+                'search-container--hidden': !this.state.visible
+              })}
+            >
+              <SearchFieldEvent />
+            </div>
 
-            <SearchFieldEvent />
             <Row className="member-cards-row" key={eventCards}>
               {eventCards}
             </Row>

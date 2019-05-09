@@ -6,6 +6,7 @@ import { Container, Row, Col } from 'reactstrap';
 import { connect } from 'react-redux';
 import { setNavVisible } from '../redux/actions/navigationActions';
 import { fetchNewsArticles } from '../redux/actions/newsArticleActions';
+import classnames from 'classnames';
 
 import '../css/Member.css';
 import '../css/News.css';
@@ -15,7 +16,30 @@ class NewsPage extends Component {
     super(props);
     this.props.dispatch(fetchNewsArticles());
     this.props.dispatch(setNavVisible());
+    this.state = {
+      prevScrollpos: window.pageYOffset,
+      visible: true
+    };
   }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll = () => {
+    const { prevScrollpos } = this.state;
+
+    const currentScrollPos = window.pageYOffset;
+    const visible = prevScrollpos > currentScrollPos;
+
+    this.setState({
+      prevScrollpos: currentScrollPos,
+      visible
+    });
+  };
 
   render() {
     let newsCards = <p className="no-data-found">Keine News gefunden</p>;
@@ -35,7 +59,14 @@ class NewsPage extends Component {
                 {'body { background-color: rgb(15, 25, 41, 10%); }'}
               </style>
             </Helmet>
-            <SearchFieldNews />
+            <div
+              className={classnames('search-container', {
+                'search-container--hidden': !this.state.visible
+              })}
+            >
+              <SearchFieldNews />
+            </div>
+
             <Row className="member-cards-row" key={newsCards}>
               {newsCards}
             </Row>

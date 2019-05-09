@@ -3,6 +3,7 @@
 *-------------------------------------------*/
 
 .app-nav-bar {
+  z-index: 2000;
   float: left;
   height: 100%;
   padding-left: 0px;
