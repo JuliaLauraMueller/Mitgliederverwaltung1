@@ -12,7 +12,8 @@ import {
   FormGroup,
   Label,
   Input,
-  CardText
+  CardText,
+  Table
 } from 'reactstrap';
 import '../../pages/EventPage';
 import PropTypes from 'prop-types';
@@ -60,6 +61,7 @@ class SingleEventInfo extends Component {
     this.toggleAttendeeModal = this.toggleAttendeeModal.bind(this);
     this.attendeeButtons = this.attendeeButtons.bind(this);
     this.attendingCount = this.attendingCount.bind(this);
+    this.getAttendeeRows = this.getAttendeeRows.bind(this);
   }
 
   render() {
@@ -76,7 +78,7 @@ class SingleEventInfo extends Component {
     let attendee = { user: store.getState().auth.user._id, accompaniments: 0 };
     if (event.attendees) {
       const attendeesWithId = event.attendees.filter(
-        att => att.user === store.getState().auth.user._id
+        att => att.user._id === store.getState().auth.user._id
       );
 
       if (attendeesWithId[0]) {
@@ -149,7 +151,7 @@ class SingleEventInfo extends Component {
             </Row>
           </Col>
 
-          <Col md={{ offset: 0, size: 12 }} xs={{ offset: 0 }}>
+          <Col md={{ offset: 0, size: 8 }} xs={{ offset: 0 }}>
             <Row className="event-infos">
               <Col>
                 <label className="event-description-title"> Infos </label>
@@ -182,6 +184,25 @@ class SingleEventInfo extends Component {
               <Col>
                 <label className="event-description">{event.description}</label>
               </Col>
+            </Row>
+          </Col>
+
+          <Col md={{ offset: 0, size: 4 }} xs={{ offset: 0 }}>
+            <Row className="event-infos event-infos-attendees">
+              <Col>
+                <label className="event-description-title">Teilnehmer</label>
+              </Col>
+            </Row>
+            <Row className="event-infos event-infos-attendees">
+              <Table>
+                <thead>
+                  <tr>
+                    <th>Teilnehmer</th>
+                    <th>Begleitungen</th>
+                  </tr>
+                </thead>
+                <tbody>{this.getAttendeeRows(5)}</tbody>
+              </Table>
             </Row>
           </Col>
         </Row>
@@ -242,6 +263,23 @@ class SingleEventInfo extends Component {
     }
 
     return <div>{Buttons}</div>;
+  }
+
+  getAttendeeRows(amount) {
+    // Use event.attendees.length to get all rows
+
+    const event = this.props.event;
+
+    if (!event || !Object.keys(event).length) return <tr />;
+
+    return event.attendees.slice(0, amount).map(attendee => {
+      return (
+        <tr key={attendee.user._id}>
+          <td>{attendee.user.firstname + ' ' + attendee.user.surname}</td>
+          <td>{attendee.accompaniments}</td>
+        </tr>
+      );
+    });
   }
 
   addAttendee(amount) {

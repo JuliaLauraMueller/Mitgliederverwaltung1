@@ -17,7 +17,7 @@ module.exports = {
 async function getById(id) {
   let event = await Event.findById(id)
     .populate('circles')
-    .select();
+    .populate('attendees.user', 'firstname surname');
   if (event.image) {
     let buff = Buffer.from(event.image);
     let b64 = buff.toString('base64');
@@ -175,9 +175,7 @@ async function removeCircleFromEvents(circleId) {
 }
 
 async function addAttendee(eventId, userId, accompanimentsAmount) {
-  const event = await Event.findById(eventId)
-    .populate('circles')
-    .select();
+  const event = await Event.findById(eventId);
   if (!event) throw 'Event not found';
 
   const originalAttendee = event.attendees.find(a => a.user == userId);
@@ -191,17 +189,21 @@ async function addAttendee(eventId, userId, accompanimentsAmount) {
     event.attendees.push(attendee);
   }
 
-  return await event.save();
+  await event.save();
+  return await Event.findById(eventId)
+    .populate('circles')
+    .populate('attendees.user', 'firstname surname');
 }
 
 async function removeAttendee(eventId, userId) {
-  const event = await Event.findById(eventId)
-    .populate('circles')
-    .select();
+  const event = await Event.findById(eventId);
   if (!event) throw 'Event not found';
 
   const index = event.attendees.findIndex(att => att.user == userId);
   event.attendees.splice(index, 1);
 
-  return await event.save();
+  await event.save();
+  return await Event.findById(eventId)
+    .populate('circles')
+    .populate('attendees.user', 'firstname surname');
 }

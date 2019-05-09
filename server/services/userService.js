@@ -169,7 +169,6 @@ async function updateUser(id, userParam) {
     try {
       userData.avatar = Buffer.from(userData.avatar, 'base64');
     } catch (e) {
-      console.log(e);
       errors.push('Profilbild: Bild korrupt');
     }
   }

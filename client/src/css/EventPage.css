@@ -48,6 +48,10 @@
   line-height: 1.5em;
 }
 
+.event-infos-attendees {
+  padding-left: 0em;
+}
+
 .event-title-infos {
   display: inline;
   justify-content: left;
