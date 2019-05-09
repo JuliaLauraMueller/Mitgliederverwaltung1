@@ -105,7 +105,7 @@ global style for all pages
   opacity: 0.6;
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1200px), screen and (max-height: 740px) {
   .collapsed {
     padding-left: 0px;
   }
