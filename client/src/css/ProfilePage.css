@@ -71,6 +71,16 @@ basic style profile page
   padding-left: 0;
 }
 
+@media only screen and (max-width: 1200px), screen and (max-height: 740px) {
+  .value-label {
+    float: right;
+    max-width: 180px;
+    min-width: 180px;
+    margin: 0;
+    padding-left: 0;
+  }
+}
+
 .space {
   margin-bottom: 8%;
 }
@@ -234,6 +244,25 @@ additional style EDIT profile page
   margin: 0;
   padding: 0;
 }
+
+@media only screen and (max-width: 1200px), screen and (max-height: 740px) {
+  .form-control {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid #0f1929;
+    opacity: 0.8;
+    padding: 0;
+    border-radius: 0;
+    transition: none;
+    height: 25px;
+    margin-bottom: 10px;
+    position: relative;
+    width: 180px;
+    margin: 0;
+    padding: 0;
+  }
+}
+
 .form-control:active {
   background-color: transparent;
   border-bottom: 1px solid rgb(219, 157, 12);
@@ -260,7 +289,7 @@ additional style EDIT profile page
 .input-field-radio {
   justify-content: left;
   float: left;
-  width: 220px;
+  width: 250px;
 }
 
 #text-area-offers {
@@ -287,7 +316,7 @@ additional style EDIT profile page
 
 #radio-invoice {
   margin-top: 0;
-  padding-left: 2%;
+  padding-left: 0%;
 }
 
 .required-field {
@@ -295,6 +324,14 @@ additional style EDIT profile page
   display: inline;
   position: relative;
   bottom: 5px;
+}
+
+.invoice-spacing {
+  margin-top: 1.65%;
+}
+
+.invoice-spacing-edit {
+  margin-top: 2.5%;
 }
 
 @media only screen and (min-width: 769px) and (max-width: 1200px) {
@@ -305,6 +342,12 @@ additional style EDIT profile page
     position: relative;
     bottom: 51px;
   }
+
+  .input-field-radio {
+    justify-content: left;
+    float: left;
+    width: 180px;
+  }
 }
 @media only screen and (min-width: 0px) and (max-width: 768px) {
   .basic-info {
@@ -313,5 +356,17 @@ additional style EDIT profile page
   .button-save-edit {
     position: relative;
     bottom: 51px;
+  }
+
+  .input-field-radio {
+    justify-content: left;
+    float: left;
+    width: 178px;
+  }
+}
+
+@media (width: 768px) {
+  .basic-info {
+    margin-top: 195px;
   }
 }

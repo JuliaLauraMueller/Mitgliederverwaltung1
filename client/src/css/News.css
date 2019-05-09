@@ -54,38 +54,54 @@
   max-height: 0;
   font-size: 0;
   transition: 0.25s ease;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateX(0);
 }
 
 .read-more-state:checked ~ .read-more-wrap .read-more-target {
-  opacity: 1;
   font-size: inherit;
   max-height: 999em;
 }
 
 .read-more-state ~ .read-more-trigger:before {
-  content: 'Mehr';
+  content: url('../img/arrow-down.svg');
 }
 
 .read-more-state:checked ~ .read-more-trigger:before {
-  content: 'Weniger';
+  content: url('../img/arrow-up.svg');
+}
+
+.read-more-state ~ .read-more-trigger:hover,
+.read-more-state ~ .read-more-trigger:focus {
+  content: url('../img/arrow-down-hover.svg');
+}
+
+.read-more-state:checked ~ .read-more-trigger:hover,
+.read-more-state:checked ~ .read-more-trigger:focus {
+  content: url('../img/arrow-up-hover.svg');
 }
 
 .read-more-trigger {
   cursor: pointer;
   color: rgb(219, 157, 12);
-  border-bottom: 1px solid rgb(219, 157, 12);
   font-family: Helvetica, sans-serif;
   font-weight: lighter;
   font-size: 11pt;
   margin-left: 610px;
   margin-bottom: 50x;
-  opacity: 1;
 }
 
-.read-more-trigger:hover {
-  color: rgb(15, 25, 41, 74%);
-  border-bottom: 1px solid rgb(15, 25, 41, 74%);
-  stroke: none;
+.read-more-state:checked ~ .read-more-trigger:hover,
+.read-more-state:checked ~ .read-more-state:active,
+.read-more-state:checked ~ .read-more-trigger:focus,
+.read-more-state:checked ~ .read-more-trigger:-moz-focusring,
+.read-more-state ~ .read-more-trigger:-moz-focusring,
+.read-more-state ~ .read-more-trigger:hover,
+.read-more-state ~ .read-more-state:active,
+.read-more-state ~ .read-more-trigger:focus {
+  -moz-appearance: none !important;
+  -webkit-appearance: none !important;
+  background-color: transparent !important;
 }
 
 .news-card h1 {
