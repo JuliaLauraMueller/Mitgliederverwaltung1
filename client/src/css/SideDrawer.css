@@ -44,13 +44,15 @@
   padding-bottom: 1rem;
 }
 
-.side-drawer a {
+.side-drawer a,
+.side-drawer span {
   color: #ffffff;
   font-family: 'Roboto', sans-serif;
   font-size: 1rem;
 }
 
-.side-drawer a:hover {
+.side-drawer a:hover,
+.side-drawer span:hover {
   text-decoration: none;
 }
 
@@ -59,7 +61,8 @@
   padding-right: 3px;
 }
 
-#profile-edit-text a {
+#profile-edit-text a,
+#profile-edit-text span {
   font-size: 14pt;
 }
 
@@ -68,12 +71,15 @@
 }
 
 .side-drawer a:hover,
-.side-drawer a:active {
+.side-drawer a:active,
+.side-drawer span:hover,
+.side-drawer span:active {
   color: #db9d0c;
+  cursor: pointer;
 }
 
 .navigation-user {
-  margin-top: 3rem;
+  margin-top: 1.5rem;
   text-align: center;
 }
 
@@ -101,16 +107,25 @@
 }
 
 .side-drawer a,
+.side-drawer span,
 .navigation-user-name {
   color: #ffffff;
   font-family: helveticaNeueLtThinCn;
-  font-size: 18pt;
+  font-size: 22pt;
+}
+
+.navigation-user-name-txt {
+  font-size: 24pt !important;
 }
 
 .side-drawer a:hover > svg,
 .side-drawer a:active > svg,
 .side-drawer a:hover > svg > path,
-.side-drawer a:active > svg > path {
+.side-drawer a:active > svg > path,
+.side-drawer span:hover > svg,
+.side-drawer span:active > svg,
+.side-drawer span:hover > svg > path,
+.side-drawer span:active > svg > path {
   stroke: none;
   fill: #db9d0c;
 }
@@ -120,7 +135,7 @@
   width: 100%;
   float: left;
   position: static !important;
-  margin-top: 6%;
+  margin-top: 0%;
 }
 
 .navigation-container {
@@ -130,12 +145,12 @@
 
 .navigation-links-nav > ul > li {
   margin: 0.5rem 0;
-  padding-bottom: 1rem;
+  padding-bottom: 0rem;
 }
 
 .navigation-links-nav > ul {
   padding-inline-start: 0px;
-  padding-left: 2rem;
+  padding-left: 2.05rem;
   margin: 0;
   padding-bottom: 0;
   width: 350px;
@@ -152,21 +167,53 @@
 }
 
 .navigation-logo-container {
-  height: 98px;
+  height: 121.5px;
   text-align: center;
 }
 
 .navigation-logo {
-  padding-top: 1rem;
+  padding-top: 2rem;
 }
 
 .navigation-user-name {
   margin-top: 0.5rem;
-  font-size: 20pt;
+  font-size: 22pt;
 }
 
 @media (min-width: 684px) {
   .side-drawer {
     background: #474f5a;
   }
+}
+
+/** Modal for password change */
+.password-edit-row {
+  margin: 1px 20px;
+  justify-content: flex-end;
+}
+
+.password-edit-txt {
+  float: right;
+  max-width: 230px;
+  min-width: 230px;
+}
+
+.password-change-button {
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+  margin-left: 10px;
+  border-radius: 0;
+  transition: none;
+  color: rgb(219, 157, 12);
+  border-bottom: 1px solid rgb(219, 157, 12);
+  font-family: Helvetica, sans-serif;
+  font-weight: lighter;
+  float: right;
+}
+
+.password-change-button:hover {
+  border-bottom: 1px solid rgb(15, 25, 41, 74%);
+  background-color: transparent;
+  color: rgb(15, 25, 41, 74%);
 }

@@ -45,7 +45,7 @@ class SingleEventInfo extends Component {
     }
     return (
       <Row>
-        <Col md={{ offset: 0, size: 4 }} xs={{ offset: 2 }} align="center">
+        <Col md={{ offset: 0, size: 4 }} xs={{ offset: 0 }}>
           <Row className="date">
             <Col>
               <label className="event-month">{month} </label>
@@ -63,7 +63,7 @@ class SingleEventInfo extends Component {
           </Row>
         </Col>
 
-        <Col md={{ offset: 0, size: 6 }} xs={{ offset: 6 }}>
+        <Col md={{ offset: 0, size: 6 }}>
           <Row className="overflow">
             <Col>
               <label className="event-title">{event.title} </label>
@@ -101,11 +101,10 @@ class SingleEventInfo extends Component {
           </Row>
         </Col>
 
-        <Col md={{ offset: 0, size: 12 }} xs={{ offset: 6 }} align="right">
+        <Col md={{ offset: 0, size: 12 }} xs={{ offset: 2 }} align="right">
           <Row className="event-anmeldung">
             <Col>
               <Button className="button-attending">Zusagen</Button>
-              <Button className="button-accompaniments">+</Button>
             </Col>
           </Row>
           <Row className="event-anmeldung">
@@ -115,7 +114,7 @@ class SingleEventInfo extends Component {
           </Row>
         </Col>
 
-        <Col md={{ offset: 0, size: 12 }} xs={{ offset: 2 }}>
+        <Col md={{ offset: 0, size: 12 }} xs={{ offset: 0 }}>
           <Row className="event-infos">
             <Col>
               <label className="event-description-title"> Infos </label>

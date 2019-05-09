@@ -236,9 +236,6 @@ a[href^='tel:'] {
 
 .profile-text {
   color: rgb(219, 157, 12);
-  border-bottom: 1px solid rgb(219, 157, 12);
-  font-family: Helvetica, sans-serif;
-  font-weight: lighter;
   font-size: 11pt;
   margin-left: 116px;
 }
@@ -246,21 +243,17 @@ a[href^='tel:'] {
 .profile-text:hover {
   color: rgb(15, 25, 41, 74%);
   text-decoration: none;
-  border-bottom: 1px solid rgb(15, 25, 41, 74%);
-  font-family: Helvetica, sans-serif;
-  font-weight: lighter;
   font-size: 11pt;
   margin-left: 116px;
 }
 
 .profile-text svg {
   fill: rgb(219, 157, 12);
-  stroke: none;
 }
 
 .profile-text:hover > svg {
-  fill: rgb(15, 25, 41, 74%);
-  stroke: none;
+  background-color: transparent;
+  opacity: 0.5 !important;
 }
 
 .profile-arrow {

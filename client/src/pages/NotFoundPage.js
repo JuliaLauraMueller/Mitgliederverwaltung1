@@ -16,8 +16,9 @@ class NotFoundPage extends Component {
   render() {
     return (
       <div>
-        404 - Page not found <br />
-        <Link to='/'>HomePage</Link>
+        Seite nicht gefunden.
+        <br />
+        <Link to="/">HomePage</Link>
       </div>
     );
   }

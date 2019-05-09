@@ -15,7 +15,6 @@ class AppNavbar extends Component {
     this.state = {
       windowWith: window.innerWidth,
       windowHeight: window.innerHeight,
-      sideDrawerOpen: false,
       isMobile: false
     };
   }
@@ -28,13 +27,10 @@ class AppNavbar extends Component {
     });
     if (
       (window.innerWidth <= 1200 || window.innerHeight <= 740) &&
-      this.state.sideDrawerOpen
+      this.props.navigationExpanded
     ) {
       // close nav when changing to mobile view
       this.props.dispatch(setNavCollapsed());
-      this.setState({
-        sideDrawerOpen: false
-      });
     }
   }
   componentDidMount() {
@@ -45,9 +41,6 @@ class AppNavbar extends Component {
   }
 
   drawerToggleClickHandler = () => {
-    this.setState(prevState => {
-      return { sideDrawerOpen: !prevState.sideDrawerOpen };
-    });
     this.props.toggleSideMenu();
   };
 
@@ -69,7 +62,7 @@ class AppNavbar extends Component {
             <SideDrawer
               className="side-drawer"
               drawerClickHandler={this.drawerToggleClickHandler}
-              show={this.state.sideDrawerOpen}
+              show={this.props.navigationExpanded}
             />
           </div>
         </div>
@@ -80,7 +73,8 @@ class AppNavbar extends Component {
 
 function mapStateToProps(state) {
   return {
-    navigationVisible: state.navigation.visible
+    navigationVisible: state.navigation.visible,
+    navigationExpanded: state.navigation.expanded
   };
 }
 
