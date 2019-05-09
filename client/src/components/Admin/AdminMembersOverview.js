@@ -26,6 +26,7 @@ import {
 import { filterMembers, ownCircleMembers } from '../../helpers/memberSearch';
 import store from '../../helpers/store';
 import { connect } from 'react-redux';
+import { roleToString } from '../../helpers/roleHelper';
 
 class AdminMembersOverview extends Component {
   constructor(props) {
@@ -97,6 +98,7 @@ class AdminMembersOverview extends Component {
                   <th>Vorname</th>
                   <th>Nachname</th>
                   <th className="d-none d-md-table-cell">City</th>
+                  <th className="d-none d-md-table-cell">Rolle</th>
                   <th>Aktionen</th>
                 </tr>
               </thead>
@@ -161,21 +163,25 @@ class AdminMembersOverview extends Component {
       let EditButton = {};
       let DeleteButton = {};
       let RoleButton = {};
-      var tooltipIdEdit = "tooltip-edit-" + member._id
-      var tooltipIdDelete = "tooltip-delete-" + member._id
-      var tooltipIdRoles = "tooltip-roles-" + member._id
+      let roleText = roleToString(member.role);
+      var tooltipIdEdit = 'tooltip-edit-' + member._id;
+      var tooltipIdDelete = 'tooltip-delete-' + member._id;
+      var tooltipIdRoles = 'tooltip-roles-' + member._id;
       if (
         store.getState().auth.user !== undefined &&
         store.getState().auth.user.role >= 3
       ) {
         EditButton = (
           <Link
-            className="admin-link admin-link-small"
+            className="admin-link admin-link-small admin-link-edit"
             to={'/member/' + member._id}
             id={tooltipIdEdit}
           >
-            <UncontrolledTooltip placement="bottom-start" target={tooltipIdEdit}>
-                  Mitglied bearbeiten
+            <UncontrolledTooltip
+              placement="bottom-start"
+              target={tooltipIdEdit}
+            >
+              Mitglied bearbeiten
             </UncontrolledTooltip>
             <svg
               width="26"
@@ -203,12 +209,15 @@ class AdminMembersOverview extends Component {
         DeleteButton = (
           <span
             id={tooltipIdDelete}
-            className="admin-link admin-link-small admin-cursor"
+            className="admin-link admin-link-small admin-link-delete admin-cursor"
             onClick={() => this.toggleMemberDeleteModal(member)}
           >
-              <UncontrolledTooltip placement="bottom-start" target={tooltipIdDelete}>
-                  Mitglied löschen
-              </UncontrolledTooltip>
+            <UncontrolledTooltip
+              placement="bottom-start"
+              target={tooltipIdDelete}
+            >
+              Mitglied löschen
+            </UncontrolledTooltip>
             <svg
               width="27"
               height="27"
@@ -232,8 +241,8 @@ class AdminMembersOverview extends Component {
           </span>
         );
       } else {
-        EditButton = <div />;
-        DeleteButton = <div />;
+        EditButton = <span />;
+        DeleteButton = <span />;
       }
 
       if (
@@ -243,12 +252,15 @@ class AdminMembersOverview extends Component {
         RoleButton = (
           <span
             id={tooltipIdRoles}
-            className="admin-link admin-link-small admin-cursor"
+            className="admin-link admin-link-small admin-link-role admin-cursor"
             onClick={() => this.toggleRoleChangeModal(member)}
           >
-              <UncontrolledTooltip placement="bottom-start" target={tooltipIdRoles}>
-                  Rolle bearbeiten
-              </UncontrolledTooltip>
+            <UncontrolledTooltip
+              placement="bottom-start"
+              target={tooltipIdRoles}
+            >
+              Rolle bearbeiten
+            </UncontrolledTooltip>
             <svg
               width="25"
               height="34"
@@ -268,8 +280,9 @@ class AdminMembersOverview extends Component {
           </span>
         );
       } else {
-        RoleButton = <div />;
+        RoleButton = <span />;
       }
+
       return (
         <tr key={member._id}>
           <td className="d-none d-md-table-cell">{member.memberNumber}</td>
@@ -278,6 +291,7 @@ class AdminMembersOverview extends Component {
           <td className="d-none d-md-table-cell">
             {member.circle ? member.circle.name : ''}
           </td>
+          <td className="d-none d-md-table-cell">{roleText}</td>
           <td>
             {EditButton}
             {RoleButton}
@@ -332,7 +346,7 @@ class AdminMembersOverview extends Component {
     ) {
       FederationOption = (
         <option key="5" value="5">
-          Federationadministrator
+          {roleToString(5)}
         </option>
       );
     } else {
@@ -360,19 +374,19 @@ class AdminMembersOverview extends Component {
                 onChange={this.handleRoleChange}
               >
                 <option key="0" value="0">
-                  Mitglied
+                  {roleToString(0)}
                 </option>
                 <option key="1" value="1">
-                  Newsadministrator
+                  {roleToString(1)}
                 </option>
                 <option key="2" value="2">
-                  Eventadministrator
+                  {roleToString(2)}
                 </option>
                 <option key="3" value="3">
-                  Personaladministrator
+                  {roleToString(3)}
                 </option>
                 <option key="4" value="4">
-                  Cityadministrator
+                  {roleToString(4)}
                 </option>
                 {FederationOption}
               </Input>

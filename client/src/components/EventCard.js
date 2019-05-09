@@ -105,7 +105,6 @@ class EventCard extends Component {
                       className="profile-text"
                       to={`/event/${this.props.event._id}`}
                     >
-                      Mehr
                       <svg
                         className="profile-arrow"
                         viewBox="0 0 7 12"

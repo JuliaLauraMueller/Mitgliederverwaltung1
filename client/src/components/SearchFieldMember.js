@@ -101,7 +101,7 @@ class SearchFieldMember extends Component {
                   </svg>
                 </DropdownToggle>
 
-                <DropdownMenu>
+                <DropdownMenu className="filter-drop-down">
                   <DropdownItem header>Standorte filtern</DropdownItem>
                   {circleLabels}
                 </DropdownMenu>

@@ -31,97 +31,70 @@ import {
 class App extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      windowWidth: window.innerWidth,
+      windowHeight: window.innerHeight
+    };
+
     const { dispatch } = this.props;
 
-    if (this.state.windowWidth <= 1200) {
+    if (this.state.windowWidth <= 1200 || this.state.windowHeight <= 740) {
       store.dispatch(setNavInvisible());
     } else {
       store.dispatch(setNavVisible());
     }
-
-    store.subscribe(() => {
-      const visibleStatus = store.getState().navigation.visible;
-      const expandedStatus = store.getState().navigation.expanded;
-
-      if (
-        visibleStatus !== this.state.previouslyVisible ||
-        expandedStatus !== this.state.previouslyExpanded
-      ) {
-        if (!this.state.previouslyVisible && visibleStatus) {
-          // Changed from invisible to visible
-          this.state.AppClassNames = 'app collapsed';
-        } else if (this.state.previouslyVisible && visibleStatus) {
-          // Remained visible
-          if (expandedStatus) {
-            this.state.AppClassNames = 'app expanded';
-          } else {
-            this.state.AppClassNames = 'app collapsed';
-          }
-        } else {
-          this.state.AppClassNames = 'app';
-        }
-
-        if (this.state.previouslyVisible !== visibleStatus) {
-          this.forceUpdate();
-        }
-        this.state.previouslyVisible = visibleStatus;
-        this.state.previouslyExpanded = expandedStatus;
-      }
-    });
 
     history.listen((location, action) => {
       dispatch(alertClear);
     });
 
     this.toggleSideMenu = this.toggleSideMenu.bind(this);
+    this.handleResize = this.handleResize.bind(this);
   }
 
   //window with
   handleResize() {
-    this.setState({ windowWidth: window.innerWidth });
+    this.setState({
+      windowWidth: window.innerWidth,
+      windowHeight: window.innerHeight
+    });
   }
+
   componentDidMount() {
     window.addEventListener('resize', this.handleResize.bind(this));
     this.handleResize();
   }
+
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize.bind(this));
   }
 
-  // Add global layout components before route
-  state = {
-    windowWidth: window.innerWidth,
-    previouslyVisible: false,
-    previouslyExpanded: false,
-    AppClassNames: 'app'
-  };
-
   toggleSideMenu() {
-    if (this.state.previouslyExpanded) {
+    if (this.props.sideMenuExpanded) {
       this.props.dispatch(setNavCollapsed());
     } else {
       this.props.dispatch(setNavExpanded());
     }
-
-    if (this.props.sideMenuExpanded) {
-      this.setState(prevState => {
-        return { AppClassNames: 'app collapsed' };
-      });
-    } else {
-      this.setState(prevState => {
-        return { AppClassNames: 'app expanded' };
-      });
-    }
   }
 
   render() {
+    let navigationClassNames = 'app';
+    if (this.props.sideMenuVisible) {
+      if (
+        this.props.sideMenuExpanded &&
+        this.state.windowWidth > 1200 &&
+        window.innerHeight > 740
+      ) {
+        navigationClassNames = 'app expanded';
+      } else {
+        navigationClassNames = 'app collapsed';
+      }
+    }
+
     const { alert } = this.props;
     return (
-      <div
-        id="App"
-        className={this.state.AppClassNames}
-        style={{ height: '100%' }}
-      >
+      <div id="App" className={navigationClassNames} style={{ height: '100%' }}>
         <Helmet>
           <style>{'body { background-color: rgb(15, 25, 41, 10%); }'}</style>
         </Helmet>
@@ -139,7 +112,8 @@ class App extends Component {
 function mapStateToProps(state) {
   return {
     alert: state.alert,
-    sideMenuExpanded: state.navigation.expanded
+    sideMenuExpanded: state.navigation.expanded,
+    sideMenuVisible: state.navigation.visible
   };
 }
 

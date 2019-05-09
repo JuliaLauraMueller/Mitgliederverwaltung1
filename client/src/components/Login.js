@@ -56,6 +56,7 @@ class Login extends Component {
                   placeholder="E-Mail"
                   id="emailInp"
                   className="icon-input"
+                  autoComplete="username"
                   value={this.state.privateEmail}
                   onChange={this.handleChange}
                 />
@@ -72,6 +73,7 @@ class Login extends Component {
                   id="passwordInp"
                   placeholder="Passwort"
                   className="icon-input"
+                  autoComplete="current-password"
                   value={this.state.password}
                   onChange={this.handleChange}
                 />
@@ -83,6 +85,23 @@ class Login extends Component {
               >
                 Login
               </Button>
+              <div className="additional-login-box">
+                <a
+                  className="login-button-additional"
+                  href="mailto:mz@youngleader.ch"
+                >
+                  Passwort vergessen?
+                </a>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="login-button-additional"
+                  id="login-member"
+                  href="https://www.youngleaders.ch/leaderwerden/"
+                >
+                  Leader werden
+                </a>
+              </div>
             </Form>
           </div>
         </div>

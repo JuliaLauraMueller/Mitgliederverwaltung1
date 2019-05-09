@@ -41,7 +41,11 @@ class AdminCreateCircle extends Component {
         this.props.close();
       })
       .catch(errorMessages => {
-        this.props.dispatch(alertError(errorMessages.join('\n')));
+        if (Array.isArray(errorMessages)) {
+          this.props.dispatch(alertError(errorMessages.join('\n')));
+        } else {
+          this.props.dispatch(alertError('Es ist ein Fehler aufgetreten'));
+        }
       });
   }
 
@@ -53,7 +57,9 @@ class AdminCreateCircle extends Component {
           <FormGroup>
             <Row>
               <Col xs="2">
-                <Label for="name">Name</Label>
+                <Label for="name">
+                  Name<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs="10">
                 <Input
@@ -63,7 +69,6 @@ class AdminCreateCircle extends Component {
                   className="admin-form-control"
                   value={this.state.name}
                   onChange={this.handleChange}
-                  
                 />
               </Col>
             </Row>

@@ -12,6 +12,7 @@ router.put('/:id', update);
 router.delete('/:id', deleteUser);
 router.post('/', create);
 router.put('/changeRole/:id', changeRole);
+router.put('/changePassword/:id', changePassword);
 
 module.exports = router;
 
@@ -47,17 +48,18 @@ function update(req, res, next) {
         roleHelper.personalAccessCheck(req.params.id, req.user._id)
       ) {
         userService
-            .updateUser(req.params.id, req.body)
-            .then(user => {
-                return res.json({ updated: user });
-            })
-            .catch(error => {
-                if (error && error.type == 'invalid_input') {
-                    res.status(422).send(error);
-                } else {
-                    console.error('User update error: ', error);
-                    res.sendStatus(500);
-                }});
+          .updateUser(req.params.id, req.body)
+          .then(user => {
+            return res.json({ updated: user });
+          })
+          .catch(error => {
+            if (error && error.type == 'invalid_input') {
+              res.status(422).send(error);
+            } else {
+              console.error('User update error: ', error);
+              res.sendStatus(500);
+            }
+          });
       } else {
         res.sendStatus(403);
       }
@@ -131,5 +133,14 @@ function changeRole(req, res, next) {
     })
     .catch(err => {
       res.sendStatus(404);
+    });
+}
+
+function changePassword(req, res, next) {
+  userService
+    .changePassword(req.user._id, req.body)
+    .then(() => res.json({}))
+    .catch(err => {
+      res.status(422).send(err);
     });
 }

@@ -17,13 +17,19 @@ class MemberPage extends Component {
   }
 
   render() {
-    let memberCards = this.props.members.map(member => {
-      return <MemberCard key={member._id} member={member} />;
-    });
+    let memberCards = (
+      <p className="no-data-found">Keine Mitglieder gefunden</p>
+    );
+    if (this.props.members && this.props.members.length > 0) {
+      memberCards = this.props.members.map(member => {
+        return <MemberCard key={member._id} member={member} />;
+      });
+    }
     return (
       <Container className="member-page-container">
         <Row>
           <Col xs="12">
+            <h1 className="title">Mitglieder</h1>
             <Helmet>
               <style>
                 {'body { background-color: rgb(15, 25, 41, 10%); }'}

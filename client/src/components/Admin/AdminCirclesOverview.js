@@ -92,7 +92,11 @@ class AdminCirclesOverview extends Component {
         this.toggleCircleEditModal({ name: '' });
       })
       .catch(errorMessages => {
-        this.props.dispatch(alertError(errorMessages.join('\n')));
+        if (Array.isArray(errorMessages)) {
+          this.props.dispatch(alertError(errorMessages.join('\n')));
+        } else {
+          this.props.dispatch(alertError('Es ist ein Fehler aufgetreten'));
+        }
       });
   }
 
@@ -130,8 +134,8 @@ class AdminCirclesOverview extends Component {
 
   getCircleRows(circles) {
     return circles.map(circle => {
-      var tooltipIdEdit = "tooltip-edit-" + circle._id
-      var tooltipIdDelete = "tooltip-delete-" + circle._id
+      var tooltipIdEdit = 'tooltip-edit-' + circle._id;
+      var tooltipIdDelete = 'tooltip-delete-' + circle._id;
       return (
         <tr key={circle._id}>
           <td>{circle.name}</td>
@@ -141,8 +145,11 @@ class AdminCirclesOverview extends Component {
               className="admin-link admin-link-small admin-cursor"
               onClick={() => this.toggleCircleEditModal(circle)}
             >
-              <UncontrolledTooltip placement="bottom-start" target={tooltipIdEdit}>
-                  City bearbeiten
+              <UncontrolledTooltip
+                placement="bottom-start"
+                target={tooltipIdEdit}
+              >
+                City bearbeiten
               </UncontrolledTooltip>
               <svg
                 width="24"
@@ -170,8 +177,11 @@ class AdminCirclesOverview extends Component {
               className="admin-link admin-link-small admin-cursor"
               onClick={() => this.toggleCircleDeleteModal(circle)}
             >
-              <UncontrolledTooltip placement="bottom-start" target={tooltipIdDelete}>
-                  City löschen
+              <UncontrolledTooltip
+                placement="bottom-start"
+                target={tooltipIdDelete}
+              >
+                City löschen
               </UncontrolledTooltip>
               <svg
                 width="25"
@@ -212,7 +222,9 @@ class AdminCirclesOverview extends Component {
         <Form onSubmit={this.onCircleSave}>
           <ModalBody>
             <FormGroup row>
-              <Label className="city-name-label">City-Name:</Label>
+              <Label className="city-name-label">
+                Name<pre className="required-field">*</pre>
+              </Label>
               <Col>
                 <Input
                   type="text"

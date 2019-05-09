@@ -29,7 +29,7 @@ const initialState = {
   image: '',
   imageTag: '',
   circles: [],
-  permittedRoles: []
+  permittedRoles: [0, 1, 2, 3, 4, 5]
 };
 
 class AdminCreateEvent extends Component {
@@ -112,7 +112,11 @@ class AdminCreateEvent extends Component {
         this.props.dispatch(fetchEvents());
       })
       .catch(errorMessages => {
-        this.props.dispatch(alertError(errorMessages.join('\n')));
+        if (Array.isArray(errorMessages)) {
+          this.props.dispatch(alertError(errorMessages.join('\n')));
+        } else {
+          this.props.dispatch(alertError('Es ist ein Fehler aufgetreten'));
+        }
       });
   }
 
@@ -174,23 +178,30 @@ class AdminCreateEvent extends Component {
                   style={{ width: '90%', height: 'auto' }}
                   alt=""
                 />
-                <Col>
-                  <input
-                    type="file"
-                    id="pictureUpload"
-                    onChange={this.handleFileSelection}
-                    className="hidden"
-                    accept=".jpg,.jpeg,.png"
-                  />
-                  <label htmlFor="pictureUpload" className="picture-button">
+                <input
+                  type="file"
+                  id="pictureUpload"
+                  onChange={this.handleFileSelection}
+                  className="hidden"
+                  accept=".jpg,.jpeg,.png"
+                />
+                <div className="admin-form-control form-control">
+                  <label
+                    htmlFor="pictureUpload"
+                    className="picture-button-create"
+                  >
                     Neues Eventbild
                   </label>
-                </Col>
+                </div>
               </Col>
             </Row>
+          </FormGroup>
+          <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="title">Titel</Label>
+                <Label for="title">
+                  Titel<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs="9">
                 <Input
@@ -211,10 +222,10 @@ class AdminCreateEvent extends Component {
               </Col>
               <Col xs={9}>
                 <Input
-                  type="text"
+                  type="textarea"
                   name="description"
                   id="description"
-                  className="admin-form-control"
+                  className="admin-form-control description-area"
                   value={this.state.description}
                   onChange={this.handleChange}
                 />
@@ -224,7 +235,9 @@ class AdminCreateEvent extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="description">Cities</Label>
+                <Label for="description">
+                  Verwaltende Cities<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <ButtonDropdown
                 isOpen={this.state.citiesDropdownOpen}
@@ -246,7 +259,9 @@ class AdminCreateEvent extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="date">Datum</Label>
+                <Label for="date">
+                  Datum<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs={9}>
                 <Input
@@ -264,7 +279,9 @@ class AdminCreateEvent extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="startTime">Beginn</Label>
+                <Label for="startTime">
+                  Beginn<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs={9}>
                 <Input
@@ -300,7 +317,9 @@ class AdminCreateEvent extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="location">Ort</Label>
+                <Label for="location">
+                  Ort<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs={9}>
                 <Input
@@ -334,7 +353,9 @@ class AdminCreateEvent extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="registrationEndDate">Anmeldefrist</Label>
+                <Label for="registrationEndDate">
+                  Anmeldefrist<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs={9}>
                 <Input
@@ -351,7 +372,9 @@ class AdminCreateEvent extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="permittedRoles">Rollen</Label>
+                <Label for="permittedRoles">
+                  Rollen<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs={9}>
                 <div className="checkbox-container" key="0">

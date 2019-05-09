@@ -21,7 +21,8 @@ module.exports = {
   removeAllCompanyRelations,
   updateUser,
   deleteUser,
-  changeRole
+  changeRole,
+  changePassword
 };
 
 async function authenticate({ privateEmail, password }) {
@@ -99,6 +100,9 @@ async function create(userParam) {
     userParam.password = bcrypt.hashSync(userParam.password, 10);
   }
 
+  // set entry date
+  userParam.entryDate = new Date();
+
   try {
     // create company for user
     let company = await companyService.createEmpty();
@@ -141,6 +145,9 @@ async function validateBasic(userParam) {
   } else if (userParam.password.length > 30) {
     errorMessages.push('Passwort muss kürzer als 30 Zeichen sein.');
   }
+  if (userParam.godfather && userParam.godfather.length > 40) {
+    errorMessages.push('Name des Göttis muss kürzer als 40 Zeichen sein.');
+  }
   if (!userParam.circle) {
     errorMessages.push('City darf nicht leer sein.');
   }
@@ -172,7 +179,7 @@ async function updateUser(id, userParam) {
       errors.push('Profilbild: Bild korrupt');
     }
   }
-  errors = validateAll(userData, errors);
+  errors = await validateAll(userData, errors);
   errors = companyService.validateCompany(companyData, errors);
 
   if (errors.length != 0) {
@@ -183,7 +190,8 @@ async function updateUser(id, userParam) {
     delete companyData.company_id;
     try {
       await companyService.update(companyData._id, companyData);
-      return await User.updateOne(query, userData);
+      await User.updateOne(query, userData);
+      return await User.findById(id).select('-password');
     } catch (error) {
       throw { type: 'processing_error', error };
     }
@@ -273,7 +281,6 @@ function updateURLs(userParam, companyParam) {
     companyParam.companyURL = validateUrl(companyParam.companyURL);
   }
 
-  // TODO: reload of site after input validation
   return userParam;
 }
 
@@ -288,7 +295,41 @@ async function changeRole(id, role) {
   await user.save();
 }
 
-function validateAll(userParam, errors) {
+async function changePassword(id, passwords) {
+  const user = await User.findById(id);
+
+  if (!user) {
+    throw 'Benutzer nicht gefunden';
+  } else if (!bcrypt.compareSync(passwords.oldPassword, user.password)) {
+    throw {
+      type: 'invalid_input',
+      msg: 'Aktuelles Passwort ist nicht korrekt'
+    };
+  } else if (passwords.newPassword1 === '' || passwords.newPassword2 === '') {
+    throw { type: 'invalid_input', msg: 'Das Passwort darf nicht leer sein' };
+  } else if (passwords.newPassword1 !== passwords.newPassword2) {
+    throw {
+      type: 'invalid_input',
+      msg: 'Die neuen Passwörter stimmen nicht überein'
+    };
+  } else if (passwords.newPassword1.length < 7) {
+    throw {
+      type: 'invalid_input',
+      msg: 'Passwort muss länger als 7 Zeichen sein.'
+    };
+  } else if (passwords.newPassword1.length > 30) {
+    throw {
+      type: 'invalid_input',
+      msg: 'Passwort muss kürzer als 30 Zeichen sein.'
+    };
+  } else {
+    user.password = bcrypt.hashSync(passwords.newPassword1, 10);
+
+    await user.save();
+  }
+}
+
+async function validateAll(userParam, errors) {
   // Fields that cannot change yet
   if (userParam.memberNumber) {
     errors.push('Mitgliedernummer: Darf nicht geändert werden');
@@ -421,12 +462,19 @@ function validateAll(userParam, errors) {
       errors.push('Mobile Privat: Ist keine gültige Telefonnummer');
     }
   }
-  if (
-    !userParam.privateEmail ||
-    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userParam.privateEmail)
-  ) {
+  if (!userParam.privateEmail) {
+    errors.push('E-Mail Privat: Darf nicht leer sein');
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userParam.privateEmail)) {
     errors.push('E-Mail Privat: Ist keine Mailadresse');
+  } else {
+    let existingUser = await User.findOne({
+      privateEmail: userParam.privateEmail
+    });
+    if (existingUser && existingUser._id != userParam._id) {
+      errors.push('E-Mail Privat: Die Mailadresse gibt es schon');
+    }
   }
+
   if (userParam.privateStreet && userParam.privateStreet.length > 30) {
     errors.push('Strasse Privat: Maximal 30 Zeichen');
   }
@@ -457,6 +505,5 @@ function validateAll(userParam, errors) {
       errors.push('Profilbild: Bild zu gross, maximal 500KB');
     }
   }
-
   return errors;
 }
