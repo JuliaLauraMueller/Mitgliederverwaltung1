@@ -19,13 +19,11 @@ class EventPage extends Component {
   }
 
   render() {
-    let eventCards = [];
-    if (this.props.events) {
+    let eventCards = <p className="no-data-found">Keine Events gefunden</p>;
+    if (this.props.events && this.props.events.length > 0) {
       eventCards = this.props.events
-        .filter(
-          event =>
-            event.permittedRoles.includes(store.getState().auth.user.role) &&
-            event.circles.includes(store.getState().auth.user.circle)
+        .filter(event =>
+          event.permittedRoles.includes(store.getState().auth.user.role)
         )
         .map(event => <EventCard key={event._id} event={event} />);
     }
@@ -33,6 +31,7 @@ class EventPage extends Component {
       <Container className="member-page-container">
         <Row>
           <Col>
+            <h1 className="title">Events</h1>
             <Helmet>
               <style>
                 {'body { background-color: rgb(15, 25, 41, 10%); }'}

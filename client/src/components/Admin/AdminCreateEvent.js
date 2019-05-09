@@ -27,8 +27,9 @@ const initialState = {
   organisationTeam: '',
   registrationEndDate: '',
   image: '',
+  imageTag: '',
   circles: [],
-  permittedRoles: []
+  permittedRoles: [0, 1, 2, 3, 4, 5]
 };
 
 class AdminCreateEvent extends Component {
@@ -47,6 +48,8 @@ class AdminCreateEvent extends Component {
     this.handleCitiesSelection = this.handleCitiesSelection.bind(this);
     this.handleRoleSelection = this.handleRoleSelection.bind(this);
     this.toggle = this.toggle.bind(this);
+    this.handleFileSelection = this.handleFileSelection.bind(this);
+    this.getBase64 = this.getBase64.bind(this);
   }
 
   handleChange(event) {
@@ -98,6 +101,7 @@ class AdminCreateEvent extends Component {
       citiesDropdownOpen: !this.state.citiesDropdownOpen
     });
   }
+
   async submitEvent(event) {
     event.preventDefault();
     await this.props
@@ -110,6 +114,27 @@ class AdminCreateEvent extends Component {
       .catch(errorMessages => {
         this.props.dispatch(alertError(errorMessages.join('\n')));
       });
+  }
+
+  async handleFileSelection(event) {
+    var something = event.target.files[0];
+
+    let fileInB64 = await this.getBase64(something);
+    let splitArr = fileInB64.split(',');
+    console.log(splitArr[0] + ',' + splitArr[1]);
+    this.setState({
+      imageTag: splitArr[0],
+      image: splitArr[1]
+    });
+  }
+
+  getBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
   }
 
   render() {
@@ -137,7 +162,41 @@ class AdminCreateEvent extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="title">Titel</Label>
+                <Label for="image">Eventbild</Label>
+              </Col>
+              <Col xs="9">
+                <img
+                  src={
+                    this.state.image !== ''
+                      ? this.state.imageTag + ',' + this.state.image
+                      : require('../../img/event_default_image.png')
+                  }
+                  className="event-image"
+                  style={{ width: '90%', height: 'auto' }}
+                  alt=""
+                />
+                <Col>
+                  <input
+                    type="file"
+                    id="pictureUpload"
+                    onChange={this.handleFileSelection}
+                    className="hidden"
+                    accept=".jpg,.jpeg,.png"
+                  />
+                  <label
+                    htmlFor="pictureUpload"
+                    className="picture-button-create"
+                  >
+                    Neues Eventbild
+                  </label>
+                </Col>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs="3">
+                <Label for="title">
+                  Titel<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs="9">
                 <Input
@@ -158,10 +217,10 @@ class AdminCreateEvent extends Component {
               </Col>
               <Col xs={9}>
                 <Input
-                  type="text"
+                  type="textarea"
                   name="description"
                   id="description"
-                  className="admin-form-control"
+                  className="admin-form-control description-area"
                   value={this.state.description}
                   onChange={this.handleChange}
                 />
@@ -171,7 +230,9 @@ class AdminCreateEvent extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="description">Cities</Label>
+                <Label for="description">
+                  Verwaltende Cities<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <ButtonDropdown
                 isOpen={this.state.citiesDropdownOpen}
@@ -193,7 +254,9 @@ class AdminCreateEvent extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="date">Datum</Label>
+                <Label for="date">
+                  Datum<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs={9}>
                 <Input
@@ -211,7 +274,9 @@ class AdminCreateEvent extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="startTime">Beginn</Label>
+                <Label for="startTime">
+                  Beginn<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs={9}>
                 <Input
@@ -247,7 +312,9 @@ class AdminCreateEvent extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="location">Ort</Label>
+                <Label for="location">
+                  Ort<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs={9}>
                 <Input
@@ -281,7 +348,9 @@ class AdminCreateEvent extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="registrationEndDate">Anmeldefrist</Label>
+                <Label for="registrationEndDate">
+                  Anmeldefrist<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs={9}>
                 <Input
@@ -298,7 +367,9 @@ class AdminCreateEvent extends Component {
           <FormGroup>
             <Row>
               <Col xs="3">
-                <Label for="permittedRoles">Rollen</Label>
+                <Label for="permittedRoles">
+                  Rollen<pre className="required-field">*</pre>
+                </Label>
               </Col>
               <Col xs={9}>
                 <div className="checkbox-container" key="0">

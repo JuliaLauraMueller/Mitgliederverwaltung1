@@ -10,24 +10,47 @@ basic style profile page
   display: none;
 }
 
-.picture-button {
-  color: rgb(219, 157, 12);
-  border: none;
+/*Buttons*/
+.button-save-edit {
+  background-color: transparent;
+  border: 0;
   border-bottom: 1px solid rgb(219, 157, 12);
+  color: rgb(219, 157, 12);
   padding: 0;
   border-radius: 0;
-  font-size: 1.1rem;
-  font-family: Helvetica, sans-serif;
-  font-weight: lighter;
   transition: none;
-  margin-top: 1rem;
+  height: 32px;
+  margin-bottom: 10px;
+  font-size: 140%;
+  float: right;
+}
+
+.button-save-edit:active,
+.button-save-edit:hover {
+  background-color: transparent;
+  opacity: 0.5;
+}
+
+.picture-button {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid rgb(219, 157, 12);
+  line-height: 2.3;
+  color: rgb(219, 157, 12);
+  padding: 0;
+  border-radius: 0;
+  transition: none;
+  height: 32px;
+  margin-bottom: 10px;
+  font-size: 110%;
+  float: left;
+  opacity: 1 !important;
 }
 
 .picture-button:hover,
 .picture-button:active {
-  border-bottom: 1px solid rgb(15, 25, 41, 74%);
   background-color: transparent;
-  color: rgb(15, 25, 41, 74%);
+  opacity: 0.5 !important;
 }
 
 .main-title {
@@ -103,14 +126,17 @@ label {
   padding-left: 16px;
   margin-top: 14px;
 }
-#xing-button {
-  padding-left: 0px;
+
+.icon-button:active,
+.icon-button:focus,
+.icon-button:hover {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
 }
 
-#mail-button {
-  padding-right: 0px;
-}
-.icon-button:hover {
+.btn-secondary:active,
+:hover .icon-button:hover {
   background-color: transparent;
   opacity: 0.5;
 }
@@ -160,6 +186,10 @@ label {
   margin-bottom: 6%;
 }
 
+button:focus {
+  outline: none;
+}
+
 .profile-pic__image img {
   width: 180px;
   height: 180px;
@@ -170,7 +200,8 @@ label {
 }
 
 .btn-secondary.disabled,
-.btn-secondary:disabled {
+.btn-secondary:disabled,
+.btn-secondary.disabled:hover {
   background-color: transparent;
   opacity: 0.3;
 }
@@ -184,7 +215,7 @@ additional style EDIT profile page
 }
 
 .basic-info {
-  margin-top: 147px;
+  margin-top: 193px;
 }
 
 /*text-field style*/
@@ -259,34 +290,16 @@ additional style EDIT profile page
   padding-left: 2%;
 }
 
-/*Buttons*/
-.button-save-edit {
-  background-color: transparent;
-  border: 0;
-  border-bottom: 1px solid rgb(219, 157, 12);
+.required-field {
   color: rgb(219, 157, 12);
-  padding: 0;
-  border-radius: 0;
-  transition: none;
-  height: 32px;
-  margin-bottom: 10px;
-  font-size: 140%;
-  float: right;
-}
-
-button-container {
-  float: left;
-  display: block;
-}
-.button-save-edit:active,
-.button-save-edit:hover {
-  background-color: transparent;
-  opacity: 0.5;
+  display: inline;
+  position: relative;
+  bottom: 5px;
 }
 
 @media only screen and (min-width: 769px) and (max-width: 1200px) {
   .basic-info {
-    margin-top: 147px;
+    margin-top: 195px;
   }
   .button-save-edit {
     position: relative;

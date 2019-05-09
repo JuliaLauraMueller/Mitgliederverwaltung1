@@ -43,6 +43,8 @@ class AdminEventsOverview extends Component {
       startTime: '',
       endTime: '',
       location: '',
+      image: '',
+      imageTag: '',
       organisationTeam: '',
       registrationEndDate: '',
       permittedRoles: []
@@ -73,6 +75,8 @@ class AdminEventsOverview extends Component {
     this.handleRoleSelectionEdit = this.handleRoleSelectionEdit.bind(this);
     this.decodeRoles = this.decodeRoles.bind(this);
     this.togglePastEvents = this.togglePastEvents.bind(this);
+    this.handleFileSelection = this.handleFileSelection.bind(this);
+    this.getBase64 = this.getBase64.bind(this);
 
     this.props.dispatch(fetchEvents());
   }
@@ -127,7 +131,7 @@ class AdminEventsOverview extends Component {
                 <tr>
                   <th> Titel</th>
                   <th>Datum</th>
-                  <th className="d-none d-sm-table-cell">Ort</th>
+                  <th className="d-none d-md-table-cell">Ort</th>
                   <UncontrolledTooltip
                     placement="bottom-start"
                     target="tooltipRoles"
@@ -136,10 +140,11 @@ class AdminEventsOverview extends Component {
                     Eventadministrator <br />3 = Personaladministrator <br />4 =
                     Cityadministrator <br />5 = Fed. Administrator
                   </UncontrolledTooltip>
-                  <th id="tooltipRoles" className="d-none d-sm-table-cell">
+                  <th id="tooltipRoles" className="d-none d-md-table-cell">
                     {' '}
                     Rollen
                   </th>
+                  <th>Aktionen</th>
                 </tr>
               </thead>
               <tbody>{this.getEventRows(this.props.events)}</tbody>
@@ -154,6 +159,7 @@ class AdminEventsOverview extends Component {
     if (event.permittedRoles.length === 6) {
       return 'alle';
     } else {
+      event.permittedRoles.sort();
       var roles = event.permittedRoles[0];
       for (var i = 1; i < event.permittedRoles.length; i++) {
         roles += ', ' + event.permittedRoles[i];
@@ -283,8 +289,8 @@ class AdminEventsOverview extends Component {
     ).map(event => {
       let EditButton = {};
       let DeleteButton = {};
-      var tooltipIdEdit = "tooltip-edit-" + event._id
-      var tooltipIdDelete = "tooltip-delete-" + event._id
+      var tooltipIdEdit = 'tooltip-edit-' + event._id;
+      var tooltipIdDelete = 'tooltip-delete-' + event._id;
       EditButton = (
         <span
           className="admin-link admin-link-small admin-cursor"
@@ -292,6 +298,8 @@ class AdminEventsOverview extends Component {
           onClick={() =>
             this.toggleEventEditModal({
               _id: event._id,
+              image: event.image || this.emptyEvent.image,
+              imageTag: event.imageTag || this.emptyEvent.imageTag,
               title: event.title || this.emptyEvent.title,
               description: event.description || this.emptyEvent.description,
               circles: event.circles || this.emptyEvent.circles,
@@ -342,7 +350,10 @@ class AdminEventsOverview extends Component {
           title="Event löschen"
           id={tooltipIdDelete}
         >
-          <UncontrolledTooltip placement="bottom-start" target={tooltipIdDelete}>
+          <UncontrolledTooltip
+            placement="bottom-start"
+            target={tooltipIdDelete}
+          >
             Event löschen
           </UncontrolledTooltip>
           <svg
@@ -370,7 +381,9 @@ class AdminEventsOverview extends Component {
       return (
         <tr key={event._id}>
           <td>{event.title}</td>
-          <td>{event.date}</td>
+          <td>
+            {event.date ? new Date(event.date).toLocaleDateString('de-DE') : ''}
+          </td>
           <td className="d-none d-md-table-cell">{event.location}</td>
           <td className="d-none d-md-table-cell">{this.decodeRoles(event)}</td>
           <td>
@@ -381,6 +394,31 @@ class AdminEventsOverview extends Component {
       );
     });
   }
+
+  async handleFileSelection(event) {
+    var something = event.target.files[0];
+
+    let fileInB64 = await this.getBase64(something);
+    let splitArr = fileInB64.split(',');
+
+    this.setState({
+      eventToEdit: {
+        ...this.state.eventToEdit,
+        imageTag: splitArr[0],
+        image: splitArr[1]
+      }
+    });
+  }
+
+  getBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
+  }
+
   createEventDeleteModal() {
     return (
       <Modal
@@ -427,8 +465,41 @@ class AdminEventsOverview extends Component {
         <Form onSubmit={this.onEventSave}>
           <ModalBody>
             <FormGroup row>
-              <Col className="event-edit-row">
-                <Label className="event-edit-label">Titel:</Label>
+              <Col>
+                <Label for="image">Eventbild:</Label>
+              </Col>
+              <Col>
+                <img
+                  id="modalImage"
+                  src={
+                    this.state.eventToEdit.image !== ''
+                      ? this.state.eventToEdit.imageTag +
+                        ',' +
+                        this.state.eventToEdit.image
+                      : require('../../img/event_default_image.png')
+                  }
+                  alt=""
+                  style={{ width: '90%', height: 'auto' }}
+                  className="event-edit-image"
+                />
+                <input
+                  type="file"
+                  id="eventPictureUpload-Edit"
+                  onChange={this.handleFileSelection}
+                  className="hidden"
+                  accept=".jpg,.jpeg,.png"
+                />
+                <label
+                  htmlFor="eventPictureUpload-Edit"
+                  className="event-edit-picture-input"
+                >
+                  Neues Eventbild
+                </label>
+              </Col>
+              <Col>
+                <Label className="event-edit-label">
+                  Titel<pre className="required-field">*</pre>
+                </Label>
                 <Input
                   type="text"
                   id="title"
@@ -438,59 +509,68 @@ class AdminEventsOverview extends Component {
                   className="event-edit-txt"
                 />
               </Col>
-              <Col className="event-edit-row">
-                <Label className="event-edit-label">Beschreibung:</Label>
+              <Col>
+                <Label>Beschreibung</Label>
                 <Input
-                  type="text"
+                  type="textarea"
                   id="description"
                   name="description"
-                  className="event-edit-txt"
+                  className="event-edit-txt admin-form-control description-area"
                   onChange={this.handleChange}
                   value={this.state.eventToEdit.description}
                 />
               </Col>
-              <Col className="event-edit-row">
-                <Label className="event-edit-label">Cities:</Label>
-                <div className="event-edit-txt">
-                  <ButtonDropdown
-                    isOpen={this.state.circlesDropdownOpen}
-                    toggle={this.toggle}
-                  >
-                    <DropdownToggle
-                      caret
-                      className="filter-button"
-                      color={'rgb(15, 25, 41, 40%)'}
-                    />
+              <Row>
+                <Col>
+                  <Label xs="3" md="6">
+                    Verwaltende Cities<pre className="required-field">*</pre>
+                  </Label>
+                  <div className="event-edit-txt-btn">
+                    <ButtonDropdown
+                      isOpen={this.state.circlesDropdownOpen}
+                      toggle={this.toggle}
+                    >
+                      <DropdownToggle
+                        caret
+                        className="filter-button-edit"
+                        color={'rgb(15, 25, 41, 40%)'}
+                      />
 
-                    <DropdownMenu>
-                      <DropdownItem header>Cities wählen</DropdownItem>
-                      {this.props.circles.map(circle => {
-                        return (
-                          <div className="checkbox-container" key={circle._id}>
-                            <input
-                              type="checkbox"
-                              id={circle._id + '-edit'}
-                              value={circle._id}
-                              defaultChecked={this.state.eventToEdit.circles.includes(
-                                circle._id
-                              )}
-                              onChange={this.handleCircleSelectionEdit}
-                            />
-                            <label
-                              htmlFor={circle._id + '-edit'}
-                              className="filter-cities"
+                      <DropdownMenu>
+                        <DropdownItem header>Cities wählen</DropdownItem>
+                        {this.props.circles.map(circle => {
+                          return (
+                            <div
+                              className="checkbox-container"
+                              key={circle._id}
                             >
-                              {circle.name}
-                            </label>
-                          </div>
-                        );
-                      })}
-                    </DropdownMenu>
-                  </ButtonDropdown>
-                </div>
-              </Col>
-              <Col className="event-edit-row">
-                <Label className="event-edit-label">Datum:</Label>
+                              <input
+                                type="checkbox"
+                                id={circle._id + '-edit'}
+                                value={circle._id}
+                                defaultChecked={this.state.eventToEdit.circles.includes(
+                                  circle._id
+                                )}
+                                onChange={this.handleCircleSelectionEdit}
+                              />
+                              <label
+                                htmlFor={circle._id + '-edit'}
+                                className="filter-cities"
+                              >
+                                {circle.name}
+                              </label>
+                            </div>
+                          );
+                        })}
+                      </DropdownMenu>
+                    </ButtonDropdown>
+                  </div>
+                </Col>
+              </Row>
+              <Col>
+                <Label>
+                  Datum<pre className="required-field">*</pre>
+                </Label>
                 <Input
                   type="date"
                   id="date"
@@ -500,8 +580,10 @@ class AdminEventsOverview extends Component {
                   value={this.state.eventToEdit.date}
                 />
               </Col>
-              <Col className="event-edit-row">
-                <Label className="event-edit-label">Beginn:</Label>
+              <Col>
+                <Label>
+                  Beginn<pre className="required-field">*</pre>
+                </Label>
                 <Input
                   type="text"
                   id="startTime"
@@ -511,8 +593,8 @@ class AdminEventsOverview extends Component {
                   value={this.state.eventToEdit.startTime}
                 />
               </Col>
-              <Col className="event-edit-row">
-                <Label className="event-edit-label">Ende:</Label>
+              <Col>
+                <Label>Ende</Label>
                 <Input
                   type="text"
                   id="endTime"
@@ -522,8 +604,10 @@ class AdminEventsOverview extends Component {
                   value={this.state.eventToEdit.endTime}
                 />
               </Col>
-              <Col className="event-edit-row">
-                <Label className="event-edit-label">Ort:</Label>
+              <Col>
+                <Label>
+                  Ort<pre className="required-field">*</pre>
+                </Label>
                 <Input
                   type="text"
                   id="location"
@@ -533,8 +617,8 @@ class AdminEventsOverview extends Component {
                   value={this.state.eventToEdit.location}
                 />
               </Col>
-              <Col className="event-edit-row">
-                <Label className="event-edit-label">Organisation:</Label>
+              <Col>
+                <Label>Organisation</Label>
                 <Input
                   type="text"
                   id="organisationTeam"
@@ -544,8 +628,10 @@ class AdminEventsOverview extends Component {
                   value={this.state.eventToEdit.organisationTeam}
                 />
               </Col>
-              <Col className="event-edit-row">
-                <Label className="event-edit-label">Anmeldefrist:</Label>
+              <Col>
+                <Label>
+                  Anmeldefrist<pre className="required-field">*</pre>
+                </Label>
                 <Input
                   type="date"
                   id="registrationEndDate"
@@ -555,8 +641,10 @@ class AdminEventsOverview extends Component {
                   value={this.state.eventToEdit.registrationEndDate}
                 />
               </Col>
-              <Col className="event-edit-row">
-                <Label for="event-edit-label">Rollen</Label>
+              <Col>
+                <Label>
+                  Rollen<pre className="required-field">*</pre>
+                </Label>
                 <div className="checkbox-container event-edit-txt" key="0">
                   <input
                     type="checkbox"

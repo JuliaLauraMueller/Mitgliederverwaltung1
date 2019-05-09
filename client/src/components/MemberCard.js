@@ -66,7 +66,6 @@ class MemberCard extends Component {
                   className="profile-text"
                   to={`/member/${this.props.member._id}`}
                 >
-                  Profil
                   <svg
                     className="profile-arrow"
                     viewBox="0 0 7 12"
