@@ -175,6 +175,14 @@ hr {
   margin-top: -30px;
 }
 
+.card-name a {
+  color: #000000;
+}
+
+.card-name a:hover {
+  text-decoration: none;
+}
+
 .mail-icon {
   min-width: 21px;
   max-width: 21px;
