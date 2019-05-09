@@ -326,6 +326,14 @@ additional style EDIT profile page
   bottom: 5px;
 }
 
+.invoice-spacing {
+  margin-top: 1.65%;
+}
+
+.invoice-spacing-edit {
+  margin-top: 2.5%;
+}
+
 @media only screen and (min-width: 769px) and (max-width: 1200px) {
   .basic-info {
     margin-top: 195px;
