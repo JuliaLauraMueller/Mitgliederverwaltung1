@@ -1,5 +1,9 @@
 /*MemberPage*/
 
+.row {
+  min-width: 290px;
+}
+
 .member-logo {
   min-height: 66px;
   min-width: 57px;
@@ -58,14 +62,76 @@
   box-shadow: none;
 }
 
-.search-field-member {
+.search-container {
+  width: 100%;
+  height: 65px;
   display: flex;
   justify-content: center;
+  position: sticky;
+  top: 0px;
+  z-index: 1000;
+  transition: top 0.6s;
+}
+
+.search-container-full {
+  background-color: rgb(230, 231, 233);
+  width: 100%;
+  height: 65px;
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  top: 0px;
+  z-index: 1000;
+  transition: top 0.6s;
+}
+
+.search-container--hidden {
+  top: -100px;
+}
+
+.search-field-member {
+  position: absolute;
+  display: inline-block;
+  top: 20px;
+}
+
+.search-field-member.row {
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .search-form {
   display: flex;
   justify-content: center;
+}
+
+@media only screen and (max-width: 800px) {
+  .search-container {
+    min-width: 300px;
+    max-width: 300px;
+    margin-left: calc(-150px + 50%);
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .search-container {
+    min-width: 220px;
+    max-width: 220px;
+    margin-left: calc(-90px + 50%);
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  .search-container {
+    min-width: 190px;
+    max-width: 190px;
+    margin-left: calc(-75px + 50%);
+  }
+
+  .search-field-member {
+    min-width: 260px;
+    max-width: 260px;
+  }
 }
 
 .search-icon {

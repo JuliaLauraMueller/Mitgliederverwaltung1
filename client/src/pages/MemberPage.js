@@ -6,6 +6,7 @@ import { Container, Row, Col } from 'reactstrap';
 import { connect } from 'react-redux';
 import { setNavVisible } from '../redux/actions/navigationActions';
 import { fetchMembers } from '../redux/actions/memberActions';
+import classnames from 'classnames';
 
 import '../css/Member.css';
 
@@ -14,9 +15,54 @@ class MemberPage extends Component {
     super(props);
     this.props.dispatch(fetchMembers());
     this.props.dispatch(setNavVisible());
+    this.state = {
+      prevScrollpos: window.pageYOffset,
+      visible: true
+    };
   }
 
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll = () => {
+    const { prevScrollpos } = this.state;
+
+    const currentScrollPos = window.pageYOffset;
+    const visible = prevScrollpos > currentScrollPos;
+
+    this.setState({
+      prevScrollpos: currentScrollPos,
+      visible
+    });
+  };
+
   render() {
+    let searchField = <div />;
+    if (window.innerWidth <= 1200 || window.innerHeight <= 740) {
+      searchField = (
+        <div
+          className={classnames('search-container', {
+            'search-container--hidden': !this.state.visible
+          })}
+        >
+          <SearchFieldMember />
+        </div>
+      );
+    } else {
+      searchField = (
+        <div
+          className={classnames('search-container-full', {
+            'search-container--hidden': !this.state.visible
+          })}
+        >
+          <SearchFieldMember />
+        </div>
+      );
+    }
     let memberCards = (
       <p className='no-data-found'>Keine Mitglieder gefunden</p>
     );
@@ -53,9 +99,11 @@ class MemberPage extends Component {
                 {'body { background-color: rgb(15, 25, 41, 10%); }'}
               </style>
             </Helmet>
+            {searchField}
 
-            <SearchFieldMember />
-            {content}
+            <Row className="member-cards-row" key={memberCards}>
+              {memberCards}
+            </Row>
           </Col>
         </Row>
       </Container>
