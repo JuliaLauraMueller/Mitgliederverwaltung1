@@ -28,7 +28,8 @@ class SingleEventInfo extends Component {
     this.state = {
       attendeeModal: false,
       attendee: { accompaniments: 0 },
-      isAttending: false
+      isAttending: false,
+      tableIsExpanded: false
     };
 
     this.days = [
@@ -62,6 +63,8 @@ class SingleEventInfo extends Component {
     this.attendeeButtons = this.attendeeButtons.bind(this);
     this.attendingCount = this.attendingCount.bind(this);
     this.getAttendeeRows = this.getAttendeeRows.bind(this);
+    this.toggleAttendeesExpand = this.toggleAttendeesExpand.bind(this);
+    this.tableExpandButton = this.tableExpandButton.bind(this);
   }
 
   render() {
@@ -204,6 +207,7 @@ class SingleEventInfo extends Component {
                 <tbody>{this.getAttendeeRows(5)}</tbody>
               </Table>
             </Row>
+            <Row>{this.tableExpandButton()}</Row>
           </Col>
         </Row>
       </div>
@@ -265,12 +269,15 @@ class SingleEventInfo extends Component {
     return <div>{Buttons}</div>;
   }
 
-  getAttendeeRows(amount) {
-    // Use event.attendees.length to get all rows
-
+  getAttendeeRows() {
     const event = this.props.event;
 
     if (!event || !Object.keys(event).length) return <tr />;
+
+    let amount = event.attendees.length;
+    if (!this.state.tableIsExpanded) {
+      amount = 5;
+    }
 
     return event.attendees.slice(0, amount).map(attendee => {
       return (
@@ -299,6 +306,28 @@ class SingleEventInfo extends Component {
     this.setState(prevState => ({
       attendeeModal: !prevState.attendeeModal
     }));
+  }
+
+  toggleAttendeesExpand() {
+    this.setState(prevState => ({
+      tableIsExpanded: !prevState.tableIsExpanded
+    }));
+  }
+
+  tableExpandButton() {
+    let ExpandButton = {};
+
+    if (this.state.tableIsExpanded) {
+      ExpandButton = (
+        <Button onClick={() => this.toggleAttendeesExpand()}>Weniger</Button>
+      );
+    } else {
+      ExpandButton = (
+        <Button onClick={() => this.toggleAttendeesExpand()}>Erweitern</Button>
+      );
+    }
+
+    return <div>{ExpandButton}</div>;
   }
 
   createAttendeeModal(attendee) {
