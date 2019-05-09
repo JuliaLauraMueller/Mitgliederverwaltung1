@@ -8,7 +8,6 @@ import { setNavVisible } from '../redux/actions/navigationActions';
 import { fetchEvents } from '../redux/actions/eventActions';
 import store from '../helpers/store';
 
-import '../css/Member.css';
 import '../css/EventPage.css';
 
 class EventPage extends Component {
