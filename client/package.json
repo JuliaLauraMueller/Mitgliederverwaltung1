@@ -28,8 +28,7 @@
     "react-simple-tooltip": "^2.5.0",
     "reactstrap": "^6.5.0",
     "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0",
-    "webpack": "^4.28.3"
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",

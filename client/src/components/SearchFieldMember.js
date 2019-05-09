@@ -69,7 +69,7 @@ class SearchFieldMember extends Component {
       <Row className="search-field-member">
         <Col md="12">
           <div className="search-form">
-            <div className="tester-Search">
+            <div className="testerSearch">
               <img
                 className="search-icon"
                 src={require('../img/search-grey.png')}
@@ -101,7 +101,7 @@ class SearchFieldMember extends Component {
                   </svg>
                 </DropdownToggle>
 
-                <DropdownMenu style={{ left: '-95px' }}>
+                <DropdownMenu>
                   <DropdownItem header>Standorte filtern</DropdownItem>
                   {circleLabels}
                 </DropdownMenu>
