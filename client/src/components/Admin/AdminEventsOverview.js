@@ -465,8 +465,10 @@ class AdminEventsOverview extends Component {
         <Form onSubmit={this.onEventSave}>
           <ModalBody>
             <FormGroup row>
-              <Col className="event-edit-row">
+              <Col>
                 <Label for="image">Eventbild:</Label>
+              </Col>
+              <Col>
                 <img
                   id="modalImage"
                   src={
@@ -494,7 +496,7 @@ class AdminEventsOverview extends Component {
                   Neues Eventbild
                 </label>
               </Col>
-              <Col className="event-edit-row">
+              <Col>
                 <Label className="event-edit-label">
                   Titel<pre className="required-field">*</pre>
                 </Label>
@@ -523,7 +525,7 @@ class AdminEventsOverview extends Component {
                   <Label xs="3" md="6">
                     Verwaltende Cities<pre className="required-field">*</pre>
                   </Label>
-                  <div className="event-edit-txt">
+                  <div className="event-edit-txt-btn">
                     <ButtonDropdown
                       isOpen={this.state.circlesDropdownOpen}
                       toggle={this.toggle}
@@ -592,7 +594,7 @@ class AdminEventsOverview extends Component {
                 />
               </Col>
               <Col>
-                <Label className="">Ende</Label>
+                <Label>Ende</Label>
                 <Input
                   type="text"
                   id="endTime"

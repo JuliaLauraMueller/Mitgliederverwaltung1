@@ -267,7 +267,8 @@ class BurgerNav extends React.Component {
         className={'burger-nav app-nav-bar ' + this.props.visibleClass}
         burgerButtonClassName={this.props.visibleClass}
       >
-        <div className='burger-navigation-logo-container'>
+        {this.createPasswordChangeModal()}
+        <div className="burger-navigation-logo-container">
           <Link to={`/member/${userId}`}>
             <img
               id='navigation-user-picture-img'
@@ -472,7 +473,6 @@ class BurgerNav extends React.Component {
           </svg>
           &emsp;Mitglieder
         </Link>
-
         {AdminButton}
       </Menu>
     );
