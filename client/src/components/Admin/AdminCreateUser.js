@@ -65,18 +65,18 @@ class AdminCreateUser extends Component {
         <Form onSubmit={this.submitMember}>
           <FormGroup>
             <Row>
-              <Col xs="3">
-                <Label for="firstname">
+              <Col xs='3'>
+                <Label for='firstname'>
                   Vorname
-                  <pre className="required-field">*</pre>
+                  <pre className='required-field'>*</pre>
                 </Label>
               </Col>
-              <Col xs="9">
+              <Col xs='9'>
                 <Input
-                  type="text"
-                  name="firstname"
-                  id="firstname"
-                  className="admin-form-control"
+                  type='text'
+                  name='firstname'
+                  id='firstname'
+                  className='admin-form-control'
                   value={this.state.firstname}
                   onChange={this.handleChange}
                 />
@@ -85,17 +85,17 @@ class AdminCreateUser extends Component {
           </FormGroup>
           <FormGroup>
             <Row>
-              <Col xs="3">
-                <Label for="surname">
-                  Nachname<pre className="required-field">*</pre>
+              <Col xs='3'>
+                <Label for='surname'>
+                  Nachname<pre className='required-field'>*</pre>
                 </Label>
               </Col>
               <Col xs={9}>
                 <Input
-                  type="text"
-                  name="surname"
-                  id="surname"
-                  className="admin-form-control"
+                  type='text'
+                  name='surname'
+                  id='surname'
+                  className='admin-form-control'
                   value={this.state.surname}
                   onChange={this.handleChange}
                 />
@@ -104,18 +104,18 @@ class AdminCreateUser extends Component {
           </FormGroup>
           <FormGroup>
             <Row>
-              <Col xs="3">
-                <Label for="privateEmail">
-                  E-Mail<pre className="required-field">*</pre>
+              <Col xs='3'>
+                <Label for='privateEmail'>
+                  E-Mail<pre className='required-field'>*</pre>
                 </Label>
               </Col>
               <Col xs={9}>
                 <Input
-                  type="email"
-                  name="privateEmail"
-                  id="privateEmail"
-                  className="admin-form-control"
-                  autoComplete="off"
+                  type='email'
+                  name='privateEmail'
+                  id='privateEmail'
+                  className='admin-form-control'
+                  autoComplete='off'
                   value={this.state.privateEmail}
                   onChange={this.handleChange}
                 />
@@ -124,18 +124,18 @@ class AdminCreateUser extends Component {
           </FormGroup>
           <FormGroup>
             <Row>
-              <Col xs="3">
-                <Label for="password">
-                  Passwort<pre className="required-field">*</pre>
+              <Col xs='3'>
+                <Label for='password'>
+                  Passwort<pre className='required-field'>*</pre>
                 </Label>
               </Col>
               <Col xs={9}>
                 <Input
-                  type="password"
-                  name="password"
-                  id="password"
-                  className="admin-form-control"
-                  autoComplete="new-password"
+                  type='password'
+                  name='password'
+                  id='password'
+                  className='admin-form-control'
+                  autoComplete='new-password'
                   value={this.state.password}
                   onChange={this.handleChange}
                 />
@@ -144,16 +144,16 @@ class AdminCreateUser extends Component {
           </FormGroup>
           <FormGroup>
             <Row>
-              <Col xs="3">
-                <Label for="godfather">Götti</Label>
+              <Col xs='3'>
+                <Label for='godfather'>Götti</Label>
               </Col>
               <Col xs={9}>
                 <Input
-                  type="text"
-                  name="godfather"
-                  id="godfather"
-                  className="admin-form-control"
-                  autoComplete="off"
+                  type='text'
+                  name='godfather'
+                  id='godfather'
+                  className='admin-form-control'
+                  autoComplete='off'
                   value={this.state.godfather}
                   onChange={this.handleChange}
                 />
@@ -162,16 +162,16 @@ class AdminCreateUser extends Component {
           </FormGroup>
           <FormGroup>
             <Row>
-              <Col xs="3">
-                <Label for="circle">
-                  City<pre className="required-field">*</pre>
+              <Col xs='3'>
+                <Label for='circle'>
+                  City<pre className='required-field'>*</pre>
                 </Label>
               </Col>
               <Col xs={9}>
                 <Input
-                  type="select"
-                  name="circle"
-                  id="circle"
+                  type='select'
+                  name='circle'
+                  id='circle'
                   value={this.state.circle}
                   onChange={this.handleChange}
                 >
@@ -181,16 +181,16 @@ class AdminCreateUser extends Component {
             </Row>
           </FormGroup>
           <input
-            type="button"
-            className="admin-button"
+            type='button'
+            className='admin-button'
             onClick={this.cancel}
-            value="Abbrechen"
+            value='Abbrechen'
           />
           <input
-            type="submit"
-            className="admin-button"
+            type='submit'
+            className='admin-button'
             onClick={this.submitMember}
-            value="Speichern"
+            value='Speichern'
           />
         </Form>
       </div>
@@ -210,7 +210,8 @@ class AdminCreateUser extends Component {
 
 function mapStateToProps(state) {
   return {
-    circles: state.circle.circles
+    circles: state.circle.circles,
+    isLoading: state.loading.isLoading
   };
 }
 

@@ -49,10 +49,12 @@ export const fetchNewsArticles = () => dispatch => {
 };
 
 export const deleteNewsArticle = id => dispatch => {
+  dispatch({ type: DATA_FETCHING });
   newsArticleService.deleteNewsArticle(id).then(res => {
     if (res) {
       dispatch({ type: NEWS_ARTICLE_DELETED, payload: res });
     }
+    dispatch({ type: DATA_FETCHED });
   });
 };
 

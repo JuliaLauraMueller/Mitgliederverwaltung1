@@ -46,23 +46,39 @@ class AdminCreateCircle extends Component {
   }
 
   render() {
+    let content = <div />;
+    if (this.props.isLoading) {
+      content = (
+        <div>
+          <div className='page-wrap-loading-screen' />
+          <img
+            src={require('../../img/LoadingIcon.gif')}
+            alt='loading-icon'
+            className='modal-loading-screen'
+          />
+        </div>
+      );
+    } else {
+      content = <div />;
+    }
     return (
       <div>
+        {content}
         <h4>Neue City</h4>
         <Form onSubmit={this.createCircle}>
           <FormGroup>
             <Row>
-              <Col xs="2">
-                <Label for="name">
-                  Name<pre className="required-field">*</pre>
+              <Col xs='2'>
+                <Label for='name'>
+                  Name<pre className='required-field'>*</pre>
                 </Label>
               </Col>
-              <Col xs="10">
+              <Col xs='10'>
                 <Input
-                  type="text"
-                  id="name"
-                  name="name"
-                  className="admin-form-control"
+                  type='text'
+                  id='name'
+                  name='name'
+                  className='admin-form-control'
                   value={this.state.name}
                   onChange={this.handleChange}
                 />
@@ -70,16 +86,16 @@ class AdminCreateCircle extends Component {
             </Row>
           </FormGroup>
           <input
-            type="button"
-            className="admin-button"
+            type='button'
+            className='admin-button'
             onClick={this.cancel}
-            value="Abbrechen"
+            value='Abbrechen'
           />
           <input
-            type="submit"
-            className="admin-button"
+            type='submit'
+            className='admin-button'
             onClick={this.createCircle}
-            value="Speichern"
+            value='Speichern'
           />
         </Form>
       </div>

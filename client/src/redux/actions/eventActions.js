@@ -50,10 +50,12 @@ export const fetchEvents = () => dispatch => {
 };
 
 export const deleteEvent = id => dispatch => {
+  dispatch({ type: DATA_FETCHING });
   eventService.deleteEvent(id).then(res => {
     if (res) {
       dispatch({ type: EVENT_DELETED, payload: res });
     }
+    dispatch({ type: DATA_FETCHED });
   });
 };
 

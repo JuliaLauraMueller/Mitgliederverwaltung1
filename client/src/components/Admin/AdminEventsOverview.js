@@ -468,7 +468,6 @@ class AdminEventsOverview extends Component {
   createEventEditModal() {
     let content = <div />;
     if (this.props.isLoading) {
-      console.log('hello it entered is loading if');
       content = (
         <div>
           <div className='page-wrap-loading-screen' />

@@ -30,10 +30,12 @@ export const fetchMembers = () => dispatch => {
 };
 
 export const deleteMember = id => dispatch => {
+  dispatch({ type: DATA_FETCHING });
   memberService.deleteMember(id).then(res => {
     if (res) {
       dispatch({ type: MEMBER_DELETED, payload: res });
     }
+    dispatch({ type: DATA_FETCHED });
   });
 };
 
