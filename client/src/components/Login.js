@@ -35,56 +35,73 @@ class Login extends Component {
 
   render() {
     return (
-      <div className='login-container'>
-        <div className='login-middle'>
-          <div className='login-inner'>
+      <div className="login-container">
+        <div className="login-middle">
+          <div className="login-inner">
             <img
               src={require('../img/logo_with_font_small.png')}
-              alt='logo'
-              className='login-logo'
+              alt="logo"
+              className="login-logo"
             />
-            <Form name='loginForm'>
-              <div className='input-container'>
+            <Form name="loginForm">
+              <div className="input-container">
                 <img
                   src={require('../img/mail.png')}
-                  alt='mail'
-                  className='input-icon'
+                  alt="mail"
+                  className="input-icon"
                 />
                 <Input
-                  type='email'
-                  name='privateEmail'
-                  placeholder='E-Mail'
-                  id='emailInp'
-                  className='icon-input'
-                  autoComplete='username'
+                  type="email"
+                  name="privateEmail"
+                  placeholder="E-Mail"
+                  id="emailInp"
+                  className="icon-input"
+                  autoComplete="username"
                   value={this.state.privateEmail}
                   onChange={this.handleChange}
                 />
               </div>
-              <div className='input-container'>
+              <div className="input-container">
                 <img
                   src={require('../img/Lock.png')}
-                  alt='password'
-                  className='input-icon'
+                  alt="password"
+                  className="input-icon"
                 />
                 <Input
-                  type='password'
-                  name='password'
-                  id='passwordInp'
-                  placeholder='Passwort'
-                  className='icon-input'
-                  autoComplete='current-password'
+                  type="password"
+                  name="password"
+                  id="passwordInp"
+                  placeholder="Passwort"
+                  className="icon-input"
+                  autoComplete="current-password"
                   value={this.state.password}
                   onChange={this.handleChange}
                 />
               </div>
               <Button
-                className='login-button'
+                className="login-button"
                 onClick={this.handleSubmit}
-                type='submit'
+                type="submit"
               >
                 Login
               </Button>
+              <div className="additional-login-box">
+                <a
+                  target="_blank"
+                  className="login-button-additional"
+                  href="mailto:mz@youngleader.ch"
+                >
+                  Passwort vergessen?
+                </a>
+                <a
+                  target="_blank"
+                  className="login-button-additional"
+                  id="login-member"
+                  href="https://www.youngleaders.ch/leaderwerden/"
+                >
+                  Leader werden
+                </a>
+              </div>
             </Form>
           </div>
         </div>

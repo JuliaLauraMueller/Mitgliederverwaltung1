@@ -180,7 +180,7 @@ async function updateUser(id, userParam) {
       errors.push('Profilbild: Bild korrupt');
     }
   }
-  errors = validateAll(userData, errors);
+  errors = await validateAll(userData, errors);
   errors = companyService.validateCompany(companyData, errors);
 
   if (errors.length != 0) {
@@ -282,7 +282,6 @@ function updateURLs(userParam, companyParam) {
     companyParam.companyURL = validateUrl(companyParam.companyURL);
   }
 
-  // TODO: reload of site after input validation
   return userParam;
 }
 
@@ -331,7 +330,7 @@ async function changePassword(id, passwords) {
   }
 }
 
-function validateAll(userParam, errors) {
+async function validateAll(userParam, errors) {
   // Fields that cannot change yet
   if (userParam.memberNumber) {
     errors.push('Mitgliedernummer: Darf nicht geändert werden');
@@ -464,12 +463,19 @@ function validateAll(userParam, errors) {
       errors.push('Mobile Privat: Ist keine gültige Telefonnummer');
     }
   }
-  if (
-    !userParam.privateEmail ||
-    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userParam.privateEmail)
-  ) {
+  if (!userParam.privateEmail) {
+    errors.push('E-Mail Privat: Darf nicht leer sein');
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userParam.privateEmail)) {
     errors.push('E-Mail Privat: Ist keine Mailadresse');
+  } else {
+    let existingUser = await User.findOne({
+      privateEmail: userParam.privateEmail
+    });
+    if (existingUser && existingUser._id != userParam._id) {
+      errors.push('E-Mail Privat: Die Mailadresse gibt es schon');
+    }
   }
+
   if (userParam.privateStreet && userParam.privateStreet.length > 30) {
     errors.push('Strasse Privat: Maximal 30 Zeichen');
   }
@@ -500,6 +506,5 @@ function validateAll(userParam, errors) {
       errors.push('Profilbild: Bild zu gross, maximal 500KB');
     }
   }
-
   return errors;
 }

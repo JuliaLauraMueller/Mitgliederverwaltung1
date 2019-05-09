@@ -35,7 +35,7 @@ function validateCompany(companyParam, errors) {
     errors.push('Strasse Geschäft: Maximal 30 Zeichen');
   }
   if (companyParam.companyStreetNr && companyParam.companyStreetNr.length > 8) {
-    errors.push('Strasse Geschäft: Maximal 8 Zeichen');
+    errors.push('Nr. Geschäft: Maximal 8 Zeichen');
   }
   if (companyParam.companyZip) {
     if (
