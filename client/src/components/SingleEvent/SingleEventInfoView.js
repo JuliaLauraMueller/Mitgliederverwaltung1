@@ -28,8 +28,7 @@ class SingleEventInfo extends Component {
     this.state = {
       attendeeModal: false,
       attendee: { accompaniments: 0 },
-      isAttending: false,
-      tableIsExpanded: false
+      isAttending: false
     };
 
     this.days = [
@@ -63,8 +62,6 @@ class SingleEventInfo extends Component {
     this.attendeeButtons = this.attendeeButtons.bind(this);
     this.attendingCount = this.attendingCount.bind(this);
     this.getAttendeeRows = this.getAttendeeRows.bind(this);
-    this.toggleAttendeesExpand = this.toggleAttendeesExpand.bind(this);
-    this.tableExpandButton = this.tableExpandButton.bind(this);
   }
 
   render() {
@@ -95,7 +92,7 @@ class SingleEventInfo extends Component {
       <div>
         {this.createAttendeeModal(attendee)}
         <Row>
-          <Col md={{ offset: 0, size: 4 }} sm={{ offset: 0 }}>
+          <Col md={{ offset: 0, size: 4 }} xs={{ offset: 0 }}>
             <Row className="date">
               <Col>
                 <div className="event-date">
@@ -168,7 +165,7 @@ class SingleEventInfo extends Component {
             </Row>
           </Col>
 
-          <Col md={{ offset: 0, size: 4 }} align="right">
+          <Col md={{ offset: 1, size: 3 }} align="left">
             <Row className="event-anmeldung">
               <Col>{this.attendeeButtons(attendee.isAttending)}</Col>
             </Row>
@@ -177,7 +174,7 @@ class SingleEventInfo extends Component {
             </Row>
           </Col>
 
-          <Col md={{ offset: 0, size: 8 }} sm={{ offset: 0 }}>
+          <Col md={{ offset: 0, size: 8 }} xs={{ offset: 0 }}>
             <Row className="event-infos">
               <Col>
                 <label className="event-description">{event.description}</label>
@@ -185,7 +182,7 @@ class SingleEventInfo extends Component {
             </Row>
           </Col>
 
-          <Col md={{ offset: 1, size: 3 }} sm={{ offset: 0 }}>
+          <Col lg={{ offset: 1, size: 3 }} md={{ offset: 0, size: 4 }}>
             <Row className="event-infos event-infos-attendees">
               <Table>
                 <thead>
@@ -197,7 +194,6 @@ class SingleEventInfo extends Component {
                 <tbody>{this.getAttendeeRows(5)}</tbody>
               </Table>
             </Row>
-            <Row>{this.tableExpandButton()}</Row>
           </Col>
         </Row>
       </div>
@@ -260,15 +256,12 @@ class SingleEventInfo extends Component {
     return <div>{Buttons}</div>;
   }
 
-  getAttendeeRows() {
+  getAttendeeRows(amount) {
+    // Use event.attendees.length to get all rows
+
     const event = this.props.event;
 
     if (!event || !Object.keys(event).length) return <tr />;
-
-    let amount = event.attendees.length;
-    if (!this.state.tableIsExpanded) {
-      amount = 5;
-    }
 
     return event.attendees.slice(0, amount).map(attendee => {
       return (
@@ -299,28 +292,6 @@ class SingleEventInfo extends Component {
     this.setState(prevState => ({
       attendeeModal: !prevState.attendeeModal
     }));
-  }
-
-  toggleAttendeesExpand() {
-    this.setState(prevState => ({
-      tableIsExpanded: !prevState.tableIsExpanded
-    }));
-  }
-
-  tableExpandButton() {
-    let ExpandButton = {};
-
-    if (this.state.tableIsExpanded) {
-      ExpandButton = (
-        <Button onClick={() => this.toggleAttendeesExpand()}>Weniger</Button>
-      );
-    } else {
-      ExpandButton = (
-        <Button onClick={() => this.toggleAttendeesExpand()}>Erweitern</Button>
-      );
-    }
-
-    return <div>{ExpandButton}</div>;
   }
 
   createAttendeeModal(attendee) {

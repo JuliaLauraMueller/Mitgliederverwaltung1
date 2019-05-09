@@ -6,8 +6,8 @@
   align-content: center;
 }
 
-.event-image,
-#event-image {
+.single-event-image,
+#single-event-image {
   margin-bottom: 2rem;
   display: block;
   justify-content: center;
@@ -136,9 +136,7 @@
 }
 
 .gap {
-  float: left;
-  position: relative;
-  right: 25%;
+  display: block;
 }
 
 /*Buttons*/
@@ -151,10 +149,8 @@
   border-radius: 0;
   transition: none;
   height: 32px;
-  margin-bottom: 10px;
   font-size: 16pt;
   float: right;
-
   margin-left: 40px;
   margin-top: 8px;
 }
@@ -170,9 +166,8 @@
 .event-amount-attendence {
   margin-right: 0px;
   font-size: 12pt;
-}
-
-@media only screen and (max-width: 992px) {
+  text-align: right;
+  float: right;
 }
 
 @media only screen and (max-width: 992px) {
@@ -208,9 +203,30 @@
 }
 
 @media only screen and (max-width: 767px) {
-  .event-infos {
-    padding-left: 1em;
-    padding-right: 1em;
+  .event-description {
+    text-align: left;
+    margin-top: 5%;
+  }
+
+  .event-amount-attendence {
+    text-align: left;
+    float: left;
+  }
+
+  .button-attending {
+    float: left;
+    margin-left: 0;
+    margin-right: 10px;
+    margin-top: 10px;
+  }
+
+  .event-anmeldung {
+    padding: 0;
+  }
+
+  .event-title {
+    margin-bottom: 20px;
+    margin-top: 20px;
   }
 
   .date {
@@ -220,7 +236,6 @@
 
   .event-date {
     text-align: left;
-    margin: auto;
     margin-left: 25px;
   }
 
@@ -229,108 +244,23 @@
     text-align: left;
   }
 
-  .event-amount-attendence {
-    margin-left: 16px;
+  .event-infos-attendees {
+    margin-top: 15px;
   }
 
-  .overflow {
-    padding-left: 1.5em;
-    padding-right: 1.5em;
-  }
-
-  .event-month {
-    font-size: 22px;
-  }
-
-  .event-day {
-    font-size: 35px;
-  }
-
-  .event-weekDay {
-    font-size: 18px;
-  }
-
-  .event-title {
-    font-size: 28px;
-    line-height: 0.8em;
-    margin-top: 1em;
-  }
-
-  .event-time {
-    font-size: 18px;
-  }
-
-  .event-location {
-    font-size: 18px;
-  }
-
-  .event-description-title {
-    margin-top: 0.5em;
-  }
-
-  .event-description-additional {
-    line-height: 1em;
-    font-size: 18px;
-  }
-
-  .button-attending {
-    margin-top: 1.4em;
-  }
-}
-
-@media only screen and (max-width: 540px) {
-  .event-infos {
-    padding-left: 0em;
-    padding-right: 0em;
+  .gap {
+    display: inline;
+    margin-right: 10px;
   }
 
   .event-anmeldung {
-    padding-left: 0em;
-    padding-right: 0em;
-  }
-
-  .button-attending {
-    margin-top: 1em;
-    margin-left: 0px;
-    margin-right: 16px;
-  }
-
-  .event-amount-attendence {
-    margin-left: 0px;
+    margin-top: 5px;
   }
 
   .event-date {
     text-align: left;
     margin: auto;
     margin-left: 0px;
-  }
-
-  .date {
-    padding-left: 0em;
-    padding-right: 0em;
-  }
-
-  .overflow {
-    padding-left: 0em;
-    padding-right: 0em;
-    margin-top: -0.5em;
-  }
-
-  .event-title {
-    margin-top: 1em;
-    line-height: 1.2em;
-  }
-
-  .event-description-title {
-    font-size: 16pt;
-  }
-
-  .event-description-additional {
-    font-size: 16px;
-  }
-
-  .event-description {
-    font-size: 16px;
   }
 }
 
