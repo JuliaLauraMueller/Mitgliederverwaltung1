@@ -92,7 +92,11 @@ class AdminCirclesOverview extends Component {
         this.toggleCircleEditModal({ name: '' });
       })
       .catch(errorMessages => {
-        this.props.dispatch(alertError(errorMessages.join('\n')));
+        if (Array.isArray(errorMessages)) {
+          this.props.dispatch(alertError(errorMessages.join('\n')));
+        } else {
+          this.props.dispatch(alertError('Es ist ein Fehler aufgetreten'));
+        }
       });
   }
 
