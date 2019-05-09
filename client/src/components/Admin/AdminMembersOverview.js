@@ -241,8 +241,8 @@ class AdminMembersOverview extends Component {
           </span>
         );
       } else {
-        EditButton = <div />;
-        DeleteButton = <div />;
+        EditButton = <span />;
+        DeleteButton = <span />;
       }
 
       if (
@@ -280,7 +280,7 @@ class AdminMembersOverview extends Component {
           </span>
         );
       } else {
-        RoleButton = <div />;
+        RoleButton = <span />;
       }
 
       return (

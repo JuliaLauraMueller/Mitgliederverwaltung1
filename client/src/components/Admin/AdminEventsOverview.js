@@ -399,9 +399,7 @@ class AdminEventsOverview extends Component {
     var f = event.target.files[0];
 
     if (f.size > 500000) {
-      this.props.dispatch(
-        alertError('Profilbild: Bild zu gross, maximal 500KB')
-      );
+      this.props.dispatch(alertError('Bild zu gross, maximal 500KB'));
     } else {
       let fileInB64 = await this.getBase64(f);
       let splitArr = fileInB64.split(',');
@@ -410,9 +408,7 @@ class AdminEventsOverview extends Component {
         splitArr[0] !== 'data:image/png;base64' &&
         splitArr[0] !== 'data:image/jpeg;base64'
       ) {
-        this.props.dispatch(
-          alertError('Profilbild: Dateityp muss jpg/jpeg/png sein')
-        );
+        this.props.dispatch(alertError('Dateityp muss jpg/jpeg/png sein'));
       } else {
         this.setState({
           eventToEdit: {
@@ -708,7 +704,7 @@ class AdminEventsOverview extends Component {
                       htmlFor='newsadministrator-edit'
                       className='filter-cities'
                     >
-                      Newsadministrator
+                      Neues Eventbild
                     </label>
                   </div>
                   <div className='checkbox-container event-edit-txt' key='2'>
