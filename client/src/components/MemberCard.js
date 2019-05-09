@@ -7,10 +7,8 @@ class MemberCard extends Component {
     let trimmedEmail = this.props.member.privateEmail.substring(0, 22);
     if (this.props.member.privateEmail.length > 22)
       trimmedEmail = trimmedEmail + '...';
-    console.log(this.props.member.privateEmail);
 
     let privateTelefon = this.props.member.privateTel;
-    console.log(privateTelefon);
 
     return (
       <Row className="member-card-row">
