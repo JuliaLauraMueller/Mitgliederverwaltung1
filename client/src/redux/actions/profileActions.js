@@ -62,7 +62,7 @@ export const putWholeData = data => async dispatch => {
       profileBasicData.facebookLink = user.facebookLink;
       profileBasicData.instagramLink = user.instagramLink;
 
-      dispatch({ type: PUT_PROFILE, payload: profileBasicData });
+      dispatch({ type: PUT_PROFILE, payload: profileMainData });
       companyData.company = companyData.companyName;
       delete companyData.companyName;
       dispatch({ type: PUT_PROFILE, payload: companyData });
