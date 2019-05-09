@@ -279,24 +279,8 @@ class AdminNewsArticleOverview extends Component {
   }
 
   createNewsArticleEditModal() {
-    let content = <div />;
-    if (this.props.isLoading) {
-      content = (
-        <div>
-          <div className='page-wrap-loading-screen' />
-          <img
-            src={require('../../img/LoadingIcon.gif')}
-            alt='loading-icon'
-            className='modal-loading-screen'
-          />
-        </div>
-      );
-    } else {
-      content = <div />;
-    }
     return (
       <div>
-        {content}
         <Modal
           isOpen={this.state.editModal}
           toggle={() => this.toggleNewsArticleEditModal(this.emptyNewsArticle)}

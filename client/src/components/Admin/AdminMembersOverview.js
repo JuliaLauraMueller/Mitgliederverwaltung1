@@ -57,7 +57,7 @@ class AdminMembersOverview extends Component {
 
   render() {
     let content = <div />;
-    if (this.props.isLoading) {
+    if (this.props.memberLoading) {
       content = (
         <div>
           <div className='page-wrap-loading-screen' />
@@ -440,7 +440,7 @@ class AdminMembersOverview extends Component {
 function mapStateToProps(state) {
   return {
     members: state.member.members,
-    isLoading: state.loading.isLoading
+    memberLoading: state.loading.memberLoading
   };
 }
 
