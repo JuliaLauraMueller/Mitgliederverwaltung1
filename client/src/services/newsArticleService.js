@@ -12,7 +12,7 @@ async function getNewsArticleBody() {
     .catch(err => {
       // couldn't load members
       history.push('/');
-      store.dispatch(alertError('NewsArticles konnten nicht geladen werden.'));
+      store.dispatch(alertError('News konnten nicht geladen werden.'));
     });
 }
 
