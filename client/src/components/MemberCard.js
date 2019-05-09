@@ -63,13 +63,13 @@ class MemberCard extends Component {
                   <a href={'tel:' + privateTelefon}>{privateTelefon}</a>
                 </CardTitle>
               </div>
-              <div className="profile-link">
+              <div className="profile-link-member">
                 <Link
-                  className="profile-text"
+                  className="profile-text-member"
                   to={`/member/${this.props.member._id}`}
                 >
                   <svg
-                    className="profile-arrow"
+                    className="profile-arrow-member"
                     viewBox="0 0 10 10"
                     xmlns="http://www.w3.org/2000/svg"
                   >

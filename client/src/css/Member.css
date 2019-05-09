@@ -231,34 +231,34 @@ a[href^='tel:'] {
   text-decoration: none;
 }
 
-.profile-link {
+.profile-link-member {
   margin-left: 38px;
   margin-top: -12px;
 }
 
-.profile-text {
+.profile-text-member {
   color: rgb(219, 157, 12);
   font-size: 11pt;
   margin-left: 116px;
 }
 
-.profile-text:hover {
+.profile-text-member:hover {
   color: rgb(15, 25, 41, 74%);
   text-decoration: none;
   font-size: 11pt;
   margin-left: 116px;
 }
 
-.profile-text svg {
+.profile-text-member svg {
   fill: rgb(219, 157, 12);
 }
 
-.profile-text:hover > svg {
+.profile-text-member:hover > svg {
   background-color: transparent;
   opacity: 0.5 !important;
 }
 
-.profile-arrow {
+.profile-arrow-member {
   height: 25px;
   width: 24px;
   margin-top: -0.4rem;
@@ -287,8 +287,8 @@ a[href^='tel:'] {
     max-height: 170px;
   }
 
-  .profile-arrow {
+  .profile-arrow-member {
     margin-top: -2px;
-    margin-left: 4.2em;
+    margin-left: 4.5em;
   }
 }
