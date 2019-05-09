@@ -18,18 +18,36 @@ class MemberPage extends Component {
 
   render() {
     let memberCards = (
-      <p className="no-data-found">Keine Mitglieder gefunden</p>
+      <p className='no-data-found'>Keine Mitglieder gefunden</p>
     );
     if (this.props.members && this.props.members.length > 0) {
       memberCards = this.props.members.map(member => {
         return <MemberCard key={member._id} member={member} />;
       });
     }
+    let content = <div />;
+    if (this.props.isLoading) {
+      content = (
+        <div>
+          <img
+            src={require('../img/LoadingIcon.gif')}
+            alt='loading-icon'
+            className='loading-icon'
+          />
+        </div>
+      );
+    } else {
+      content = (
+        <Row className='member-cards-row' key={memberCards}>
+          {memberCards}
+        </Row>
+      );
+    }
     return (
-      <Container className="member-page-container">
+      <Container className='member-page-container'>
         <Row>
-          <Col xs="12">
-            <h1 className="title">Mitglieder</h1>
+          <Col xs='12'>
+            <h1 className='title'>Mitglieder</h1>
             <Helmet>
               <style>
                 {'body { background-color: rgb(15, 25, 41, 10%); }'}
@@ -37,9 +55,7 @@ class MemberPage extends Component {
             </Helmet>
 
             <SearchFieldMember />
-            <Row className="member-cards-row" key={memberCards}>
-              {memberCards}
-            </Row>
+            {content}
           </Col>
         </Row>
       </Container>
@@ -49,7 +65,8 @@ class MemberPage extends Component {
 
 function mapStateToProps(state) {
   return {
-    members: state.member.filteredMembers
+    members: state.member.filteredMembers,
+    isLoading: state.loading.isLoading
   };
 }
 

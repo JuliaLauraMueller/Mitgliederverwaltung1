@@ -151,9 +151,9 @@ function validate(eventParam) {
       eventParam.imageTag !== 'data:image/png;base64' &&
       eventParam.imageTag !== 'data:image/jpeg;base64'
     ) {
-      errorMessages.push('Profilbild: Dateityp muss jpg/jpeg/png sein');
+      errorMessages.push('Dateityp muss jpg/jpeg/png sein');
     } else if (eventParam.image.toString().length > 500000) {
-      errorMessages.push('Profilbild: Bild zu gross, maximal 500KB');
+      errorMessages.push('Bild zu gross, maximal 500KB');
     }
   }
   return errorMessages;

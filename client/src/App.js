@@ -94,7 +94,7 @@ class App extends Component {
 
     const { alert } = this.props;
     return (
-      <div id="App" className={navigationClassNames} style={{ height: '100%' }}>
+      <div id='App' className={navigationClassNames} style={{ height: '100%' }}>
         <Helmet>
           <style>{'body { background-color: rgb(15, 25, 41, 10%); }'}</style>
         </Helmet>

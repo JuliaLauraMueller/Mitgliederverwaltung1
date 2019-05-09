@@ -75,17 +75,17 @@ class AdminCreateNewsArticle extends Component {
         <Form onSubmit={this.submitNewsArticle}>
           <FormGroup>
             <Row>
-              <Col xs="3">
-                <Label for="newsArticleTitle">
-                  Titel<pre className="required-field">*</pre>
+              <Col xs='3'>
+                <Label for='newsArticleTitle'>
+                  Titel<pre className='required-field'>*</pre>
                 </Label>
               </Col>
-              <Col xs="9">
+              <Col xs='9'>
                 <Input
-                  type="text"
-                  name="newsArticleTitle"
-                  id="newsArticleTitle"
-                  className="admin-form-control-create-news"
+                  type='text'
+                  name='newsArticleTitle'
+                  id='newsArticleTitle'
+                  className='admin-form-control-create-news'
                   value={this.state.newsArticleTitle}
                   onChange={this.handleChange}
                 />
@@ -94,17 +94,17 @@ class AdminCreateNewsArticle extends Component {
           </FormGroup>
           <FormGroup>
             <Row>
-              <Col xs="3">
-                <Label for="author">
-                  Autor <pre className="required-field">*</pre>
+              <Col xs='3'>
+                <Label for='author'>
+                  Autor <pre className='required-field'>*</pre>
                 </Label>
               </Col>
               <Col xs={9}>
                 <Input
-                  type="text"
-                  name="author"
-                  id="author"
-                  className="admin-form-control-create-news"
+                  type='text'
+                  name='author'
+                  id='author'
+                  className='admin-form-control-create-news'
                   value={this.state.author}
                   onChange={this.handleChange}
                 />
@@ -113,33 +113,33 @@ class AdminCreateNewsArticle extends Component {
           </FormGroup>
           <FormGroup>
             <Row>
-              <Col xs="3">
-                <Label for="article">
-                  Inhalt<pre className="required-field">*</pre>
+              <Col xs='3'>
+                <Label for='article'>
+                  Inhalt<pre className='required-field'>*</pre>
                 </Label>
               </Col>
               <Col xs={12} md={9}>
                 <TextEditor
-                  className="admin-form-control-create-news"
-                  ref="texteditor"
+                  className='admin-form-control-create-news'
+                  ref='texteditor'
                 />
               </Col>
             </Row>
           </FormGroup>
           <FormGroup>
             <Row>
-              <Col xs="3">
-                <Label for="newsArticleDate">
-                  Datum<pre className="required-field">*</pre>
+              <Col xs='3'>
+                <Label for='newsArticleDate'>
+                  Datum<pre className='required-field'>*</pre>
                 </Label>
               </Col>
               <Col xs={9}>
                 <Input
-                  type="date"
-                  name="newsArticleDate"
-                  id="newsArticleDate"
-                  className="admin-form-control-create-news"
-                  autoComplete="off"
+                  type='date'
+                  name='newsArticleDate'
+                  id='newsArticleDate'
+                  className='admin-form-control-create-news'
+                  autoComplete='off'
                   value={this.state.newsArticleDate}
                   onChange={this.handleChange}
                 />
@@ -147,16 +147,16 @@ class AdminCreateNewsArticle extends Component {
             </Row>
           </FormGroup>
           <input
-            type="button"
-            className="admin-button"
+            type='button'
+            className='admin-button'
             onClick={this.cancel}
-            value="Abbrechen"
+            value='Abbrechen'
           />
           <input
-            type="submit"
-            className="admin-button"
+            type='submit'
+            className='admin-button'
             onClick={this.submitNewsArticle}
-            value="Speichern"
+            value='Speichern'
           />
         </Form>
       </div>
@@ -165,7 +165,9 @@ class AdminCreateNewsArticle extends Component {
 }
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    isLoading: state.loading.isLoading
+  };
 }
 
 export default connect(mapStateToProps)(AdminCreateNewsArticle);
