@@ -42,6 +42,28 @@ class NewsPage extends Component {
   };
 
   render() {
+    let searchField = <div />;
+    if (window.innerWidth <= 1200 || window.innerHeight <= 740) {
+      searchField = (
+        <div
+          className={classnames('search-container', {
+            'search-container--hidden': !this.state.visible
+          })}
+        >
+          <SearchFieldNews />
+        </div>
+      );
+    } else {
+      searchField = (
+        <div
+          className={classnames('search-container-full', {
+            'search-container--hidden': !this.state.visible
+          })}
+        >
+          <SearchFieldNews />
+        </div>
+      );
+    }
     let newsCards = <p className="no-data-found">Keine News gefunden</p>;
     if (this.props.news && this.props.news.length !== 0) {
       let currentNews = this.props.news.slice(0, 30);
@@ -59,13 +81,7 @@ class NewsPage extends Component {
                 {'body { background-color: rgb(15, 25, 41, 10%); }'}
               </style>
             </Helmet>
-            <div
-              className={classnames('search-container', {
-                'search-container--hidden': !this.state.visible
-              })}
-            >
-              <SearchFieldNews />
-            </div>
+            {searchField}
 
             <Row className="member-cards-row" key={newsCards}>
               {newsCards}

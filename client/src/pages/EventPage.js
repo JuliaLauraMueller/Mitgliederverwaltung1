@@ -43,6 +43,28 @@ class EventPage extends Component {
   };
 
   render() {
+    let searchField = <div />;
+    if (window.innerWidth <= 1200 || window.innerHeight <= 740) {
+      searchField = (
+        <div
+          className={classnames('search-container', {
+            'search-container--hidden': !this.state.visible
+          })}
+        >
+          <SearchFieldEvent />
+        </div>
+      );
+    } else {
+      searchField = (
+        <div
+          className={classnames('search-container-full', {
+            'search-container--hidden': !this.state.visible
+          })}
+        >
+          <SearchFieldEvent />
+        </div>
+      );
+    }
     let eventCards = <p className="no-data-found">Keine Events gefunden</p>;
     if (this.props.events && this.props.events.length > 0) {
       eventCards = this.props.events
@@ -61,13 +83,7 @@ class EventPage extends Component {
                 {'body { background-color: rgb(15, 25, 41, 10%); }'}
               </style>
             </Helmet>
-            <div
-              className={classnames('search-container', {
-                'search-container--hidden': !this.state.visible
-              })}
-            >
-              <SearchFieldEvent />
-            </div>
+            {searchField}
 
             <Row className="member-cards-row" key={eventCards}>
               {eventCards}

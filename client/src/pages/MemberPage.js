@@ -41,6 +41,28 @@ class MemberPage extends Component {
   };
 
   render() {
+    let searchField = <div />;
+    if (window.innerWidth <= 1200 || window.innerHeight <= 740) {
+      searchField = (
+        <div
+          className={classnames('search-container', {
+            'search-container--hidden': !this.state.visible
+          })}
+        >
+          <SearchFieldMember />
+        </div>
+      );
+    } else {
+      searchField = (
+        <div
+          className={classnames('search-container-full', {
+            'search-container--hidden': !this.state.visible
+          })}
+        >
+          <SearchFieldMember />
+        </div>
+      );
+    }
     let memberCards = (
       <p className="no-data-found">Keine Mitglieder gefunden</p>
     );
@@ -59,13 +81,7 @@ class MemberPage extends Component {
                 {'body { background-color: rgb(15, 25, 41, 10%); }'}
               </style>
             </Helmet>
-            <div
-              className={classnames('search-container', {
-                'search-container--hidden': !this.state.visible
-              })}
-            >
-              <SearchFieldMember />
-            </div>
+            {searchField}
 
             <Row className="member-cards-row" key={memberCards}>
               {memberCards}
