@@ -217,8 +217,7 @@ class AdminCreateUser extends Component {
 
 function mapStateToProps(state) {
   return {
-    circles: state.circle.circles,
-    isLoading: state.loading.isLoading
+    circles: state.circle.circles
   };
 }
 

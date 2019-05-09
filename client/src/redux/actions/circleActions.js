@@ -41,8 +41,8 @@ export const deleteCircle = id => dispatch => {
   circleService.deleteCircle(id).then(res => {
     if (res) {
       dispatch({ type: CIRCLE_DELETED, payload: res });
-      dispatch({ type: DATA_CIRCLE_FETCHED });
     }
+    dispatch({ type: DATA_CIRCLE_FETCHED });
   });
 };
 

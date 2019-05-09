@@ -69,21 +69,6 @@ class AdminCreateNewsArticle extends Component {
   }
 
   render() {
-    let loadingIcon = <div />;
-    if (this.props.isLoading) {
-      loadingIcon = (
-        <div>
-          <div className='page-wrap-loading-screen' />
-          <img
-            src={require('../../img/LoadingIcon.gif')}
-            alt='loading-icon'
-            className='modal-loading-screen'
-          />
-        </div>
-      );
-    } else {
-      loadingIcon = <div />;
-    }
     return (
       <div>
         <h4>Neuer News-Beitrag</h4>
