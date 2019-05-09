@@ -27,11 +27,12 @@ export const fetchNewsArticle = id => dispatch => {
     .then(res => {
       if (res) {
         dispatch({ type: NEWS_ARTICLE_FETCHED, payload: res.newsArticle });
-        dispatch({ type: DATA_FETCHED });
       }
+      dispatch({ type: DATA_FETCHED });
     })
     .catch(err => {
       // couldn't load news article
+      dispatch({ type: DATA_FETCHED });
       history.push('/');
       store.dispatch(alertError('NewsArticle konnte nicht geladen werden.'));
     });
@@ -42,8 +43,8 @@ export const fetchNewsArticles = () => dispatch => {
   newsArticleService.getNewsArticleBody().then(res => {
     if (res) {
       dispatch({ type: NEWS_ARTICLES_FETCHED, payload: res.newsArticles });
-      dispatch({ type: DATA_FETCHED });
     }
+    dispatch({ type: DATA_FETCHED });
   });
 };
 
@@ -56,27 +57,33 @@ export const deleteNewsArticle = id => dispatch => {
 };
 
 export const createNewsArticle = newsArticleData => async dispatch => {
+  dispatch({ type: DATA_FETCHING });
   return await newsArticleService
     .createNewsArticle(newsArticleData)
     .then(res => {
       if (res && res.data.created) {
         dispatch({ type: CREATE_NEWS_ARTICLE, payload: res.data.created });
       }
+      dispatch({ type: DATA_FETCHED });
     })
     .catch(errorMessage => {
+      dispatch({ type: DATA_FETCHED });
       return Promise.reject(errorMessage);
     });
 };
 
 export const putNewsArticle = newsArticleData => async dispatch => {
+  dispatch({ type: DATA_FETCHING });
   return newsArticleService
     .setNewsArticleData(newsArticleData)
     .then(res => {
       if (res) {
         dispatch({ type: PUT_NEWS_ARTICLE, payload: newsArticleData });
       }
+      dispatch({ type: DATA_FETCHED });
     })
     .catch(errorMessage => {
+      dispatch({ type: DATA_FETCHED });
       return Promise.reject(errorMessage);
     });
 };

@@ -24,11 +24,12 @@ export const fetchProfile = id => dispatch => {
     .then(res => {
       if (res) {
         dispatch({ type: PROFILE_COMP_FETCHED, payload: res.member });
-        dispatch({ type: DATA_FETCHED });
       }
+      dispatch({ type: DATA_FETCHED });
     })
     .catch(err => {
       // couldn't load member
+      dispatch({ type: DATA_FETCHED });
       history.push('/');
       store.dispatch(alertError('Profil konnte nicht geladen werden.'));
     });
@@ -83,6 +84,7 @@ export const putWholeData = data => async dispatch => {
       }
     })
     .catch(error => {
+      dispatch({ type: DATA_FETCHED });
       return Promise.reject(error);
     });
 };

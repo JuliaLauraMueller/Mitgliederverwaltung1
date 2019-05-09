@@ -28,11 +28,12 @@ export const fetchEvent = id => dispatch => {
     .then(res => {
       if (res) {
         dispatch({ type: EVENT_FETCHED, payload: res.event });
-        dispatch({ type: DATA_FETCHED });
       }
+      dispatch({ type: DATA_FETCHED });
     })
     .catch(err => {
       // couldn't load member
+      dispatch({ type: DATA_FETCHED });
       history.push('/');
       store.dispatch(alertError('Event konnte nicht geladen werden.'));
     });
@@ -43,8 +44,8 @@ export const fetchEvents = () => dispatch => {
   eventService.getEventBody().then(res => {
     if (res) {
       dispatch({ type: EVENTS_FETCHED, payload: res.events });
-      dispatch({ type: DATA_FETCHED });
     }
+    dispatch({ type: DATA_FETCHED });
   });
 };
 
@@ -57,27 +58,33 @@ export const deleteEvent = id => dispatch => {
 };
 
 export const createEvent = eventData => async dispatch => {
+  dispatch({ type: DATA_FETCHING });
   return await eventService
     .createEvent(eventData)
     .then(res => {
       if (res && res.data.created) {
         dispatch({ type: CREATE_EVENT, payload: res.data.created });
       }
+      dispatch({ type: DATA_FETCHED });
     })
     .catch(errorMessage => {
+      dispatch({ type: DATA_FETCHED });
       return Promise.reject(errorMessage);
     });
 };
 
 export const putEvent = eventData => async dispatch => {
+  dispatch({ type: DATA_FETCHING });
   return eventService
     .setEventData(eventData)
     .then(res => {
       if (res) {
         dispatch({ type: PUT_EVENT, payload: eventData });
       }
+      dispatch({ type: DATA_FETCHED });
     })
     .catch(errorMessage => {
+      dispatch({ type: DATA_FETCHED });
       return Promise.reject(errorMessage);
     });
 };

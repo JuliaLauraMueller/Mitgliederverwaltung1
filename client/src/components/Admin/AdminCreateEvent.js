@@ -170,8 +170,25 @@ class AdminCreateEvent extends Component {
       );
     });
 
+    let content = <div />;
+    if (this.props.isLoading) {
+      content = (
+        <div>
+          <div className='page-wrap-loading-screen' />
+          <img
+            src={require('../../img/LoadingIcon.gif')}
+            alt='loading-icon'
+            className='modal-loading-screen'
+          />
+        </div>
+      );
+    } else {
+      content = <div />;
+    }
+
     return (
       <div>
+        {content}
         <h4>Neuer Event</h4>
         <Form onSubmit={this.submitEvent}>
           <FormGroup>
@@ -488,7 +505,8 @@ class AdminCreateEvent extends Component {
 
 function mapStateToProps(state) {
   return {
-    circles: state.circle.circles
+    circles: state.circle.circles,
+    isLoading: state.loading.isLoading
   };
 }
 

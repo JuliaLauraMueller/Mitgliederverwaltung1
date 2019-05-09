@@ -24,8 +24,8 @@ export const fetchMembers = () => dispatch => {
   memberService.getUserBody().then(res => {
     if (res) {
       dispatch({ type: MEMBERS_FETCHED, payload: res.members });
-      dispatch({ type: DATA_FETCHED });
     }
+    dispatch({ type: DATA_FETCHED });
   });
 };
 
@@ -38,27 +38,33 @@ export const deleteMember = id => dispatch => {
 };
 
 export const createMember = memberData => async dispatch => {
+  dispatch({ type: DATA_FETCHING });
   return await memberService
     .createMember(memberData)
     .then(res => {
       if (res && res.data.created) {
         dispatch({ type: CREATE_MEMBER, payload: res.data.created });
       }
+      dispatch({ type: DATA_FETCHED });
     })
     .catch(errorMessage => {
+      dispatch({ type: DATA_FETCHED });
       return Promise.reject(errorMessage);
     });
 };
 
 export const changeRole = memberData => async dispatch => {
+  dispatch({ type: DATA_FETCHING });
   return await memberService
     .changeRole(memberData)
     .then(res => {
       if (res) {
         dispatch({ type: ROLE_CHANGE, payload: memberData });
       }
+      dispatch({ type: DATA_FETCHED });
     })
     .catch(errorMessage => {
+      dispatch({ type: DATA_FETCHED });
       return Promise.reject(errorMessage);
     });
 };

@@ -469,308 +469,341 @@ class AdminEventsOverview extends Component {
   }
 
   createEventEditModal() {
+    let content = <div />;
+    if (this.props.isLoading) {
+      console.log('hello it entered is loading if');
+      content = (
+        <div>
+          <div className='page-wrap-loading-screen' />
+          <img
+            src={require('../../img/LoadingIcon.gif')}
+            alt='loading-icon'
+            className='modal-loading-screen'
+          />
+        </div>
+      );
+    } else {
+      content = <div />;
+    }
     return (
-      <Modal
-        isOpen={this.state.editModal}
-        toggle={() => this.toggleEventEditModal(this.emptyEvent)}
-      >
-        <ModalHeader toggle={() => this.toggleEventEditModal(this.emptyEvent)}>
-          Event editieren
-        </ModalHeader>
-        <Form onSubmit={this.onEventSave}>
-          <ModalBody>
-            <FormGroup row>
-              <Col>
-                <Label for='image'>Eventbild:</Label>
-              </Col>
-              <Col>
-                <img
-                  id='modalImage'
-                  src={
-                    this.state.eventToEdit.image !== ''
-                      ? this.state.eventToEdit.imageTag +
-                        ',' +
-                        this.state.eventToEdit.image
-                      : require('../../img/event_default_image.png')
-                  }
-                  alt=''
-                  style={{ width: '90%', height: 'auto' }}
-                  className='event-edit-image'
-                />
-                <input
-                  type='file'
-                  id='eventPictureUpload-Edit'
-                  onChange={this.handleFileSelection}
-                  className='hidden'
-                  accept='.jpg,.jpeg,.png'
-                />
-                <label
-                  htmlFor='eventPictureUpload-Edit'
-                  className='event-edit-picture-input'
-                >
-                  Neues Eventbild
-                </label>
-              </Col>
-              <Col>
-                <Label className='event-edit-label'>
-                  Titel<pre className='required-field'>*</pre>
-                </Label>
-                <Input
-                  type='text'
-                  id='title'
-                  name='title'
-                  onChange={this.handleChange}
-                  value={this.state.eventToEdit.title}
-                  className='event-edit-txt'
-                />
-              </Col>
-              <Col>
-                <Label>Beschreibung</Label>
-                <Input
-                  type='textarea'
-                  id='description'
-                  name='description'
-                  className='event-edit-txt admin-form-control description-area'
-                  onChange={this.handleChange}
-                  value={this.state.eventToEdit.description}
-                />
-              </Col>
-              <Row>
+      <div>
+        {content}
+        <Modal
+          isOpen={this.state.editModal}
+          toggle={() => this.toggleEventEditModal(this.emptyEvent)}
+        >
+          <ModalHeader
+            toggle={() => this.toggleEventEditModal(this.emptyEvent)}
+          >
+            Event editieren
+          </ModalHeader>
+          <Form onSubmit={this.onEventSave}>
+            <ModalBody>
+              <FormGroup row>
                 <Col>
-                  <Label xs='3' md='6'>
-                    Verwaltende Cities<pre className='required-field'>*</pre>
+                  <Label for='image'>Eventbild:</Label>
+                </Col>
+                <Col>
+                  <img
+                    id='modalImage'
+                    src={
+                      this.state.eventToEdit.image !== ''
+                        ? this.state.eventToEdit.imageTag +
+                          ',' +
+                          this.state.eventToEdit.image
+                        : require('../../img/event_default_image.png')
+                    }
+                    alt=''
+                    style={{ width: '90%', height: 'auto' }}
+                    className='event-edit-image'
+                  />
+                  <input
+                    type='file'
+                    id='eventPictureUpload-Edit'
+                    onChange={this.handleFileSelection}
+                    className='hidden'
+                    accept='.jpg,.jpeg,.png'
+                  />
+                  <label
+                    htmlFor='eventPictureUpload-Edit'
+                    className='event-edit-picture-input'
+                  >
+                    Neues Eventbild
+                  </label>
+                </Col>
+                <Col>
+                  <Label className='event-edit-label'>
+                    Titel<pre className='required-field'>*</pre>
                   </Label>
-                  <div className='event-edit-txt-btn'>
-                    <ButtonDropdown
-                      isOpen={this.state.circlesDropdownOpen}
-                      toggle={this.toggle}
-                    >
-                      <DropdownToggle
-                        caret
-                        className='filter-button-edit'
-                        color={'rgb(15, 25, 41, 40%)'}
-                      />
+                  <Input
+                    type='text'
+                    id='title'
+                    name='title'
+                    onChange={this.handleChange}
+                    value={this.state.eventToEdit.title}
+                    className='event-edit-txt'
+                  />
+                </Col>
+                <Col>
+                  <Label>Beschreibung</Label>
+                  <Input
+                    type='textarea'
+                    id='description'
+                    name='description'
+                    className='event-edit-txt admin-form-control description-area'
+                    onChange={this.handleChange}
+                    value={this.state.eventToEdit.description}
+                  />
+                </Col>
+                <Row>
+                  <Col>
+                    <Label xs='3' md='6'>
+                      Verwaltende Cities<pre className='required-field'>*</pre>
+                    </Label>
+                    <div className='event-edit-txt-btn'>
+                      <ButtonDropdown
+                        isOpen={this.state.circlesDropdownOpen}
+                        toggle={this.toggle}
+                      >
+                        <DropdownToggle
+                          caret
+                          className='filter-button-edit'
+                          color={'rgb(15, 25, 41, 40%)'}
+                        />
 
-                      <DropdownMenu>
-                        <DropdownItem header>Cities wählen</DropdownItem>
-                        {this.props.circles.map(circle => {
-                          return (
-                            <div
-                              className='checkbox-container'
-                              key={circle._id}
-                            >
-                              <input
-                                type='checkbox'
-                                id={circle._id + '-edit'}
-                                value={circle._id}
-                                defaultChecked={this.state.eventToEdit.circles.includes(
-                                  circle._id
-                                )}
-                                onChange={this.handleCircleSelectionEdit}
-                              />
-                              <label
-                                htmlFor={circle._id + '-edit'}
-                                className='filter-cities'
+                        <DropdownMenu>
+                          <DropdownItem header>Cities wählen</DropdownItem>
+                          {this.props.circles.map(circle => {
+                            return (
+                              <div
+                                className='checkbox-container'
+                                key={circle._id}
                               >
-                                {circle.name}
-                              </label>
-                            </div>
-                          );
-                        })}
-                      </DropdownMenu>
-                    </ButtonDropdown>
+                                <input
+                                  type='checkbox'
+                                  id={circle._id + '-edit'}
+                                  value={circle._id}
+                                  defaultChecked={this.state.eventToEdit.circles.includes(
+                                    circle._id
+                                  )}
+                                  onChange={this.handleCircleSelectionEdit}
+                                />
+                                <label
+                                  htmlFor={circle._id + '-edit'}
+                                  className='filter-cities'
+                                >
+                                  {circle.name}
+                                </label>
+                              </div>
+                            );
+                          })}
+                        </DropdownMenu>
+                      </ButtonDropdown>
+                    </div>
+                  </Col>
+                </Row>
+                <Col>
+                  <Label>
+                    Datum<pre className='required-field'>*</pre>
+                  </Label>
+                  <Input
+                    type='date'
+                    id='date'
+                    name='date'
+                    className='event-edit-txt'
+                    onChange={this.handleChange}
+                    value={this.state.eventToEdit.date}
+                  />
+                </Col>
+                <Col>
+                  <Label>
+                    Beginn<pre className='required-field'>*</pre>
+                  </Label>
+                  <Input
+                    type='text'
+                    id='startTime'
+                    name='startTime'
+                    className='event-edit-txt'
+                    onChange={this.handleChange}
+                    value={this.state.eventToEdit.startTime}
+                  />
+                </Col>
+                <Col>
+                  <Label>Ende</Label>
+                  <Input
+                    type='text'
+                    id='endTime'
+                    name='endTime'
+                    className='event-edit-txt'
+                    onChange={this.handleChange}
+                    value={this.state.eventToEdit.endTime}
+                  />
+                </Col>
+                <Col>
+                  <Label>
+                    Ort<pre className='required-field'>*</pre>
+                  </Label>
+                  <Input
+                    type='text'
+                    id='location'
+                    name='location'
+                    className='event-edit-txt'
+                    onChange={this.handleChange}
+                    value={this.state.eventToEdit.location}
+                  />
+                </Col>
+                <Col>
+                  <Label>Organisation</Label>
+                  <Input
+                    type='text'
+                    id='organisationTeam'
+                    name='organisationTeam'
+                    className='event-edit-txt'
+                    onChange={this.handleChange}
+                    value={this.state.eventToEdit.organisationTeam}
+                  />
+                </Col>
+                <Col>
+                  <Label>
+                    Anmeldefrist<pre className='required-field'>*</pre>
+                  </Label>
+                  <Input
+                    type='date'
+                    id='registrationEndDate'
+                    name='registrationEndDate'
+                    className='event-edit-txt'
+                    onChange={this.handleChange}
+                    value={this.state.eventToEdit.registrationEndDate}
+                  />
+                </Col>
+                <Col>
+                  <Label>
+                    Rollen<pre className='required-field'>*</pre>
+                  </Label>
+                  <div className='checkbox-container event-edit-txt' key='0'>
+                    <input
+                      type='checkbox'
+                      id='mitglied-edit'
+                      value='0'
+                      checked={this.state.eventToEdit.permittedRoles.includes(
+                        0
+                      )}
+                      onChange={this.handleRoleSelectionEdit.bind(this)}
+                    />
+                    <label htmlFor='mitglied-edit' className='filter-cities'>
+                      Mitglied
+                    </label>
+                  </div>
+                  <div className='checkbox-container event-edit-txt' key='1'>
+                    <input
+                      type='checkbox'
+                      id='newsadministrator-edit'
+                      value='1'
+                      checked={this.state.eventToEdit.permittedRoles.includes(
+                        1
+                      )}
+                      onChange={this.handleRoleSelectionEdit}
+                    />
+                    <label
+                      htmlFor='newsadministrator-edit'
+                      className='filter-cities'
+                    >
+                      Newsadministrator
+                    </label>
+                  </div>
+                  <div className='checkbox-container event-edit-txt' key='2'>
+                    <input
+                      type='checkbox'
+                      id='eventadministrator-edit'
+                      value='2'
+                      checked={this.state.eventToEdit.permittedRoles.includes(
+                        2
+                      )}
+                      onChange={this.handleRoleSelectionEdit}
+                    />
+                    <label
+                      htmlFor='eventadministrator-edit'
+                      className='filter-cities'
+                    >
+                      Eventadministrator
+                    </label>
+                  </div>
+                  <div className='checkbox-container event-edit-txt' key='3'>
+                    <input
+                      type='checkbox'
+                      id='personaladministrator-edit'
+                      value='3'
+                      checked={this.state.eventToEdit.permittedRoles.includes(
+                        3
+                      )}
+                      onChange={this.handleRoleSelectionEdit}
+                    />
+                    <label
+                      htmlFor='personaladministrator-edit'
+                      className='filter-cities'
+                    >
+                      Personaladministrator
+                    </label>
+                  </div>
+                  <div className='checkbox-container event-edit-txt' key='4'>
+                    <input
+                      type='checkbox'
+                      id='cityadministrator-edit'
+                      value='4'
+                      checked={this.state.eventToEdit.permittedRoles.includes(
+                        4
+                      )}
+                      onChange={this.handleRoleSelectionEdit}
+                    />
+                    <label
+                      htmlFor='cityadministrator-edit'
+                      className='filter-cities'
+                    >
+                      Cityadministrator
+                    </label>
+                  </div>
+                  <div className='checkbox-container event-edit-txt' key={5}>
+                    <input
+                      type='checkbox'
+                      id='federationsadministrator-edit'
+                      value='5'
+                      checked={this.state.eventToEdit.permittedRoles.includes(
+                        5
+                      )}
+                      onChange={this.handleRoleSelectionEdit}
+                    />
+                    <label
+                      htmlFor='federationsadministrator-edit'
+                      className='filter-cities'
+                    >
+                      Federationsadministrator
+                    </label>
                   </div>
                 </Col>
-              </Row>
-              <Col>
-                <Label>
-                  Datum<pre className='required-field'>*</pre>
-                </Label>
-                <Input
-                  type='date'
-                  id='date'
-                  name='date'
-                  className='event-edit-txt'
-                  onChange={this.handleChange}
-                  value={this.state.eventToEdit.date}
-                />
-              </Col>
-              <Col>
-                <Label>
-                  Beginn<pre className='required-field'>*</pre>
-                </Label>
-                <Input
-                  type='text'
-                  id='startTime'
-                  name='startTime'
-                  className='event-edit-txt'
-                  onChange={this.handleChange}
-                  value={this.state.eventToEdit.startTime}
-                />
-              </Col>
-              <Col>
-                <Label>Ende</Label>
-                <Input
-                  type='text'
-                  id='endTime'
-                  name='endTime'
-                  className='event-edit-txt'
-                  onChange={this.handleChange}
-                  value={this.state.eventToEdit.endTime}
-                />
-              </Col>
-              <Col>
-                <Label>
-                  Ort<pre className='required-field'>*</pre>
-                </Label>
-                <Input
-                  type='text'
-                  id='location'
-                  name='location'
-                  className='event-edit-txt'
-                  onChange={this.handleChange}
-                  value={this.state.eventToEdit.location}
-                />
-              </Col>
-              <Col>
-                <Label>Organisation</Label>
-                <Input
-                  type='text'
-                  id='organisationTeam'
-                  name='organisationTeam'
-                  className='event-edit-txt'
-                  onChange={this.handleChange}
-                  value={this.state.eventToEdit.organisationTeam}
-                />
-              </Col>
-              <Col>
-                <Label>
-                  Anmeldefrist<pre className='required-field'>*</pre>
-                </Label>
-                <Input
-                  type='date'
-                  id='registrationEndDate'
-                  name='registrationEndDate'
-                  className='event-edit-txt'
-                  onChange={this.handleChange}
-                  value={this.state.eventToEdit.registrationEndDate}
-                />
-              </Col>
-              <Col>
-                <Label>
-                  Rollen<pre className='required-field'>*</pre>
-                </Label>
-                <div className='checkbox-container event-edit-txt' key='0'>
-                  <input
-                    type='checkbox'
-                    id='mitglied-edit'
-                    value='0'
-                    checked={this.state.eventToEdit.permittedRoles.includes(0)}
-                    onChange={this.handleRoleSelectionEdit.bind(this)}
-                  />
-                  <label htmlFor='mitglied-edit' className='filter-cities'>
-                    Mitglied
-                  </label>
-                </div>
-                <div className='checkbox-container event-edit-txt' key='1'>
-                  <input
-                    type='checkbox'
-                    id='newsadministrator-edit'
-                    value='1'
-                    checked={this.state.eventToEdit.permittedRoles.includes(1)}
-                    onChange={this.handleRoleSelectionEdit}
-                  />
-                  <label
-                    htmlFor='newsadministrator-edit'
-                    className='filter-cities'
-                  >
-                    Newsadministrator
-                  </label>
-                </div>
-                <div className='checkbox-container event-edit-txt' key='2'>
-                  <input
-                    type='checkbox'
-                    id='eventadministrator-edit'
-                    value='2'
-                    checked={this.state.eventToEdit.permittedRoles.includes(2)}
-                    onChange={this.handleRoleSelectionEdit}
-                  />
-                  <label
-                    htmlFor='eventadministrator-edit'
-                    className='filter-cities'
-                  >
-                    Eventadministrator
-                  </label>
-                </div>
-                <div className='checkbox-container event-edit-txt' key='3'>
-                  <input
-                    type='checkbox'
-                    id='personaladministrator-edit'
-                    value='3'
-                    checked={this.state.eventToEdit.permittedRoles.includes(3)}
-                    onChange={this.handleRoleSelectionEdit}
-                  />
-                  <label
-                    htmlFor='personaladministrator-edit'
-                    className='filter-cities'
-                  >
-                    Personaladministrator
-                  </label>
-                </div>
-                <div className='checkbox-container event-edit-txt' key='4'>
-                  <input
-                    type='checkbox'
-                    id='cityadministrator-edit'
-                    value='4'
-                    checked={this.state.eventToEdit.permittedRoles.includes(4)}
-                    onChange={this.handleRoleSelectionEdit}
-                  />
-                  <label
-                    htmlFor='cityadministrator-edit'
-                    className='filter-cities'
-                  >
-                    Cityadministrator
-                  </label>
-                </div>
-                <div className='checkbox-container event-edit-txt' key={5}>
-                  <input
-                    type='checkbox'
-                    id='federationsadministrator-edit'
-                    value='5'
-                    checked={this.state.eventToEdit.permittedRoles.includes(5)}
-                    onChange={this.handleRoleSelectionEdit}
-                  />
-                  <label
-                    htmlFor='federationsadministrator-edit'
-                    className='filter-cities'
-                  >
-                    Federationsadministrator
-                  </label>
-                </div>
-              </Col>
-            </FormGroup>
-          </ModalBody>
-          <ModalFooter>
-            <input
-              type='submit'
-              className='admin-button'
-              color='primary'
-              onClick={this.onEventSave}
-              value='Speichern'
-            />
+              </FormGroup>
+            </ModalBody>
+            <ModalFooter>
+              <input
+                type='submit'
+                className='admin-button'
+                color='primary'
+                onClick={this.onEventSave}
+                value='Speichern'
+              />
 
-            <input
-              type='button'
-              className='admin-button'
-              color='secondary'
-              onClick={() => {
-                this.toggleEventEditModal(this.emptyEvent);
-              }}
-              value='Abbrechen'
-            />
-          </ModalFooter>
-        </Form>
-      </Modal>
+              <input
+                type='button'
+                className='admin-button'
+                color='secondary'
+                onClick={() => {
+                  this.toggleEventEditModal(this.emptyEvent);
+                }}
+                value='Abbrechen'
+              />
+            </ModalFooter>
+          </Form>
+        </Modal>
+      </div>
     );
   }
 }
@@ -778,7 +811,8 @@ class AdminEventsOverview extends Component {
 function mapStateToProps(state) {
   return {
     events: state.event.events,
-    circles: state.circle.circles
+    circles: state.circle.circles,
+    isLoading: state.loading.isLoading
   };
 }
 
