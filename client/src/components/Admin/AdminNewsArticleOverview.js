@@ -264,7 +264,11 @@ class AdminNewsArticleOverview extends Component {
         this.toggleNewsArticleEditModal(this.emptyNewsArticle);
       })
       .catch(errorMessages => {
-        this.props.dispatch(alertError(errorMessages.join('\n')));
+        if (Array.isArray(errorMessages)) {
+          this.props.dispatch(alertError(errorMessages.join('\n')));
+        } else {
+          this.props.dispatch(alertError('Es ist ein Fehler aufgetreten'));
+        }
       });
   }
 
@@ -279,8 +283,24 @@ class AdminNewsArticleOverview extends Component {
   }
 
   createNewsArticleEditModal() {
+    let loadingIcon = <div />;
+    if (this.props.isLoading) {
+      loadingIcon = (
+        <div>
+          <div className='page-wrap-loading-screen' />
+          <img
+            src={require('../../img/LoadingIcon.gif')}
+            alt='loading-icon'
+            className='modal-loading-screen'
+          />
+        </div>
+      );
+    } else {
+      loadingIcon = <div />;
+    }
     return (
       <div>
+        {loadingIcon}
         <Modal
           isOpen={this.state.editModal}
           toggle={() => this.toggleNewsArticleEditModal(this.emptyNewsArticle)}

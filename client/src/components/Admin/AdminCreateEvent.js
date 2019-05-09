@@ -112,7 +112,11 @@ class AdminCreateEvent extends Component {
         this.props.dispatch(fetchEvents());
       })
       .catch(errorMessages => {
-        this.props.dispatch(alertError(errorMessages.join('\n')));
+        if (Array.isArray(errorMessages)) {
+          this.props.dispatch(alertError(errorMessages.join('\n')));
+        } else {
+          this.props.dispatch(alertError('Es ist ein Fehler aufgetreten'));
+        }
       });
   }
 
@@ -166,26 +170,8 @@ class AdminCreateEvent extends Component {
         </div>
       );
     });
-
-    let content = <div />;
-    if (this.props.isLoading) {
-      content = (
-        <div>
-          <div className='page-wrap-loading-screen' />
-          <img
-            src={require('../../img/LoadingIcon.gif')}
-            alt='loading-icon'
-            className='modal-loading-screen'
-          />
-        </div>
-      );
-    } else {
-      content = <div />;
-    }
-
     return (
       <div>
-        {content}
         <h4>Neuer Event</h4>
         <Form onSubmit={this.submitEvent}>
           <FormGroup>
@@ -204,23 +190,25 @@ class AdminCreateEvent extends Component {
                   style={{ width: '90%', height: 'auto' }}
                   alt=''
                 />
-                <Col>
-                  <input
-                    type='file'
-                    id='pictureUpload'
-                    onChange={this.handleFileSelection}
-                    className='hidden'
-                    accept='.jpg,.jpeg,.png'
-                  />
+                <input
+                  type='file'
+                  id='pictureUpload'
+                  onChange={this.handleFileSelection}
+                  className='hidden'
+                  accept='.jpg,.jpeg,.png'
+                />
+                <div className='admin-form-control form-control'>
                   <label
                     htmlFor='pictureUpload'
                     className='picture-button-create'
                   >
                     Neues Eventbild
                   </label>
-                </Col>
+                </div>
               </Col>
             </Row>
+          </FormGroup>
+          <FormGroup>
             <Row>
               <Col xs='3'>
                 <Label for='title'>

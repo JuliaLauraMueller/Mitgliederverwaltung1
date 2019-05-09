@@ -4,27 +4,37 @@ import { Link } from 'react-router-dom';
 
 class MemberCard extends Component {
   render() {
+    let trimmedEmail = this.props.member.privateEmail.substring(0, 22);
+    if (this.props.member.privateEmail.length > 22)
+      trimmedEmail = trimmedEmail + '...';
+
+    let privateTelefon = this.props.member.privateTel;
+
     return (
       <Row className="member-card-row">
         <Col className="member-card-col">
           <Card className="member-card" style={{ border: '1px solid white' }}>
             <CardBody>
               <div>
-                <img
-                  className="card-image"
-                  src={
-                    this.props.member.avatar
-                      ? this.props.member.avatarTag +
-                        ',' +
-                        this.props.member.avatar
-                      : require('../img/Profile_Placeholder.png')
-                  }
-                  alt="Card i cap"
-                />
+                <Link to={`/member/${this.props.member._id}`}>
+                  <img
+                    className="card-image"
+                    src={
+                      this.props.member.avatar
+                        ? this.props.member.avatarTag +
+                          ',' +
+                          this.props.member.avatar
+                        : require('../img/Profile_Placeholder.png')
+                    }
+                    alt="Card i cap"
+                  />
+                </Link>
 
                 <CardTitle className="card-name">
-                  {this.props.member.firstname} <br />
-                  {this.props.member.surname}
+                  <Link to={`/member/${this.props.member._id}`}>
+                    {this.props.member.firstname} <br />
+                    {this.props.member.surname}
+                  </Link>
                 </CardTitle>
               </div>
               <div>
@@ -36,7 +46,9 @@ class MemberCard extends Component {
               </div>
               <div>
                 <CardText className="card-text-mail">
-                  {this.props.member.privateEmail}
+                  <a href={'mailto:' + this.props.member.privateEmail}>
+                    {trimmedEmail}
+                  </a>
                 </CardText>
               </div>
               <div>
@@ -48,7 +60,7 @@ class MemberCard extends Component {
               </div>
               <div>
                 <CardTitle className="card-text-phone">
-                  {this.props.member.privateTel}
+                  <a href={'tel:' + privateTelefon}>{privateTelefon}</a>
                 </CardTitle>
               </div>
               <div className="profile-link">

@@ -264,7 +264,11 @@ class AdminEventsOverview extends Component {
         this.toggleEventEditModal(this.emptyEvent);
       })
       .catch(errorMessages => {
-        this.props.dispatch(alertError(errorMessages.join('\n')));
+        if (Array.isArray(errorMessages)) {
+          this.props.dispatch(alertError(errorMessages.join('\n')));
+        } else {
+          this.props.dispatch(alertError('Es ist ein Fehler aufgetreten'));
+        }
       });
   }
 
@@ -466,9 +470,9 @@ class AdminEventsOverview extends Component {
   }
 
   createEventEditModal() {
-    let content = <div />;
-    if (this.props.isLoading) {
-      content = (
+    let loadingIcon = <div />;
+    if (this.props.eventLoading) {
+      loadingIcon = (
         <div>
           <div className='page-wrap-loading-screen' />
           <img
@@ -479,11 +483,11 @@ class AdminEventsOverview extends Component {
         </div>
       );
     } else {
-      content = <div />;
+      loadingIcon = <div />;
     }
     return (
       <div>
-        {content}
+        {loadingIcon}
         <Modal
           isOpen={this.state.editModal}
           toggle={() => this.toggleEventEditModal(this.emptyEvent)}
@@ -808,7 +812,7 @@ function mapStateToProps(state) {
   return {
     events: state.event.events,
     circles: state.circle.circles,
-    isLoading: state.loading.isLoading
+    eventLoading: state.loading.eventLoading
   };
 }
 

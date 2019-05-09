@@ -54,7 +54,11 @@ class AdminCreateUser extends Component {
         this.props.dispatch(fetchMembers());
       })
       .catch(errorMessages => {
-        this.props.dispatch(alertError(errorMessages.join('\n')));
+        if (Array.isArray(errorMessages)) {
+          this.props.dispatch(alertError(errorMessages.join('\n')));
+        } else {
+          this.props.dispatch(alertError('Es ist ein Fehler aufgetreten'));
+        }
       });
   }
 
@@ -106,7 +110,10 @@ class AdminCreateUser extends Component {
             <Row>
               <Col xs='3'>
                 <Label for='privateEmail'>
-                  E-Mail<pre className='required-field'>*</pre>
+                  <pre className='pre-mail'>
+                    E-Mail
+                    <pre className='required-field'>*</pre>
+                  </pre>
                 </Label>
               </Col>
               <Col xs={9}>

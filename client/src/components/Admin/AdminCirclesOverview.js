@@ -92,7 +92,11 @@ class AdminCirclesOverview extends Component {
         this.toggleCircleEditModal({ name: '' });
       })
       .catch(errorMessages => {
-        this.props.dispatch(alertError(errorMessages.join('\n')));
+        if (Array.isArray(errorMessages)) {
+          this.props.dispatch(alertError(errorMessages.join('\n')));
+        } else {
+          this.props.dispatch(alertError('Es ist ein Fehler aufgetreten'));
+        }
       });
   }
 
@@ -207,9 +211,9 @@ class AdminCirclesOverview extends Component {
   }
 
   createCircleEditModal() {
-    let content = <div />;
+    let loadingIcon = <div />;
     if (this.props.isLoading) {
-      content = (
+      loadingIcon = (
         <div>
           <div className='page-wrap-loading-screen' />
           <img
@@ -220,11 +224,11 @@ class AdminCirclesOverview extends Component {
         </div>
       );
     } else {
-      content = <div />;
+      loadingIcon = <div />;
     }
     return (
       <div>
-        {content}
+        {loadingIcon}
         <Modal
           isOpen={this.state.editModal}
           toggle={() => this.toggleCircleEditModal({ name: '' })}

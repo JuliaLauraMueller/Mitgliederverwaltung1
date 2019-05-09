@@ -56,9 +56,9 @@ class AdminMembersOverview extends Component {
   }
 
   render() {
-    let content = <div />;
+    let loadingIcon = <div />;
     if (this.props.memberLoading) {
-      content = (
+      loadingIcon = (
         <div>
           <div className='page-wrap-loading-screen' />
           <img
@@ -69,14 +69,14 @@ class AdminMembersOverview extends Component {
         </div>
       );
     } else {
-      content = <div />;
+      loadingIcon = <div />;
     }
     return (
       <div>
         {this.createMemberDeleteModal()}
         {this.createRoleChangeModal()}
         <Row>
-          {content}
+          {loadingIcon}
           <Col sm='12'>
             <Row className='top-area'>
               <Col sm='12'>

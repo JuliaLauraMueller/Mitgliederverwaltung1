@@ -41,14 +41,18 @@ class AdminCreateCircle extends Component {
         this.props.close();
       })
       .catch(errorMessages => {
-        this.props.dispatch(alertError(errorMessages.join('\n')));
+        if (Array.isArray(errorMessages)) {
+          this.props.dispatch(alertError(errorMessages.join('\n')));
+        } else {
+          this.props.dispatch(alertError('Es ist ein Fehler aufgetreten'));
+        }
       });
   }
 
   render() {
-    let content = <div />;
+    let loadingIcon = <div />;
     if (this.props.isLoading) {
-      content = (
+      loadingIcon = (
         <div>
           <div className='page-wrap-loading-screen' />
           <img
@@ -59,11 +63,11 @@ class AdminCreateCircle extends Component {
         </div>
       );
     } else {
-      content = <div />;
+      loadingIcon = <div />;
     }
     return (
       <div>
-        {content}
+        {loadingIcon}
         <h4>Neue City</h4>
         <Form onSubmit={this.createCircle}>
           <FormGroup>
