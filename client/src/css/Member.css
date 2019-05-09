@@ -83,8 +83,14 @@
   width: 76%;
 }
 
-.testerSearch {
+.tester-Search {
   justify-content: center;
+  background-color: rgb(15, 25, 41, 0%);
+  color: rgb(15, 25, 41, 0%);
+}
+
+.fixed-tester-Search {
+  position: fixed;
 }
 
 hr {
@@ -100,6 +106,14 @@ hr {
 .search-field {
   display: flex;
   justify-content: center;
+}
+
+.drop-down-filter {
+}
+
+.dropdown-menu.show {
+  position: absolute;
+  left: -95px;
 }
 
 /*MemberCard*/
@@ -126,8 +140,8 @@ hr {
   display: flex;
   justify-content: center;
   border: 0px solid white;
-  min-width: 237px;
-  max-width: 237px;
+  min-width: 244px;
+  max-width: 244px;
   min-height: 161px;
   max-height: 161px;
   border-radius: 0px;
@@ -186,6 +200,11 @@ hr {
   margin-left: 25px;
 }
 
+a[href^='mailto:'] {
+  color: black;
+  text-decoration: none;
+}
+
 .phone-icon {
   min-width: 18px;
   max-width: 18px;
@@ -205,8 +224,13 @@ hr {
   margin-left: 25px;
 }
 
+a[href^='tel:'] {
+  color: black;
+  text-decoration: none;
+}
+
 .profile-link {
-  margin-left: 30px;
+  margin-left: 38px;
   margin-top: -12px;
 }
 
@@ -233,10 +257,10 @@ hr {
 }
 
 .profile-arrow {
-  height: 25px;
-  width: 24px;
-  margin-top: -0.4rem;
-  margin-left: 2.5rem;
+  height: 17git px;
+  width: 12px;
+  margin-top: -2px;
+  margin-left: 3px;
 }
 
 .drop-down-filter {
@@ -245,4 +269,31 @@ hr {
 
 .filter-cities {
   margin-left: 5px;
+}
+
+@media only screen and (max-width: 480px) {
+  .member-card {
+    min-width: 274px;
+    max-width: 274px;
+    min-height: 170px;
+    max-height: 170px;
+  }
+
+  .profile-link {
+    margin-left: 68px;
+    margin-top: -2px;
+  }
+
+  .profile-text {
+    margin-left: 116px;
+  }
+
+  .profile-text:hover {
+    margin-left: 116px;
+  }
+
+  .profile-arrow {
+    margin-top: -2px;
+    margin-left: 3px;
+  }
 }
