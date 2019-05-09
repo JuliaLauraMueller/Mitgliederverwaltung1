@@ -289,7 +289,7 @@ additional style EDIT profile page
 .input-field-radio {
   justify-content: left;
   float: left;
-  width: 220px;
+  width: 250px;
 }
 
 #text-area-offers {
@@ -316,7 +316,7 @@ additional style EDIT profile page
 
 #radio-invoice {
   margin-top: 0;
-  padding-left: 2%;
+  padding-left: 0%;
 }
 
 .required-field {
@@ -334,6 +334,12 @@ additional style EDIT profile page
     position: relative;
     bottom: 51px;
   }
+
+  .input-field-radio {
+    justify-content: left;
+    float: left;
+    width: 180px;
+  }
 }
 @media only screen and (min-width: 0px) and (max-width: 768px) {
   .basic-info {
@@ -342,5 +348,17 @@ additional style EDIT profile page
   .button-save-edit {
     position: relative;
     bottom: 51px;
+  }
+
+  .input-field-radio {
+    justify-content: left;
+    float: left;
+    width: 178px;
+  }
+}
+
+@media (width: 768px) {
+  .basic-info {
+    margin-top: 195px;
   }
 }
