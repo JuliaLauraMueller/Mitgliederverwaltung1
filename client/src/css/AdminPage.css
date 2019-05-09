@@ -144,7 +144,18 @@ div .create-button {
   background-color: rgb(15, 25, 41, 100%);
 }
 
+.pre-mail {
+  margin: 0;
+  font-size: 12pt;
+  font-family: inherit;
+}
+
 @media only screen and (min-width: 0px) and (max-width: 768px) {
+  select#circle.form-control {
+    float: right;
+    width: 85%;
+  }
+
   .form-control-admin {
     width: 130px;
   }
@@ -182,7 +193,7 @@ div .create-button {
     padding-left: 25px !important;
     margin-left: 0 !important;
     position: relative;
-    bottom: 0 !important;
+    bottom: 62px !important;
     right: 0 !important;
   }
 
@@ -198,9 +209,9 @@ div .create-button {
   }
 
   .picture-button-create {
-    float: left;
-    left: 22px;
     font-size: 12pt !important;
+    right: 0 !important;
+    bottom: 10px !important;
   }
 
   .event-edit-image {
@@ -281,7 +292,6 @@ div .create-button {
 .picture-button-create {
   float: left;
   position: relative;
-  right: 10px;
   background-color: transparent;
   border: 0;
   border-bottom: 1px solid rgb(219, 157, 12);
@@ -294,6 +304,10 @@ div .create-button {
   margin-bottom: 10px;
   font-size: 12pt;
   opacity: 1 !important;
+}
+
+div.form-control {
+  border-bottom: none;
 }
 
 .picture-button-create:hover,

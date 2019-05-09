@@ -175,23 +175,25 @@ class AdminCreateEvent extends Component {
                   style={{ width: '90%', height: 'auto' }}
                   alt=""
                 />
-                <Col>
-                  <input
-                    type="file"
-                    id="pictureUpload"
-                    onChange={this.handleFileSelection}
-                    className="hidden"
-                    accept=".jpg,.jpeg,.png"
-                  />
+                <input
+                  type="file"
+                  id="pictureUpload"
+                  onChange={this.handleFileSelection}
+                  className="hidden"
+                  accept=".jpg,.jpeg,.png"
+                />
+                <div className="admin-form-control form-control">
                   <label
                     htmlFor="pictureUpload"
                     className="picture-button-create"
                   >
                     Neues Eventbild
                   </label>
-                </Col>
+                </div>
               </Col>
             </Row>
+          </FormGroup>
+          <FormGroup>
             <Row>
               <Col xs="3">
                 <Label for="title">
