@@ -312,28 +312,31 @@ class SingleEventInfo extends Component {
   tableExpandButton() {
     let ExpandButton = {};
 
-    if (this.state.tableIsExpanded) {
-      ExpandButton = (
-        <img
-          class="expand-img expand-img-up"
-          src={require('../../img/arrow-up.svg')}
-          alt="expand"
-          onClick={() => this.toggleAttendeesExpand()}
-        />
-        //<label className="read-more-trigger" />
-        //<Button onClick={() => this.toggleAttendeesExpand()}>Weniger</Button>
-      );
+    let event = this.props.event;
+    if (!event || !Object.keys(event).length) return <div />;
+
+    if (event.attendees.length > 5) {
+      if (this.state.tableIsExpanded) {
+        ExpandButton = (
+          <img
+            class="expand-img expand-img-up"
+            src={require('../../img/arrow-up.svg')}
+            alt="expand"
+            onClick={() => this.toggleAttendeesExpand()}
+          />
+        );
+      } else {
+        ExpandButton = (
+          <img
+            className="expand-img expand-img-down"
+            src={require('../../img/arrow-down.svg')}
+            alt="expand"
+            onClick={() => this.toggleAttendeesExpand()}
+          />
+        );
+      }
     } else {
-      ExpandButton = (
-        <img
-          className="expand-img expand-img-down"
-          src={require('../../img/arrow-down.svg')}
-          alt="expand"
-          onClick={() => this.toggleAttendeesExpand()}
-        />
-        //<label className="read-more-trigger" />
-        //<Button onClick={() => this.toggleAttendeesExpand()}>Erweitern</Button>
-      );
+      ExpandButton = <div />;
     }
 
     return <div>{ExpandButton}</div>;
