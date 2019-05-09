@@ -461,3 +461,30 @@
   margin-top: -2rem !important;
   margin-left: 1.6rem !important;
 }
+
+.expand-button {
+  margin: auto;
+}
+
+.expand-img {
+  margin-bottom: 1em;
+}
+
+.expand-img:hover,
+.expand-img:active {
+  cursor: pointer;
+}
+
+.expand-img-down:hover,
+.expand-img-down:focus {
+  content: url('../img/arrow-down-hover.svg');
+}
+
+.expand-img-up:hover,
+.expand-img-up:focus {
+  content: url('../img/arrow-up-hover.svg');
+}
+
+.table-attendees {
+  margin-bottom: 0rem;
+}

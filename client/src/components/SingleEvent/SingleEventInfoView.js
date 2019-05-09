@@ -184,15 +184,18 @@ class SingleEventInfo extends Component {
 
           <Col lg={{ offset: 1, size: 3 }} md={{ offset: 0, size: 4 }}>
             <Row className="event-infos event-infos-attendees">
-              <Table>
+              <Table className="table-attendees">
                 <thead>
                   <tr>
-                    <th class="title-attendees">Teilnehmer</th>
-                    <th class="title-attendees">Begleitungen</th>
+                    <th className="title-attendees">Teilnehmer</th>
+                    <th className="title-attendees">Begleitungen</th>
                   </tr>
                 </thead>
                 <tbody>{this.getAttendeeRows(5)}</tbody>
               </Table>
+            </Row>
+            <Row>
+              <div className="expand-button">{this.tableExpandButton()}</div>
             </Row>
           </Col>
         </Row>
@@ -292,6 +295,45 @@ class SingleEventInfo extends Component {
     this.setState(prevState => ({
       attendeeModal: !prevState.attendeeModal
     }));
+  }
+
+  toggleAttendeesExpand() {
+    this.setState(prevState => ({
+      tableIsExpanded: !prevState.tableIsExpanded
+    }));
+  }
+
+  tableExpandButton() {
+    let ExpandButton = {};
+
+    let event = this.props.event;
+    if (!event || !Object.keys(event).length) return <div />;
+
+    if (event.attendees.length > 5) {
+      if (this.state.tableIsExpanded) {
+        ExpandButton = (
+          <img
+            class="expand-img expand-img-up"
+            src={require('../../img/arrow-up.svg')}
+            alt="expand"
+            onClick={() => this.toggleAttendeesExpand()}
+          />
+        );
+      } else {
+        ExpandButton = (
+          <img
+            className="expand-img expand-img-down"
+            src={require('../../img/arrow-down.svg')}
+            alt="expand"
+            onClick={() => this.toggleAttendeesExpand()}
+          />
+        );
+      }
+    } else {
+      ExpandButton = <div />;
+    }
+
+    return <div>{ExpandButton}</div>;
   }
 
   createAttendeeModal(attendee) {
