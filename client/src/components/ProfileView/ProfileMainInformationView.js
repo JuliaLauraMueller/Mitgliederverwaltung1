@@ -153,17 +153,17 @@ class ProfileMainInformation extends Component {
           </Row>
           <Row className="overflow">
             <Col>
-              <label>Rechnung</label>
-              <label className="value-label">
-                {profile.invoiceAddress === false ? 'geschäftlich' : 'privat'}
-              </label>
-            </Col>
-          </Row>
-          <Row className="overflow">
-            <Col>
               <label className="space">E-Mail</label>
               <label className="value-label space">
                 {profile.privateEmail}
+              </label>
+            </Col>
+          </Row>
+          <Row className="overflow invoice-spacing">
+            <Col>
+              <label>Rechnung</label>
+              <label className="value-label">
+                {profile.invoiceAddress === false ? 'geschäftlich' : 'privat'}
               </label>
             </Col>
           </Row>

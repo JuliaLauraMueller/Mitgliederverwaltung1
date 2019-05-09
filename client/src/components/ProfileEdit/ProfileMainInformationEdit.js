@@ -415,6 +415,24 @@ class ProfileMainInformationEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
+                <InputGroupAddon addonType="prepend">
+                  <p className="input-group-text">E-Mail</p>
+                  <pre className="required-field">*</pre>
+                </InputGroupAddon>
+                <div className="input-field space">
+                  <Input
+                    type="text"
+                    name="privateEmail"
+                    onChange={this.onChange}
+                    value={this.state.privateEmail || ''}
+                  />
+                </div>
+              </InputGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <InputGroup className="invoice-spacing-edit">
                 <InputGroupAddon addonType="prepend">Rechnung</InputGroupAddon>
                 <FormGroup
                   tag="fieldset"
@@ -446,24 +464,6 @@ class ProfileMainInformationEDIT extends Component {
                     </Label>
                   </FormGroup>
                 </FormGroup>
-              </InputGroup>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <InputGroup>
-                <InputGroupAddon addonType="prepend">
-                  <p className="input-group-text">E-Mail</p>
-                  <pre className="required-field">*</pre>
-                </InputGroupAddon>
-                <div className="input-field space">
-                  <Input
-                    type="text"
-                    name="privateEmail"
-                    onChange={this.onChange}
-                    value={this.state.privateEmail || ''}
-                  />
-                </div>
               </InputGroup>
             </Col>
           </Row>

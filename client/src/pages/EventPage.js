@@ -9,7 +9,6 @@ import { fetchEvents } from '../redux/actions/eventActions';
 import store from '../helpers/store';
 import classnames from 'classnames';
 
-import '../css/Member.css';
 import '../css/EventPage.css';
 
 class EventPage extends Component {
@@ -73,11 +72,29 @@ class EventPage extends Component {
         )
         .map(event => <EventCard key={event._id} event={event} />);
     }
+    let content = <div />;
+    if (this.props.isLoading) {
+      content = (
+        <div>
+          <img
+            src={require('../img/LoadingIcon.gif')}
+            alt='loading-icon'
+            className='loading-icon'
+          />
+        </div>
+      );
+    } else {
+      content = (
+        <Row className='member-cards-row' key={eventCards}>
+          {eventCards}
+        </Row>
+      );
+    }
     return (
-      <Container className="member-page-container">
+      <Container className='member-page-container'>
         <Row>
           <Col>
-            <h1 className="title">Events</h1>
+            <h1 className='title'>Events</h1>
             <Helmet>
               <style>
                 {'body { background-color: rgb(15, 25, 41, 10%); }'}
@@ -97,7 +114,8 @@ class EventPage extends Component {
 
 function mapStateToProps(state) {
   return {
-    events: state.event.filteredEvents
+    events: state.event.filteredEvents,
+    isLoading: state.loading.isLoading
   };
 }
 

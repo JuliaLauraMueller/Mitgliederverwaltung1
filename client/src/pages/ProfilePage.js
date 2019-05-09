@@ -19,30 +19,38 @@ import { Container, Row, Col, Form, FormGroup } from 'reactstrap';
 import store from '../helpers/store';
 
 class ProfilePage extends Component {
+  _isMounted = false;
   constructor(props) {
     super(props);
     this.props.dispatch(setNavVisible());
     this.state = {
       isEditing: false
     };
-
     this.toggleEdit = this.toggleEdit.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.loadMember = this.loadMember.bind(this);
   }
 
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
   componentDidMount() {
     // first time profile page is loaded
+    this._isMounted = true;
     this.loadMember(this.props.match.params.id);
   }
 
   componentWillReceiveProps(nextProps) {
     // switch between two profiles (when already on profile page)
-    this.loadMember(nextProps.match.params.id);
+    if (nextProps.match.params.id !== this.props.match.params.id) {
+      this.loadMember(nextProps.match.params.id);
+    }
   }
 
   loadMember(memberId) {
-    this.props.dispatch(fetchProfile(memberId));
+    if (this._isMounted) {
+      this.props.dispatch(fetchProfile(memberId));
+    }
   }
 
   toggleEdit() {
@@ -74,6 +82,21 @@ class ProfilePage extends Component {
   }
 
   render() {
+    let content = <div />;
+    if (this.props.isLoading) {
+      content = (
+        <div>
+          <div className='page-wrap-loading-screen' />
+          <img
+            src={require('../img/LoadingIcon.gif')}
+            alt='loading-icon'
+            className='modal-loading-screen'
+          />
+        </div>
+      );
+    } else {
+      content = <div />;
+    }
     let EditButton = {};
     if (
       personalAccessCheck(this.props._id, store.getState().auth.user._id) ||
@@ -85,7 +108,7 @@ class ProfilePage extends Component {
       )
     ) {
       EditButton = (
-        <button className="button-save-edit" onClick={this.toggleEdit}>
+        <button className='button-save-edit' onClick={this.toggleEdit}>
           Editieren
         </button>
       );
@@ -95,28 +118,29 @@ class ProfilePage extends Component {
 
     if (this.state.isEditing) {
       return (
-        <Container className="profile-page__container">
+        <Container className='profile-page__container'>
+          {content}
           <Form onSubmit={this.handleClick}>
             <Row>
-              <Col md="12">
+              <Col md='12'>
                 <input
-                  type="submit"
-                  className="button-save-edit"
-                  value="Speichern"
+                  type='submit'
+                  className='button-save-edit'
+                  value='Speichern'
                   onClick={this.handleClick}
                 />
               </Col>
             </Row>
             <FormGroup row>
               <Row>
-                <Col xs="12" md="12">
+                <Col xs='12' md='12'>
                   <ProfileBasicInfoEDIT
                     ref={basicInfo => {
                       this.basicInfo = basicInfo;
                     }}
                   />
                 </Col>
-                <Col xs="12" md="12">
+                <Col xs='12' md='12'>
                   <ProfileMainInformationEDIT
                     ref={mainInfo => {
                       this.mainInfo = mainInfo;
@@ -130,17 +154,18 @@ class ProfilePage extends Component {
       );
     } else {
       return (
-        <Container className="profile-page__container">
+        <Container className='profile-page__container'>
+          {content}
           <Row>
-            <Col md="12" className="button-container">
+            <Col md='12' className='button-container'>
               {EditButton}
             </Col>
           </Row>
           <Row>
-            <Col xs="12" md="12">
+            <Col xs='12' md='12'>
               <ProfileBasicInfo />
             </Col>
-            <Col xs="12" md="12">
+            <Col xs='12' md='12'>
               <ProfileMainInformation />
             </Col>
           </Row>
@@ -153,7 +178,8 @@ class ProfilePage extends Component {
 function mapStateToProps(state) {
   return {
     _id: state.profile.member._id,
-    circle: state.profile.member.city_id
+    circle: state.profile.member.city_id,
+    isLoading: state.loading.isLoading
   };
 }
 
