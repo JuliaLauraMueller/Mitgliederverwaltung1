@@ -144,7 +144,18 @@ div .create-button {
   background-color: rgb(15, 25, 41, 100%);
 }
 
+.pre-mail {
+  margin: 0;
+  font-size: 12pt;
+  font-family: inherit;
+}
+
 @media only screen and (min-width: 0px) and (max-width: 768px) {
+  select#circle.form-control {
+    float: right;
+    width: 85%;
+  }
+
   .form-control-admin {
     width: 130px;
   }
@@ -179,8 +190,11 @@ div .create-button {
   }
 
   .filter-button-edit {
-    padding-left: 0 !important;
+    padding-left: 25px !important;
     margin-left: 0 !important;
+    position: relative;
+    bottom: 62px !important;
+    right: 0 !important;
   }
 
   .event-edit-txt {
@@ -194,10 +208,15 @@ div .create-button {
     width: 85% !important;
   }
 
-  label.picture-button-create {
-    float: left;
-    left: 17px;
-    font-size: 12pt;
+  .picture-button-create {
+    font-size: 12pt !important;
+    right: 0 !important;
+    bottom: 10px !important;
+  }
+
+  .event-edit-image {
+    max-width: 200px !important;
+    min-width: 200px !important;
   }
 }
 
@@ -208,35 +227,34 @@ div .create-button {
 }
 .event-edit-txt {
   float: right;
-  max-width: 240px;
-  min-width: 240px;
+  max-width: 280px;
+  min-width: 280px;
 }
 
 .event-edit-picture-input {
   float: right;
-  max-width: 240px;
-  min-width: 240px;
+  position: relative;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid rgb(219, 157, 12);
+  line-height: 2.3;
   color: rgb(219, 157, 12);
-  border: none;
   padding: 0;
   border-radius: 0;
-  font-size: 1rem;
-  font-family: Helvetica, sans-serif;
-  font-weight: lighter;
   transition: none;
-  margin-top: 0.5rem;
-}
-
-.event-edit-picture-input:hover,
-.event-edit-picture-input:active {
-  background-color: transparent;
-  color: rgb(15, 25, 41, 74%);
+  height: 32px;
+  margin-bottom: 10px;
+  font-size: 12pt;
+  float: left;
+  opacity: 1 !important;
 }
 
 .event-edit-image {
+  position: relative;
+  top: 5px;
   float: right;
-  max-width: 240px;
-  min-width: 240px;
+  max-width: 280px;
+  min-width: 280px;
   max-height: 90px;
 }
 
@@ -255,18 +273,56 @@ div .create-button {
 
 .filter-button-edit {
   padding-left: 60px;
+  position: relative;
+  bottom: 48px;
+  right: 40px;
+}
+
+.event-edit-txt-btn {
+  float: right;
+  max-width: 280px;
+  min-width: 280px;
+  height: 1px;
+}
+
+.btn-group {
+  height: 0;
 }
 
 .picture-button-create {
   float: left;
   position: relative;
-  right: 10px;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid rgb(219, 157, 12);
+  line-height: 2.3;
+  color: rgb(219, 157, 12);
+  padding: 0;
+  border-radius: 0;
+  transition: none;
+  height: 32px;
+  margin-bottom: 10px;
+  font-size: 12pt;
+  opacity: 1 !important;
+}
+
+div.form-control {
+  border-bottom: none;
+}
+
+.picture-button-create:hover,
+.picture-button-create:active,
+.event-edit-picture-input:hover,
+.event-edit-picture-input:active {
+  background-color: transparent;
+  opacity: 0.5 !important;
 }
 
 .event-image {
   position: relative;
   top: 7px;
   margin-bottom: 5px;
+  margin-left: 5px;
 }
 .admin-form-control-create-news {
   width: 99%;

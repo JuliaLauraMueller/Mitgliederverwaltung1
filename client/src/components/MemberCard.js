@@ -4,6 +4,14 @@ import { Link } from 'react-router-dom';
 
 class MemberCard extends Component {
   render() {
+    let trimmedEmail = this.props.member.privateEmail.substring(0, 22);
+    if (this.props.member.privateEmail.length > 22)
+      trimmedEmail = trimmedEmail + '...';
+    console.log(this.props.member.privateEmail);
+
+    let privateTelefon = this.props.member.privateTel;
+    console.log(privateTelefon);
+
     return (
       <Row className="member-card-row">
         <Col className="member-card-col">
@@ -36,7 +44,9 @@ class MemberCard extends Component {
               </div>
               <div>
                 <CardText className="card-text-mail">
-                  {this.props.member.privateEmail}
+                  <a href={'mailto:' + this.props.member.privateEmail}>
+                    {trimmedEmail}
+                  </a>
                 </CardText>
               </div>
               <div>
@@ -48,7 +58,7 @@ class MemberCard extends Component {
               </div>
               <div>
                 <CardTitle className="card-text-phone">
-                  {this.props.member.privateTel}
+                  <a href={'tel:' + privateTelefon}>{privateTelefon}</a>
                 </CardTitle>
               </div>
               <div className="profile-link">

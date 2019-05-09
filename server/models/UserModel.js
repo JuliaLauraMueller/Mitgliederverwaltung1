@@ -28,7 +28,7 @@ const schema = new Schema({
   privateTel: { type: String },
   privateMobile: { type: String },
   privateStreet: { type: String },
-  privateStreetNr: { type: Number },
+  privateStreetNr: { type: String },
   privateZip: { type: Number },
   privateCity: { type: String },
   invoiceAddress: { type: Boolean },

@@ -264,7 +264,11 @@ class AdminEventsOverview extends Component {
         this.toggleEventEditModal(this.emptyEvent);
       })
       .catch(errorMessages => {
-        this.props.dispatch(alertError(errorMessages.join('\n')));
+        if (Array.isArray(errorMessages)) {
+          this.props.dispatch(alertError(errorMessages.join('\n')));
+        } else {
+          this.props.dispatch(alertError('Es ist ein Fehler aufgetreten'));
+        }
       });
   }
 
@@ -467,6 +471,8 @@ class AdminEventsOverview extends Component {
             <FormGroup row>
               <Col>
                 <Label for="image">Eventbild:</Label>
+              </Col>
+              <Col>
                 <img
                   id="modalImage"
                   src={
@@ -523,7 +529,7 @@ class AdminEventsOverview extends Component {
                   <Label xs="3" md="6">
                     Verwaltende Cities<pre className="required-field">*</pre>
                   </Label>
-                  <div className="event-edit-txt">
+                  <div className="event-edit-txt-btn">
                     <ButtonDropdown
                       isOpen={this.state.circlesDropdownOpen}
                       toggle={this.toggle}

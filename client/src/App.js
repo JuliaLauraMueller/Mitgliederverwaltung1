@@ -31,9 +31,15 @@ import {
 class App extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      windowWidth: window.innerWidth,
+      windowHeight: window.innerHeight
+    };
+
     const { dispatch } = this.props;
 
-    if (this.state.windowWidth <= 1200) {
+    if (this.state.windowWidth <= 1200 || this.state.windowHeight <= 740) {
       store.dispatch(setNavInvisible());
     } else {
       store.dispatch(setNavVisible());
@@ -44,11 +50,15 @@ class App extends Component {
     });
 
     this.toggleSideMenu = this.toggleSideMenu.bind(this);
+    this.handleResize = this.handleResize.bind(this);
   }
 
   //window with
   handleResize() {
-    this.setState({ windowWidth: window.innerWidth });
+    this.setState({
+      windowWidth: window.innerWidth,
+      windowHeight: window.innerHeight
+    });
   }
 
   componentDidMount() {
@@ -59,11 +69,6 @@ class App extends Component {
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize.bind(this));
   }
-
-  // Add global layout components before route
-  state = {
-    windowWidth: window.innerWidth
-  };
 
   toggleSideMenu() {
     if (this.props.sideMenuExpanded) {
@@ -76,7 +81,11 @@ class App extends Component {
   render() {
     let navigationClassNames = 'app';
     if (this.props.sideMenuVisible) {
-      if (this.props.sideMenuExpanded && this.state.windowWidth > 1200) {
+      if (
+        this.props.sideMenuExpanded &&
+        this.state.windowWidth > 1200 &&
+        window.innerHeight > 740
+      ) {
         navigationClassNames = 'app expanded';
       } else {
         navigationClassNames = 'app collapsed';
