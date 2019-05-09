@@ -397,26 +397,27 @@ class AdminEventsOverview extends Component {
 
   async handleFileSelection(event) {
     var f = event.target.files[0];
-
-    if (f.size > 500000) {
-      this.props.dispatch(alertError('Bild zu gross, maximal 500KB'));
-    } else {
-      let fileInB64 = await this.getBase64(f);
-      let splitArr = fileInB64.split(',');
-
-      if (
-        splitArr[0] !== 'data:image/png;base64' &&
-        splitArr[0] !== 'data:image/jpeg;base64'
-      ) {
-        this.props.dispatch(alertError('Dateityp muss jpg/jpeg/png sein'));
+    if (f) {
+      if (f.size > 500000) {
+        this.props.dispatch(alertError('Bild zu gross, maximal 500KB'));
       } else {
-        this.setState({
-          eventToEdit: {
-            ...this.state.eventToEdit,
-            imageTag: splitArr[0],
-            image: splitArr[1]
-          }
-        });
+        let fileInB64 = await this.getBase64(f);
+        let splitArr = fileInB64.split(',');
+
+        if (
+          splitArr[0] !== 'data:image/png;base64' &&
+          splitArr[0] !== 'data:image/jpeg;base64'
+        ) {
+          this.props.dispatch(alertError('Dateityp muss jpg/jpeg/png sein'));
+        } else {
+          this.setState({
+            eventToEdit: {
+              ...this.state.eventToEdit,
+              imageTag: splitArr[0],
+              image: splitArr[1]
+            }
+          });
+        }
       }
     }
   }

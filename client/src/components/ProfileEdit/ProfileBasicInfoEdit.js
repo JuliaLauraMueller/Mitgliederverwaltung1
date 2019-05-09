@@ -88,14 +88,15 @@ class ProfileBasicInfoEDIT extends Component {
 
   async fileSelectedHandler(event) {
     var f = event.target.files[0];
-
-    let fileInB64 = await this.getBase64(f);
-    let splitArr = fileInB64.split(',');
-    if (this._isMounted) {
-      this.setState({
-        avatarTag: splitArr[0],
-        avatar: splitArr[1]
-      });
+    if (f) {
+      let fileInB64 = await this.getBase64(f);
+      let splitArr = fileInB64.split(',');
+      if (this._isMounted) {
+        this.setState({
+          avatarTag: splitArr[0],
+          avatar: splitArr[1]
+        });
+      }
     }
   }
 
