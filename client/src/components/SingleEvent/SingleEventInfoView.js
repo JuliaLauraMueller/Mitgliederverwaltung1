@@ -194,7 +194,7 @@ class SingleEventInfo extends Component {
                 <tbody>{this.getAttendeeRows(5)}</tbody>
               </Table>
             </Row>
-            <Row>
+            <Row className="event-infos">
               <div className="expand-button">{this.tableExpandButton()}</div>
             </Row>
           </Col>
@@ -272,8 +272,10 @@ class SingleEventInfo extends Component {
     return event.attendees.slice(0, amount).map(attendee => {
       return (
         <tr key={attendee.user._id}>
-          <td>{attendee.user.firstname + ' ' + attendee.user.surname}</td>
-          <td>{attendee.accompaniments}</td>
+          <td className="event-attendee">
+            {attendee.user.firstname + ' ' + attendee.user.surname}
+          </td>
+          <td className="event-attendee">{attendee.accompaniments}</td>
         </tr>
       );
     });

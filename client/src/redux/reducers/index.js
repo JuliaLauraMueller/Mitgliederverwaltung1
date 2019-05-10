@@ -6,6 +6,7 @@ import navigationReducer from './navigationReducer';
 import memberReducer from './memberReducer';
 import circleReducer from './circleReducer';
 import eventReducer from './eventReducer';
+import loadingReducer from './loadingReducer';
 import newsArticleReducer from './newsArticleReducer';
 
 export default combineReducers({
@@ -16,5 +17,6 @@ export default combineReducers({
   member: memberReducer,
   circle: circleReducer,
   event: eventReducer,
+  loading: loadingReducer,
   newsArticle: newsArticleReducer
 });

@@ -13,25 +13,8 @@ import '../css/EventPage.css';
 class SingleEventPage extends Component {
   constructor(props) {
     super(props);
-    const eve = this.props.event;
-    this.state = {
-      imageTag: eve.imageTag,
-      image: eve.image
-    };
-
     this.props.dispatch(setNavVisible());
-  }
-
-  componentDidMount() {
     this.loadEvent(this.props.match.params.id);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    // switch between two events (when already on event page)
-    this.setState({
-      imageTag: nextProps.event.imageTag,
-      image: nextProps.event.image
-    });
   }
 
   loadEvent(eventId) {
@@ -39,33 +22,54 @@ class SingleEventPage extends Component {
   }
 
   render() {
-    return (
-      <Container className='event-page-container'>
-        <Row>
-          <Col>
-            <Helmet>
-              <style>
-                {'body { background-color: rgb(15, 25, 41, 10%); }'}
-              </style>
-            </Helmet>
-            <SingleEventImage
-              imageB64={
-                this.state.image
-                  ? this.state.imageTag + ',' + this.state.image
-                  : ''
-              }
-            />
-            <SingleEventInfo />
-          </Col>
-        </Row>
-      </Container>
-    );
+    if (this.props.isLoading) {
+      return (
+        <Container className="loading-icon-container">
+          <Row>
+            <Col xs="12">
+              <Col md="12" />
+              <div className="search-form" />
+              <img
+                src={require('../img/LoadingIcon.gif')}
+                alt="loading-icon"
+                className="loading-icon"
+              />
+            </Col>
+          </Row>
+        </Container>
+      );
+    } else {
+      console.log(this.props.image);
+      return (
+        <Container className="event-page-container">
+          <Row>
+            <Col>
+              <Helmet>
+                <style>
+                  {'body { background-color: rgb(15, 25, 41, 10%); }'}
+                </style>
+              </Helmet>
+              <SingleEventImage
+                imageB64={
+                  this.props.image
+                    ? this.props.imageTag + ',' + this.props.image
+                    : ''
+                }
+              />
+              <SingleEventInfo />
+            </Col>
+          </Row>
+        </Container>
+      );
+    }
   }
 }
 
 function mapStateToProps(state) {
   return {
-    event: state.event.fetchedEvent
+    imageTag: state.event.fetchedEvent.imageTag,
+    image: state.event.fetchedEvent.image,
+    isLoading: state.loading.isLoading
   };
 }
 

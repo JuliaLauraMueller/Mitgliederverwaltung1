@@ -153,9 +153,9 @@ function validate(eventParam) {
       eventParam.imageTag !== 'data:image/png;base64' &&
       eventParam.imageTag !== 'data:image/jpeg;base64'
     ) {
-      errorMessages.push('Profilbild: Dateityp muss jpg/jpeg/png sein');
+      errorMessages.push('Dateityp muss jpg/jpeg/png sein');
     } else if (eventParam.image.toString().length > 500000) {
-      errorMessages.push('Profilbild: Bild zu gross, maximal 500KB');
+      errorMessages.push('Bild zu gross, maximal 500KB');
     }
   }
   return errorMessages;
@@ -193,9 +193,17 @@ async function addAttendee(eventId, userId, accompanimentsAmount) {
   }
 
   await event.save();
-  return await Event.findById(eventId)
+  let returnEvent = await Event.findById(eventId)
     .populate('circles')
     .populate('attendees.user', 'firstname surname');
+
+  if (returnEvent.image) {
+    let buff = Buffer.from(returnEvent.image);
+    let b64 = buff.toString('base64');
+    returnEvent = returnEvent.toObject();
+    returnEvent.image = b64;
+  }
+  return returnEvent;
 }
 
 async function removeAttendee(eventId, userId) {
@@ -206,7 +214,15 @@ async function removeAttendee(eventId, userId) {
   event.attendees.splice(index, 1);
 
   await event.save();
-  return await Event.findById(eventId)
+  let returnEvent = await Event.findById(eventId)
     .populate('circles')
     .populate('attendees.user', 'firstname surname');
+
+  if (returnEvent.image) {
+    let buff = Buffer.from(returnEvent.image);
+    let b64 = buff.toString('base64');
+    returnEvent = returnEvent.toObject();
+    returnEvent.image = b64;
+  }
+  return returnEvent;
 }

@@ -13,7 +13,11 @@ class SingleEventImage extends Component {
               <div className="single-event-image">
                 <img
                   id="single-event-image"
-                  src={require('../../img/event_default_image.png')}
+                  src={
+                    this.props.imageB64 === ''
+                      ? require('../../img/event_default_image.png')
+                      : this.props.imageB64
+                  }
                   alt="event"
                 />
               </div>

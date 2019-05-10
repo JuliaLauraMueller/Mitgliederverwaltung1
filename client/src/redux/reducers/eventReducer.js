@@ -8,6 +8,7 @@ import {
   ADD_ATTENDEE,
   REMOVE_ATTENDEE
 } from '../types/eventTypes';
+
 import { filterEvents } from '../../helpers/eventsSearch';
 
 const initialState = {

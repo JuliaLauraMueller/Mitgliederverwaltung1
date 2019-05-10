@@ -121,14 +121,27 @@ class AdminCreateEvent extends Component {
   }
 
   async handleFileSelection(event) {
-    var something = event.target.files[0];
+    var f = event.target.files[0];
+    if (f) {
+      if (f.size > 500000) {
+        this.props.dispatch(alertError('Bild zu gross, maximal 500KB'));
+      } else {
+        let fileInB64 = await this.getBase64(f);
+        let splitArr = fileInB64.split(',');
 
-    let fileInB64 = await this.getBase64(something);
-    let splitArr = fileInB64.split(',');
-    this.setState({
-      imageTag: splitArr[0],
-      image: splitArr[1]
-    });
+        if (
+          splitArr[0] !== 'data:image/png;base64' &&
+          splitArr[0] !== 'data:image/jpeg;base64'
+        ) {
+          this.props.dispatch(alertError('Dateityp muss jpg/jpeg/png sein'));
+        } else {
+          this.setState({
+            imageTag: splitArr[0],
+            image: splitArr[1]
+          });
+        }
+      }
+    }
   }
 
   getBase64(file) {
@@ -157,7 +170,6 @@ class AdminCreateEvent extends Component {
         </div>
       );
     });
-
     return (
       <div>
         <h4>Neuer Event</h4>
@@ -478,7 +490,8 @@ class AdminCreateEvent extends Component {
 
 function mapStateToProps(state) {
   return {
-    circles: state.circle.circles
+    circles: state.circle.circles,
+    isLoading: state.loading.isLoading
   };
 }
 
