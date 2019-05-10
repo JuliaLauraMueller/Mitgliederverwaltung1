@@ -298,25 +298,6 @@ class SingleEventInfo extends Component {
     }));
   }
 
-  addAttendee(amount) {
-    this.props.dispatch(
-      addAttendee(this.props.event._id, { accompaniments: amount })
-    );
-
-    this.setState({ isAttending: true });
-  }
-
-  removeAttendee() {
-    this.props.dispatch(removeAttendee(this.props.event._id));
-    this.setState({ isAttending: false });
-  }
-
-  toggleAttendeeModal() {
-    this.setState(prevState => ({
-      attendeeModal: !prevState.attendeeModal
-    }));
-  }
-
   toggleAttendeesExpand() {
     this.setState(prevState => ({
       tableIsExpanded: !prevState.tableIsExpanded
