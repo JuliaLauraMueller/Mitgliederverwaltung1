@@ -64,7 +64,7 @@ class MemberPage extends Component {
       );
     }
     let memberCards = (
-      <p className='no-data-found'>Keine Mitglieder gefunden</p>
+      <p className="no-data-found">Keine Mitglieder gefunden</p>
     );
     if (this.props.members && this.props.members.length > 0) {
       memberCards = this.props.members.map(member => {
@@ -77,23 +77,23 @@ class MemberPage extends Component {
         <div>
           <img
             src={require('../img/LoadingIcon.gif')}
-            alt='loading-icon'
-            className='loading-icon'
+            alt="loading-icon"
+            className="loading-icon"
           />
         </div>
       );
     } else {
       content = (
-        <Row className='member-cards-row' key={memberCards}>
+        <Row className="member-cards-row" key={memberCards}>
           {memberCards}
         </Row>
       );
     }
     return (
-      <Container className='member-page-container'>
+      <Container className="member-page-container">
         <Row>
-          <Col xs='12'>
-            <h1 className='title'>Mitglieder</h1>
+          <Col xs="12">
+            <h1 className="title">Mitglieder</h1>
             <Helmet>
               <style>
                 {'body { background-color: rgb(15, 25, 41, 10%); }'}
@@ -101,9 +101,7 @@ class MemberPage extends Component {
             </Helmet>
             {searchField}
 
-            <Row className="member-cards-row" key={memberCards}>
-              {memberCards}
-            </Row>
+            {content}
           </Col>
         </Row>
       </Container>

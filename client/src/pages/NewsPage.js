@@ -79,23 +79,23 @@ class NewsPage extends Component {
         <div>
           <img
             src={require('../img/LoadingIcon.gif')}
-            alt='loading-icon'
-            className='loading-icon'
+            alt="loading-icon"
+            className="loading-icon"
           />
         </div>
       );
     } else {
       content = (
-        <Row className='member-cards-row' key={newsCards}>
+        <Row className="member-cards-row" key={newsCards}>
           {newsCards}
         </Row>
       );
     }
     return (
-      <Container className='news-page-container'>
+      <Container className="news-page-container">
         <Row>
           <Col>
-            <h1 className='title'>News</h1>
+            <h1 className="title">News</h1>
             <Helmet>
               <style>
                 {'body { background-color: rgb(15, 25, 41, 10%); }'}
@@ -103,9 +103,7 @@ class NewsPage extends Component {
             </Helmet>
             {searchField}
 
-            <Row className="member-cards-row" key={newsCards}>
-              {newsCards}
-            </Row>
+            {content}
           </Col>
         </Row>
       </Container>
