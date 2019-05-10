@@ -171,7 +171,7 @@ class AdminCreateEvent extends Component {
       );
     });
     return (
-      <div>
+      <div className="admin-create-box">
         <h4>Neuer Event</h4>
         <Form onSubmit={this.submitEvent}>
           <FormGroup>
