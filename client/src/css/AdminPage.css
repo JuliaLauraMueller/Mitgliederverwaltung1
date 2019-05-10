@@ -309,6 +309,11 @@ div.form-control {
   border-bottom: none;
 }
 
+div.admin-create-box .form-control:active,
+div.admin-create-box .form-control:focus {
+  border-bottom: 0px !important;
+}
+
 .picture-button-create:hover,
 .picture-button-create:active,
 .event-edit-picture-input:hover,
