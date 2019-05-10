@@ -224,7 +224,11 @@ class AdminNewsArticleOverview extends Component {
         return (
           <tr key={newsArticle._id}>
             <td>{newsArticle.title}</td>
-            <td>{newsArticle.date}</td>
+            <td>
+              {newsArticle.date
+                ? new Date(newsArticle.date).toLocaleDateString('de-DE')
+                : ''}
+            </td>
             <td className="d-none d-md-table-cell">{newsArticle.author}</td>
             <td>
               {EditButton}

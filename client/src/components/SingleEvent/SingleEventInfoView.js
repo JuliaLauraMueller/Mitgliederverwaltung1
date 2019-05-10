@@ -87,7 +87,6 @@ class SingleEventInfo extends Component {
         attendee.isAttending = true;
       }
     }
-
     return (
       <div>
         {this.createAttendeeModal(attendee)}
@@ -97,7 +96,9 @@ class SingleEventInfo extends Component {
               <Col>
                 <div className="event-date">
                   <CardText className="event-month">{month}</CardText>
-                  <CardText className="event-day">{date.getDate()}</CardText>
+                  <CardText className="event-day">
+                    {date.getDate().toString()}
+                  </CardText>
                   <CardText className="event-weekDay">{weekday}</CardText>
                 </div>{' '}
               </Col>
