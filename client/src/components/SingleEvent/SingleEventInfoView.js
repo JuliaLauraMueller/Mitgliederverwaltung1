@@ -259,23 +259,43 @@ class SingleEventInfo extends Component {
     return <div>{Buttons}</div>;
   }
 
-  getAttendeeRows(amount) {
-    // Use event.attendees.length to get all rows
-
+  getAttendeeRows() {
     const event = this.props.event;
 
     if (!event || !Object.keys(event).length) return <tr />;
 
+    let amount = event.attendees.length;
+    if (!this.state.tableIsExpanded) {
+      amount = 5;
+    }
+
     return event.attendees.slice(0, amount).map(attendee => {
       return (
         <tr key={attendee.user._id}>
-          <td className="event-attendee">
-            {attendee.user.firstname + ' ' + attendee.user.surname}
-          </td>
-          <td className="event-attendee">{attendee.accompaniments}</td>
+          <td>{attendee.user.firstname + ' ' + attendee.user.surname}</td>
+          <td>{attendee.accompaniments}</td>
         </tr>
       );
     });
+  }
+
+  addAttendee(amount) {
+    this.props.dispatch(
+      addAttendee(this.props.event._id, { accompaniments: amount })
+    );
+
+    this.setState({ isAttending: true });
+  }
+
+  removeAttendee() {
+    this.props.dispatch(removeAttendee(this.props.event._id));
+    this.setState({ isAttending: false });
+  }
+
+  toggleAttendeeModal() {
+    this.setState(prevState => ({
+      attendeeModal: !prevState.attendeeModal
+    }));
   }
 
   addAttendee(amount) {
@@ -313,7 +333,7 @@ class SingleEventInfo extends Component {
       if (this.state.tableIsExpanded) {
         ExpandButton = (
           <img
-            class="expand-img expand-img-up"
+            className="expand-img expand-img-up"
             src={require('../../img/arrow-up.svg')}
             alt="expand"
             onClick={() => this.toggleAttendeesExpand()}
