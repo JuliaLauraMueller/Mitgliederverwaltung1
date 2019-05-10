@@ -39,7 +39,6 @@ class SingleEventPage extends Component {
         </Container>
       );
     } else {
-      console.log(this.props.image);
       return (
         <Container className="event-page-container">
           <Row>
