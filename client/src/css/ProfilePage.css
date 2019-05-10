@@ -341,6 +341,7 @@ additional style EDIT profile page
   .button-save-edit {
     position: relative;
     bottom: 51px;
+    z-index: 1000;
   }
 
   .input-field-radio {
