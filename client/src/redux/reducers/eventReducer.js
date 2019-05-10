@@ -4,7 +4,9 @@ import {
   EVENT_DELETED,
   CREATE_EVENT,
   EVENTS_FETCHED,
-  PUT_EVENT
+  PUT_EVENT,
+  ADD_ATTENDEE,
+  REMOVE_ATTENDEE
 } from '../types/eventTypes';
 
 import { filterEvents } from '../../helpers/eventsSearch';
@@ -30,6 +32,7 @@ function getUpdatedEvents(events, updatedEvent) {
   events[index].organisationTeam = updatedEvent.organisationTeam;
   events[index].registrationEndDate = updatedEvent.registrationEndDate;
   events[index].permittedRoles = updatedEvent.permittedRoles;
+  events[index].attendees = updatedEvent.attendees;
   return events;
 }
 
@@ -77,9 +80,23 @@ export default function(state = initialState, action) {
         fetchedEvent: state.fetchedEvent
       };
     case PUT_EVENT:
+      const events = [...getUpdatedEvents(state.events, action.payload)];
       return {
-        events: [...getUpdatedEvents(state.events, action.payload)],
+        events,
+        filteredEvents: filterEvents(events, '', false),
         fetchedEvent: state.fetchedEvent
+      };
+    case ADD_ATTENDEE:
+      return {
+        events: state.events,
+        filterEvents: state.filteredEvents,
+        fetchedEvent: action.payload
+      };
+    case REMOVE_ATTENDEE:
+      return {
+        events: state.events,
+        filterEvents: state.filteredEvents,
+        fetchedEvent: action.payload
       };
     default:
       return state;

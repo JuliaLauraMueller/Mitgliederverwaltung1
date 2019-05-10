@@ -4,7 +4,9 @@ import {
   CREATE_EVENT,
   EVENTS_FETCHED,
   PUT_EVENT,
-  SEARCH_EVENTS
+  SEARCH_EVENTS,
+  ADD_ATTENDEE,
+  REMOVE_ATTENDEE
 } from '../types/eventTypes';
 
 import { DATA_EVENT_FETCHED, DATA_EVENT_FETCHING } from '../types/loadingTypes';
@@ -88,5 +90,31 @@ export const putEvent = eventData => async dispatch => {
     .catch(errorMessage => {
       dispatch({ type: DATA_EVENT_FETCHED });
       return Promise.reject(errorMessage);
+    });
+};
+
+export const addAttendee = (id, data) => async dispatch => {
+  return eventService
+    .addAttendee(id, data)
+    .then(res => {
+      if (res) {
+        dispatch({ type: ADD_ATTENDEE, payload: res.data.updated });
+      }
+    })
+    .catch(() => {
+      return Promise.reject();
+    });
+};
+
+export const removeAttendee = id => async dispatch => {
+  return eventService
+    .removeAttendee(id)
+    .then(res => {
+      if (res) {
+        dispatch({ type: REMOVE_ATTENDEE, payload: res.data.updated });
+      }
+    })
+    .catch(() => {
+      return Promise.reject();
     });
 };

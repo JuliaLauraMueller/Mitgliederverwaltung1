@@ -7,18 +7,18 @@ class SingleEventImage extends Component {
   render() {
     return (
       <Row>
-        <Col align='center'>
+        <Col align="center">
           <Row>
-            <Col md='12'>
-              <div className='event-image'>
+            <Col xs="12">
+              <div className="single-event-image">
                 <img
-                  id='event-image'
+                  id="single-event-image"
                   src={
                     this.props.imageB64 === ''
                       ? require('../../img/event_default_image.png')
                       : this.props.imageB64
                   }
-                  alt='event'
+                  alt="event"
                 />
               </div>
             </Col>

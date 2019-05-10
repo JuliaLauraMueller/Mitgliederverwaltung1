@@ -6,13 +6,29 @@
   align-content: center;
 }
 
-.event-image,
-#event-image {
+.single-event-image,
+#single-event-image {
   margin-bottom: 2rem;
   display: block;
   justify-content: center;
-  max-width: 100%;
+  width: 100%;
   height: auto;
+}
+
+.date {
+  padding-left: 0.5em;
+  opacity: 0.6;
+  color: #0f1929;
+}
+
+.event-date {
+  text-align: center;
+  margin: auto;
+  margin-top: 12px;
+  margin-left: 12px;
+  width: 100%;
+  min-width: 143px;
+  max-width: 143px;
 }
 
 .overflow {
@@ -22,17 +38,17 @@
   justify-content: center;
 }
 
-.date {
-  padding-left: 3.5em;
-  padding-right: 3.5em;
-}
-
 .event-infos {
   display: flex;
-  justify-content: center;
-  padding-left: 3.5em;
-  padding-right: 3.5em;
+  justify-content: left;
   text-align: justify;
+  line-height: 1.5em;
+  min-width: 0px !important;
+}
+
+.event-infos-attendees {
+  padding-left: 0em;
+  margin-top: 50px;
 }
 
 .event-title-infos {
@@ -47,48 +63,68 @@
   font-size: 38px;
 }
 
-.event-time {
-  font-size: 22px;
+.event-time,
+.event-location {
+  font-size: 12pt;
+  margin: 0;
 }
 
-.event-location {
-  font-size: 22px;
+.event-location-container {
+  position: relative;
+  right: 1px;
 }
 
 .event-description-title {
-  margin-top: 0.5em;
+  margin-top: 1.4em;
   margin-bottom: 0.5em;
-  font-size: 26px;
+  font-size: 16pt;
   display: block;
   white-space: normal;
 }
 
 .event-description {
-  margin-top: 18px;
+  margin-top: 50px;
   font-size: 18px;
   display: block;
   white-space: normal;
 }
 
+.event-attendee {
+  opacity: 0.6;
+  color: #0f1929;
+  font-size: 12pt;
+  position: relative;
+  left: 4px;
+}
+
 .event-description-additional {
-  margin-top: 2px;
-  font-size: 20px;
+  font-size: 12pt;
   display: block;
   white-space: normal;
+  margin: 0;
+  opacity: 0.6;
+  color: #0f1929;
+}
+
+.title-attendees {
+  opacity: 0.6;
+  color: #0f1929;
+  font-size: 12pt;
+  position: relative;
+  left: 4px;
 }
 
 .event-anmeldung {
   display: flex;
-  justify-content: right;
-  padding-left: 3.5em;
-  padding-right: 3.5em;
+  justify-content: left;
   padding-top: -5em;
   padding-bottom: 0.8em;
+  min-width: 0px !important;
 }
 
 .event-month {
-  font-size: 30px;
-  margin-bottom: -10px;
+  font-size: 26px;
+  margin-bottom: -12px;
 }
 
 .event-day {
@@ -98,78 +134,102 @@
 }
 
 .event-weekDay {
-  font-size: 20px;
+  font-size: 22px;
 }
 
-.button-accompaniments {
-  border-radius: 2em;
-  font-size: 1em;
+.gap {
+  display: block;
 }
 
+/*Buttons*/
 .button-attending {
-  margin-right: 16px;
-  margin-left: 16px;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid rgb(219, 157, 12);
+  color: rgb(219, 157, 12);
+  padding: 0;
+  border-radius: 0;
+  transition: none;
+  height: 32px;
+  font-size: 16pt;
+  float: right;
+  margin-left: 40px;
+  margin-top: 8px;
 }
 
-@media only screen and (max-width: 780px) {
-  .event-infos {
-    padding-left: 1em;
-    padding-right: 1em;
+.button-attending:active,
+.button-attending:hover {
+  background-color: transparent;
+  opacity: 0.6;
+  border-bottom: 1px solid rgb(219, 157, 12);
+  border-color: rgb(219, 157, 12) !important;
+  color: rgb(219, 157, 12) !important;
+}
+
+.event-amount-attendence {
+  margin-right: 0px;
+  font-size: 12pt;
+  text-align: right;
+  float: right;
+}
+
+@media only screen and (max-width: 992px) {
+  .event-title {
+    font-size: 30px;
   }
 
-  .date {
-    padding-left: 1.5em;
-    padding-right: 1.5em;
-  }
-
-  .overflow {
-    padding-left: 1.5em;
-    padding-right: 1.5em;
+  .event-description-title {
+    font-size: 16pt;
+    margin-top: 0em;
   }
 
   .event-month {
     font-size: 22px;
+    margin-top: 5px;
   }
 
   .event-day {
-    font-size: 35px;
+    font-size: 38px;
   }
 
   .event-weekDay {
-    font-size: 18px;
-  }
-
-  .event-title {
-    font-size: 28px;
-  }
-
-  .event-time {
-    font-size: 18px;
+    font-size: 12pt;
   }
 
   .event-location {
-    font-size: 18px;
+    font-size: 12pt;
   }
 
-  .event-description-additional {
-    line-height: 1em;
-    font-size: 18px;
+  .event-time {
+    font-size: 12pt;
   }
 }
 
-@media only screen and (max-width: 540px) {
-  .event-infos {
-    padding-left: 0em;
-    padding-right: 0em;
+@media only screen and (max-width: 767px) {
+  .event-description {
+    text-align: left;
+    margin-top: 5%;
   }
 
-  .event-anmeldung {
-    padding-left: 0em;
-    padding-right: 0em;
+  .event-amount-attendence {
+    text-align: left;
+    float: left;
   }
 
   .button-attending {
-    margin-top: 1em;
+    float: left;
+    margin-left: 0;
+    margin-right: 10px;
+    margin-top: 10px;
+  }
+
+  .event-anmeldung {
+    padding: 0;
+  }
+
+  .event-title {
+    margin-bottom: 20px;
+    margin-top: 20px;
   }
 
   .date {
@@ -177,15 +237,33 @@
     padding-right: 0em;
   }
 
-  .overflow {
-    padding-left: 0em;
-    padding-right: 0em;
-    margin-top: -0.5em;
+  .event-date {
+    text-align: left;
+    margin-left: 25px;
   }
 
-  .event-title {
-    margin-top: 0.5em;
-    line-height: 1.2em;
+  .event-anmeldung {
+    padding-right: 0em;
+    text-align: left;
+  }
+
+  .event-infos-attendees {
+    margin-top: 15px;
+  }
+
+  .gap {
+    display: inline;
+    margin-right: 10px;
+  }
+
+  .event-anmeldung {
+    margin-top: 5px;
+  }
+
+  .event-date {
+    text-align: left;
+    margin: auto;
+    margin-left: 0px;
   }
 }
 
@@ -243,6 +321,7 @@
   font-size: 27px;
   white-space: nowrap;
   margin-bottom: 15px;
+  word-wrap: break-word;
 }
 
 .event-card-time {
@@ -270,7 +349,6 @@
 .event-card-location-icon {
   margin-top: 10em;
 }
-
 .profile-link {
   margin-left: 38px;
   margin-top: -12px;
@@ -305,14 +383,14 @@
   margin-left: 2.5rem;
 }
 
-@media only screen and (min-width: 732px) {
+@media only screen and (min-width: 768px) {
   .event-card {
     min-width: 700px;
     min-height: 190px;
   }
 }
 
-@media only screen and (max-width: 732px) {
+@media only screen and (max-width: 767px) {
   .event-card {
     max-width: 450px;
     max-height: 190px;
@@ -331,6 +409,8 @@
     max-width: 230px;
     white-space: normal;
     margin-bottom: 18px;
+    word-wrap: break-word;
+    font-size: 22px;
   }
 
   .event-card-link {
@@ -364,6 +444,7 @@
   }
 
   .event-card-date {
+    margin-top: 26px;
     width: 100%;
     max-width: 60px;
     max-width: 60px;
@@ -389,9 +470,10 @@
 
   .event-card-title {
     font-size: 18px;
-    max-width: 200px;
+    max-width: 158px;
     white-space: normal;
     margin-bottom: 18px;
+    word-break: break-all;
   }
 
   .event-card-location {
@@ -410,7 +492,6 @@
 
   .event-card-link {
     margin-left: 110px;
-    margin-top: 1em;
     white-space: nowrap;
   }
 
@@ -425,4 +506,37 @@
   width: 24px;
   margin-top: -2rem !important;
   margin-left: 1.6rem !important;
+}
+
+.expand-button {
+  margin: auto;
+}
+
+.expand-img {
+  margin-bottom: 1em;
+}
+
+.expand-img:hover,
+.expand-img:active {
+  cursor: pointer;
+}
+
+.expand-img-down:hover,
+.expand-img-down:focus {
+  content: url('../img/arrow-down-hover.svg');
+}
+
+.expand-img-up:hover,
+.expand-img-up:focus {
+  content: url('../img/arrow-up-hover.svg');
+}
+
+.table-attendees {
+  margin-bottom: 0rem;
+}
+
+.table-attendees.td {
+  font-size: 12pt;
+  opacity: 0.6;
+  color: #0f1929;
 }

@@ -24,15 +24,15 @@ class SingleEventPage extends Component {
   render() {
     if (this.props.isLoading) {
       return (
-        <Container className='loading-icon-container'>
+        <Container className="loading-icon-container">
           <Row>
-            <Col xs='12'>
-              <Col md='12' />
-              <div className='search-form' />
+            <Col xs="12">
+              <Col md="12" />
+              <div className="search-form" />
               <img
                 src={require('../img/LoadingIcon.gif')}
-                alt='loading-icon'
-                className='loading-icon'
+                alt="loading-icon"
+                className="loading-icon"
               />
             </Col>
           </Row>
@@ -40,7 +40,7 @@ class SingleEventPage extends Component {
       );
     } else {
       return (
-        <Container className='event-page-container'>
+        <Container className="event-page-container">
           <Row>
             <Col>
               <Helmet>

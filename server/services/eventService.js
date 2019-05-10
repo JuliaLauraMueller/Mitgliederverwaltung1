@@ -9,13 +9,15 @@ module.exports = {
   deleteEvent,
   create,
   getCirclesForId,
-  removeCircleFromEvents
+  removeCircleFromEvents,
+  addAttendee,
+  removeAttendee
 };
 
 async function getById(id) {
   let event = await Event.findById(id)
     .populate('circles')
-    .select();
+    .populate('attendees.user', 'firstname surname');
   if (event.image) {
     let buff = Buffer.from(event.image);
     let b64 = buff.toString('base64');
@@ -173,4 +175,54 @@ async function removeCircleFromEvents(circleId) {
   await Event.updateMany({
     $pull: { circles: mongoose.Types.ObjectId(circleId) }
   });
+}
+
+async function addAttendee(eventId, userId, accompanimentsAmount) {
+  const event = await Event.findById(eventId);
+  if (!event) throw 'Event not found';
+
+  const originalAttendee = event.attendees.find(a => a.user == userId);
+  if (originalAttendee) {
+    originalAttendee.accompaniments = accompanimentsAmount;
+  } else {
+    var attendee = {
+      user: userId,
+      accompaniments: accompanimentsAmount
+    };
+    event.attendees.push(attendee);
+  }
+
+  await event.save();
+  let returnEvent = await Event.findById(eventId)
+    .populate('circles')
+    .populate('attendees.user', 'firstname surname');
+
+  if (returnEvent.image) {
+    let buff = Buffer.from(returnEvent.image);
+    let b64 = buff.toString('base64');
+    returnEvent = returnEvent.toObject();
+    returnEvent.image = b64;
+  }
+  return returnEvent;
+}
+
+async function removeAttendee(eventId, userId) {
+  const event = await Event.findById(eventId);
+  if (!event) throw 'Event not found';
+
+  const index = event.attendees.findIndex(att => att.user == userId);
+  event.attendees.splice(index, 1);
+
+  await event.save();
+  let returnEvent = await Event.findById(eventId)
+    .populate('circles')
+    .populate('attendees.user', 'firstname surname');
+
+  if (returnEvent.image) {
+    let buff = Buffer.from(returnEvent.image);
+    let b64 = buff.toString('base64');
+    returnEvent = returnEvent.toObject();
+    returnEvent.image = b64;
+  }
+  return returnEvent;
 }

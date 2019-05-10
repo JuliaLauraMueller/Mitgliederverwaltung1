@@ -61,7 +61,8 @@ async function getEventData(id) {
         location: resp.data.location,
         organisationTeam: resp.data.organisationTeam,
         registrationEndDate: resp.data.registrationEndDate,
-        permittedRoles: resp.data.permittedRoles
+        permittedRoles: resp.data.permittedRoles,
+        attendees: resp.data.attendees
       }
     };
   });
@@ -80,10 +81,34 @@ async function setEventData(data) {
     });
 }
 
+async function addAttendee(id, data) {
+  return await axios
+    .put('/events/' + id + '/addAttendee', data)
+    .then(event => {
+      return event;
+    })
+    .catch(err => {
+      return Promise.reject();
+    });
+}
+
+async function removeAttendee(id) {
+  return await axios
+    .delete('/events/' + id + '/removeAttendee')
+    .then(event => {
+      return event;
+    })
+    .catch(err => {
+      return Promise.reject();
+    });
+}
+
 export default {
   getEventBody,
   deleteEvent,
   createEvent,
   setEventData,
-  getEventData
+  getEventData,
+  addAttendee,
+  removeAttendee
 };
