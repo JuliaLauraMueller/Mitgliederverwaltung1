@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import classnames from 'classnames';
 
 import Toolbar from '../Toolbar/Toolbar';
 import SideDrawer from '../SideDrawer/SideDrawer';
@@ -15,8 +16,9 @@ class AppNavbar extends Component {
     this.state = {
       windowWith: window.innerWidth,
       windowHeight: window.innerHeight,
-      sideDrawerOpen: false,
-      isMobile: false
+      isMobile: false,
+      prevScrollpos: window.pageYOffset,
+      visible: true
     };
   }
 
@@ -28,27 +30,35 @@ class AppNavbar extends Component {
     });
     if (
       (window.innerWidth <= 1200 || window.innerHeight <= 740) &&
-      this.state.sideDrawerOpen
+      this.props.navigationExpanded
     ) {
       // close nav when changing to mobile view
       this.props.dispatch(setNavCollapsed());
-      this.setState({
-        sideDrawerOpen: false
-      });
     }
   }
   componentDidMount() {
     window.addEventListener('resize', this.handleResize.bind(this));
+    window.addEventListener('scroll', this.handleScroll);
   }
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleResize.bind(this));
+    window.removeEventListener('scroll', this.handleScroll);
   }
 
   drawerToggleClickHandler = () => {
-    this.setState(prevState => {
-      return { sideDrawerOpen: !prevState.sideDrawerOpen };
-    });
     this.props.toggleSideMenu();
+  };
+
+  handleScroll = () => {
+    const { prevScrollpos } = this.state;
+
+    const currentScrollPos = window.pageYOffset;
+    const visible = prevScrollpos > currentScrollPos;
+
+    this.setState({
+      prevScrollpos: currentScrollPos,
+      visible
+    });
   };
 
   render() {
@@ -57,7 +67,16 @@ class AppNavbar extends Component {
       visibleClass = 'visible';
     }
     if (window.innerWidth <= 1200 || window.innerHeight <= 740) {
-      return <BurgerNav visibleClass={visibleClass} />;
+      return (
+        <nav
+          className={classnames('navbar', {
+            'navbar--hidden': !this.state.visible
+          })}
+        >
+          {' '}
+          <BurgerNav className="navbar--hidden" visibleClass={visibleClass} />
+        </nav>
+      );
     } else {
       return (
         <div className={'app-nav-bar ' + visibleClass}>
@@ -69,7 +88,7 @@ class AppNavbar extends Component {
             <SideDrawer
               className="side-drawer"
               drawerClickHandler={this.drawerToggleClickHandler}
-              show={this.state.sideDrawerOpen}
+              show={this.props.navigationExpanded}
             />
           </div>
         </div>
@@ -80,7 +99,8 @@ class AppNavbar extends Component {
 
 function mapStateToProps(state) {
   return {
-    navigationVisible: state.navigation.visible
+    navigationVisible: state.navigation.visible,
+    navigationExpanded: state.navigation.expanded
   };
 }
 

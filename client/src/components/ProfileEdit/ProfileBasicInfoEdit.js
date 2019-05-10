@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import { InputGroup, InputGroupAddon, Input, Row, Col } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import AvatarEditor from 'react-avatar-editor';
 
 import '../../css/ProfilePage.css';
 
 class ProfileBasicInfoEDIT extends Component {
+  _isMounted = false;
+
   constructor(props) {
     super(props);
     const profile = this.props.profile;
@@ -25,19 +28,33 @@ class ProfileBasicInfoEDIT extends Component {
       entryDate: profile.entryDate,
       city: profile.city,
       godfather: profile.godfather,
-      birthdate: profile.birthdate
+      birthdate: profile.birthdate,
+      avatar: profile.avatar,
+      avatarTag: profile.avatarTag
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSave = this.onSave.bind(this);
+    this.fileSelectedHandler = this.fileSelectedHandler.bind(this);
+    this.getBase64 = this.getBase64.bind(this);
+  }
+
+  componentDidMount() {
+    this._isMounted = true;
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    if (this._isMounted) {
+      this.setState({ [e.target.name]: e.target.value });
+    }
   }
 
   onSave() {
-    const basicInformationUpdate = {
+    let basicInformationUpdate = {
       _id: this.props.profile._id,
       xingLink: this.state.xingLink,
       linkedinLink: this.state.linkedinLink,
@@ -56,8 +73,48 @@ class ProfileBasicInfoEDIT extends Component {
       //godfather: this.state.godfather,
       birthdate: this.state.birthdate
     };
+    if (this.editor) {
+      let canv = this.editor.getImage();
+      let pictureB64 = canv.toDataURL('image/jpeg', 1);
+      let quality = 0.9;
+      while ((pictureB64.length * 3) / 4 > 500 * 1024 && quality > 0) {
+        pictureB64 = canv.toDataURL('image/jpeg', quality);
+        quality -= 0.1;
+      }
+      let splitArr = pictureB64.split(',');
+      basicInformationUpdate = {
+        ...basicInformationUpdate,
+        avatar: splitArr[1],
+        avatarTag: splitArr[0]
+      };
+    }
     return basicInformationUpdate;
   }
+
+  async fileSelectedHandler(event) {
+    var f = event.target.files[0];
+    if (f) {
+      let fileInB64 = await this.getBase64(f);
+      let splitArr = fileInB64.split(',');
+      if (this._isMounted) {
+        this.setState({
+          avatarTag: splitArr[0],
+          avatar: splitArr[1]
+        });
+      }
+    }
+  }
+
+  getBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
+  }
+
+  setEditorRef = editor => (this.editor = editor);
 
   render() {
     return (
@@ -66,21 +123,40 @@ class ProfileBasicInfoEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <div className="input-field">
-                  <img
-                    className="profile-image-edit"
-                    style={{ width: '147px' }}
-                    src={require('../../img/marc_zimmermann.jpg')}
-                    alt="profile"
+                <div className='input-field'>
+                  <AvatarEditor
+                    image={
+                      this.state.avatar
+                        ? this.state.avatarTag + ',' + this.state.avatar
+                        : require('../../img/Profile_Placeholder.png')
+                    }
+                    ref={this.setEditorRef}
+                    width={147}
+                    height={147}
+                    border={0}
+                    color={[0, 0, 0, 0.6]} // RGBA
+                    scale={1.0}
+                    rotate={0}
+                    borderRadius={180}
                   />
                 </div>
               </InputGroup>
+              <input
+                type='file'
+                id='pictureUpload'
+                onChange={this.fileSelectedHandler}
+                className='hidden'
+                accept='.jpg,.jpeg,.png'
+              />
+              <label htmlFor='pictureUpload' className='picture-button'>
+                Neues Profilbild
+              </label>
             </Col>
           </Row>
 
           <Row>
             <Col>
-              <p className="main-title title-maininfo space-top">
+              <p className='main-title title-maininfo space-top'>
                 Anrede und Social Media
               </p>
             </Col>
@@ -89,75 +165,80 @@ class ProfileBasicInfoEDIT extends Component {
             <Col>
               <InputGroup>
                 <InputGroupAddon
-                  id="salutation-group-addon"
-                  addonType="prepend"
+                  id='salutation-group-addon'
+                  addonType='prepend'
                 >
-                  Anrede:
+                  Anrede
                 </InputGroupAddon>
                 <fieldset>
-                  <div className="input-field-radio">
+                  <div className='input-field-radio'>
                     <input
-                      type="radio"
-                      className="radio"
-                      name="salutation"
-                      value="Frau"
+                      type='radio'
+                      className='radio'
+                      name='salutation'
+                      value='Frau'
                       checked={this.state.salutation === 'Frau'}
                       onChange={this.onChange}
                     />
-                    <label className="radio-label">Frau</label>
+                    <label className='radio-label'>Frau</label>
                     <input
-                      type="radio"
-                      className="radio"
-                      name="salutation"
-                      value="Herr"
+                      type='radio'
+                      className='radio'
+                      name='salutation'
+                      value='Herr'
                       checked={this.state.salutation === 'Herr'}
                       onChange={this.onChange}
                     />
-                    <label className="radio-label">Herr</label>
+                    <label className='radio-label'>Herr</label>
                   </div>
                 </fieldset>
               </InputGroup>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">Titel:</InputGroupAddon>
-                <div className="input-field">
+                <InputGroupAddon addonType='prepend'>Titel</InputGroupAddon>
+                <div className='input-field'>
                   <Input
-                    type="text"
-                    name="title"
+                    type='text'
+                    name='title'
                     onChange={this.onChange}
                     value={this.state.title || ''}
                   />
                 </div>
               </InputGroup>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">Vorname:</InputGroupAddon>
-                <div className="input-field">
+                <InputGroupAddon addonType='prepend'>
+                  <p className='input-group-text'>Vorname</p>
+                  <pre className='required-field'>*</pre>
+                </InputGroupAddon>
+
+                <div className='input-field'>
                   <Input
-                    type="text"
-                    name="firstname"
+                    type='text'
+                    name='firstname'
                     onChange={this.onChange}
                     value={this.state.firstname || ''}
                   />
                 </div>
               </InputGroup>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">Nachname:</InputGroupAddon>
-                <div className="input-field">
+                <InputGroupAddon addonType='prepend'>
+                  <p className='input-group-text'>Nachname</p>
+                  <pre className='required-field'>*</pre>
+                </InputGroupAddon>
+                <div className='input-field'>
                   <Input
-                    type="text"
-                    name="surname"
+                    type='text'
+                    name='surname'
                     onChange={this.onChange}
                     value={this.state.surname}
                   />
                 </div>
               </InputGroup>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">
-                  Spitzname:
-                </InputGroupAddon>
-                <div className="input-field">
+                <InputGroupAddon addonType='prepend'>Spitzname</InputGroupAddon>
+                <div className='input-field'>
                   <Input
-                    type="text"
-                    name="alias"
+                    type='text'
+                    name='alias'
                     onChange={this.onChange}
                     value={this.state.alias || ''}
                   />
@@ -169,11 +250,11 @@ class ProfileBasicInfoEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">Xing:</InputGroupAddon>
-                <div className="input-field">
+                <InputGroupAddon addonType='prepend'>Xing</InputGroupAddon>
+                <div className='input-field'>
                   <Input
-                    type="text"
-                    name="xingLink"
+                    type='text'
+                    name='xingLink'
                     onChange={this.onChange}
                     value={this.state.xingLink || ''}
                   />
@@ -185,11 +266,11 @@ class ProfileBasicInfoEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">Linkedin:</InputGroupAddon>
-                <div className="input-field">
+                <InputGroupAddon addonType='prepend'>Linkedin</InputGroupAddon>
+                <div className='input-field'>
                   <Input
-                    type="text"
-                    name="linkedinLink"
+                    type='text'
+                    name='linkedinLink'
                     onChange={this.onChange}
                     value={this.state.linkedinLink || ''}
                   />
@@ -201,11 +282,11 @@ class ProfileBasicInfoEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">Facebook:</InputGroupAddon>
-                <div className="input-field">
+                <InputGroupAddon addonType='prepend'>Facebook</InputGroupAddon>
+                <div className='input-field'>
                   <Input
-                    type="text"
-                    name="facebookLink"
+                    type='text'
+                    name='facebookLink'
                     onChange={this.onChange}
                     value={this.state.facebookLink || ''}
                   />
@@ -216,13 +297,11 @@ class ProfileBasicInfoEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">
-                  Instagram:
-                </InputGroupAddon>
-                <div className="input-field">
+                <InputGroupAddon addonType='prepend'>Instagram</InputGroupAddon>
+                <div className='input-field'>
                   <Input
-                    type="text"
-                    name="instagramLink"
+                    type='text'
+                    name='instagramLink'
                     onChange={this.onChange}
                     value={this.state.instagramLink || ''}
                   />
@@ -233,54 +312,22 @@ class ProfileBasicInfoEDIT extends Component {
         </Col>
 
         <Col md={{ offset: 0, size: 6 }} xs={{ offset: 1 }}>
-          <Row className="basic-info">
+          <Row className='basic-info'>
             <Col>
-              <p className="main-title title-maininfo space-top">Kurzprofil</p>
+              <p className='main-title title-maininfo space-top'>Kurzprofil</p>
             </Col>
           </Row>
 
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">Mitglied:</InputGroupAddon>
-                <div className="input-field">
-                  <Input
-                    type="text"
-                    name="memberNumber"
-                    onChange={this.onChange}
-                    value={this.state.memberNumber || ''}
-                  />
-                </div>
-              </InputGroup>
-            </Col>
-          </Row>
-
-          <Row>
-            <Col>
-              <InputGroup>
-                <InputGroupAddon addonType="prepend">Beitritt:</InputGroupAddon>
-                <div className="input-field">
-                  <Input
-                    type="text"
-                    name="entryDate"
-                    onChange={this.onChange}
-                    value={this.state.entryDate || ''}
-                  />
-                </div>
-              </InputGroup>
-            </Col>
-          </Row>
-
-          <Row>
-            <Col>
-              <InputGroup>
-                <InputGroupAddon addonType="prepend">
-                  Geburtstag:
+                <InputGroupAddon addonType='prepend'>
+                  Geburtstag
                 </InputGroupAddon>
-                <div className="input-field">
+                <div className='input-field'>
                   <Input
-                    type="text"
-                    name="birthdate"
+                    type='date'
+                    name='birthdate'
                     onChange={this.onChange}
                     value={this.state.birthdate || ''}
                   />
@@ -292,11 +339,11 @@ class ProfileBasicInfoEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">Status:</InputGroupAddon>
-                <div className="input-field">
+                <InputGroupAddon addonType='prepend'>Status</InputGroupAddon>
+                <div className='input-field'>
                   <Input
-                    type="text"
-                    name="status"
+                    type='text'
+                    name='status'
                     onChange={this.onChange}
                     value={this.state.status || ''}
                   />
@@ -308,44 +355,12 @@ class ProfileBasicInfoEDIT extends Component {
           <Row>
             <Col>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">City:</InputGroupAddon>
-                <div className="input-field">
+                <InputGroupAddon addonType='prepend'>Angebot</InputGroupAddon>
+                <div className='input-field' id='text-area-offers'>
                   <Input
-                    type="text"
-                    name="city"
-                    onChange={this.onChange}
-                    value={this.state.city || ''}
-                  />
-                </div>
-              </InputGroup>
-            </Col>
-          </Row>
-
-          <Row>
-            <Col>
-              <InputGroup>
-                <InputGroupAddon addonType="prepend">Götti:</InputGroupAddon>
-                <div className="input-field">
-                  <Input
-                    type="text"
-                    name="godfather"
-                    onChange={this.onChange}
-                    value={this.state.godfather || ''}
-                  />
-                </div>
-              </InputGroup>
-            </Col>
-          </Row>
-
-          <Row>
-            <Col>
-              <InputGroup>
-                <InputGroupAddon addonType="prepend">Angebot:</InputGroupAddon>
-                <div className="input-field" id="text-area-offers">
-                  <Input
-                    type="textarea"
-                    name="offerings"
-                    rows="3"
+                    type='textarea'
+                    name='offerings'
+                    rows='3'
                     onChange={this.onChange}
                     value={this.state.offerings || ''}
                   />

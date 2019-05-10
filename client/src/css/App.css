@@ -35,6 +35,13 @@ global style for all pages
   height: 100%;
 }
 
+.title {
+  position: static;
+  text-align: center;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+}
+
 .collapsed {
   padding-left: 90px;
 }
@@ -82,7 +89,58 @@ global style for all pages
   margin-top: auto;
   margin-bottom: auto;
 }
-@media only screen and (max-width: 1200px) {
+
+.search-field {
+  display: flex;
+  justify-content: center;
+  max-width: 300px;
+  min-width: 300px;
+}
+
+.loading-icon {
+  position: relative;
+  padding-top: 60%;
+  margin-left: 50%;
+  transform: translate(-50%, -50%);
+  justify-content: center;
+}
+
+.loading-icon-container {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-content: center;
+}
+
+.page-wrap-loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0.35;
+  z-index: 25000;
+}
+
+.modal-loading-screen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  z-index: 30000;
+}
+
+.text-editor-label {
+  min-width: 150px;
+}
+
+.no-data-found {
+  opacity: 0.6;
+}
+
+@media only screen and (max-width: 1200px), screen and (max-height: 740px) {
   .collapsed {
     padding-left: 0px;
   }

@@ -1,5 +1,6 @@
 jest.mock('../models/CircleModel');
 jest.mock('../models/UserModel');
+jest.mock('../models/EventModel');
 
 const { updateCircle, create, deleteCircle } = require('./circleService');
 const { findById, aggregate } = require('../models/CircleModel');

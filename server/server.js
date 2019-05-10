@@ -2,7 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const userController = require('./controllers/userController');
 const companyController = require('./controllers/companyController');
-const circlesController = require('./controllers/circleController');
+const circleController = require('./controllers/circleController');
+const eventController = require('./controllers/eventController');
+const newsArticleController = require('./controllers/newsArticleController');
 const jwt = require('./helpers/jwt');
 const cors = require('cors');
 const errorHandler = require('./helpers/errorHandler');
@@ -21,7 +23,7 @@ mongoose
   .catch(err => console.log(err));
 
 // Middleware
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '16mb' }));
 app.use(cors({ exposedHeaders: 'Set-Authorization' }));
 app.use('/api', jwt());
 
@@ -30,7 +32,9 @@ app.use('/api', addUpdatedTokenToHeader);
 // Routes
 app.use('/api/users', userController);
 app.use('/api/companies', companyController);
-app.use('/api/circles', circlesController);
+app.use('/api/circles', circleController);
+app.use('/api/events', eventController);
+app.use('/api/newsArticles', newsArticleController);
 
 // Error handler
 app.use(errorHandler);

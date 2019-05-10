@@ -12,7 +12,7 @@ const schema = new Schema({
   birthdate: { type: Date },
   status: { type: String },
   circle: { type: Schema.Types.ObjectId },
-  godfather: { type: Schema.Types.ObjectId },
+  godfather: { type: String },
   salutation: { type: String },
   title: { type: String },
   firstname: { type: String },
@@ -28,7 +28,7 @@ const schema = new Schema({
   privateTel: { type: String },
   privateMobile: { type: String },
   privateStreet: { type: String },
-  privateStreetNr: { type: Number },
+  privateStreetNr: { type: String },
   privateZip: { type: Number },
   privateCity: { type: String },
   invoiceAddress: { type: Boolean },
@@ -37,6 +37,8 @@ const schema = new Schema({
   facebookLink: { type: String },
   instagramLink: { type: String },
   offerings: { type: String },
+  avatar: { type: Buffer },
+  avatarTag: { type: String },
   role: { type: Number }
 });
 

@@ -6,6 +6,52 @@ basic style profile page
 }
 
 /*component bodies*/
+.hidden {
+  display: none;
+}
+
+/*Buttons*/
+.button-save-edit {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid rgb(219, 157, 12);
+  color: rgb(219, 157, 12);
+  padding: 0;
+  border-radius: 0;
+  transition: none;
+  height: 32px;
+  margin-bottom: 10px;
+  font-size: 140%;
+  float: right;
+}
+
+.button-save-edit:active,
+.button-save-edit:hover {
+  background-color: transparent;
+  opacity: 0.5;
+}
+
+.picture-button {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid rgb(219, 157, 12);
+  line-height: 2.3;
+  color: rgb(219, 157, 12);
+  padding: 0;
+  border-radius: 0;
+  transition: none;
+  height: 32px;
+  margin-bottom: 10px;
+  font-size: 110%;
+  float: left;
+  opacity: 1 !important;
+}
+
+.picture-button:hover,
+.picture-button:active {
+  background-color: transparent;
+  opacity: 0.5 !important;
+}
 
 .main-title {
   font-size: 1.3rem;
@@ -19,10 +65,20 @@ basic style profile page
 
 .value-label {
   float: right;
-  max-width: 300px;
-  min-width: 180px;
+  max-width: 250px;
+  min-width: 250px;
   margin: 0;
   padding-left: 0;
+}
+
+@media only screen and (max-width: 1200px), screen and (max-height: 740px) {
+  .value-label {
+    float: right;
+    max-width: 180px;
+    min-width: 180px;
+    margin: 0;
+    padding-left: 0;
+  }
 }
 
 .space {
@@ -80,14 +136,17 @@ label {
   padding-left: 16px;
   margin-top: 14px;
 }
-#xing-button {
-  padding-left: 0px;
+
+.icon-button:active,
+.icon-button:focus,
+.icon-button:hover {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
 }
 
-#mail-button {
-  padding-right: 0px;
-}
-.icon-button:hover {
+.btn-secondary:active,
+:hover .icon-button:hover {
   background-color: transparent;
   opacity: 0.5;
 }
@@ -118,6 +177,7 @@ label {
   margin-bottom: 0px;
   opacity: 0.8;
 }
+
 .name-label {
   font-size: 1.8rem;
   opacity: 0.8;
@@ -136,6 +196,10 @@ label {
   margin-bottom: 6%;
 }
 
+button:focus {
+  outline: none;
+}
+
 .profile-pic__image img {
   width: 180px;
   height: 180px;
@@ -146,7 +210,8 @@ label {
 }
 
 .btn-secondary.disabled,
-.btn-secondary:disabled {
+.btn-secondary:disabled,
+.btn-secondary.disabled:hover {
   background-color: transparent;
   opacity: 0.3;
 }
@@ -160,7 +225,7 @@ additional style EDIT profile page
 }
 
 .basic-info {
-  margin-top: 147px;
+  margin-top: 193px;
 }
 
 /*text-field style*/
@@ -175,10 +240,29 @@ additional style EDIT profile page
   height: 25px;
   margin-bottom: 10px;
   position: relative;
-  width: 210px;
+  width: 250px;
   margin: 0;
   padding: 0;
 }
+
+@media only screen and (max-width: 1200px), screen and (max-height: 740px) {
+  .form-control {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid #0f1929;
+    opacity: 0.8;
+    padding: 0;
+    border-radius: 0;
+    transition: none;
+    height: 25px;
+    margin-bottom: 10px;
+    position: relative;
+    width: 180px;
+    margin: 0;
+    padding: 0;
+  }
+}
+
 .form-control:active {
   background-color: transparent;
   border-bottom: 1px solid rgb(219, 157, 12);
@@ -205,7 +289,7 @@ additional style EDIT profile page
 .input-field-radio {
   justify-content: left;
   float: left;
-  width: 220px;
+  width: 250px;
 }
 
 #text-area-offers {
@@ -232,41 +316,38 @@ additional style EDIT profile page
 
 #radio-invoice {
   margin-top: 0;
-  padding-left: 2%;
+  padding-left: 0%;
 }
 
-/*Buttons*/
-.button-save-edit {
-  background-color: transparent;
-  border: 0;
-  border-bottom: 1px solid rgb(219, 157, 12);
+.required-field {
   color: rgb(219, 157, 12);
-  padding: 0;
-  border-radius: 0;
-  transition: none;
-  height: 32px;
-  margin-bottom: 10px;
-  font-size: 140%;
-  float: right;
+  display: inline;
+  position: relative;
+  bottom: 5px;
 }
 
-button-container {
-  float: left;
-  display: block;
+.invoice-spacing {
+  margin-top: 1.65%;
 }
-.button-save-edit:active,
-.button-save-edit:hover {
-  background-color: transparent;
-  opacity: 0.5;
+
+.invoice-spacing-edit {
+  margin-top: 2.5%;
 }
 
 @media only screen and (min-width: 769px) and (max-width: 1200px) {
   .basic-info {
-    margin-top: 147px;
+    margin-top: 195px;
   }
   .button-save-edit {
     position: relative;
     bottom: 51px;
+    z-index: 1000;
+  }
+
+  .input-field-radio {
+    justify-content: left;
+    float: left;
+    width: 180px;
   }
 }
 @media only screen and (min-width: 0px) and (max-width: 768px) {
@@ -276,5 +357,17 @@ button-container {
   .button-save-edit {
     position: relative;
     bottom: 51px;
+  }
+
+  .input-field-radio {
+    justify-content: left;
+    float: left;
+    width: 178px;
+  }
+}
+
+@media (width: 768px) {
+  .basic-info {
+    margin-top: 195px;
   }
 }

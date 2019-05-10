@@ -1,0 +1,9 @@
+export const EVENT_FETCHED = 'EVENT_FETCHED';
+export const FETCH_EVENTS = 'FETCH_EVENTS';
+export const EVENTS_FETCHED = 'EVENTS_FETCHED';
+export const EVENT_DELETED = 'EVENT_DELETED';
+export const CREATE_EVENT = 'CREATE_EVENT';
+export const PUT_EVENT = 'PUT_EVENT';
+export const SEARCH_EVENTS = 'SEARCH_EVENTS';
+export const ADD_ATTENDEE = 'ADD_ATTENDEE';
+export const REMOVE_ATTENDEE = 'REMOVE_ATTENDEE';

@@ -10,7 +10,7 @@ async function getUserData(id) {
         memberNumber: resp.data.memberNumber,
         entryDate: resp.data.entryDate,
         city_id: resp.data.circle,
-        godfather_id: resp.data.godfather,
+        godfather: resp.data.godfather,
         birthdate: resp.data.birthdate,
         sector: resp.data.sector,
         job: resp.data.job,
@@ -39,21 +39,13 @@ async function getUserData(id) {
         linkedinLink: resp.data.linkedinLink,
         facebookLink: resp.data.facebookLink,
         instagramLink: resp.data.instagramLink,
-        offerings: resp.data.offerings
+        offerings: resp.data.offerings,
+
+        avatar: resp.data.avatar,
+        avatarTag: resp.data.avatarTag
       }
     };
   });
-
-  if (userData.member.godfather_id) {
-    await axios.get('/users/' + userData.member.godfather_id).then(resp => {
-      if (resp) {
-        userData.member.godfather =
-          resp.data.firstname + ' ' + resp.data.surname;
-      }
-    });
-  } else {
-    userData.member.godfather = '';
-  }
 
   if (userData.member.city_id) {
     await axios.get('/circles/' + userData.member.city_id).then(resp => {
@@ -89,7 +81,7 @@ async function setUserData(userData, companyData) {
   return await axios
     .put('/users/' + data.userData._id, data)
     .then(res => {
-      return res;
+      return res.data.updated;
     })
     .catch(error => {
       if (error && error.data.errors && error.data.type === 'invalid_input') {
@@ -103,10 +95,26 @@ async function setCompanyData(data) {
   return res;
 }
 
+async function changePassword(data) {
+  return await axios
+    .put('/users/changePassword/' + data._id, data)
+    .then(res => {
+      return Promise.resolve(res);
+    })
+    .catch(error => {
+      if (error && error.data.msg) {
+        return Promise.reject(error.data.msg);
+      } else {
+        return Promise.reject('Passwort konnte nicht geändert werden');
+      }
+    });
+}
+
 const profileService = {
   getUserData,
   getCompanyData,
   setUserData,
-  setCompanyData
+  setCompanyData,
+  changePassword
 };
 export default profileService;

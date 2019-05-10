@@ -1,5 +1,9 @@
 /*MemberPage*/
 
+.row {
+  min-width: 290px;
+}
+
 .member-logo {
   min-height: 66px;
   min-width: 57px;
@@ -20,19 +24,22 @@
 .filter-icon {
   width: 24px;
   height: 24px;
-  margin-top: -12px;
-  margin-left: -14px;
+  margin-top: -14px;
+  margin-left: -8px;
   justify-content: center;
 }
 
 .filter-button {
   border: 1px solid rgb(15, 25, 41, 0%);
   background-color: rgb(15, 25, 41, 0%);
-  width: 28px;
-  height: 28px;
-  margin-top: -8px;
-  margin-left: 0px;
+  width: 30px;
+  height: 30px;
+  margin-top: -14px;
   transition-duration: 0.4s;
+}
+
+.dropdown-toggle::after {
+  margin-left: 2px !important;
 }
 
 .filter-button:hover {
@@ -55,14 +62,76 @@
   box-shadow: none;
 }
 
-.search-field-member {
+.search-container {
+  width: 100%;
+  height: 65px;
   display: flex;
   justify-content: center;
+  position: sticky;
+  top: 0px;
+  z-index: 1000;
+  transition: top 0.6s;
+}
+
+.search-container-full {
+  background-color: rgb(230, 231, 233);
+  width: 100%;
+  height: 65px;
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  top: 0px;
+  z-index: 1000;
+  transition: top 0.6s;
+}
+
+.search-container--hidden {
+  top: -100px;
+}
+
+.search-field-member {
+  position: absolute;
+  display: inline-block;
+  top: 20px;
+}
+
+.search-field-member.row {
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .search-form {
   display: flex;
   justify-content: center;
+}
+
+@media only screen and (max-width: 800px) {
+  .search-container {
+    min-width: 300px;
+    max-width: 300px;
+    margin-left: calc(-150px + 50%);
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .search-container {
+    min-width: 220px;
+    max-width: 220px;
+    margin-left: calc(-90px + 50%);
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  .search-container {
+    min-width: 190px;
+    max-width: 190px;
+    margin-left: calc(-75px + 50%);
+  }
+
+  .search-field-member {
+    min-width: 260px;
+    max-width: 260px;
+  }
 }
 
 .search-icon {
@@ -83,7 +152,7 @@
   width: 76%;
 }
 
-.testerSearch {
+.tester-Search {
   justify-content: center;
 }
 
@@ -94,6 +163,17 @@ hr {
   margin-top: -17px;
   padding: 0;
   margin-top: 0px;
+  width: 100%;
+}
+
+.search-field {
+  display: flex;
+  justify-content: center;
+}
+
+.dropdown-menu.show {
+  position: absolute;
+  left: -95px;
 }
 
 /*MemberCard*/
@@ -120,8 +200,8 @@ hr {
   display: flex;
   justify-content: center;
   border: 0px solid white;
-  min-width: 237px;
-  max-width: 237px;
+  min-width: 244px;
+  max-width: 244px;
   min-height: 161px;
   max-height: 161px;
   border-radius: 0px;
@@ -161,6 +241,14 @@ hr {
   margin-top: -30px;
 }
 
+.card-name a {
+  color: #000000;
+}
+
+.card-name a:hover {
+  text-decoration: none;
+}
+
 .mail-icon {
   min-width: 21px;
   max-width: 21px;
@@ -189,6 +277,11 @@ hr {
   margin-left: -7px;
 }
 
+a[href^='mailto:'] {
+  color: black;
+  text-decoration: none;
+}
+
 .card-text-phone {
   position: absolute;
   top: 50%;
@@ -199,45 +292,43 @@ hr {
   margin-left: 25px;
 }
 
-.profile-link {
-  margin-left: 30px;
+a[href^='tel:'] {
+  color: black;
+  text-decoration: none;
+}
+
+.profile-link-member {
+  margin-left: 38px;
   margin-top: -12px;
 }
 
-.profile-text {
+.profile-text-member {
   color: rgb(219, 157, 12);
-  border-bottom: 1px solid rgb(219, 157, 12);
-  font-family: Helvetica, sans-serif;
-  font-weight: lighter;
   font-size: 11pt;
   margin-left: 116px;
 }
 
-.profile-text:hover {
+.profile-text-member:hover {
   color: rgb(15, 25, 41, 74%);
   text-decoration: none;
-  border-bottom: 1px solid rgb(15, 25, 41, 74%);
-  font-family: Helvetica, sans-serif;
-  font-weight: lighter;
   font-size: 11pt;
   margin-left: 116px;
 }
 
-.profile-text svg {
+.profile-text-member svg {
   fill: rgb(219, 157, 12);
-  stroke: none;
 }
 
-.profile-text:hover > svg {
-  fill: rgb(15, 25, 41, 74%);
-  stroke: none;
+.profile-text-member:hover > svg {
+  background-color: transparent;
+  opacity: 0.5 !important;
 }
 
-.profile-arrow {
-  height: 17px;
-  width: 12px;
-  margin-top: -2px;
-  margin-left: 3px;
+.profile-arrow-member {
+  height: 25px;
+  width: 24px;
+  margin-top: -0.4rem;
+  margin-left: 2.5rem;
 }
 
 .drop-down-filter {
@@ -246,4 +337,24 @@ hr {
 
 .filter-cities {
   margin-left: 5px;
+}
+
+@media only screen and (max-width: 768px) and (min-width: 0px) {
+  .dropdown-toggle::after {
+    margin-left: 2px !important;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .member-card {
+    min-width: 274px;
+    max-width: 274px;
+    min-height: 170px;
+    max-height: 170px;
+  }
+
+  .profile-arrow-member {
+    margin-top: -2px;
+    margin-left: 4.5em;
+  }
 }

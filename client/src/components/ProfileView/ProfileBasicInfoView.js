@@ -7,6 +7,7 @@ import { Row, Col, Button } from 'reactstrap';
 class ProfileBasicInfo extends Component {
   render() {
     const profile = this.props.profile;
+    let mail = profile.privateEmail;
     return (
       <Row>
         <Col md="6" align="center">
@@ -14,8 +15,12 @@ class ProfileBasicInfo extends Component {
             <Col>
               <img
                 id="profile-image"
-                style={{ width: '180px' }}
-                src={require('../../img/marc_zimmermann.jpg')}
+                style={{ width: '180px', height: '180px' }}
+                src={
+                  profile.avatar
+                    ? profile.avatarTag + ',' + profile.avatar
+                    : require('../../img/Profile_Placeholder.png')
+                }
                 alt="profile"
               />
             </Col>
@@ -79,7 +84,11 @@ class ProfileBasicInfo extends Component {
                   src={require('../../img/instagram.svg')}
                 />
               </Button>
-              <Button className="icon-button" id="mail-button">
+              <Button
+                className="icon-button"
+                id="mail-button"
+                href={'mailto:' + mail}
+              >
                 <img
                   className="icons"
                   alt="mail-icon"
@@ -98,43 +107,45 @@ class ProfileBasicInfo extends Component {
           </Row>
           <Row className="overflow">
             <Col>
-              <label>Mitglied:</label>
-              <label className="value-label">{profile.memberNumber}</label>
+              <label>Beitritt</label>
+              <label className="value-label">
+                {profile.entryDate
+                  ? new Date(profile.entryDate).toLocaleDateString('de-DE')
+                  : ''}
+              </label>
             </Col>
           </Row>
           <Row className="overflow">
             <Col>
-              <label>Beitritt:</label>
-              <label className="value-label">{profile.entryDate}</label>
+              <label>Geburtstag</label>
+              <label className="value-label">
+                {profile.birthdate
+                  ? new Date(profile.birthdate).toLocaleDateString('de-DE')
+                  : ''}
+              </label>
             </Col>
           </Row>
           <Row className="overflow">
             <Col>
-              <label>Geburtstag:</label>
-              <label className="value-label">{profile.birthdate}</label>
-            </Col>
-          </Row>
-          <Row className="overflow">
-            <Col>
-              <label>Status:</label>
+              <label>Status</label>
               <label className="value-label">{profile.status}</label>
             </Col>
           </Row>
           <Row className="overflow">
             <Col>
-              <label>City:</label>
+              <label>City</label>
               <label className="value-label">{profile.city}</label>
             </Col>
           </Row>
           <Row className="overflow">
             <Col>
-              <label className="godfather-label">Götti:</label>
+              <label className="godfather-label">Götti</label>
               <label className="value-label">{profile.godfather}</label>
             </Col>
           </Row>
           <Row>
             <Col>
-              <div className="offerings overflow">
+              <div className="offerings ">
                 <label className="main-title" id="offerings-label">
                   Was biete ich an?
                 </label>

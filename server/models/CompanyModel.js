@@ -5,7 +5,7 @@ const schema = new Schema({
   companyName: { type: String },
   companyURL: { type: String },
   companyStreet: { type: String },
-  companyStreetNr: { type: Number },
+  companyStreetNr: { type: String },
   companyZip: { type: Number },
   companyCity: { type: String }
 });

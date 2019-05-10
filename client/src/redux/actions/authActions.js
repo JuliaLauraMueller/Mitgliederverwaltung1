@@ -8,12 +8,39 @@ import {
 import { ALERT_ERROR } from '../types/alertTypes';
 import authService from '../../services/authService';
 import history from '../../helpers/history';
+import store from '../../helpers/store';
+import {
+  updateNavUserdata,
+  setNavExpanded
+} from '../actions/navigationActions';
 
 export const login = (privateEmail, password) => dispatch => {
   authService.login(privateEmail, password).then(
     userToken => {
-      dispatch({ type: LOGIN_SUCCESS, payload: jwtDecode(userToken) });
-      history.push('/');
+      var decodedToken = jwtDecode(userToken);
+      authService.getUserData(decodedToken._id).then(userData => {
+        if (userData.firstname && userData.surname) {
+          var navData = {};
+          if (userData.avatar) {
+            navData = {
+              firstname: userData.firstname,
+              surname: userData.surname,
+              avatar: userData.avatar,
+              avatarTag: userData.avatarTag
+            };
+          } else {
+            navData = {
+              firstname: userData.firstname,
+              surname: userData.surname
+            };
+          }
+          store.dispatch(updateNavUserdata(navData));
+          store.dispatch(setNavExpanded());
+        }
+
+        dispatch({ type: LOGIN_SUCCESS, payload: decodedToken });
+        history.push('/');
+      });
     },
     error => {
       dispatch({ type: LOGIN_FAILURE, error });

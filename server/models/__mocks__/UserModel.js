@@ -5,7 +5,7 @@ module.exports = {
   aggregate,
   create,
   findByIdAndRemove,
-  count
+  countDocuments
 };
 
 let users = [
@@ -76,8 +76,12 @@ async function findOne(search) {
 
 async function updateMany(obj1, obj2) {}
 
-async function aggregate(args) {
-  return users;
+function aggregate(args) {
+  return {
+    exec() {
+      return users;
+    }
+  };
 }
 
 async function create(user) {
@@ -92,6 +96,6 @@ async function findByIdAndRemove(id) {
   });
 }
 
-async function count(args) {
+async function countDocuments(args) {
   return users.filter(user => user.circle == args.circle).length;
 }

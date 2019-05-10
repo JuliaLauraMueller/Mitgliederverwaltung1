@@ -1,0 +1,542 @@
+/*Single-Event style*/
+.event-page-container {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-content: center;
+}
+
+.single-event-image,
+#single-event-image {
+  margin-bottom: 2rem;
+  display: block;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+}
+
+.date {
+  padding-left: 0.5em;
+  opacity: 0.6;
+  color: #0f1929;
+}
+
+.event-date {
+  text-align: center;
+  margin: auto;
+  margin-top: 12px;
+  margin-left: 12px;
+  width: 100%;
+  min-width: 143px;
+  max-width: 143px;
+}
+
+.overflow {
+  overflow: auto;
+  padding: 0px;
+  display: flex;
+  justify-content: center;
+}
+
+.event-infos {
+  display: flex;
+  justify-content: left;
+  text-align: justify;
+  line-height: 1.5em;
+  min-width: 0px !important;
+}
+
+.event-infos-attendees {
+  padding-left: 0em;
+  margin-top: 50px;
+}
+
+.event-title-infos {
+  display: inline;
+  justify-content: left;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  text-align: left;
+}
+
+.event-title {
+  font-size: 38px;
+}
+
+.event-time,
+.event-location {
+  font-size: 12pt;
+  margin: 0;
+}
+
+.event-location-container {
+  position: relative;
+  right: 1px;
+}
+
+.event-description-title {
+  margin-top: 1.4em;
+  margin-bottom: 0.5em;
+  font-size: 16pt;
+  display: block;
+  white-space: normal;
+}
+
+.event-description {
+  margin-top: 50px;
+  font-size: 18px;
+  display: block;
+  white-space: normal;
+}
+
+.event-attendee {
+  opacity: 0.6;
+  color: #0f1929;
+  font-size: 12pt;
+  position: relative;
+  left: 4px;
+}
+
+.event-description-additional {
+  font-size: 12pt;
+  display: block;
+  white-space: normal;
+  margin: 0;
+  opacity: 0.6;
+  color: #0f1929;
+}
+
+.title-attendees {
+  opacity: 0.6;
+  color: #0f1929;
+  font-size: 12pt;
+  position: relative;
+  left: 4px;
+}
+
+.event-anmeldung {
+  display: flex;
+  justify-content: left;
+  padding-top: -5em;
+  padding-bottom: 0.8em;
+  min-width: 0px !important;
+}
+
+.event-month {
+  font-size: 26px;
+  margin-bottom: -12px;
+}
+
+.event-day {
+  font-size: 60px;
+  margin-top: -10px;
+  margin-bottom: -10px;
+}
+
+.event-weekDay {
+  font-size: 22px;
+}
+
+.gap {
+  display: block;
+}
+
+/*Buttons*/
+.button-attending {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid rgb(219, 157, 12);
+  color: rgb(219, 157, 12);
+  padding: 0;
+  border-radius: 0;
+  transition: none;
+  height: 32px;
+  font-size: 16pt;
+  float: right;
+  margin-left: 40px;
+  margin-top: 8px;
+}
+
+.button-attending:active,
+.button-attending:hover {
+  background-color: transparent;
+  opacity: 0.6;
+  border-bottom: 1px solid rgb(219, 157, 12);
+  border-color: rgb(219, 157, 12) !important;
+  color: rgb(219, 157, 12) !important;
+}
+
+.event-amount-attendence {
+  margin-right: 0px;
+  font-size: 12pt;
+  text-align: right;
+  float: right;
+}
+
+@media only screen and (max-width: 992px) {
+  .event-title {
+    font-size: 30px;
+  }
+
+  .event-description-title {
+    font-size: 16pt;
+    margin-top: 0em;
+  }
+
+  .event-month {
+    font-size: 22px;
+    margin-top: 5px;
+  }
+
+  .event-day {
+    font-size: 38px;
+  }
+
+  .event-weekDay {
+    font-size: 12pt;
+  }
+
+  .event-location {
+    font-size: 12pt;
+  }
+
+  .event-time {
+    font-size: 12pt;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .event-description {
+    text-align: left;
+    margin-top: 5%;
+  }
+
+  .event-amount-attendence {
+    text-align: left;
+    float: left;
+  }
+
+  .button-attending {
+    float: left;
+    margin-left: 0;
+    margin-right: 10px;
+    margin-top: 10px;
+  }
+
+  .event-anmeldung {
+    padding: 0;
+  }
+
+  .event-title {
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+
+  .date {
+    padding-left: 0em;
+    padding-right: 0em;
+  }
+
+  .event-date {
+    text-align: left;
+    margin-left: 25px;
+  }
+
+  .event-anmeldung {
+    padding-right: 0em;
+    text-align: left;
+  }
+
+  .event-infos-attendees {
+    margin-top: 15px;
+  }
+
+  .gap {
+    display: inline;
+    margin-right: 10px;
+  }
+
+  .event-anmeldung {
+    margin-top: 5px;
+  }
+
+  .event-date {
+    text-align: left;
+    margin: auto;
+    margin-left: 0px;
+  }
+}
+
+/*Event-Card style*/
+
+.event-card {
+  display: flex;
+  justify-content: center;
+  border: 0px solid white;
+  min-width: 300px;
+  max-width: 700px;
+  min-height: 100px;
+  max-height: 190px;
+  border-radius: 0px;
+  margin: 9px;
+}
+
+.event-card-date {
+  text-align: center;
+  margin: auto;
+  margin-top: 13px;
+  margin-left: 12px;
+  width: 100%;
+  min-width: 143px;
+  max-width: 143px;
+}
+
+.event-card-content {
+  margin-left: 0pt;
+  margin-top: 12pt;
+}
+
+.event-card-month {
+  font-size: 27px;
+  margin-top: 0px;
+  margin-bottom: -20px;
+}
+
+.event-card-day {
+  font-size: 60px;
+  margin-top: 6px;
+  margin-bottom: -7px;
+}
+
+.event-card-weekDay {
+  font-size: 20px;
+}
+
+.event-card-location {
+  margin-top: -15px;
+  font-size: 22px;
+}
+
+.event-card-title {
+  font-size: 27px;
+  white-space: nowrap;
+  margin-bottom: 15px;
+  word-wrap: break-word;
+}
+
+.event-card-time {
+  margin-top: -5px;
+  font-size: 20px;
+}
+
+.event-card-description {
+  margin-top: 8px;
+  font-size: 18px;
+  display: block;
+  width: 450px;
+  min-height: 54px;
+  max-height: 54px;
+  line-height: 1.3em;
+}
+
+.event-card-link {
+  position: static;
+  margin-left: 485px;
+  margin-top: -30px;
+  white-space: nowrap;
+}
+
+.event-card-location-icon {
+  margin-top: 10em;
+}
+.profile-link {
+  margin-left: 38px;
+  margin-top: -12px;
+}
+
+.profile-text {
+  color: rgb(219, 157, 12);
+  font-size: 11pt;
+  margin-left: 116px;
+}
+
+.profile-text:hover {
+  color: rgb(15, 25, 41, 74%);
+  text-decoration: none;
+  font-size: 11pt;
+  margin-left: 116px;
+}
+
+.profile-text svg {
+  fill: rgb(219, 157, 12);
+}
+
+.profile-text:hover > svg {
+  background-color: transparent;
+  opacity: 0.5 !important;
+}
+
+.profile-arrow {
+  height: 25px;
+  width: 24px;
+  margin-top: -0.4rem;
+  margin-left: 2.5rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .event-card {
+    min-width: 700px;
+    min-height: 190px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .event-card {
+    max-width: 450px;
+    max-height: 190px;
+  }
+
+  .event-card-date {
+    min-width: 105px;
+    max-width: 105px;
+  }
+
+  .event-card-description {
+    display: none;
+  }
+
+  .event-card-title {
+    max-width: 230px;
+    white-space: normal;
+    margin-bottom: 18px;
+    word-wrap: break-word;
+    font-size: 22px;
+  }
+
+  .event-card-link {
+    margin-left: 255px;
+    white-space: nowrap;
+    margin-top: 0.4em;
+  }
+
+  .event-card-month {
+    font-size: 22px;
+  }
+
+  .event-card-day {
+    font-size: 55px;
+  }
+
+  .event-card-weekDay {
+    font-size: 18px;
+  }
+
+  .event-card-link {
+    margin-left: 235px;
+    margin-top: -10px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .event-card {
+    max-width: 305px;
+    max-height: 165px;
+  }
+
+  .event-card-date {
+    margin-top: 26px;
+    width: 100%;
+    max-width: 60px;
+    max-width: 60px;
+    margin-left: -10pt;
+  }
+
+  .event-card-description {
+    display: none;
+  }
+
+  .event-card-month {
+    font-size: 18px;
+    padding-bottom: 6px;
+  }
+
+  .event-card-day {
+    font-size: 40px;
+  }
+
+  .event-card-weekDay {
+    font-size: 16px;
+  }
+
+  .event-card-title {
+    font-size: 18px;
+    max-width: 158px;
+    white-space: normal;
+    margin-bottom: 18px;
+    word-break: break-all;
+  }
+
+  .event-card-location {
+    margin-top: -15px;
+    font-size: 15px;
+  }
+
+  .event-card-time {
+    margin-top: -5px;
+    font-size: 15px;
+  }
+
+  .event-card-content {
+    margin-right: -2em;
+  }
+
+  .event-card-link {
+    margin-left: 110px;
+    white-space: nowrap;
+  }
+
+  .event-card-link {
+    margin-left: 95px;
+    margin-top: -0px;
+  }
+}
+
+.event-arrow {
+  height: 25px;
+  width: 24px;
+  margin-top: -2rem !important;
+  margin-left: 1.6rem !important;
+}
+
+.expand-button {
+  margin: auto;
+}
+
+.expand-img {
+  margin-bottom: 1em;
+}
+
+.expand-img:hover,
+.expand-img:active {
+  cursor: pointer;
+}
+
+.expand-img-down:hover,
+.expand-img-down:focus {
+  content: url('../img/arrow-down-hover.svg');
+}
+
+.expand-img-up:hover,
+.expand-img-up:focus {
+  content: url('../img/arrow-up-hover.svg');
+}
+
+.table-attendees {
+  margin-bottom: 0rem;
+}
+
+.table-attendees.td {
+  font-size: 12pt;
+  opacity: 0.6;
+  color: #0f1929;
+}
