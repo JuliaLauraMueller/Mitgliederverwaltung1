@@ -309,8 +309,8 @@ div.form-control {
   border-bottom: none;
 }
 
-div.admin-create-box .form-control:active,
-div.admin-create-box .form-control:focus {
+div.admin-create-box .pic-create:active,
+div.admin-create-box .pic-create:focus {
   border-bottom: 0px !important;
 }
 
