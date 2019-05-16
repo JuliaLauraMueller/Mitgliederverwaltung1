@@ -87,6 +87,10 @@ class SingleEventInfo extends Component {
         attendee.isAttending = true;
       }
     }
+    let minusLabel = '';
+    if (event.endTime) {
+      minusLabel = ' - ';
+    }
     return (
       <div>
         {this.createAttendeeModal(attendee)}
@@ -137,7 +141,7 @@ class SingleEventInfo extends Component {
             <Row className="overflow">
               <Col>
                 <label className="event-time">{event.startTime}</label>
-                <label className="event-time"> - </label>
+                <label className="event-time">{minusLabel}</label>
                 <label className="event-time">{event.endTime} </label>
               </Col>
             </Row>
