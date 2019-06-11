@@ -197,7 +197,7 @@ class AdminCreateEvent extends Component {
                   className="hidden"
                   accept=".jpg,.jpeg,.png"
                 />
-                <div className="admin-form-control form-control">
+                <div className="admin-form-control form-control pic-create">
                   <label
                     htmlFor="pictureUpload"
                     className="picture-button-create"

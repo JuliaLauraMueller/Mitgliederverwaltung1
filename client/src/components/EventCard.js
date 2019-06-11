@@ -33,6 +33,12 @@ class EventCard extends Component {
     let date = new Date(this.props.event.date);
     let weekday = this.days[date.getDay()];
     let month = this.months[date.getMonth()];
+    let time = '';
+    if (this.props.event.endTime) {
+      time = this.props.event.startTime + ' - ' + this.props.event.endTime;
+    } else {
+      time = this.props.event.startTime;
+    }
     let trimmedDescription = this.props.event.description.substring(0, 75);
     if (this.props.event.description.length > 75)
       trimmedDescription = trimmedDescription + '...';
@@ -88,9 +94,7 @@ class EventCard extends Component {
                       </CardText>
                     </div>
                     <div>
-                      <CardText className="event-card-time">
-                        {this.props.event.startTime}-{this.props.event.endTime}
-                      </CardText>
+                      <CardText className="event-card-time">{time}</CardText>
                     </div>
                     <div>
                       <CardText className="event-card-description">
